@@ -1,43 +1,5 @@
-# OpenFisca Country-Template
+# OpenFisca France Firms
 
-This repository helps you quickly set up and use your own OpenFisca country package.
-
-**You should NOT fork it** but follow the set up instructions below.
-
-> Otherwise, you will have to clean up all tags when you deploy your own country package.
-
-## Setting up your Country Package
-
-This set of instructions **only needs to be followed once** and will create your own copy of this boilerplate directory, customising it to the country you want to work on. You will need to have [Git](https://git-scm.com) installed.
-
-### Using GitHub (recommended for GitHub users)
-
-1. Click on the [“Use this template” dropdown and select “Create a new repository”](https://github.com/new?template_name=country-template&template_owner=openfisca).
-
-2. Set the repository name to `openfisca-<your_country_name>`; use underscore `_` as separator if there are spaces in the country name. For example, `openfisca-new_zealand` or `openfisca-france`.
-
-3. After being redirected to your newly created repository, please allow a few minutes for the automatic setup to be executed. Once done, the title of the README file should be updated to `OpenFisca <your_country_name>`. 
-
-> If the automatic setup does not start within a few minutes, you can initiate it manually:
-> - Navigate to the “Actions” tab.
-> - Select the “First time setup” workflow.
-> - Click on “Run workflow” to start the setup process manually.
-
-4. Follow the instructions in the new repository's README.md.
-
-### Manual setup (recommended for users of other Git hosts)
-
-1. [Download a copy](https://github.com/openfisca/country-template/archive/master.zip) of this repository, unzip it and `cd` into it in a Terminal window.
-
-2. Create a new repository on your favourite git host (Bitbucket, GitLab, …) with the name `openfisca-<your_country_name>`. For example, `openfisca-new_zealand` or `openfisca-france`.
-
-3. Execute the `first-time-setup.sh` script to initialise the git repository. This performs numerous tasks including replacing all references to `openfisca-country_template` with references to the new country package.
-   - To execute the script run `bash first-time-setup.sh` from the command line
-   - After the `first-time-setup.sh` has run both it and these instructions are removed.
-
-4. Follow the instructions in the new repository's `README.md.`
-
-## Writing the Legislation
 
 The country whose law is modelled here has a very simple tax and benefit system.
 
@@ -45,14 +7,14 @@ The country whose law is modelled here has a very simple tax and benefit system.
 - On the first of December, 2015, it introduced a basic income for all its citizens of age who have no income.
 - On the first of December, 2016, it removed the income condition, providing all its adult citizens with a basic income.
 
-These elements are described in different folders. All the modelling happens within the `openfisca_country_template` folder.
+These elements are described in different folders. All the modelling happens within the `openfisca_france_firms` folder.
 
 - The rates are in the `parameters` folder.
 - The formulas are in the `variables` folder.
 - This country package comes also with *reforms* in the `reforms` folder. This is optional: your country may exist without defining any reform.
-    - In this country, there is [a reform project](./openfisca_country_template/reforms/modify_social_security_taxation.py) aiming to modify the social security taxation, deleting the first bracket, raising the intermediary ones and adding a new bracket with a higher tax rate of `40 %` for people earning more than `40000`. This reform project would apply starting from `2017-01-01`.
+    - In this country, there is [a reform project](./openfisca_france_firms/reforms/modify_social_security_taxation.py) aiming to modify the social security taxation, deleting the first bracket, raising the intermediary ones and adding a new bracket with a higher tax rate of `40 %` for people earning more than `40000`. This reform project would apply starting from `2017-01-01`.
 
-The files that are outside from the `openfisca_country_template` folder are used to set up the development environment.
+The files that are outside from the `openfisca_france_firms` folder are used to set up the development environment.
 
 ## Packaging your Country Package for Distribution
 
@@ -131,7 +93,7 @@ pip --version  # should print at least 9.0.
 Install the Country Package:
 
 ```sh
-pip install openfisca-country_template
+pip install openfisca-france_firms
 ```
 
 :warning: Please beware that installing the Country Package with `pip` is dependent on its maintainers publishing said package.
@@ -169,8 +131,8 @@ python --version  # should print "Python 3.9.xx".
 Clone this Country Package on your machine:
 
 ```sh
-git clone https://example.com/repository.git
-cd repository_folder
+git clone git://github.com/pzuldp/openfisca-france-firms.git.git
+cd openfisca-france-firms.git
 pip install --upgrade pip build twine
 pip install --editable .[dev] --upgrade
 ```
@@ -193,7 +155,7 @@ If you are considering building a web application, you can use the packaged Open
 To serve the Openfisca Web API locally, run:
 
 ```sh
-openfisca serve --port 5000 --country-package openfisca_country_template
+openfisca serve --port 5000 --country-package openfisca_france_firms
 ```
 
 Or use the quick-start Make command:
@@ -218,6 +180,6 @@ You can test your new Web API by sending it example JSON data located in the `si
 
 ```sh
 curl -X POST -H "Content-Type: application/json" \
-  -d @./openfisca_country_template/situation_examples/couple.json \
+  -d @./openfisca_france_firms/situation_examples/couple.json \
   http://localhost:5000/calculate
 ```

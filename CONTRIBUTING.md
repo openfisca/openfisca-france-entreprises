@@ -48,7 +48,7 @@ Examples:
 
 ### Changelog
 
-openfisca-country_template changes must be understood by users who don't necessarily work on the code. The Changelog must therefore be as explicit as possible.
+openfisca-france_firms changes must be understood by users who don't necessarily work on the code. The Changelog must therefore be as explicit as possible.
 
 Each change must be documented with the following elements:
 
@@ -56,11 +56,11 @@ Each change must be documented with the following elements:
 
 
 > For instance :
-> # 13.0.0 - [#671](https://example.com/repository/pull/671)
+> # 13.0.0 - [#671](git://github.com/pzuldp/openfisca-france-firms.git/pull/671)
 >
-> ## 13.2.0 - [#676](https://example.com/repository/pull/676)
+> ## 13.2.0 - [#676](git://github.com/pzuldp/openfisca-france-firms.git/pull/676)
 >
-> ### 13.1.5 - [#684](https://example.com/repository/pull/684)
+> ### 13.1.5 - [#684](git://github.com/pzuldp/openfisca-france-firms.git/pull/684)
 
 - The second line indicates the type of the change. The possible types are:
  - `Tax and benefit system evolution`: Calculation improvement, fix, or update. Impacts the users interested in calculations.
