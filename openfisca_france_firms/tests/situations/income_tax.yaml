@@ -1,17 +1,17 @@
 # You can also use test files to describe complex situations with different entities
 # We can run this test on our command line using `openfisca-run-test tests/situations/income_tax.yaml`
 
-- name: Income tax for a single parent and a child
-  description: Income tax should get properly computed across all members of a household
+- name: Income tax for a single headquarter and a secondary
+  description: Income tax should get properly computed across all members of a firm
   period: 2017-01
   absolute_error_margin: 0
   input:
-    household:
-      parents: [ Alicia ]
-      children: [ Michael ]
+    firm:
+      headquarters: [ Alicia ]
+      secondaries: [ Michael ]
       accommodation_size: 100
       housing_occupancy_status: tenant
-    persons:
+    establishments:
       Alicia:
         birth: 1961-01-15
         salary:
@@ -21,11 +21,11 @@
         salary:
           2016: 0
   output:
-    persons:
+    establishments:
       Alicia:
         income_tax: 360
       Michael:
         income_tax: 0
-    household:
+    firm:
       housing_tax:
         2017: 1000

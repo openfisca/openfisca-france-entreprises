@@ -1,7 +1,7 @@
 """
 This file defines variables for the modelled legislation.
 
-A variable is a property of an Entity such as a Person, a Household…
+A variable is a property of an Entity such as a Establishment, a Firm…
 
 See https://openfisca.org/doc/key-concepts/variables.html
 """
@@ -12,13 +12,13 @@ from openfisca_core.periods import MONTH
 from openfisca_core.variables import Variable
 
 # Import the Entities specifically defined for this tax and benefit system
-from openfisca_france_firms.entities import Household
+from openfisca_france_firms.entities import Firm
 
 
 # This variable is a pure input: it doesn't have a formula
 class accommodation_size(Variable):
     value_type = float
-    entity = Household
+    entity = Firm
     definition_period = MONTH
     label = "Size of the accommodation, in square metres"
 
@@ -28,7 +28,7 @@ class rent(Variable):
     value_type = float
     entity = Household
     definition_period = MONTH
-    label = "Rent paid by the household"
+    label = "Rent paid by the firm"
 
 
 # Possible values for the housing_occupancy_status variable, defined further down
@@ -45,14 +45,14 @@ class housing_occupancy_status(Variable):
     value_type = Enum
     possible_values = HousingOccupancyStatus
     default_value = HousingOccupancyStatus.tenant
-    entity = Household
+    entity = Firm
     definition_period = MONTH
-    label = "Legal housing situation of the household concerning their main residence"
+    label = "Legal housing situation of the firm concerning their main residence"
 
 
 class postal_code(Variable):
     value_type = str
     max_length = 5
-    entity = Household
+    entity = Firm
     definition_period = MONTH
-    label = "Postal code of the household"
+    label = "Postal code of the firm"

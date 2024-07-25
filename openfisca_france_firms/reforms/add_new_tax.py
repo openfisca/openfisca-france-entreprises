@@ -12,34 +12,34 @@ from openfisca_core.reforms import Reform
 from openfisca_core.variables import Variable
 
 # Import the Entities specifically defined for this tax and benefit system
-from openfisca_france_firms.entities import Person
+from openfisca_france_firms.entities import Establishment
 
 
 class has_car(Variable):
     value_type = bool
-    entity = Person
+    entity = Establishment
     default_value = True
     definition_period = MONTH
-    label = "The person has a car"
+    label = "The establishment has a car"
     reference = "https://law.gov.example/new_tax"  # Always use the most official source
 
 
 class new_tax(Variable):
     value_type = float
-    entity = Person
+    entity = Establishment
     definition_period = MONTH
     label = "New tax"
     reference = "https://law.gov.example/new_tax"  # Always use the most official source
 
-    def formula(person, period, _parameters):
+    def formula(establishment, period, _parameters):
         """
         New tax reform.
 
         Our reform adds a new variable `new_tax` that is calculated based on
-        the current `income_tax`, if the person has a car.
+        the current `income_tax`, if the establishment has a car.
         """
-        income_tax = person("income_tax", period)
-        has_car = person("has_car", period)
+        income_tax = establishment("income_tax", period)
+        has_car = establishment("has_car", period)
 
         return (income_tax + 100.0) * has_car
 

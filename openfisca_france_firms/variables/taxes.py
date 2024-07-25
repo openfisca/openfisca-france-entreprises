@@ -1,7 +1,7 @@
 """
 This file defines variables for the modelled legislation.
 
-A variable is a property of an Entity such as a Person, a Household…
+A variable is a property of an Entity such as a Establishment, a Firm…
 
 See https://openfisca.org/doc/key-concepts/variables.html
 """
@@ -14,39 +14,39 @@ from openfisca_core.periods import MONTH, YEAR
 from openfisca_core.variables import Variable
 
 # Import the Entities specifically defined for this tax and benefit system
-from openfisca_france_firms.entities import Household, Person
+from openfisca_france_firms.entities import Firm, Establishment
 
 
 class income_tax(Variable):
     value_type = float
-    entity = Person
+    entity = Establishment
     definition_period = MONTH
     label = "Income tax"
     reference = "https://law.gov.example/income_tax"  # Always use the most official source
 
-    def formula(person, period, parameters):
+    def formula(establishment, period, parameters):
         """
         Income tax.
 
-        The formula to compute the income tax for a given person at a given period
+        The formula to compute the income tax for a given establishment at a given period
         """
-        return person("salary", period) * parameters(period).taxes.income_tax_rate
+        return establishment("salary", period) * parameters(period).taxes.income_tax_rate
 
 
 class social_security_contribution(Variable):
     value_type = float
-    entity = Person
+    entity = Establishment
     definition_period = MONTH
     label = "Progressive contribution paid on salaries to finance social security"
     reference = "https://law.gov.example/social_security_contribution"  # Always use the most official source
 
-    def formula(person, period, parameters):
+    def formula(establishment, period, parameters):
         """
         Social security contribution.
 
         The social_security_contribution is computed according to a marginal scale.
         """
-        salary = person("salary", period)
+        salary = establishment("salary", period)
         scale = parameters(period).taxes.social_security_contribution
 
         return scale.calc(salary)
@@ -54,12 +54,12 @@ class social_security_contribution(Variable):
 
 class housing_tax(Variable):
     value_type = float
-    entity = Household
+    entity = Firm
     definition_period = YEAR  # This housing tax is defined for a year.
-    label = "Tax paid by each household proportionally to the size of its accommodation"
+    label = "Tax paid by each firm proportionally to the size of its accommodation"
     reference = "https://law.gov.example/housing_tax"  # Always use the most official source
 
-    def formula(household, period, parameters):
+    def formula(firm, period, parameters):
         """
         Housing tax.
 
@@ -68,17 +68,17 @@ class housing_tax(Variable):
         To build different periods, see https://openfisca.org/doc/coding-the-legislation/35_periods.html#calculate-dependencies-for-a-specific-period
         """
         january = period.first_month
-        accommodation_size = household("accommodation_size", january)
+        accommodation_size = firm("accommodation_size", january)
 
         tax_params = parameters(period).taxes.housing_tax
         tax_amount = max_(accommodation_size * tax_params.rate, tax_params.minimal_amount)
 
         # `housing_occupancy_status` is an Enum variable
-        occupancy_status = household("housing_occupancy_status", january)
+        occupancy_status = firm("housing_occupancy_status", january)
         HousingOccupancyStatus = occupancy_status.possible_values  # Get the enum associated with the variable
         # To access an enum element, we use the `.` notation.
         tenant = occupancy_status == HousingOccupancyStatus.tenant
         owner = occupancy_status == HousingOccupancyStatus.owner
 
-        # The tax is applied only if the household owns or rents its main residency
+        # The tax is applied only if the firm owns or rents its main residency
         return (owner + tenant) * tax_amount

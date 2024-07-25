@@ -1,5 +1,5 @@
 {
-    "persons": {
+    "establishments": {
         "Alicia": {
             "birth": {
                 "ETERNITY": "1980-01-01"
@@ -23,9 +23,9 @@
             }
         }
     },
-    "households": {
+    "firms": {
         "_": {
-            "parents": ["Alicia", "Javier"],
+            "headquarters": ["Alicia", "Javier"],
             "total_benefits": {
                 "2017-01": null
             },

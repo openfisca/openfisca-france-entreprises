@@ -14,13 +14,13 @@ from openfisca_core.variables import Variable
 class social_security_contribution(Variable):
     # Variable metadata don't need to be redefined. By default, the reference variable metadatas will be used.
 
-    def formula(person, period, _parameters):
+    def formula(establishment, period, _parameters):
         """
         Social security contribution reform.
 
         Our reform replaces `social_security_contribution` (the "reference" variable) by the following variable.
         """
-        return person("salary", period) * 0.03
+        return establishment("salary", period) * 0.03
 
 
 class flat_social_security_contribution(Reform):

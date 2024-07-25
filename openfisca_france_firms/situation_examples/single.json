@@ -1,5 +1,5 @@
 {
-    "persons": {
+    "establishments": {
         "Alicia": {
             "birth": {
                 "2017-01": null
@@ -9,9 +9,9 @@
             }
         }
     },
-    "households": {
+    "firms": {
         "_": {
-            "parents": ["Alicia"]
+            "headquarters": ["Alicia"]
         }
     }
 }

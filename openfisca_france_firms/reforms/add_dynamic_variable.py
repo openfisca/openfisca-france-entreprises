@@ -12,7 +12,7 @@ from openfisca_core.reforms import Reform
 from openfisca_core.variables import Variable
 
 # Import the Entities specifically defined for this tax and benefit system
-from openfisca_france_firms.entities import Person
+from openfisca_france_firms.entities import Establishment
 
 
 def create_dynamic_variable(name, **variable):
@@ -42,10 +42,10 @@ class add_dynamic_variable(Reform):
         NewVariable = create_dynamic_variable(
             name = "goes_to_school",
             value_type = bool,
-            entity = Person,
+            entity = Establishment,
             default_value = True,
             definition_period = MONTH,
-            label = "The person goes to school (only relevant for children)",
+            label = "The establishment goes to school (only relevant for secondaries)",
             reference = "https://law.gov.example/goes_to_school",
             )
 
