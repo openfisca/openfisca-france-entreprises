@@ -1,6 +1,6 @@
 description: Parenting allowance income threshold
 metadata:
-  reference: https://law.gov.example/parenting_allowance/income_threshold
+  reference: https://law.gov.example/example_parenting_allowance/income_threshold
   unit: currency-EUR
 values:
   # This parameter is only defined since the 1st of Dec 2015.

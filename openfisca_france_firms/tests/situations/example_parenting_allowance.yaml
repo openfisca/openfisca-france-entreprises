@@ -28,6 +28,6 @@
         birth: 2018-01-15
   output:
     firm:
-      parenting_allowance:
+      example_parenting_allowance:
         2017-01: 600
         2018-01: 0

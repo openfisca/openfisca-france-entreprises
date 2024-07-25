@@ -14,7 +14,7 @@ from openfisca_core.variables import Variable
 from openfisca_france_firms.entities import Firm
 
 
-class total_benefits(Variable):
+class example_total_benefits(Variable):
     value_type = float
     entity = Firm
     definition_period = MONTH
@@ -27,11 +27,11 @@ class total_benefits(Variable):
 
         return (
             + firm.sum(example_basic_income_i)  # Sum the firm members basic incomes
-            + firm("housing_allowance", period)
+            + firm("example_housing_allowance", period)
             )
 
 
-class total_taxes(Variable):
+class example_total_taxes(Variable):
     value_type = float
     entity = Firm
     definition_period = MONTH
@@ -41,9 +41,9 @@ class total_taxes(Variable):
     def formula(firm, period, _parameters):
         """Total taxes."""
         example_income_tax_flat_i = firm.members("example_income_tax_flat", period)
-        income_tax_progressive_i = firm.members("income_tax_progressive", period)
+        example_income_tax_progressive_i = firm.members("example_income_tax_progressive", period)
 
         return (
             + firm.sum(example_income_tax_flat_i)
-            + firm.sum(income_tax_progressive_i)
+            + firm.sum(example_income_tax_progressive_i)
             )

@@ -7,7 +7,7 @@
             "salary": {
                 "2017-01": 4000
             },
-            "disposable_income": {
+            "example_disposable_income": {
                 "2017-01": null
             }
         },
@@ -18,7 +18,7 @@
             "salary": {
                 "2017-01": 2500
             },
-            "disposable_income": {
+            "example_disposable_income": {
                 "2017-01": null
             }
         }

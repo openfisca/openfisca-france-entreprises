@@ -6,11 +6,11 @@
   input:
     rent: 400
   output:
-    housing_allowance: 100
+    example_housing_allowance: 100
 
 - name: The housing_allowance disappeared in Dec 2016
   period: 2016-12
   input:
     rent: 400
   output:
-    housing_allowance: 0
+    example_housing_allowance: 0

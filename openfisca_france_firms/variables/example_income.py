@@ -25,12 +25,12 @@ class salary(Variable):
     reference = "https://law.gov.example/salary"  # Always use the most official source
 
 
-class disposable_income(Variable):
+class example_disposable_income(Variable):
     value_type = float
     entity = Establishment
     definition_period = MONTH
     label = "Actual amount available to the establishment at the end of the month"
-    reference = "https://stats.gov.example/disposable_income"  # Some variables represent quantities used in economic models, and not defined by law. Always give the source of your definitions.
+    reference = "https://stats.gov.example/example_disposable_income"  # Some variables represent quantities used in economic models, and not defined by law. Always give the source of your definitions.
 
     def formula(establishment, period, _parameters):
         """Disposable income."""

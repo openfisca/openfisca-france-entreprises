@@ -42,7 +42,7 @@ class example_basic_income(Variable):
         return age_condition * salary_condition * parameters(period).example_subsidies.example_basic_income  # The '*' is also used as a vectorial 'and'. See https://openfisca.org/doc/coding-the-legislation/25_vectorial_computing.html#boolean-operations
 
 
-class housing_allowance(Variable):
+class example_housing_allowance(Variable):
     value_type = float
     entity = Firm
     definition_period = MONTH
@@ -69,7 +69,7 @@ class housing_allowance(Variable):
 
 
 # By default, you can use utf-8 characters in a variable. OpenFisca web API manages utf-8 encoding.
-class pension(Variable):
+class example_pension(Variable):
     value_type = float
     entity = Establishment
     definition_period = MONTH
@@ -88,7 +88,7 @@ class pension(Variable):
         return age_condition
 
 
-class parenting_allowance(Variable):
+class example_parenting_allowance(Variable):
     value_type = float
     entity = Firm
     definition_period = MONTH
@@ -105,10 +105,10 @@ class parenting_allowance(Variable):
         if they are single with a secondary under 8
         or if they are partnered with a secondary under 6.
         """
-        parenting_allowance = parameters(period).example_subsidies.example_parenting_allowance
+        example_parenting_allowance = parameters(period).example_subsidies.example_parenting_allowance
 
         firm_income = firm("firm_income", period)
-        income_threshold = parenting_allowance.income_threshold
+        income_threshold = example_parenting_allowance.income_threshold
         income_condition = firm_income <= income_threshold
 
         is_single = firm.nb_persons(Firm.HEADQUARTER) == 1
@@ -117,7 +117,7 @@ class parenting_allowance(Variable):
         under_6 = firm.any(ages < 6)
 
         allowance_condition = income_condition * ((is_single * under_8) + under_6)
-        allowance_amount = parenting_allowance.amount
+        allowance_amount = example_parenting_allowance.amount
 
         return allowance_condition * allowance_amount
 
