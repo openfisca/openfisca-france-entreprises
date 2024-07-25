@@ -36,7 +36,7 @@ class disposable_income(Variable):
         """Disposable income."""
         return (
             + establishment("salary", period)
-            + establishment("basic_income", period)
-            - establishment("income_tax", period)
-            - establishment("social_security_contribution", period)
+            + establishment("example_basic_income", period)
+            - establishment("example_income_tax_flat", period)
+            - establishment("example_income_tax_progressive", period)
             )

@@ -36,6 +36,6 @@ class CountryTaxBenefitSystem(TaxBenefitSystem):
         # We define which variable, parameter and simulation example will be used in the OpenAPI specification
         self.open_api_config = {
             "variable_example": "disposable_income",
-            "parameter_example": "taxes.income_tax_rate",
+            "parameter_example": "taxes.income_tax_rate_flat",
             "simulation_example": couple,
             }

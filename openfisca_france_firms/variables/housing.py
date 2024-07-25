@@ -26,7 +26,7 @@ class accommodation_size(Variable):
 # This variable is a pure input: it doesn't have a formula
 class rent(Variable):
     value_type = float
-    entity = Household
+    entity = Firm
     definition_period = MONTH
     label = "Rent paid by the firm"
 

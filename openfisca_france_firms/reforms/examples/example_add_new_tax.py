@@ -38,10 +38,10 @@ class new_tax(Variable):
         Our reform adds a new variable `new_tax` that is calculated based on
         the current `income_tax`, if the establishment has a car.
         """
-        income_tax = establishment("income_tax", period)
+        example_income_tax_flat = establishment("example_income_tax_flat", period)
         has_car = establishment("has_car", period)
 
-        return (income_tax + 100.0) * has_car
+        return (example_income_tax_flat + 100.0) * has_car
 
 
 class add_new_tax(Reform):

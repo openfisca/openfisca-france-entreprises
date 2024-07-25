@@ -1,0 +1,15 @@
+- name: dettes
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    emprunts_obligatoires_convertibles: 1000
+    autres_emprunts_obligatoires: 1000
+    emprunts_dettes_etablissement_credit: 1000
+    emprunts_dettes_divers: 1000
+    avances_acomptes_recus_commandes: 1000
+    dettes_fournisseurs: 1000
+    dettes_fiscales_sociales: 1000
+    dettes_immobilisations: 1000
+    autres_dettes: 1000
+  output:
+    dettes: 9000

@@ -52,7 +52,7 @@ Establishment = build_entity(
 
     For more information, see: https://openfisca.org/doc/coding-the-legislation/50_entities.html
     """,
-    is_establishment = True,
+    is_person = True,
     )
 
 entities = [Firm, Establishment]

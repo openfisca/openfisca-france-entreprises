@@ -23,9 +23,6 @@
   output:
     establishments:
       Alicia:
-        income_tax: 360
+        example_income_tax_flat: 360
       Michael:
-        income_tax: 0
-    firm:
-      housing_tax:
-        2017: 1000
+        example_income_tax_flat: 0

@@ -11,7 +11,7 @@ from openfisca_core.parameters import ParameterScaleBracket
 from openfisca_core.reforms import Reform
 
 
-class modify_social_security_taxation(Reform):
+class modify_income_tax_progressive(Reform):
     def apply(self):
         """
         Apply reform.
@@ -35,7 +35,7 @@ class modify_social_security_taxation(Reform):
         of the YAML parameters. It can be modified and must be returned.
         """
         # Access the right parameter node:
-        brackets = parameters.taxes.social_security_contribution.brackets
+        brackets = parameters.example_taxes.example_income_tax_rate_progressive.brackets
 
         # Add 0.1 to the rates of the second bracket, keeping the same thresholds:
         for rate in brackets[1].rate.values_list:

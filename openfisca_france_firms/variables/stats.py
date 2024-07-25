@@ -23,10 +23,10 @@ class total_benefits(Variable):
 
     def formula(firm, period, _parameters):
         """Total benefits."""
-        basic_income_i = firm.members("basic_income", period)  # Calculates the value of basic_income for each member of the firm
+        example_basic_income_i = firm.members("example_basic_income", period)  # Calculates the value of example_basic_income for each member of the firm
 
         return (
-            + firm.sum(basic_income_i)  # Sum the firm members basic incomes
+            + firm.sum(example_basic_income_i)  # Sum the firm members basic incomes
             + firm("housing_allowance", period)
             )
 
@@ -40,11 +40,10 @@ class total_taxes(Variable):
 
     def formula(firm, period, _parameters):
         """Total taxes."""
-        income_tax_i = firm.members("income_tax", period)
-        social_security_contribution_i = firm.members("social_security_contribution", period)
+        example_income_tax_flat_i = firm.members("example_income_tax_flat", period)
+        income_tax_progressive_i = firm.members("income_tax_progressive", period)
 
         return (
-            + firm.sum(income_tax_i)
-            + firm.sum(social_security_contribution_i)
-            + firm("housing_tax", period.this_year) / 12
+            + firm.sum(example_income_tax_flat_i)
+            + firm.sum(income_tax_progressive_i)
             )

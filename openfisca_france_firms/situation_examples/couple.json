@@ -25,7 +25,8 @@
     },
     "firms": {
         "_": {
-            "headquarters": ["Alicia", "Javier"],
+            "headquarters": ["Alicia"],
+            "secondaries" : ["Javier"],
             "total_benefits": {
                 "2017-01": null
             },

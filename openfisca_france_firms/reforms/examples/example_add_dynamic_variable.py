@@ -40,13 +40,13 @@ class add_dynamic_variable(Reform):
         See https://openfisca.org/doc/coding-the-legislation/reforms.html#writing-a-reform
         """
         NewVariable = create_dynamic_variable(
-            name = "goes_to_school",
+            name = "is_euets",
             value_type = bool,
             entity = Establishment,
             default_value = True,
             definition_period = MONTH,
-            label = "The establishment goes to school (only relevant for secondaries)",
-            reference = "https://law.gov.example/goes_to_school",
+            label = "The establishment is subject to EUETS",
+            reference = "https://law.gov.example/is_euets",
             )
 
         self.add_variable(NewVariable)
