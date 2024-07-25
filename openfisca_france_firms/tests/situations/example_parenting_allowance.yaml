@@ -11,21 +11,21 @@
       secondaries: [Caz, Eille, Nimasay, Saz]
     establishments:
       Phil:
-        birth: 1981-01-15
+        example_birth: 1981-01-15
         example_salary:
           2017-01: 250
           2018-01: 250
       Saz:
-        birth: 1982-01-15
+        example_birth: 1982-01-15
         example_salary:
           2017-01: 250
           2018-01: 251
       Caz:
-        birth: 2010-01-15
+        example_birth: 2010-01-15
       Eille:
-        birth: 2012-01-15
+        example_birth: 2012-01-15
       Nimasay:
-        birth: 2018-01-15
+        example_birth: 2018-01-15
   output:
     firm:
       example_parenting_allowance:

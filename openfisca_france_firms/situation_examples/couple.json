@@ -1,7 +1,7 @@
 {
     "establishments": {
         "Alicia": {
-            "birth": {
+            "example_birth": {
                 "ETERNITY": "1980-01-01"
             },
             "example_salary": {
@@ -12,7 +12,7 @@
             }
         },
         "Javier": {
-            "birth": {
+            "example_birth": {
                 "ETERNITY": "1984-01-01"
             },
             "example_salary": {

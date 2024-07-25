@@ -20,32 +20,32 @@ from openfisca_france_firms.entities import Establishment
 
 
 # This variable is a pure input: it doesn't have a formula
-class birth(Variable):
+class example_birth(Variable):
     value_type = date
     default_value = date(1970, 1, 1)  # By default, if no value is set for a simulation, we consider the people involved in a simulation to be born on the 1st of Jan 1970.
     entity = Establishment
-    label = "Birth date"
+    label = "example_birth date"
     definition_period = ETERNITY  # This variable cannot change over time.
-    reference = "https://en.wiktionary.org/wiki/birthdate"
+    reference = "https://en.wiktionary.org/wiki/example_birthdate"
 
 
-class age(Variable):
+class example_age(Variable):
     value_type = int
     entity = Establishment
     definition_period = MONTH
-    label = "Establishment's age (in years)"
+    label = "Establishment's example_age (in years)"
 
     def formula(establishment, period, _parameters):
         """
-        Establishment's age (in years).
+        Establishment's example_age (in years).
 
-        A establishment's age is computed according to its birth date.
+        A establishment's example_age is computed according to its example_birth date.
         """
-        birth = establishment("birth", period)
-        birth_year = birth.astype("datetime64[Y]").astype(int) + 1970
-        birth_month = birth.astype("datetime64[M]").astype(int) % 12 + 1
-        birth_day = (birth - birth.astype("datetime64[M]") + 1).astype(int)
+        example_birth = establishment("example_birth", period)
+        example_birth_year = example_birth.astype("datetime64[Y]").astype(int) + 1970
+        example_birth_month = example_birth.astype("datetime64[M]").astype(int) % 12 + 1
+        example_birth_day = (example_birth - example_birth.astype("datetime64[M]") + 1).astype(int)
 
-        is_birthday_past = (birth_month < period.start.month) + (birth_month == period.start.month) * (birth_day <= period.start.day)
+        is_example_birthday_past = (example_birth_month < period.start.month) + (example_birth_month == period.start.month) * (example_birth_day <= period.start.day)
 
-        return (period.start.year - birth_year) - where(is_birthday_past, 0, 1)  # If the birthday is not passed this year, subtract one year
+        return (period.start.year - example_birth_year) - where(is_example_birthday_past, 0, 1)  # If the example_birthday is not passed this year, subtract one year

@@ -1,7 +1,7 @@
 {
     "establishments": {
         "Alicia": {
-            "birth": {
+            "example_birth": {
                 "2017-01": null
             },
             "example_disposable_income": {
