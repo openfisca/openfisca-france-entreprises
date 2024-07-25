@@ -9,8 +9,8 @@
     firm:
       headquarters: [ Alicia ]
       secondaries: [ Michael ]
-      accommodation_size: 100
-      housing_occupancy_status: tenant
+      example_accommodation_size: 100
+      example_housing_occupancy_status: tenant
     establishments:
       Alicia:
         birth: 1961-01-15

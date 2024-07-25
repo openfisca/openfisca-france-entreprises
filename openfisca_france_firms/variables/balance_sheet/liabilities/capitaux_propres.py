@@ -89,7 +89,7 @@ class report_a_nouveau(Variable):
     label = "Report à nouveau"
     definition_period = YEAR
 
-class resultat_exercice(Variable):
+class resultat_exercice_di(Variable):
     cerfa_field = "DI"
     value_type = int
     unit = 'currency'
@@ -130,7 +130,7 @@ class capitaux_propres(Variable):
         reserves_reglementees = Firm("reserves_reglementees", period)
         autres_reserves = Firm("autres_reserves", period)
         report_a_nouveau = Firm("report_a_nouveau", period)
-        resultat_exercice = Firm("resultat_exercice", period)
+        resultat_exercice_di = Firm("resultat_exercice_di", period)
         subventions_investissement = Firm("subventions_investissement", period)
         provisions_reglementees = Firm("provisions_reglementees", period)
         capitaux_propres = (capital_social_individuel+
@@ -141,7 +141,7 @@ class capitaux_propres(Variable):
                             reserves_reglementees+
                             autres_reserves+
                             report_a_nouveau+
-                            resultat_exercice+
+                            resultat_exercice_di+
                             subventions_investissement+
                             provisions_reglementees)
         

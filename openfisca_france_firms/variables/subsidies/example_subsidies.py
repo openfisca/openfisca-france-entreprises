@@ -65,7 +65,7 @@ class example_housing_allowance(Variable):
         To compute this allowance, the 'rent' value must be provided for the same month,
         but 'housing_occupancy_status' is not necessary.
         """
-        return firm("rent", period) * parameters(period).example_subsidies.example_housing_allowance
+        return firm("example_rent", period) * parameters(period).example_subsidies.example_housing_allowance
 
 
 # By default, you can use utf-8 characters in a variable. OpenFisca web API manages utf-8 encoding.

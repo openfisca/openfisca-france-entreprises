@@ -10,7 +10,7 @@
     reserves_reglementees: 1000
     autres_reserves: 1000
     report_a_nouveau: 1000
-    resultat_exercice: 1000
+    resultat_exercice_di: 1000
     subventions_investissement: 1000
     provisions_reglementees: 1000
   output:

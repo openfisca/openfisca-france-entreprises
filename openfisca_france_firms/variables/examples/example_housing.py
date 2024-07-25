@@ -16,7 +16,7 @@ from openfisca_france_firms.entities import Firm
 
 
 # This variable is a pure input: it doesn't have a formula
-class accommodation_size(Variable):
+class example_accommodation_size(Variable):
     value_type = float
     entity = Firm
     definition_period = MONTH
@@ -24,7 +24,7 @@ class accommodation_size(Variable):
 
 
 # This variable is a pure input: it doesn't have a formula
-class rent(Variable):
+class example_rent(Variable):
     value_type = float
     entity = Firm
     definition_period = MONTH
@@ -33,7 +33,7 @@ class rent(Variable):
 
 # Possible values for the housing_occupancy_status variable, defined further down
 # See more at <https://openfisca.org/doc/coding-the-legislation/20_input_variables.html#advanced-example-enumerations-enum>
-class HousingOccupancyStatus(Enum):
+class example_HousingOccupancyStatus(Enum):
     __order__ = "owner tenant free_lodger homeless"
     owner = "Owner"
     tenant = "Tenant"
@@ -41,16 +41,16 @@ class HousingOccupancyStatus(Enum):
     homeless = "Homeless"
 
 
-class housing_occupancy_status(Variable):
+class example_housing_occupancy_status(Variable):
     value_type = Enum
-    possible_values = HousingOccupancyStatus
-    default_value = HousingOccupancyStatus.tenant
+    possible_values = example_HousingOccupancyStatus
+    default_value = example_HousingOccupancyStatus.tenant
     entity = Firm
     definition_period = MONTH
     label = "Legal housing situation of the firm concerning their main residence"
 
 
-class postal_code(Variable):
+class example_postal_code(Variable):
     value_type = str
     max_length = 5
     entity = Firm
