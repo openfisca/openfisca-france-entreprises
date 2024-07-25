@@ -12,12 +12,12 @@
     establishments:
       Phil:
         birth: 1981-01-15
-        salary:
+        example_salary:
           2017-01: 250
           2018-01: 250
       Saz:
         birth: 1982-01-15
-        salary:
+        example_salary:
           2017-01: 250
           2018-01: 251
       Caz:

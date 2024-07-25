@@ -20,7 +20,7 @@ class example_income_tax_flat(Variable):
 
         Our reform replaces `income_tax_flat` (the "reference" variable) by the following variable.
         """
-        return establishment("salary", period) * 0.03
+        return establishment("example_salary", period) * 0.03
 
 
 class example_income_tax_flat(Reform):

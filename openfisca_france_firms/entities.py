@@ -47,7 +47,7 @@ Establishment = build_entity(
     Variables like 'wagebill' and 'energyconsumption' are usually defined for the entity 'Establishment'.
 
     Usage:
-    Calculate a variable applied to a 'Establishment' (e.g. access the 'salary' of a specific month with establishment("salary", "2017-05")).
+    Calculate a variable applied to a 'Establishment' (e.g. access the 'example_salary' of a specific month with establishment("example_salary", "2017-05")).
     Check the role of a 'Establishment' in a group entity (e.g. check if a the 'Establishment' is a 'headquarter' in a 'firm' entity with establishment.has_role(firm.HEADQUARTER)).
 
     For more information, see: https://openfisca.org/doc/coding-the-legislation/50_entities.html

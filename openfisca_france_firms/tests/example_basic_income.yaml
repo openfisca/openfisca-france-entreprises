@@ -5,46 +5,46 @@
   period: 2015-11
   input:
     age: 18
-    salary: 0
+    example_salary: 0
   output:
     example_basic_income: 0
 
-- name: In Dec 2015, an adult with no salary should get a basic income of 600
+- name: In Dec 2015, an adult with no example_salary should get a basic income of 600
   period: 2015-12
   input:
-    salary: 0
+    example_salary: 0
     age: 18
   output:
     example_basic_income: 600
 
-- name: In Dec 2015, a secondary with no salary should get no basic income
+- name: In Dec 2015, a secondary with no example_salary should get no basic income
   period: 2015-12
   input:
-    salary: 0
+    example_salary: 0
     age: 17
   output:
     example_basic_income: 0
 
-- name: In Dec 2015, an adult with a salary should get no basic income
+- name: In Dec 2015, an adult with a example_salary should get no basic income
   period: 2015-12
   input:
-    salary: 1200
+    example_salary: 1200
     age: 18
   output:
     example_basic_income: 0
 
-- name: In Dec 2016, a secondary with no salary should get no basic income
+- name: In Dec 2016, a secondary with no example_salary should get no basic income
   period: 2016-12
   input:
-    salary: 0
+    example_salary: 0
     age: 17
   output:
     example_basic_income: 0
 
-- name: In Dec 2016, an adult with a salary should get a basic income of 600
+- name: In Dec 2016, an adult with a example_salary should get a basic income of 600
   period: 2016-12
   input:
-    salary: 1200
+    example_salary: 1200
     age: 18
   output:
     example_basic_income: 600

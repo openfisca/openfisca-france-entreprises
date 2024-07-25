@@ -30,7 +30,7 @@ class example_income_tax_flat(Variable):
 
         The formula to compute the income tax for a given establishment at a given period
         """
-        return establishment("salary", period) * parameters(period).example_taxes.example_income_tax_rate_flat
+        return establishment("example_salary", period) * parameters(period).example_taxes.example_income_tax_rate_flat
 
 class example_income_tax_progressive(Variable):
     value_type = float
@@ -47,7 +47,7 @@ class example_income_tax_progressive(Variable):
         """
 
         scale = parameters(period).example_taxes.example_income_tax_rate_progressive
-        basis = establishment("salary", period)
+        basis = establishment("example_salary", period)
 
         return  scale.calc(basis)
 

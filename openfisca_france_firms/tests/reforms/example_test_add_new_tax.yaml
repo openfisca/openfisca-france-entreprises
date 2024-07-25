@@ -9,7 +9,7 @@
   reforms: openfisca_france_firms.reforms.examples.example_add_new_tax.add_new_tax
   period: 2017-01
   input:
-    salary: 2000
+    example_salary: 2000
     has_car: true
   output:
     example_income_tax_flat: 300
@@ -19,7 +19,7 @@
   reforms: openfisca_france_firms.reforms.examples.example_add_new_tax.add_new_tax
   period: 2017-01
   input:
-    salary: 2000
+    example_salary: 2000
     has_car: false
   output:
     example_income_tax_flat: 300

@@ -1,65 +1,65 @@
 # Test files describe situations and their expected outcomes
 # We can run this test on our command line using `openfisca-run-test example_disposable_income.yaml`
 
-- name: Establishment earning no salary in Jan 2015
+- name: Establishment earning no example_salary in Jan 2015
   period: 2015-01
   input:
-    salary: 0
+    example_salary: 0
   output:
     example_disposable_income: 0
 
 - name: Establishment earning 2500 in Jan 2015
   period: 2015-01
   input:
-    salary: 2500
+    example_salary: 2500
   output:
     example_disposable_income: 2025
 
 - name: Establishment earning 10000 in Jan 2015
   period: 2015-01
   input:
-    salary: 10000
+    example_salary: 10000
   output:
     example_disposable_income: 8100
 
-- name: Establishment earning no salary in Jan 2016
+- name: Establishment earning no example_salary in Jan 2016
   period: 2016-01
   input:
-    salary: 0
+    example_salary: 0
   output:
     example_disposable_income: 600
 
 - name: Establishment earning 2500 in Jan 2016
   period: 2016-01
   input:
-    salary: 2500
+    example_salary: 2500
   output:
     example_disposable_income: 2025
 
 - name: Establishment earning 10000 in Jan 2016
   period: 2016-01
   input:
-    salary: 10000
+    example_salary: 10000
   output:
     example_disposable_income: 8100
 
-- name: Establishment earning no salary in Jan 2017
+- name: Establishment earning no example_salary in Jan 2017
   period: 2017-01
   input:
-    salary: 0
+    example_salary: 0
   output:
     example_disposable_income: 600
 
 - name: Establishment earning 2500 in Jan 2017
   period: 2017-01
   input:
-    salary: 2500
+    example_salary: 2500
   output:
     example_disposable_income: 2675
 
 - name: Establishment earning 10000 in Jan 2017
   period: 2017-01
   input:
-    salary: 10000
+    example_salary: 10000
   output:
     example_disposable_income: 8740

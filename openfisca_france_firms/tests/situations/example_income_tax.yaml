@@ -14,11 +14,11 @@
     establishments:
       Alicia:
         birth: 1961-01-15
-        salary:
+        example_salary:
           2017-01: 2400
       Michael:
         birth: 2002-01-15
-        salary:
+        example_salary:
           2016: 0
   output:
     establishments:
