@@ -23,7 +23,7 @@ class prelevement_exceptionnel_entreprises_hydrocarbures(Variable):
     definition_period = YEAR
     label = "Prelevement exceptionnel sur les bénéfices imposables des entreprises exploitant des gisements d'hydrocarbures"
     reference = "Article 25 de la loi de fiannces pour 1985, puis à partir de 1992, article 235 ter Z du code général des impôts."  #
-    end_date = 1998-12-31
+    end = "1998-12-31"
 
     def formula_1985_01_01(firm, period, parameters):
         """

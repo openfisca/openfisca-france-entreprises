@@ -3,7 +3,7 @@ from openfisca_france_firms.entities import Establishment  # noqa F401
 from openfisca_core.periods import MONTH, YEAR
 from openfisca_core.variables import Variable
 
-class consumption_natural_gas(Variable):
+class consommation_gaz_naturel(Variable):
     value_type = float
     unit = 'MWh'
     entity = Establishment
