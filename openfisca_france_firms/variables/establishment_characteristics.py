@@ -36,3 +36,8 @@ class effectif_3112_et(Variable):
     definition_period = YEAR
     set_input = set_input_dispatch_by_period
 
+class installation_cogeneration(Variable):
+    value_type = bool
+    entity = Establishment
+    label = "Installation de cogénération pour la production combinée de chaleur et d'électricité"
+    definition_period = YEAR

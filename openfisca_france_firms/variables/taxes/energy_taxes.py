@@ -16,12 +16,323 @@ from openfisca_core.variables import Variable
 # Import the Entities specifically defined for this tax and benefit system
 from openfisca_france_firms.entities import Firm, Establishment
 
+class assiette_ticc(Variable):
+    value_type = float
+    entity = Establishment
+    definition_period = YEAR
+    label = "Coal consumption taxable according to TICC"
+    reference = ""  #
+
+    def formula_2007_01_01(establishment, period, parameters):
+
+        consommation_charbon = establishment("consommation_charbon", period)
+
+        conso_non_combustible = establishment("consommation_charbon_non_combustible", period)
+        conso_double_usage = establishment("consommation_charbon_double_usage", period)
+        conso_di26 = establishment("consommation_charbon_double_usage", period)
+
+        conso_combustible_interne = establishment("consommation_charbon_combustible_interne", period)
+        conso_combustible_prodelec = establishment("consommation_charbon_combustible_electricite", period)
+        conso_combustible_extraction = establishment("consommation_charbon_combustible_extraction", period)
+        conso_combustible_particuliers = establishment("consommation_charbon_combustible_particuliers", period)
+
+        conso_combustible_electricite_266qA = establishment("consommation_charbon_combustible_electricite_266qA", period)
+
+        assiette = consommation_charbon - (
+            conso_non_combustible +
+            conso_double_usage +
+            conso_di26
+            ) - (
+            conso_combustible_interne + (
+                conso_combustible_prodelec - conso_combustible_electricite_266qA) +
+            conso_combustible_extraction +
+            conso_combustible_particuliers
+            )
+
+        return assiette
+
+    def formula_2008_01_01(establishment, period, parameters):
+        consommation_charbon = establishment("consommation_charbon", period)
+
+        conso_non_combustible = establishment("consommation_charbon_non_combustible", period)
+        conso_double_usage = establishment("consommation_charbon_double_usage", period)
+        conso_di26 = establishment("consommation_charbon_di26", period)
+
+        conso_combustible_interne = establishment("consommation_charbon_combustible_interne", period)
+        conso_combustible_prodelec = establishment("consommation_charbon_combustible_electricite", period)
+        conso_combustible_extraction = establishment("consommation_charbon_combustible_extraction", period)
+        conso_combustible_particuliers = establishment("consommation_charbon_combustible_particuliers", period)
+
+        conso_combustible_electricite_266qA = establishment("consommation_charbon_combustible_electricite_266qA", period)
+
+        conso_combustible_biomasse = establishment("consommation_charbon_combustible_biomasse", period)
+
+        euets = establishment("is_euets", period)
+
+        assiette = consommation_charbon - (
+            conso_non_combustible +
+            conso_double_usage +
+            conso_di26
+            ) - (
+            conso_combustible_interne + (
+            conso_combustible_prodelec - conso_combustible_electricite_266qA) +
+            conso_combustible_extraction +
+            conso_combustible_particuliers +
+            (conso_combustible_biomasse * euets)
+            )
+
+        return assiette
+
+    def formula_2009_01_01(establishment, period, parameters):
+        consommation_charbon = establishment("consommation_charbon", period)
+
+        conso_non_combustible = establishment("consommation_charbon_non_combustible", period)
+        conso_double_usage = establishment("consommation_charbon_double_usage", period)
+        conso_di26 = establishment("consommation_charbon_di26", period)
+
+        conso_combustible_interne = establishment("consommation_charbon_combustible_interne", period)
+        conso_combustible_prodelec = establishment("consommation_charbon_combustible_electricite", period)
+        conso_combustible_extraction = establishment("consommation_charbon_combustible_extraction", period)
+        conso_combustible_particuliers = establishment("consommation_charbon_combustible_particuliers", period)
+
+        conso_combustible_electricite_266qA = establishment("consommation_charbon_combustible_electricite_266qA", period)
+
+        conso_combustible_biomasse = establishment("consommation_charbon_combustible_biomasse", period)
+
+        euets = establishment("is_euets", period)
+
+        facture_energie = establishment("facture_energies")
+        chiffre_affaires = establishment.firm("chiffre_affaires", period)
+        condition_facture = facture_energie >= .03 * chiffre_affaires
+
+        assiette = consommation_charbon - (
+            conso_non_combustible +
+            conso_double_usage +
+            conso_di26
+            ) - (
+            conso_combustible_interne + (
+            conso_combustible_prodelec - conso_combustible_electricite_266qA) +
+            conso_combustible_extraction +
+            conso_combustible_particuliers +
+            (conso_combustible_biomasse * euets * condition_facture)
+            )
+
+        return assiette
+
+    def formula_2011_01_01(establishment, period, parameters):
+        consommation_charbon = establishment("consommation_charbon", period)
+
+        conso_non_combustible = establishment("consommation_charbon_non_combustible", period)
+        conso_double_usage = establishment("consommation_charbon_double_usage", period)
+        conso_di26 = establishment("consommation_charbon_di26", period)
+
+        conso_combustible_interne = establishment("consommation_charbon_combustible_interne", period)
+        conso_combustible_prodelec = establishment("consommation_charbon_combustible_electricite", period)
+        conso_combustible_extraction = establishment("consommation_charbon_combustible_extraction", period)
+        conso_combustible_particuliers = establishment("consommation_charbon_combustible_particuliers", period)
+
+        conso_combustible_electricite_266qA = establishment("consommation_charbon_combustible_electricite_266qA", period)
+
+        conso_combustible_electricite_petits_producteurs = establishment("consommation_charbon_combustible_electricite_petits_producteurs", period)
+
+        conso_combustible_biomasse = establishment("consommation_charbon_combustible_biomasse", period)
+
+        euets = establishment("is_euets", period)
+
+        facture_energie = establishment("facture_energies")
+        chiffre_affaires = establishment.firm("chiffre_affaires", period)
+        condition_facture = facture_energie >= .03 * chiffre_affaires
+
+        assiette = consommation_charbon - (
+            conso_non_combustible +
+            conso_double_usage +
+            conso_di26
+            ) - (
+            conso_combustible_interne + (
+            conso_combustible_prodelec - conso_combustible_electricite_266qA - conso_combustible_electricite_petits_producteurs) +
+            conso_combustible_extraction +
+            conso_combustible_particuliers +
+            (conso_combustible_biomasse * euets * condition_facture)
+            )
+
+        return assiette
+
+    def formula_2011_01_01(establishment, period, parameters):
+        consommation_charbon = establishment("consommation_charbon", period)
+
+        conso_non_combustible = establishment("consommation_charbon_non_combustible", period)
+        conso_double_usage = establishment("consommation_charbon_double_usage", period)
+        conso_di26 = establishment("consommation_charbon_di26", period)
+
+        conso_combustible_interne = establishment("consommation_charbon_combustible_interne", period)
+        conso_combustible_prodelec = establishment("consommation_charbon_combustible_electricite", period)
+        conso_combustible_extraction = establishment("consommation_charbon_combustible_extraction", period)
+        conso_combustible_particuliers = establishment("consommation_charbon_combustible_particuliers", period)
+
+        conso_combustible_electricite_266qA = establishment("consommation_charbon_combustible_electricite_266qA", period)
+        contrat_achat_electricite_314 = establishment("contrat_achat_electricite_314", period)
+
+        conso_combustible_electricite_petits_producteurs = establishment("consommation_charbon_combustible_electricite_petits_producteurs", period)
+
+        conso_combustible_biomasse = establishment("consommation_charbon_combustible_biomasse", period)
+
+        euets = establishment("is_euets", period)
+
+        facture_energie = establishment("facture_energies")
+        chiffre_affaires = establishment.firm("chiffre_affaires", period)
+        condition_facture = facture_energie >= .03 * chiffre_affaires
+
+        assiette = consommation_charbon - (
+            conso_non_combustible +
+            conso_double_usage +
+            conso_di26
+            ) - (
+            conso_combustible_interne + (
+            conso_combustible_prodelec - (conso_combustible_electricite_266qA * contrat_achat_electricite_314) - conso_combustible_electricite_petits_producteurs) +
+            conso_combustible_extraction +
+            conso_combustible_particuliers +
+            (conso_combustible_biomasse * euets * condition_facture)
+            )
+
+        return assiette
+
+    def formula_2014_04_01(establishment, period, parameters):
+        consommation_charbon = establishment("consommation_charbon", period)
+
+        conso_non_combustible = establishment("consommation_charbon_non_combustible", period)
+        conso_double_usage = establishment("consommation_charbon_double_usage", period)
+        conso_di26 = establishment("consommation_charbon_di26", period)
+
+        conso_combustible_interne = establishment("consommation_charbon_combustible_interne", period)
+        conso_combustible_prodelec = establishment("consommation_charbon_combustible_electricite", period)
+        conso_combustible_extraction = establishment("consommation_charbon_combustible_extraction", period)
+
+        conso_combustible_electricite_266qA = establishment("consommation_charbon_combustible_electricite_266qA", period)
+        contrat_achat_electricite_314 = establishment("contrat_achat_electricite_314", period)
+
+        conso_combustible_electricite_petits_producteurs = establishment("consommation_charbon_combustible_electricite_petits_producteurs", period)
+
+        conso_combustible_biomasse = establishment("consommation_charbon_combustible_biomasse", period)
+
+        euets = establishment("is_euets", period)
+
+        facture_energie = establishment("facture_energies")
+        chiffre_affaires = establishment.firm("chiffre_affaires", period)
+        condition_facture = facture_energie >= .03 * chiffre_affaires
+
+        assiette = consommation_charbon - (
+            conso_non_combustible +
+            conso_double_usage +
+            conso_di26
+            ) - (
+            conso_combustible_interne + (
+            conso_combustible_prodelec - (conso_combustible_electricite_266qA * contrat_achat_electricite_314) - conso_combustible_electricite_petits_producteurs) +
+            conso_combustible_extraction +
+            (conso_combustible_biomasse * euets * condition_facture)
+            )
+
+        return assiette
+
+    def formula_2014_04_01(establishment, period, parameters):
+        consommation_charbon = establishment("consommation_charbon", period)
+
+        conso_non_combustible = establishment("consommation_charbon_non_combustible", period)
+        conso_double_usage = establishment("consommation_charbon_double_usage", period)
+        conso_di26 = establishment("consommation_charbon_di26", period)
+
+        conso_combustible_interne = establishment("consommation_charbon_combustible_interne", period)
+        conso_combustible_prodelec = establishment("consommation_charbon_combustible_electricite", period)
+        conso_combustible_extraction = establishment("consommation_charbon_combustible_extraction", period)
+
+        conso_combustible_electricite_266qA = establishment("consommation_charbon_combustible_electricite_266qA", period)
+        contrat_achat_electricite_314 = establishment("contrat_achat_electricite_314", period)
+
+        conso_combustible_electricite_petits_producteurs = establishment("consommation_charbon_combustible_electricite_petits_producteurs", period)
+        # NB : la définition des petits producteurs d'énergie change au 1er avril 2017
+
+        conso_combustible_biomasse = establishment("consommation_charbon_combustible_biomasse", period)
+
+        euets = establishment("is_euets", period)
+
+        facture_energie = establishment("facture_energies")
+        chiffre_affaires = establishment.firm("chiffre_affaires", period)
+        condition_facture = facture_energie >= .03 * chiffre_affaires
+
+        assiette = consommation_charbon - (
+            conso_non_combustible +
+            conso_double_usage +
+            conso_di26
+            ) - (
+            conso_combustible_interne + (
+            conso_combustible_prodelec - (conso_combustible_electricite_266qA * contrat_achat_electricite_314) - conso_combustible_electricite_petits_producteurs) +
+            conso_combustible_extraction +
+            (conso_combustible_biomasse * euets * condition_facture)
+            )
+
+        return assiette
+
+    def formula_2020_01_01(establishment, period, parameters):
+
+        consommation_charbon = establishment("consommation_charbon", period)
+
+        conso_non_combustible = establishment("consommation_charbon_non_combustible", period)
+        conso_carburant = establishment("consommation_charbon_carburant", period)
+        conso_double_usage = establishment("consommation_charbon_double_usage", period)
+        conso_di26 = establishment("consommation_charbon_di26", period)
+
+        installation_cogeneration = establishment("installation_cogeneration", period)
+
+        conso_combustible_interne = establishment("consommation_charbon_combustible_interne", period)
+        conso_combustible_prodelec = establishment("consommation_charbon_combustible_electricite", period)
+        conso_combustible_extraction = establishment("consommation_charbon_combustible_extraction", period)
+
+        conso_combustible_electricite_petits_producteurs = establishment("consommation_charbon_combustible_electricite_petits_producteurs", period)
+        # NB : la définition des petits producteurs d'énergie change au 1er avril 2017
+        
+        conso_combustible_biomasse = establishment("consommation_charbon_combustible_biomasse", period)
+
+        euets = establishment("is_euets", period)
+
+        facture_energie = establishment("facture_energies")
+        chiffre_affaires = establishment.firm("chiffre_affaires", period)
+        condition_facture = facture_energie >= .03 * chiffre_affaires
+
+        assiette = consommation_charbon - (
+            (conso_non_combustible - (conso_carburant * installation_cogeneration)  +
+            conso_double_usage +
+            conso_di26
+            ) - (
+            conso_combustible_interne + (
+            conso_combustible_prodelec - conso_combustible_electricite_petits_producteurs) +
+            conso_combustible_extraction +
+            (conso_combustible_biomasse * euets * condition_facture)
+            )
+
+        return assiette
+
+class taxe_interieure_consommation_charbon(Variable):
+    value_type = float
+    entity = Establishment
+    definition_period = YEAR
+    label = "Tax e intérieure de consommation sur les houilles, lignites et cokes - TICC"
+    reference = ""  #
+
+    def formula_2007_01_01(establishment, period, parameters):
+        """
+        Taxe sur la consommation de houilles, lignites, et cokes.
+        """
+
+        assiette_ticc = establishment("assiette_ticc", period)
+        ticc = assiette_ticc * parameters(period).energy
+
+        return ticc
+
 class tax_consumption_natural_gas(Variable):
     value_type = float
     entity = Establishment
     definition_period = YEAR
     label = "Tax on gas consumption - TICGN"
-    reference = "https://law.gov.example/example_income_tax_flat"  #
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/"  #
 
     def formula_1986_01_01(establishment, period, parameters):
         """
@@ -35,7 +346,7 @@ class tax_consumption_natural_gas(Variable):
         """
 
         seuil = parameters(period).energy.ticgn_seuil_exoneration
-        abattement = parameters(period).energy.ticgn_abattement * 12
+        abattement = parameters(period).energies.ticgn.ticgn_abattement * 12
         conso = establishment("consumption_natural_gas", period)
         rate = parameters(period).energy.natural_gas
         tax = (conso > seuil) * (conso - abattement) * rate
@@ -47,6 +358,7 @@ class tax_consumption_natural_gas(Variable):
         (en plus de précédemment,)
         TODO:
         Le gaz utilisé pour la production d'électricité est exonéré.
+        -> séparer les types de consommations dans ../energy_consumption/
         """
 
         seuil = parameters(period).energy.ticgn_seuil_exoneration
@@ -59,6 +371,7 @@ class tax_consumption_natural_gas(Variable):
 
     def formula_2008_04_01(establishment, period, parameters):
         """
+        [à noter : plus de seuil ni d'abattement]
         TODO:
         Le gaz consommé :
             - autrement que comme combustible
@@ -73,11 +386,9 @@ class tax_consumption_natural_gas(Variable):
             - pour la consommation des autorités régionales et locales ou des autres organismes de droit public pour les activités ou opérations qu'ils accomplissent en tant qu'autorités publiques jusqu'au 1er janvier 2009
         """
 
-        seuil = parameters(period).energy.ticgn_seuil_exoneration
-        abattement = parameters(period).energy.ticgn_abattement * 12
         conso = establishment("consumption_natural_gas", period)
         rate = parameters(period).energy.natural_gas
-        tax = (conso > seuil) * (conso - abattement) * rate
+        tax = conso * rate
 
         return  tax
 
@@ -89,11 +400,9 @@ class tax_consumption_natural_gas(Variable):
             n'est plus exonérée à partir du 1er janvier 2009.
         """
 
-        seuil = parameters(period).energy.ticgn_seuil_exoneration
-        abattement = parameters(period).energy.ticgn_abattement * 12
         conso = establishment("consumption_natural_gas", period)
         rate = parameters(period).energy.natural_gas
-        tax = (conso > seuil) * (conso - abattement) * rate
+        tax = conso * rate
 
         return  tax
 
@@ -105,11 +414,9 @@ class tax_consumption_natural_gas(Variable):
             n'est plus exonérée à partir du 1er janvier 2011.
         """
 
-        seuil = parameters(period).energy.ticgn_seuil_exoneration
-        abattement = parameters(period).energy.ticgn_abattement * 12
         conso = establishment("consumption_natural_gas", period)
         rate = parameters(period).energy.natural_gas
-        tax = (conso > seuil) * (conso - abattement) * rate
+        tax = conso * rate
 
         return  tax
 
@@ -120,11 +427,9 @@ class tax_consumption_natural_gas(Variable):
             Le tarif de la taxe applicable au produit consommé pour déshydrater les légumes et plantes aromatiques, autres que les pommes de terres, les champignons et les truffes, par les entreprises pour lesquelles cette consommation est supérieure à 800 wattheures par euro de valeur ajoutée, est fixé à 1,6 € par mégawattheure.
         """
 
-        seuil = parameters(period).energy.ticgn_seuil_exoneration
-        abattement = parameters(period).energy.ticgn_abattement * 12
         conso = establishment("consumption_natural_gas", period)
         rate = parameters(period).energy.natural_gas
-        tax = (conso > seuil) * (conso - abattement) * rate
+        tax = conso * rate
 
         return  tax
 
@@ -136,14 +441,11 @@ class tax_consumption_natural_gas(Variable):
             https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006071570/LEGISCTA000006122062/1993-01-01/?anchor=LEGIARTI000006615168#LEGIARTI000006615168
         """
 
-        seuil = parameters(period).energy.ticgn_seuil_exoneration
-        abattement = parameters(period).energy.ticgn_abattement * 12
         conso = establishment("consumption_natural_gas", period)
         rate = parameters(period).energy.natural_gas
-        tax = (conso > seuil) * (conso - abattement) * rate
+        tax = conso * rate
 
         return  tax
-
 
 class tax_consumption_natural_gas_ifp(Variable):
     value_type = float
