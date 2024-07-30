@@ -1,13 +1,7 @@
-# OpenFisca France UniteLegales
+# OpenFisca France Entreprises
 
 
-The country whose law is modelled here has a very simple tax and benefit system.
-
-- It has a flat rate tax whose rates increase every year.
-- On the first of December, 2015, it introduced a basic income for all its citizens of age who have no income.
-- On the first of December, 2016, it removed the income condition, providing all its adult citizens with a basic income.
-
-These elements are described in different folders. All the modelling happens within the `openfisca_france_entreprises` folder.
+This package models the tax and subsidy system for French firms.
 
 - The rates are in the `parameters` folder.
 - The formulas are in the `variables` folder.
