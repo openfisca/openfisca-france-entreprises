@@ -178,13 +178,7 @@ class stocks_bruts(Variable):
         produits_inter = UniteLegale("produits_intermediaires_finis_bruts", period)
         marchandises = UniteLegale("marchandises_brutes", period)
 
-        stocks = (
-            matieres_premieres
-            + encours_production_biens
-            + encours_production_services
-            + produits_inter
-            + marchandises
-            )
+        stocks = (matieres_premieres + encours_production_biens + encours_production_services + produits_inter + marchandises)
 
         return stocks
 
@@ -203,13 +197,7 @@ class stocks_ar(Variable):
         produits_inter = UniteLegale("produits_intermediaires_finis_ar", period)
         marchandises = UniteLegale("marchandises_ar", period)
 
-        stocks = (
-            matieres_premieres
-            + encours_production_biens
-            + encours_production_services
-            + produits_inter
-            + marchandises
-            )
+        stocks = (matieres_premieres + encours_production_biens + encours_production_services + produits_inter + marchandises)
 
         return stocks
 
@@ -369,11 +357,7 @@ class creances_brutes(Variable):
         autres = UniteLegale("autres_creances_brutes", period)
         capital_souscrit_appele = UniteLegale("capital_souscrit_appele_non_verse_brut", period)
 
-        creances = (
-            creances_clients
-            + autres
-            + capital_souscrit_appele
-            )
+        creances = (creances_clients + autres + capital_souscrit_appele)
 
         return creances
 
@@ -391,11 +375,7 @@ class creances_ar(Variable):
         autres = UniteLegale("autres_creances_ar", period)
         capital_souscrit_appele = UniteLegale("capital_souscrit_appele_non_verse_ar", period)
 
-        creances = (
-            creances_clients
-            + autres
-            + capital_souscrit_appele
-            )
+        creances = (creances_clients + autres + capital_souscrit_appele)
 
         return creances
 
@@ -560,12 +540,7 @@ class actif_circulant_ar(Variable):
         creances = UniteLegale("creances_ar", period)
         divers = UniteLegale("actif_circulant_divers_ar", period)
 
-        actif_circulant = (
-            stocks
-            + avances_acomptes_commandes
-            + creances
-            + divers
-            )
+        actif_circulant = (stocks + avances_acomptes_commandes + creances + divers)
 
         return actif_circulant
 

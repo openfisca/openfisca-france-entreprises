@@ -18,12 +18,7 @@ class actif_brut(Variable):
         total_iv = UniteLegale("frais_emission_emprunt", period)
         total_v = UniteLegale("primes_remboursement_obligations", period)
         total_vi = UniteLegale("ecarts_conversion_actif", period)
-        total_general = (total_i +
-                         total_ii +
-                         total_iii +
-                         total_iv +
-                         total_v +
-                         total_vi)
+        total_general = (total_i + total_ii + total_iii + total_iv + total_v + total_vi)
 
         return total_general
 
@@ -39,8 +34,7 @@ class actif_ar(Variable):
     def formula(UniteLegale, period):
         total_ii = UniteLegale("actif_immobilise_ar", period)
         total_iii = UniteLegale("actif_total_iii_ar", period)
-        total_general = (total_ii +
-                         total_iii)
+        total_general = (total_ii + total_iii)
 
         return total_general
 

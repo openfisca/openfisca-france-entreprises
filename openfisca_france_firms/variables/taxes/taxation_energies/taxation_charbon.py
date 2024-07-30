@@ -16,6 +16,7 @@ from openfisca_core.variables import Variable
 # Import the Entities specifically defined for this tax and benefit system
 from openfisca_france_firms.entities import UniteLegale, Etablissement
 
+
 class taxe_interieure_consommation_charbon(Variable):
     value_type = float
     entity = Etablissement
@@ -32,6 +33,7 @@ class taxe_interieure_consommation_charbon(Variable):
         ticc = assiette_ticc * parameters(period).energy
 
         return ticc
+
 
 class assiette_ticc(Variable):
     value_type = float
@@ -55,9 +57,7 @@ class assiette_ticc(Variable):
 
         conso_combustible_electricite_266qA = etablissement("consommation_charbon_combustible_electricite_266qA", period)
 
-        assiette = consommation_charbon - (conso_non_combustible +
-                                           conso_double_usage +
-                                           conso_di26) - (conso_combustible_interne + (conso_combustible_prodelec - conso_combustible_electricite_266qA) + conso_combustible_extraction + conso_combustible_particuliers)
+        assiette = consommation_charbon - (conso_non_combustible + conso_double_usage + conso_di26) - (conso_combustible_interne + (conso_combustible_prodelec - conso_combustible_electricite_266qA) + conso_combustible_extraction + conso_combustible_particuliers)
 
         return assiette
 
@@ -79,14 +79,8 @@ class assiette_ticc(Variable):
 
         euets = etablissement("is_euets", period)
 
-        assiette = consommation_charbon - (conso_non_combustible +
-                                           conso_double_usage +
-                                           conso_di26) - (conso_combustible_interne +
-                                                          (conso_combustible_prodelec - conso_combustible_electricite_266qA) +
-                                                          conso_combustible_extraction +
-                                                          conso_combustible_particuliers +
-                                                          (conso_combustible_biomasse * euets))
-
+        assiette = consommation_charbon - (conso_non_combustible + conso_double_usage + conso_di26) - (conso_combustible_interne + (conso_combustible_prodelec - conso_combustible_electricite_266qA) + conso_combustible_extraction + conso_combustible_particuliers + (conso_combustible_biomasse * euets))
+        
         return assiette
 
     def formula_2009_01_01(etablissement, period, parameters):
@@ -111,17 +105,7 @@ class assiette_ticc(Variable):
         chiffre_affaires = etablissement.unite_legale("chiffre_affaires", period)
         condition_facture = facture_energie >= .03 * chiffre_affaires
 
-        assiette = consommation_charbon - (
-            conso_non_combustible +
-            conso_double_usage +
-            conso_di26
-            ) - (
-            conso_combustible_interne + (
-            conso_combustible_prodelec - conso_combustible_electricite_266qA) +
-            conso_combustible_extraction +
-            conso_combustible_particuliers +
-            (conso_combustible_biomasse * euets * condition_facture)
-            )
+        assiette = consommation_charbon - (conso_non_combustible + conso_double_usage + conso_di26) - (conso_combustible_interne + (conso_combustible_prodelec - conso_combustible_electricite_266qA) + conso_combustible_extraction + conso_combustible_particuliers + (conso_combustible_biomasse * euets * condition_facture))
 
         return assiette
 
@@ -149,12 +133,7 @@ class assiette_ticc(Variable):
         chiffre_affaires = etablissement.unite_legale("chiffre_affaires", period)
         condition_facture = facture_energie >= .03 * chiffre_affaires
 
-        assiette = consommation_charbon - (conso_non_combustible +
-            conso_double_usage +
-            conso_di26) - (conso_combustible_interne + (conso_combustible_prodelec - conso_combustible_electricite_266qA - conso_combustible_electricite_petits_producteurs) +
-                                        conso_combustible_extraction +
-                                        conso_combustible_particuliers +
-                                        (conso_combustible_biomasse * euets * condition_facture))
+        assiette = consommation_charbon - (conso_non_combustible + conso_double_usage + conso_di26) - (conso_combustible_interne + (conso_combustible_prodelec - conso_combustible_electricite_266qA - conso_combustible_electricite_petits_producteurs) + conso_combustible_extraction + conso_combustible_particuliers + (conso_combustible_biomasse * euets * condition_facture))
 
         return assiette
 
@@ -183,17 +162,7 @@ class assiette_ticc(Variable):
         chiffre_affaires = etablissement.unite_legale("chiffre_affaires", period)
         condition_facture = facture_energie >= .03 * chiffre_affaires
 
-        assiette = consommation_charbon - (
-            conso_non_combustible +
-            conso_double_usage +
-            conso_di26
-            ) - (
-            conso_combustible_interne + (
-            conso_combustible_prodelec - (conso_combustible_electricite_266qA * contrat_achat_electricite_314) - conso_combustible_electricite_petits_producteurs) +
-            conso_combustible_extraction +
-            conso_combustible_particuliers +
-            (conso_combustible_biomasse * euets * condition_facture)
-            )
+        assiette = consommation_charbon - (conso_non_combustible + conso_double_usage + conso_di26) - (conso_combustible_interne + (conso_combustible_prodelec - (conso_combustible_electricite_266qA * contrat_achat_electricite_314) - conso_combustible_electricite_petits_producteurs) + conso_combustible_extraction + conso_combustible_particuliers + (conso_combustible_biomasse * euets * condition_facture))
 
         return assiette
 
@@ -221,16 +190,7 @@ class assiette_ticc(Variable):
         chiffre_affaires = etablissement.unite_legale("chiffre_affaires", period)
         condition_facture = facture_energie >= .03 * chiffre_affaires
 
-        assiette = consommation_charbon - (
-            conso_non_combustible +
-            conso_double_usage +
-            conso_di26
-            ) - (
-            conso_combustible_interne + (
-            conso_combustible_prodelec - (conso_combustible_electricite_266qA * contrat_achat_electricite_314) - conso_combustible_electricite_petits_producteurs) +
-            conso_combustible_extraction +
-            (conso_combustible_biomasse * euets * condition_facture)
-            )
+        assiette = consommation_charbon - (conso_non_combustible + conso_double_usage + conso_di26) - (conso_combustible_interne + (conso_combustible_prodelec - (conso_combustible_electricite_266qA * contrat_achat_electricite_314) - conso_combustible_electricite_petits_producteurs) + conso_combustible_extraction + (conso_combustible_biomasse * euets * condition_facture))
 
         return assiette
 
@@ -259,16 +219,7 @@ class assiette_ticc(Variable):
         chiffre_affaires = etablissement.unite_legale("chiffre_affaires", period)
         condition_facture = facture_energie >= .03 * chiffre_affaires
 
-        assiette = consommation_charbon - (
-            conso_non_combustible +
-            conso_double_usage +
-            conso_di26
-            ) - (
-            conso_combustible_interne + (
-            conso_combustible_prodelec - (conso_combustible_electricite_266qA * contrat_achat_electricite_314) - conso_combustible_electricite_petits_producteurs) +
-            conso_combustible_extraction +
-            (conso_combustible_biomasse * euets * condition_facture)
-            )
+        assiette = consommation_charbon - (conso_non_combustible + conso_double_usage + conso_di26) - (conso_combustible_interne + (conso_combustible_prodelec - (conso_combustible_electricite_266qA * contrat_achat_electricite_314) - conso_combustible_electricite_petits_producteurs) + conso_combustible_extraction + (conso_combustible_biomasse * euets * condition_facture))
 
         return assiette
 
@@ -298,7 +249,6 @@ class assiette_ticc(Variable):
         chiffre_affaires = etablissement.unite_legale("chiffre_affaires", period)
         condition_facture = facture_energie >= .03 * chiffre_affaires
 
-        assiette = consommation_charbon - (conso_non_combustible - (conso_carburant * installation_cogeneration)  + conso_double_usage + conso_di26) - (conso_combustible_interne +
-                                           (conso_combustible_prodelec - conso_combustible_electricite_petits_producteurs) + conso_combustible_extraction + (conso_combustible_biomasse * euets * condition_facture))
+        assiette = consommation_charbon - (conso_non_combustible - (conso_carburant * installation_cogeneration)  + conso_double_usage + conso_di26) - (conso_combustible_interne + (conso_combustible_prodelec - conso_combustible_electricite_petits_producteurs) + conso_combustible_extraction + (conso_combustible_biomasse * euets * condition_facture))
 
         return assiette

@@ -16,6 +16,7 @@ from openfisca_core.variables import Variable
 # Import the Entities specifically defined for this tax and benefit system
 from openfisca_france_firms.entities import UniteLegale, Etablissement
 
+
 class taxe_interieure_consommation_gaz_naturel(Variable):
     value_type = float
     entity = Etablissement
@@ -48,9 +49,7 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
         ticgn_grande_conso = etablissement("taxe_interieure_consommation_gaz_naturel_grande_consommatrice", period)
         ticgn_electrointensive = etablissement("taxe_interieure_consommation_gaz_naturel_electrointensive", period)
 
-        ticgn = (euets * grande_consommatrice * ticgn_grande_conso) + (
-            (1 - euets) * electrointensive * risque_fuite * ticgn_electrointensive) + (
-                (1 - ((euets * grande_consommatrice) + ((1 - euets) * electrointensive * risque_fuite))) * ticgn_normal)
+        ticgn = (euets * grande_consommatrice * ticgn_grande_conso) + ((1 - euets) * electrointensive * risque_fuite * ticgn_electrointensive) + ((1 - ((euets * grande_consommatrice) + ((1 - euets) * electrointensive * risque_fuite))) * ticgn_normal)
 
         return ticgn
 
@@ -111,7 +110,7 @@ class taxe_interieure_consommation_gaz_naturel_grande_consommatrice(Variable):
         taux = parameters("2013-12-31").taxation_energies.natural_gas
         taxe = assiette * taux
 
-        return  tax
+        return  taxe
 
     def formula_2016_04_01(etablissement, period, parameters):
         """
@@ -125,6 +124,7 @@ class taxe_interieure_consommation_gaz_naturel_grande_consommatrice(Variable):
         taxe = assiette * (taux + majoration)
 
         return  taxe
+
 
 class taxe_interieure_consommation_gaz_naturel_electrointensive(Variable):
     value_type = float
@@ -158,6 +158,7 @@ class taxe_interieure_consommation_gaz_naturel_electrointensive(Variable):
         taxe = assiette * (taux + majoration)
 
         return  taxe
+
 
 class assiette_ticgn(Variable):
     value_type = float
@@ -261,6 +262,7 @@ class assiette_ticgn(Variable):
 
         return conso
 
+
 class taxe_interieure_consommation_gaz_naturel_ifp(Variable):
     value_type = float
     entity = Etablissement
@@ -274,4 +276,5 @@ class taxe_interieure_consommation_gaz_naturel_ifp(Variable):
 
         The formula to compute the income tax for a given etablissement at a given period
         """
-        return etablissement("gas_consumption", period) * parameters(period).taxation_energies.natural_gas
+
+        return etablissement("consommation_gaz_naturel", period) * parameters(period).taxation_energies.natural_gas
