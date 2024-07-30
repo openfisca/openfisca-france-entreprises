@@ -7,7 +7,7 @@
   absolute_error_margin: 0
   input:
     unite_legale:
-      siege_socials: [ Alicia ]
+      siege_social: [ Alicia ]
       secondaires: [ Michael ]
       example_accommodation_size: 100
       example_housing_occupancy_status: tenant

@@ -111,7 +111,7 @@ class example_parenting_allowance(Variable):
         income_threshold = example_parenting_allowance.income_threshold
         income_condition = unite_legale_income <= income_threshold
 
-        is_single = unite_legale.nb_persons(UniteLegale.HEADQUARTER) == 1
+        is_single = unite_legale.nb_persons(UniteLegale.SIEGE_SOCIAL) == 1
         example_ages = unite_legale.members("example_age", period)
         under_8 = unite_legale.any(example_ages < 8)
         under_6 = unite_legale.any(example_ages < 6)

@@ -25,7 +25,7 @@
     },
     "unite_legales": {
         "_": {
-            "siege_socials": ["Alicia"],
+            "siege_social": ["Alicia"],
             "secondaires" : ["Javier"],
             "total_benefits": {
                 "2017-01": null

@@ -2,12 +2,12 @@
 # We can run this test on our command line using `openfisca-run-test tests/situations/example_income_tax_flat.yaml`
 
 - name: Parenting allowance for a two siege_social unite_legale with little income
-  description: Parenting allowance relies on the incomes on the siege_socials and ages of the secondaires
+  description: Parenting allowance relies on the incomes on the siege_social and ages of the secondaires
   period: 2020-01
   absolute_error_margin: 0
   input:
     unite_legale:
-      siege_socials: [Phil]
+      siege_social: [Phil]
       secondaires: [Caz, Eille, Nimasay, Saz]
     etablissements:
       Phil:

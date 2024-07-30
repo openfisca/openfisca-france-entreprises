@@ -51,7 +51,7 @@ class installation_euets(Variable):
 class installation_electrointensive(Variable):
     value_type = bool
     entity = Etablissement
-    label = "Installation exposée au risque de fuite carbone"
+    label = "Installation électrointensive"
     definition_period = YEAR
 
     def formula_2014_01_01(etablissement, period):
@@ -61,3 +61,18 @@ class installation_electrointensive(Variable):
     def formula_2021_01_01(etablissement, period):
 
         return True
+
+class installation_grande_consommatrice(Variable):
+    value_type = bool
+    entity = Etablissement
+    label = "Installation grande consommatrice d'énergie"
+    definition_period = YEAR
+
+    def formula_2014_01_01(etablissement, period):
+
+        return True
+
+    def formula_2021_01_01(etablissement, period):
+
+        return True
+

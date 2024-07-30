@@ -38,3 +38,17 @@ class postal_code_unite_legale(Variable):
         hq = unite_legale.members(has_role ="siege_social")
 
         return hq("postal_code", period)
+
+class entreprises_risque_de_fuite_carbone(Variable):
+    value_type = bool
+    entity = UniteLegale
+    label = "Entreprise exposée au risque de fuite carbone"
+    definition_period = YEAR
+
+    def formula_2014_01_01(unite_legale, period):
+
+        return True
+
+    def formula_2021_01_01(unite_legale, period):
+
+        return True
