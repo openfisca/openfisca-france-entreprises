@@ -1,0 +1,37 @@
+- name: charges_constatees_avance
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    charges_constatees_avance_brutes: 1000
+    charges_constatees_avance_ar: 10
+  output:
+    charges_constatees_avance_nettes: 990
+
+- name: actif_total_iii_brut
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    actif_circulant_brut: 1000
+    charges_constatees_avance_brutes: 1000
+  output:
+    actif_total_iii_brut: 2000
+
+- name: actif_total_iii_ar
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    actif_circulant_ar: 10
+    charges_constatees_avance_ar: 10
+  output:
+    actif_total_iii_ar: 20
+
+- name: actif_total_iii_nett
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    actif_circulant_brut: 1000
+    charges_constatees_avance_brutes: 1000
+    actif_circulant_ar: 10
+    charges_constatees_avance_ar: 10
+  output:
+    actif_total_iii_net: 1980

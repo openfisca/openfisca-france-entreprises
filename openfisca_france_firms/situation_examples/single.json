@@ -1,17 +1,17 @@
 {
-    "persons": {
+    "etablissements": {
         "Alicia": {
-            "birth": {
+            "example_birth": {
                 "2017-01": null
             },
-            "disposable_income": {
+            "example_disposable_income": {
                 "2017-01": null
             }
         }
     },
-    "households": {
+    "unite_legales": {
         "_": {
-            "parents": ["Alicia"]
+            "siege_social": ["Alicia"]
         }
     }
 }

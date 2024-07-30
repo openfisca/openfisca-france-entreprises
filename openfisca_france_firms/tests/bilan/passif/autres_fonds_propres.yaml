@@ -1,0 +1,8 @@
+- name: autres_fonds_propres
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    produit_emissions_titres_participatifs: 1000
+    avances_conditionnees: 1000
+  output:
+    autres_fonds_propres: 2000

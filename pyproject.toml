@@ -1,7 +1,7 @@
 [project]
 name = "openfisca_france_firms"
-version = "0.0.1"
-description = "OpenFisca Rules as Code model for France Firms."
+version = "1.0.0"
+description = "OpenFisca Rules as Code model for France UniteLegales."
 readme = "README.md"
 keywords = ["microsimulation", "tax", "benefit", "rac", "rules-as-code"]
 authors = []

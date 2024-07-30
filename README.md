@@ -1,4 +1,4 @@
-# OpenFisca France Firms
+# OpenFisca France UniteLegales
 
 
 The country whose law is modelled here has a very simple tax and benefit system.

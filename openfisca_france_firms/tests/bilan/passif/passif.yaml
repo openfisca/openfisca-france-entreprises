@@ -1,0 +1,32 @@
+- name: passif
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    capital_social_individuel: 1000
+    primes_emission_fusion_apport: 1000
+    ecarts_reevaluation: 1000
+    reserve_legale: 1000
+    reserves_statutaires_contractuelles: 1000
+    reserves_reglementees: 1000
+    autres_reserves: 1000
+    report_a_nouveau: 1000
+    resultat_exercice_di: 1000
+    subventions_investissement: 1000
+    provisions_reglementees: 1000
+    produit_emissions_titres_participatifs: 1000
+    avances_conditionnees: 1000
+    provisions_pour_risques: 1000
+    provisions_pour_charges: 1000
+    emprunts_obligatoires_convertibles: 1000
+    autres_emprunts_obligatoires: 1000
+    emprunts_dettes_etablissement_credit: 1000
+    emprunts_dettes_divers: 1000
+    avances_acomptes_recus_commandes: 1000
+    dettes_fournisseurs: 1000
+    dettes_fiscales_sociales: 1000
+    dettes_immobilisations: 1000
+    autres_dettes: 1000
+    produits_constates_avance: 1000
+    ecart_conversion_passif: 1000
+  output:
+    passif: 26000

@@ -1,31 +1,32 @@
 {
-    "persons": {
+    "etablissements": {
         "Alicia": {
-            "birth": {
+            "example_birth": {
                 "ETERNITY": "1980-01-01"
             },
-            "salary": {
+            "example_salary": {
                 "2017-01": 4000
             },
-            "disposable_income": {
+            "example_disposable_income": {
                 "2017-01": null
             }
         },
         "Javier": {
-            "birth": {
+            "example_birth": {
                 "ETERNITY": "1984-01-01"
             },
-            "salary": {
+            "example_salary": {
                 "2017-01": 2500
             },
-            "disposable_income": {
+            "example_disposable_income": {
                 "2017-01": null
             }
         }
     },
-    "households": {
+    "unite_legales": {
         "_": {
-            "parents": ["Alicia", "Javier"],
+            "siege_social": ["Alicia"],
+            "secondaires" : ["Javier"],
             "total_benefits": {
                 "2017-01": null
             },

@@ -1,0 +1,9 @@
+description: Natural gas consumption rate
+values:
+  # This parameter is only defined since the 1st of Dec 2015.
+  2000-01-01:
+    value: 0.02
+metadata:
+  reference: 
+    2000-01-01:
+      href: https://law.gov.example/basic-income/amount/2015-12

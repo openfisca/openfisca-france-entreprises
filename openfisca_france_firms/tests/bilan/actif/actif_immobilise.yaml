@@ -1,0 +1,331 @@
+- name: frais_etablissement
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    frais_etablissement_bruts: 1000
+    frais_etablissement_ar: 10
+  output:
+    frais_etablissement_nets: 990
+
+- name: frais_developpement
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    frais_developpement_bruts: 1000
+    frais_developpement_ar: 10
+  output:
+    frais_developpement_nets: 990
+
+- name: concessions_brevets_droits
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    concessions_brevets_droits_bruts: 1000
+    concessions_brevets_droits_ar: 10
+  output:
+    concessions_brevets_droits_nets: 990
+
+- name: fonds_commercial
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    fonds_commercial_brut: 1000
+    fonds_commercial_ar: 10
+  output:
+    fonds_commercial_net: 990
+
+- name: autres_immobilisations_incorporelles
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    autres_immobilisations_incorporelles_brutes: 1000
+    autres_immobilisations_incorporelles_ar: 10
+  output:
+    autres_immobilisations_incorporelles_nettes: 990
+
+- name: immobilisations_incorporelles_brutes
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    frais_etablissement_bruts: 1000
+    frais_developpement_bruts: 1000
+    concessions_brevets_droits_bruts: 1000
+    fonds_commercial_brut: 1000
+    autres_immobilisations_incorporelles_brutes: 1000
+    immobilisations_incorporelles_avances_acomptes_bruts: 1000
+  output:
+    immobilisations_incorporelles_brutes: 6000
+
+- name: immobilisations_incorporelles_ar
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    frais_etablissement_ar: 10
+    frais_developpement_ar: 10
+    concessions_brevets_droits_ar: 10
+    fonds_commercial_ar: 10
+    autres_immobilisations_incorporelles_ar: 10
+    immobilisations_incorporelles_avances_acomptes_ar: 10
+  output:
+    immobilisations_incorporelles_ar: 60
+
+- name: immobilisations_incorporelles
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    frais_etablissement_bruts: 1000
+    frais_developpement_bruts: 1000
+    concessions_brevets_droits_bruts: 1000
+    fonds_commercial_brut: 1000
+    autres_immobilisations_incorporelles_brutes: 1000
+    immobilisations_incorporelles_avances_acomptes_bruts: 1000
+    frais_etablissement_ar: 10
+    frais_developpement_ar: 10
+    concessions_brevets_droits_ar: 10
+    fonds_commercial_ar: 10
+    autres_immobilisations_incorporelles_ar: 10
+    immobilisations_incorporelles_avances_acomptes_ar: 10
+  output:
+    immobilisations_incorporelles_nettes: 5940
+
+
+- name: terrains
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    terrains_bruts: 1000
+    terrains_ar: 10
+  output:
+    terrains_nets: 990
+
+- name: constructions
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    constructions_brutes: 1000
+    constructions_ar: 10
+  output:
+    constructions_nettes: 990
+
+- name: installations_techniques
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    installations_techniques_brutes: 1000
+    installations_techniques_ar: 10
+  output:
+    installations_techniques_nettes: 990
+
+- name: autres_immobilisations_corporelles
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    autres_immobilisations_corporelles_brutes: 1000
+    autres_immobilisations_corporelles_ar: 10
+  output:
+    autres_immobilisations_corporelles_nettes: 990
+
+- name: immobilisations_en_cours
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    immobilisations_en_cours_brutes: 1000
+    immobilisations_en_cours_ar: 10
+  output:
+    immobilisations_en_cours_nettes: 990
+
+- name: avances_acomptes
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    avances_acomptes_bruts: 1000
+    avances_acomptes_ar: 10
+  output:
+    avances_acomptes_nets: 990
+
+- name: immobilisations_corporelles_brutes
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    terrains_bruts: 1000
+    constructions_brutes: 1000
+    installations_techniques_brutes: 1000
+    autres_immobilisations_corporelles_brutes: 1000
+    immobilisations_en_cours_brutes: 1000
+    avances_acomptes_bruts: 1000
+  output:
+    immobilisations_corporelles_brutes: 6000
+
+- name: immobilisations_corporelles_ar
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    terrains_ar: 10
+    constructions_ar: 10
+    installations_techniques_ar: 10
+    autres_immobilisations_corporelles_ar: 10
+    immobilisations_en_cours_ar: 10
+    avances_acomptes_ar: 10
+  output:
+    immobilisations_corporelles_ar: 60
+
+- name: immobilisations_corporelles
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    terrains_bruts: 1000
+    constructions_brutes: 1000
+    installations_techniques_brutes: 1000
+    autres_immobilisations_corporelles_brutes: 1000
+    immobilisations_en_cours_brutes: 1000
+    avances_acomptes_bruts: 1000
+    terrains_ar: 10
+    constructions_ar: 10
+    installations_techniques_ar: 10
+    autres_immobilisations_corporelles_ar: 10
+    immobilisations_en_cours_ar: 10
+    avances_acomptes_ar: 10
+  output:
+    immobilisations_corporelles_nettes: 5940
+
+- name: participations_mise_equivalence
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    participations_mise_equivalence_brutes: 1000
+    participations_mise_equivalence_ar: 10
+  output:
+    participations_mise_equivalence_nettes: 990
+
+- name: autres_participations
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    autres_participations_brutes: 1000
+    autres_participations_ar: 10
+  output:
+    autres_participations_nettes: 990
+
+- name: creances_participations
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    creances_participations_brutes: 1000
+    creances_participations_ar: 10
+  output:
+    creances_participations_nettes: 990
+
+- name: autres_titres_immobilises
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    autres_titres_immobilises_bruts: 1000
+    autres_titres_immobilises_ar: 10
+  output:
+    autres_titres_immobilises_nets: 990
+
+- name: prets
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    prets_bruts: 1000
+    prets_ar: 10
+  output:
+    prets_nets: 990
+
+- name: autres_immobilisations_financieres
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    autres_immobilisations_financieres_brutes: 1000
+    autres_immobilisations_financieres_ar: 10
+  output:
+    autres_immobilisations_financieres_nettes: 990
+
+- name: immobilisations_financieres_brutes
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    participations_mise_equivalence_brutes: 1000
+    autres_participations_brutes: 1000
+    creances_participations_brutes: 1000
+    autres_titres_immobilises_bruts: 1000
+    prets_bruts: 1000
+    autres_immobilisations_financieres_brutes: 1000
+  output:
+    immobilisations_financieres_brutes: 6000
+
+- name: immobilisations_financieres_ar
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    participations_mise_equivalence_ar: 10
+    autres_participations_ar: 10
+    creances_participations_ar: 10
+    autres_titres_immobilises_ar: 10
+    prets_ar: 10
+    autres_immobilisations_financieres_ar: 10
+  output:
+    immobilisations_financieres_ar: 60
+
+- name: immobilisations_financieres
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    participations_mise_equivalence_brutes: 1000
+    autres_participations_brutes: 1000
+    creances_participations_brutes: 1000
+    autres_titres_immobilises_bruts: 1000
+    prets_bruts: 1000
+    autres_immobilisations_financieres_brutes: 1000
+    participations_mise_equivalence_ar: 10
+    autres_participations_ar: 10
+    creances_participations_ar: 10
+    autres_titres_immobilises_ar: 10
+    prets_ar: 10
+    autres_immobilisations_financieres_ar: 10
+  output:
+    immobilisations_financieres_nettes: 5940
+
+- name: actif_immobilise
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    frais_etablissement_bruts: 1000
+    frais_developpement_bruts: 1000
+    concessions_brevets_droits_bruts: 1000
+    fonds_commercial_brut: 1000
+    autres_immobilisations_incorporelles_brutes: 1000
+    immobilisations_incorporelles_avances_acomptes_bruts: 1000
+    frais_etablissement_ar: 10
+    frais_developpement_ar: 10
+    concessions_brevets_droits_ar: 10
+    fonds_commercial_ar: 10
+    autres_immobilisations_incorporelles_ar: 10
+    immobilisations_incorporelles_avances_acomptes_ar: 10
+    terrains_bruts: 1000
+    constructions_brutes: 1000
+    installations_techniques_brutes: 1000
+    autres_immobilisations_corporelles_brutes: 1000
+    immobilisations_en_cours_brutes: 1000
+    avances_acomptes_bruts: 1000
+    terrains_ar: 10
+    constructions_ar: 10
+    installations_techniques_ar: 10
+    autres_immobilisations_corporelles_ar: 10
+    immobilisations_en_cours_ar: 10
+    avances_acomptes_ar: 10
+    participations_mise_equivalence_brutes: 1000
+    autres_participations_brutes: 1000
+    creances_participations_brutes: 1000
+    autres_titres_immobilises_bruts: 1000
+    prets_bruts: 1000
+    autres_immobilisations_financieres_brutes: 1000
+    participations_mise_equivalence_ar: 10
+    autres_participations_ar: 10
+    creances_participations_ar: 10
+    autres_titres_immobilises_ar: 10
+    prets_ar: 10
+    autres_immobilisations_financieres_ar: 10
+  output:
+    actif_immobilise_net: 17820

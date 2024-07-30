@@ -1,0 +1,229 @@
+- name: matieres_premieres
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    matieres_premieres_brutes: 1000
+    matieres_premieres_ar: 10
+  output:
+    matieres_premieres_nettes: 990
+
+- name: encours_production_biens
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    encours_production_biens_bruts: 1000
+    encours_production_biens_ar: 10
+  output:
+    encours_production_biens_nets: 990
+
+- name: encours_production_services
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    encours_production_services_bruts: 1000
+    encours_production_services_ar: 10
+  output:
+    encours_production_services_nets: 990
+
+- name: produits_intermediaires_finis
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    produits_intermediaires_finis_bruts: 1000
+    produits_intermediaires_finis_ar: 10
+  output:
+    produits_intermediaires_finis_nets: 990
+
+- name: marchandises
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    marchandises_brutes: 1000
+    marchandises_ar: 10
+  output:
+    marchandises_nettes: 990
+
+- name: stocks_bruts
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    matieres_premieres_brutes: 1000
+    encours_production_biens_bruts: 1000
+    encours_production_services_bruts: 1000
+    produits_intermediaires_finis_bruts: 1000
+    marchandises_brutes: 1000
+  output:
+    stocks_bruts: 5000
+
+- name: stocks_ar
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    matieres_premieres_ar: 10
+    encours_production_biens_ar: 10
+    encours_production_services_ar: 10
+    produits_intermediaires_finis_ar: 10
+    marchandises_ar: 10
+  output:
+    stocks_ar: 50
+
+- name: stocks_nets
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    matieres_premieres_brutes: 1000
+    encours_production_biens_bruts: 1000
+    encours_production_services_bruts: 1000
+    produits_intermediaires_finis_bruts: 1000
+    marchandises_brutes: 1000
+    matieres_premieres_ar: 10
+    encours_production_biens_ar: 10
+    encours_production_services_ar: 10
+    produits_intermediaires_finis_ar: 10
+    marchandises_ar: 10
+  output:
+    stocks_nets: 4950
+
+- name: avances_acomptes_commandes
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    avances_acomptes_commandes_bruts: 1000
+    avances_acomptes_commandes_ar: 10
+  output:
+    avances_acomptes_commandes_nets: 990
+
+- name: creances_clients_comptes_rattaches
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    creances_clients_comptes_rattaches_brutes: 1000
+    creances_clients_comptes_rattaches_ar: 10
+  output:
+    creances_clients_comptes_rattaches_nettes: 990
+
+- name: autres_creances
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    autres_creances_brutes: 1000
+    autres_creances_ar: 10
+  output:
+    autres_creances_nettes: 990
+
+- name: capital_souscrit_appele_non_verse
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    capital_souscrit_appele_non_verse_brut: 1000
+    capital_souscrit_appele_non_verse_ar: 10
+  output:
+    capital_souscrit_appele_non_verse_net: 990
+
+- name: creances_brutes
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    creances_clients_comptes_rattaches_brutes: 1000
+    autres_creances_brutes: 1000
+    capital_souscrit_appele_non_verse_brut: 1000
+  output:
+    creances_brutes: 3000
+
+- name: creances_ar
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    creances_clients_comptes_rattaches_ar: 10
+    autres_creances_ar: 10
+    capital_souscrit_appele_non_verse_ar: 10
+  output:
+    creances_ar: 30
+
+- name: creances_nettes
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    creances_clients_comptes_rattaches_brutes: 1000
+    autres_creances_brutes: 1000
+    capital_souscrit_appele_non_verse_brut: 1000
+    creances_clients_comptes_rattaches_ar: 10
+    autres_creances_ar: 10
+    capital_souscrit_appele_non_verse_ar: 10
+  output:
+    creances_nettes: 2970
+
+- name: valeurs_mobilieres_placement
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    valeurs_mobilieres_placement_brutes: 1000
+    valeurs_mobilieres_placement_ar: 10
+  output:
+    valeurs_mobilieres_placement_nettes: 990
+
+- name: disponibilites
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    disponibilites_brutes: 1000
+    disponibilites_ar: 10
+  output:
+    disponibilites_nettes: 990
+
+- name: actif_circulant_divers_brut
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    valeurs_mobilieres_placement_brutes: 1000
+    disponibilites_brutes: 1000
+  output:
+    actif_circulant_divers_brut: 2000
+
+- name: actif_circulant_divers_ar
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    valeurs_mobilieres_placement_ar: 10
+    disponibilites_ar: 10
+  output:
+    actif_circulant_divers_ar: 20
+
+- name: actif_circulant_divers_net
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    valeurs_mobilieres_placement_brutes: 1000
+    disponibilites_brutes: 1000
+    valeurs_mobilieres_placement_ar: 10
+    disponibilites_ar: 10
+  output:
+    actif_circulant_divers_net: 1980
+
+- name: actif_circulant_net
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    matieres_premieres_brutes: 1000
+    encours_production_biens_bruts: 1000
+    encours_production_services_bruts: 1000
+    produits_intermediaires_finis_bruts: 1000
+    marchandises_brutes: 1000
+    matieres_premieres_ar: 10
+    encours_production_biens_ar: 10
+    encours_production_services_ar: 10
+    produits_intermediaires_finis_ar: 10
+    marchandises_ar: 10
+    creances_clients_comptes_rattaches_brutes: 1000
+    autres_creances_brutes: 1000
+    capital_souscrit_appele_non_verse_brut: 1000
+    creances_clients_comptes_rattaches_ar: 10
+    autres_creances_ar: 10
+    capital_souscrit_appele_non_verse_ar: 10
+    valeurs_mobilieres_placement_brutes: 1000
+    disponibilites_brutes: 1000
+    valeurs_mobilieres_placement_ar: 10
+    disponibilites_ar: 10
+  output:
+    actif_circulant_net: 9900
+

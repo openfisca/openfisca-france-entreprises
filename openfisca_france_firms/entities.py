@@ -1,64 +1,58 @@
 """
 This file defines the entities needed by our legislation.
 
-Taxes and benefits can be calculated for different entities: persons, household, companies, etc.
+Taxes and benefits can be calculated for different entities: etablissements, unite_legale, companies, etc.
 
-See https://openfisca.org/doc/key-concepts/person,_entities,_role.html
+See https://openfisca.org/doc/key-concepts/etablissement,_entities,_role.html
 """
 
 from openfisca_core.entities import build_entity
 
-Household = build_entity(
-    key = "household",
-    plural = "households",
-    label = "All the people in a family or group who live together in the same place.",
+UniteLegale = build_entity(
+    key = "unite_legale",
+    plural = "unite_legales",
+    label = "All the etablissements in a legal unit defined by a SIREN.",
     doc = """
-    Household is an example of a group entity.
-    A group entity contains one or more individual·s.
-    Each individual in a group entity has a role (e.g. parent or children). Some roles can only be held by a limited number of individuals (e.g. a 'first_parent' can only be held by one individual), while others can have an unlimited number of individuals (e.g. 'children').
-
-    Example:
-    Housing variables (e.g. housing_tax') are usually defined for a group entity such as 'Household'.
+    A unite_legale entity contains one or more etablissements.
+    Each etablissement in a unite_legale has a role (e.g. siege_social or secondaire etablissement). There can only be one siege_social etablissement.
 
     Usage:
-    Check the number of individuals of a specific role (e.g. check if there is a 'second_parent' with household.nb_persons(Household.SECOND_PARENT)).
-    Calculate a variable applied to each individual of the group entity (e.g. calculate the 'salary' of each member of the 'Household' with salaries = household.members("salary", period = MONTH); sum_salaries = household.sum(salaries)).
+    Check the number of etablissements of a specific role (e.g. check if there is a unique 'siege_social' etablissement within a unite_legale).
 
     For more information, see: https://openfisca.org/doc/coding-the-legislation/50_entities.html
     """,
     roles = [
         {
-            "key": "parent",
-            "plural": "parents",
-            "label": "Parents",
-            "max": 2,
-            "subroles": ["first_parent", "second_parent"],
-            "doc": "The one or two adults in charge of the household.",
+            "key": "siege_social",
+            "plural": "siege_social",
+            "label": "Siege Social",
+            "max": 1,
+            "doc": "The one etablissement that is siege_social to the unite_legale.",
             },
         {
-            "key": "child",
-            "plural": "children",
-            "label": "Child",
-            "doc": "Other individuals living in the household.",
+            "key": "secondaire",
+            "plural": "secondaires",
+            "label": "Etablissements secondaires",
+            "doc": "Other etablissements in the unite_legale.",
             },
         ],
     )
 
-Person = build_entity(
-    key = "person",
-    plural = "persons",
-    label = "An individual. The minimal legal entity on which a legislation might be applied.",
+Etablissement = build_entity(
+    key = "etablissement",
+    plural = "etablissements",
+    label = "An etablissement. The minimal legal entity on which a legislation might be applied.",
     doc = """
 
-    Variables like 'salary' and 'income_tax' are usually defined for the entity 'Person'.
+    Variables like 'masse_salariale' and 'consommation_energie' are usually defined for the entity 'Etablissement'.
 
     Usage:
-    Calculate a variable applied to a 'Person' (e.g. access the 'salary' of a specific month with person("salary", "2017-05")).
-    Check the role of a 'Person' in a group entity (e.g. check if a the 'Person' is a 'first_parent' in a 'Household' entity with person.has_role(Household.FIRST_PARENT)).
+    Calculate a variable applied to a 'Etablissement' (e.g. access the 'example_salary' of a specific month with etablissement("example_salary", "2017-05")).
+    Check the role of a 'Etablissement' in a group entity (e.g. check if a the 'Etablissement' is a 'siege_social' in a 'unite_legale' entity with etablissement.has_role(unite_legale.SIEGE_SOCIAL)).
 
     For more information, see: https://openfisca.org/doc/coding-the-legislation/50_entities.html
     """,
     is_person = True,
     )
 
-entities = [Household, Person]
+entities = [UniteLegale, Etablissement]

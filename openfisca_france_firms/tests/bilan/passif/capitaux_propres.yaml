@@ -1,0 +1,17 @@
+- name: capitaux_propres
+  period: 2020
+  absolute_error_margin: 0.001
+  input:
+    capital_social_individuel: 1000
+    primes_emission_fusion_apport: 1000
+    ecarts_reevaluation: 1000
+    reserve_legale: 1000
+    reserves_statutaires_contractuelles: 1000
+    reserves_reglementees: 1000
+    autres_reserves: 1000
+    report_a_nouveau: 1000
+    resultat_exercice_di: 1000
+    subventions_investissement: 1000
+    provisions_reglementees: 1000
+  output:
+    capitaux_propres: 11000
