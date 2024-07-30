@@ -62,8 +62,10 @@ class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/"  #
 
     def formula_1986_01_01(etablissement, period, parameters):
-        seuil = 5000000 # parameters(period).taxation_energies.ticgn_seuil_exoneration
-        abattement = 400000 # parameters(period).taxation_energies.ticgn.ticgn_abattement * 12
+        seuil = 5000000 
+        # parameters(period).taxation_energies.ticgn_seuil_exoneration
+        abattement = 400000 
+        # parameters(period).taxation_energies.ticgn.ticgn_abattement * 12
         assiette = etablissement("assiette_ticgn", period)
         taux = parameters(period).taxation_energies.natural_gas
         taxe = (assiette > seuil) * (assiette - abattement) * taux
@@ -88,7 +90,8 @@ class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
 
         assiette = etablissement("assiette_ticgn", period)
         taux_pci = parameters(period).taxation_energies.natural_gas
-        taux = taux_pci / 1.11 # facteur de conversion PCI/PCS, cf. Circulaire du 29 avril 2014 "Taxe intérieure de consommation sur le gaz naturel (TICGN) NOR FCPD1408602C"
+        taux = taux_pci / 1.11 
+        # facteur de conversion PCI/PCS, cf. Circulaire du 29 avril 2014 "Taxe intérieure de consommation sur le gaz naturel (TICGN) NOR FCPD1408602C"
         taxe = assiette * taux
 
         return taxe
@@ -140,7 +143,8 @@ class taxe_interieure_consommation_gaz_naturel_electrointensive(Variable):
 
         assiette = etablissement("assiette_ticgn", period)
         taux_pci = parameters("2014-12-31").taxation_energies.natural_gas
-        taux = taux_pci / 1.11 # facteur de conversion PCI/PCS, cf. Circulaire du 29 avril 2014 "Taxe intérieure de consommation sur le gaz naturel (TICGN) NOR FCPD1408602C"
+        taux = taux_pci / 1.11 
+        # facteur de conversion PCI/PCS, cf. Circulaire du 29 avril 2014 "Taxe intérieure de consommation sur le gaz naturel (TICGN) NOR FCPD1408602C"
         taxe = assiette * taux
 
         return taxe
@@ -152,7 +156,8 @@ class taxe_interieure_consommation_gaz_naturel_electrointensive(Variable):
 
         assiette = etablissement("assiette_ticgn", period)
         taux_pci = parameters("2014-12-31").taxation_energies.natural_gas
-        taux = taux_pci / 1.11 # facteur de conversion PCI/PCS, cf. Circulaire du 29 avril 2014 "Taxe intérieure de consommation sur le gaz naturel (TICGN) NOR FCPD1408602C"
+        taux = taux_pci / 1.11 
+        # facteur de conversion PCI/PCS, cf. Circulaire du 29 avril 2014 "Taxe intérieure de consommation sur le gaz naturel (TICGN) NOR FCPD1408602C"
         majoration = .33
         # majoration = parameters(period).taxation_energies.taux_reduit_grande_consommatrice
         taxe = assiette * (taux + majoration)

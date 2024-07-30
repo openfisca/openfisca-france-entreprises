@@ -5,7 +5,8 @@ from openfisca_france_firms.entities import UniteLegale  # noqa F401
 
 
 class actif_brut(Variable):
-    value_type = int # cerfa_field = "CO"
+    value_type = int 
+    # cerfa_field = "CO"
     unit = 'currency'
     entity = UniteLegale
     label = "Actif brut (Total général I à VI)"

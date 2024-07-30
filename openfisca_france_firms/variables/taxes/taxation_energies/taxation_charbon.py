@@ -80,7 +80,7 @@ class assiette_ticc(Variable):
         euets = etablissement("is_euets", period)
 
         assiette = consommation_charbon - (conso_non_combustible + conso_double_usage + conso_di26) - (conso_combustible_interne + (conso_combustible_prodelec - conso_combustible_electricite_266qA) + conso_combustible_extraction + conso_combustible_particuliers + (conso_combustible_biomasse * euets))
-        
+
         return assiette
 
     def formula_2009_01_01(etablissement, period, parameters):

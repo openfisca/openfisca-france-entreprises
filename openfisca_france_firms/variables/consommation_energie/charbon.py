@@ -27,7 +27,7 @@ class consommation_charbon_non_combustible(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé autrement que comme combustible"
     definition_period = YEAR
-    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible 
+    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
     def formula(etablissement, period):
         conso_carburant = etablissement("consommation_charbon_carburant", period)
