@@ -137,7 +137,7 @@ class assiette_ticc(Variable):
 
         return assiette
 
-    def formula_2011_01_01(etablissement, period, parameters):
+    def formula_2014_01_01(etablissement, period, parameters):
         consommation_charbon = etablissement("consommation_charbon", period)
 
         conso_non_combustible = etablissement("consommation_charbon_non_combustible", period)
@@ -166,7 +166,7 @@ class assiette_ticc(Variable):
 
         return assiette
 
-    def formula_2014_04_01(etablissement, period, parameters):
+    def formula_2016_01_01(etablissement, period, parameters):
         consommation_charbon = etablissement("consommation_charbon", period)
 
         conso_non_combustible = etablissement("consommation_charbon_non_combustible", period)
@@ -194,7 +194,7 @@ class assiette_ticc(Variable):
 
         return assiette
 
-    def formula_2014_04_01(etablissement, period, parameters):
+    def formula_2018_01_01(etablissement, period, parameters):
         consommation_charbon = etablissement("consommation_charbon", period)
 
         conso_non_combustible = etablissement("consommation_charbon_non_combustible", period)
@@ -249,6 +249,6 @@ class assiette_ticc(Variable):
         chiffre_affaires = etablissement.unite_legale("chiffre_affaires", period)
         condition_facture = facture_energie >= .03 * chiffre_affaires
 
-        assiette = consommation_charbon - (conso_non_combustible - (conso_carburant * installation_cogeneration)  + conso_double_usage + conso_di26) - (conso_combustible_interne + (conso_combustible_prodelec - conso_combustible_electricite_petits_producteurs) + conso_combustible_extraction + (conso_combustible_biomasse * euets * condition_facture))
+        assiette = consommation_charbon - (conso_non_combustible - (conso_carburant * installation_cogeneration) + conso_double_usage + conso_di26) - (conso_combustible_interne + (conso_combustible_prodelec - conso_combustible_electricite_petits_producteurs) + conso_combustible_extraction + (conso_combustible_biomasse * euets * condition_facture))
 
         return assiette

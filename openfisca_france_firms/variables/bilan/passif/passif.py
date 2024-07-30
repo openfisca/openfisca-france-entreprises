@@ -45,6 +45,6 @@ class passif(Variable):
         total_iv = UniteLegale("passif_total_iv", period)
         total_v = UniteLegale("ecart_conversion_passif", period)
 
-        passif = (total_i + total_ii + total_iii + total_iv + total_v)        
+        passif = (total_i + total_ii + total_iii + total_iv + total_v)
 
         return passif

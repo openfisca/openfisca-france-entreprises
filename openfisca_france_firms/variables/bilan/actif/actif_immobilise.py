@@ -737,7 +737,7 @@ class immobilisations_financieres_nettes(Variable):
 
     def formula(UniteLegale, period):
         brut = UniteLegale("immobilisations_financieres_brutes", period)
-        ar  = UniteLegale("immobilisations_financieres_ar", period)
+        ar = UniteLegale("immobilisations_financieres_ar", period)
 
         return brut - ar
 

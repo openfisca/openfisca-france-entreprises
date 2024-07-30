@@ -32,6 +32,7 @@ class example_income_tax_flat(Variable):
         """
         return etablissement("example_salary", period) * parameters(period).example_taxes.example_income_tax_rate_flat
 
+
 class example_income_tax_progressive(Variable):
     value_type = float
     entity = Etablissement
@@ -49,5 +50,4 @@ class example_income_tax_progressive(Variable):
         scale = parameters(period).example_taxes.example_income_tax_rate_progressive
         basis = etablissement("example_salary", period)
 
-        return  scale.calc(basis)
-
+        return scale.calc(basis)

@@ -10,7 +10,7 @@ class consommation_charbon(Variable):
     entity = Etablissement
     label = "Coal consumption of the etablissement"
     definition_period = YEAR
-    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible 
+    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
     def formula(etablissement, period):
         conso_non_combustible = etablissement("consommation_charbon_non_combustible", period)
@@ -30,10 +30,10 @@ class consommation_charbon_non_combustible(Variable):
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible 
 
     def formula(etablissement, period):
-      conso_carburant = etablissement("consommation_charbon_carburant", period)
-      conso_non_combustible_non_carburant = etablissement("consommation_charbon_non_combustible_non_carburant", period)
-      
-      return conso_carburant + conso_non_combustible_non_carburant
+        conso_carburant = etablissement("consommation_charbon_carburant", period)
+        conso_non_combustible_non_carburant = etablissement("consommation_charbon_non_combustible_non_carburant", period)
+
+        return conso_carburant + conso_non_combustible_non_carburant
 
 
 class consommation_charbon_non_combustible_non_carburant(Variable):
@@ -42,7 +42,7 @@ class consommation_charbon_non_combustible_non_carburant(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé autrement que carburant ou combustible"
     definition_period = YEAR
-    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 
+    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704
 
 
 class consommation_charbon_carburant(Variable):
@@ -51,7 +51,7 @@ class consommation_charbon_carburant(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé comme carburant"
     definition_period = YEAR
-    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 
+    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704
 
 
 class consommation_charbon_double_usage(Variable):
@@ -60,7 +60,7 @@ class consommation_charbon_double_usage(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé à double usage"
     definition_period = YEAR
-    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible 
+    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
     def formula_2007_01_01(etablissement, period):
         conso_double = etablissement("consommation_charbon_double_usage_reductionchimique", period)
@@ -93,7 +93,7 @@ class consommation_charbon_di26(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé dans un procédé de fabrication de produits minéraux non métalliques classé dans la nomenclature statistique des activités économiques dans la Communauté européenne (NACE), telle qu'elle résulte du règlement (CEE) n° 3037/90 du Conseil, du 9 octobre 1990, sous la rubrique DI 26"
     definition_period = YEAR
-    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible 
+    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
 
 class consommation_charbon_combustible(Variable):
@@ -102,7 +102,7 @@ class consommation_charbon_combustible(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé comme combustible"
     definition_period = YEAR
-    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible 
+    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
     def formula(etablissement, period):
         conso_combustible_interne = etablissement("consommation_charbon_combustible_interne", period)
@@ -121,7 +121,7 @@ class consommation_charbon_combustible_interne(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé par établissements de production de produits pétroliers ou assimilés [...] lorsque cette consommation est effectuée pour la production de ces produits énergétiques ou pour la production de tout ou partie de l'énergie nécessaire à leur fabrication"
     definition_period = YEAR
-    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible 
+    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
 
 class consommation_charbon_combustible_electricite(Variable):
@@ -130,7 +130,7 @@ class consommation_charbon_combustible_electricite(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé pour la production d'électricité"
     definition_period = YEAR
-    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible 
+    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
     def formula(etablissement, period):
         conso_266qA = etablissement("consommation_charbon_combustible_electricite_266qA", period)
@@ -146,7 +146,7 @@ class consommation_charbon_combustible_electricite_266qA(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé pour la production d'électricité par une installation mentionnée à l'article 266 quinquies A du CDD."
     definition_period = YEAR
-    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible 
+    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
 
 class contrat_achat_electricite_314(Variable):
@@ -162,7 +162,7 @@ class consommation_charbon_combustible_electricite_petits_producteurs(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé pour leurs besoins par les petits producteurs d'électricité au sens du 4° du V de l'article L. 3333-2 du code général des collectivités territoriales."
     definition_period = YEAR
-    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible 
+    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
 
 class consommation_charbon_combustible_electricite_other(Variable):
@@ -171,7 +171,7 @@ class consommation_charbon_combustible_electricite_other(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé pour la production d'électricité, autre."
     definition_period = YEAR
-    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible 
+    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
 
 class consommation_charbon_combustible_extraction(Variable):
@@ -180,7 +180,7 @@ class consommation_charbon_combustible_extraction(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé comme combustible dans le processus de sa fabrication et de son extraction."
     definition_period = YEAR
-    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible 
+    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
 
 class consommation_charbon_combustible_particuliers(Variable):
@@ -189,7 +189,7 @@ class consommation_charbon_combustible_particuliers(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé comme combustible pour les particuliers."
     definition_period = YEAR
-    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible 
+    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
 
 class consommation_charbon_combustible_biomasse(Variable):
@@ -198,7 +198,7 @@ class consommation_charbon_combustible_biomasse(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé par les entreprises de valorisation de la biomasse, sous réserve qu'elles soient soumises au régime des quotas d'émission de gaz à effet de serre prévu aux articles L. 229-5 à L. 229-19 du code de l'environnement ou qu'elles appliquent des accords volontaires de réduction de gaz à effet de serre permettant d'atteindre des objectifs environnementaux équivalents ou d'accroître leur rendement énergétique."
     definition_period = YEAR
-    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible 
+    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
 
 class consommation_charbon_combustible_other(Variable):
@@ -207,4 +207,4 @@ class consommation_charbon_combustible_other(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé comme combustible, non exonérée"
     definition_period = YEAR
-    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible 
+    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
