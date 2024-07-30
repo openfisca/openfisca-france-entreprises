@@ -17,7 +17,7 @@
   output:
     example_basic_income: 600
 
-- name: In Dec 2015, a secondary with no example_salary should get no basic income
+- name: In Dec 2015, a secondaire with no example_salary should get no basic income
   period: 2015-12
   input:
     example_salary: 0
@@ -33,7 +33,7 @@
   output:
     example_basic_income: 0
 
-- name: In Dec 2016, a secondary with no example_salary should get no basic income
+- name: In Dec 2016, a secondaire with no example_salary should get no basic income
   period: 2016-12
   input:
     example_salary: 0

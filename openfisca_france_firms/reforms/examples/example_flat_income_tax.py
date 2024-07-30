@@ -14,13 +14,13 @@ from openfisca_core.variables import Variable
 class example_income_tax_flat(Variable):
     # Variable metadata don't need to be redefined. By default, the reference variable metadatas will be used.
 
-    def formula(establishment, period, _parameters):
+    def formula(etablissement, period, _parameters):
         """
         Social security contribution reform.
 
         Our reform replaces `income_tax_flat` (the "reference" variable) by the following variable.
         """
-        return establishment("example_salary", period) * 0.03
+        return etablissement("example_salary", period) * 0.03
 
 
 class example_income_tax_flat(Reform):

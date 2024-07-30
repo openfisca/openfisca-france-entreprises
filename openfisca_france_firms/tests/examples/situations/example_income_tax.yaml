@@ -1,17 +1,17 @@
 # You can also use test files to describe complex situations with different entities
 # We can run this test on our command line using `openfisca-run-test tests/situations/income_tax.yaml`
 
-- name: Income tax for a single headquarter and a secondary
-  description: Income tax should get properly computed across all members of a firm
+- name: Income tax for a single siege_social and a secondaire
+  description: Income tax should get properly computed across all members of a unite_legale
   period: 2017-01
   absolute_error_margin: 0
   input:
-    firm:
-      headquarters: [ Alicia ]
-      secondaries: [ Michael ]
+    unite_legale:
+      siege_socials: [ Alicia ]
+      secondaires: [ Michael ]
       example_accommodation_size: 100
       example_housing_occupancy_status: tenant
-    establishments:
+    etablissements:
       Alicia:
         example_birth: 1961-01-15
         example_salary:
@@ -21,7 +21,7 @@
         example_salary:
           2016: 0
   output:
-    establishments:
+    etablissements:
       Alicia:
         example_income_tax_flat: 360
       Michael:

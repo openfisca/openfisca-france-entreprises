@@ -1,7 +1,7 @@
 """
 This file defines variables for the modelled legislation.
 
-A variable is a property of an Entity such as a Establishment, a Firm…
+A variable is a property of an Entity such as a Etablissement, a UniteLegale…
 
 See https://openfisca.org/doc/key-concepts/variables.html
 """
@@ -12,13 +12,13 @@ from openfisca_core.periods import MONTH
 from openfisca_core.variables import Variable
 
 # Import the Entities specifically defined for this tax and benefit system
-from openfisca_france_firms.entities import Firm
+from openfisca_france_firms.entities import UniteLegale
 
 
 # This variable is a pure input: it doesn't have a formula
 class example_accommodation_size(Variable):
     value_type = float
-    entity = Firm
+    entity = UniteLegale
     definition_period = MONTH
     label = "Size of the accommodation, in square metres"
 
@@ -26,9 +26,9 @@ class example_accommodation_size(Variable):
 # This variable is a pure input: it doesn't have a formula
 class example_rent(Variable):
     value_type = float
-    entity = Firm
+    entity = UniteLegale
     definition_period = MONTH
-    label = "Rent paid by the firm"
+    label = "Rent paid by the unite_legale"
 
 
 # Possible values for the housing_occupancy_status variable, defined further down
@@ -45,14 +45,14 @@ class example_housing_occupancy_status(Variable):
     value_type = Enum
     possible_values = example_HousingOccupancyStatus
     default_value = example_HousingOccupancyStatus.tenant
-    entity = Firm
+    entity = UniteLegale
     definition_period = MONTH
-    label = "Legal housing situation of the firm concerning their main residence"
+    label = "Legal housing situation of the unite_legale concerning their main residence"
 
 
 class example_postal_code(Variable):
     value_type = str
     max_length = 5
-    entity = Firm
+    entity = UniteLegale
     definition_period = MONTH
-    label = "Postal code of the firm"
+    label = "Postal code of the unite_legale"

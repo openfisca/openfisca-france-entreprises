@@ -12,7 +12,7 @@ from openfisca_core.reforms import Reform
 from openfisca_core.variables import Variable
 
 # Import the Entities specifically defined for this tax and benefit system
-from openfisca_france_firms.entities import Establishment
+from openfisca_france_firms.entities import Etablissement
 
 
 def create_dynamic_variable(name, **variable):
@@ -42,10 +42,10 @@ class add_dynamic_variable(Reform):
         NewVariable = create_dynamic_variable(
             name = "is_euets",
             value_type = bool,
-            entity = Establishment,
+            entity = Etablissement,
             default_value = True,
             definition_period = MONTH,
-            label = "The establishment is subject to EUETS",
+            label = "The etablissement is subject to EUETS",
             reference = "https://law.gov.example/is_euets",
             )
 

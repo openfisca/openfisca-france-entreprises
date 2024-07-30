@@ -1,5 +1,5 @@
 {
-    "establishments": {
+    "etablissements": {
         "Alicia": {
             "example_birth": {
                 "2017-01": null
@@ -9,9 +9,9 @@
             }
         }
     },
-    "firms": {
+    "unite_legales": {
         "_": {
-            "headquarters": ["Alicia"]
+            "siege_socials": ["Alicia"]
         }
     }
 }

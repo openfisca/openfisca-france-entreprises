@@ -1,4 +1,4 @@
-- name: Establishment level natural gas consumption tax
+- name: Etablissement level natural gas consumption tax
   period: 2015
   input:
     consommation_gaz_naturel: 1000

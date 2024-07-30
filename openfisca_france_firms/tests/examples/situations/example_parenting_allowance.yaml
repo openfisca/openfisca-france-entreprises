@@ -1,15 +1,15 @@
 # You can also use test files to describe complex situations with different entities
 # We can run this test on our command line using `openfisca-run-test tests/situations/example_income_tax_flat.yaml`
 
-- name: Parenting allowance for a two headquarter firm with little income
-  description: Parenting allowance relies on the incomes on the headquarters and ages of the secondaries
+- name: Parenting allowance for a two siege_social unite_legale with little income
+  description: Parenting allowance relies on the incomes on the siege_socials and ages of the secondaires
   period: 2020-01
   absolute_error_margin: 0
   input:
-    firm:
-      headquarters: [Phil]
-      secondaries: [Caz, Eille, Nimasay, Saz]
-    establishments:
+    unite_legale:
+      siege_socials: [Phil]
+      secondaires: [Caz, Eille, Nimasay, Saz]
+    etablissements:
       Phil:
         example_birth: 1981-01-15
         example_salary:
@@ -27,7 +27,7 @@
       Nimasay:
         example_birth: 2018-01-15
   output:
-    firm:
+    unite_legale:
       example_parenting_allowance:
         2017-01: 600
         2018-01: 0

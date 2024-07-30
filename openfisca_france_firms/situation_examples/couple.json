@@ -1,5 +1,5 @@
 {
-    "establishments": {
+    "etablissements": {
         "Alicia": {
             "example_birth": {
                 "ETERNITY": "1980-01-01"
@@ -23,10 +23,10 @@
             }
         }
     },
-    "firms": {
+    "unite_legales": {
         "_": {
-            "headquarters": ["Alicia"],
-            "secondaries" : ["Javier"],
+            "siege_socials": ["Alicia"],
+            "secondaires" : ["Javier"],
             "total_benefits": {
                 "2017-01": null
             },
