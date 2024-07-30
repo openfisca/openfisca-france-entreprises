@@ -93,7 +93,7 @@ pip --version  # should print at least 9.0.
 Install the Country Package:
 
 ```sh
-pip install openfisca-france_firms
+pip install openfisca_france_firms
 ```
 
 :warning: Please beware that installing the Country Package with `pip` is dependent on its maintainers publishing said package.

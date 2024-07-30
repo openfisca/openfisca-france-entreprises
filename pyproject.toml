@@ -1,5 +1,5 @@
 [project]
-name = "openfisca-france_firms"
+name = "openfisca_france_firms"
 version = "0.0.1"
 description = "OpenFisca Rules as Code model for France Firms."
 readme = "README.md"

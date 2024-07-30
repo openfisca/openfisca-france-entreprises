@@ -48,7 +48,7 @@ Examples:
 
 ### Changelog
 
-openfisca-france_firms changes must be understood by users who don't necessarily work on the code. The Changelog must therefore be as explicit as possible.
+openfisca_france_firms changes must be understood by users who don't necessarily work on the code. The Changelog must therefore be as explicit as possible.
 
 Each change must be documented with the following elements:
 
