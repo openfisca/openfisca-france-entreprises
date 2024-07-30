@@ -151,5 +151,5 @@ class capitaux_propres(Variable):
         subventions_investissement = UniteLegale("subventions_investissement", period)
         provisions_reglementees = UniteLegale("provisions_reglementees", period)
         capitaux_propres = (capital_social_individuel + primes_emission_fusion_apport + ecarts_reevaluation + reserve_legale + reserves_statutaires_contractuelles + reserves_reglementees + autres_reserves + report_a_nouveau + resultat_exercice_di + subventions_investissement + provisions_reglementees)
-        
+
         return capitaux_propres

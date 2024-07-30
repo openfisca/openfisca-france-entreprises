@@ -1,5 +1,8 @@
 from openfisca_core.model_api import *
+from openfisca_core.periods import MONTH, YEAR
+from openfisca_core.variables import Variable
 from openfisca_france_firms.entities import UniteLegale, Etablissement  # noqa F401
+
 
 class produits_ex_operations_gestion(Variable):
     cerfa_field = "HA"
@@ -9,6 +12,7 @@ class produits_ex_operations_gestion(Variable):
     label = "Produits exceptionnels sur opérations de gestion"
     definition_period = YEAR
 
+
 class produits_ex_operations_capital(Variable):
     cerfa_field = "HB"
     value_type = int
@@ -17,6 +21,7 @@ class produits_ex_operations_capital(Variable):
     label = "Produits exceptionnels sur opérations en capital"
     definition_period = YEAR
 
+
 class produits_ex_reprises_provisions(Variable):
     cerfa_field = "HC"
     value_type = int
@@ -24,6 +29,7 @@ class produits_ex_reprises_provisions(Variable):
     entity = UniteLegale
     label = "Reprises sur provisions et transferts de charges (produits exceptionnels)"
     definition_period = YEAR
+
 
 class produits_exceptionnels(Variable):
     cerfa_field = "HD"
@@ -38,10 +44,6 @@ class produits_exceptionnels(Variable):
         produits_ex_operations_gestion = UniteLegale("produits_ex_operations_gestion", period)
         produits_ex_reprises_provisions = UniteLegale("produits_ex_reprises_provisions", period)
 
-        produits_ex = (
-            produits_ex_operations_capital +
-            produits_ex_operations_gestion +
-            produits_ex_reprises_provisions
-        )
+        produits_ex = (produits_ex_operations_capital + produits_ex_operations_gestion + produits_ex_reprises_provisions)
 
         return produits_ex

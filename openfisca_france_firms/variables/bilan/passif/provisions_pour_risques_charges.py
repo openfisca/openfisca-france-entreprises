@@ -34,7 +34,6 @@ class provisions_pour_risques_charges(Variable):
         risques = UniteLegale("provisions_pour_risques", period)
         charges = UniteLegale("provisions_pour_charges", period)
 
-        provisions = (risques +
-                      charges)
+        provisions = (risques + charges)
 
         return provisions

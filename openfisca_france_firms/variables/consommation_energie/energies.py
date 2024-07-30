@@ -3,6 +3,7 @@ from openfisca_france_firms.entities import Etablissement, UniteLegale  # noqa F
 from openfisca_core.periods import MONTH, YEAR
 from openfisca_core.variables import Variable
 
+
 class consommation_energie(Variable):
     value_type = float
     unit = 'MWh'
@@ -16,10 +17,8 @@ class consommation_energie(Variable):
         electricite = etablissement("consommation_electricite", period)
         autres_produits = etablissement("consommation_autres_produits", period)
 
-        return (gaz +
-                charbon +
-                electricite +
-                autres_produits)
+        return (gaz + charbon + electricite + autres_produits)
+
 
 class intensite_energetique_unite_legale(Variable):
     value_type = float
@@ -34,7 +33,8 @@ class intensite_energetique_unite_legale(Variable):
 
         va = unite_legale("valeur_ajoutee", period)
 
-        return conso/va
+        return conso / va
+
 
 class intensite_energetique_etablissement(Variable):
     value_type = float
@@ -48,6 +48,7 @@ class intensite_energetique_etablissement(Variable):
 
         return intensite
 
+
 class etablissement_electrointensif(Variable):
     value_type = bool
     entity = Etablissement
@@ -59,6 +60,7 @@ class etablissement_electrointensif(Variable):
         seuil = parameters(period).energies.eu.seuil_electrointensivite
 
         return intensite >= seuil
+
 
 class entreprise_electrointensive(Variable):
     value_type = bool

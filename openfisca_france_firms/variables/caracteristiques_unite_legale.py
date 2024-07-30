@@ -15,6 +15,7 @@ from openfisca_core.model_api import *
 # Import the Entities specifically defined for this tax and benefit system
 from openfisca_france_firms.entities import UniteLegale, Etablissement
 
+
 class apen(Enum):
     value_type = str
     max_length = 5
@@ -22,6 +23,7 @@ class apen(Enum):
     definition_period = MONTH
     label = "Sector of the unite_legale"
     set_input = set_input_dispatch_by_period
+
 
 class postal_code_unite_legale(Variable):
     value_type = str
@@ -38,6 +40,7 @@ class postal_code_unite_legale(Variable):
         hq = unite_legale.members(has_role ="siege_social")
 
         return hq("postal_code", period)
+
 
 class entreprises_risque_de_fuite_carbone(Variable):
     value_type = bool

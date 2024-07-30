@@ -1,5 +1,8 @@
 from openfisca_core.model_api import *
+from openfisca_core.periods import MONTH, YEAR
+from openfisca_core.variables import Variable
 from openfisca_france_firms.entities import UniteLegale, Etablissement  # noqa F401
+
 
 class resultat_exploitation(Variable):
     cerfa_field = "GG"
@@ -17,6 +20,7 @@ class resultat_exploitation(Variable):
 
         return resultat
 
+
 class resultat_financier(Variable):
     cerfa_field = "GV"
     value_type = int
@@ -32,6 +36,7 @@ class resultat_financier(Variable):
         resultat = produits_financiers - charges_financieres
 
         return resultat
+
 
 class resultat_courant_avant_impot(Variable):
     cerfa_field = "GW"
@@ -49,16 +54,10 @@ class resultat_courant_avant_impot(Variable):
         produits_financiers = UniteLegale("produits_financiers", period)
         charges_financieres = UniteLegale("charges_financieres", period)
 
-        resultat = (
-            produits_exploitation +
-            charges_exploitation +
-            benefice_attribue +
-            perte_supportee +
-            produits_financiers +
-            charges_financieres
-        )
+        resultat = (produits_exploitation + charges_exploitation + benefice_attribue + perte_supportee + produits_financiers + charges_financieres)
 
         return resultat
+
 
 class resultat_exceptionnel(Variable):
     cerfa_field = "HI"
@@ -76,6 +75,7 @@ class resultat_exceptionnel(Variable):
 
         return resultat
 
+
 class participation_salaries(Variable):
     cerfa_field = "HJ"
     value_type = int
@@ -84,6 +84,7 @@ class participation_salaries(Variable):
     label = "Participation des salariés aux résultats de l'entreprise"
     definition_period = YEAR
 
+
 class impot_benefices(Variable):
     cerfa_field = "HK"
     value_type = int
@@ -91,6 +92,7 @@ class impot_benefices(Variable):
     entity = UniteLegale
     label = "Impôts sur les bénéfices"
     definition_period = YEAR
+
 
 class produits(Variable):
     cerfa_field = "HL"
@@ -106,14 +108,10 @@ class produits(Variable):
         benefice_attribue = UniteLegale("benefice_attribue", period)
         produits_exceptionnels = UniteLegale("produits_exceptionnels", period)
 
-        produits = (
-            produits_exploitation +
-            produits_financiers +
-            benefice_attribue +
-            produits_exceptionnels
-        )
+        produits = (produits_exploitation + produits_financiers + benefice_attribue + produits_exceptionnels)
 
         return produits
+
 
 class charges(Variable):
     cerfa_field = "HM"
@@ -129,14 +127,10 @@ class charges(Variable):
         perte_supportee = UniteLegale("perte_supportee", period)
         charges_exceptionnelles = UniteLegale("charges_exceptionnelles", period)
 
-        charges = (
-            charges_exploitation +
-            charges_financieres +
-            perte_supportee +
-            charges_exceptionnelles
-        )
+        charges = (charges_exploitation + charges_financieres + perte_supportee + charges_exceptionnelles)
 
         return charges
+
 
 class resultat_exercice(Variable):
     cerfa_field = "HN"

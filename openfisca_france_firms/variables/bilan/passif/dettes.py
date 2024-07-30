@@ -102,7 +102,7 @@ class dettes(Variable):
     definition_period = YEAR
 
     def formula(UniteLegale, period):
-        emprunts_obligatoires_convertibles = UniteLegale("emprunts_obligatoires_convertibles", period) 
+        emprunts_obligatoires_convertibles = UniteLegale("emprunts_obligatoires_convertibles", period)
         autres_emprunts_obligatoires = UniteLegale("autres_emprunts_obligatoires", period)
         emprunts_dettes_etablissement_credit = UniteLegale("emprunts_dettes_etablissement_credit", period)
         emprunts_dettes_divers = UniteLegale("emprunts_dettes_divers", period)
@@ -112,14 +112,6 @@ class dettes(Variable):
         dettes_immobilisations = UniteLegale("dettes_immobilisations", period)
         autres_dettes = UniteLegale("autres_dettes", period)
 
-        dettes = (emprunts_obligatoires_convertibles +
-                  autres_emprunts_obligatoires +
-                  emprunts_dettes_etablissement_credit +
-                  emprunts_dettes_divers +
-                  avances_acomptes_recus_commandes +
-                  dettes_fournisseurs +
-                  dettes_fiscales_sociales +
-                  dettes_immobilisations +
-                  autres_dettes)
+        dettes = (emprunts_obligatoires_convertibles + autres_emprunts_obligatoires + emprunts_dettes_etablissement_credit + emprunts_dettes_divers + avances_acomptes_recus_commandes + dettes_fournisseurs + dettes_fiscales_sociales + dettes_immobilisations + autres_dettes)
 
         return dettes

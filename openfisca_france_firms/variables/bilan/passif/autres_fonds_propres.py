@@ -3,6 +3,7 @@ from openfisca_core.periods import MONTH, YEAR
 from openfisca_core.variables import Variable
 from openfisca_france_firms.entities import UniteLegale  # noqa F401
 
+
 class produit_emissions_titres_participatifs(Variable):
     cerfa_field = "DM"
     value_type = int

@@ -15,12 +15,14 @@ from openfisca_core.model_api import *
 # Import the Entities specifically defined for this tax and benefit system
 from openfisca_france_firms.entities import UniteLegale, Etablissement
 
+
 class apet(Variable):
     value_type = str
     entity = Etablissement
     label = "Secteur NAF de l'établissement"
     definition_period = YEAR
     set_input = set_input_dispatch_by_period
+
 
 class postal_code(Variable):
     value_type = str
@@ -29,6 +31,7 @@ class postal_code(Variable):
     definition_period = MONTH
     label = "Postal code of the etablissement"
 
+
 class effectif_3112_et(Variable):
     value_type = float
     entity = Etablissement
@@ -36,17 +39,20 @@ class effectif_3112_et(Variable):
     definition_period = YEAR
     set_input = set_input_dispatch_by_period
 
+
 class installation_cogeneration(Variable):
     value_type = bool
     entity = Etablissement
     label = "Installation de cogénération pour la production combinée de chaleur et d'électricité"
     definition_period = YEAR
 
+
 class installation_euets(Variable):
     value_type = bool
     entity = Etablissement
     label = "Installation soumise au système européen de quotas carbone"
     definition_period = YEAR
+
 
 class installation_electrointensive(Variable):
     value_type = bool
@@ -62,6 +68,7 @@ class installation_electrointensive(Variable):
 
         return True
 
+
 class installation_grande_consommatrice(Variable):
     value_type = bool
     entity = Etablissement
@@ -75,4 +82,3 @@ class installation_grande_consommatrice(Variable):
     def formula_2021_01_01(etablissement, period):
 
         return True
-
