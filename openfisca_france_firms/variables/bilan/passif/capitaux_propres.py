@@ -1,7 +1,7 @@
 from openfisca_core.model_api import *
 from openfisca_core.periods import MONTH, YEAR
 from openfisca_core.variables import Variable
-from openfisca_france_firms.entities import UniteLegale  # noqa F401
+from openfisca_france_entreprises.entities import UniteLegale  # noqa F401
 
 
 class capital_social_individuel(Variable):

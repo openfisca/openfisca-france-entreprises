@@ -13,7 +13,7 @@ from openfisca_core.variables import Variable
 from openfisca_core.model_api import *
 
 # Import the Entities specifically defined for this tax and benefit system
-from openfisca_france_firms.entities import UniteLegale, Etablissement
+from openfisca_france_entreprises.entities import UniteLegale, Etablissement
 
 
 class apet(Variable):

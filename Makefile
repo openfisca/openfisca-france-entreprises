@@ -12,7 +12,7 @@ deps:
 
 install: deps
 	@# Install OpenFisca-Extension-Template for development.
-	@# `make install` installs the editable version of openfisca_france_firms.
+	@# `make install` installs the editable version of openfisca_france_entreprises.
 	@# This allows contributors to test as they code.
 	pip install --editable .[dev] --upgrade --use-deprecated=legacy-resolver
 
@@ -41,7 +41,7 @@ check-style:
 	yamllint `git ls-files | grep "\.yaml$$"`
 
 test: clean check-syntax-errors check-style
-	openfisca test --country-package openfisca_france_firms openfisca_france_firms/tests
+	openfisca test --country-package openfisca_france_entreprises openfisca_france_entreprises/tests
 
 serve-local: build
-	openfisca serve --country-package openfisca_france_firms
+	openfisca serve --country-package openfisca_france_entreprises

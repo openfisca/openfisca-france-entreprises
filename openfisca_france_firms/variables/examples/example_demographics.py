@@ -16,7 +16,7 @@ from openfisca_core.periods import ETERNITY, MONTH
 from openfisca_core.variables import Variable
 
 # Import the Entities specifically defined for this tax and benefit system
-from openfisca_france_firms.entities import Etablissement
+from openfisca_france_entreprises.entities import Etablissement
 
 
 # This variable is a pure input: it doesn't have a formula

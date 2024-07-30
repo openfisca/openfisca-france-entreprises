@@ -6,7 +6,7 @@
 # Note the `reforms: ` key in the below YAML blocks.
 
 - name: No social security contribution on small example_salaries
-  reforms: openfisca_france_firms.reforms.examples.example_modify_income_tax.modify_income_tax_progressive
+  reforms: openfisca_france_entreprises.reforms.examples.example_modify_income_tax.modify_income_tax_progressive
   period: 2017-01
   input:
     example_salary: 2000
@@ -14,7 +14,7 @@
     example_income_tax_progressive: 0
 
 - name: Increased social security contribution on medium example_salaries
-  reforms: openfisca_france_firms.reforms.examples.example_modify_income_tax.modify_income_tax_progressive
+  reforms: openfisca_france_entreprises.reforms.examples.example_modify_income_tax.modify_income_tax_progressive
   period: 2017-01
   input:
     example_salary: 15000
@@ -22,7 +22,7 @@
     example_income_tax_progressive: 1336
 
 - name: High social security contribution on high example_salaries
-  reforms: openfisca_france_firms.reforms.examples.example_modify_income_tax.modify_income_tax_progressive
+  reforms: openfisca_france_entreprises.reforms.examples.example_modify_income_tax.modify_income_tax_progressive
   period: 2017-01
   input:
     example_salary: 50000

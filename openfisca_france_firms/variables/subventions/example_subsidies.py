@@ -11,7 +11,7 @@ from openfisca_core.periods import MONTH
 from openfisca_core.variables import Variable
 
 # Import the Entities specifically defined for this tax and benefit system
-from openfisca_france_firms.entities import UniteLegale, Etablissement
+from openfisca_france_entreprises.entities import UniteLegale, Etablissement
 
 
 class example_basic_income(Variable):

@@ -7,14 +7,14 @@ The country whose law is modelled here has a very simple tax and benefit system.
 - On the first of December, 2015, it introduced a basic income for all its citizens of age who have no income.
 - On the first of December, 2016, it removed the income condition, providing all its adult citizens with a basic income.
 
-These elements are described in different folders. All the modelling happens within the `openfisca_france_firms` folder.
+These elements are described in different folders. All the modelling happens within the `openfisca_france_entreprises` folder.
 
 - The rates are in the `parameters` folder.
 - The formulas are in the `variables` folder.
 - This country package comes also with *reforms* in the `reforms` folder. This is optional: your country may exist without defining any reform.
-    - In this country, there is [a reform project](./openfisca_france_firms/reforms/modify_social_security_taxation.py) aiming to modify the social security taxation, deleting the first bracket, raising the intermediary ones and adding a new bracket with a higher tax rate of `40 %` for people earning more than `40000`. This reform project would apply starting from `2017-01-01`.
+    - In this country, there is [a reform project](./openfisca_france_entreprises/reforms/modify_social_security_taxation.py) aiming to modify the social security taxation, deleting the first bracket, raising the intermediary ones and adding a new bracket with a higher tax rate of `40 %` for people earning more than `40000`. This reform project would apply starting from `2017-01-01`.
 
-The files that are outside from the `openfisca_france_firms` folder are used to set up the development environment.
+The files that are outside from the `openfisca_france_entreprises` folder are used to set up the development environment.
 
 ## Packaging your Country Package for Distribution
 
@@ -93,7 +93,7 @@ pip --version  # should print at least 9.0.
 Install the Country Package:
 
 ```sh
-pip install openfisca_france_firms
+pip install openfisca_france_entreprises
 ```
 
 :warning: Please beware that installing the Country Package with `pip` is dependent on its maintainers publishing said package.
@@ -131,8 +131,8 @@ python --version  # should print "Python 3.9.xx".
 Clone this Country Package on your machine:
 
 ```sh
-git clone git://github.com/pzuldp/openfisca-france-firms.git.git
-cd openfisca-france-firms.git
+git clone git://github.com/pzuldp/openfisca-france-entreprises.git.git
+cd openfisca-france-entreprises.git
 pip install --upgrade pip build twine
 pip install --editable .[dev] --upgrade
 ```
@@ -155,7 +155,7 @@ If you are considering building a web application, you can use the packaged Open
 To serve the Openfisca Web API locally, run:
 
 ```sh
-openfisca serve --port 5000 --country-package openfisca_france_firms
+openfisca serve --port 5000 --country-package openfisca_france_entreprises
 ```
 
 Or use the quick-start Make command:
@@ -180,6 +180,6 @@ You can test your new Web API by sending it example JSON data located in the `si
 
 ```sh
 curl -X POST -H "Content-Type: application/json" \
-  -d @./openfisca_france_firms/situation_examples/couple.json \
+  -d @./openfisca_france_entreprises/situation_examples/couple.json \
   http://localhost:5000/calculate
 ```

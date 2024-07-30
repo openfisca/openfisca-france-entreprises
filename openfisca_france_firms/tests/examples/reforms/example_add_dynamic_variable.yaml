@@ -6,7 +6,7 @@
 # Note the `reforms: ` key in the below YAML blocks.
 
 - name: We will dynamically add a new variable "is_euets" thanks to a reform
-  reforms: openfisca_france_firms.reforms.examples.example_add_dynamic_variable.add_dynamic_variable
+  reforms: openfisca_france_entreprises.reforms.examples.example_add_dynamic_variable.add_dynamic_variable
   period: 2017-01
   output:
     is_euets: true

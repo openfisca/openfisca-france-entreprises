@@ -1,5 +1,5 @@
 [project]
-name = "openfisca_france_firms"
+name = "openfisca_france_entreprises"
 version = "1.0.0"
 description = "OpenFisca Rules as Code model for France UniteLegales."
 readme = "README.md"
@@ -22,11 +22,11 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "git://github.com/pzuldp/openfisca-france-firms.git"
-Repository = "git://github.com/pzuldp/openfisca-france-firms.git"
+Homepage = "git://github.com/pzuldp/openfisca-france-entreprises.git"
+Repository = "git://github.com/pzuldp/openfisca-france-entreprises.git"
 Documentation = "https://openfisca.org/doc"
-Issues = "git://github.com/pzuldp/openfisca-france-firms.git/issues"
-Changelog = "git://github.com/pzuldp/openfisca-france-firms.git/blob/main/CHANGELOG.md"
+Issues = "git://github.com/pzuldp/openfisca-france-entreprises.git/issues"
+Changelog = "git://github.com/pzuldp/openfisca-france-entreprises.git/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 dev = [
@@ -40,7 +40,7 @@ dev = [
 
 [tool.pytest.ini_options]
 addopts = "--showlocals --doctest-modules"
-testpaths = [ "openfisca_france_firms/tests" ]
+testpaths = [ "openfisca_france_entreprises/tests" ]
 python_files = "**/*.py"
 filterwarnings = [
     "error",
@@ -73,10 +73,10 @@ group_by_package = "true"
 include_trailing_comma = "true"
 multi_line_output = "8"
 py_version = "39"
-known_first_party = "openfisca_france_firms"
+known_first_party = "openfisca_france_entreprises"
 known_openfisca = [
     "openfisca_core",
-    "openfisca_france_firms"
+    "openfisca_france_entreprises"
 ]
 known_typing = [
     "mypy*", 
