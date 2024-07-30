@@ -1,5 +1,8 @@
 from openfisca_core.model_api import *
+from openfisca_core.periods import MONTH, YEAR
+from openfisca_core.variables import Variable
 from openfisca_france_firms.entities import UniteLegale  # noqa F401
+
 
 class passif_total_iv(Variable):
     cerfa_field = "EC"
@@ -13,10 +16,11 @@ class passif_total_iv(Variable):
         dettes = UniteLegale("dettes", period)
         produits_constates_avance = UniteLegale("produits_constates_avance", period)
 
-        passif_total_iv = (dettes+
+        passif_total_iv = (dettes +
                            produits_constates_avance)
 
         return passif_total_iv
+
 
 class ecart_conversion_passif(Variable):
     cerfa_field = "ED"
@@ -25,6 +29,7 @@ class ecart_conversion_passif(Variable):
     entity = UniteLegale
     label = "Ecart de conversion passif (Total IV)"
     definition_period = YEAR
+
 
 class passif(Variable):
     cerfa_field = "EE"

@@ -1,5 +1,8 @@
 from openfisca_core.model_api import *
+from openfisca_core.periods import MONTH, YEAR
+from openfisca_core.variables import Variable
 from openfisca_france_firms.entities import UniteLegale  # noqa F401
+
 
 class frais_etablissement_bruts(Variable):
     cerfa_field = "AB"
@@ -9,6 +12,7 @@ class frais_etablissement_bruts(Variable):
     label = "Frais d'établissement bruts"
     definition_period = YEAR
 
+
 class frais_etablissement_ar(Variable):
     cerfa_field = "AC"
     value_type = int
@@ -16,6 +20,7 @@ class frais_etablissement_ar(Variable):
     entity = UniteLegale
     label = "Frais d'établissement : amortissements, provisions"
     definition_period = YEAR
+
 
 class frais_etablissement_nets(Variable):
     value_type = int
@@ -30,6 +35,7 @@ class frais_etablissement_nets(Variable):
 
         return brut - ar
 
+
 class frais_developpement_bruts(Variable):
     cerfa_field = "CX"
     value_type = int
@@ -38,6 +44,7 @@ class frais_developpement_bruts(Variable):
     label = "Frais de développement bruts"
     definition_period = YEAR
 
+
 class frais_developpement_ar(Variable):
     cerfa_field = "CQ"
     value_type = int
@@ -45,6 +52,7 @@ class frais_developpement_ar(Variable):
     entity = UniteLegale
     label = "Frais de développement : amortissements, provisions"
     definition_period = YEAR
+
 
 class frais_developpement_nets(Variable):
     value_type = int
@@ -59,6 +67,7 @@ class frais_developpement_nets(Variable):
 
         return brut - ar
 
+
 class concessions_brevets_droits_bruts(Variable):
     cerfa_field = "AF"
     value_type = int
@@ -67,6 +76,7 @@ class concessions_brevets_droits_bruts(Variable):
     label = "Concessions, brevets, et droits similaires bruts"
     definition_period = YEAR
 
+
 class concessions_brevets_droits_ar(Variable):
     cerfa_field = "AG"
     value_type = int
@@ -74,6 +84,7 @@ class concessions_brevets_droits_ar(Variable):
     entity = UniteLegale
     label = "Concessions, brevets, et droits similaires : amortissements, provisions"
     definition_period = YEAR
+
 
 class concessions_brevets_droits_nets(Variable):
     value_type = int
@@ -88,6 +99,7 @@ class concessions_brevets_droits_nets(Variable):
 
         return brut - ar
 
+
 class fonds_commercial_brut(Variable):
     cerfa_field = "AH"
     value_type = int
@@ -96,6 +108,7 @@ class fonds_commercial_brut(Variable):
     label = "Fonds commercial"
     definition_period = YEAR
 
+
 class fonds_commercial_ar(Variable):
     cerfa_field = "AI"
     value_type = int
@@ -103,6 +116,7 @@ class fonds_commercial_ar(Variable):
     entity = UniteLegale
     label = "Fonds commercial : amortissements, provisions"
     definition_period = YEAR
+
 
 class fonds_commercial_net(Variable):
     value_type = int
@@ -117,6 +131,7 @@ class fonds_commercial_net(Variable):
 
         return brut - ar
 
+
 class autres_immobilisations_incorporelles_brutes(Variable):
     cerfa_field = "AJ"
     value_type = int
@@ -125,6 +140,7 @@ class autres_immobilisations_incorporelles_brutes(Variable):
     label = "Autres immobilisations incorporelles brutes"
     definition_period = YEAR
 
+
 class autres_immobilisations_incorporelles_ar(Variable):
     cerfa_field = "AK"
     value_type = int
@@ -132,6 +148,7 @@ class autres_immobilisations_incorporelles_ar(Variable):
     entity = UniteLegale
     label = "Autres immobilisations incorporelles brutes : amortissements, provisions"
     definition_period = YEAR
+
 
 class autres_immobilisations_incorporelles_nettes(Variable):
     value_type = int
@@ -146,6 +163,7 @@ class autres_immobilisations_incorporelles_nettes(Variable):
 
         return brut - ar
 
+
 class immobilisations_incorporelles_avances_acomptes_bruts(Variable):
     cerfa_field = "AL"
     value_type = int
@@ -154,6 +172,7 @@ class immobilisations_incorporelles_avances_acomptes_bruts(Variable):
     label = "Avances et acomptes sur immobilisations incorporelles bruts"
     definition_period = YEAR
 
+
 class immobilisations_incorporelles_avances_acomptes_ar(Variable):
     cerfa_field = "AM"
     value_type = int
@@ -161,6 +180,7 @@ class immobilisations_incorporelles_avances_acomptes_ar(Variable):
     entity = UniteLegale
     label = "Avances et acomptes sur immobilisations incorporelles : amortissements, provisions"
     definition_period = YEAR
+
 
 class immobilisations_incorporelles_avances_acomptes_nets(Variable):
     value_type = int
@@ -174,6 +194,7 @@ class immobilisations_incorporelles_avances_acomptes_nets(Variable):
         ar = UniteLegale("immobilisations_incorporelles_avances_acomptes_ar", period)
 
         return brut - ar
+
 
 class immobilisations_incorporelles_brutes(Variable):
     value_type = int
@@ -201,6 +222,7 @@ class immobilisations_incorporelles_brutes(Variable):
 
         return immo_incorp
 
+
 class immobilisations_incorporelles_ar(Variable):
     value_type = int
     unit = 'currency'
@@ -227,6 +249,7 @@ class immobilisations_incorporelles_ar(Variable):
 
         return immo_incorp
 
+
 class immobilisations_incorporelles_nettes(Variable):
     value_type = int
     unit = 'currency'
@@ -240,6 +263,7 @@ class immobilisations_incorporelles_nettes(Variable):
 
         return brut - ar
 
+
 class terrains_bruts(Variable):
     cerfa_field = "AN"
     value_type = int
@@ -248,6 +272,7 @@ class terrains_bruts(Variable):
     label = "Terrains bruts"
     definition_period = YEAR
 
+
 class terrains_ar(Variable):
     cerfa_field = "AO"
     value_type = int
@@ -255,6 +280,7 @@ class terrains_ar(Variable):
     entity = UniteLegale
     label = "Terrains : amortissements, provisions"
     definition_period = YEAR
+
 
 class terrains_nets(Variable):
     value_type = int
@@ -269,6 +295,7 @@ class terrains_nets(Variable):
 
         return brut - ar
 
+
 class constructions_brutes(Variable):
     cerfa_field = "AP"
     value_type = int
@@ -277,6 +304,7 @@ class constructions_brutes(Variable):
     label = "Constructions brutes"
     definition_period = YEAR
 
+
 class constructions_ar(Variable):
     cerfa_field = "AQ"
     value_type = int
@@ -284,6 +312,7 @@ class constructions_ar(Variable):
     entity = UniteLegale
     label = "Constructions : amortissements, provisions"
     definition_period = YEAR
+
 
 class constructions_nettes(Variable):
     value_type = int
@@ -298,6 +327,7 @@ class constructions_nettes(Variable):
 
         return brut - ar
 
+
 class installations_techniques_brutes(Variable):
     cerfa_field = "AR"
     value_type = int
@@ -306,6 +336,7 @@ class installations_techniques_brutes(Variable):
     label = "Installations techniques, matériel et outillage industriels bruts"
     definition_period = YEAR
 
+
 class installations_techniques_ar(Variable):
     cerfa_field = "AS"
     value_type = int
@@ -313,6 +344,7 @@ class installations_techniques_ar(Variable):
     entity = UniteLegale
     label = "Installations techniques, matériel et outillage industriels : amortissements, provisions"
     definition_period = YEAR
+
 
 class installations_techniques_nettes(Variable):
     value_type = int
@@ -327,6 +359,7 @@ class installations_techniques_nettes(Variable):
 
         return brut - ar
 
+
 class autres_immobilisations_corporelles_brutes(Variable):
     cerfa_field = "AT"
     value_type = int
@@ -335,6 +368,7 @@ class autres_immobilisations_corporelles_brutes(Variable):
     label = "Autres immobilisations corporelles brutes"
     definition_period = YEAR
 
+
 class autres_immobilisations_corporelles_ar(Variable):
     cerfa_field = "AU"
     value_type = int
@@ -342,6 +376,7 @@ class autres_immobilisations_corporelles_ar(Variable):
     entity = UniteLegale
     label = "Autres immobilisations corporelles : amortissements, provisions"
     definition_period = YEAR
+
 
 class autres_immobilisations_corporelles_nettes(Variable):
     value_type = int
@@ -355,6 +390,8 @@ class autres_immobilisations_corporelles_nettes(Variable):
         ar = UniteLegale("autres_immobilisations_corporelles_ar", period)
 
         return brut - ar
+
+
 class immobilisations_en_cours_brutes(Variable):
     cerfa_field = "AV"
     value_type = int
@@ -363,6 +400,7 @@ class immobilisations_en_cours_brutes(Variable):
     label = "Immobilisations en cours brutes"
     definition_period = YEAR
 
+
 class immobilisations_en_cours_ar(Variable):
     cerfa_field = "AW"
     value_type = int
@@ -370,6 +408,7 @@ class immobilisations_en_cours_ar(Variable):
     entity = UniteLegale
     label = "Immobilisations en cours : amortissements, provisions"
     definition_period = YEAR
+
 
 class immobilisations_en_cours_nettes(Variable):
     value_type = int
@@ -384,6 +423,7 @@ class immobilisations_en_cours_nettes(Variable):
 
         return brut - ar
 
+
 class avances_acomptes_bruts(Variable):
     cerfa_field = "AX"
     value_type = int
@@ -392,6 +432,7 @@ class avances_acomptes_bruts(Variable):
     label = "Avances et acomptes bruts"
     definition_period = YEAR
 
+
 class avances_acomptes_ar(Variable):
     cerfa_field = "AY"
     value_type = int
@@ -399,6 +440,7 @@ class avances_acomptes_ar(Variable):
     entity = UniteLegale
     label = "Avances et acomptes : amortissements, provisions"
     definition_period = YEAR
+
 
 class avances_acomptes_nets(Variable):
     value_type = int
@@ -412,6 +454,7 @@ class avances_acomptes_nets(Variable):
         ar = UniteLegale("avances_acomptes_ar", period)
 
         return brut - ar
+
 
 class immobilisations_corporelles_brutes(Variable):
     value_type = int
@@ -439,6 +482,7 @@ class immobilisations_corporelles_brutes(Variable):
 
         return immo_corp
 
+
 class immobilisations_corporelles_ar(Variable):
     value_type = int
     unit = 'currency'
@@ -465,6 +509,7 @@ class immobilisations_corporelles_ar(Variable):
 
         return immo_corp
 
+
 class immobilisations_corporelles_nettes(Variable):
     value_type = int
     unit = 'currency'
@@ -478,6 +523,7 @@ class immobilisations_corporelles_nettes(Variable):
 
         return brut - ar
 
+
 class participations_mise_equivalence_brutes(Variable):
     cerfa_field = "CS"
     value_type = int
@@ -486,6 +532,7 @@ class participations_mise_equivalence_brutes(Variable):
     label = "Paricipations évaluées selon la méthode de mise en équivalence brutes"
     definition_period = YEAR
 
+
 class participations_mise_equivalence_ar(Variable):
     cerfa_field = "CT"
     value_type = int
@@ -493,6 +540,7 @@ class participations_mise_equivalence_ar(Variable):
     entity = UniteLegale
     label = "Paricipations évaluées selon la méthode de mise en équivalence : amortissements, provisions"
     definition_period = YEAR
+
 
 class participations_mise_equivalence_nettes(Variable):
     value_type = int
@@ -507,6 +555,7 @@ class participations_mise_equivalence_nettes(Variable):
 
         return brut - ar
 
+
 class autres_participations_brutes(Variable):
     cerfa_field = "CU"
     value_type = int
@@ -515,6 +564,7 @@ class autres_participations_brutes(Variable):
     label = "Autres participations brutes"
     definition_period = YEAR
 
+
 class autres_participations_ar(Variable):
     cerfa_field = "CV"
     value_type = int
@@ -522,6 +572,7 @@ class autres_participations_ar(Variable):
     entity = UniteLegale
     label = "Autres participations  : amortissements, provisions"
     definition_period = YEAR
+
 
 class autres_participations_nettes(Variable):
     value_type = int
@@ -536,6 +587,7 @@ class autres_participations_nettes(Variable):
 
         return brut - ar
 
+
 class creances_participations_brutes(Variable):
     cerfa_field = "BB"
     value_type = int
@@ -544,6 +596,7 @@ class creances_participations_brutes(Variable):
     label = "Créances rattachées à des participations brutes"
     definition_period = YEAR
 
+
 class creances_participations_ar(Variable):
     cerfa_field = "BC"
     value_type = int
@@ -551,6 +604,7 @@ class creances_participations_ar(Variable):
     entity = UniteLegale
     label = "Créances rattachées à des participations : amortissements, provisions"
     definition_period = YEAR
+
 
 class creances_participations_nettes(Variable):
     value_type = int
@@ -565,6 +619,7 @@ class creances_participations_nettes(Variable):
 
         return brut - ar
 
+
 class autres_titres_immobilises_bruts(Variable):
     cerfa_field = "BD"
     value_type = int
@@ -573,6 +628,7 @@ class autres_titres_immobilises_bruts(Variable):
     label = "Autres titres immobilisés bruts"
     definition_period = YEAR
 
+
 class autres_titres_immobilises_ar(Variable):
     cerfa_field = "BE"
     value_type = int
@@ -580,6 +636,7 @@ class autres_titres_immobilises_ar(Variable):
     entity = UniteLegale
     label = "Autres titres immobilisés : amortissements, provisions"
     definition_period = YEAR
+
 
 class autres_titres_immobilises_nets(Variable):
     value_type = int
@@ -594,6 +651,7 @@ class autres_titres_immobilises_nets(Variable):
 
         return brut - ar
 
+
 class prets_bruts(Variable):
     cerfa_field = "BF"
     value_type = int
@@ -602,6 +660,7 @@ class prets_bruts(Variable):
     label = "Prêts bruts"
     definition_period = YEAR
 
+
 class prets_ar(Variable):
     cerfa_field = "BG"
     value_type = int
@@ -609,6 +668,7 @@ class prets_ar(Variable):
     entity = UniteLegale
     label = "Prêts : amortissements, provisions"
     definition_period = YEAR
+
 
 class prets_nets(Variable):
     value_type = int
@@ -623,6 +683,7 @@ class prets_nets(Variable):
 
         return brut - ar
 
+
 class autres_immobilisations_financieres_brutes(Variable):
     cerfa_field = "BH"
     value_type = int
@@ -631,6 +692,7 @@ class autres_immobilisations_financieres_brutes(Variable):
     label = "Autres immobilisations financières brutes"
     definition_period = YEAR
 
+
 class autres_immobilisations_financieres_ar(Variable):
     cerfa_field = "BI"
     value_type = int
@@ -638,6 +700,7 @@ class autres_immobilisations_financieres_ar(Variable):
     entity = UniteLegale
     label = "Autres immobilisations financières : amortissements, provisions"
     definition_period = YEAR
+
 
 class autres_immobilisations_financieres_nettes(Variable):
     value_type = int
@@ -651,6 +714,7 @@ class autres_immobilisations_financieres_nettes(Variable):
         ar = UniteLegale("autres_immobilisations_financieres_ar", period)
 
         return brut - ar
+
 
 class immobilisations_financieres_brutes(Variable):
     value_type = int
@@ -678,6 +742,7 @@ class immobilisations_financieres_brutes(Variable):
 
         return immo_fin
 
+
 class immobilisations_financieres_ar(Variable):
     value_type = int
     unit = 'currency'
@@ -704,6 +769,7 @@ class immobilisations_financieres_ar(Variable):
 
         return immo_fin
 
+
 class immobilisations_financieres_nettes(Variable):
     value_type = int
     unit = 'currency'
@@ -716,6 +782,7 @@ class immobilisations_financieres_nettes(Variable):
         ar  = UniteLegale("immobilisations_financieres_ar", period)
 
         return brut - ar
+
 
 class actif_immobilise_brut(Variable):
     cerfa_field = "BJ"
@@ -732,6 +799,7 @@ class actif_immobilise_brut(Variable):
 
         return immo_incorporelles + immo_corporelles + immo_financieres
 
+
 class actif_immobilise_ar(Variable):
     cerfa_field = "BK"
     value_type = int
@@ -746,6 +814,7 @@ class actif_immobilise_ar(Variable):
         immo_financieres = UniteLegale("immobilisations_financieres_ar", period)
 
         return immo_incorporelles + immo_corporelles + immo_financieres
+
 
 class actif_immobilise_net(Variable):
     cerfa_field = "BK"

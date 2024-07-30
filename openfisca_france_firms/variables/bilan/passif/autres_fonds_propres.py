@@ -1,4 +1,6 @@
 from openfisca_core.model_api import *
+from openfisca_core.periods import MONTH, YEAR
+from openfisca_core.variables import Variable
 from openfisca_france_firms.entities import UniteLegale  # noqa F401
 
 class produit_emissions_titres_participatifs(Variable):
@@ -9,6 +11,7 @@ class produit_emissions_titres_participatifs(Variable):
     label = "Produit des émissions de titres participatifs"
     definition_period = YEAR
 
+
 class avances_conditionnees(Variable):
     cerfa_field = "DN"
     value_type = int
@@ -16,6 +19,7 @@ class avances_conditionnees(Variable):
     entity = UniteLegale
     label = "Avances conditionnees"
     definition_period = YEAR
+
 
 class autres_fonds_propres(Variable):
     cerfa_field = "DO"
@@ -29,7 +33,6 @@ class autres_fonds_propres(Variable):
         produit_emissions_titres_participatifs = UniteLegale("produit_emissions_titres_participatifs", period)
         avances_conditionnees = UniteLegale("avances_conditionnees", period)
 
-        autres_fonds_propres = (produit_emissions_titres_participatifs+
-                                avances_conditionnees)
+        autres_fonds_propres = (produit_emissions_titres_participatifs + avances_conditionnees)
 
         return autres_fonds_propres

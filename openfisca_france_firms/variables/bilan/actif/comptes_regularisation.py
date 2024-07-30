@@ -1,5 +1,8 @@
 from openfisca_core.model_api import *
+from openfisca_core.periods import MONTH, YEAR
+from openfisca_core.variables import Variable
 from openfisca_france_firms.entities import UniteLegale  # noqa F401
+
 
 class charges_constatees_avance_brutes(Variable):
     cerfa_field = "CH"
@@ -9,6 +12,7 @@ class charges_constatees_avance_brutes(Variable):
     label = "Charges constatées d'avance brutes"
     definition_period = YEAR
 
+
 class charges_constatees_avance_ar(Variable):
     cerfa_field = "CI"
     value_type = int
@@ -16,6 +20,7 @@ class charges_constatees_avance_ar(Variable):
     entity = UniteLegale
     label = "Charges constatées d'avance : amortissements, provisions"
     definition_period = YEAR
+
 
 class charges_constatees_avance_nettes(Variable):
     value_type = int
@@ -29,6 +34,7 @@ class charges_constatees_avance_nettes(Variable):
         ar = UniteLegale("charges_constatees_avance_ar", period)
 
         return brut - ar
+
 
 class actif_total_iii_brut(Variable):
     cerfa_field = "CJ"
@@ -46,6 +52,7 @@ class actif_total_iii_brut(Variable):
 
         return total
 
+
 class actif_total_iii_ar(Variable):
     cerfa_field = "CK"
     value_type = int
@@ -61,6 +68,7 @@ class actif_total_iii_ar(Variable):
 
         return total
 
+
 class actif_total_iii_net(Variable):
     value_type = int
     unit = 'currency'
@@ -74,6 +82,7 @@ class actif_total_iii_net(Variable):
 
         return brut - ar
 
+
 class frais_emission_emprunt(Variable):
     cerfa_field = "CW"
     value_type = int
@@ -82,6 +91,7 @@ class frais_emission_emprunt(Variable):
     label = "Frais d'émission d'emprunt à étaler (IV)"
     definition_period = YEAR
 
+
 class primes_remboursement_obligations(Variable):
     cerfa_field = "CM"
     value_type = int
@@ -89,6 +99,7 @@ class primes_remboursement_obligations(Variable):
     entity = UniteLegale
     label = "Primes de remboursement des obligations (V)"
     definition_period = YEAR
+
 
 class ecarts_conversion_actif(Variable):
     cerfa_field = "CN"

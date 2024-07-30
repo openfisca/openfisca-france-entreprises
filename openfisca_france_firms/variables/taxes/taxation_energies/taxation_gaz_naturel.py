@@ -21,7 +21,7 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "Tax on gas consumption - TICGN"
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/"  #
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/"
 
     def formula_1986_01_01(etablissement, period, parameters):
         ticgn = etablissement("taxe_interieure_consommation_gaz_naturel_taux_normal", period)

@@ -1,5 +1,8 @@
 from openfisca_core.model_api import *
+from openfisca_core.periods import MONTH, YEAR
+from openfisca_core.variables import Variable
 from openfisca_france_firms.entities import UniteLegale  # noqa F401
+
 
 class provisions_pour_risques(Variable):
     cerfa_field = "DP"
@@ -9,6 +12,7 @@ class provisions_pour_risques(Variable):
     label = "Provisions pour risques"
     definition_period = YEAR
 
+
 class provisions_pour_charges(Variable):
     cerfa_field = "DQ"
     value_type = int
@@ -16,6 +20,7 @@ class provisions_pour_charges(Variable):
     entity = UniteLegale
     label = "Provisions pour charges"
     definition_period = YEAR
+
 
 class provisions_pour_risques_charges(Variable):
     cerfa_field = "DR"

@@ -1,5 +1,8 @@
 from openfisca_core.model_api import *
+from openfisca_core.periods import MONTH, YEAR
+from openfisca_core.variables import Variable
 from openfisca_france_firms.entities import UniteLegale  # noqa F401
+
 
 class matieres_premieres_brutes(Variable):
     cerfa_field = "BL"
@@ -9,6 +12,7 @@ class matieres_premieres_brutes(Variable):
     label = "Matières premières brutes"
     definition_period = YEAR
 
+
 class matieres_premieres_ar(Variable):
     cerfa_field = "BM"
     value_type = int
@@ -16,6 +20,7 @@ class matieres_premieres_ar(Variable):
     entity = UniteLegale
     label = "Matières premières : amortissements, provisions"
     definition_period = YEAR
+
 
 class matieres_premieres_nettes(Variable):
     value_type = int
@@ -30,6 +35,7 @@ class matieres_premieres_nettes(Variable):
 
         return brut - ar
 
+
 class encours_production_biens_bruts(Variable):
     cerfa_field = "BN"
     value_type = int
@@ -38,6 +44,7 @@ class encours_production_biens_bruts(Variable):
     label = "En cours de production de biens bruts"
     definition_period = YEAR
 
+
 class encours_production_biens_ar(Variable):
     cerfa_field = "BO"
     value_type = int
@@ -45,6 +52,7 @@ class encours_production_biens_ar(Variable):
     entity = UniteLegale
     label = "En cours de production de biens : amortissements, provisions"
     definition_period = YEAR
+
 
 class encours_production_biens_nets(Variable):
     value_type = int
@@ -59,6 +67,7 @@ class encours_production_biens_nets(Variable):
 
         return brut - ar
 
+
 class encours_production_services_bruts(Variable):
     cerfa_field = "BP"
     value_type = int
@@ -67,6 +76,7 @@ class encours_production_services_bruts(Variable):
     label = "En cours de production de services bruts"
     definition_period = YEAR
 
+
 class encours_production_services_ar(Variable):
     cerfa_field = ""
     value_type = int
@@ -74,6 +84,7 @@ class encours_production_services_ar(Variable):
     entity = UniteLegale
     label = "En cours de production de services : amortissements, provisions"
     definition_period = YEAR
+
 
 class encours_production_services_nets(Variable):
     value_type = int
@@ -88,6 +99,7 @@ class encours_production_services_nets(Variable):
 
         return brut - ar
 
+
 class produits_intermediaires_finis_bruts(Variable):
     cerfa_field = "BR"
     value_type = int
@@ -96,6 +108,7 @@ class produits_intermediaires_finis_bruts(Variable):
     label = "Produits intermédiaires et finis bruts"
     definition_period = YEAR
 
+
 class produits_intermediaires_finis_ar(Variable):
     cerfa_field = "BS"
     value_type = int
@@ -103,6 +116,7 @@ class produits_intermediaires_finis_ar(Variable):
     entity = UniteLegale
     label = "Produits intermédiaires et finis : amortissements, provisions"
     definition_period = YEAR
+
 
 class produits_intermediaires_finis_nets(Variable):
     value_type = int
@@ -117,6 +131,7 @@ class produits_intermediaires_finis_nets(Variable):
 
         return brut - ar
 
+
 class marchandises_brutes(Variable):
     cerfa_field = "BT"
     value_type = int
@@ -125,6 +140,7 @@ class marchandises_brutes(Variable):
     label = "Marchandises brutes"
     definition_period = YEAR
 
+
 class marchandises_ar(Variable):
     cerfa_field = ""
     value_type = int
@@ -132,6 +148,7 @@ class marchandises_ar(Variable):
     entity = UniteLegale
     label = "Marchandises : amortissements, provisions"
     definition_period = YEAR
+
 
 class marchandises_nettes(Variable):
     value_type = int
@@ -145,6 +162,7 @@ class marchandises_nettes(Variable):
         ar = UniteLegale("marchandises_ar", period)
 
         return brut - ar
+
 
 class stocks_bruts(Variable):
     value_type = int
@@ -170,6 +188,7 @@ class stocks_bruts(Variable):
 
         return stocks
 
+
 class stocks_ar(Variable):
     value_type = int
     unit = 'currency'
@@ -194,6 +213,7 @@ class stocks_ar(Variable):
 
         return stocks
 
+
 class stocks_nets(Variable):
     value_type = int
     unit = 'currency'
@@ -207,6 +227,7 @@ class stocks_nets(Variable):
 
         return brut - ar
 
+
 class avances_acomptes_commandes_bruts(Variable):
     cerfa_field = "BV"
     value_type = int
@@ -215,6 +236,7 @@ class avances_acomptes_commandes_bruts(Variable):
     label = "Avances et acomptes versés sur commandes bruts"
     definition_period = YEAR
 
+
 class avances_acomptes_commandes_ar(Variable):
     cerfa_field = "BW"
     value_type = int
@@ -222,6 +244,7 @@ class avances_acomptes_commandes_ar(Variable):
     entity = UniteLegale
     label = "Avances et acomptes versés sur commandes : amortissements, provisions"
     definition_period = YEAR
+
 
 class avances_acomptes_commandes_nets(Variable):
     value_type = int
@@ -236,6 +259,7 @@ class avances_acomptes_commandes_nets(Variable):
 
         return brut - ar
 
+
 class creances_clients_comptes_rattaches_brutes(Variable):
     cerfa_field = "BX"
     value_type = int
@@ -244,6 +268,7 @@ class creances_clients_comptes_rattaches_brutes(Variable):
     label = "Créances clients et comptes rattachés bruts"
     definition_period = YEAR
 
+
 class creances_clients_comptes_rattaches_ar(Variable):
     cerfa_field = "BY"
     value_type = int
@@ -251,6 +276,7 @@ class creances_clients_comptes_rattaches_ar(Variable):
     entity = UniteLegale
     label = "Créances clients et comptes rattachés : amortissements, provisions"
     definition_period = YEAR
+
 
 class creances_clients_comptes_rattaches_nettes(Variable):
     value_type = int
@@ -265,6 +291,7 @@ class creances_clients_comptes_rattaches_nettes(Variable):
 
         return brut - ar
 
+
 class autres_creances_brutes(Variable):
     cerfa_field = "BZ"
     value_type = int
@@ -273,6 +300,7 @@ class autres_creances_brutes(Variable):
     label = "Autres créances brutes"
     definition_period = YEAR
 
+
 class autres_creances_ar(Variable):
     cerfa_field = "CA"
     value_type = int
@@ -280,6 +308,7 @@ class autres_creances_ar(Variable):
     entity = UniteLegale
     label = "Autres créances  : amortissements, provisions"
     definition_period = YEAR
+
 
 class autres_creances_nettes(Variable):
     value_type = int
@@ -294,6 +323,7 @@ class autres_creances_nettes(Variable):
 
         return brut - ar
 
+
 class capital_souscrit_appele_non_verse_brut(Variable):
     cerfa_field = "CB"
     value_type = int
@@ -302,6 +332,7 @@ class capital_souscrit_appele_non_verse_brut(Variable):
     label = "Capital souscrit et appelé, non versé, brut"
     definition_period = YEAR
 
+
 class capital_souscrit_appele_non_verse_ar(Variable):
     cerfa_field = "CC"
     value_type = int
@@ -309,6 +340,7 @@ class capital_souscrit_appele_non_verse_ar(Variable):
     entity = UniteLegale
     label = "Capital souscrit et appelé, non versé : amortissements, provisions"
     definition_period = YEAR
+
 
 class capital_souscrit_appele_non_verse_net(Variable):
     value_type = int
@@ -322,6 +354,7 @@ class capital_souscrit_appele_non_verse_net(Variable):
         ar = UniteLegale("capital_souscrit_appele_non_verse_ar", period)
 
         return brut - ar
+
 
 class creances_brutes(Variable):
     value_type = int
@@ -344,6 +377,7 @@ class creances_brutes(Variable):
 
         return creances
 
+
 class creances_ar(Variable):
     value_type = int
     unit = 'currency'
@@ -365,6 +399,7 @@ class creances_ar(Variable):
 
         return creances
 
+
 class creances_nettes(Variable):
     value_type = int
     unit = 'currency'
@@ -378,6 +413,7 @@ class creances_nettes(Variable):
 
         return brut - ar
 
+
 class valeurs_mobilieres_placement_brutes(Variable):
     cerfa_field = "CD"
     value_type = int
@@ -386,6 +422,7 @@ class valeurs_mobilieres_placement_brutes(Variable):
     label = "Valeurs mobilières de placement (dont actions propres) brutes"
     definition_period = YEAR
 
+
 class valeurs_mobilieres_placement_ar(Variable):
     cerfa_field = "CE"
     value_type = int
@@ -393,6 +430,7 @@ class valeurs_mobilieres_placement_ar(Variable):
     entity = UniteLegale
     label = "Valeurs mobilières de placement (dont actions propres) : amortissements, provisions"
     definition_period = YEAR
+
 
 class valeurs_mobilieres_placement_nettes(Variable):
     value_type = int
@@ -407,6 +445,7 @@ class valeurs_mobilieres_placement_nettes(Variable):
 
         return brut - ar
 
+
 class disponibilites_brutes(Variable):
     cerfa_field = "CF"
     value_type = int
@@ -415,6 +454,7 @@ class disponibilites_brutes(Variable):
     label = "Disponibilités brutes"
     definition_period = YEAR
 
+
 class disponibilites_ar(Variable):
     cerfa_field = "CG"
     value_type = int
@@ -422,6 +462,7 @@ class disponibilites_ar(Variable):
     entity = UniteLegale
     label = "Disponibilités : amortissements, provisions"
     definition_period = YEAR
+
 
 class disponibilites_nettes(Variable):
     value_type = int
@@ -435,6 +476,7 @@ class disponibilites_nettes(Variable):
         ar = UniteLegale("disponibilites_ar", period)
 
         return brut - ar
+
 
 class actif_circulant_divers_brut(Variable):
     value_type = int
@@ -451,6 +493,7 @@ class actif_circulant_divers_brut(Variable):
 
         return divers
 
+
 class actif_circulant_divers_ar(Variable):
     value_type = int
     unit = 'currency'
@@ -466,6 +509,7 @@ class actif_circulant_divers_ar(Variable):
 
         return divers
 
+
 class actif_circulant_divers_net(Variable):
     value_type = int
     unit = 'currency'
@@ -478,6 +522,7 @@ class actif_circulant_divers_net(Variable):
         ar = UniteLegale("actif_circulant_divers_ar", period)
 
         return brut - ar
+
 
 class actif_circulant_brut(Variable):
     value_type = int
@@ -501,6 +546,7 @@ class actif_circulant_brut(Variable):
 
         return actif_circulant
 
+
 class actif_circulant_ar(Variable):
     value_type = int
     unit = 'currency'
@@ -522,6 +568,7 @@ class actif_circulant_ar(Variable):
             )
 
         return actif_circulant
+
 
 class actif_circulant_net(Variable):
     value_type = int

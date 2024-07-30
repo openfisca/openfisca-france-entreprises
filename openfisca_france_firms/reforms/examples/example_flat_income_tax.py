@@ -23,7 +23,7 @@ class example_income_tax_flat(Variable):
         return etablissement("example_salary", period) * 0.03
 
 
-class example_income_tax_flat(Reform):
+class example_flatten_income_tax(Reform):
     def apply(self):
         """
         Apply reform.

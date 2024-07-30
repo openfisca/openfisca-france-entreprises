@@ -1,5 +1,8 @@
 from openfisca_core.model_api import *
+from openfisca_core.periods import MONTH, YEAR
+from openfisca_core.variables import Variable
 from openfisca_france_firms.entities import UniteLegale  # noqa F401
+
 
 class emprunts_obligatoires_convertibles(Variable):
     cerfa_field = "DS"
@@ -9,6 +12,7 @@ class emprunts_obligatoires_convertibles(Variable):
     label = "Emprunts obligatoires convertibles"
     definition_period = YEAR
 
+
 class autres_emprunts_obligatoires(Variable):
     cerfa_field = "DT"
     value_type = int
@@ -16,6 +20,7 @@ class autres_emprunts_obligatoires(Variable):
     entity = UniteLegale
     label = "Autres emprunts obligatoires"
     definition_period = YEAR
+
 
 class emprunts_dettes_etablissement_credit(Variable):
     cerfa_field = "DU"
@@ -25,6 +30,7 @@ class emprunts_dettes_etablissement_credit(Variable):
     label = "Emprunts et dettes auprès des établissements de crédit"
     definition_period = YEAR
 
+
 class emprunts_dettes_divers(Variable):
     cerfa_field = "DV"
     value_type = int
@@ -32,6 +38,7 @@ class emprunts_dettes_divers(Variable):
     entity = UniteLegale
     label = "Emprunts et dettes financières divers"
     definition_period = YEAR
+
 
 class emprunts_participatifs(Variable):
     cerfa_field = "EI"
@@ -41,6 +48,7 @@ class emprunts_participatifs(Variable):
     label = "Emprunts participatifs"
     definition_period = YEAR
 
+
 class avances_acomptes_recus_commandes(Variable):
     cerfa_field = "DW"
     value_type = int
@@ -48,6 +56,7 @@ class avances_acomptes_recus_commandes(Variable):
     entity = UniteLegale
     label = "Avances et acomptes reçus sur commandes en cours"
     definition_period = YEAR
+
 
 class dettes_fournisseurs(Variable):
     cerfa_field = "DX"
@@ -57,6 +66,7 @@ class dettes_fournisseurs(Variable):
     label = "Dettes fournisseurs et comptes rattachés"
     definition_period = YEAR
 
+
 class dettes_fiscales_sociales(Variable):
     cerfa_field = "DY"
     value_type = int
@@ -64,6 +74,7 @@ class dettes_fiscales_sociales(Variable):
     entity = UniteLegale
     label = "Dettes fiscales et sociales"
     definition_period = YEAR
+
 
 class dettes_immobilisations(Variable):
     cerfa_field = "DZ"
@@ -73,6 +84,7 @@ class dettes_immobilisations(Variable):
     label = "Dettes sur immobilisations et comptes rattachés"
     definition_period = YEAR
 
+
 class autres_dettes(Variable):
     cerfa_field = "EA"
     value_type = int
@@ -80,6 +92,7 @@ class autres_dettes(Variable):
     entity = UniteLegale
     label = "Autres dettes"
     definition_period = YEAR
+
 
 class dettes(Variable):
     value_type = int
@@ -99,14 +112,14 @@ class dettes(Variable):
         dettes_immobilisations = UniteLegale("dettes_immobilisations", period)
         autres_dettes = UniteLegale("autres_dettes", period)
 
-        dettes = (emprunts_obligatoires_convertibles+
-                  autres_emprunts_obligatoires+
-                  emprunts_dettes_etablissement_credit+
-                  emprunts_dettes_divers+
-                  avances_acomptes_recus_commandes+
-                  dettes_fournisseurs+
-                  dettes_fiscales_sociales+
-                  dettes_immobilisations+
+        dettes = (emprunts_obligatoires_convertibles +
+                  autres_emprunts_obligatoires +
+                  emprunts_dettes_etablissement_credit +
+                  emprunts_dettes_divers +
+                  avances_acomptes_recus_commandes +
+                  dettes_fournisseurs +
+                  dettes_fiscales_sociales +
+                  dettes_immobilisations +
                   autres_dettes)
 
         return dettes
