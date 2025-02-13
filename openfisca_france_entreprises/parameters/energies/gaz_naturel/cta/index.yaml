@@ -1,0 +1,6 @@
+description: Contribution tarifaire d'acheminement (pour le gaz naturel)
+metadata:
+  label_en: Taxes on natural gas transport and distribution
+  order:
+  - cta_transport
+  - cta_distribution

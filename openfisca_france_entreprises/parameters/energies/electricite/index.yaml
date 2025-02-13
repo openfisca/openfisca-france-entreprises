@@ -1,0 +1,10 @@
+description: Taxes sur l'électricité
+metadata:
+  label_en: Taxes on electricity
+  order:
+  - cspe
+  - cta
+  - ticfe
+  - tccfe
+  - tdcfe
+  - plafonds_tcfe_compteurs_36_kva_en_euros_par_mwh

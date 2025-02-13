@@ -1,0 +1,22 @@
+description: Taxe intérieure sur la consommation finale d'électricité
+values:
+  2011-01-01:
+    value: 0.5
+  2016-01-01:
+    value: 22.5
+  2022-01-01:
+    value: 22.5
+metadata:
+  ipp_csv_id: ticfe
+  unit: currency_per_mwh
+  reference:
+    2011-01-01:
+      title: article 23 de la loi n°2010-1488 du 7 décembre 2010 portant nouvelle organisation du marché de l'électricité
+      href: https://www.legifrance.gouv.fr/eli/loi/2010/12/7/EFIX1007918L/jo/texte
+    2016-01-01:
+      title: article 14 de la loi n° 2015-1786 du 29 décembre 2015 de finances rectificative pour 2015 
+      href: https://www.legifrance.gouv.fr/eli/loi/2015/12/29/FCPX1525022L/jo/texte
+  documentation:
+    2011-01-01: Création de la TICFE en 2010
+    2016-01-01: Fusion de la TICFE et de la CSPE
+    2022-01-01: Au premier janvier 2022 : les taxes sur l'énergie sont basculées vers le Code des impositions des biens et services. Dans le même temps, la TDCFE (en 2022) et la TCCFE (en 2023) sont incorporées à l'ancienne TICFE devenue fraction de l'accise sur l'énergie sur l'électricité. Ces taxes locales n'étant prélevées qu'auprès des consommateurs de moyenne et basse puissance (petits professionnels et particuliers, respectivement), ceci introduit une différenciation des taux de TICFE (auparavant opérée par l'addition de la TICFE et de la TDCFE/TCCFE).

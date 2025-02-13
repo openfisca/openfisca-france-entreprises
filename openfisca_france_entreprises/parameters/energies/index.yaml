@@ -1,0 +1,7 @@
+description: Taxation des énergies
+metadata:
+  order:
+  - electricite
+  - autres_produits_energetiques
+  - gaz_naturel
+  - charbon

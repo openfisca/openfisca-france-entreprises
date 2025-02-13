@@ -1,0 +1,11 @@
+description: Taxe locale sur la consommation finale d'électricité pour les usages professionnels puissance souscrite comprise entre 36 et 250 kVA
+values:
+  2011-01-01:
+    value: 0.25
+metadata:
+  ipp_csv_id: cspe
+  unit: currency_per_mwh
+  reference:
+    2011-01-01:
+      title: 
+      href: 
