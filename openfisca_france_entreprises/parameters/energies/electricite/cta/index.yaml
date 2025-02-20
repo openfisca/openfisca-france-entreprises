@@ -1,0 +1,6 @@
+description: Contribution tarifaire d'acheminement (pour l'électricité)
+metadata:
+  label_en: Taxes on electricity transport and distribution
+  order:
+  - cta_transport
+  - cta_distribution

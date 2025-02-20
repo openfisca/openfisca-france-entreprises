@@ -1,0 +1,11 @@
+description: Taxe intérieure de consommation sur le gaz naturel (TICGN)
+metadata:
+  label_en: Taxes on natural gas consumption
+  order:
+  - taux_normal
+  - taux_reduit_grandes_consommatrices
+  - taux_reduit_risque_fuite_carbone
+  - taux_reduit_travaux_agricoles_forestiers
+  - taux_reduit_deshydratation
+  - abattement
+  - seuil_exoneration

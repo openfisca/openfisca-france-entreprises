@@ -1,0 +1,18 @@
+description: Taxe intérieure sur la consommation finale d'électricité
+values:
+  2022-01-01:
+    value: 25.6875
+  2023-01-01:
+    value: 32.0625
+metadata:
+  ipp_csv_id: ticfe
+  unit: currency_per_mwh
+  reference:
+    2022-01-01:
+      title: 
+      href: 
+    2023-01-01:
+      title: 
+      href: 
+  documentation:
+    2022-01-01: Au premier janvier 2022, les taxes sur l'énergie sont basculées vers le Code des impositions des biens et services. Dans le même temps, la TDCFE (en 2022) et la TCCFE (en 2023) sont incorporées à l'ancienne TICFE devenue fraction de l'accise sur l'énergie sur l'électricité. Ces taxes locales n'étant prélevées qu'auprès des consommateurs de moyenne et basse puissance (petits professionnels et particuliers, respectivement), ceci introduit une différenciation des taux de TICFE (auparavant opérée par l'addition de la TICFE et de la TDCFE/TCCFE). Ainsi, la valeur pour les particuliers vaut en 2022 25.6875 = 22.5 (taux historique de la TICFE) + 4.25 * 0.75, où 4.25 est le coefficient multiplicateur maximal de l'ancienne TDCFE et 0.75 le taux de base pour les consommateurs basse puissance. Au premier janvier 2023, elle vaut 32.0625 = 22.5 + 4.25*0.75 + 8.5*0.75, où 8.5 est le coefficient multiplicateur maximal de la TCCFE.
