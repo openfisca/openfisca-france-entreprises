@@ -1,0 +1,122 @@
+# Test de l'assiette TICGN pour différentes périodes
+- name: "Test avant 2007 (exonération matière première, huiles minérales, chauffage habitation)"
+  period: "2000"
+  input: 
+    consommation_gaz_naturel: 1000000
+    consommation_gaz_matiere_premiere: 200000
+    consommation_gaz_huiles_minerales: 100000
+    consommation_gaz_chauffage_habitation: 50000
+  output: 
+    assiette_ticgn : 650000  # 1000000 - (200000 + 100000 + 50000)
+#en utilisant formula_1986_01_01
+
+- name: "Test en 2007 (ajout de l'exonération production électricité)"
+  period: "2007"
+  input:
+    consommation_gaz_naturel: 1200000
+    consommation_gaz_matiere_premiere: 250000
+    consommation_gaz_huiles_minerales: 120000
+    consommation_gaz_chauffage_habitation: 70000
+    consommation_gaz_production_electricite: 300000
+  output:
+    assiette_ticgn : 460000  # 1200000 - (250000 + 120000 + 70000 + 300000)
+#en utilisant formula_2007_01_01
+
+- name: "Test en 2008 ( Ajout des nouvelles exonérations)"
+  period: "2008"
+  input:
+    consommation_gaz_naturel: 1500000
+    consommation_gaz_matiere_premiere: 300000
+    consommation_gaz_huiles_minerales: 150000
+    consommation_gaz_chauffage_habitation: 80000
+    consommation_gaz_usage_non_combustible: 5200
+    consommation_gaz_double_usage: 5600
+    consommation_gaz_production_mineraux_non_metalliques: 25000
+    consummation_gaz_sur_place: 52000
+    consommation_gaz_production_electricite: 400000
+    consommation_gaz_production_electricite_non_exonere: 15000
+    consommation_gaz_extraction_production: 1200
+    consommation_gaz_particuliers: 45200
+    consommation_gaz_autorites_regionales: 100000 
+  output: 
+    assiette_ticgn: 350800  # 1500000 - (300000 + 150000 + 80000 + 5200 + 5600 + 25000 + 52000 + 400000 - 15000 + 1200 + 45200 + 100000)
+#en utilisant formula_2008_01_01
+
+
+
+
+- name: "Test en 2009 (suppression exonération autorités régionales)"
+  period: "2009"
+  input:
+    consommation_gaz_naturel: 1500000
+    consommation_gaz_matiere_premiere: 300000
+    consommation_gaz_huiles_minerales: 150000
+    consommation_gaz_chauffage_habitation: 80000
+    consommation_gaz_usage_non_combustible: 5200
+    consommation_gaz_double_usage: 5600
+    consommation_gaz_production_mineraux_non_metalliques: 25000
+    consummation_gaz_sur_place: 52000
+    consommation_gaz_production_electricite: 400000
+    consommation_gaz_production_electricite_non_exonere: 15000
+    consommation_gaz_extraction_production: 1200
+    consommation_gaz_particuliers: 45200
+  output: 
+    assiette_ticgn: 450800  # 
+#en utilisant formula_2009_01_01
+
+- name: "Test en 2011 (suppression exonération petits producteurs d'électricité)"
+  period: 2011
+  input:
+    consommation_gaz_naturel: 1500000
+    consommation_gaz_matiere_premiere: 300000
+    consommation_gaz_huiles_minerales: 150000
+    consommation_gaz_chauffage_habitation: 80000
+    consommation_gaz_usage_non_combustible: 5200
+    consommation_gaz_double_usage: 5600
+    consommation_gaz_production_mineraux_non_metalliques: 25000
+    consummation_gaz_sur_place: 52000
+    consommation_gaz_production_electricite: 400000
+    consommation_gaz_production_electricite_non_exonere: 25000
+    consommation_gaz_extraction_production: 1200
+    consommation_gaz_particuliers: 45200
+  output: 
+    assiette_ticgn: 460800  # 1500000 - (300000 + 150000 + 80000 + 5200 + 5600 + 25000 + 52000 + 400000 - 25000 + 1200 + 45200)
+# en utilisant formula_2011_01_01
+
+- name: "Test en 2019 (application tarif déshydratation légumes et plantes aromatiques)"
+  period: "2019"
+  input:
+    consommation_gaz_naturel: 1500000
+    consommation_gaz_matiere_premiere: 300000
+    consommation_gaz_huiles_minerales: 150000
+    consommation_gaz_chauffage_habitation: 80000
+    consommation_gaz_usage_non_combustible: 5200
+    consommation_gaz_double_usage: 5600
+    consommation_gaz_production_mineraux_non_metalliques: 25000
+    consummation_gaz_sur_place: 52000
+    consommation_gaz_production_electricite: 400000
+    consommation_gaz_production_electricite_non_exonere: 25000
+    consommation_gaz_extraction_production: 1200
+    consommation_gaz_particuliers: 45200
+  output: 
+    assiette_ticgn: 460800  # 1500000 - (300000 + 150000 + 80000 + 5200 + 5600 + 25000 + 52000 + 400000 - 25000 + 1200 + 45200)
+#formula_2019_01_01
+
+- name: "Test en 2020 (réintégration usages carburants)"
+  period : 2020
+  input:
+    consommation_gaz_naturel: 1500000
+    consommation_gaz_matiere_premiere: 300000
+    consommation_gaz_huiles_minerales: 150000
+    consommation_gaz_chauffage_habitation: 80000
+    consommation_gaz_usage_non_combustible: 5200
+    consommation_gaz_double_usage: 5600
+    consommation_gaz_production_mineraux_non_metalliques: 25000
+    consummation_gaz_sur_place: 52000
+    consommation_gaz_production_electricite: 400000
+    consommation_gaz_production_electricite_non_exonere: 25000
+    consommation_gaz_extraction_production: 1200
+    consommation_gaz_particuliers: 45200
+  output: 
+    assiette_ticgn: 460800  # 1500000 - (300000 + 150000 + 80000 + 5200 + 5600 + 25000 + 52000 + 400000 - 25000 + 1200 + 45200)
+#formula_2020_01_01
