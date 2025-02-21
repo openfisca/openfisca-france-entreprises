@@ -1,0 +1,24 @@
+- name: TICGN taux normal
+  period: 1986
+  input:
+    assiette_ticgn: 15000000 
+  output:
+    taxe_interieure_consommation_gaz_naturel_taux_normal: 93330000 # (15000000 - 400000*12)*9.15
+#formula_1986_01_01
+
+
+- name: TICGN taux normal
+  period: 2008
+  input:
+    assiette_ticgn: 15000000 
+  output:
+    taxe_interieure_consommation_gaz_naturel_taux_normal: 17850000 # 15000000 *1.19
+#formula_2008_01_01
+
+- name: TICGN taux normal
+  period: 2014
+  input:
+    assiette_ticgn: 15000000 
+  output:
+    taxe_interieure_consommation_gaz_naturel_taux_normal: 23476500 # 15000000 *1.11*1.41
+#formula_formula_2014_01_01
