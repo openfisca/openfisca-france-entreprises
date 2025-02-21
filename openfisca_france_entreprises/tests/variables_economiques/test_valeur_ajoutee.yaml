@@ -1,0 +1,9 @@
+#test pour valeur_ajoutee et consummation_par_valeur_ajoutee
+
+- name: "Test pour consummation_par_valeur_ajoutée"
+  period: "2000"
+  input: 
+    consommation_gaz_naturel: 1000000
+    valeur_ajoutee : 200
+  output: 
+    consummation_par_valeur_ajoutee : 5000  # 1000000 / 200
