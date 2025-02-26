@@ -1,0 +1,18 @@
+#test pour valeur_ajoutee et consummation_par_valeur_ajoutee
+- name: "Test pour valeur_ajoutee_eta"
+  period: "2000"
+  input: 
+    valeur_ajoutee_ul : 200
+    effectif_3112_ul: 200
+    effectif_3112_eta: 50
+  output: 
+    valeur_ajoutee_eta : 50  # 200*(50/200)
+
+- name: "Test pour consummation_par_valeur_ajoutée"
+  period: "2000"
+  input: 
+    assiette_ticgn: 1000000 #en MWh
+    valeur_ajoutee_eta : 200000000 #en Euro
+  output: 
+    consummation_par_valeur_ajoutee : 5000  # 1000000 / 200, en Wh par Euro
+

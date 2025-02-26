@@ -61,7 +61,7 @@
     consommation_gaz_extraction_production: 1200
     consommation_gaz_particuliers: 45200
   output: 
-    assiette_ticgn: 450800  # 
+    assiette_ticgn: 420800  # 1500000 - (300000 + 150000 + 80000 + 5200+ 5600 +25000+52000+400000+15000+1200+45200)
 #en utilisant formula_2009_01_01
 
 - name: "Test en 2011 (suppression exonération petits producteurs d'électricité)"
@@ -117,6 +117,26 @@
     consommation_gaz_production_electricite_non_exonere: 25000
     consommation_gaz_extraction_production: 1200
     consommation_gaz_particuliers: 45200
+    ocarburant: 200
   output: 
-    assiette_ticgn: 460800  # 1500000 - (300000 + 150000 + 80000 + 5200 + 5600 + 25000 + 52000 + 400000 - 25000 + 1200 + 45200)
+    assiette_ticgn: 461000  # 1500000 - (300000 + 150000 + 80000 + 5200 + 5600 + 25000 + 52000 + 400000 - 25000 + 1200 + 45200)
 #formula_2020_01_01
+
+
+- name: "Test consommation_gaz_production_electricite_non_exonere"
+  period : 2008
+  input: 
+    consommation_gaz_combustible_electricite_266qA: 15000
+    consommation_non_beneficier_tarif_achat_2000_108 : 5000
+  output: 
+    consommation_gaz_production_electricite_non_exonere : 10000
+
+- name: "Test consommation_gaz_production_electricite_non_exonere"
+  period : 2011
+  input: 
+    consommation_gaz_combustible_electricite_266qA: 15000
+    consommation_non_beneficier_tarif_achat_2000_108 : 5000
+    consommation_gaz_electricite_petits_producteurs : 5800
+  output: 
+    consommation_gaz_production_electricite_non_exonere : 15800
+

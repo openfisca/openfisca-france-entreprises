@@ -17,6 +17,8 @@ from openfisca_core.variables import Variable
 
 # Import the Entities specifically defined for this tax and benefit system
 from openfisca_france_entreprises.entities import UniteLegale, Etablissement
+from openfisca_france_entreprises.variables.naf import naf
+
 
 
 class taxe_interieure_consommation_gaz_naturel(Variable):
@@ -31,29 +33,74 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
 
         return ticgn
 
-    def formula_2014_04_01(etablissement, period, parameters):
+    def formula_2014_01_01(etablissement, period, parameters):
         euets = etablissement("installation_euets", period)
         grande_consommatrice = etablissement("installation_grande_consommatrice", period)
 
         ticgn_normal = etablissement("taxe_interieure_consommation_gaz_naturel_taux_normal", period)
         ticgn_grande_conso = etablissement("taxe_interieure_consommation_gaz_naturel_grande_consommatrice", period)
 
-        return (euets * grande_consommatrice * ticgn_grande_conso) + ((1 - euets * grande_consommatrice) * ticgn_normal)
 
-    def formula_2015_01_01(etablissement, period, parameters):
+        if euets == True and grande_consommatrice == True:
+            return ticgn_grande_conso
+        else: 
+            return ticgn_normal
+
+    # def formula_2015_01_01(etablissement, period, parameters):
+    #suspendé parce qu'on a pas besoin de l'éléctrointensive
+    #     euets = etablissement("installation_euets", period)
+    #     grande_consommatrice = etablissement("installation_grande_consommatrice", period)
+
+    #     electrointensive = etablissement("installation_electrointensive", period)
+    #     risque_fuite = etablissement.unite_legale("entreprises_risque_de_fuite_carbone", period)
+
+    #     ticgn_normal = etablissement("taxe_interieure_consommation_gaz_naturel_taux_normal", period)
+    #     ticgn_grande_conso = etablissement("taxe_interieure_consommation_gaz_naturel_grande_consommatrice", period)
+    #     ticgn_electrointensive = etablissement("taxe_interieure_consommation_gaz_naturel_electrointensive", period)
+
+    #     ticgn = (euets * grande_consommatrice * ticgn_grande_conso) + ((1 - euets) * electrointensive * risque_fuite * ticgn_electrointensive) + ((1 - ((euets * grande_consommatrice) + ((1 - euets) * electrointensive * risque_fuite))) * ticgn_normal)
+
+    #     return ticgn
+    
+    def formula_2019_01_01(etablissement, period, parameters):
+        """Le tarif de la taxe applicable au produit consommé pour déshydrater les légumes et plantes aromatiques, autres que les pommes de terres, les champignons et les truffes, par les entreprises pour lesquelles cette consommation est supérieure à 800 wattheures par euro de valeur ajoutée, est fixé à 1,6 € par mégawattheure.
+            calculer, creer une variable value_ajoute, et ensuit appelle la variable ici, si ça depasse, 
+            > plutôt dans le calcul de taxe et pas l'asseitte"""
+        
+        apet = etablissement("apet", period)
+        type_eta = apet.possible_values
+
         euets = etablissement("installation_euets", period)
         grande_consommatrice = etablissement("installation_grande_consommatrice", period)
 
-        electrointensive = etablissement("installation_electrointensive", period)
-        risque_fuite = etablissement.unite_legale("entreprises_risque_de_fuite_carbone", period)
-
         ticgn_normal = etablissement("taxe_interieure_consommation_gaz_naturel_taux_normal", period)
         ticgn_grande_conso = etablissement("taxe_interieure_consommation_gaz_naturel_grande_consommatrice", period)
-        ticgn_electrointensive = etablissement("taxe_interieure_consommation_gaz_naturel_electrointensive", period)
 
-        ticgn = (euets * grande_consommatrice * ticgn_grande_conso) + ((1 - euets) * electrointensive * risque_fuite * ticgn_electrointensive) + ((1 - ((euets * grande_consommatrice) + ((1 - euets) * electrointensive * risque_fuite))) * ticgn_normal)
 
-        return ticgn
+        if apet == type_eta._10_39A :
+            consummation_par_valeur_ajoutee = etablissement("consummation_par_valeur_ajoutee", period)
+            if consummation_par_valeur_ajoutee >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes : #800 Wh par Euro
+                taxe = etablissement("taxe_interieure_consommation_gaz_naturel_legumes", period)
+                return taxe
+        if euets == True and grande_consommatrice == True:
+            return ticgn_grande_conso
+        else: 
+            return ticgn_normal
+
+
+
+class taxe_interieure_consommation_gaz_naturel_legumes(Variable):
+    value_type = float
+    entity = Etablissement
+    definition_period = YEAR
+    label = "Tax on gas consumption - TICGN"
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037988864/2019-01-01/"  
+    def formula_2019_01_01(etablissement, period, parameters):
+        assiette = etablissement("assiette_ticgn", period)
+        taux = parameters(period).energies.gaz_naturel.ticgn.taux_reduit_legumes
+        taxe = assiette * taux
+
+        return taxe
 
 
 class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
@@ -118,19 +165,6 @@ class taxe_interieure_consommation_gaz_naturel_grande_consommatrice(Variable):
         taxe = assiette * taux
 
         return taxe
-    #^pas besoin d'avoir deux formules si elles sont pareils.
-
-    # def formula_2016_01_01(etablissement, period, parameters):
-    #     """
-    #     [à noter : plus de seuil ni d'abattement]
-    #     """
-
-    #     assiette = etablissement("assiette_ticgn", period)
-    #     taux = parameters(period).energies.gaz_naturel.ticgn.taux_reduit_grandes_consommatrices
-    #     taxe = assiette * (taux)
-
-    #     return taxe
-
 
 
 class assiette_ticgn(Variable):
@@ -163,8 +197,7 @@ class assiette_ticgn(Variable):
 
     def formula_2007_01_01(etablissement, period, parameters):
         """
-        (en plus de précédemment,)
-        TODO:
+        En plus de précédemment,
         Le gaz utilisé pour la production d'électricité est exonéré.
         -> séparer les types de consommations dans ../energy_consumption/
         """
@@ -234,8 +267,8 @@ class assiette_ticgn(Variable):
             etablissement("consommation_gaz_double_usage", period) +
             etablissement("consommation_gaz_production_mineraux_non_metalliques", period) +
             etablissement("consummation_gaz_sur_place", period) +
-            etablissement("consommation_gaz_production_electricite", period) 
-            - etablissement("consommation_gaz_production_electricite_non_exonere", period) +
+            etablissement("consommation_gaz_production_electricite", period) +
+            (-1 * - etablissement("consommation_gaz_production_electricite_non_exonere", period) )+
             etablissement("consommation_gaz_extraction_production", period) +
             etablissement("consommation_gaz_particuliers", period)
         )
@@ -249,7 +282,7 @@ class assiette_ticgn(Variable):
         (par rapport à précédemment, )
             la consommation du gaz utilisé pour la production d'électricité par les petits producteurs d'électricité au sens du 4° du V de l'article L. 3333-2 du code général des collectivités territoriales.
             n'est plus exonérée à partir du 1er janvier 2011.
-            > ça va être inclu dans le consommation_gaz_production_electricite_non_exonere
+            > ça doit être inclu dans le consommation_gaz_production_electricite_non_exonere
         """
 
         conso = etablissement("consommation_gaz_naturel", period)
@@ -276,6 +309,7 @@ class assiette_ticgn(Variable):
         (par rapport à précédemment, )
             Le tarif de la taxe applicable au produit consommé pour déshydrater les légumes et plantes aromatiques, autres que les pommes de terres, les champignons et les truffes, par les entreprises pour lesquelles cette consommation est supérieure à 800 wattheures par euro de valeur ajoutée, est fixé à 1,6 € par mégawattheure.
             calculer, creer une variable value_ajoute, et ensuit appelle la variable ici, si ça depasse, 
+            > plutôt dans le calcul de taxe et pas l'asseitte
         ***reviens à ça après... je sais plus comment le traiter. 
         """
 
@@ -307,7 +341,7 @@ class assiette_ticgn(Variable):
         """
 
         conso = etablissement("consommation_gaz_naturel", period)
-        conso_plus = etablissement("hydrocarburant", period) #faut pas oublier de l'enlever de l'autre (taxation_produit petrolier ... )
+        conso_plus = etablissement("carburant_gaz", period) #faut pas oublier de l'enlever de l'autre (taxation_produit petrolier ... ) dès 2020
         conso_exoneree = (
             etablissement("consommation_gaz_matiere_premiere", period) +
             etablissement("consommation_gaz_huiles_minerales", period) +
@@ -322,7 +356,7 @@ class assiette_ticgn(Variable):
             etablissement("consommation_gaz_particuliers", period)
         )
 
-        consommation = max(0, conso - conso_exoneree)
+        consommation = max(0, conso + conso_plus - conso_exoneree)
         return consommation
 
 
@@ -332,12 +366,11 @@ class taxe_interieure_consommation_gaz_naturel_ifp(Variable):
     definition_period = YEAR
     label = "Tax on gas consumption for the benefit of the French Institute for Petroleum"
     reference = ""  # Always use the most official source
-    #***incomplete
+    """je ne trouve que ce résultat bizzare : https://www.legifrance.gouv.fr/search/all?tab_selection=all&searchField=ALL&query=institut+fran%C3%A7ais+du+p%C3%A9trole&searchType=ALL&fonds=CODE&typePagination=DEFAULT&pageSize=10&page=1&tab_selection=all#all"""
 
     def formula(etablissement, period, parameters):
         """
         Income tax.
-
         The formula to compute the income tax for a given etablissement at a given period
         """
 
