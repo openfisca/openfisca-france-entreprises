@@ -48,10 +48,19 @@ class entreprises_risque_de_fuite_carbone(Variable):
     label = "Entreprise exposée au risque de fuite carbone"
     definition_period = YEAR
 
-    def formula_2014_01_01(unite_legale, period):
+    # def formula_2014_01_01(unite_legale, period):
 
-        return True
+    #     return True
 
-    def formula_2021_01_01(unite_legale, period):
+    # def formula_2021_01_01(unite_legale, period):
 
-        return True
+    #     return True
+
+
+
+class effectif_3112_ul(Variable):
+    #le nombre de personnes qui travaillent 
+    value_type = float
+    entity = UniteLegale
+    label = "Effectifs en fin d'année, ETP, au niveau d'unité legale"
+    definition_period = YEAR
