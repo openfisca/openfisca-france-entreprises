@@ -11,17 +11,21 @@ from openfisca_core.indexed_enums import Enum
 from openfisca_core.periods import MONTH, YEAR
 from openfisca_core.variables import Variable
 from openfisca_core.model_api import *
+from openfisca_france_entreprises.variables.naf import naf
 
 # Import the Entities specifically defined for this tax and benefit system
 from openfisca_france_entreprises.entities import UniteLegale, Etablissement
 
 
 class apet(Variable):
-    value_type = str
+    value_type = Enum #voir dans openfisca_france comment le faire
     entity = Etablissement
-    label = "Secteur NAF de l'établissement"
+    label = "Secteur NAF de l'établissement" #nomencultures des activités françaises
+    #mettre tous les valeurs NAF, les deux colomnes
     definition_period = YEAR
-    set_input = set_input_dispatch_by_period
+    possible_values = naf
+    default_value = naf.pas_donnes
+
 
 
 class postal_code(Variable):
@@ -32,12 +36,12 @@ class postal_code(Variable):
     label = "Postal code of the etablissement"
 
 
-class effectif_3112_et(Variable):
+class effectif_3112_eta(Variable):
+    #le nombre de personnes qui travaillent 
     value_type = float
     entity = Etablissement
     label = "Effectifs en fin d'année, ETP"
     definition_period = YEAR
-    set_input = set_input_dispatch_by_period
 
 
 class installation_cogeneration(Variable):
@@ -54,19 +58,20 @@ class installation_euets(Variable):
     definition_period = YEAR
 
 
-class installation_electrointensive(Variable):
-    value_type = bool
-    entity = Etablissement
-    label = "Installation électrointensive"
-    definition_period = YEAR
+# class installation_electrointensive(Variable):
+#     value_type = bool
+#     entity = Etablissement
+#     label = "Installation électrointensive"
+#     definition_period = YEAR
+    
 
-    def formula_2014_01_01(etablissement, period):
+#     def formula_2014_01_01(etablissement, period):
 
-        return True
+#         return True
 
-    def formula_2021_01_01(etablissement, period):
+#     def formula_2021_01_01(etablissement, period):
 
-        return True
+#         return True
 
 
 class installation_grande_consommatrice(Variable):
@@ -75,10 +80,10 @@ class installation_grande_consommatrice(Variable):
     label = "Installation grande consommatrice d'énergie"
     definition_period = YEAR
 
-    def formula_2014_01_01(etablissement, period):
+    # def formula_2014_01_01(etablissement, period):
 
-        return True
+    #     return True
 
-    def formula_2021_01_01(etablissement, period):
+    # def formula_2021_01_01(etablissement, period):
 
-        return True
+    #     return True

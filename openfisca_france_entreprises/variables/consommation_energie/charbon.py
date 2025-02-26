@@ -34,6 +34,7 @@ class consommation_charbon_non_combustible(Variable):
         conso_non_combustible_non_carburant = etablissement("consommation_charbon_non_combustible_non_carburant", period)
 
         return conso_carburant + conso_non_combustible_non_carburant
+    # *** je pense que la formula est un erreur. faut modifier la formule 
 
 
 class consommation_charbon_non_combustible_non_carburant(Variable):
