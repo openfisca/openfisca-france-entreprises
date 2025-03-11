@@ -34,21 +34,21 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
         return ticgn
 
     def formula_2014_01_01(etablissement, period, parameters):
-        euets = etablissement("installation_euets", period)
+        seqe = etablissement("installation_seqe", period)
         grande_consommatrice = etablissement("installation_grande_consommatrice", period)
 
         ticgn_normal = etablissement("taxe_interieure_consommation_gaz_naturel_taux_normal", period)
         ticgn_grande_conso = etablissement("taxe_interieure_consommation_gaz_naturel_grande_consommatrice", period)
 
 
-        if euets == True and grande_consommatrice == True:
+        if seqe == True and grande_consommatrice == True:
             return ticgn_grande_conso
         else: 
             return ticgn_normal
 
     # def formula_2015_01_01(etablissement, period, parameters):
     #suspendé parce qu'on a pas besoin de l'éléctrointensive
-    #     euets = etablissement("installation_euets", period)
+    #     seqe = etablissement("installation_seqe", period)
     #     grande_consommatrice = etablissement("installation_grande_consommatrice", period)
 
     #     electrointensive = etablissement("installation_electrointensive", period)
@@ -58,7 +58,7 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
     #     ticgn_grande_conso = etablissement("taxe_interieure_consommation_gaz_naturel_grande_consommatrice", period)
     #     ticgn_electrointensive = etablissement("taxe_interieure_consommation_gaz_naturel_electrointensive", period)
 
-    #     ticgn = (euets * grande_consommatrice * ticgn_grande_conso) + ((1 - euets) * electrointensive * risque_fuite * ticgn_electrointensive) + ((1 - ((euets * grande_consommatrice) + ((1 - euets) * electrointensive * risque_fuite))) * ticgn_normal)
+    #     ticgn = (seqe * grande_consommatrice * ticgn_grande_conso) + ((1 - seqe) * electrointensive * risque_fuite * ticgn_electrointensive) + ((1 - ((seqe * grande_consommatrice) + ((1 - seqe) * electrointensive * risque_fuite))) * ticgn_normal)
 
     #     return ticgn
     
@@ -70,7 +70,7 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
         apet = etablissement("apet", period)
         type_eta = apet.possible_values
 
-        euets = etablissement("installation_euets", period)
+        seqe = etablissement("installation_seqe", period)
         grande_consommatrice = etablissement("installation_grande_consommatrice", period)
 
         ticgn_normal = etablissement("taxe_interieure_consommation_gaz_naturel_taux_normal", period)
@@ -82,7 +82,7 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
             if consummation_par_valeur_ajoutee >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes : #800 Wh par Euro
                 taxe = etablissement("taxe_interieure_consommation_gaz_naturel_legumes", period)
                 return taxe
-        if euets == True and grande_consommatrice == True:
+        if seqe == True and grande_consommatrice == True:
             return ticgn_grande_conso
         else: 
             return ticgn_normal

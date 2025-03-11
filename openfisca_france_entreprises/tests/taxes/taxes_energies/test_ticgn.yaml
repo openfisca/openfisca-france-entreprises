@@ -76,14 +76,14 @@
     consommation_gaz_particuliers: 45200
     carburant_gaz: 200
     risque_de_fuite_carbone_eta: True
-    installation_euets: True
+    installation_seqe: True
     installation_grande_consommatrice: False
 
   output: 
     taxe_interieure_consommation_gaz_naturel: 737600  # 1500000 - (300000 + 150000 + 80000 + 5200 + 5600 + 25000 + 52000 + 400000 - 25000 + 1200 + 45200) + 200
 # 461000*1.11*1.41
 #4600*1.6
-#ticgn = (euets * grande_consommatrice * ticgn_grande_conso) + ((1 - euets) * electrointensive * risque_fuite * ticgn_electrointensive) + ((1 - ((euets * grande_consommatrice) + ((1 - euets) * electrointensive * risque_fuite))) * ticgn_normal)
+#ticgn = (seqe * grande_consommatrice * ticgn_grande_conso) + ((1 - seqe) * electrointensive * risque_fuite * ticgn_electrointensive) + ((1 - ((seqe * grande_consommatrice) + ((1 - seqe) * electrointensive * risque_fuite))) * ticgn_normal)
 
 
 

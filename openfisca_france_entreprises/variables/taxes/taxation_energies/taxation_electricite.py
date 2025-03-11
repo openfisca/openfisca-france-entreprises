@@ -6,6 +6,7 @@ from openfisca_core.variables import Variable
 # Import the Entities specifically defined for this tax and benefit system
 from openfisca_france_entreprises.entities import UniteLegale, Etablissement
 
+
 class taxe_interieure_consummation_finale_electricite(Variable):
     value_type = float
     entity = Etablissement
@@ -65,7 +66,6 @@ class taxe_interieure_consummation_finale_electricite(Variable):
         return summation
 
 
-
 class taxe_electricite_production_a_bord(Variable): 
     #celui-là est calculé dehors les autres aspects du tariff (soit niveau electricité intesif etc.)
     value_type = float
@@ -76,7 +76,6 @@ class taxe_electricite_production_a_bord(Variable):
         taux = parameters(period).energies.electricite.ticfe.alimentation_a_quai
         taxe = assiette_ticfe * taux
         return taxe
-   
 
 
 class taxe_electricite_alimentation_a_quai(Variable): 
@@ -89,7 +88,8 @@ class taxe_electricite_alimentation_a_quai(Variable):
         taux = parameters(period).energies.electricite.ticfe.alimentation_a_quai
         taxe = assiette_ticfe * taux
         return taxe
-   
+
+
 class taxe_electricite_exploitation_aerodrome(Variable): 
     #celui-là est calculé dehors les autres aspects du tariff (soit niveau electricité intesif etc.)
     value_type = float
@@ -100,6 +100,7 @@ class taxe_electricite_exploitation_aerodrome(Variable):
         taux = parameters(period).energies.electricite.ticfe.aerodrome
         taxe = assiette_ticfe * taux
         return taxe
+
 
 class taxe_electricite_manutention_portuaire(Variable): 
     #celui-là est calculé dehors les autres aspects du tariff (soit niveau electricité intesif etc.)
@@ -112,6 +113,7 @@ class taxe_electricite_manutention_portuaire(Variable):
         taxe = assiette_ticfe * taux
         return taxe
 
+
 class taxe_electricite_transport_collectif_personnes(Variable): 
     #celui-là est calculé dehors les autres aspects du tariff (soit niveau electricité intesif etc.)
     value_type = float
@@ -122,6 +124,7 @@ class taxe_electricite_transport_collectif_personnes(Variable):
         taux = parameters(period).energies.electricite.ticfe.transport_collectif_personnes
         taxe = assiette_ticfe * taux
         return taxe
+
 
 class taxe_electricite_transport_guide(Variable): 
     #celui-là est calculé dehors les autres aspects du tariff (soit niveau electricité intesif etc.)
@@ -134,6 +137,7 @@ class taxe_electricite_transport_guide(Variable):
         taxe = assiette_ticfe * taux
         return taxe
 
+
 class taxe_electricite_centres_de_stockage_données(Variable): 
     #celui-là est calculé dehors les autres aspects du tariff (soit niveau electricité intesif etc.)
     value_type = float
@@ -144,6 +148,7 @@ class taxe_electricite_centres_de_stockage_données(Variable):
         taux = parameters(period).energies.electricite.ticfe.data_center
         taxe = assiette_ticfe * taux
         return taxe
+
 
 class taxe_interieure_taxation_electricite_taux_normal(Variable):
     value_type = float
@@ -195,8 +200,6 @@ class taxe_interieure_taxation_electricite_electro_intensive_activite_industriel
         return taxe
 
 
-
-
 class taxe_interieure_taxation_electricite_electro_intensive_concurrence_internationale(Variable):
     value_type = float
     entity = Etablissement
@@ -227,10 +230,7 @@ class taxe_interieure_taxation_electricite_electro_intensive_concurrence_interna
 
             else :
                 taxe = assiette * parameters(period).energies.electricite.ticfe.electrointensive.concurrence_internationale.electrointensive_0_virgule_5
-        #Il y a pas une pre-caution contre la situation où la taxe ne s'applique à ce qui est saisi
         return taxe
-    
-
 
 
 class assiette_ticfe(Variable):

@@ -51,7 +51,7 @@ class installation_cogeneration(Variable):
     definition_period = YEAR
 
 
-class installation_euets(Variable):
+class installation_seqe(Variable):
     #remplacer par _seqe, et on a déjà l'information sur ça. 
     value_type = bool
     entity = Etablissement
