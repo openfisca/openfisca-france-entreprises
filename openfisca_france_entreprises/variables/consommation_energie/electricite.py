@@ -13,14 +13,6 @@ class consommation_electricite(Variable):
     definition_period = YEAR
     reference = ""
 
-# class consommation_electricite_normale(Variable):
-#     value_type = float
-#     unit = 'kVA'
-#     entity = Etablissement
-#     label = ""
-#     definition_period = YEAR
-#     reference = ""
-# #je pense qu'on en a pas besoin 
 
 class amperage(Variable):
     value_type = float
@@ -30,6 +22,7 @@ class amperage(Variable):
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603823"
 
+
 class electro_intensite(Variable):
     value_type = float
     unit = 'pourcentage'
@@ -37,15 +30,7 @@ class electro_intensite(Variable):
     label = "niveau d'electro-intensité, lié au L312-65"
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603709"
-#lié à un
 
-# class consommation_electricite_double_usage(Variable):
-#     value_type = float
-#     unit = 'MWh'
-#     entity = Etablissement
-#     label = "conditions du L312-66"
-#     definition_period = YEAR
-#     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603707"
 
 class electricite_double_usage(Variable):
     value_type = bool
@@ -65,7 +50,6 @@ class electricite_double_usage(Variable):
 #_25_50A
 #pour la quatrème catagorie, 4° Pour les produits taxables en tant que combustible et consommés pour les besoins d'un processus déterminé, la génération d'une substance indispensable à la réalisation de ce processus et ne pouvant être générée qu'à partir de ces produits.
 #j'ai aucune idée comment le faire. 
-
 
 
 class electricite_production_a_bord(Variable):
@@ -110,6 +94,7 @@ class electricite_transport_guide(Variable):
         return determinant
 #_33_17Z, _49_10Z, _49_20Z, _49_31Z, _49_39C, _52_21Z, _52_29A, _52_29B, _53_10Z, _53_20Z
 
+
 class electricite_transport_collectif_personnes(Variable):
     value_type = bool
     unit = ''
@@ -147,7 +132,6 @@ class electricite_alimentation_a_quai(Variable):
         return determinant
 
 
-
 class electricite_manutention_portuaire(Variable):
     value_type = bool
     unit = ''
@@ -165,6 +149,7 @@ class electricite_manutention_portuaire(Variable):
             determinant = True
         return determinant
 
+
 class electricite_exploitation_aerodrome(Variable):
     value_type = bool
     unit = ''
@@ -181,6 +166,7 @@ class electricite_exploitation_aerodrome(Variable):
         if apet == type_eta._52_23Z:
             determinant = True
         return determinant
+
 
 class electricite_fabrication_produits_mineraux_non_metalliques(Variable):
     value_type = bool
@@ -238,6 +224,7 @@ class electricite_centres_de_stockage_donnees(Variable):
             determinant = True
         return determinant
 
+
 class electro_intensive_activite_industrielle(Variable):
     value_type = bool
     entity = Etablissement
@@ -289,30 +276,6 @@ class electro_intensive_concurrence_internationale(Variable):
             determinant = True
         return determinant
 
-# class consommation_entreprises_electro_intensive(Variable):
-#     value_type = float
-#     unit = 'MWh'
-#     entity = Etablissement
-#     label = "conditions sous L312-71~73"
-#     definition_period = YEAR
-#     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603709"
-
-
-# class consommation_electricite_L312_87(Variable):
-#     value_type = float
-#     unit = 'MWh'
-#     entity = Etablissement
-#     label = "summation de conditions du L312-87"
-#     definition_period = YEAR
-#     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051216635"
-#     def formula_2025_01_01(etablissement, period):
-#         consommation_electricite_energie_ou_gaz_renouvelable = etablissement("consommation_electricite_energie_ou_gaz_renouvelable", period)
-#         consommation_electricite_puissance_moins_1_MW = etablissement("consommation_electricite_puissance_moins_1_MW", period)
-#         consommation_electricite_auto_consommation = etablissement("consommation_electricite_auto_consommation", period)
-#         totale = consommation_electricite_energie_ou_gaz_renouvelable +  consommation_electricite_puissance_moins_1_MW + consommation_electricite_auto_consommation
-#         return totale
-#^pas utilisé
-
 
 class consommation_electricite_energie_ou_gaz_renouvelable(Variable):
     value_type = float
@@ -322,6 +285,7 @@ class consommation_electricite_energie_ou_gaz_renouvelable(Variable):
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051216635"
 
+
 class consommation_electricite_puissance_moins_1_MW(Variable):
     value_type = float
     unit = 'MWh'
@@ -329,6 +293,7 @@ class consommation_electricite_puissance_moins_1_MW(Variable):
     label = "partie deux du L312-87"
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051216635"
+
 
 class consommation_electricite_auto_consommation(Variable):
     value_type = float

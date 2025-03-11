@@ -11,7 +11,7 @@
     consommation_charbon_combustible_electricite_266qA: 8560
     consommation_charbon_combustible_extraction: 9500
     consommation_charbon_combustible_particuliers: 7460
-    #installation_euets : True
+    #installation_seqe : True
   output:
     assiette_ticc: 66500 #assiette = 10000 - (2500 + 3500 + 5000) - (5600 + (8500 - 8560) + 9500 + 7460)
 
@@ -29,7 +29,7 @@
     consommation_charbon_combustible_extraction: 9500
     consommation_charbon_combustible_particuliers: 7460
     consommation_charbon_combustible_biomasse: 8500
-    installation_euets : True
+    installation_seqe : True
   output:
     assiette_ticc: 58000 #assiette = 10000 - (2500 + 3500 + 5000) - (5600 + (8500 - 8560) + 9500 + 7460 +8500)
 
@@ -47,7 +47,7 @@
     consommation_charbon_combustible_extraction: 9500
     consommation_charbon_combustible_particuliers: 7460
     consommation_charbon_combustible_biomasse: 8500
-    installation_euets: True
+    installation_seqe: True
     chiffre_affaires_eta: 1000
     facture_energie_eta: 50
   output:
@@ -69,7 +69,7 @@
     consommation_charbon_combustible_particuliers: 7460
     consommation_charbon_combustible_biomasse: 8500
     consommation_charbon_combustible_electricite_petits_producteurs: 5000
-    installation_euets: True
+    installation_seqe: True
     chiffre_affaires_eta: 1000
     facture_energie_eta: 50
   output:
@@ -90,7 +90,7 @@
     consommation_charbon_combustible_particuliers: 7460
     consommation_charbon_combustible_biomasse: 8500
     consommation_charbon_combustible_electricite_petits_producteurs: 5000
-    installation_euets: True
+    installation_seqe: True
     chiffre_affaires_eta: 1000
     facture_energie_eta: 50
     contrat_achat_electricite_314: True
@@ -112,7 +112,7 @@
     consommation_charbon_combustible_particuliers: 7460
     consommation_charbon_combustible_biomasse: 8500
     consommation_charbon_combustible_electricite_petits_producteurs: 5000
-    installation_euets: True
+    installation_seqe: True
     chiffre_affaires_eta: 1000
     facture_energie_eta: 50
     contrat_achat_electricite_314: True
@@ -133,7 +133,7 @@
     consommation_charbon_combustible_particuliers: 7460
     consommation_charbon_combustible_biomasse: 8500
     consommation_charbon_combustible_electricite_petits_producteurs: 5000
-    installation_euets: True
+    installation_seqe: True
     chiffre_affaires_eta: 1000
     facture_energie_eta: 50
     installation_cogeneration: True 
