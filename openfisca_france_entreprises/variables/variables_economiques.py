@@ -21,7 +21,7 @@ class valeur_ajoutee_eta(Variable):
     value_type = float 
     entity = Etablissement
     definition_period = YEAR
-    label = "La valeur ajoutée d'une année donnée au niveau d'établissement"
+    label = "La valeur ajoutée d'une année donnée au niveau d'établissement, en fonction du effectif."
     def formula_1986_01_01(etablissement, period, parameters):
         valeur_ajoutee_ul = etablissement.unite_legale("valeur_ajoutee_ul", period)
         effectif_3112_ul = etablissement.unite_legale("effectif_3112_ul", period)
@@ -53,8 +53,16 @@ class chiffre_affaires_ul(Variable):
 class chiffre_affaires_eta(Variable):
     value_type = float
     entity = Etablissement
-    label = "La chiffre d'affaires pour une année donnée pour une établissement"
+    label = "La chiffre d'affaires pour une année donnée pour une établissement, en fonction du effectif."
     definition_period = YEAR
+    def formula_1986_01_01(etablissement, period, parameters):
+        chiffre_affaires_ul = etablissement.unite_legale("chiffre_affaires_ul", period)
+        effectif_3112_ul = etablissement.unite_legale("effectif_3112_ul", period)
+        effectif_3112_eta = etablissement("effectif_3112_eta", period)
+        chiffre_affaires_eta = chiffre_affaires_ul * (effectif_3112_eta/effectif_3112_ul)
+        
+        return chiffre_affaires_eta
+
 
 class facture_energie(Variable):
     value_type = float

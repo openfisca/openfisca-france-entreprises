@@ -10,6 +10,7 @@ class consommation_charbon(Variable):
     entity = Etablissement
     label = "Coal consumption of the etablissement"
     definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615177/2007-07-01/"
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
     def formula(etablissement, period):
@@ -17,7 +18,7 @@ class consommation_charbon(Variable):
         conso_double_usage = etablissement("consommation_charbon_double_usage", period)
         conso_di26 = etablissement("consommation_charbon_di26", period)
         conso_combustible = etablissement("consommation_charbon_combustible", period)
-
+#^ca cest la conso normale
         return (conso_non_combustible + conso_double_usage + conso_di26 + conso_combustible)
 
 
@@ -27,6 +28,7 @@ class consommation_charbon_non_combustible(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé autrement que comme combustible"
     definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
     def formula(etablissement, period):
@@ -43,6 +45,8 @@ class consommation_charbon_non_combustible_non_carburant(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé autrement que carburant ou combustible"
     definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
+
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704
 
 
@@ -52,6 +56,8 @@ class consommation_charbon_carburant(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé comme carburant"
     definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
+
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704
 
 
@@ -61,6 +67,8 @@ class consommation_charbon_double_usage(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé à double usage"
     definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
+
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
     def formula_2007_01_01(etablissement, period):
@@ -78,6 +86,8 @@ class consommation_charbon_double_usage_reductionchimique(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé à double usage, [...] notamment [...] [utilisé] dans des procédés métallurgiques ou de réduction chimique."
     definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
+
 
 
 class consommation_charbon_double_usage_265C(Variable):
@@ -86,6 +96,8 @@ class consommation_charbon_double_usage_265C(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé à double usage au sens du 2° du I de l'article 265 C"
     definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
+
 
 
 class consommation_charbon_di26(Variable):
@@ -94,6 +106,8 @@ class consommation_charbon_di26(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé dans un procédé de fabrication de produits minéraux non métalliques classé dans la nomenclature statistique des activités économiques dans la Communauté européenne (NACE), telle qu'elle résulte du règlement (CEE) n° 3037/90 du Conseil, du 9 octobre 1990, sous la rubrique DI 26"
     definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
+
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
 
@@ -103,6 +117,8 @@ class consommation_charbon_combustible(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé comme combustible"
     definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
+
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
     def formula(etablissement, period):
@@ -122,6 +138,8 @@ class consommation_charbon_combustible_interne(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé par établissements de production de produits pétroliers ou assimilés [...] lorsque cette consommation est effectuée pour la production de ces produits énergétiques ou pour la production de tout ou partie de l'énergie nécessaire à leur fabrication"
     definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
+
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
 
@@ -131,6 +149,8 @@ class consommation_charbon_combustible_electricite(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé pour la production d'électricité"
     definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
+
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
     def formula(etablissement, period):
@@ -147,6 +167,8 @@ class consommation_charbon_combustible_electricite_266qA(Variable):
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé pour la production d'électricité par une installation mentionnée à l'article 266 quinquies A du CDD."
     definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615176/2025-02-28"
+
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
 
@@ -155,6 +177,8 @@ class contrat_achat_electricite_314(Variable):
     entity = Etablissement
     label = "bénéficient d'un contrat d'achat d'électricité conclu en application de l'article L. 314-1 du code de l'énergie ou mentionné à l'article L. 121-27 du même code "
     definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032969945"
+
 
 
 class consommation_charbon_combustible_electricite_petits_producteurs(Variable):
@@ -164,6 +188,7 @@ class consommation_charbon_combustible_electricite_petits_producteurs(Variable):
     label = "Consommation de charbon de l'établissement, utilisé pour leurs besoins par les petits producteurs d'électricité au sens du 4° du V de l'article L. 3333-2 du code général des collectivités territoriales."
     definition_period = YEAR
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
 
 
 class consommation_charbon_combustible_electricite_other(Variable):
@@ -173,6 +198,7 @@ class consommation_charbon_combustible_electricite_other(Variable):
     label = "Consommation de charbon de l'établissement, utilisé pour la production d'électricité, autre."
     definition_period = YEAR
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
 
 
 class consommation_charbon_combustible_extraction(Variable):
@@ -182,6 +208,7 @@ class consommation_charbon_combustible_extraction(Variable):
     label = "Consommation de charbon de l'établissement, utilisé comme combustible dans le processus de sa fabrication et de son extraction."
     definition_period = YEAR
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
 
 
 class consommation_charbon_combustible_particuliers(Variable):
@@ -191,6 +218,7 @@ class consommation_charbon_combustible_particuliers(Variable):
     label = "Consommation de charbon de l'établissement, utilisé comme combustible pour les particuliers."
     definition_period = YEAR
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028447819/2014-01-01/"
 
 
 class consommation_charbon_combustible_biomasse(Variable):
@@ -200,6 +228,7 @@ class consommation_charbon_combustible_biomasse(Variable):
     label = "Consommation de charbon de l'établissement, utilisé par les entreprises de valorisation de la biomasse, sous réserve qu'elles soient soumises au régime des quotas d'émission de gaz à effet de serre prévu aux articles L. 229-5 à L. 229-19 du code de l'environnement ou qu'elles appliquent des accords volontaires de réduction de gaz à effet de serre permettant d'atteindre des objectifs environnementaux équivalents ou d'accroître leur rendement énergétique."
     definition_period = YEAR
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
 
 
 class consommation_charbon_combustible_other(Variable):
@@ -209,3 +238,84 @@ class consommation_charbon_combustible_other(Variable):
     label = "Consommation de charbon de l'établissement, utilisé comme combustible, non exonérée"
     definition_period = YEAR
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
+
+
+class consommation_charbon_navigation_interieure(Variable):
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = "la catagorie de la navigation intérieure de charbon sous L312-48"
+    definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
+    
+
+class charbon_navigation_interieure(Variable):
+    value_type = bool
+    unit = ''
+    entity = Etablissement
+    label = "la catagorie de la navigation intérieure de charbon sous L312-48"
+    definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
+    def formula_2023_01_01(etablissement, period):
+        apet = etablissement("apet", period)
+        type_eta = apet.possible_values
+        
+        determinant = False
+        
+        if apet == type_eta._50_30Z or apet == type_eta._50_40Z:
+            determinant = True
+        return determinant
+
+
+class consommation_charbon_navigation_maritime(Variable):
+    value_type = bool
+    unit = ''
+    entity = Etablissement
+    label = "la catagorie de la navigation intérieure de charbon sous L312-48"
+    definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
+    
+
+class charbon_navigation_maritime(Variable):
+    value_type = bool
+    unit = ''
+    entity = Etablissement
+    label = "la catagorie de la navigation intérieure de charbon sous L312-48"
+    definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
+    def formula_2023_01_01(etablissement, period):
+        apet = etablissement("apet", period)
+        type_eta = apet.possible_values
+        
+        determinant = False
+        
+        if apet == type_eta._50_10Z or apet == type_eta._50_20Z:
+            determinant = True
+        return determinant
+
+class consommation_charbon_navigation_aerienne(Variable):
+    value_type = float
+    unit = 'MWh'
+    entity = Etablissement
+    label = "la catagorie de la navigation aérienne de charbon sous L312-48"
+    definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
+    
+
+class charbon_navigation_aerienne(Variable):
+    value_type = bool
+    unit = ''
+    entity = Etablissement
+    label = "la catagorie de la navigation aérienne de charbon sous L312-48"
+    definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
+    def formula_2023_01_01(etablissement, period):
+        apet = etablissement("apet", period)
+        type_eta = apet.possible_values
+        
+        determinant = False
+        
+        if apet == type_eta._51_10Z or apet == type_eta._51_21Z:
+            determinant = True
+        return determinant

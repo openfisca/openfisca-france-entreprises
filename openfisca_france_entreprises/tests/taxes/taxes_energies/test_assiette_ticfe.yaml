@@ -1,0 +1,37 @@
+- name: test 2022 classification double usage
+#
+  period: 2022
+  input:
+    apet : _25_50A
+  output:
+    electricite_double_usage: 1
+
+- name: test 2024 classification electricite_transport_guide
+#
+  period: 2024
+  input:
+    apet : _53_10Z
+  output:
+    electricite_transport_guide: 1
+
+- name: test 2024 classification electricite_fabrication_produits_mineraux_non_metalliques
+#
+  period: 2024
+  input:
+    apet : _23_99Z
+  output:
+    electricite_fabrication_produits_mineraux_non_metalliques: 1
+
+- name: test 2024 classification electricite_centres_de_stockage_donnees
+#
+  period: 2025
+  input:
+    apet : _63_11Z
+  output:
+    electricite_centres_de_stockage_donnees: 1
+
+
+
+
+
+

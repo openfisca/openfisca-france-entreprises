@@ -22,7 +22,7 @@ class taxe_interieure_consommation_charbon(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "Taxe intérieure de consommation sur les houilles, lignites et cokes - TICC"
-    reference = ""  #
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615177/2007-07-01/"  #
 
     def formula_2007_01_01(etablissement, period, parameters):
         """
@@ -30,7 +30,7 @@ class taxe_interieure_consommation_charbon(Variable):
         """
 
         assiette_ticc = etablissement("assiette_ticc", period)
-        ticc = assiette_ticc * parameters(period).energy
+        ticc = assiette_ticc * parameters(period).energies.charbon.ticc
 
         return ticc
 
@@ -40,7 +40,7 @@ class assiette_ticc(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "Coal consumption taxable according to TICC"
-    reference = ""  #
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615177/2007-07-01/"  #
 
     def formula_2007_01_01(etablissement, period, parameters):
 

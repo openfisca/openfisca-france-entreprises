@@ -1,4 +1,4 @@
-- name: TICGN taux grande consummatrice
+- name: TICGN taux grande consommatrice
   period: 2014
   input:
     assiette_ticgn: 15000000 
@@ -7,7 +7,7 @@
 #formula_2014_01_01
 
 
-- name: TICGN taux grande consummatrice depuis la consummation
+- name: TICGN taux grande consommatrice depuis la consommation
   period: 2014
   input:
     consommation_gaz_naturel : 15000000

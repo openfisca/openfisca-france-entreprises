@@ -740,7 +740,7 @@ class naf(Enum):
     _98_10Z	=	"	Activités indifférenciées des ménages en tant que producteurs de biens pour usage propre	"
     _98_20Z	=	"	Activités indifférenciées des ménages en tant que producteurs de services pour usage propre	"
     _99_00Z	=	"	Activités des organisations et organismes extraterritoriaux	"
-    pas_donnes = "pas de donnés"
+    manquant = "donnés manquant"
 
 
 
