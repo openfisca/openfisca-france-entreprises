@@ -1,0 +1,9 @@
+- name: test 2022
+#formula_
+  period: 2022
+  input:
+    assiette_ticc: 1000
+  output:
+    taxe_interieure_consommation_charbon: 14620
+
+#1000*14.62

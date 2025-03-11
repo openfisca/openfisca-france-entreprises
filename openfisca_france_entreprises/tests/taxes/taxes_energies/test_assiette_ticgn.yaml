@@ -127,7 +127,7 @@
   period : 2008
   input: 
     consommation_gaz_combustible_electricite_266qA: 15000
-    consommation_non_beneficier_tarif_achat_2000_108 : 5000
+    consommation_gaz_non_beneficier_tarif_achat_2000_108 : 5000
   output: 
     consommation_gaz_production_electricite_non_exonere : 10000
 
@@ -135,7 +135,7 @@
   period : 2011
   input: 
     consommation_gaz_combustible_electricite_266qA: 15000
-    consommation_non_beneficier_tarif_achat_2000_108 : 5000
+    consommation_gaz_non_beneficier_tarif_achat_2000_108 : 5000
     consommation_gaz_electricite_petits_producteurs : 5800
   output: 
     consommation_gaz_production_electricite_non_exonere : 15800

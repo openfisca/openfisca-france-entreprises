@@ -24,7 +24,7 @@ class apet(Variable):
     #mettre tous les valeurs NAF, les deux colomnes
     definition_period = YEAR
     possible_values = naf
-    default_value = naf.pas_donnes
+    default_value = naf.manquant 
 
 
 
@@ -52,6 +52,7 @@ class installation_cogeneration(Variable):
 
 
 class installation_euets(Variable):
+    #remplacer par _seqe, et on a déjà l'information sur ça. 
     value_type = bool
     entity = Etablissement
     label = "Installation soumise au système européen de quotas carbone"
@@ -87,3 +88,46 @@ class installation_grande_consommatrice(Variable):
     # def formula_2021_01_01(etablissement, period):
 
     #     return True
+
+
+class risque_de_fuite_carbone_eta(Variable):
+    value_type = bool
+    entity = Etablissement
+    label = "Entreprise exposée au risque de fuite carbone"
+    definition_period = YEAR
+    reference = 'DÉCISION DÉLÉGUÉE (UE) 2019/708 DE LA COMMISSION du 15 février 2019'
+    def formula_2019_01_01(etablissement, period):
+        apet = etablissement("apet", period)
+        type_eta = apet.possible_values
+        codes_eligibles = [
+        type_eta._05_10Z, type_eta._05_20Z, type_eta._07_10Z, type_eta._07_29Z, type_eta._08_91Z,
+        type_eta._08_99Z, type_eta._10_41A, type_eta._10_41B, type_eta._10_62Z, type_eta._10_81Z,
+        type_eta._11_06Z, type_eta._13_10Z, type_eta._13_95Z, type_eta._14_11Z, type_eta._16_21Z,
+        type_eta._17_11Z, type_eta._17_12Z, type_eta._19_10Z, type_eta._19_20Z, type_eta._20_11Z,
+        type_eta._20_12Z, type_eta._20_13B, type_eta._20_14Z, type_eta._20_15Z, type_eta._20_16Z,
+        type_eta._20_17Z, type_eta._20_60Z, type_eta._23_11Z, type_eta._23_13Z, type_eta._23_14Z,
+        type_eta._23_19Z, type_eta._23_20Z, type_eta._23_31Z, type_eta._23_51Z, type_eta._23_52Z,
+        type_eta._23_99Z, type_eta._24_10Z, type_eta._24_20Z, type_eta._24_31Z, type_eta._24_42Z,
+        type_eta._24_43Z, type_eta._24_44Z, type_eta._24_45Z, type_eta._24_46Z, type_eta._24_51Z,
+        type_eta._08_93Z, type_eta._13_30Z, type_eta._21_10Z, type_eta._23_41Z, type_eta._23_42Z,
+        type_eta._23_32Z, type_eta._08_12Z, type_eta._10_31Z, type_eta._10_39A, type_eta._10_51D,
+        type_eta._10_51D, type_eta._10_51D, type_eta._10_51D, type_eta._10_51D, type_eta._10_89Z,
+        type_eta._20_30Z, type_eta._20_30Z, type_eta._25_50A
+        ]
+        determinant = False
+        if apet in codes_eligibles:
+            determinant = True
+        return determinant
+#faut changer à l'établissement
+#faut faire des autres listes selon la période d'utilisation
+
+
+
+class intensite_echanges_avec_pays_tiers(Variable):
+    value_type = float
+    unit = "pourcentage"
+    entity = Etablissement
+    label = "L'intensité des échanges avec les pays tiers, appliqué au sein de L312-65, -73"
+    definition_period = YEAR
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046196784'
+    

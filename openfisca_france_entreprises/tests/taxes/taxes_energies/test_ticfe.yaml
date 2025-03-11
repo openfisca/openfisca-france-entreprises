@@ -1,0 +1,58 @@
+- name: test 2020 taux normal
+#formula_2020
+  period: 2020
+  input:
+    amperage: 350 #en kVA
+    assiette_ticfe: 1000
+  output:
+    taxe_interieure_taxation_electricite_taux_normal: 22500
+
+- name: test 2022 concurrence internationale
+#
+  period: 2022
+  input:
+    electro_intensite: 0.3
+    assiette_ticfe: 1000
+    intensite_echanges_avec_pays_tiers: 26
+    electro_intensive_concurrence_internationale: True 
+  output:
+    taxe_interieure_taxation_electricite_electro_intensive_concurrence_internationale: 5500
+
+- name: test 2022 concurrence internationale forumle finale
+#
+  period: 2022
+  input:
+    electro_intensive_concurrence_internationale: True
+    electro_intensite: 20
+    intensite_echanges_avec_pays_tiers: 26
+    risque_de_fuite_carbone_eta: True 
+    assiette_ticfe: 1000
+  output:
+    taxe_interieure_consummation_finale_electricite: 500
+  
+- name: test 2022 activite industrielle
+#
+  period: 2022
+  input:
+    electro_intensite: 0.3
+    electro_intensive_activite_industrielle: True 
+    assiette_ticfe: 1000
+  output:
+    taxe_interieure_taxation_electricite_electro_intensive_activite_industrielle: 7500
+
+- name: test 2022 activite industrielle formule finale 
+#
+  period: 2022
+  input:
+    electro_intensive_activite_industrielle: True
+    electro_intensite: 0.3
+    consommation_electricite: 1000 #pas de problèmes avec assiette_ticfe, donc sa formule est en faute
+  output:
+    taxe_interieure_consummation_finale_electricite: 7500
+
+
+
+
+
+
+

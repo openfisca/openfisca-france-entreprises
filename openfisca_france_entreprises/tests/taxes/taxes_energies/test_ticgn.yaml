@@ -75,7 +75,7 @@
     consommation_gaz_extraction_production: 1200
     consommation_gaz_particuliers: 45200
     carburant_gaz: 200
-    entreprises_risque_de_fuite_carbone: True
+    risque_de_fuite_carbone_eta: True
     installation_euets: True
     installation_grande_consommatrice: False
 

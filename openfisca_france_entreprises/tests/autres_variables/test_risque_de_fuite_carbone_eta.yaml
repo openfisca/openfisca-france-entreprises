@@ -1,0 +1,12 @@
+- name: "Test pour risque_de_fuite_carbone_eta"
+  period: "2019"
+  input: 
+    apet: _05_20Z
+  output: 
+    risque_de_fuite_carbone_eta : True
+
+
+
+
+
+
