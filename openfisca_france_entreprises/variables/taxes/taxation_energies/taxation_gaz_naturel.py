@@ -78,8 +78,8 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
 
 
         if apet == type_eta._10_39A :
-            consummation_par_valeur_ajoutee = etablissement("consummation_par_valeur_ajoutee", period)
-            if consummation_par_valeur_ajoutee >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes : #800 Wh par Euro
+            consummation_par_valeur_ajoutee_gaz = etablissement("consummation_par_valeur_ajoutee_gaz", period)
+            if consummation_par_valeur_ajoutee_gaz >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes : #800 Wh par Euro
                 taxe = etablissement("taxe_interieure_consommation_gaz_naturel_legumes", period)
                 return taxe
         if seqe == True and grande_consommatrice == True:

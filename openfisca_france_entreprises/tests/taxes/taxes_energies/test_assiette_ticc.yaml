@@ -3,140 +3,54 @@
   period: 2007
   input:
     consommation_charbon: 100000
-    consommation_charbon_non_combustible: 2500
-    consommation_charbon_double_usage: 3500
-    consommation_charbon_di26: 5000
-    consommation_charbon_combustible_interne: 5600
-    consommation_charbon_combustible_electricite: 8500
-    consommation_charbon_combustible_electricite_266qA: 8560
-    consommation_charbon_combustible_extraction: 9500
-    consommation_charbon_combustible_particuliers: 7460
-    #installation_seqe : True
+    consommation_charbon_non_combustible: 1000
+    consommation_charbon_combustible_interne: 1000
+    consommation_charbon_combustible_electricite: 1000
+    consommation_charbon_combustible_extraction: 1000
+    consommation_charbon_combustible_particuliers: 1000
   output:
-    assiette_ticc: 66500 #assiette = 10000 - (2500 + 3500 + 5000) - (5600 + (8500 - 8560) + 9500 + 7460)
-
-- name: test 2008
-#formula_2008_01_01
-  period: 2008
-  input:
-    consommation_charbon: 100000
-    consommation_charbon_non_combustible: 2500
-    consommation_charbon_double_usage: 3500
-    consommation_charbon_di26: 5000
-    consommation_charbon_combustible_interne: 5600
-    consommation_charbon_combustible_electricite: 8500
-    consommation_charbon_combustible_electricite_266qA: 8560
-    consommation_charbon_combustible_extraction: 9500
-    consommation_charbon_combustible_particuliers: 7460
-    consommation_charbon_combustible_biomasse: 8500
-    installation_seqe : True
-  output:
-    assiette_ticc: 58000 #assiette = 10000 - (2500 + 3500 + 5000) - (5600 + (8500 - 8560) + 9500 + 7460 +8500)
-
-- name: test 2009
-#formula_2009_01_01
-  period: 2009
-  input:
-    consommation_charbon: 100000
-    consommation_charbon_non_combustible: 2500
-    consommation_charbon_double_usage: 3500
-    consommation_charbon_di26: 5000
-    consommation_charbon_combustible_interne: 5600
-    consommation_charbon_combustible_electricite: 8500
-    consommation_charbon_combustible_electricite_266qA: 8560
-    consommation_charbon_combustible_extraction: 9500
-    consommation_charbon_combustible_particuliers: 7460
-    consommation_charbon_combustible_biomasse: 8500
-    installation_seqe: True
-    chiffre_affaires_eta: 1000
-    facture_energie_eta: 50
-  output:
-    assiette_ticc: 58000 #assiette = 10000 - (2500 + 3500 + 5000) - (5600 + (8500 - 8560) + 9500 + 7460 +8500)
-
+    assiette_ticc: 95000 
+#assiette = consommation_charbon - (consommation_charbon_non_combustible + consommation_charbon_combustible_interne + consommation_charbon_combustible_electricite + consommation_charbon_combustible_extraction + consommation_charbon_combustible_particuliers )
 
 - name: test 2011
 #formula_2011_01_01
   period: 2011
   input:
     consommation_charbon: 100000
-    consommation_charbon_non_combustible: 2500
-    consommation_charbon_double_usage: 3500
-    consommation_charbon_di26: 5000
-    consommation_charbon_combustible_interne: 5600
-    consommation_charbon_combustible_electricite: 8500
-    consommation_charbon_combustible_electricite_266qA: 8560
-    consommation_charbon_combustible_extraction: 9500
-    consommation_charbon_combustible_particuliers: 7460
-    consommation_charbon_combustible_biomasse: 8500
-    consommation_charbon_combustible_electricite_petits_producteurs: 5000
-    installation_seqe: True
-    chiffre_affaires_eta: 1000
-    facture_energie_eta: 50
+    consommation_charbon_non_combustible: 1000
+    consommation_charbon_combustible_interne: 1000
+    consommation_charbon_combustible_electricite: 1000
+    consommation_charbon_combustible_extraction: 1000
+    consommation_charbon_combustible_particuliers: 1000
+    consommation_charbon_combustible_electricite_petits_producteurs: 1000
   output:
-    assiette_ticc: 63000 #assiette = 10000 - (2500 + 3500 + 5000) - (5600 + (8500 - 8560 - 5000) + 9500 + 7460 +8500)
-
-- name: test 2014
-#formula_2014_01_01
-  period: 2014
-  input:
-    consommation_charbon: 100000
-    consommation_charbon_non_combustible: 2500
-    consommation_charbon_double_usage: 3500
-    consommation_charbon_di26: 5000
-    consommation_charbon_combustible_interne: 5600
-    consommation_charbon_combustible_electricite: 8500
-    consommation_charbon_combustible_electricite_266qA: 8560
-    consommation_charbon_combustible_extraction: 9500
-    consommation_charbon_combustible_particuliers: 7460
-    consommation_charbon_combustible_biomasse: 8500
-    consommation_charbon_combustible_electricite_petits_producteurs: 5000
-    installation_seqe: True
-    chiffre_affaires_eta: 1000
-    facture_energie_eta: 50
-    contrat_achat_electricite_314: True
-  output:
-    assiette_ticc: 63000 #assiette = 10000 - (2500 + 3500 + 5000) - (5600 + (8500 - 8560 - 5000) + 9500 + 7460 +8500)
+    assiette_ticc: 96000 
 
 - name: test 2016
-#formula_2016_01_01
+#formula_2007_01_01
   period: 2016
   input:
     consommation_charbon: 100000
-    consommation_charbon_non_combustible: 2500
-    consommation_charbon_double_usage: 3500
-    consommation_charbon_di26: 5000
-    consommation_charbon_combustible_interne: 5600
-    consommation_charbon_combustible_electricite: 8500
-    consommation_charbon_combustible_electricite_266qA: 8560
-    consommation_charbon_combustible_extraction: 9500
-    consommation_charbon_combustible_particuliers: 7460
-    consommation_charbon_combustible_biomasse: 8500
-    consommation_charbon_combustible_electricite_petits_producteurs: 5000
-    installation_seqe: True
-    chiffre_affaires_eta: 1000
-    facture_energie_eta: 50
-    contrat_achat_electricite_314: True
+    consommation_charbon_non_combustible: 1000
+    consommation_charbon_combustible_interne: 1000
+    consommation_charbon_combustible_electricite: 1000
+    consommation_charbon_combustible_extraction: 1000
+    consommation_charbon_combustible_electricite_petits_producteurs: 1000
+
   output:
-    assiette_ticc: 70460 #assiette = 10000 - (2500 + 3500 + 5000) - (5600 + (8500 - 8560 - 5000) + 9500 +8500)
+    assiette_ticc: 97000 
 
 - name: test 2020
 #formula_2020_01_01
   period: 2020
   input:
     consommation_charbon: 100000
-    consommation_charbon_non_combustible: 2500
-    consommation_charbon_double_usage: 3500
-    consommation_charbon_di26: 5000
-    consommation_charbon_combustible_interne: 5600
-    consommation_charbon_combustible_electricite: 8500
-    consommation_charbon_combustible_extraction: 9500
-    consommation_charbon_combustible_particuliers: 7460
-    consommation_charbon_combustible_biomasse: 8500
-    consommation_charbon_combustible_electricite_petits_producteurs: 5000
-    installation_seqe: True
-    chiffre_affaires_eta: 1000
-    facture_energie_eta: 50
-    installation_cogeneration: True 
-    consommation_charbon_carburant: 1000
+    consommation_charbon_carburant: 1000 
+    consommation_charbon_non_combustible_non_carburant: 1000
+    consommation_charbon_combustible_interne: 1000
+    consommation_charbon_combustible_extraction: 1000
+    consommation_charbon_combustible_electricite: 1000
+    consommation_charbon_combustible_electricite_petits_producteurs: 1000
+
   output:
-    assiette_ticc: 62900 #assiette = 10000 - (2500 + 3500 + 5000) - (5600 + (8500 - 5000) + 9500 +8500)
+    assiette_ticc: 98000 

@@ -1,4 +1,4 @@
-#test pour valeur_ajoutee et consummation_par_valeur_ajoutee
+#test pour valeur_ajoutee et consummation_par_valeur_ajoutee_gaz
 - name: "Test pour valeur_ajoutee_eta"
   period: "2000"
   input: 
@@ -14,5 +14,5 @@
     assiette_ticgn: 1000000 #en MWh
     valeur_ajoutee_eta : 200000000 #en Euro
   output: 
-    consummation_par_valeur_ajoutee : 5000  # 1000000 / 200, en Wh par Euro
+    consummation_par_valeur_ajoutee_gaz : 5000  # 1000000 / 200, en Wh par Euro
 
