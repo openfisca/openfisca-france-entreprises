@@ -175,7 +175,7 @@ class electricite_fabrication_produits_mineraux_non_metalliques(Variable):
     label = "coonditions du L314-64"
     definition_period = YEAR
     reference = ""
-    def formula_2023_01_01(etablissement, period):
+    def formula_2022_01_01(etablissement, period):
         apet = etablissement("apet", period)
         type_eta = apet.possible_values
         codes_eligibles = [

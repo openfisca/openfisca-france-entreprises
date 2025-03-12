@@ -50,8 +50,14 @@
   output:
     taxe_interieure_consummation_finale_electricite: 7500
 
-
-
+- name: test 2024 electricite_transport_guide
+#formula_
+  period: 2022
+  input:
+    assiette_ticc: 1000
+    apet: _53_10Z
+  output:
+    taxe_interieure_consummation_finale_electricite: 0
 
 
 

@@ -30,7 +30,7 @@ class valeur_ajoutee_eta(Variable):
         
         return valeur_ajoutee_eta
 
-class consummation_par_valeur_ajoutee(Variable):
+class consummation_par_valeur_ajoutee_gaz(Variable):
     value_type = float
     entity = Etablissement
     definition_period = YEAR
@@ -38,10 +38,10 @@ class consummation_par_valeur_ajoutee(Variable):
     label = "Méasure de l'intensité de consommation d'énergie pour la valeur ajoutée."
 
     def formula_1960_01_01(etablissement, period, parameters):
-        valeur_ajoutee = etablissement("valeur_ajoutee_eta", period)
+        valeur_ajoutee_eta = etablissement("valeur_ajoutee_eta", period)
         assiette_ticgn_mwh = etablissement("assiette_ticgn", period)
         assiette_ticgn_wh = assiette_ticgn_mwh * 1000000
-        consummation__divisee_par_valeur_ajoutee = assiette_ticgn_wh/valeur_ajoutee
+        consummation__divisee_par_valeur_ajoutee = assiette_ticgn_wh/valeur_ajoutee_eta
         return consummation__divisee_par_valeur_ajoutee
 
 class chiffre_affaires_ul(Variable):
@@ -59,18 +59,21 @@ class chiffre_affaires_eta(Variable):
         chiffre_affaires_ul = etablissement.unite_legale("chiffre_affaires_ul", period)
         effectif_3112_ul = etablissement.unite_legale("effectif_3112_ul", period)
         effectif_3112_eta = etablissement("effectif_3112_eta", period)
-        chiffre_affaires_eta = chiffre_affaires_ul * (effectif_3112_eta/effectif_3112_ul)
-        
+        if effectif_3112_ul:
+            chiffre_affaires_eta = chiffre_affaires_ul * (effectif_3112_eta/effectif_3112_ul)
+        else :
+            chiffre_affaires_eta = 0
+
         return chiffre_affaires_eta
 
 
-class facture_energie(Variable):
+class facture_energie_ul(Variable):
     value_type = float
     entity = UniteLegale
     label = "La facture energie pour une année donnée pour une unité legale"
     definition_period = YEAR
 
-class facture_energie(Variable):
+class facture_energie_eta(Variable):
     value_type = float
     entity = Etablissement
     label = "La facture energie pour une année donnée pour une établissement"

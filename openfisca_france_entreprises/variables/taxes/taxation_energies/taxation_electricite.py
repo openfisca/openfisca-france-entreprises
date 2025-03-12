@@ -22,6 +22,53 @@ class taxe_interieure_consummation_finale_electricite(Variable):
         electro_intensive_concurrence_internationale  = etablissement("electro_intensive_concurrence_internationale", period)
         electricite_centres_de_stockage_donnees = etablissement('electricite_centres_de_stockage_donnees', period)
         electricite_transport_collectif_personnes = etablissement('electricite_transport_collectif_personnes', period)
+        electricite_exploitation_aerodrome = etablissement('electricite_exploitation_aerodrome', period)
+        electricite_production_a_bord = etablissement("electricite_production_a_bord", period)
+        electricite_double_usage = etablissement("electricite_double_usage", period)
+        electricite_transport_guide = etablissement('electricite_transport_guide',period)
+        electricite_alimentation_a_quai = etablissement('electricite_alimentation_a_quai', period)
+        electricite_fabrication_produits_mineraux_non_metalliques = etablissement('electricite_fabrication_produits_mineraux_non_metalliques',period)
+        electricite_production_biens_electro_intensive = etablissement('electricite_production_biens_electro_intensive',period)
+        
+        
+        if electro_intensive_activite_industrielle == True:
+            taxe = etablissement("taxe_interieure_taxation_electricite_electro_intensive_activite_industrielle",period)
+        elif electro_intensive_concurrence_internationale == True:
+            taxe = etablissement("taxe_interieure_taxation_electricite_electro_intensive_concurrence_internationale",period)
+        elif electricite_transport_guide == True: 
+            taxe = etablissement("taxe_electricite_transport_guide",period)
+        elif electricite_centres_de_stockage_donnees == True:
+            taxe = etablissement("taxe_electricite_centres_de_stockage_données",period)
+        elif electricite_transport_collectif_personnes == True:        
+            taxe = etablissement("taxe_electricite_transport_collectif_personnes",period)
+        elif electricite_exploitation_aerodrome == True:        
+            taxe = etablissement("taxe_electricite_exploitation_aerodrome",period)
+        elif electricite_alimentation_a_quai == True:
+            taxe = etablissement('electricite_alimentation_a_quai',period)
+        elif electricite_production_a_bord == True:
+            taxe = 0
+        elif electricite_double_usage == True: 
+            taxe = 0
+        elif electricite_fabrication_produits_mineraux_non_metalliques == True: 
+            taxe = 0
+        elif electricite_production_biens_electro_intensive == True:
+            taxe = 0
+        else: 
+            taxe = etablissement("taxe_interieure_taxation_electricite_taux_normal", period)
+        
+        #voici toutes les autres formes de la taxe
+
+        summation = taxe 
+        return summation
+    
+    def formula_2023_01_01(etablissement, period, parameters):
+        """par rapport à précedement, ajoute manutention_portuaire, réf : L312-48
+        """
+        #voici les conditions à appliquer 
+        electro_intensive_activite_industrielle = etablissement("electro_intensive_activite_industrielle", period)
+        electro_intensive_concurrence_internationale  = etablissement("electro_intensive_concurrence_internationale", period)
+        electricite_centres_de_stockage_donnees = etablissement('electricite_centres_de_stockage_donnees', period)
+        electricite_transport_collectif_personnes = etablissement('electricite_transport_collectif_personnes', period)
         electricite_manutention_portuaire = etablissement('electricite_manutention_portuaire',  period)
         electricite_exploitation_aerodrome = etablissement('electricite_exploitation_aerodrome', period)
         electricite_production_a_bord = etablissement("electricite_production_a_bord", period)
@@ -49,7 +96,6 @@ class taxe_interieure_consummation_finale_electricite(Variable):
         elif electricite_alimentation_a_quai == True:
             taxe = etablissement('electricite_alimentation_a_quai',period)
         elif electricite_production_a_bord == True:
-        #faut lister les activités desquelles le taux est 0
             taxe = 0
         elif electricite_double_usage == True: 
             taxe = 0
@@ -71,7 +117,7 @@ class taxe_electricite_production_a_bord(Variable):
     value_type = float
     entity = Etablissement
     definition_period = YEAR
-    def formula_2024_01_01(etablissement, period, parameters):
+    def formula_2022_01_01(etablissement, period, parameters):
         assiette_ticfe = etablissement("assiette_ticfe",period)
         taux = parameters(period).energies.electricite.ticfe.alimentation_a_quai
         taxe = assiette_ticfe * taux
@@ -83,7 +129,7 @@ class taxe_electricite_alimentation_a_quai(Variable):
     value_type = float
     entity = Etablissement
     definition_period = YEAR
-    def formula_2024_01_01(etablissement, period, parameters):
+    def formula_2022_01_01(etablissement, period, parameters):
         assiette_ticfe = etablissement("assiette_ticfe",period)
         taux = parameters(period).energies.electricite.ticfe.alimentation_a_quai
         taxe = assiette_ticfe * taux
@@ -95,7 +141,7 @@ class taxe_electricite_exploitation_aerodrome(Variable):
     value_type = float
     entity = Etablissement
     definition_period = YEAR
-    def formula_2024_01_01(etablissement, period, parameters):
+    def formula_2022_01_01(etablissement, period, parameters):
         assiette_ticfe = etablissement("assiette_ticfe",period)
         taux = parameters(period).energies.electricite.ticfe.aerodrome
         taxe = assiette_ticfe * taux
@@ -107,7 +153,7 @@ class taxe_electricite_manutention_portuaire(Variable):
     value_type = float
     entity = Etablissement
     definition_period = YEAR
-    def formula_2024_01_01(etablissement, period, parameters):
+    def formula_2022_01_01(etablissement, period, parameters):
         assiette_ticfe = etablissement("assiette_ticfe",period)
         taux = parameters(period).energies.electricite.ticfe.manutention_portuaire
         taxe = assiette_ticfe * taux
@@ -119,7 +165,7 @@ class taxe_electricite_transport_collectif_personnes(Variable):
     value_type = float
     entity = Etablissement
     definition_period = YEAR
-    def formula_2024_01_01(etablissement, period, parameters):
+    def formula_2022_01_01(etablissement, period, parameters):
         assiette_ticfe = etablissement("assiette_ticfe",period)
         taux = parameters(period).energies.electricite.ticfe.transport_collectif_personnes
         taxe = assiette_ticfe * taux
@@ -131,7 +177,7 @@ class taxe_electricite_transport_guide(Variable):
     value_type = float
     entity = Etablissement
     definition_period = YEAR
-    def formula_2024_01_01(etablissement, period, parameters):
+    def formula_2022_01_01(etablissement, period, parameters):
         assiette_ticfe = etablissement("assiette_ticfe",period)
         taux = parameters(period).energies.electricite.ticfe.transport_guide
         taxe = assiette_ticfe * taux
@@ -143,7 +189,7 @@ class taxe_electricite_centres_de_stockage_données(Variable):
     value_type = float
     entity = Etablissement
     definition_period = YEAR
-    def formula_2024_01_01(etablissement, period, parameters):
+    def formula_2022_01_01(etablissement, period, parameters):
         assiette_ticfe = etablissement("assiette_ticfe",period)
         taux = parameters(period).energies.electricite.ticfe.data_center
         taxe = assiette_ticfe * taux
