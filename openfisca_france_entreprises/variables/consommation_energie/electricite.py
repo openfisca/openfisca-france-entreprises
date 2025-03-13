@@ -59,7 +59,7 @@ class electricite_production_a_bord(Variable):
     label = "la catagorie du transport guidé d'élétricité sous L312-48"
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
-    def formula_2023_01_01(etablissement, period):
+    def formula_2022_01_01(etablissement, period):
         apet = etablissement("apet", period)
         type_eta = apet.possible_values
         codes_eligibles = [
@@ -79,7 +79,7 @@ class electricite_transport_guide(Variable):
     label = "la catagorie du transport guidé d'élétricité sous L312-48"
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
-    def formula_2023_01_01(etablissement, period):
+    def formula_2022_01_01(etablissement, period):
         apet = etablissement("apet", period)
         type_eta = apet.possible_values
         codes_eligibles = [
@@ -102,7 +102,7 @@ class electricite_transport_collectif_personnes(Variable):
     label = "la catagorie du transport collectif d'éléctricité de personnes sous L312-48"
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
-    def formula_2023_01_01(etablissement, period):
+    def formula_2022_01_01(etablissement, period):
         apet = etablissement("apet", period)
         type_eta = apet.possible_values
         
@@ -121,7 +121,7 @@ class electricite_alimentation_a_quai(Variable):
     label = "la catagorie d'alimentation à quai"
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
-    def formula_2023_01_01(etablissement, period):
+    def formula_2022_01_01(etablissement, period):
         apet = etablissement("apet", period)
         type_eta = apet.possible_values
         
@@ -157,7 +157,7 @@ class electricite_exploitation_aerodrome(Variable):
     label = "la catagorie des exploitation des aérodromes ouverts à la circulation aérienne publique	"
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
-    def formula_2023_01_01(etablissement, period):
+    def formula_2022_01_01(etablissement, period):
         apet = etablissement("apet", period)
         type_eta = apet.possible_values
         
@@ -215,7 +215,7 @@ class electricite_centres_de_stockage_donnees(Variable):
     label = "qualification du L314-70"
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051200586"
-    def formula_2025_01_01(etablissement, period) : 
+    def formula_2022_01_01(etablissement, period) : 
         apet = etablissement("apet", period)
         type_eta = apet.possible_values
         determinant = False
@@ -231,14 +231,14 @@ class electro_intensive_activite_industrielle(Variable):
     definition_period = YEAR
     label = "sous L312-64/65/71"
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603709"  #
-    def formula_2025_01_01(etablissement, period, parameters):
+    def formula_2022_01_01(etablissement, period, parameters):
         """
         """
         apet = etablissement("apet", period)
         type_eta = apet.possible_values
 
         status = False
-        if apet == type_eta._08_12Z or type_eta._08_99Z or type_eta._09_90Z or type_eta._28_92Z :
+        if apet == type_eta._08_12Z or apet == type_eta._08_99Z or apet == type_eta._09_90Z or apet == type_eta._28_92Z :
             status = True
         
         
@@ -251,7 +251,7 @@ class electro_intensive_concurrence_internationale(Variable):
     definition_period = YEAR
     label = "concurrence internationale sous L312-65/72"
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603709"  #
-    def formula_2025_01_01(etablissement, period, parameters):
+    def formula_2022_01_01(etablissement, period, parameters):
         """
         """
         apet = etablissement("apet", period)

@@ -7,6 +7,16 @@
   output:
     taxe_interieure_taxation_electricite_taux_normal: 22500
 
+- name: test 2011 taxe finale taux normal
+#formula_2020
+  period: 2011
+  input:
+    assiette_ticfe: 1000
+  output:
+    taxe_interieure_taxation_electricite_taux_normal: 500
+
+
+
 - name: test 2022 concurrence internationale
 #
   period: 2022
@@ -22,10 +32,9 @@
 #
   period: 2022
   input:
-    electro_intensive_concurrence_internationale: True
+    apet: _17_12Z
     electro_intensite: 20
     intensite_echanges_avec_pays_tiers: 26
-    risque_de_fuite_carbone_eta: True 
     assiette_ticfe: 1000
   output:
     taxe_interieure_consummation_finale_electricite: 500
@@ -50,15 +59,78 @@
   output:
     taxe_interieure_consummation_finale_electricite: 7500
 
-- name: test 2024 electricite_transport_guide
-#formula_
+
+- name: test 2022 classification double usage
+#
   period: 2022
   input:
-    assiette_ticc: 1000
-    apet: _53_10Z
+    apet : _25_50A
+    assiette_ticfe: 1000
   output:
     taxe_interieure_consummation_finale_electricite: 0
 
+- name: test 2022 classification electricite_transport_guide
+#
+  period: 2022
+  input:
+    apet : _53_10Z
+    assiette_ticfe: 1000
+  output:
+    taxe_interieure_consummation_finale_electricite: 500
 
+- name: test 2024 classification electricite_fabrication_produits_mineraux_non_metalliques
+#
+  period: 2024
+  input:
+    apet : _23_99Z
+    assiette_ticfe: 1000
+  output:
+    taxe_interieure_consummation_finale_electricite: 0
+
+- name: test 2024 classification electricite_centres_de_stockage_donnees
+#
+  period: 2024
+  input:
+    apet : _63_11Z
+    assiette_ticfe: 1000
+  output:
+    taxe_interieure_consummation_finale_electricite: 12000
+
+- name: test 2024 classification electricite_transport_collectif_personnes
+#
+  period: 2024
+  input:
+    apet : _49_39A
+    assiette_ticfe: 1000
+  output:
+    taxe_interieure_consummation_finale_electricite: 500
+
+- name: test 2024 classification taxe_electricite_exploitation_aerodrome
+#
+  period: 2024
+  input:
+    apet : _52_23Z
+    assiette_ticfe: 1000
+  output:
+    taxe_interieure_consummation_finale_electricite: 7500
+
+- name: test 2024 classification electricite_alimentation_a_quai
+#
+  period: 2024
+  input:
+    apet : _52_22Z
+    assiette_ticfe: 1000
+  output:
+    taxe_interieure_consummation_finale_electricite: 500
+
+
+- name: test 2024 classification electricite_manutention_portuaire
+#
+  period: 2024
+  input:
+    apet : _52_24A
+    assiette_ticfe: 1000
+  output:
+    taxe_interieure_consummation_finale_electricite: 500
 
 
