@@ -1,3 +1,16 @@
+- name: test 2022 assiette_ticfe 
+#
+  period: 2022
+  input: 
+    consommation_electricite: 10000
+    consommation_electricite_energie_ou_gaz_renouvelable: 1000
+    consommation_electricite_puissance_moins_1_MW: 1000
+    consommation_electricite_auto_consommation: 1000
+  output:
+    electricite_double_usage: 7000
+
+
+
 - name: test 2022 classification double usage
 #
   period: 2022
