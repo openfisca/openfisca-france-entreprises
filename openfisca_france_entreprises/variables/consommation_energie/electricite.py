@@ -18,7 +18,7 @@ class amperage(Variable):
     value_type = float
     unit = 'kVA'
     entity = Etablissement
-    label = "Amperage de la consummation de l'establissement. Ça determine la catégorie fiscale au sein du Article L312-24."
+    label = "Amperage de la consommation de l'establissement. Ça determine la catégorie fiscale au sein du Article L312-24."
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603823"
 

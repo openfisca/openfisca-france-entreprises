@@ -71,7 +71,7 @@ class taxe_interieure_consommation_charbon(Variable):
     
         
     def formula_2022_01_01(etablissement, period, parameters):
-        #par rapport à précedement, ajoute charbon_secteurs_aeronautique_et_naval, charbon_navigation_interieure, charbon_navigation_aerienne, charbon_fabrication_produits_mineraux_non_metalliques comme conditions d'exemption de la taxe
+        #par rapport à précedement, ajouté charbon_secteurs_aeronautique_et_naval, charbon_navigation_interieure, charbon_navigation_aerienne, charbon_fabrication_produits_mineraux_non_metalliques comme conditions d'exemption de la taxe
 
         #les suivants sont liés à charbon_biomasse comme conditions d'application
         charbon_biomasse = etablissement("charbon_biomasse", period)

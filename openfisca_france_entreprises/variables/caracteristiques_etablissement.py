@@ -27,7 +27,6 @@ class apet(Variable):
     default_value = naf.manquant 
 
 
-
 class postal_code(Variable):
     value_type = str
     max_length = 5
@@ -48,6 +47,27 @@ class installation_cogeneration(Variable):
     value_type = bool
     entity = Etablissement
     label = "Installation de cogénération pour la production combinée de chaleur et d'électricité"
+    definition_period = YEAR
+
+
+class date_installation_cogeneration(Variable):
+    value_type = int
+    entity = Etablissement
+    label = "Date d'installation de cogéneration"
+    definition_period = YEAR
+
+
+class date_creation_eta(Variable):
+    value_type = int
+    entity = Etablissement
+    label = "Date de création de l'établissement"
+    definition_period = YEAR
+
+
+class date_creation_ul(Variable):
+    value_type = int
+    entity = Etablissement
+    label = "Date de création de l'unité légale"
     definition_period = YEAR
 
 
@@ -122,7 +142,6 @@ class risque_de_fuite_carbone_eta(Variable):
 #faut faire des autres listes selon la période d'utilisation
 
 
-
 class intensite_echanges_avec_pays_tiers(Variable):
     value_type = float
     unit = "pourcentage"
@@ -131,3 +150,12 @@ class intensite_echanges_avec_pays_tiers(Variable):
     definition_period = YEAR
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046196784'
     
+
+class departement(Variable):
+    value_type = str
+    unit = ''
+    entity = Etablissement
+    label = ""
+    definition_period = YEAR
+    reference = ""
+
