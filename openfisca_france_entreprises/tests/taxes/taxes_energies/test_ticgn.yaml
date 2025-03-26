@@ -1,90 +1,109 @@
-- name: "Test avant 2007 (exonération matière première, huiles minérales, chauffage habitation)"
-  period: "1986"
+- name: "Test 1986"
+  period: 1986
   input: 
-    consommation_gaz_naturel: 10000000
-    consommation_gaz_matiere_premiere: 2000000
-    consommation_gaz_huiles_minerales: 1000000
-    consommation_gaz_chauffage_habitation: 500000
+    assiette_ticgn : 6500000
   output: 
     taxe_interieure_consommation_gaz_naturel : 15555000
     #(6500000 - 400000*12)*9.15
       # 1000000 - (200000 + 100000 + 50000)
 #en utilisant formula_1986_01_01
+#le seuil existe jusqu'à 2008
+
+- name: "Test 1994"
+  period: 1994
+  input: 
+    assiette_ticgn : 6500000
+    apet: _23_51Z #gaz_matiere_premiere
+  output: 
+    taxe_interieure_consommation_gaz_naturel : 0
+    #(6500000 - 400000*12)*9.15
+      # 1000000 - (200000 + 100000 + 50000)
+#en utilisant formula_1986_01_01
 
 
-- name: "Test en 2014 (suppression exonération petits producteurs d'électricité)"
+- name: "Test 2003"
+  period: 2003
+  input: 
+    assiette_ticgn : 6500000
+    apet: _08_92Z #gaz_huiles_minerales
+  output: 
+    taxe_interieure_consommation_gaz_naturel : 0
+    #(6500000 - 400000*12)*9.15
+      # 1000000 - (200000 + 100000 + 50000)
+#en utilisant formula_1986_01_01
+
+
+- name: "Test 2008 consommation_gaz_usage_non_combustible"
+  period: 2008
+  input: 
+    assiette_ticgn : 6500000
+    apet: _08_92Z #consommation_gaz_usage_non_combustible
+  output: 
+    taxe_interieure_consommation_gaz_naturel : 0
+
+- name: "Test 2008 gaz_production_mineraux_non_metalliques"
+  period: 2008
+  input: 
+    assiette_ticgn : 6500000
+    apet: _23_20Z #gaz_production_mineraux_non_metalliques
+  output: 
+    taxe_interieure_consommation_gaz_naturel : 0
+
+- name: "Test 2008 gaz_extraction_production"
+  period: 2008
+  input: 
+    assiette_ticgn : 6500000
+    apet: _06_20Z #gaz_extraction_production
+  output: 
+    taxe_interieure_consommation_gaz_naturel : 0
+
+- name: "Test 2014 grande consommatrice"
   period: 2014
-  input:
-    consommation_gaz_naturel: 1500000
-    consommation_gaz_matiere_premiere: 300000
-    consommation_gaz_huiles_minerales: 150000
-    consommation_gaz_chauffage_habitation: 80000
-    consommation_gaz_usage_non_combustible: 5200
-    consommation_gaz_double_usage: 5600
-    consommation_gaz_production_mineraux_non_metalliques: 25000
-    consummation_gaz_sur_place: 52000
-    consommation_gaz_production_electricite: 400000
-    consommation_gaz_production_electricite_non_exonere: 25000
-    consommation_gaz_extraction_production: 1200
-    consommation_gaz_particuliers: 45200
-  output: 
-    taxe_interieure_consommation_gaz_naturel: 721198.08  # 1500000 - (300000 + 150000 + 80000 + 5200 + 5600 + 25000 + 52000 + 400000 - 25000 + 1200 + 45200)
-# en utilisant formula_2011_01_01
-# 460800 *1.11*1.41
-
-
-
-
-
-- name: "Test en 2019 avec le taux de légumes"
-  period: 2019
-  input:
-    apet: _10_39A
-    consummation_par_valeur_ajoutee_gaz: 900
-    assiette_ticgn: 1000
-  output: 
-    taxe_interieure_consommation_gaz_naturel: 1600
-
-- name: "Test en 2020 sans le taux de légumes"
-  period: 2020
-  input:
-    apet: _10_39A
-    consummation_par_valeur_ajoutee_gaz: 90
-    #assiette_ticgn: 1000
-    carburant_gaz: 1000
-  output: 
-    taxe_interieure_consommation_gaz_naturel: 9379.5
-
-
-- name: "Test en 2020"
-  period : 2020
-  input:
-    apet: _10_39A
-    valeur_ajoutee_eta: 10
-
-    consommation_gaz_naturel: 1500000
-    consommation_gaz_matiere_premiere: 300000
-    consommation_gaz_huiles_minerales: 150000
-    consommation_gaz_chauffage_habitation: 80000
-    consommation_gaz_usage_non_combustible: 5200
-    consommation_gaz_double_usage: 5600
-    consommation_gaz_production_mineraux_non_metalliques: 25000
-    consummation_gaz_sur_place: 52000
-    consommation_gaz_production_electricite: 400000
-    consommation_gaz_production_electricite_non_exonere: 25000
-    consommation_gaz_extraction_production: 1200
-    consommation_gaz_particuliers: 45200
-    carburant_gaz: 200
-    risque_de_fuite_carbone_eta: True
+  input: 
+    assiette_ticgn : 1000
     installation_seqe: True
-    installation_grande_consommatrice: False
-
+    installation_grande_consommatrice: True
   output: 
-    taxe_interieure_consommation_gaz_naturel: 737600  # 1500000 - (300000 + 150000 + 80000 + 5200 + 5600 + 25000 + 52000 + 400000 - 25000 + 1200 + 45200) + 200
-# 461000*1.11*1.41
-#4600*1.6
-#ticgn = (seqe * grande_consommatrice * ticgn_grande_conso) + ((1 - seqe) * electrointensive * risque_fuite * ticgn_electrointensive) + ((1 - ((seqe * grande_consommatrice) + ((1 - seqe) * electrointensive * risque_fuite))) * ticgn_normal)
+    taxe_interieure_consommation_gaz_naturel : 1190
+#taux : 1.19
 
 
+- name: "Test 2019 double usage"
+  period: 2019
+  input: 
+    assiette_ticgn : 1000
+    apet: _20_59Z #gaz_double_usage
+  output: 
+    taxe_interieure_consommation_gaz_naturel : 0
+#taux : 1.19
 
-# #formula_2020_01_01
+
+- name: "Test 2019 déhydration des légumes"
+  period: 2019
+  input: 
+    assiette_ticgn : 1000
+    gaz_dehydration_legumes_et_plantes_aromatiques: True
+    valeur_ajoutee_ul : 1000
+    effectif_3112_ul : 1000
+    effectif_3112_eta : 100 #ce qui resultent en valeur_ajoutee_eta = 100
+    #faut dépasser 0,0008
+    #consommation_par_valeur_ajoutee_gaz
+  output: 
+    taxe_interieure_consommation_gaz_naturel : 1600
+#taux : 1.6
+
+- name: "Test 2020 déhydration des légumes"
+  period: 2019
+  input: 
+    assiette_ticgn : 1000
+    gaz_dehydration_legumes_et_plantes_aromatiques: True
+    facture_energie_ul : 100
+    valeur_ajoutee_ul : 1000
+    effectif_3112_ul : 1000
+    effectif_3112_eta : 100 #ce qui resultent en valeur_ajoutee_eta = 100 et facture_energie_par_valeur_ajoutee_eta = 10%
+    #faut dépasser 0,0008
+    #consommation_par_valeur_ajoutee_gaz
+  output: 
+    taxe_interieure_consommation_gaz_naturel : 1600
+#taux : 1.6
+#le niveau d'intensité énergetique doit au moins être égale à 0,6744 %.

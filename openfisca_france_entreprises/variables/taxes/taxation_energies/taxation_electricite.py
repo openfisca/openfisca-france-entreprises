@@ -7,7 +7,7 @@ from openfisca_core.variables import Variable
 from openfisca_france_entreprises.entities import UniteLegale, Etablissement
 
 
-class taxe_interieure_consummation_finale_electricite(Variable):
+class taxe_interieure_consommation_finale_electricite(Variable):
     value_type = float
     entity = Etablissement
     definition_period = YEAR
@@ -39,7 +39,7 @@ class taxe_interieure_consummation_finale_electricite(Variable):
         electricite_alimentation_a_quai = etablissement('electricite_alimentation_a_quai', period)
         electricite_fabrication_produits_mineraux_non_metalliques = etablissement('electricite_fabrication_produits_mineraux_non_metalliques',period)
         electricite_production_biens_electro_intensive = etablissement('electricite_production_biens_electro_intensive',period)
-        
+        electro_intensite = etablissement('electro_intensite', period)
 
         if electricite_production_a_bord == True:
             taxe = 0
@@ -59,7 +59,7 @@ class taxe_interieure_consummation_finale_electricite(Variable):
             taxe = etablissement("taxe_interieure_taxation_electricite_electro_intensive_concurrence_internationale",period)
         elif electro_intensive_activite_industrielle == True:
             taxe = etablissement("taxe_interieure_taxation_electricite_electro_intensive_activite_industrielle",period)
-        elif electricite_exploitation_aerodrome == True:        
+        elif electricite_exploitation_aerodrome == True and electro_intensite > parameters(period).energies.electricite.ticfe.aerodromes_electro_intensite.yaml:        
             taxe = etablissement("taxe_electricite_exploitation_aerodrome",period)
         elif electricite_centres_de_stockage_donnees == True:
             taxe = etablissement("taxe_electricite_centres_de_stockage_donnees",period)
@@ -72,7 +72,7 @@ class taxe_interieure_consummation_finale_electricite(Variable):
         return summation
     
     def formula_2023_01_01(etablissement, period, parameters):
-        """par rapport à précedement, ajoute manutention_portuaire, réf : L312-48
+        """par rapport à précedement, ajouté manutention_portuaire, réf : L312-48
         """
         #voici les conditions à appliquer 
         electro_intensive_activite_industrielle = etablissement("electro_intensive_activite_industrielle", period)
