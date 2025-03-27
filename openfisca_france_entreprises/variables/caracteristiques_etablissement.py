@@ -155,7 +155,15 @@ class departement(Variable):
     value_type = str
     unit = ''
     entity = Etablissement
-    label = ""
+    label = "code departementale INSEE"
+    definition_period = YEAR
+    reference = ""
+
+class commune(Variable):
+    value_type = str
+    unit = ''
+    entity = Etablissement
+    label = "code SIREN commune"
     definition_period = YEAR
     reference = ""
 
