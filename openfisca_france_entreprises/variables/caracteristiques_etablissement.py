@@ -72,14 +72,13 @@ class date_creation_ul(Variable):
 
 
 class installation_seqe(Variable):
-    #remplacer par _seqe, et on a déjà l'information sur ça. 
     value_type = bool
     entity = Etablissement
     label = "Installation soumise au système européen de quotas carbone"
     definition_period = YEAR
 
 
-# class installation_electrointensive(Variable):
+# class installation_electro_intensive(Variable):
 #     value_type = bool
 #     entity = Etablissement
 #     label = "Installation électrointensive"
@@ -95,19 +94,39 @@ class installation_seqe(Variable):
 #         return True
 
 
-class installation_grande_consommatrice(Variable):
+class installation_grande_consommatrice_energie(Variable):
     value_type = bool
     entity = Etablissement
     label = "Installation grande consommatrice d'énergie"
     definition_period = YEAR
+    def formula(etablissement, period):
+        seqe = etablissement("installation_seqe", period)
+        facture_energie_eta = etablissement("facture_energie_eta", period)
+        chiffre_affaires_eta = etablissement("chiffre_affaires_eta", period)
+        taxe_accise_electricite_taux_normal = etablissement('taxe_accise_electricite_taux_normal', period)
+        valeur_ajoutee_eta = etablissement('valeur_ajoutee_eta', period)
 
-    # def formula_2014_01_01(etablissement, period):
+        status = False
+        #primère condition 
+        if seqe == True and chiffre_affaires_eta != 0 and facture_energie_eta >= (.03 * chiffre_affaires_eta) :
+            status = True
 
-    #     return True
+            #deuxième condition en utilisant taxe_accise_electricite_taux_normal
+        elif valeur_ajoutee_eta != 0 and taxe_accise_electricite_taux_normal >= valeur_ajoutee_eta * 0.005:
+            status = True        
+        
+        return status
+# Sont considérées comme grandes consommatrices en énergie les entreprises :
 
-    # def formula_2021_01_01(etablissement, period):
+# ― dont les achats d'électricité de puissance souscrite supérieure à 250 kilovoltampères et 
+# de produits énergétiques soumis aux taxes intérieures de consommation visées aux articles 265,
+#  266 quinquies et 266 quinquies B du présent code atteignent au moins 3 % du chiffre d'affaires ;
 
-    #     return True
+# ― ou pour lesquelles le montant total de la taxe applicable à l'électricité de puissance 
+# souscrite supérieure à 250 kilovoltampères et des taxes intérieures de consommation visées 
+# au précédent alinéa est au moins égal à 0,5 % de la valeur ajoutée telle que définie à 
+# l' article 1586 sexies du code général des impôts .
+
 
 
 class risque_de_fuite_carbone_eta(Variable):

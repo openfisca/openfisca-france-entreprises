@@ -57,12 +57,10 @@ class taxe_interieure_consommation_charbon(Variable):
 
         #les suivants sont liés à charbon_biomasse comme conditions d'application
         charbon_biomasse = etablissement("charbon_biomasse", period)
-        seqe = etablissement("installation_seqe", period)
-        facture_energie_eta = etablissement("facture_energie_eta", period)
-        chiffre_affaires_eta = etablissement("chiffre_affaires_eta", period)
-        condition_facture = facture_energie_eta >= .03 * chiffre_affaires_eta
+
+        installation_grande_consommatrice_energie = etablissement('installation_grande_consommatrice_energie', period) #grandes consommatrices d’énergie soumises à quota CO₂
         
-        if seqe == True and condition_facture == True and charbon_biomasse == True:
+        if installation_grande_consommatrice_energie and charbon_biomasse == True:
             taxe = 0
         else: 
             taxe = etablissement("taxe_interieure_taxation_consommation_charbon_taux_normal", period)
@@ -78,7 +76,7 @@ class taxe_interieure_consommation_charbon(Variable):
         seqe = etablissement("installation_seqe", period)
         facture_energie_eta = etablissement("facture_energie_eta", period)
         chiffre_affaires_eta = etablissement("chiffre_affaires_eta", period)
-        condition_facture = facture_energie_eta >= .03 * chiffre_affaires_eta
+        condition_facture = chiffre_affaires_eta != 0 and facture_energie_eta >= .03 * chiffre_affaires_eta #grandes consommatrices d’énergie soumises à quota CO₂
         
         #les suivant permettent une excemption de la taxe 
         charbon_navigation_interieure = etablissement("charbon_navigation_interieure", period)

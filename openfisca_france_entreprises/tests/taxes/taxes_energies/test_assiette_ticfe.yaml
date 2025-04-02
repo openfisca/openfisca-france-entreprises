@@ -1,4 +1,4 @@
-- name: test 2022 assiette_ticfe 
+- name: test 2022 assiette_taxe_electricite 
 #
   period: 2022
   input: 
@@ -7,8 +7,29 @@
     consommation_electricite_puissance_moins_1_MW: 1000
     consommation_electricite_auto_consommation: 1000
   output:
-    electricite_double_usage: 7000
+    assiette_taxe_electricite: 7000
 
+
+- name: test assiette 2011
+#
+  period: 2011
+  input:
+    consommation_electricite : 1000
+    consommation_electricite_petite_producteur_electricite : 200
+    consommation_electricite_auto_consommation : 200
+  output:
+    assiette_taxe_electricite: 600
+
+- name: test assiette 2017
+#
+  period: 2017
+  input:
+    consommation_electricite : 1000
+    consommation_electricite_petite_producteur_electricite : 200
+    consommation_electricite_auto_consommation : 200
+    consommation_electricite_puissance_moins_1_MW : 200
+  output:
+    assiette_taxe_electricite: 400
 
 
 - name: test 2022 classification double usage
@@ -42,7 +63,6 @@
     apet : _63_11Z
   output:
     electricite_centres_de_stockage_donnees: 1
-
 
 
 

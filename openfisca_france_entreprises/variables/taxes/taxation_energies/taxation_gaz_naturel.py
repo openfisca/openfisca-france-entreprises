@@ -153,7 +153,7 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
 
         gaz_dehydration_legumes_et_plantes_aromatiques = etablissement("gaz_dehydration_legumes_et_plantes_aromatiques", period)
 
-        consommation_par_valeur_ajoutee_gaz = etablissement("consommation_par_valeur_ajoutee_gaz", period)
+        consommation_par_valeur_ajoutee = etablissement("consommation_par_valeur_ajoutee", period)
 
         if gaz_double_usage == True:
             taxe = 0
@@ -163,7 +163,7 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
             taxe = 0
         elif consommation_gaz_usage_non_combustible == True:
             taxe = 0
-        elif gaz_dehydration_legumes_et_plantes_aromatiques == True and consommation_par_valeur_ajoutee_gaz >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes : #800 Wh par Euro ou 0,0008 MWh par Euro
+        elif gaz_dehydration_legumes_et_plantes_aromatiques == True and consommation_par_valeur_ajoutee >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes : #800 Wh par Euro ou 0,0008 MWh par Euro
                 taxe = etablissement("taxe_interieure_consommation_gaz_naturel_legumes", period)
                 #***cette condition est valide jusqu'à 2022
         elif seqe == True and grande_consommatrice == True:
@@ -193,7 +193,7 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
         
 
         gaz_dehydration_legumes_et_plantes_aromatiques = etablissement("gaz_dehydration_legumes_et_plantes_aromatiques", period)
-        consommation_par_valeur_ajoutee_gaz = etablissement("consommation_par_valeur_ajoutee_gaz", period)
+        consommation_par_valeur_ajoutee = etablissement("consommation_par_valeur_ajoutee", period)
 
 
         if gaz_double_usage == True:
@@ -206,7 +206,7 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
             taxe = 0
         elif travaux_agricoles_et_forestiers == True:
             travaux_agricoles_et_forestiers = 0
-        elif gaz_dehydration_legumes_et_plantes_aromatiques == True and consommation_par_valeur_ajoutee_gaz >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes : #800 Wh par Euro
+        elif gaz_dehydration_legumes_et_plantes_aromatiques == True and consommation_par_valeur_ajoutee >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes : #800 Wh par Euro
                 taxe = etablissement("taxe_interieure_consommation_gaz_naturel_legumes", period)
                 #***cette condition est valide jusqu'à 2022
         elif seqe == True and grande_consommatrice == True:

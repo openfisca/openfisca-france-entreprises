@@ -31,7 +31,7 @@ class valeur_ajoutee_eta(Variable):
             valeur_ajoutee_eta = valeur_ajoutee_ul * (effectif_3112_eta/effectif_3112_ul)
         return valeur_ajoutee_eta
     
-class consommation_par_valeur_ajoutee_gaz(Variable):
+class consommation_par_valeur_ajoutee(Variable):
     value_type = float
     entity = Etablissement
     definition_period = YEAR

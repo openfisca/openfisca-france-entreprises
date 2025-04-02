@@ -62,7 +62,7 @@ class etablissement_electrointensif(Variable):
         return intensite >= seuil
 
 
-class entreprise_electrointensive(Variable):
+class entreprise_electro_intensive(Variable):
     value_type = bool
     entity = UniteLegale
     label = "Entreprise électrointensive"
