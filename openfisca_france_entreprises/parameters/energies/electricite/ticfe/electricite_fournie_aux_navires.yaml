@@ -1,0 +1,4 @@
+description: Taxe intérieure sur la consommation finale d'électricité applicable à l'électricité consommée par un centre de stockage de données numériques exploité par une entreprise
+values:
+  2021-01-01:
+    value: 0.5

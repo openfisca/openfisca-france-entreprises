@@ -87,7 +87,7 @@
     effectif_3112_ul : 1000
     effectif_3112_eta : 100 #ce qui resultent en valeur_ajoutee_eta = 100
     #faut dépasser 0,0008
-    #consommation_par_valeur_ajoutee_gaz
+    #consommation_par_valeur_ajoutee
   output: 
     taxe_interieure_consommation_gaz_naturel : 1600
 #taux : 1.6
@@ -102,7 +102,7 @@
     effectif_3112_ul : 1000
     effectif_3112_eta : 100 #ce qui resultent en valeur_ajoutee_eta = 100 et facture_energie_par_valeur_ajoutee_eta = 10%
     #faut dépasser 0,0008
-    #consommation_par_valeur_ajoutee_gaz
+    #consommation_par_valeur_ajoutee
   output: 
     taxe_interieure_consommation_gaz_naturel : 1600
 #taux : 1.6
