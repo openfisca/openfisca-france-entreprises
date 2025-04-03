@@ -93,9 +93,8 @@ class taxe_interieure_sur_consommation_finale_electricite(Variable):
 
         amperage = etablissement("amperage", period)
 
-        if amperage != 0 and amperage <= 250 : #la taxe s'applique seulement aux grandes consommatrice d'électricité
-            taxe = 0
-        elif electricite_double_usage == True: 
+
+        if electricite_double_usage == True: 
             taxe = 0
         elif electricite_fabrication_produits_mineraux_non_metalliques == True: 
             taxe = 0
@@ -142,9 +141,7 @@ class taxe_interieure_sur_consommation_finale_electricite(Variable):
 
         amperage = etablissement("amperage", period)
 
-        if amperage != 0 and amperage <= 250 : #la taxe s'applique seulement aux grandes consommatrice d'électricité
-            taxe = 0
-        elif electricite_double_usage == True: 
+        if electricite_double_usage == True: 
             taxe = 0
         elif electricite_fabrication_produits_mineraux_non_metalliques == True: 
             taxe = 0
