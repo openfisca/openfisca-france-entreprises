@@ -62,7 +62,7 @@
   input: 
     assiette_ticgn : 1000
     installation_seqe: True
-    installation_grande_consommatrice: True
+    installation_grande_consommatrice_energie: True
   output: 
     taxe_interieure_consommation_gaz_naturel : 1190
 #taux : 1.19
@@ -107,3 +107,29 @@
     taxe_interieure_consommation_gaz_naturel : 1600
 #taux : 1.6
 #le niveau d'intensité énergetique doit au moins être égale à 0,6744 %.
+
+
+- name: test 2022 taxe_interieure_taxation_consommation_gaz_naturel_seqe
+#formula_
+  period: 2022
+  input:
+    assiette_ticgn : 1000
+    installation_seqe : True
+    intensite_energetique_valeur_production : 0.05
+  output:
+    taxe_interieure_taxation_consommation_gaz_naturel_seqe: 1520
+
+
+- name: test 2022 taxe_interieure_taxation_consommation_gaz_naturel_concurrence_internationale
+#formula_
+  period: 2022
+  input:
+    assiette_ticgn: 1000
+    installation_seqe : False
+    risque_de_fuite_carbone_eta : True 
+    intensite_energetique_valeur_production : 0.05
+  output:
+    taxe_interieure_taxation_consommation_gaz_naturel_concurrence_internationale: 1600
+
+
+

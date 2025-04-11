@@ -73,11 +73,11 @@ class taxe_interieure_consommation_charbon(Variable):
 
         #les suivants sont liés à charbon_biomasse comme conditions d'application
         charbon_biomasse = etablissement("charbon_biomasse", period)
-        seqe = etablissement("installation_seqe", period)
-        facture_energie_eta = etablissement("facture_energie_eta", period)
-        chiffre_affaires_eta = etablissement("chiffre_affaires_eta", period)
-        condition_facture = chiffre_affaires_eta != 0 and facture_energie_eta >= .03 * chiffre_affaires_eta #grandes consommatrices d’énergie soumises à quota CO₂
-        
+        installation_seqe = etablissement("installation_seqe", period)
+        risque_de_fuite_carbone_eta = etablissement('risque_de_fuite_carbone_eta', period)
+        intensite_energetique_valeur_production = etablissement('intensite_energetique_valeur_production', period)
+        intensite_energetique_valeur_ajoutee = etablissement('intensite_energetique_valeur_ajoutee', period)
+
         #les suivant permettent une excemption de la taxe 
         charbon_navigation_interieure = etablissement("charbon_navigation_interieure", period)
         charbon_navigation_maritime = etablissement("charbon_navigation_maritime", period)
@@ -87,7 +87,7 @@ class taxe_interieure_consommation_charbon(Variable):
         charbon_double_usage = etablissement('charbon_double_usage', period)
 
 
-        if seqe == True and condition_facture == True and charbon_biomasse == True:
+        if installation_seqe == True and intensite_energetique_valeur_production >= 0.03 and charbon_biomasse == True:
             taxe = 0
         elif charbon_navigation_interieure == True:
             taxe = 0
@@ -101,9 +101,88 @@ class taxe_interieure_consommation_charbon(Variable):
             taxe = 0
         elif charbon_double_usage == True:
             taxe = 0
+        elif (installation_seqe == True and intensite_energetique_valeur_production >= 0.03) or (installation_seqe == True and intensite_energetique_valeur_ajoutee >= 0.005 ) :
+            taxe = etablissement('taxe_interieure_taxation_consommation_charbon_seqe')
+            #***faut faire un test pour 
+        elif (installation_seqe == False and risque_de_fuite_carbone_eta == True and intensite_energetique_valeur_production >= 0.03) or (installation_seqe == False and risque_de_fuite_carbone_eta == True and  intensite_energetique_valeur_ajoutee >= 0.005 ) :
+            taxe = etablissement('taxe_interieure_taxation_consommation_charbon_concurrence_internationale')
+            #***faut faire un test pour 
+            #ça n'existe plus dès 2024
         else: 
             taxe = etablissement("taxe_interieure_taxation_consommation_charbon_taux_normal", period)
         
+
+        return taxe
+    def formula_2024_01_01(etablissement, period, parameters):
+
+        #les suivants sont liés à charbon_biomasse comme conditions d'application
+        charbon_biomasse = etablissement("charbon_biomasse", period)
+        installation_seqe = etablissement("installation_seqe", period)
+
+        intensite_energetique_valeur_production = etablissement('intensite_energetique_valeur_production', period)
+        intensite_energetique_valeur_ajoutee = etablissement('intensite_energetique_valeur_ajoutee', period)
+
+        #les suivant permettent une excemption de la taxe 
+        charbon_navigation_interieure = etablissement("charbon_navigation_interieure", period)
+        charbon_navigation_maritime = etablissement("charbon_navigation_maritime", period)
+        charbon_navigation_aerienne = etablissement("charbon_navigation_aerienne", period)
+        charbon_fabrication_produits_mineraux_non_metalliques = etablissement('charbon_fabrication_produits_mineraux_non_metalliques',period)
+        charbon_secteurs_aeronautique_et_naval = etablissement("charbon_secteurs_aeronautique_et_naval", period)
+        charbon_double_usage = etablissement('charbon_double_usage', period)
+
+
+        if installation_seqe == True and intensite_energetique_valeur_production >= 0.03 and charbon_biomasse == True:
+            taxe = 0
+        elif charbon_navigation_interieure == True:
+            taxe = 0
+        elif charbon_navigation_maritime == True: 
+            taxe = 0
+        elif charbon_navigation_aerienne == True:
+            taxe = 0
+        elif charbon_fabrication_produits_mineraux_non_metalliques == True:
+            taxe = 0
+        elif charbon_secteurs_aeronautique_et_naval == True:
+            taxe = 0
+        elif charbon_double_usage == True:
+            taxe = 0
+        elif (installation_seqe == True and intensite_energetique_valeur_production >= 0.03) or (installation_seqe == True and intensite_energetique_valeur_ajoutee >= 0.005 ) :
+            taxe = etablissement('taxe_interieure_taxation_consommation_charbon_seqe')
+            #***faut faire un test pour 
+        else: 
+            taxe = etablissement("taxe_interieure_taxation_consommation_charbon_taux_normal", period)
+        
+
+        return taxe
+    
+    
+
+class taxe_interieure_taxation_consommation_charbon_concurrence_internationale(Variable):
+    value_type = float
+    entity = Etablissement
+    definition_period = YEAR
+    label = "Sous L312-75"
+    reference = ""  #
+    def formula_2007_01_01(etablissement, period, parameters):
+        #faut changer la date après
+        """
+        """
+        assiette_ticc = etablissement("assiette_ticc", period)
+        taxe = assiette_ticc * parameters(period).energies.charbon.taux_reduit_concurrence_internationale
+
+        return taxe
+
+class taxe_interieure_taxation_consommation_charbon_seqe(Variable):
+    value_type = float
+    entity = Etablissement
+    definition_period = YEAR
+    label = "Sous L312-75"
+    reference = ""  #
+    def formula_2007_01_01(etablissement, period, parameters):
+        #faut changer la date après
+        """
+        """
+        assiette_ticc = etablissement("assiette_ticc", period)
+        taxe = assiette_ticc * parameters(period).energies.charbon.taux_reduit_seqe
 
         return taxe
 
@@ -202,3 +281,11 @@ class assiette_ticc(Variable):
         #ajout conso_carburant * installation_cogeneration, supprimer conso_combustible_electricite_266qA * contrat_achat_electricite_314, 
 
         return assiette
+
+        #2022: autoconsommation (L312-17), consommation_charbon_combustible_electricite (-32), consommation_charbon_combustible_interne >= pense à changer à auto_conommation (-31)
+        #également pour le charbon
+        #NB -34, chaleur >= carburant 
+        #ajouter un engin_non_routier (-35) ?
+        
+
+

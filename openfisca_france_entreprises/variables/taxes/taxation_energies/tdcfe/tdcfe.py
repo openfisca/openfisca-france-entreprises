@@ -14,6 +14,7 @@ class taxe_departementale_consommation_finale_electricite(Variable):
     def formula(etablissement, period, parameters):
         taux_tdcfe = etablissement("taux_tdcfe", period)
         assiette_taxe_electricite = etablissement('assiette_taxe_electricite', period)
+        #*** à vérifier que c'est la même assiette 
 
         taxe = assiette_taxe_electricite * taux_tdcfe
 

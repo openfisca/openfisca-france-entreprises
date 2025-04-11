@@ -13,6 +13,18 @@ class taxe_electricite(Variable):
     definition_period = YEAR
     label = ""
     reference = ""  #
+    def formula_2002_01_01(etablissement, period, parameters):
+        taxe_contribution_service_public_electricite = etablissement('taxe_contribution_service_public_electricite', period)
+
+
+        total = taxe_contribution_service_public_electricite
+
+        return total 
+    def formula_2005_01_01(etablissement, period, parameters):
+#sous travail, lire le code réferencé dans cspe.yaml
+        total = 0
+        return total 
+
     def formula_2011_01_01(etablissement, period, parameters):
         taxe_interieure_sur_consommation_finale_electricite = etablissement('taxe_interieure_sur_consommation_finale_electricite', period)
         taxe_communale_consommation_finale_electricite = etablissement('taxe_communale_consommation_finale_electricite', period)
@@ -32,6 +44,20 @@ class taxe_electricite(Variable):
         total = taxe_accise_electricite 
         return total 
         
+
+class taxe_contribution_service_public_electricite(Variable):
+    value_type = float
+    entity = Etablissement
+    definition_period = YEAR
+    label = "Contribution au Servie Public de l'Électricité"
+    reference = ""  #
+    def formula_2002_01_01(etablissement, period, parameters):
+        
+        assiette_taxe_electricite = etablissement(assiette_taxe_electricite, period)
+
+        montant = assiette_taxe_electricite * parameters(period).energies.electricite.cspe
+
+        return montant
 
 class taxe_interieure_sur_consommation_finale_electricite(Variable):
     value_type = float
@@ -53,7 +79,7 @@ class taxe_interieure_sur_consommation_finale_electricite(Variable):
 
         amperage = etablissement("amperage", period)
 
-        if amperage != 0 and amperage <= 250  : #la taxe s'applique seulement aux grandes consommatrice d'électricité
+        if amperage != 0 and amperage <= parameters.energies.electricite.ticfe.categorie_fiscale_haut_puissance  : #la taxe s'applique seulement aux grandes consommatrice d'électricité
             taxe = 0
             #faut avoir un amperage pour s'exonerer de cette taxe 
         elif electricite_double_usage == True: 
@@ -91,7 +117,6 @@ class taxe_interieure_sur_consommation_finale_electricite(Variable):
         electricite_transport_guide = etablissement('electricite_transport_guide', period)
         risque_de_fuite_carbone_eta = etablissement('risque_de_fuite_carbone_eta', period)
 
-        amperage = etablissement("amperage", period)
 
 
         if electricite_double_usage == True: 
@@ -139,7 +164,6 @@ class taxe_interieure_sur_consommation_finale_electricite(Variable):
         electricite_exploitation_aerodrome = etablissement('electricite_exploitation_aerodrome', period)
 
 
-        amperage = etablissement("amperage", period)
 
         if electricite_double_usage == True: 
             taxe = 0
@@ -293,9 +317,9 @@ class tax_electricite_risque_de_fuite_de_carbone(Variable):
         consommation_par_valeur_ajoutee = etablissement('consommation_par_valeur_ajoutee', period)
         assiette_taxe_electricite = etablissement('assiette_taxe_electricite', period)
 
-        if consommation_par_valeur_ajoutee >= 3000 :
+        if consommation_par_valeur_ajoutee >= 0.003 :
             taxe =  assiette_taxe_electricite * parameters(period).energies.electricite.ticfe.risque_de_fuite_de_carbone.taux_plus_de_3kWh_par_valeur_ajoutee
-        elif consommation_par_valeur_ajoutee >= 1500 :
+        elif consommation_par_valeur_ajoutee >= 0.0015 :
             taxe =  assiette_taxe_electricite * parameters(period).energies.electricite.ticfe.risque_de_fuite_de_carbone.taux_1_virgule_5_a_3kWh_par_valeur_ajoutee
         else:
             taxe =  assiette_taxe_electricite * parameters(period).energies.electricite.ticfe.risque_de_fuite_de_carbone.taux_moins_de_1_virgule_5kWh_par_valeur_ajoutee
@@ -326,9 +350,9 @@ class tax_electricite_installations_industrielles_electro_intensives(Variable):
         consommation_par_valeur_ajoutee = etablissement('consommation_par_valeur_ajoutee', period)
         assiette_taxe_electricite = etablissement('assiette_taxe_electricite', period)
 
-        if consommation_par_valeur_ajoutee >= 3000 :
+        if consommation_par_valeur_ajoutee >= 0.003 :
             taxe =  assiette_taxe_electricite * parameters(period).energies.electricite.ticfe.electro_intensive.taux_plus_de_3kWh_par_valeur_ajoutee
-        elif consommation_par_valeur_ajoutee >= 1500 :
+        elif consommation_par_valeur_ajoutee >= 0.0015 :
             taxe =  assiette_taxe_electricite * parameters(period).energies.electricite.ticfe.electro_intensive.taux_1_virgule_5_a_3kWh_par_valeur_ajoutee
         else:
             taxe =  assiette_taxe_electricite * parameters(period).energies.electricite.ticfe.electro_intensive.taux_moins_de_1_virgule_5kWh_par_valeur_ajoutee
@@ -424,8 +448,8 @@ class taxe_accise_electricite_taux_normal(Variable):
     value_type = float
     entity = Etablissement
     definition_period = YEAR
-    label = "Sous L312-65"
-    reference = ""  #
+    label = "Sous L312-37"
+    reference = "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000044595989/LEGISCTA000044598327/#LEGISCTA000044603893:~:text=Les%20tarifs%20normaux%20de%20l%27accise%2C%20exprim%C3%A9s%20en%20euros%20par%20m%C3%A9gawattheure%2C%20sont%2C%20en%202015%2C%20pour%20chacune%20des%20cat%C3%A9gories%20fiscales%20de%20l%27%C3%A9lectricit%C3%A9%2C%20les%20suivants%20%3A"  #
 
     def formula_2011_01_01(etablissement, period, parameters):
         
@@ -462,20 +486,19 @@ class taxe_accise_electricite_taux_normal(Variable):
         return tout 
     
     def formula_2022_01_01(etablissement, period, parameters):
-        #***faut vérifier la date 
+        
         """
         """
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
         amperage = etablissement("amperage", period)
-        if amperage != 0 and amperage < 36 :
+        if amperage != 0 and amperage < parameters.energies.electricite.ticfe.categorie_fiscale_petite_et_moyenne_entreprise : 
             taxe = assiette_taxe_electricite*parameters(period).energies.electricite.ticfe.taux_normal_36kVA_et_moins
-        elif amperage != 0 and amperage < 250 :
+        elif amperage != 0 and amperage < parameters.energies.electricite.ticfe.categorie_fiscale_haut_puissance :
             taxe = assiette_taxe_electricite*parameters(period).energies.electricite.ticfe.taux_normal_36_a_250kVA
         else : 
-            taxe = assiette_taxe_electricite*parameters(period).energies.electricite.ticfe.taux_normal
+            taxe = assiette_taxe_electricite*parameters(period).energies.electricite.ticfe.taux_normal #haut puissance, > 250 kVA
 
         return taxe
-
 
 class taxe_accise_electricite_electro_intensive_activite_industrielle(Variable):
     value_type = float
@@ -543,7 +566,14 @@ class assiette_taxe_electricite(Variable):
     definition_period = YEAR
     label = "assiette de la Taxe Intérieure sur la Consommation Finale d'Électricité"
     reference = ""  #
+    def formula_2002_01_01(etablissement, period, parameters):
+        #sous CPSE
+        consommation_electricite = etablissement("consommation_electricite", period)
+
+        return consommation_electricite
+
     def formula_2011_01_01(etablissement, period, parameters):
+        #sous TICFE, TCCFE, TDCFE
         consommation_electricite = etablissement("consommation_electricite", period)
         consommation_electricite_petite_producteur_electricite = etablissement('consommation_electricite_petite_producteur_electricite', period)
         consommation_electricite_auto_consommation = etablissement("consommation_electricite_auto_consommation",period)

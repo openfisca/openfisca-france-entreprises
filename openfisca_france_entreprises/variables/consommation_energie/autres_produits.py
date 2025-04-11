@@ -3,12 +3,14 @@ from openfisca_france_entreprises.entities import Etablissement  # noqa F401
 from openfisca_core.periods import MONTH, YEAR
 from openfisca_core.variables import Variable
 
+#tecpe
+
 class consommation_gaz_carburant(Variable): #renommer à consommation_gaz_carburant
     value_type = float
     unit = 'MWh'
     entity = Etablissement
     label = "consommation en consommation_gaz_carburant. Enlevé de taxation_produit petrolier (nom de concept) à gazoles_naturel dès 2020"
-    reference : "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006071570/LEGISCTA000006122062/1993-01-01/?anchor=LEGIARTI000006615168#LEGIARTI000006615168" 
+    reference = " https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006071570/LEGISCTA000006122062/1993-01-01/?anchor=LEGIARTI000006615168#LEGIARTI000006615168"
     definition_period = YEAR
 
 

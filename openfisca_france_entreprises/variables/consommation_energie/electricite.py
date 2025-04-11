@@ -23,15 +23,6 @@ class amperage(Variable):
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603823"
 
 
-class electro_intensite(Variable):
-    value_type = float
-    unit = 'pourcentage'
-    entity = Etablissement
-    label = "niveau d'electro-intensité, lié au L312-65"
-    definition_period = YEAR
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603709"
-
-
 class electricite_double_usage(Variable):
     value_type = bool
     unit = ''
@@ -165,7 +156,7 @@ class electricite_exploitation_aerodrome(Variable):
         
         determinant = False
         
-        if apet == type_eta._52_23Z and consommation_par_valeur_ajoutee > 222 : #222 wattheures par valeur ajoutée 
+        if apet == type_eta._52_23Z and consommation_par_valeur_ajoutee > 0.000222 : #222 wattheures par valeur ajoutée 
             determinant = True
         return determinant
     
@@ -219,7 +210,7 @@ class electricite_production_biens_electro_intensive(Variable):
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603703/2025-03-05"
 
 #si l’électricité représente plus de la moitié du coût total de production d’un bien, l’entreprise peut bénéficier d’un allègement fiscal
-
+#to do : normalement il y aurait une formule quelque part, mais on a pas les donnés à ce niveau. 
 
 class electricite_centres_de_stockage_donnees(Variable):
     value_type = bool
@@ -383,7 +374,7 @@ class electricite_installations_industrielles_hyper_electro_intensives(Variable)
         consommation_par_valeur_ajoutee = etablissement('consommation_par_valeur_ajoutee', period)
         intensite_echanges_avec_pays_tiers = etablissement('intensite_echanges_avec_pays_tiers',period)
 
-        if consommation_par_valeur_ajoutee >= 6000 and intensite_echanges_avec_pays_tiers >= 25 :
+        if consommation_par_valeur_ajoutee >= 0.006 and intensite_echanges_avec_pays_tiers >= 25 :
             status = True
 
         return status 
