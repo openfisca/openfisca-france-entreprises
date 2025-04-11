@@ -180,7 +180,7 @@
   period: 2016
   input:
     assiette_taxe_electricite: 1000
-    consommation_par_valeur_ajoutee : 7000
+    consommation_par_valeur_ajoutee : 0.007
     intensite_echanges_avec_pays_tiers : 27
   output:
     taxe_interieure_sur_consommation_finale_electricite: 500
@@ -190,7 +190,7 @@
   period: 2016
   input:
     assiette_taxe_electricite: 1000
-    consommation_par_valeur_ajoutee : 4000 
+    consommation_par_valeur_ajoutee : 0.004 
     valeur_ajoutee_eta: 10000
   output:
     taxe_interieure_sur_consommation_finale_electricite: 2000
@@ -200,7 +200,7 @@
   period: 2016
   input:
     assiette_taxe_electricite: 1000
-    consommation_par_valeur_ajoutee : 2000 
+    consommation_par_valeur_ajoutee : 0.002 
     valeur_ajoutee_eta: 10000
   output:
     taxe_interieure_sur_consommation_finale_electricite: 5000
@@ -210,7 +210,7 @@
   period: 2016
   input:
     assiette_taxe_electricite: 1000
-    consommation_par_valeur_ajoutee : 1000 
+    consommation_par_valeur_ajoutee : 0.001 
     valeur_ajoutee_eta: 10000
   output:
     taxe_interieure_sur_consommation_finale_electricite: 7500
@@ -223,7 +223,7 @@
   input:
     risque_de_fuite_carbone_eta: True
     assiette_taxe_electricite: 1000
-    consommation_par_valeur_ajoutee : 4000 
+    consommation_par_valeur_ajoutee : 0.004 
   output:
     taxe_interieure_sur_consommation_finale_electricite: 1000
 
@@ -234,7 +234,7 @@
   input:
     risque_de_fuite_carbone_eta: True
     assiette_taxe_electricite: 1000
-    consommation_par_valeur_ajoutee : 2000 
+    consommation_par_valeur_ajoutee : 0.002 
   output:
     taxe_interieure_sur_consommation_finale_electricite: 2500
 
@@ -245,7 +245,7 @@
   input:
     risque_de_fuite_carbone_eta: True
     assiette_taxe_electricite: 1000
-    consommation_par_valeur_ajoutee : 1000 
+    consommation_par_valeur_ajoutee : 0.001 
   output:
     taxe_interieure_sur_consommation_finale_electricite: 5500
 
@@ -255,7 +255,7 @@
   input:
     risque_de_fuite_carbone_eta: True
     assiette_taxe_electricite: 1000
-    consommation_par_valeur_ajoutee : 1000 
+    consommation_par_valeur_ajoutee : 0.001 
   output:
     taxe_interieure_sur_consommation_finale_electricite: 5500
 

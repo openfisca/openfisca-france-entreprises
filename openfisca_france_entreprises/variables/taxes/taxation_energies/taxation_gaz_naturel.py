@@ -107,7 +107,7 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
         -les conditions qui elle sont liées 
         '''
         seqe = etablissement("installation_seqe", period)
-        grande_consommatrice = etablissement("installation_grande_consommatrice", period)
+        grande_consommatrice = etablissement("installation_grande_consommatrice_energie", period)
 
         taxe_interieure_consommation_gaz_naturel_taux_normal = etablissement("taxe_interieure_consommation_gaz_naturel_taux_normal", period)
         taxe_interieure_consommation_gaz_naturel_grande_consommatrice = etablissement("taxe_interieure_consommation_gaz_naturel_grande_consommatrice", period)
@@ -146,7 +146,7 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
 
 
         seqe = etablissement("installation_seqe", period)
-        grande_consommatrice = etablissement("installation_grande_consommatrice", period)
+        grande_consommatrice = etablissement("installation_grande_consommatrice_energie", period)
 
         taxe_interieure_consommation_gaz_naturel_taux_normal = etablissement("taxe_interieure_consommation_gaz_naturel_taux_normal", period)
         taxe_interieure_consommation_gaz_naturel_grande_consommatrice = etablissement("taxe_interieure_consommation_gaz_naturel_grande_consommatrice", period)
@@ -163,7 +163,7 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
             taxe = 0
         elif consommation_gaz_usage_non_combustible == True:
             taxe = 0
-        elif gaz_dehydration_legumes_et_plantes_aromatiques == True and consommation_par_valeur_ajoutee >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes : #800 Wh par Euro ou 0,0008 MWh par Euro
+        elif gaz_dehydration_legumes_et_plantes_aromatiques == True and consommation_par_valeur_ajoutee >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes : #0,0008 MWh par Euro
                 taxe = etablissement("taxe_interieure_consommation_gaz_naturel_legumes", period)
                 #***cette condition est valide jusqu'à 2022
         elif seqe == True and grande_consommatrice == True:
@@ -184,9 +184,8 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
         gaz_production_mineraux_non_metalliques = etablissement("gaz_production_mineraux_non_metalliques", period)
         consommation_gaz_usage_non_combustible = etablissement('consommation_gaz_usage_non_combustible', period)
 
-
         seqe = etablissement("installation_seqe", period)
-        grande_consommatrice = etablissement("installation_grande_consommatrice", period)
+        grande_consommatrice = etablissement("installation_grande_consommatrice_energie", period)
 
         ticgn_normal = etablissement("taxe_interieure_consommation_gaz_naturel_taux_normal", period)
         ticgn_grande_conso = etablissement("taxe_interieure_consommation_gaz_naturel_grande_consommatrice", period)
@@ -206,7 +205,7 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
             taxe = 0
         elif travaux_agricoles_et_forestiers == True:
             travaux_agricoles_et_forestiers = 0
-        elif gaz_dehydration_legumes_et_plantes_aromatiques == True and consommation_par_valeur_ajoutee >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes : #800 Wh par Euro
+        elif gaz_dehydration_legumes_et_plantes_aromatiques == True and consommation_par_valeur_ajoutee >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes : #0.0008 MWh par Euro
                 taxe = etablissement("taxe_interieure_consommation_gaz_naturel_legumes", period)
                 #***cette condition est valide jusqu'à 2022
         elif seqe == True and grande_consommatrice == True:
@@ -231,13 +230,17 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
 
 
         seqe = etablissement("installation_seqe", period)
-        grande_consommatrice = etablissement("installation_grande_consommatrice", period)
+        grande_consommatrice = etablissement("installation_grande_consommatrice_energie", period)
+        risque_de_fuite_carbone_eta = etablissement('risque_de_fuite_carbone_eta', period)
+        intensite_energetique_valeur_production = etablissement('intensite_energetique_valeur_production', period)
+        intensite_energetique_valeur_ajoutee = etablissement('intensite_energetique_valeur_ajoutee', period)
+
 
         ticgn_normal = etablissement("taxe_interieure_consommation_gaz_naturel_taux_normal", period)
         ticgn_grande_conso = etablissement("taxe_interieure_consommation_gaz_naturel_grande_consommatrice", period)
 
         gaz_dehydration_legumes_et_plantes_aromatiques = etablissement("gaz_dehydration_legumes_et_plantes_aromatiques", period)
-        facture_energie_par_valeur_ajoutee_eta = etablissement('facture_energie_par_valeur_ajoutee_eta', period)
+        intensite_energetique = etablissement('intensite_energetique', period)
 
         if gaz_double_usage == True:
             taxe = 0
@@ -249,9 +252,17 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
             taxe = 0
         elif consommation_gaz_usage_non_combustible == True:
             taxe = 0
-        elif gaz_dehydration_legumes_et_plantes_aromatiques == True and facture_energie_par_valeur_ajoutee_eta >= parameters(period).energies.gaz_naturel.ticgn.seuil_facture_energie_par_va: #le niveau d'intensité énergetique est au moins égale à 0,6744 %.
+        elif gaz_dehydration_legumes_et_plantes_aromatiques == True and intensite_energetique >= parameters(period).energies.gaz_naturel.ticgn.seuil_facture_energie_par_va: 
+                #le niveau d'intensité énergetique en valeur ajoutée est au moins égale à 0,6744 %.
                 taxe = etablissement("taxe_interieure_consommation_gaz_naturel_legumes", period)
-                #cette condition est mis en oeuvre dès 2022
+                #cette condition est mis en effet dès 2022
+        elif (seqe == True and intensite_energetique_valeur_production >= 0.03) or (seqe == True and intensite_energetique_valeur_ajoutee >= 0.005 ) :
+            taxe = etablissement('taxe_interieure_taxation_consommation_gaz_naturel_seqe')
+            #***faut faire un test pour 
+        elif (seqe == False and risque_de_fuite_carbone_eta == True and intensite_energetique_valeur_production >= 0.03) or (seqe == False and risque_de_fuite_carbone_eta == True and intensite_energetique_valeur_ajoutee >= 0.005 ) :
+            taxe = etablissement('taxe_interieure_taxation_consommation_gaz_naturel_concurrence_internationale')
+            #***faut faire un test pour 
+            #ça n'existe plus dès 2024
         elif seqe == True and grande_consommatrice == True:
             taxe = ticgn_grande_conso
         else: 
@@ -261,6 +272,36 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
 
 
 
+class taxe_interieure_taxation_consommation_gaz_naturel_concurrence_internationale(Variable):
+    value_type = float
+    entity = Etablissement
+    definition_period = YEAR
+    label = "Sous L312-75/77"
+    reference = ""  #
+    def formula_2007_01_01(etablissement, period, parameters):
+        #faut changer la date après
+        """
+        """
+        assiette_ticgn = etablissement("assiette_ticgn", period)
+        taxe = assiette_ticgn * parameters(period).energies.gaz_naturel.taux_reduit_concurrence_internationale
+
+        return taxe
+
+
+class taxe_interieure_taxation_consommation_gaz_naturel_seqe(Variable):
+    value_type = float
+    entity = Etablissement
+    definition_period = YEAR
+    label = "Sous L312-75/76"
+    reference = ""  #
+    def formula_2007_01_01(etablissement, period, parameters):
+        #faut changer la date après
+        """
+        """
+        assiette_ticgn = etablissement("assiette_ticgn", period)
+        taxe = assiette_ticgn * parameters(period).energies.gaz_naturel.taux_reduit_seqe
+
+        return taxe
 
 class taxe_interieure_consommation_gaz_naturel_legumes(Variable):
     value_type = float
@@ -290,7 +331,7 @@ class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
         #400000
         assiette = etablissement("assiette_ticgn", period)
         taux = parameters(period).energies.gaz_naturel.ticgn.taux_normal
-        taxe = (assiette > seuil) * (assiette - abattement) * taux
+        taxe = (assiette >= seuil) * (assiette - abattement) * taux
 
         return taxe
 
@@ -317,7 +358,6 @@ class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
         # facteur de conversion PCI/PCS, cf. Circulaire du 29 avril 2014 "Taxe intérieure de consommation sur le gaz naturel (TICGN) NOR FCPD1408602C"
         # ***faut vérrifier si cette calculation est valide. Paul a dit que l'assumption est que le PCS est tjrs valide
         taxe = assiette * taux
-
         return taxe
 
 
@@ -529,7 +569,7 @@ class assiette_ticgn(Variable):
         """
         TODO:
         (par rapport à précédemment, )
-            Réintégration des usages carburants dans le champ de la TICGN > consommation_gaz_carburant
+            Réintégration des usages carburants dans le champ de la TICGN >= consommation_gaz_carburant
             https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006071570/LEGISCTA000006122062/1993-01-01/?anchor=LEGIARTI000006615168#LEGIARTI000006615168
         avant c'était consideré comme un produit petrolier, et en 2020 il sont dit qu'ils sont desormais consideré comme du gaz naturel  
         """
