@@ -81,4 +81,27 @@ class taux_tdcfe(Variable):
         else :
             taux = 0
         return taux
-
+    def formula_2019_01_01(etablissement, period, parameters):
+        if etablissement('amperage', period) <= 36 and etablissement('amperage', period) != 0 : 
+            taux = parameters(period).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement('tdcfe_coefficient_multiplicateur_normal_2019', period)
+        elif etablissement('amperage', period) <= 250 and etablissement('amperage', period) != 0 : 
+            taux = parameters(period).energies.electricite.tcfe.taux_professionnel_36_a_250kVA * etablissement('tdcfe_coefficient_multiplicateur_normal_2019', period)
+        else :
+            taux = 0
+        return taux
+def formula_2020_01_01(etablissement, period, parameters):
+        if etablissement('amperage', period) <= 36 and etablissement('amperage', period) != 0 : 
+            taux = parameters(period).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement('tdcfe_coefficient_multiplicateur_normal_2020', period)
+        elif etablissement('amperage', period) <= 250 and etablissement('amperage', period) != 0 : 
+            taux = parameters(period).energies.electricite.tcfe.taux_professionnel_36_a_250kVA * etablissement('tdcfe_coefficient_multiplicateur_normal_2020', period)
+        else :
+            taux = 0
+        return taux
+def formula_2021_01_01(etablissement, period, parameters):
+        if etablissement('amperage', period) <= 36 and etablissement('amperage', period) != 0 : 
+            taux = parameters(period).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement('tdcfe_coefficient_multiplicateur_normal_2021', period)
+        elif etablissement('amperage', period) <= 250 and etablissement('amperage', period) != 0 : 
+            taux = parameters(period).energies.electricite.tcfe.taux_professionnel_36_a_250kVA * etablissement('tdcfe_coefficient_multiplicateur_normal_2021', period)
+        else :
+            taux = 0
+        return taux

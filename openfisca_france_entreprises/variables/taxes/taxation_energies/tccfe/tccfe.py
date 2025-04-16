@@ -83,4 +83,44 @@ class taux_tccfe(Variable):
         else :
             taux = 0
         return taux
+    def formula_2019_01_01(etablissement, period, parameters):
+        if etablissement('amperage', period) <= 36 and etablissement('amperage', period) != 0 : 
+            taux = parameters(period).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement('tccfe_coefficient_multiplicateur_normal_2019', period)
+        elif etablissement('amperage', period) <= 250 and etablissement('amperage', period) != 0 : 
+            taux = parameters(period).energies.electricite.tcfe.taux_professionnel_36_a_250kVA * etablissement('tccfe_coefficient_multiplicateur_normal_2019', period)
+        else :
+            taux = 0
+        return taux
+    def formula_2020_01_01(etablissement, period, parameters):
+        if etablissement('amperage', period) <= 36 and etablissement('amperage', period) != 0 : 
+            taux = parameters(period).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement('tccfe_coefficient_multiplicateur_normal_2020', period)
+        elif etablissement('amperage', period) <= 250 and etablissement('amperage', period) != 0 : 
+            taux = parameters(period).energies.electricite.tcfe.taux_professionnel_36_a_250kVA * etablissement('tccfe_coefficient_multiplicateur_normal_2020', period)
+        else :
+            taux = 0
+        return taux
+# 2016 : 0 ; 2 ; 4 ; 6 ; 8 ; 8,50.
+# 2020 :  0 ; 2 ; 4 ; 6 ; 8 ; 8,50
+# 2021 : 4 ; 6 ; 8 ; 8,5.
+# 2022 : 6 ; 8 ; 8,5.
+    def formula_2021_01_01(etablissement, period, parameters):
+        if etablissement('amperage', period) <= 36 and etablissement('amperage', period) != 0 : 
+            taux = parameters(period).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement('tccfe_coefficient_multiplicateur_normal_2021', period)
+        elif etablissement('amperage', period) <= 250 and etablissement('amperage', period) != 0 : 
+            taux = parameters(period).energies.electricite.tcfe.taux_professionnel_36_a_250kVA * etablissement('tccfe_coefficient_multiplicateur_normal_2021', period)
+        else :
+            taux = 0
+        return taux
+    def formula_2022_01_01(etablissement, period, parameters):
+        if etablissement('amperage', period) <= 36 and etablissement('amperage', period) != 0 : 
+            taux = parameters(period).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement('tccfe_coefficient_multiplicateur_normal_2022', period)
+        elif etablissement('amperage', period) <= 250 and etablissement('amperage', period) != 0 : 
+            taux = parameters(period).energies.electricite.tcfe.taux_professionnel_36_a_250kVA * etablissement('tccfe_coefficient_multiplicateur_normal_2022', period)
+        else :
+            taux = 0
+        return taux
+    
+
+
+
 

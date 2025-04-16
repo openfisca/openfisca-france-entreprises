@@ -3,8 +3,352 @@ from openfisca_france_entreprises.entities import Etablissement  # noqa F401
 from openfisca_core.periods import MONTH, YEAR
 from openfisca_core.variables import Variable
 
-#tecpe
 
+class consommation_goudrons_utilises_comme_combustibles(Variable): 
+    value_type = float
+    unit = '100 kg nets'
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_carburant_constitue_100_estars_methyliques_acides_gras(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_essence_normale(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_essences_speciales_utilisees_comme_carburants_combustibles(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_white_spirit_utilise_comme_combustible(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_super_e5(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_super_e10(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_super_e85(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_super_plombe(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_propane_carburants_autres_100kg_nets(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_propane_carburants_sous_conditions_100kg_nets(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+
+class consommation_petrole_lampant_autre_hectolitre(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_petrole_lampant_utilise_comme_combustible_hectolitre(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_huiles_legeres_preparation_essence_aviation(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_huiles_legeres(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+
+class consommation_huiles_moyennes(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_gazole_carburants_sous_conditions_hectolitre(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_galzole_fioul_domestique_hectolitre(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_gazol_b_10_hectolitre(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_gazole(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_fioul_lourd_100kg_net(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_fioul_lourd_bts_100kg(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_fioul_lourd_hts_100kg(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_point_eclair_inferieur_120deg_c_hectolitre(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_emulsion_eau_gazole_autres_hectolitre(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_emulsion_eau_gazole_sous_conditions_hectolitre(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_carburateurs_essence_autres_hL(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+
+class consommation_carburateurs_essence_carburants_avion_hL(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_carburateurs_essence_sous_conditions_hL(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_carburateurs_petrole_lampant_autres_hL(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_carburateurs_petrole_lampant_carburant_moteurs_avion_hL(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_carburateurs_petrole_lampant_sous_conditions_hL(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_butanes_liquefies_autres_100kg_nets(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_butanes_liquefies_sous_condition_100kg_nets(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_autres_gaz_petrole_liquefies_utilises_comme_carburants_autres_100kg(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_autres_gaz_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+# pour en cas où 
+# class consommation_(Variable): 
+#     value_type = float
+#     unit = ''
+#     entity = Etablissement
+#     label = ''
+#     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+#     definition_period = YEAR
+
+
+
+
+
+#tecpe
 class consommation_gaz_carburant(Variable): #renommer à consommation_gaz_carburant
     value_type = float
     unit = 'MWh'
