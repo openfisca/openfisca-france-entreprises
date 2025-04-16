@@ -20,24 +20,39 @@ class taxe_electricite(Variable):
         total = taxe_contribution_service_public_electricite
 
         return total 
-    def formula_2005_01_01(etablissement, period, parameters):
-#sous travail, lire le code réferencé dans cspe.yaml
-        total = 0
-        return total 
+
 
     def formula_2011_01_01(etablissement, period, parameters):
         taxe_interieure_sur_consommation_finale_electricite = etablissement('taxe_interieure_sur_consommation_finale_electricite', period)
         taxe_communale_consommation_finale_electricite = etablissement('taxe_communale_consommation_finale_electricite', period)
         taxe_departementale_consommation_finale_electricite = etablissement('taxe_departementale_consommation_finale_electricite', period)
+        #on a pas de données pour les tdcfe et tccfe avant 2011 
+        taxe_contribution_service_public_electricite = etablissement('taxe_contribution_service_public_electricite', period)
+        #la cspe est mis en compte pour la totale jusqu'à 2015 (inclus)
+
+
+        total = taxe_contribution_service_public_electricite + taxe_interieure_sur_consommation_finale_electricite + taxe_communale_consommation_finale_electricite + taxe_departementale_consommation_finale_electricite
+        return total 
     
+    def formula_2016_01_01(etablissement, period, parameters):
+        #la cspe n'existait plus dès cette année
+        #dès 2020, les parametres des tdcfe et tccfe sont généré sous l'hypothese que les coefficients ont une tendance de s'augmenter dès 2021 jusqu'à la borne, avant de s'intégrer dans l'accise
+        taxe_interieure_sur_consommation_finale_electricite = etablissement('taxe_interieure_sur_consommation_finale_electricite', period)
+        taxe_communale_consommation_finale_electricite = etablissement('taxe_communale_consommation_finale_electricite', period)
+        taxe_departementale_consommation_finale_electricite = etablissement('taxe_departementale_consommation_finale_electricite', period)
+
         total = taxe_interieure_sur_consommation_finale_electricite + taxe_communale_consommation_finale_electricite + taxe_departementale_consommation_finale_electricite
         return total 
+    
+
     def formula_2022_01_01(etablissement, period, parameters):
+        #en 2022, la tdcfe est intégrée dans l'accise, un ans avant ça n'arrive à la tccfe
         taxe_accise_electricite = etablissement('taxe_accise_electricite', period)
         taxe_communale_consommation_finale_electricite = etablissement('taxe_communale_consommation_finale_electricite', period)
     
         total = taxe_accise_electricite + taxe_communale_consommation_finale_electricite 
         return total 
+    
     def formula_2023_01_01(etablissement, period, parameters):
         taxe_accise_electricite = etablissement('taxe_accise_electricite', period)
     
@@ -58,6 +73,8 @@ class taxe_contribution_service_public_electricite(Variable):
         montant = assiette_taxe_electricite * parameters(period).energies.electricite.cspe
 
         return montant
+    
+    #condition d'application est pareil jusqu'à 2011
 
 class taxe_interieure_sur_consommation_finale_electricite(Variable):
     value_type = float
