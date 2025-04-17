@@ -14,7 +14,7 @@ class consommation_goudrons_utilises_comme_combustibles(Variable):
 
 class consommation_carburant_constitue_100_estars_methyliques_acides_gras(Variable): 
     value_type = float
-    unit = ''
+    unit = 'Hectolitre'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -22,7 +22,7 @@ class consommation_carburant_constitue_100_estars_methyliques_acides_gras(Variab
 
 class consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole(Variable): 
     value_type = float
-    unit = ''
+    unit = 'Hectolitre'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -38,7 +38,7 @@ class consommation_essence_normale(Variable):
 
 class consommation_essences_speciales_utilisees_comme_carburants_combustibles(Variable): 
     value_type = float
-    unit = ''
+    unit = 'Hectolitre'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -62,7 +62,7 @@ class consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants(Variable):
 
 class consommation_white_spirit_utilise_comme_combustible(Variable): 
     value_type = float
-    unit = ''
+    unit = 'Hectolitre'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -70,7 +70,7 @@ class consommation_white_spirit_utilise_comme_combustible(Variable):
 
 class consommation_super_e5(Variable): 
     value_type = float
-    unit = ''
+    unit = 'Hectolitre'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -78,7 +78,7 @@ class consommation_super_e5(Variable):
 
 class consommation_super_e10(Variable): 
     value_type = float
-    unit = ''
+    unit = 'Hectolitre'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -86,7 +86,7 @@ class consommation_super_e10(Variable):
 
 class consommation_super_e85(Variable): 
     value_type = float
-    unit = ''
+    unit = 'Hectolitre'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -94,7 +94,7 @@ class consommation_super_e85(Variable):
 
 class consommation_super_plombe(Variable): 
     value_type = float
-    unit = ''
+    unit = 'Hectolitre'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -127,7 +127,7 @@ class consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_ne
 
 class consommation_petrole_lampant_autre_hectolitre(Variable): 
     value_type = float
-    unit = ''
+    unit = 'Hectolitre'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -135,7 +135,7 @@ class consommation_petrole_lampant_autre_hectolitre(Variable):
 
 class consommation_petrole_lampant_utilise_comme_combustible_hectolitre(Variable): 
     value_type = float
-    unit = ''
+    unit = 'Hectolitre'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -143,7 +143,7 @@ class consommation_petrole_lampant_utilise_comme_combustible_hectolitre(Variable
 
 class consommation_huiles_legeres_preparation_essence_aviation(Variable): 
     value_type = float
-    unit = ''
+    unit = 'Hectolitre'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -151,7 +151,7 @@ class consommation_huiles_legeres_preparation_essence_aviation(Variable):
 
 class consommation_huiles_legeres(Variable): 
     value_type = float
-    unit = ''
+    unit = 'Hectolitre'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -160,7 +160,7 @@ class consommation_huiles_legeres(Variable):
 
 class consommation_huiles_moyennes(Variable): 
     value_type = float
-    unit = ''
+    unit = 'Hectolitre'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -168,7 +168,7 @@ class consommation_huiles_moyennes(Variable):
 
 class consommation_gazole_carburants_sous_conditions_hectolitre(Variable): 
     value_type = float
-    unit = ''
+    unit = 'Hectolitre'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -176,7 +176,7 @@ class consommation_gazole_carburants_sous_conditions_hectolitre(Variable):
 
 class consommation_galzole_fioul_domestique_hectolitre(Variable): 
     value_type = float
-    unit = ''
+    unit = 'Hectolitre'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -184,7 +184,7 @@ class consommation_galzole_fioul_domestique_hectolitre(Variable):
 
 class consommation_gazol_b_10_hectolitre(Variable): 
     value_type = float
-    unit = ''
+    unit = 'Hectolitre'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -192,7 +192,7 @@ class consommation_gazol_b_10_hectolitre(Variable):
 
 class consommation_gazole(Variable): 
     value_type = float
-    unit = ''
+    unit = 'Hectolitre'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -200,7 +200,7 @@ class consommation_gazole(Variable):
 
 class consommation_fioul_lourd_100kg_net(Variable): 
     value_type = float
-    unit = ''
+    unit = '100 kg nets'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -208,7 +208,7 @@ class consommation_fioul_lourd_100kg_net(Variable):
 
 class consommation_fioul_lourd_bts_100kg(Variable): 
     value_type = float
-    unit = ''
+    unit = '100 kg nets'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -216,7 +216,7 @@ class consommation_fioul_lourd_bts_100kg(Variable):
 
 class consommation_fioul_lourd_hts_100kg(Variable): 
     value_type = float
-    unit = ''
+    unit = '100 kg nets'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -248,7 +248,7 @@ class consommation_emulsion_eau_gazole_sous_conditions_hectolitre(Variable):
 
 class consommation_carburateurs_essence_autres_hL(Variable): 
     value_type = float
-    unit = ''
+    unit = 'Hectolitre'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -257,7 +257,7 @@ class consommation_carburateurs_essence_autres_hL(Variable):
 
 class consommation_carburateurs_essence_carburants_avion_hL(Variable): 
     value_type = float
-    unit = ''
+    unit = 'Hectolitre'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -273,7 +273,7 @@ class consommation_carburateurs_essence_sous_conditions_hL(Variable):
 
 class consommation_carburateurs_petrole_lampant_autres_hL(Variable): 
     value_type = float
-    unit = ''
+    unit = '100 kg nets'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -281,7 +281,7 @@ class consommation_carburateurs_petrole_lampant_autres_hL(Variable):
 
 class consommation_carburateurs_petrole_lampant_carburant_moteurs_avion_hL(Variable): 
     value_type = float
-    unit = ''
+    unit = '100 kg nets'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -297,7 +297,7 @@ class consommation_carburateurs_petrole_lampant_sous_conditions_hL(Variable):
 
 class consommation_butanes_liquefies_autres_100kg_nets(Variable): 
     value_type = float
-    unit = ''
+    unit = '100 kg nets'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -305,7 +305,7 @@ class consommation_butanes_liquefies_autres_100kg_nets(Variable):
 
 class consommation_butanes_liquefies_sous_condition_100kg_nets(Variable): 
     value_type = float
-    unit = ''
+    unit = '100 kg nets'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -313,7 +313,7 @@ class consommation_butanes_liquefies_sous_condition_100kg_nets(Variable):
 
 class consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets(Variable): 
     value_type = float
-    unit = ''
+    unit = '100 kg nets'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
@@ -321,7 +321,7 @@ class consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_net
 
 class consommation_autres_gaz_petrole_liquefies_utilises_comme_carburants_autres_100kg(Variable): 
     value_type = float
-    unit = ''
+    unit = '100 kg nets'
     entity = Etablissement
     label = ''
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
