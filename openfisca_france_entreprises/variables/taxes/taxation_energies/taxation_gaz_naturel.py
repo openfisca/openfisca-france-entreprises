@@ -472,6 +472,27 @@ class assiette_ticgn(Variable):
         consommation = max(0, conso - conso_exoneree)
         return consommation
     
+    def formula_2007_01_01(etablissement, period, parameters):
+        """
+        ajouté consommation_autres_produits_energetique_ticgn
+        """
+        conso = etablissement("consommation_gaz_naturel", period)
+        consommation_autres_produits_energetique_ticgn = etablissement('consommation_autres_produits_energetique_ticgn', period)
+
+        date_installation_cogeneration = etablissement("date_installation_cogeneration", period)
+        cogeneration_exoneree = False
+
+        if (date_installation_cogeneration <= period.start.year <= date_installation_cogeneration + 5) and (date_installation_cogeneration < 2007):
+            cogeneration_exoneree = True
+
+        conso_exoneree = (
+            etablissement("consommation_gaz_chauffage_habitation", period) +
+            etablissement("consommation_gaz_production_electricite", period) +
+            [cogeneration_exoneree * etablissement("consommation_gaz_cogeneration", period)]
+        )
+        consommation = max(0, conso + consommation_autres_produits_energetique_ticgn - conso_exoneree)
+        return consommation
+    
 
     def formula_2008_01_01(etablissement, period, parameters):
         """
@@ -489,6 +510,8 @@ class assiette_ticgn(Variable):
             - pour la consommation des particuliers (consommation_gaz_particuliers)
         """
         conso = etablissement("consommation_gaz_naturel", period)
+        consommation_autres_produits_energetique_ticgn = etablissement('consommation_autres_produits_energetique_ticgn', period)
+
 
         date_installation_cogeneration = etablissement('date_installation_cogeneration', period)
         cogeneration_exoneree = False
@@ -506,7 +529,7 @@ class assiette_ticgn(Variable):
             [cogeneration_exoneree * etablissement("consommation_gaz_cogeneration", period)]
         )
 
-        consommation = max(0, conso - conso_exoneree)
+        consommation = max(0, conso + consommation_autres_produits_energetique_ticgn - conso_exoneree)
         return consommation
 
     def formula_2011_01_01(etablissement, period, parameters):
@@ -524,6 +547,7 @@ class assiette_ticgn(Variable):
             cogeneration_exoneree = True
 
         conso = etablissement("consommation_gaz_naturel", period)
+        consommation_autres_produits_energetique_ticgn = etablissement('consommation_autres_produits_energetique_ticgn', period)
         conso_exoneree = (
             etablissement("consommation_gaz_chauffage_habitation", period) +
             etablissement("consommation_gaz_fabrication_soi", period) +
@@ -536,7 +560,7 @@ class assiette_ticgn(Variable):
 
         )
 
-        consommation = max(0, conso - conso_exoneree)
+        consommation = max(0, conso + consommation_autres_produits_energetique_ticgn - conso_exoneree)
         return consommation
     
     def formula_2014_01_01(etablissement, period, parameters):
@@ -551,6 +575,8 @@ class assiette_ticgn(Variable):
         """
 
         conso = etablissement("consommation_gaz_naturel", period)
+        consommation_autres_produits_energetique_ticgn = etablissement('consommation_autres_produits_energetique_ticgn', period)
+
         conso_exoneree = (
             etablissement("consommation_gaz_fabrication_soi", period) +
             etablissement("consommation_gaz_production_electricite", period) 
@@ -561,7 +587,7 @@ class assiette_ticgn(Variable):
             etablissement('consommation_gaz_nc_2711_29', period)
         )
 
-        consommation = max(0, conso - conso_exoneree)
+        consommation = max(0, conso + consommation_autres_produits_energetique_ticgn - conso_exoneree)
         return consommation
 
 
@@ -575,6 +601,7 @@ class assiette_ticgn(Variable):
         """
 
         conso = etablissement("consommation_gaz_naturel", period)
+        consommation_autres_produits_energetique_ticgn = etablissement('consommation_autres_produits_energetique_ticgn', period)
         conso_plus = etablissement("consommation_gaz_carburant", period) #faut pas oublier de l'enlever de l'autre (taxation_produit petrolier ... ) dès 2020
         conso_exoneree = (
             etablissement("consommation_gaz_fabrication_soi", period) +
@@ -585,13 +612,14 @@ class assiette_ticgn(Variable):
             etablissement("consommation_gaz_nc_2705", period) +
             etablissement('consommation_gaz_nc_2711_29', period)
         )
-        consommation = max(0, conso + conso_plus - conso_exoneree)
+        consommation = max(0, conso + conso_plus + consommation_autres_produits_energetique_ticgn - conso_exoneree)
         return consommation
     
     def formula_2021_01_01(etablissement, period, parameters):
         """suprimmé consommation_gaz_nc_2705
         """
         conso = etablissement("consommation_gaz_naturel", period)
+        consommation_autres_produits_energetique_ticgn = etablissement('consommation_autres_produits_energetique_ticgn', period)
         conso_plus = etablissement("consommation_gaz_carburant", period) #faut pas oublier de l'enlever de l'autre (taxation_produit petrolier ... ) dès 2020
         conso_exoneree = (
             etablissement("consommation_gaz_fabrication_soi", period) +
@@ -602,13 +630,14 @@ class assiette_ticgn(Variable):
             etablissement('consommation_gaz_nc_2711_29', period)
         )
 
-        consommation = max(0, conso + conso_plus - conso_exoneree)
+        consommation = max(0, conso + conso_plus + consommation_autres_produits_energetique_ticgn - conso_exoneree)
         return consommation
     
     def formula_2022_01_01(etablissement, period, parameters):
         """suprimmé consommation_gaz_nc_4401_4402
         """
         conso = etablissement("consommation_gaz_naturel", period)
+        consommation_autres_produits_energetique_ticgn = etablissement('consommation_autres_produits_energetique_ticgn', period)
         conso_plus = etablissement("consommation_gaz_carburant", period) #faut pas oublier de l'enlever de l'autre (taxation_produit petrolier ... ) dès 2020
         conso_exoneree = (
             etablissement("consommation_gaz_fabrication_soi", period) +
@@ -618,7 +647,7 @@ class assiette_ticgn(Variable):
             etablissement('consommation_gaz_nc_2711_29', period)
         )
 
-        consommation = max(0, conso + conso_plus - conso_exoneree)
+        consommation = max(0, conso + conso_plus + consommation_autres_produits_energetique_ticgn - conso_exoneree)
         return consommation
     
 

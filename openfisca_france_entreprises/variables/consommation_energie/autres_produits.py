@@ -344,9 +344,142 @@ class consommation_autres_gaz_petrole_liquefies_utilises_comme_carburants_sous_c
 #     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
 #     definition_period = YEAR
 
+class consommation_autres_produits_energetique_ticc(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = '''Les produits energetique dans l'article 265 soumis à l'article 265 quinques B.'''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+    def formula_2007_01_01(etablissement, period, parameters):
+        totale =  etablissement('consommation_huiles_lubrifiantes_et_autres', period) + etablissement('consommation_vaseline', period) + etablissement('consommation_paraffine_moins_soixante_quinze_pourcent_huile', period) + etablissement('consommation_paraffine_cires_de_petrole_residus_paraffineux', period) + etablissement('consommation_bitumes_de_petrole', period) + etablissement('consommation_autres_residus_huiles_petrole_ou_mineraux_bitumineux', period) + etablissement('consommation_melanges_bitumeux', period) + etablissement('consommation_preparations_traitement_matiere_textiles', period) + etablissement('consommation_preparations_lubrifiantes', period) + etablissement('consommation_additifs_huiles_lubrifiantes', period)
 
+        return totale
+    
+    def formula_2012_01_01(etablissement, period, parameters):
+        totale = etablissement('consommation_melanges_hydrocarbures_aromatiques', period) + etablissement('consommation_huiles_lubrifiantes_et_autres', period) + etablissement('consommation_vaseline', period) + etablissement('consommation_paraffine_moins_soixante_quinze_pourcent_huile', period) + etablissement('consommation_paraffine_cires_de_petrole_residus_paraffineux', period) + etablissement('consommation_bitumes_de_petrole', period) + etablissement('consommation_autres_residus_huiles_petrole_ou_mineraux_bitumineux', period) + etablissement('consommation_melanges_bitumeux', period) + etablissement('consommation_preparations_traitement_matiere_textiles', period) + etablissement('consommation_preparations_lubrifiantes', period) + etablissement('consommation_additifs_huiles_lubrifiantes', period)
+        etablissement('', period)
 
+        return totale
 
+class consommation_autres_produits_energetique_ticgn(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = '''Les produits energetique dans l'article 265 soumis à l'article 265 quinques.'''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+    def formula_2007_01_01(etablissement, period, parameters):
+        totale = etablissement('consommation_ethylene_propylene_butylene_butadiene', period) 
+
+        return totale
+
+class consommation_melanges_hydrocarbures_aromatiques(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = '''Ex 2707-50 Mélanges à forte teneur en hydrocarbures aromatiques distillant 65 % ou plus de leur volume (y compris les pertes) à 250° C d'après la méthode ASTM D 86, destinés à être utilisés comme carburants ou combustibles.'''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+    #avant 2012 : Taxe intérieure applicable aux huiles légères ou moyennes du 2710, suivant les caractéristiques du produit.
+
+class consommation_huiles_lubrifiantes_et_autres(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = '2710---huiles lubrifiantes et autres.'
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_ethylene_propylene_butylene_butadiene(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = '2711-14 Éthylène, propylène, butylène et butadiène.'
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_vaseline(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = '2712-10 Vaseline.'
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_paraffine_moins_soixante_quinze_pourcent_huile(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = '''2712-20  Paraffine contenant en poids moins de 0,75 % d'huile.'''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_paraffine_cires_de_petrole_residus_paraffineux(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = 'Ex 2712-90 Paraffine (autre que celle mentionnée au 2712-20), cires de pétrole et résidus paraffineux, même colorés.'
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_bitumes_de_petrole(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = '2713-20 Bitumes de pétrole.'
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_autres_residus_huiles_petrole_ou_mineraux_bitumineux(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = '2713-90 Autres résidus des huiles de pétrole ou de minéraux bitumineux.'
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_melanges_bitumeux(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = '''2715-00 Mélanges bitumeux à base d'asphalte ou de bitume naturel, de bitume de pétrole, de goudrons minéraux ou de brai de goudron minéral.'''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_preparations_traitement_matiere_textiles(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = '''3403-11 Préparations pour le traitement des matières textiles, du cuir, des pelleteries ou d'autres matières, contenant moins de 70 % en poids d'huiles de pétrole ou de minéraux bitumeux.'''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_preparations_lubrifiantes(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = '''Ex 3403-19 Préparations lubrifiantes contenant moins de 70 % en poids d'huiles de pétrole ou de minéraux bitumeux.'''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+class consommation_additifs_huiles_lubrifiantes(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = '3811-21 Additifs pour huiles lubrifiantes contenant des huiles de pétrole ou de minéraux bitumeux.'
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+    definition_period = YEAR
+
+# class consommation_(Variable): 
+#     value_type = float
+#     unit = ''
+#     entity = Etablissement
+#     label = ''
+#     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
+#     definition_period = YEAR
+
+    
 
 #tecpe
 class consommation_gaz_carburant(Variable): #renommer à consommation_gaz_carburant
@@ -601,3 +734,6 @@ class gazoles_extraction_mineraux_industriels(Variable):
         if apet == type_eta._08_11Z or apet == type_eta._23_52Z or apet == type_eta._08_12Z:
             determinant = True
         return determinant
+    
+
+

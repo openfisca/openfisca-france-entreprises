@@ -17,7 +17,7 @@ class gaz_matiere_premiere(Variable):
     unit = ''
     entity = Etablissement
     label = "La consommation de gaz naturel en matière première de l'etablissement"
-    reference : "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/" 
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/'
     definition_period = YEAR
     def formula_1992_01_01(etablissement, period, parameters): 
         apet = etablissement("apet", period)
@@ -48,7 +48,7 @@ class gaz_huiles_minerales(Variable):
     unit = ''
     entity = Etablissement
     label = "La consommation de gaz naturel en huiles minerales de l'etablissement"
-    reference : "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/"
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/"
     definition_period = YEAR
     def formula_1992_01_01(etablissement, period, parameters): 
         apet = etablissement("apet", period)
@@ -73,7 +73,7 @@ class consommation_gaz_chauffage_habitation(Variable):
     unit = 'MWh'
     entity = Etablissement
     label = "La consommation de gaz naturel en chauffage d'habitation de l'etablissement"
-    reference : "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/"
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/"
     definition_period = YEAR
 
 class consommation_gaz_production_electricite(Variable):
@@ -84,7 +84,7 @@ class consommation_gaz_production_electricite(Variable):
     unit = 'MWh'
     entity = Etablissement
     label = "La consommation de gaz naturel en production d'électricité de l'etablissement"
-    reference : "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615172/2006-12-31/"
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615172/2006-12-31/"
     definition_period = YEAR
 
 
@@ -95,7 +95,7 @@ class consommation_gaz_production_electricite(Variable):
 #     unit = 'MWh'
 #     entity = Etablissement
 #     label = ""
-#     reference : "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000023181905"
+#     reference = "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000023181905"
 #     definition_period = YEAR 
 # #trop compliqué :(
 
@@ -128,7 +128,7 @@ class consommation_gaz_usage_non_combustible(Variable):
     unit = 'MWh'
     entity = Etablissement
     label = "La consommation de gaz naturel autrement que comme combustible"
-    reference : "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018036078/2008-04-01/"
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018036078/2008-04-01/"
     definition_period = YEAR
     def formula_2008_01_01(etablissement, period):
         status = False
@@ -164,7 +164,7 @@ class gaz_production_mineraux_non_metalliques(Variable):
     unit = ''
     entity = Etablissement
     label = "La consommation de gaz naturel dans un procédé de fabrication de produits minéraux non métalliques"
-    reference : "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018036078/2008-04-01/#:~:text=3%C2%B0%20Dans%20un%20proc%C3%A9d%C3%A9%20de%20fabrication%20de%20produits%20min%C3%A9raux%20non%20m%C3%A9talliques%20mentionn%C3%A9%20au%203%C2%B0%20du%20I%20de%20l%27article%20265%20C."
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018036078/2008-04-01/#:~:text=3%C2%B0%20Dans%20un%20proc%C3%A9d%C3%A9%20de%20fabrication%20de%20produits%20min%C3%A9raux%20non%20m%C3%A9talliques%20mentionn%C3%A9%20au%203%C2%B0%20du%20I%20de%20l%27article%20265%20C."
     definition_period = YEAR
     def formula_2008_01_01(etablissement, period):
         apet = etablissement("apet", period)
@@ -191,7 +191,7 @@ class gaz_extraction_production(Variable):
     unit = ''
     entity = Etablissement
     label = "La consommation de gaz naturel pour les besoins de l'extraction et de la production de gaz naturel"
-    reference : "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018036078/2008-04-01/"
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018036078/2008-04-01/"
     definition_period = YEAR
     def formula_2008_01_01(etablissement, period):
         apet = etablissement("apet", period)
@@ -211,7 +211,7 @@ class consommation_gaz_particuliers(Variable):
     unit = 'MWh'
     entity = Etablissement
     label = "La consommation de gaz naturel par des particuliers"
-    reference : "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018036078/2008-04-01/" 
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018036078/2008-04-01/" 
     definition_period = YEAR
 
 # class consommation_gaz_autorites_regionales(Variable):
@@ -220,7 +220,7 @@ class consommation_gaz_particuliers(Variable):
 #     unit = 'MWh'
 #     entity = Etablissement
 #     label = "La consommation de gaz naturel par les autorités régionales"
-#     reference : "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018036078/2008-04-01/" 
+#     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018036078/2008-04-01/" 
 #     definition_period = YEAR
 # #je l'ai suprimmé car c'est pas pertinant 
 
