@@ -122,7 +122,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_white_spirit_utilise_comme_combustible', period) * parameters(period).energies.autres_produits_energetiques.ticpe.white_spirit_utilise_comme_combustible
             + etablissement('consommation_essences_speciales_utilisees_comme_carburants_combustibles', period) * parameters(period).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement('huiles_legeres_preparation_essence_aviation', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
-            + etablissement('consommation_super_e5', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5
+            + etablissement('consommation_super_e5', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5 + etablissement("ticpe_majoration_regionale_supercarburant", period))
             + etablissement('consommation_super_plombe', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
             # + etablissement('consommation_super_e10', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10
             + etablissement('consommation_carburateurs_essence_carburants_avion_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.essence.carburants_avion_hL
@@ -134,7 +134,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_carburateurs_petrole_lampant_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.petrole_lampant.autres_hL
             + etablissement('consommation_huiles_moyennes', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_moyennes
             + etablissement('consommation_galzole_fioul_domestique_hectolitre', period) * parameters(period).energies.autres_produits_energetiques.ticpe.gazole.fioul_domestique_hectolitre
-            + etablissement('consommation_gazole', period) * parameters(period).energies.autres_produits_energetiques.ticpe.gazole.gazole
+            + etablissement('consommation_gazole', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.gazole.gazole + etablissement("ticpe_majoration_regionale_gazole", period))
             + etablissement('consommation_fioul_lourd_100kg_net', period) * parameters(period).energies.autres_produits_energetiques.ticpe.fioul.fioul_lourd_100kg_net
             + etablissement('consommation_propane_carburants_autres_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
             # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.usages_autres_que_comme_carburant_100kg_nets
@@ -171,7 +171,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_white_spirit_utilise_comme_combustible', period) * parameters(period).energies.autres_produits_energetiques.ticpe.white_spirit_utilise_comme_combustible
             + etablissement('consommation_essences_speciales_utilisees_comme_carburants_combustibles', period) * parameters(period).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement('huiles_legeres_preparation_essence_aviation', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
-            + etablissement('consommation_super_e5', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5
+            + etablissement('consommation_super_e5', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5 + etablissement("ticpe_majoration_regionale_supercarburant", period))
             + etablissement('consommation_super_plombe', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
             # + etablissement('consommation_super_e10', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10
             + etablissement('consommation_carburateurs_essence_carburants_avion_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.essence.carburants_avion_hL
@@ -183,7 +183,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_carburateurs_petrole_lampant_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.petrole_lampant.autres_hL
             + etablissement('consommation_huiles_moyennes', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_moyennes
             + etablissement('consommation_galzole_fioul_domestique_hectolitre', period) * parameters(period).energies.autres_produits_energetiques.ticpe.gazole.fioul_domestique_hectolitre
-            + etablissement('consommation_gazole', period) * parameters(period).energies.autres_produits_energetiques.ticpe.gazole.gazole
+            + etablissement('consommation_gazole', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.gazole.gazole + etablissement("ticpe_majoration_regionale_gazole", period))
             + etablissement('consommation_fioul_lourd_100kg_net', period) * parameters(period).energies.autres_produits_energetiques.ticpe.fioul.fioul_lourd_100kg_net
             + etablissement('consommation_propane_carburants_autres_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
             # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.usages_autres_que_comme_carburant_100kg_nets
@@ -222,9 +222,9 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_white_spirit_utilise_comme_combustible', period) * parameters(period).energies.autres_produits_energetiques.ticpe.white_spirit_utilise_comme_combustible
             + etablissement('consommation_essences_speciales_utilisees_comme_carburants_combustibles', period) * parameters(period).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement('huiles_legeres_preparation_essence_aviation', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
-            + etablissement('consommation_super_e5', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5
+            + etablissement('consommation_super_e5', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5 + etablissement("ticpe_majoration_regionale_supercarburant", period))
             + etablissement('consommation_super_plombe', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
-            + etablissement('consommation_super_e10', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10
+            + etablissement('consommation_super_e10', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10 + etablissement("ticpe_majoration_regionale_supercarburant", period))
             + etablissement('consommation_carburateurs_essence_carburants_avion_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.essence.carburants_avion_hL
             + etablissement('consommation_carburateurs_essence_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.essence.autres_hL
             + etablissement('consommation_huiles_legeres', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres
@@ -234,7 +234,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_carburateurs_petrole_lampant_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.petrole_lampant.autres_hL
             + etablissement('consommation_huiles_moyennes', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_moyennes
             + etablissement('consommation_galzole_fioul_domestique_hectolitre', period) * parameters(period).energies.autres_produits_energetiques.ticpe.gazole.fioul_domestique_hectolitre
-            + etablissement('consommation_gazole', period) * parameters(period).energies.autres_produits_energetiques.ticpe.gazole.gazole
+            + etablissement('consommation_gazole', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.gazole.gazole + etablissement("ticpe_majoration_regionale_gazole", period))
             + etablissement('consommation_fioul_lourd_100kg_net', period) * parameters(period).energies.autres_produits_energetiques.ticpe.fioul.fioul_lourd_100kg_net
             + etablissement('consommation_propane_carburants_autres_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
             # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.usages_autres_que_comme_carburant_100kg_nets
@@ -275,9 +275,9 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_white_spirit_utilise_comme_combustible', period) * parameters(period).energies.autres_produits_energetiques.ticpe.white_spirit_utilise_comme_combustible
             + etablissement('consommation_essences_speciales_utilisees_comme_carburants_combustibles', period) * parameters(period).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement('huiles_legeres_preparation_essence_aviation', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
-            + etablissement('consommation_super_e5', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5
+            + etablissement('consommation_super_e5', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5 + etablissement("ticpe_majoration_regionale_supercarburant", period))
             + etablissement('consommation_super_plombe', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
-            + etablissement('consommation_super_e10', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10
+            + etablissement('consommation_super_e10', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10 + etablissement("ticpe_majoration_regionale_supercarburant", period))
             + etablissement('consommation_carburateurs_essence_carburants_avion_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.essence.carburants_avion_hL
             + etablissement('consommation_carburateurs_essence_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.essence.autres_hL
             + etablissement('consommation_huiles_legeres', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres
@@ -287,7 +287,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_carburateurs_petrole_lampant_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.petrole_lampant.autres_hL
             + etablissement('consommation_huiles_moyennes', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_moyennes
             + etablissement('consommation_galzole_fioul_domestique_hectolitre', period) * parameters(period).energies.autres_produits_energetiques.ticpe.gazole.fioul_domestique_hectolitre
-            + etablissement('consommation_gazole', period) * parameters(period).energies.autres_produits_energetiques.ticpe.gazole.gazole
+            + etablissement('consommation_gazole', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.gazole.gazole + etablissement("ticpe_majoration_regionale_gazole", period))
             + etablissement('consommation_fioul_lourd_100kg_net', period) * parameters(period).energies.autres_produits_energetiques.ticpe.fioul.fioul_lourd_100kg_net
             + etablissement('consommation_propane_carburants_autres_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
             # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.usages_autres_que_comme_carburant_100kg_nets
@@ -327,9 +327,9 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_white_spirit_utilise_comme_combustible', period) * parameters(period).energies.autres_produits_energetiques.ticpe.white_spirit_utilise_comme_combustible
             + etablissement('consommation_essences_speciales_utilisees_comme_carburants_combustibles', period) * parameters(period).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement('huiles_legeres_preparation_essence_aviation', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
-            + etablissement('consommation_super_e5', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5
+            + etablissement('consommation_super_e5', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5 + etablissement("ticpe_majoration_regionale_supercarburant", period))
             + etablissement('consommation_super_plombe', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
-            + etablissement('consommation_super_e10', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10
+            + etablissement('consommation_super_e10', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10 + etablissement("ticpe_majoration_regionale_supercarburant", period))
             + etablissement('consommation_carburateurs_essence_carburants_avion_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.essence.carburants_avion_hL
             + etablissement('consommation_carburateurs_essence_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.essence.autres_hL
             + etablissement('consommation_huiles_legeres', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres
@@ -339,7 +339,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_carburateurs_petrole_lampant_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.petrole_lampant.autres_hL
             + etablissement('consommation_huiles_moyennes', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_moyennes
             + etablissement('consommation_galzole_fioul_domestique_hectolitre', period) * parameters(period).energies.autres_produits_energetiques.ticpe.gazole.fioul_domestique_hectolitre
-            + etablissement('consommation_gazole', period) * parameters(period).energies.autres_produits_energetiques.ticpe.gazole.gazole
+            + etablissement('consommation_gazole', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.gazole.gazole + etablissement("ticpe_majoration_regionale_gazole", period))
             + etablissement('consommation_fioul_lourd_100kg_net', period) * parameters(period).energies.autres_produits_energetiques.ticpe.fioul.fioul_lourd_100kg_net
             + etablissement('consommation_propane_carburants_autres_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
             # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.usages_autres_que_comme_carburant_100kg_nets
@@ -377,9 +377,9 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_white_spirit_utilise_comme_combustible', period) * parameters(period).energies.autres_produits_energetiques.ticpe.white_spirit_utilise_comme_combustible
             + etablissement('consommation_essences_speciales_utilisees_comme_carburants_combustibles', period) * parameters(period).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement('huiles_legeres_preparation_essence_aviation', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
-            + etablissement('consommation_super_e5', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5
+            + etablissement('consommation_super_e5', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5 + etablissement("ticpe_majoration_regionale_supercarburant", period))
             + etablissement('consommation_super_plombe', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
-            + etablissement('consommation_super_e10', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10
+            + etablissement('consommation_super_e10', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10 + etablissement("ticpe_majoration_regionale_supercarburant", period))
             + etablissement('consommation_carburateurs_essence_carburants_avion_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.essence.carburants_avion_hL
             + etablissement('consommation_carburateurs_essence_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.essence.autres_hL
             + etablissement('consommation_huiles_legeres', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres
@@ -389,7 +389,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_carburateurs_petrole_lampant_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.petrole_lampant.autres_hL
             + etablissement('consommation_huiles_moyennes', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_moyennes
             + etablissement('consommation_galzole_fioul_domestique_hectolitre', period) * parameters(period).energies.autres_produits_energetiques.ticpe.gazole.fioul_domestique_hectolitre
-            + etablissement('consommation_gazole', period) * parameters(period).energies.autres_produits_energetiques.ticpe.gazole.gazole
+            + etablissement('consommation_gazole', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.gazole.gazole + etablissement("ticpe_majoration_regionale_gazole", period))
             + etablissement('consommation_fioul_lourd_100kg_net', period) * parameters(period).energies.autres_produits_energetiques.ticpe.fioul.fioul_lourd_100kg_net
             + etablissement('consommation_propane_carburants_autres_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
             + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.usages_autres_que_comme_carburant_100kg_nets
@@ -437,9 +437,9 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_white_spirit_utilise_comme_combustible', period) * parameters(period).energies.autres_produits_energetiques.ticpe.white_spirit_utilise_comme_combustible
             + etablissement('consommation_essences_speciales_utilisees_comme_carburants_combustibles', period) * parameters(period).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement('huiles_legeres_preparation_essence_aviation', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
-            + etablissement('consommation_super_e5', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5
+            + etablissement('consommation_super_e5', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5 + etablissement("ticpe_majoration_regionale_supercarburant", period))
             + etablissement('consommation_super_plombe', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
-            + etablissement('consommation_super_e10', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10
+            + etablissement('consommation_super_e10', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10 + etablissement("ticpe_majoration_regionale_supercarburant", period))
             + etablissement('consommation_carburateurs_essence_carburants_avion_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.essence.carburants_avion_hL
             + etablissement('consommation_carburateurs_essence_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.essence.autres_hL
             + etablissement('consommation_huiles_legeres', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres
@@ -449,7 +449,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_carburateurs_petrole_lampant_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.petrole_lampant.autres_hL
             + etablissement('consommation_huiles_moyennes', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_moyennes
             + etablissement('consommation_galzole_fioul_domestique_hectolitre', period) * parameters(period).energies.autres_produits_energetiques.ticpe.gazole.fioul_domestique_hectolitre
-            + etablissement('consommation_gazole', period) * parameters(period).energies.autres_produits_energetiques.ticpe.gazole.gazole
+            + etablissement('consommation_gazole', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.gazole.gazole + etablissement("ticpe_majoration_regionale_gazole", period))
             + etablissement('consommation_fioul_lourd_100kg_net', period) * parameters(period).energies.autres_produits_energetiques.ticpe.fioul.fioul_lourd_100kg_net
             + etablissement('consommation_propane_carburants_autres_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
             + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.usages_autres_que_comme_carburant_100kg_nets
@@ -479,9 +479,9 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_white_spirit_utilise_comme_combustible', period) * parameters(period).energies.autres_produits_energetiques.ticpe.white_spirit_utilise_comme_combustible
             + etablissement('consommation_essences_speciales_utilisees_comme_carburants_combustibles', period) * parameters(period).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement('huiles_legeres_preparation_essence_aviation', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
-            + etablissement('consommation_super_e5', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5
+            + etablissement('consommation_super_e5', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5 + etablissement("ticpe_majoration_regionale_supercarburant", period))
             + etablissement('consommation_super_plombe', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
-            + etablissement('consommation_super_e10', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10
+            + etablissement('consommation_super_e10', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10 + etablissement("ticpe_majoration_regionale_supercarburant", period))
             + etablissement('consommation_carburateurs_essence_carburants_avion_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.essence.carburants_avion_hL
             + etablissement('consommation_carburateurs_essence_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.essence.autres_hL
             + etablissement('consommation_huiles_legeres', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres
@@ -491,7 +491,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_carburateurs_petrole_lampant_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.petrole_lampant.autres_hL
             + etablissement('consommation_huiles_moyennes', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_moyennes
             + etablissement('consommation_galzole_fioul_domestique_hectolitre', period) * parameters(period).energies.autres_produits_energetiques.ticpe.gazole.fioul_domestique_hectolitre
-            + etablissement('consommation_gazole', period) * parameters(period).energies.autres_produits_energetiques.ticpe.gazole.gazole
+            + etablissement('consommation_gazole', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.gazole.gazole + etablissement("ticpe_majoration_regionale_gazole", period))
             + etablissement('consommation_fioul_lourd_100kg_net', period) * parameters(period).energies.autres_produits_energetiques.ticpe.fioul.fioul_lourd_100kg_net
             + etablissement('consommation_propane_carburants_autres_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
             + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.usages_autres_que_comme_carburant_100kg_nets
@@ -534,93 +534,202 @@ class ticpe_majoration_regionale_gazole(Variable):
         
         departement = etablissement('departement', period)
 
-        if departement in ['01', '07', '26', '38', '42', '69', '73', '74']:
-            region = 'Rhône-Alpes'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
-        elif departement in ['04', '05', '06', '13', '83', '84']:
-            region = 'PACA'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\paca
 
-        elif departement in ['67', '68']:
-            region = 'Alsace'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+        if departement in ['67', '68']:
+            #region = 'Alsace'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.alsace
+        
         elif departement in ['24', '33', '40', '47', '64']:
-            region = 'Aquitaine'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+            #region = 'Aquitaine'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.aquitaine
 
-        elif departement in ['03', '15', '43', '63']:
-            region = 'Auvergne'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+        elif departement in ['3', '15', '43', '63']:
+            #region = 'Auvergne'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.auvergne
 
         elif departement in ['14', '50', '61']:
-            region = 'Basse-Normandie'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+            #region = 'Basse-Normandie'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.basse_normandie
 
         elif departement in ['21', '58', '71', '89']:
-            region = 'Bourgogne'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+            #region = 'Bourgogne'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.bourgogne
 
         elif departement in ['22', '29', '35', '56']:
-            region = 'Bretagne'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+            #region = 'Bretagne'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.bretagne
 
         elif departement in ['18', '28', '36', '37', '41', '45']:
-            region = 'Centre'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+            #region = 'Centre'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.centre
 
-        elif departement in ['08', '10', '51', '52']:
-            region = 'Champagne-Ardenne'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+        elif departement in ['8', '10', '51', '52']:
+            #region = 'Champagne-Ardenne'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.champagne_ardennes
 
         elif departement in ['2A', '2B']:
-            region = 'Corse'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+            #region = 'Corse'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.corse
 
         elif departement in ['25', '39', '70', '90']:
-            region = 'Franche-Comté'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+            #region = 'Franche-Comté'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.franche_comte
 
         elif departement in ['27', '76']:
-            region = 'Haute-Normandie'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+            #region = 'Haute-Normandie'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.haute_normandie
 
         elif departement in ['75', '77', '78', '91', '92', '93', '94', '95']:
-            region = 'Île-de-France'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+            #region = 'Île-de-France'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.ils_france
 
         elif departement in ['11', '30', '34', '48', '66']:
-            region = 'Languedoc-Roussillon'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+            #region = 'Languedoc-Roussillon'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.languedoc_roussillon
 
         elif departement in ['19', '23', '87']:
-            region = 'Limousin'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+            #region = 'Limousin'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.limousin
 
         elif departement in ['54', '55', '57', '88']:
-            region = 'Lorraine'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+            #region = 'Lorraine'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.lorraine
 
-        elif departement in ['09', '12', '31', '32', '46', '65', '81', '82']:
-            region = 'Midi-Pyrénées'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+        elif departement in ['9', '12', '31', '32', '46', '65', '81', '82']:
+            #region = 'Midi-Pyrénées'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.midi_pyrenees
 
         elif departement in ['59', '62']:
-            region = 'Nord-Pas-de-Calais'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+            #region = 'Nord-Pas-de-Calais'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.nord_pas_calais
+
+        elif departement in ['4', '5', '6', '13', '83', '84']:
+            #region = 'PACA'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.paca
 
         elif departement in ['44', '49', '53', '72', '85']:
-            region = 'Pays de la Loire'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+            #region = 'Pays de la Loire'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.pays_loire
 
-        elif departement in ['02', '60', '80']:
-            region = 'Picardie'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+        elif departement in ['2', '60', '80']:
+            #region = 'Picardie'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.picardie
 
         elif departement in ['16', '17', '79', '86']:
-            region = 'Poitou-Charentes'
-            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+            #region = 'Poitou-Charentes'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.poitou_charentes
 
+        elif departement in ['1', '7', '26', '38', '42', '69', '73', '74']:
+            #region = 'Rhône-Alpes'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.rhone_alpes
         else:
-            region = 'Inconnu'
-        return region        
+            #region = 'Inconnu'
+            majoration = 0
+      
+        return majoration 
+    
+
+
+class ticpe_majoration_regionale_supercarburant(Variable):
+    value_type = float
+    entity = Etablissement
+    definition_period = YEAR
+    label = "taxe intérieure de consommation sur les produits énergétiques"
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"  #
+    def formula_2007_01_01(etablissement, period, parameters):
+        
+        departement = etablissement('departement', period)
+
+
+        if departement in ['67', '68']:
+            #region = 'Alsace'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.alsace
+        
+        elif departement in ['24', '33', '40', '47', '64']:
+            #region = 'Aquitaine'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.aquitaine
+
+        elif departement in ['3', '15', '43', '63']:
+            #region = 'Auvergne'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.auvergne
+
+        elif departement in ['14', '50', '61']:
+            #region = 'Basse-Normandie'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.basse_normandie
+
+        elif departement in ['21', '58', '71', '89']:
+            #region = 'Bourgogne'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.bourgogne
+
+        elif departement in ['22', '29', '35', '56']:
+            #region = 'Bretagne'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.bretagne
+
+        elif departement in ['18', '28', '36', '37', '41', '45']:
+            #region = 'Centre'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.centre
+
+        elif departement in ['8', '10', '51', '52']:
+            #region = 'Champagne-Ardenne'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.champagne_ardennes
+
+        elif departement in ['2A', '2B']:
+            #region = 'Corse'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.corse
+
+        elif departement in ['25', '39', '70', '90']:
+            #region = 'Franche-Comté'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.franche_comte
+
+        elif departement in ['27', '76']:
+            #region = 'Haute-Normandie'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.haute_normandie
+
+        elif departement in ['75', '77', '78', '91', '92', '93', '94', '95']:
+            #region = 'Île-de-France'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.ils_france
+
+        elif departement in ['11', '30', '34', '48', '66']:
+            #region = 'Languedoc-Roussillon'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.languedoc_roussillon
+
+        elif departement in ['19', '23', '87']:
+            #region = 'Limousin'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.limousin
+
+        elif departement in ['54', '55', '57', '88']:
+            #region = 'Lorraine'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.lorraine
+
+        elif departement in ['9', '12', '31', '32', '46', '65', '81', '82']:
+            #region = 'Midi-Pyrénées'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.midi_pyrenees
+
+        elif departement in ['59', '62']:
+            #region = 'Nord-Pas-de-Calais'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.nord_pas_calais
+
+        elif departement in ['4', '5', '6', '13', '83', '84']:
+            #region = 'PACA'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.paca
+
+        elif departement in ['44', '49', '53', '72', '85']:
+            #region = 'Pays de la Loire'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.pays_loire
+
+        elif departement in ['2', '60', '80']:
+            #region = 'Picardie'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.picardie
+
+        elif departement in ['16', '17', '79', '86']:
+            #region = 'Poitou-Charentes'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.poitou_charentes
+
+        elif departement in ['1', '7', '26', '38', '42', '69', '73', '74']:
+            #region = 'Rhône-Alpes'
+            majoration = parameters(period).energies.autres_produits_energetiques.major_regionale_ticpe_super.rhone_alpes
+        else:
+            #region = 'Inconnu'
+            majoration = 0
+      
         return majoration 

@@ -12,44 +12,68 @@ class consommation_charbon(Variable):
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615177/2007-07-01/"
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
+    #dès 2007, seules les usages comme combustile sont soumis à la TICGN. 
+    #dès 2020, les usages comme carbrant y sont somis aussi. 
+    def formula_2007_01_01(etablissement, period) : 
+        
+        totale = etablissement('consommation_charbon_combustile', period)
 
+        return totale
+    def formula_2020_01_01(etablissement, period) : 
+        
+        totale = etablissement('consommation_charbon_combustile', period) + etablissement('consommation_charbon_carburant', period)
+
+        return totale
 
 class consommation_charbon_carburant(Variable):
     #inclus dans le ticc à partir de 2020
+    #ça fait partie de la formule de consommation_charbon
     value_type = float
     unit = 'MWh'
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé comme carburant"
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
-
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704
 
-
-class consommation_charbon_non_combustible_non_carburant(Variable):
-    # non combustible ou non carburant sont exclus de la taxe à partir de 2020
+class consommation_charbon_combustile(Variable):
+    #inclus dans le ticc à partir de 2020
+    #ça fait partie de la formule de consommation_charbon
     value_type = float
     unit = 'MWh'
     entity = Etablissement
-    label = "Consommation de charbon de l'établissement, utilisé autrement que carburant ou combustible"
+    label = "Consommation de charbon de l'établissement, utilisé comme combustile"
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
+    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704
+
+
+
+# class consommation_charbon_ni_combustible_ni_carburant(Variable):
+#     # 
+#     # non combustible ou non carburant sont exclus de la taxe à partir de 2020
+#     value_type = float
+#     unit = 'MWh'
+#     entity = Etablissement
+#     label = "Consommation de charbon de l'établissement, utilisé autrement que carburant ou combustible"
+#     definition_period = YEAR
+#     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
     
-    def formula_2020_01_01(etablissement, period):
-        consommation_charbon_non_combustible = etablissement("consommation_charbon_non_combustible", period)
+#     def formula_2020_01_01(etablissement, period):
+#         consommation_charbon_non_combustible = etablissement("consommation_charbon_non_combustible", period)
 
-        return consommation_charbon_non_combustible 
-    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704
+#         return consommation_charbon_non_combustible 
+#     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704
 
-class consommation_charbon_non_combustible(Variable):
-    # changer à consommation_charbon_non_combustible_non_carburant en 2020
-    value_type = float
-    unit = 'MWh'
-    entity = Etablissement
-    label = "Consommation de charbon de l'établissement, utilisé autrement que comme combustible"
-    definition_period = YEAR
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
-    # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
+# class consommation_charbon_non_combustible(Variable):
+#     # changer à consommation_charbon_ni_combustible_ni_carburant en 2020
+#     value_type = float
+#     unit = 'MWh'
+#     entity = Etablissement
+#     label = "Consommation de charbon de l'établissement, utilisé autrement que comme combustible"
+#     definition_period = YEAR
+#     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
+#     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
 
 
 class charbon_double_usage(Variable):
