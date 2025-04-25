@@ -4,11 +4,43 @@ from openfisca_core.periods import MONTH, YEAR
 from openfisca_core.variables import Variable
 
 class consommation_gaz_naturel(Variable):
+    #dès 1986, seules les usages comme combustile sont soumis à la TICGN. 
+    #dès 2020, les usages comme carbrant y sont somis aussi. 
     value_type = float
     unit = 'MWh'
     entity = Etablissement
     label = "Natural gas consumption of the etablissement"
     definition_period = YEAR
+    def formula_1986_01_01(etablissement, period) : 
+        
+        totale = etablissement('consommation_gaz_combustile', period)
+
+        return totale
+    def formula_2020_01_01(etablissement, period) : 
+        
+        totale = etablissement('consommation_gaz_combustile', period) + etablissement('consommation_gaz_carburant', period)
+
+        return totale
+
+class consommation_gaz_combustile(Variable):
+    #dès 1986, seules les usages comme combustile sont soumis à la TICGN. 
+    #dès 2020, les usages comme carbrant y sont somis aussi. 
+    value_type = float
+    unit = 'MWh'
+    entity = Etablissement
+    label = "Usages du gaz naturel comme combustile"
+    definition_period = YEAR
+
+
+class consommation_gaz_carburant(Variable): 
+    #ça fait partie de la formule de consommation_gaz_naturel dès 2020
+    value_type = float
+    unit = 'MWh'
+    entity = Etablissement
+    label = "consommation en consommation_gaz_carburant. Enlevé de taxation_produit petrolier (nom de concept) à gazoles_naturel dès 2020"
+    reference = " https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006071570/LEGISCTA000006122062/1993-01-01/?anchor=LEGIARTI000006615168#LEGIARTI000006615168"
+    definition_period = YEAR
+
 
 
 class gaz_matiere_premiere(Variable):

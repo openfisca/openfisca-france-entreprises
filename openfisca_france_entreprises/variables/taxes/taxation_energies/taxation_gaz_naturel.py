@@ -399,6 +399,8 @@ class taxe_interieure_consommation_gaz_naturel_ifp(Variable):
 
 
 class assiette_ticgn(Variable):
+    #dès 1986, seules les usages comme combustile sont soumis à la TICGN. 
+    #dès 2020, les usages comme carbrant y sont somis aussi. 
     value_type = float
     entity = Etablissement
     definition_period = YEAR
@@ -595,14 +597,13 @@ class assiette_ticgn(Variable):
         """
         TODO:
         (par rapport à précédemment, )
-            Réintégration des usages carburants dans le champ de la TICGN >= consommation_gaz_carburant
+            Réintégration des usages carburants dans le champ de la TICGN >= consommation_gaz_carburant est ajoutée dans la formule de la variable consommation_gaz_naturel 
             https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006071570/LEGISCTA000006122062/1993-01-01/?anchor=LEGIARTI000006615168#LEGIARTI000006615168
         avant c'était consideré comme un produit petrolier, et en 2020 il sont dit qu'ils sont desormais consideré comme du gaz naturel  
         """
 
         conso = etablissement("consommation_gaz_naturel", period)
         consommation_autres_produits_energetique_ticgn = etablissement('consommation_autres_produits_energetique_ticgn', period)
-        conso_plus = etablissement("consommation_gaz_carburant", period) #faut pas oublier de l'enlever de l'autre (taxation_produit petrolier ... ) dès 2020
         conso_exoneree = (
             etablissement("consommation_gaz_fabrication_soi", period) +
             etablissement("consommation_gaz_production_electricite", period) 
@@ -620,7 +621,6 @@ class assiette_ticgn(Variable):
         """
         conso = etablissement("consommation_gaz_naturel", period)
         consommation_autres_produits_energetique_ticgn = etablissement('consommation_autres_produits_energetique_ticgn', period)
-        conso_plus = etablissement("consommation_gaz_carburant", period) #faut pas oublier de l'enlever de l'autre (taxation_produit petrolier ... ) dès 2020
         conso_exoneree = (
             etablissement("consommation_gaz_fabrication_soi", period) +
             etablissement("consommation_gaz_production_electricite", period) 
@@ -638,7 +638,6 @@ class assiette_ticgn(Variable):
         """
         conso = etablissement("consommation_gaz_naturel", period)
         consommation_autres_produits_energetique_ticgn = etablissement('consommation_autres_produits_energetique_ticgn', period)
-        conso_plus = etablissement("consommation_gaz_carburant", period) #faut pas oublier de l'enlever de l'autre (taxation_produit petrolier ... ) dès 2020
         conso_exoneree = (
             etablissement("consommation_gaz_fabrication_soi", period) +
             etablissement("consommation_gaz_production_electricite", period) 

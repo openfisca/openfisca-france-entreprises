@@ -46,7 +46,7 @@
   input:
     consommation_charbon: 100000
     consommation_charbon_carburant: 1000 
-    consommation_charbon_non_combustible_non_carburant: 1000
+    consommation_charbon_ni_combustible_ni_carburant: 1000
     consommation_charbon_combustible_interne: 1000
     consommation_charbon_combustible_extraction: 1000
     consommation_charbon_combustible_electricite: 1000

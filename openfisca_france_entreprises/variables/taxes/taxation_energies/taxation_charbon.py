@@ -214,13 +214,12 @@ class assiette_ticc(Variable):
         consommation_autres_produits_energetique_ticc = etablissement('consommation_autres_produits_energetique_ticc', period)
 
         #ces cinq sont à exclure de l'assiette
-        consommation_charbon_non_combustible = etablissement("consommation_charbon_non_combustible", period)
         consommation_charbon_combustible_interne = etablissement("consommation_charbon_combustible_interne", period)
         consommation_charbon_combustible_extraction = etablissement("consommation_charbon_combustible_extraction", period)
         consommation_charbon_combustible_particuliers = etablissement("consommation_charbon_combustible_particuliers", period)
         consommation_charbon_combustible_electricite = etablissement("consommation_charbon_combustible_electricite", period)
 
-        assiette = consommation_charbon + consommation_autres_produits_energetique_ticc - (consommation_charbon_non_combustible + consommation_charbon_combustible_interne + consommation_charbon_combustible_electricite + consommation_charbon_combustible_extraction + consommation_charbon_combustible_particuliers )
+        assiette = consommation_charbon + consommation_autres_produits_energetique_ticc - ( consommation_charbon_combustible_interne + consommation_charbon_combustible_electricite + consommation_charbon_combustible_extraction + consommation_charbon_combustible_particuliers )
 
         return assiette
 
@@ -232,7 +231,6 @@ class assiette_ticc(Variable):
 
 
         #les quatres sont à exclure de l'assiette, également pour consommation_charbon_combustible_electricite
-        consommation_charbon_non_combustible = etablissement("consommation_charbon_non_combustible", period)
         consommation_charbon_combustible_interne = etablissement("consommation_charbon_combustible_interne", period)
         consommation_charbon_combustible_extraction = etablissement("consommation_charbon_combustible_extraction", period)
         consommation_charbon_combustible_particuliers = etablissement("consommation_charbon_combustible_particuliers", period)
@@ -241,7 +239,7 @@ class assiette_ticc(Variable):
         consommation_charbon_combustible_electricite = etablissement("consommation_charbon_combustible_electricite", period)
         consommation_charbon_combustible_electricite_petits_producteurs = etablissement("consommation_charbon_combustible_electricite_petits_producteurs", period)
 
-        assiette = consommation_charbon + consommation_autres_produits_energetique_ticc - (consommation_charbon_non_combustible + consommation_charbon_combustible_interne + (consommation_charbon_combustible_electricite  - consommation_charbon_combustible_electricite_petits_producteurs) + consommation_charbon_combustible_extraction + consommation_charbon_combustible_particuliers )
+        assiette = consommation_charbon + consommation_autres_produits_energetique_ticc - ( consommation_charbon_combustible_interne + (consommation_charbon_combustible_electricite  - consommation_charbon_combustible_electricite_petits_producteurs) + consommation_charbon_combustible_extraction + consommation_charbon_combustible_particuliers )
 
         return assiette
 
@@ -254,7 +252,6 @@ class assiette_ticc(Variable):
 
 
         #ces trois  sont à exclure de l'assiette, également pour consommation_charbon_combustible_electricite
-        consommation_charbon_non_combustible = etablissement("consommation_charbon_non_combustible", period)
         consommation_charbon_combustible_interne = etablissement("consommation_charbon_combustible_interne", period)
         consommation_charbon_combustible_extraction = etablissement("consommation_charbon_combustible_extraction", period)
         
@@ -262,20 +259,17 @@ class assiette_ticc(Variable):
         consommation_charbon_combustible_electricite = etablissement("consommation_charbon_combustible_electricite", period)
         consommation_charbon_combustible_electricite_petits_producteurs = etablissement("consommation_charbon_combustible_electricite_petits_producteurs", period)
 
-        assiette = consommation_charbon + consommation_autres_produits_energetique_ticc - (consommation_charbon_non_combustible + consommation_charbon_combustible_interne + (consommation_charbon_combustible_electricite - consommation_charbon_combustible_electricite_petits_producteurs) + consommation_charbon_combustible_extraction )
+        assiette = consommation_charbon + consommation_autres_produits_energetique_ticc - ( consommation_charbon_combustible_interne + (consommation_charbon_combustible_electricite - consommation_charbon_combustible_electricite_petits_producteurs) + consommation_charbon_combustible_extraction )
 
         return assiette
     def formula_2020_01_01(etablissement, period, parameters):
         #à partir de 2020, carburant est inclus dans charbon
-        #En suivant, consommation_charbon_non_combustible est changé à consommation_charbon_non_combustible_non_carburant
         
         consommation_charbon = etablissement("consommation_charbon", period)
-        consommation_charbon_carburant = etablissement("consommation_charbon_carburant", period)
         consommation_autres_produits_energetique_ticc = etablissement('consommation_autres_produits_energetique_ticc', period)
 
 
         #les trois suivants sont des réductions net de l'assiette, également pour consommation_charbon_combustible_electricite
-        consommation_charbon_non_combustible_non_carburant = etablissement("consommation_charbon_non_combustible_non_carburant", period)
         consommation_charbon_combustible_interne = etablissement("consommation_charbon_combustible_interne", period)
         consommation_charbon_combustible_extraction = etablissement("consommation_charbon_combustible_extraction", period)
         
@@ -284,7 +278,7 @@ class assiette_ticc(Variable):
         consommation_charbon_combustible_electricite_petits_producteurs = etablissement("consommation_charbon_combustible_electricite_petits_producteurs", period)
         # NB : la définition des petits producteurs d'énergie change au 1er avril 2017
 
-        assiette = consommation_charbon + consommation_charbon_carburant + consommation_autres_produits_energetique_ticc - (consommation_charbon_non_combustible_non_carburant + consommation_charbon_combustible_interne + (consommation_charbon_combustible_electricite - consommation_charbon_combustible_electricite_petits_producteurs) + consommation_charbon_combustible_extraction )
+        assiette = consommation_charbon  + consommation_autres_produits_energetique_ticc - ( consommation_charbon_combustible_interne + (consommation_charbon_combustible_electricite - consommation_charbon_combustible_electricite_petits_producteurs) + consommation_charbon_combustible_extraction )
         #ajout conso_carburant * installation_cogeneration, supprimer conso_combustible_electricite_266qA * contrat_achat_electricite_314, 
 
         return assiette
