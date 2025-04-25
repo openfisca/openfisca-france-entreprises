@@ -27,7 +27,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             # etablissement('', period) * parameters(period).
     #NB : pour cette variable, j'ai commencé avec l'année 2021, puis j'ai traveilé en inverse. Donc, les changements sont par rapport à l'année suivante, pas precedante. 
     
-    
+    #les changements décrits en dessous sont remarqués par rapport à l'année suivante
     #2000
     #rien de changements
     #2001
@@ -97,8 +97,9 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
 
 
     #2007
+    #(par rapport à précédement) majoration régionale pour consommation_gazole et consommation_super_e5
     #NB : quelquels changements dans les indices
-    #Grandes changements 
+    #Grandes changements (par rapport à la suivante)
     #1° Huiles légères, indice 4 bis, hectolitre, taxe intérieure applicable au fioul domestique visé à l'indice 20.
     #parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres
     #
@@ -162,7 +163,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
 
 
     #2008
-    #consommation_super_e10 exempté 
+    #(par rapport à la suivante) consommation_super_e10 exempté 
     def formula_2008_01_01(etablissement, period, parameters):
         total = {
             #chaque objet dans la liste est positioné selon sa position dans le code législatif
@@ -210,7 +211,8 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
 
 
     #2012
-    #ajoute
+    #la majoration régionale inclus désormais 11 ter, consommation_super_e10
+    #ajouté (par rapport à la suivante)
     #parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.essence.sous_conditions_hL
     #parameters(period).energies.autres_produits_energetiques.ticpe.carburateurs.petrole_lampant.sous_conditions_hL
     def formula_2012_01_01(etablissement, period, parameters):
@@ -513,3 +515,112 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         
 
         return total
+    
+
+
+
+
+#2007 e5, gazole
+
+#2012 e10
+
+class ticpe_majoration_regionale_gazole(Variable):
+    value_type = float
+    entity = Etablissement
+    definition_period = YEAR
+    label = "taxe intérieure de consommation sur les produits énergétiques"
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"  #
+    def formula_2007_01_01(etablissement, period, parameters):
+        
+        departement = etablissement('departement', period)
+
+        if departement in ['01', '07', '26', '38', '42', '69', '73', '74']:
+            region = 'Rhône-Alpes'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+        elif departement in ['04', '05', '06', '13', '83', '84']:
+            region = 'PACA'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\paca
+
+        elif departement in ['67', '68']:
+            region = 'Alsace'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+        elif departement in ['24', '33', '40', '47', '64']:
+            region = 'Aquitaine'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+
+        elif departement in ['03', '15', '43', '63']:
+            region = 'Auvergne'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+
+        elif departement in ['14', '50', '61']:
+            region = 'Basse-Normandie'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+
+        elif departement in ['21', '58', '71', '89']:
+            region = 'Bourgogne'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+
+        elif departement in ['22', '29', '35', '56']:
+            region = 'Bretagne'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+
+        elif departement in ['18', '28', '36', '37', '41', '45']:
+            region = 'Centre'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+
+        elif departement in ['08', '10', '51', '52']:
+            region = 'Champagne-Ardenne'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+
+        elif departement in ['2A', '2B']:
+            region = 'Corse'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+
+        elif departement in ['25', '39', '70', '90']:
+            region = 'Franche-Comté'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+
+        elif departement in ['27', '76']:
+            region = 'Haute-Normandie'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+
+        elif departement in ['75', '77', '78', '91', '92', '93', '94', '95']:
+            region = 'Île-de-France'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+
+        elif departement in ['11', '30', '34', '48', '66']:
+            region = 'Languedoc-Roussillon'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+
+        elif departement in ['19', '23', '87']:
+            region = 'Limousin'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+
+        elif departement in ['54', '55', '57', '88']:
+            region = 'Lorraine'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+
+        elif departement in ['09', '12', '31', '32', '46', '65', '81', '82']:
+            region = 'Midi-Pyrénées'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+
+        elif departement in ['59', '62']:
+            region = 'Nord-Pas-de-Calais'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+
+        elif departement in ['44', '49', '53', '72', '85']:
+            region = 'Pays de la Loire'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+
+        elif departement in ['02', '60', '80']:
+            region = 'Picardie'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+
+        elif departement in ['16', '17', '79', '86']:
+            region = 'Poitou-Charentes'
+            majoration = parameters(period)\energies\autres_produits_energetiques\major_regionale_ticpe_gazole\rhone_alpes
+
+        else:
+            region = 'Inconnu'
+        return region        
+        return majoration 
