@@ -35,7 +35,7 @@ values:
   2018-01-01:
     value: 18.82
 metadata:
-  ipp_csv_id: ticpe_gazole_cond
+  ipp_csv_id: ticpe_gazoles_cond
   unit: currency
   reference:
     1993-01-01:

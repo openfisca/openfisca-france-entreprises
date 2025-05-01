@@ -6,7 +6,7 @@ from openfisca_core.model_api import *
 from openfisca_france_entreprises.entities import UniteLegale, Etablissement
 
 
-class tccfe_coefficient_multiplicateur_normal_2020(Variable):
+class tccfe_coefficient_multiplicateur_normal_2022(Variable):
     value_type = float 
     entity = Etablissement
     label = "le coefficient multiplicateur du département pour le tccfe en 2012" 

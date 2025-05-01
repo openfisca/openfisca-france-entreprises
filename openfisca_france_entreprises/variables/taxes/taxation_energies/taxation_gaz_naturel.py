@@ -176,10 +176,10 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
     def formula_2020_01_01(etablissement, period, parameters):
         """
         ajouté 
-        -travaux_agricoles_et_forestiers
+        -gaz_travaux_agricoles_et_forestiers
         """
         gaz_double_usage = etablissement('gaz_double_usage', period)
-        travaux_agricoles_et_forestiers = etablissement('travaux_agricoles_et_forestiers', period)
+        gaz_travaux_agricoles_et_forestiers = etablissement('gaz_travaux_agricoles_et_forestiers', period)
         gaz_extraction_production = etablissement('gaz_extraction_production', period)
         gaz_production_mineraux_non_metalliques = etablissement("gaz_production_mineraux_non_metalliques", period)
         consommation_gaz_usage_non_combustible = etablissement('consommation_gaz_usage_non_combustible', period)
@@ -203,8 +203,8 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
             taxe = 0
         elif consommation_gaz_usage_non_combustible == True:
             taxe = 0
-        elif travaux_agricoles_et_forestiers == True:
-            travaux_agricoles_et_forestiers = 0
+        elif gaz_travaux_agricoles_et_forestiers == True:
+            taxe = 0
         elif gaz_dehydration_legumes_et_plantes_aromatiques == True and consommation_par_valeur_ajoutee >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes : #0.0008 MWh par Euro
                 taxe = etablissement("taxe_interieure_consommation_gaz_naturel_legumes", period)
                 #***cette condition est valide jusqu'à 2022
@@ -223,7 +223,7 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
         """
         
         gaz_double_usage = etablissement('gaz_double_usage', period)
-        travaux_agricoles_et_forestiers = etablissement('travaux_agricoles_et_forestiers', period)
+        gaz_travaux_agricoles_et_forestiers = etablissement('gaz_travaux_agricoles_et_forestiers', period)
         gaz_extraction_production = etablissement('gaz_extraction_production', period)
         gaz_production_mineraux_non_metalliques = etablissement("gaz_production_mineraux_non_metalliques", period)
         consommation_gaz_usage_non_combustible = etablissement('consommation_gaz_usage_non_combustible', period)
@@ -244,8 +244,8 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
 
         if gaz_double_usage == True:
             taxe = 0
-        elif travaux_agricoles_et_forestiers == True:
-            travaux_agricoles_et_forestiers = 0
+        elif gaz_travaux_agricoles_et_forestiers == True:
+            taxe = 0
         elif gaz_production_mineraux_non_metalliques == True : 
             taxe = 0
         elif gaz_extraction_production == True:
@@ -254,7 +254,7 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
             taxe = 0
         elif gaz_dehydration_legumes_et_plantes_aromatiques == True and intensite_energetique >= parameters(period).energies.gaz_naturel.ticgn.seuil_facture_energie_par_va: 
                 #le niveau d'intensité énergetique en valeur ajoutée est au moins égale à 0,6744 %.
-                taxe = etablissement("taxe_interieure_consommation_gaz_naturel_legumes", period)
+            taxe = etablissement("taxe_interieure_consommation_gaz_naturel_legumes", period)
                 #cette condition est mis en effet dès 2022
         elif (seqe == True and intensite_energetique_valeur_production >= 0.03) or (seqe == True and intensite_energetique_valeur_ajoutee >= 0.005 ) :
             taxe = etablissement('taxe_interieure_taxation_consommation_gaz_naturel_seqe')
@@ -399,7 +399,7 @@ class taxe_interieure_consommation_gaz_naturel_ifp(Variable):
 
 
 class assiette_ticgn(Variable):
-    #dès 1986, seules les usages comme combustile sont soumis à la TICGN. 
+    #dès 1986, seules les usages comme combustible sont soumis à la TICGN. 
     #dès 2020, les usages comme carbrant y sont somis aussi. 
     value_type = float
     entity = Etablissement

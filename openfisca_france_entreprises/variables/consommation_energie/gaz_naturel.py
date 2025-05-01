@@ -4,7 +4,7 @@ from openfisca_core.periods import MONTH, YEAR
 from openfisca_core.variables import Variable
 
 class consommation_gaz_naturel(Variable):
-    #dès 1986, seules les usages comme combustile sont soumis à la TICGN. 
+    #dès 1986, seules les usages comme combustible sont soumis à la TICGN. 
     #dès 2020, les usages comme carbrant y sont somis aussi. 
     value_type = float
     unit = 'MWh'
@@ -13,22 +13,22 @@ class consommation_gaz_naturel(Variable):
     definition_period = YEAR
     def formula_1986_01_01(etablissement, period) : 
         
-        totale = etablissement('consommation_gaz_combustile', period)
+        totale = etablissement('consommation_gaz_combustible', period)
 
         return totale
     def formula_2020_01_01(etablissement, period) : 
         
-        totale = etablissement('consommation_gaz_combustile', period) + etablissement('consommation_gaz_carburant', period)
+        totale = etablissement('consommation_gaz_combustible', period) + etablissement('consommation_gaz_carburant', period)
 
         return totale
 
-class consommation_gaz_combustile(Variable):
-    #dès 1986, seules les usages comme combustile sont soumis à la TICGN. 
+class consommation_gaz_combustible(Variable):
+    #dès 1986, seules les usages comme combustible sont soumis à la TICGN. 
     #dès 2020, les usages comme carbrant y sont somis aussi. 
     value_type = float
     unit = 'MWh'
     entity = Etablissement
-    label = "Usages du gaz naturel comme combustile"
+    label = "Usages du gaz naturel comme combustible"
     definition_period = YEAR
 
 
@@ -275,8 +275,9 @@ class gaz_dehydration_legumes_et_plantes_aromatiques(Variable):
             status = 1
         return status
     
-class travaux_agricoles_et_forestiers(Variable):
+class gaz_travaux_agricoles_et_forestiers(Variable):
     #exonéré dès 2020
+    #TODO : pas d'exonération dans l'accise, c'est un tariff diffrent
     value_type = bool
     unit = ''
     entity = Etablissement

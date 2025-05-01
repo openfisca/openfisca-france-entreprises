@@ -1,6 +1,6 @@
 # Test de l'assiette TICGN pour différentes périodes
 - name: "Test 1988 (exonération matière première, huiles minérales, chauffage habitation)"
-  period: 2000
+  period: 1999
   input: 
     consommation_gaz_naturel: 500
     consommation_gaz_chauffage_habitation: 200

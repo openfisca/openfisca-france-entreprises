@@ -23,7 +23,7 @@ values:
   2018-01-01:
     value: 36.94
 metadata:
-  ipp_csv_id: ticpe_emulsion_eau_gazole_autres
+  ipp_csv_id: ticpe_emulsion_eau_gazoles_autres
   unit: currency
   reference:
     1993-01-01:

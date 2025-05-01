@@ -1,18 +1,25 @@
-description: Carburateurs type essence, autres (hectolitre)
+description: Carburéacteurs, type pétrole lampant, autres (hectolitre)
 values:
   1993-01-01:
     value: null
   2008-01-01:
-    value: 58.92
+    value: 41.69
   2015-01-01:
-    value: 60.83
+    value: 43.6
   2016-01-01:
-    value: 62.74
+    value: 45.51
   2017-01-01:
-    value: 64.91
+    value: 47.68
   2018-01-01:
-    value: 68.51
+    value: 51.28
+  # 2022-01-01:
+  #   value: 76.826
+  # 2023-01-01:
+  #   value: 59.481
+  # 2024-01-01:
+  #   value: 76.826
 metadata:
+  ipp_csv_id: ticpe_carbu_petrole_lampant_autres
   unit: currency
   reference:
     1993-01-01:
