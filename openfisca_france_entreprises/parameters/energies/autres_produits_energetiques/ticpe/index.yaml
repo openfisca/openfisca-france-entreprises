@@ -9,14 +9,14 @@ metadata:
   - essences_speciales_utilisees_comme_carburants_combustibles
   - super
   - essence_normale
-  - carburateurs
+  - carbureacteurs
   - huiles
   - petrole_lampant
   - gazole
   - fioul
   - propane_carburants
   - butanes_liquefies
-  - autres_gaz_petrole_liquefies_utilises_comme_carburants
+  - autres_gaz_de_petrole_liquefies_utilises_comme_carburants
   - gaz_naturel_etat_gazeux_utilises_comme_carburants
   - gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
   - emulsion_eau_gazole

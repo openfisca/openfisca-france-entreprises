@@ -34,6 +34,12 @@ values:
     value: 64.3
   2018-01-01:
     value: 67.52
+  # 2022-01-01:
+  #   value: 76.826
+  # 2023-01-01:
+  #   value: 76.826
+  # 2024-01-01:
+  #   value: 76.826
 metadata:
   unit: currency
   reference:

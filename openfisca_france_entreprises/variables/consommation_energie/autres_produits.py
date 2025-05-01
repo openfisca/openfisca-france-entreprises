@@ -21,6 +21,7 @@ class consommation_carburant_constitue_100_estars_methyliques_acides_gras(Variab
     definition_period = YEAR
 
 class consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole(Variable): 
+    #s'appelle éthanol-diesel ED95 dans l'accisse
     value_type = float
     unit = 'Hectolitre'
     entity = Etablissement
@@ -29,6 +30,7 @@ class consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole(Vari
     definition_period = YEAR
 
 class consommation_essence_normale(Variable): 
+    #dans l'accise, s'appelle essence SP95-E10
     value_type = float
     unit = 'Hectolitre'
     entity = Etablissement
@@ -68,7 +70,7 @@ class consommation_white_spirit_utilise_comme_combustible(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
 
-class consommation_super_e5(Variable): 
+class consommation_supercarburant_e5(Variable): 
     value_type = float
     unit = 'Hectolitre'
     entity = Etablissement
@@ -76,7 +78,7 @@ class consommation_super_e5(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
 
-class consommation_super_e10(Variable): 
+class consommation_supercarburant_e10(Variable): 
     value_type = float
     unit = 'Hectolitre'
     entity = Etablissement
@@ -84,7 +86,8 @@ class consommation_super_e10(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
 
-class consommation_super_e85(Variable): 
+class consommation_supercarburant_e85(Variable): 
+    #dans l'accise, s'appelle supercarburant E85
     value_type = float
     unit = 'Hectolitre'
     entity = Etablissement
@@ -149,7 +152,7 @@ class consommation_huiles_legeres_preparation_essence_aviation(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
 
-class consommation_huiles_legeres(Variable): 
+class consommation_huiles_legeres_combustible_carburant_ou_autres(Variable): 
     value_type = float
     unit = 'Hectolitre'
     entity = Etablissement
@@ -158,7 +161,7 @@ class consommation_huiles_legeres(Variable):
     definition_period = YEAR
 
 
-class consommation_huiles_moyennes(Variable): 
+class consommation_huiles_moyennes_autres(Variable): 
     value_type = float
     unit = 'Hectolitre'
     entity = Etablissement
@@ -166,7 +169,7 @@ class consommation_huiles_moyennes(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
 
-class consommation_gazole_carburants_sous_conditions_hectolitre(Variable): 
+class consommation_gazoles_carburants_sous_conditions_hectolitre(Variable): 
     value_type = float
     unit = 'Hectolitre'
     entity = Etablissement
@@ -175,6 +178,7 @@ class consommation_gazole_carburants_sous_conditions_hectolitre(Variable):
     definition_period = YEAR
 
 class consommation_galzole_fioul_domestique_hectolitre(Variable): 
+    #dans l'accise, s'appelle fioul domestique
     value_type = float
     unit = 'Hectolitre'
     entity = Etablissement
@@ -190,7 +194,8 @@ class consommation_gazol_b_10_hectolitre(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
 
-class consommation_gazole(Variable): 
+class consommation_gazoles(Variable): 
+    #dans l'accise, s'appelle gazole B100
     value_type = float
     unit = 'Hectolitre'
     entity = Etablissement
@@ -199,6 +204,7 @@ class consommation_gazole(Variable):
     definition_period = YEAR
 
 class consommation_fioul_lourd_100kg_net(Variable): 
+    #dans l'accise, s'appelle fioul lourd
     value_type = float
     unit = '100 kg nets'
     entity = Etablissement
@@ -230,7 +236,8 @@ class consommation_point_eclair_inferieur_120deg_c_hectolitre(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
 
-class consommation_emulsion_eau_gazole_autres_hectolitre(Variable): 
+class consommation_emulsion_eau_gazoles_autres_hectolitre(Variable): 
+    #dans l'accise, s'appelle grisou et gaz assimilés combustible
     value_type = float
     unit = 'Hectolitre'
     entity = Etablissement
@@ -238,7 +245,7 @@ class consommation_emulsion_eau_gazole_autres_hectolitre(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
 
-class consommation_emulsion_eau_gazole_sous_conditions_hectolitre(Variable): 
+class consommation_emulsion_eau_gazoles_sous_conditions_hectolitre(Variable): 
     value_type = float
     unit = 'Hectolitre'
     entity = Etablissement
@@ -246,7 +253,7 @@ class consommation_emulsion_eau_gazole_sous_conditions_hectolitre(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
 
-class consommation_carburateurs_essence_autres_hL(Variable): 
+class consommation_carbureacteurs_essence_autres_hL(Variable): 
     value_type = float
     unit = 'Hectolitre'
     entity = Etablissement
@@ -255,7 +262,7 @@ class consommation_carburateurs_essence_autres_hL(Variable):
     definition_period = YEAR
 
 
-class consommation_carburateurs_essence_carburants_avion_hL(Variable): 
+class consommation_carbureacteurs_essence_carburants_avion_hL(Variable): 
     value_type = float
     unit = 'Hectolitre'
     entity = Etablissement
@@ -263,7 +270,7 @@ class consommation_carburateurs_essence_carburants_avion_hL(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
 
-class consommation_carburateurs_essence_sous_conditions_hL(Variable): 
+class consommation_carbureacteurs_essence_sous_conditions_hL(Variable): 
     value_type = float
     unit = 'Hectolitre'
     entity = Etablissement
@@ -271,7 +278,7 @@ class consommation_carburateurs_essence_sous_conditions_hL(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
 
-class consommation_carburateurs_petrole_lampant_autres_hL(Variable): 
+class consommation_carbureacteurs_petrole_lampant_autres_hL(Variable): 
     value_type = float
     unit = 'Hectolitre'
     entity = Etablissement
@@ -279,7 +286,7 @@ class consommation_carburateurs_petrole_lampant_autres_hL(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
 
-class consommation_carburateurs_petrole_lampant_carburant_moteurs_avion_hL(Variable): 
+class consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL(Variable): 
     value_type = float
     unit = 'Hectolitre'
     entity = Etablissement
@@ -287,7 +294,7 @@ class consommation_carburateurs_petrole_lampant_carburant_moteurs_avion_hL(Varia
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
 
-class consommation_carburateurs_petrole_lampant_sous_conditions_hL(Variable): 
+class consommation_carbureacteurs_petrole_lampant_sous_conditions_hL(Variable): 
     value_type = float
     unit = 'Hectolitre'
     entity = Etablissement
@@ -319,7 +326,8 @@ class consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_net
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
 
-class consommation_autres_gaz_petrole_liquefies_utilises_comme_carburants_autres_100kg(Variable): 
+class consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg(Variable): 
+    #gaz de pétrole liquéfié combustible
     value_type = float
     unit = '100 kg nets'
     entity = Etablissement
@@ -327,7 +335,7 @@ class consommation_autres_gaz_petrole_liquefies_utilises_comme_carburants_autres
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
 
-class consommation_autres_gaz_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg(Variable): 
+class consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg(Variable): 
     value_type = float
     unit = '100 kg nets'
     entity = Etablissement
@@ -352,13 +360,13 @@ class consommation_autres_produits_energetique_ticc(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
     def formula_2007_01_01(etablissement, period, parameters):
-        totale =  etablissement('consommation_huiles_lubrifiantes_et_autres', period) + etablissement('consommation_vaseline', period) + etablissement('consommation_paraffine_moins_soixante_quinze_pourcent_huile', period) + etablissement('consommation_paraffine_cires_de_petrole_residus_paraffineux', period) + etablissement('consommation_bitumes_de_petrole', period) + etablissement('consommation_autres_residus_huiles_petrole_ou_mineraux_bitumineux', period) + etablissement('consommation_melanges_bitumeux', period) + etablissement('consommation_preparations_traitement_matiere_textiles', period) + etablissement('consommation_preparations_lubrifiantes', period) + etablissement('consommation_additifs_huiles_lubrifiantes', period)
+        totale =  etablissement('consommation_huiles_lubrifiantes_et_autres', period) + etablissement('consommation_vaseline', period) + etablissement('consommation_paraffine_moins_75_pourcent_huile', period) + etablissement('consommation_paraffine_cires_de_petrole_residus_paraffineux', period) + etablissement('consommation_bitumes_de_petrole', period) + etablissement('consommation_autres_residus_huiles_petrole_ou_mineraux_bitumineux', period) + etablissement('consommation_melanges_bitumeux', period) + etablissement('consommation_preparations_traitement_matiere_textiles', period) + etablissement('consommation_preparations_lubrifiantes', period) + etablissement('consommation_additifs_huiles_lubrifiantes', period)
 
         return totale
     
     def formula_2012_01_01(etablissement, period, parameters):
         #par rapport à précédement, ajouté consommation_melanges_hydrocarbures_aromatiques
-        totale = etablissement('consommation_melanges_hydrocarbures_aromatiques', period) + etablissement('consommation_huiles_lubrifiantes_et_autres', period) + etablissement('consommation_vaseline', period) + etablissement('consommation_paraffine_moins_soixante_quinze_pourcent_huile', period) + etablissement('consommation_paraffine_cires_de_petrole_residus_paraffineux', period) + etablissement('consommation_bitumes_de_petrole', period) + etablissement('consommation_autres_residus_huiles_petrole_ou_mineraux_bitumineux', period) + etablissement('consommation_melanges_bitumeux', period) + etablissement('consommation_preparations_traitement_matiere_textiles', period) + etablissement('consommation_preparations_lubrifiantes', period) + etablissement('consommation_additifs_huiles_lubrifiantes', period)
+        totale = etablissement('consommation_melanges_hydrocarbures_aromatiques', period) + etablissement('consommation_huiles_lubrifiantes_et_autres', period) + etablissement('consommation_vaseline', period) + etablissement('consommation_paraffine_moins_75_pourcent_huile', period) + etablissement('consommation_paraffine_cires_de_petrole_residus_paraffineux', period) + etablissement('consommation_bitumes_de_petrole', period) + etablissement('consommation_autres_residus_huiles_petrole_ou_mineraux_bitumineux', period) + etablissement('consommation_melanges_bitumeux', period) + etablissement('consommation_preparations_traitement_matiere_textiles', period) + etablissement('consommation_preparations_lubrifiantes', period) + etablissement('consommation_additifs_huiles_lubrifiantes', period)
         etablissement('', period)
 
         return totale
@@ -376,6 +384,7 @@ class consommation_autres_produits_energetique_ticgn(Variable):
         return totale
 
 class consommation_melanges_hydrocarbures_aromatiques(Variable): 
+    #dans l'accise, s'appelle biogaz combustible non injecté dans le réseau
     value_type = float
     unit = ''
     entity = Etablissement
@@ -408,7 +417,7 @@ class consommation_vaseline(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
 
-class consommation_paraffine_moins_soixante_quinze_pourcent_huile(Variable): 
+class consommation_paraffine_moins_75_pourcent_huile(Variable): 
     value_type = float
     unit = ''
     entity = Etablissement
@@ -472,6 +481,11 @@ class consommation_additifs_huiles_lubrifiantes(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
 
+
+##########################
+#les catégories en dessous sont de l'accise
+##########################
+
 # class consommation_(Variable): 
 #     value_type = float
 #     unit = ''
@@ -481,16 +495,137 @@ class consommation_additifs_huiles_lubrifiantes(Variable):
 #     definition_period = YEAR
 
     
-
-
-
-class consommation_gazoles_transport_guide(Variable):
+class consommation_gazoles_mwh(Variable): 
     value_type = float
     unit = 'MWh'
     entity = Etablissement
-    label = "la catagorie du transport guidé de gazolesoles sous L312-48"
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046196825'
     definition_period = YEAR
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051216676"
+
+class consommation_carbureactuers_mwh(Variable): 
+    value_type = float
+    unit = 'MWh'
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046196825'
+    definition_period = YEAR
+
+class consommation_essences_mwh(Variable): 
+    value_type = float
+    unit = 'MWh'
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046196825'
+    definition_period = YEAR
+
+class consommation_gaz_de_petrole_liquefies_carburant_mwh(Variable): 
+    value_type = float
+    unit = 'MWh'
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046196825'
+    definition_period = YEAR
+
+class consommation_fiouls_lourds_mwh(Variable): 
+    value_type = float
+    unit = 'MWh'
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603825'
+    definition_period = YEAR
+
+class consommation_fiouls_domestiques_mwh(Variable): 
+    value_type = float
+    unit = 'MWh'
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603825'
+    definition_period = YEAR
+
+class consommation_petroles_lampants_mwh(Variable): 
+    value_type = float
+    unit = 'MWh'
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603825'
+    definition_period = YEAR
+
+class consommation_gaz_de_petrole_liquefies_combustible_mwh(Variable): 
+    value_type = float
+    unit = 'MWh'
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603825'
+    definition_period = YEAR
+
+class consommation_ethanol_diesel_ed95_mwh(Variable): 
+    value_type = float
+    unit = 'MWh'
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051242692'
+    definition_period = YEAR
+
+class consommation_gazole_b100_mwh(Variable): 
+    value_type = float
+    unit = 'MWh'
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051242692'
+    definition_period = YEAR
+
+class consommation_essence_aviation_mwh(Variable): 
+    value_type = float
+    unit = 'MWh'
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051242692'
+    definition_period = YEAR
+
+class consommation_essence_sp95_e10_mwh(Variable): 
+    value_type = float
+    unit = 'MWh'
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051242692'
+    definition_period = YEAR
+
+class consommation_superethanol_e85_mwh(Variable): 
+    value_type = float
+    unit = 'MWh'
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051242692'
+    definition_period = YEAR
+
+class consommation_grisou_et_gaz_assimiles_combustible_mwh(Variable): 
+    value_type = float
+    unit = 'MWh'
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051242692'
+    definition_period = YEAR
+
+class consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh(Variable): 
+    value_type = float
+    unit = 'MWh'
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051242692'
+    definition_period = YEAR
+
+
+
+
+
+# class consommation_gazoles_transport_guide(Variable):
+#     value_type = float
+#     unit = 'MWh'
+#     entity = Etablissement
+#     label = "la catagorie du transport guidé de gazolesoles sous L312-48"
+#     definition_period = YEAR
+#     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051216676"
     
 
 class gazoles_transport_guide(Variable):
@@ -513,13 +648,13 @@ class gazoles_transport_guide(Variable):
         return determinant
 #_49_10Z, _49_20Z
 
-class consommation_gazoles_transport_collective_personnes(Variable):
-    value_type = float
-    unit = 'MWh'
-    entity = Etablissement
-    label = "la catagorie du transport collectives de gazoles de personnes sous L312-48"
-    definition_period = YEAR
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
+# class consommation_gazoles_transport_collective_personnes(Variable):
+#     value_type = float
+#     unit = 'MWh'
+#     entity = Etablissement
+#     label = "la catagorie du transport collectives de gazoles de personnes sous L312-48"
+#     definition_period = YEAR
+#     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
     
 
 class gazoles_transport_collective_personnes(Variable):
@@ -539,13 +674,13 @@ class gazoles_transport_collective_personnes(Variable):
             determinant = True
         return determinant
 
-class consommation_gazoles_transport_taxi(Variable):
-    value_type = float
-    unit = 'MWh'
-    entity = Etablissement
-    label = "la catagorie du transport collectives de gazoles de personnes sous L312-48"
-    definition_period = YEAR
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
+# class consommation_gazoles_transport_taxi(Variable):
+#     value_type = float
+#     unit = 'MWh'
+#     entity = Etablissement
+#     label = "la catagorie du transport collectives de gazoles de personnes sous L312-48"
+#     definition_period = YEAR
+#     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
     
 
 class gazoles_transport_taxi(Variable):
@@ -566,13 +701,13 @@ class gazoles_transport_taxi(Variable):
         return determinant
 
 
-class consommation_gazoles_transport_routier_marchandises(Variable):
-    value_type = float
-    unit = 'MWh'
-    entity = Etablissement
-    label = "la catagorie du transport routier de marchandises sous L312-48"
-    definition_period = YEAR
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
+# class consommation_gazoles_transport_routier_marchandises(Variable):
+#     value_type = float
+#     unit = 'MWh'
+#     entity = Etablissement
+#     label = "la catagorie du transport routier de marchandises sous L312-48"
+#     definition_period = YEAR
+#     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
     
 
 class gazoles_transport_routier_marchandises(Variable):
@@ -592,16 +727,16 @@ class gazoles_transport_routier_marchandises(Variable):
             determinant = True
         return determinant
 
-class consommation_gazoles_navigation_interieure(Variable):
-    value_type = float
-    unit = 'MWh'
-    entity = Etablissement
-    label = "la catagorie de la navigation intérieure sous L312-48"
-    definition_period = YEAR
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
+# class consommation_gazoles_navigation_interieure(Variable):
+#     value_type = float
+#     unit = 'MWh'
+#     entity = Etablissement
+#     label = "la catagorie de la navigation intérieure sous L312-48"
+#     definition_period = YEAR
+#     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
     
 
-class gazoles_navigation_interieure(Variable):
+class autres_produits_navigation_interieure(Variable):
     value_type = bool
     unit = ''
     entity = Etablissement
@@ -619,16 +754,16 @@ class gazoles_navigation_interieure(Variable):
         return determinant
 
 
-class consommation_gazoles_navigation_maritime(Variable):
-    value_type = float
-    unit = 'MWh'
-    entity = Etablissement
-    label = "la catagorie de la navigation intérieure sous L312-48"
-    definition_period = YEAR
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
+# class consommation_gazoles_navigation_maritime(Variable):
+#     value_type = float
+#     unit = 'MWh'
+#     entity = Etablissement
+#     label = "la catagorie de la navigation intérieure sous L312-48"
+#     definition_period = YEAR
+#     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
     
 
-class gazoles_navigation_maritime(Variable):
+class autres_produits_navigation_maritime(Variable):
     value_type = bool
     unit = ''
     entity = Etablissement
@@ -646,13 +781,13 @@ class gazoles_navigation_maritime(Variable):
         return determinant
 
 
-class consommation_gazoles_manutention_portuaire(Variable):
-    value_type = float
-    unit = 'MWh'
-    entity = Etablissement
-    label = "la catagorie de la manutention portuaire de gazoles sous L312-48"
-    definition_period = YEAR
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
+# class consommation_gazoles_manutention_portuaire(Variable):
+#     value_type = float
+#     unit = 'MWh'
+#     entity = Etablissement
+#     label = "la catagorie de la manutention portuaire de gazoles sous L312-48"
+#     definition_period = YEAR
+#     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
     
 
 
@@ -674,16 +809,16 @@ class gazoles_manutention_portuaire(Variable):
         return determinant
 
 
-class consommation_gazoles_navigation_aerienne(Variable):
-    value_type = float
-    unit = 'MWh'
-    entity = Etablissement
-    label = "la catagorie de la navigation aérienne de gazoles sous L312-48"
-    definition_period = YEAR
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
+# class consommation_gazoles_navigation_aerienne(Variable):
+#     value_type = float
+#     unit = 'MWh'
+#     entity = Etablissement
+#     label = "la catagorie de la navigation aérienne de gazoles sous L312-48"
+#     definition_period = YEAR
+#     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
     
 
-class gazoles_navigation_aerienne(Variable):
+class autres_produits_navigation_aerienne(Variable):
     value_type = bool
     unit = ''
     entity = Etablissement
@@ -701,13 +836,13 @@ class gazoles_navigation_aerienne(Variable):
         return determinant
 
 
-class consommation_gazoles_extraction_mineraux_industriels(Variable):	
-    value_type = float
-    unit = 'MWh'
-    entity = Etablissement
-    label = "la catagorie de l'extraction de mineraux industriels sous L312-64/70-1"
-    definition_period = YEAR
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875772"
+# class consommation_gazoles_extraction_mineraux_industriels(Variable):	
+#     value_type = float
+#     unit = 'MWh'
+#     entity = Etablissement
+#     label = "la catagorie de l'extraction de mineraux industriels sous L312-64/70-1"
+#     definition_period = YEAR
+#     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875772"
     
 
 class gazoles_extraction_mineraux_industriels(Variable):	
@@ -717,7 +852,7 @@ class gazoles_extraction_mineraux_industriels(Variable):
     label = "la catagorie de l'extraction de mineraux industriels sous L312-64/70-1"
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875772"
-    def formula_2023_01_01(etablissement, period):
+    def formula_2024_01_01(etablissement, period):
         apet = etablissement("apet", period)
         type_eta = apet.possible_values
         
@@ -728,4 +863,139 @@ class gazoles_extraction_mineraux_industriels(Variable):
         return determinant
     
 
+class essence_transport_taxi(Variable):
+    value_type = bool
+    unit = ''
+    entity = Etablissement
+    label = "la catagorie du transport collectives de gazoles de personnes sous L312-48"
+    definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
+    def formula_2023_01_01(etablissement, period):
+        apet = etablissement("apet", period)
+        type_eta = apet.possible_values
+        
+        determinant = False
+        
+        if apet == type_eta._49_32Z:
+            determinant = True
+        return determinant
 
+
+class autres_produits_travaux_agricoles_et_forestiers(Variable):
+    #exonéré dès 2020
+    value_type = bool
+    unit = ''
+    entity = Etablissement
+    label = "qualification au L312-60/63"
+    definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603707"
+    def formula_2022_01_01(etablissement, period):
+        apet = etablissement("apet", period)
+        type_eta = apet.possible_values
+        status = 0
+        if apet == type_eta._10_39A: 
+            status = 1
+        return status
+    
+
+class gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux(Variable):
+    value_type = bool
+    unit = ''
+    entity = Etablissement
+    label = ""
+    definition_period = YEAR
+    reference = ""
+    # def formula_2022_01_01(etablissement, period):
+    #     apet = etablissement("apet", period)
+    #     type_eta = apet.possible_values
+    #     status = 0
+    #     if apet == type_eta._42_11Z:  #_42_11Z	=	"	Construction de routes et autoroutes. corresponde pas exactement
+    #         status = 1
+    #     return status
+#Relèvent d'un tarif réduit de l'accise les gazoles consommés dans les massifs mentionnés à l'article 5 de la loi n° 85-30 du 9 janvier 1985 relative au développement et à la protection de la montagne pour les besoins des activités suivantes :
+#1° Aménagement et préparation des parcours sur neige en extérieur réservés à la pratique des activités de glisse autorisées par des engins spécialement conçus à cet effet ;
+#2° Déneigement des voies ouvertes à la circulation publique par des engins équipés d'outils spécifiques destinés à lutter contre le verglas ou la neige.
+
+class autres_produits_double_usage(Variable):
+    value_type = bool
+    unit = ''
+    entity = Etablissement
+    label = "qualification au L312-66"
+    definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603707"
+    def formula_2022_01_01(etablissement, period):
+        apet = etablissement("apet", period)
+        type_eta = apet.possible_values
+        codes_eligibles = [
+        type_eta._20_13B, type_eta._20_59Z, type_eta._25_50A
+        ]
+        determinant = False
+        
+        if apet in codes_eligibles:
+            determinant = True
+        return determinant
+
+
+class autre_produits_fabrication_produits_mineraux_non_metalliques(Variable):
+    #Exonerée dès 2022
+    value_type = bool
+    unit = ''
+    entity = Etablissement
+    label = "coonditions du L314-64"
+    definition_period = YEAR
+    reference = ""
+    def formula_2022_01_01(etablissement, period):
+        apet = etablissement("apet", period)
+        type_eta = apet.possible_values
+        codes_eligibles = [
+        type_eta._23_11Z, type_eta._23_12Z, type_eta._23_13Z, type_eta._23_14Z, type_eta._23_19Z,
+        type_eta._23_31Z, type_eta._23_41Z, type_eta._23_42Z, type_eta._23_43Z, type_eta._23_44Z,
+        type_eta._23_49Z, type_eta._23_32Z, type_eta._23_20Z, type_eta._23_51Z, type_eta._23_65Z,
+        type_eta._23_69Z, type_eta._23_61Z, type_eta._23_62Z, type_eta._23_63Z, type_eta._23_64Z,
+        type_eta._23_69Z, type_eta._23_52Z, type_eta._23_70Z, type_eta._08_11Z,
+        type_eta._23_91Z, type_eta._23_99Z
+        ]
+        determinant = False
+        
+        if apet in codes_eligibles:
+            determinant = True
+        return determinant
+    
+
+class autres_produits_secteurs_aeronautique_et_naval(Variable):
+    #Exonerée dès 2022
+    #À partir de 2022, il est exclus de la taxe d'énergie en toutes les formes sauf l'électricité 
+    value_type = bool
+    unit = ''
+    entity = Etablissement
+    label = "coonditions du L314-64"
+    definition_period = YEAR
+    reference = ""
+    def formula_2022_01_01(etablissement, period):
+        apet = etablissement("apet", period)
+        type_eta = apet.possible_values
+        codes_eligibles = [
+        type_eta._30_30Z, type_eta._33_16Z, type_eta._30_12Z, 
+        type_eta._33_15Z, type_eta._30_11Z, type_eta._28_11Z
+        ]
+        determinant = False
+        
+        if apet in codes_eligibles:
+            determinant = True
+        return determinant
+    
+
+class autres_produits_intervention_vehicules_services_incendie_secours(Variable):
+    value_type = bool
+    unit = ''
+    entity = Etablissement
+    label = ""
+    definition_period = YEAR
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047807623"
+    def formula_2022_01_01(etablissement, period):
+        apet = etablissement("apet", period)
+        type_eta = apet.possible_values
+        status = 0
+        if apet == type_eta._84_25Z:  #_84_25Z	=	"	Services du feu et de secours	"
+            status = 1
+        return status
