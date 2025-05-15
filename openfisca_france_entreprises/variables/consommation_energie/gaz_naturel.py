@@ -5,7 +5,8 @@ from openfisca_core.variables import Variable
 
 class consommation_gaz_naturel(Variable):
     #dès 1986, seules les usages comme combustible sont soumis à la TICGN. 
-    #dès 2020, les usages comme carbrant y sont somis aussi. 
+    #dès 2020, les usages comme carbrant y sont somis aussi. '
+    #dès 2022, le gaz naturel combustible et le gaz naturel carburant ont des taux differents
     value_type = float
     unit = 'MWh'
     entity = Etablissement
@@ -17,6 +18,7 @@ class consommation_gaz_naturel(Variable):
 
         return totale
     def formula_2020_01_01(etablissement, period) : 
+        #la division entre les deux s'apparaître en cette année
         
         totale = etablissement('consommation_gaz_combustible', period) + etablissement('consommation_gaz_carburant', period)
 
@@ -25,6 +27,8 @@ class consommation_gaz_naturel(Variable):
 class consommation_gaz_combustible(Variable):
     #dès 1986, seules les usages comme combustible sont soumis à la TICGN. 
     #dès 2020, les usages comme carbrant y sont somis aussi. 
+    #dès 2022, le gaz naturel combustible et le gaz naturel carburant ont des taux differents
+
     value_type = float
     unit = 'MWh'
     entity = Etablissement
@@ -34,6 +38,8 @@ class consommation_gaz_combustible(Variable):
 
 class consommation_gaz_carburant(Variable): 
     #ça fait partie de la formule de consommation_gaz_naturel dès 2020
+    #dès 2022, le gaz naturel combustible et le gaz naturel carburant ont des taux differents
+
     value_type = float
     unit = 'MWh'
     entity = Etablissement

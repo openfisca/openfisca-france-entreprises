@@ -534,10 +534,12 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         #Article L312-41, minoration pour l'essence pour la Corse
 
 
-
+        #les carburants
         #ça determine quel taux à appliquer aux gazoles 
         if etablissement('gazoles_transport_guide', period) == True : 
             taux_gazoles = parameters(period).energies.autres_produits_energetiques.accise.taux_selon_activite.gazoles_transport_guide
+        elif etablissement('gazoles_engins_travaux_statiques', period) == True:
+            taux_gazoles = parameters.energies.autres_produits_energetiques.accise.carburants.gazoles_engins_travaux_statiques 
         elif etablissement('gazoles_transport_collective_personnes', period) == True:
             taux_gazoles = parameters(period).energies.autres_produits_energetiques.accise.taux_selon_activite.gazoles_transport_collectif_routier_de_personnes
         elif etablissement('gazoles_transport_taxi', period) == True:
@@ -559,23 +561,59 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         else :
             taux_gazoles = parameters(period).energies.autres_produits_energetiques.accise.carburants.gazoles
         
-        #ça determine quel taux à appliquer aux essences
-        if etablissement('autres_produits_travaux_agricoles_et_forestiers', period) == True :
-            taux_fiouls_lourds = parameters(period).energies.autres_produits_energetiques.accise.taux_selon_activite.fiouls_lourds_travaux_agricoles
-        else :    
-            taux_fiouls_lourds = parameters(period).energies.autres_produits_energetiques.accise.combustibles.fiouls_lourds
-
-        if etablissement('autres_produits_travaux_agricoles_et_forestiers', period) == True :
-            taux_gaz_de_petrole_liquefies_combustible = parameters(period).energies.autres_produits_energetiques.accise.taux_selon_activite.gaz_de_petrole_liquefies_combustible_travaux_agricoles
-        else :    
-            taux_gaz_de_petrole_liquefies_combustible = parameters(period).energies.autres_produits_energetiques.accise.combustibles.gaz_de_petrole_liquefies_combustibles
-
+        #essence
         if etablissement('essence_transport_taxi', period) == True :
             taux_essence = parameters(period).energies.autres_produits_energetiques.accise.taux_selon_activite.essences_transport_de_personnes_par_taxi
         if etablissement('autres_produits_intervention_vehicules_services_incendie_secours', period) == True :
             taux_essence = 0
         else :    
             taux_essence = parameters(period).energies.autres_produits_energetiques.accise.carburants.essences
+
+        #gaz de pétrole liquifié
+        if etablissement('autres_produits_travaux_agricoles_et_forestiers', period) == True :
+            taux_gaz_de_petrole_liquefies_combustible = parameters(period).energies.autres_produits_energetiques.accise.taux_selon_activite.gaz_de_petrole_liquefies_combustible_travaux_agricoles
+        else :    
+            taux_gaz_de_petrole_liquefies_combustible = parameters(period).energies.autres_produits_energetiques.accise.combustibles.gaz_de_petrole_liquefies_combustibles
+
+        #les combustibles
+        installation_seqe = etablissement("installation_seqe", period)
+        risque_de_fuite_carbone_eta = etablissement('risque_de_fuite_carbone_eta', period)
+        intensite_energetique_valeur_production = etablissement('intensite_energetique_valeur_production', period)
+        intensite_energetique_valeur_ajoutee = etablissement('intensite_energetique_valeur_ajoutee', period)
+
+
+        #ça determine quel taux à appliquer aux fiouls lourds 
+        if etablissement('autres_produits_travaux_agricoles_et_forestiers', period) == True :
+            taux_fiouls_lourds = parameters(period).energies.autres_produits_energetiques.accise.taux_selon_activite.fiouls_lourds_travaux_agricoles
+        elif (installation_seqe == True and intensite_energetique_valeur_production >= 0.03) or (installation_seqe == True and intensite_energetique_valeur_ajoutee >= 0.005 ) :
+            taux_fiouls_lourds = parameters.energies.autres_produits_energetiques.accise.taux_selon_activite.fiouls_lourds_seqe
+            #***faut faire un test pour 
+        elif (installation_seqe == False and risque_de_fuite_carbone_eta == True and intensite_energetique_valeur_production >= 0.03) or (installation_seqe == False and risque_de_fuite_carbone_eta == True and  intensite_energetique_valeur_ajoutee >= 0.005 ) :
+            taux_fiouls_lourds = parameters.energies.autres_produits_energetiques.accise.taux_selon_activite.fiouls_lourds_concurrence_internationale
+        else :    
+            taux_fiouls_lourds = parameters(period).energies.autres_produits_energetiques.accise.combustibles.fiouls_lourds
+
+        #pour les fiouls domestiques
+        
+        if (installation_seqe == True and intensite_energetique_valeur_production >= 0.03) or (installation_seqe == True and intensite_energetique_valeur_ajoutee >= 0.005 ) :
+            taux_fiouls_domestiques = parameters.energies.autres_produits_energetiques.accise.taux_selon_activite.fiouls_domestiques_seqe
+            #***faut faire un test pour 
+        elif (installation_seqe == False and risque_de_fuite_carbone_eta == True and intensite_energetique_valeur_production >= 0.03) or (installation_seqe == False and risque_de_fuite_carbone_eta == True and  intensite_energetique_valeur_ajoutee >= 0.005 ) :
+            taux_fiouls_domestiques = parameters.energies.autres_produits_energetiques.accise.taux_selon_activite.fiouls_domestiques_concurrence_internationale
+        else :    
+            taux_fiouls_domestiques = parameters(period).energies.autres_produits_energetiques.accise.combustibles.fiouls_domestiques
+
+        #pétrole lampant
+        if (installation_seqe == True and intensite_energetique_valeur_production >= 0.03) or (installation_seqe == True and intensite_energetique_valeur_ajoutee >= 0.005 ) :
+            taux_petrole_lampant = parameters.energies.autres_produits_energetiques.accise.taux_selon_activite.petroles_lampants_seqe
+            #***faut faire un test pour 
+        elif (installation_seqe == False and risque_de_fuite_carbone_eta == True and intensite_energetique_valeur_production >= 0.03) or (installation_seqe == False and risque_de_fuite_carbone_eta == True and  intensite_energetique_valeur_ajoutee >= 0.005 ) :
+            taux_petrole_lampant = parameters.energies.autres_produits_energetiques.accise.taux_selon_activite.petroles_lampants_concurrence_internationale
+        else :    
+            taux_petrole_lampant = parameters(period).energies.autres_produits_energetiques.accise.combustibles.petroles_lampants
+
+
+
 
         #trois cas d'exoneration pour toute la consommation
         if etablissement('autres_produits_navigation_interieure', period) == True:
@@ -596,16 +634,14 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 
                 etablissement('consommation_gazoles_mwh', period) * (taux_gazoles + etablissement('ticpe_majoration_regionale_gazole', period))
                 + etablissement('consommation_carbureactuers_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.carburants.carbureacteurs
-                
                 + etablissement('consommation_essences_mwh', period) * (taux_essence + beneficie_corse * parameters(period).energies.autres_produits_energetiques.accise.minoration_corse + etablissement("ticpe_majoration_regionale_supercarburant", period))
-
-                #^*** besoin des taux de majoration pour les régions pour l'essence 
+                #^*** besoin des taux de majoration régionale pour l'essence 
                 + etablissement('consommation_gaz_de_petrole_liquefies_carburant_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.carburants.gaz_de_petrole_liquefies_carburant
                 
                 #ces produits sont de combustibles (L312-36)
                 + etablissement('consommation_fiouls_lourds_mwh', period) * taux_fiouls_lourds
-                + etablissement('consommation_fiouls_domestiques_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.combustibles.fiouls_domestiques
-                + etablissement('consommation_petroles_lampants_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.combustibles.petroles_lampants
+                + etablissement('consommation_fiouls_domestiques_mwh', period) * taux_fiouls_domestiques
+                + etablissement('consommation_petroles_lampants_mwh', period) * taux_petrole_lampant
                 + etablissement('consommation_gaz_de_petrole_liquefies_combustible_mwh', period) * taux_gaz_de_petrole_liquefies_combustible
 
                 #ces produits sont des produits particuliers (L312-79)
@@ -622,33 +658,112 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     
     
     def formula_2024_01_01(etablissement, period, parameters):
-        #par rapport à précédement, suprimmé consommation_essence_aviation_mwh
+        #par rapport à précédement, suprimmé consommation_essence_aviation_mwh et quelques tariffs visé à le seqe et concurrence internationale
+
         if etablissement('departement', period) == '02A' or etablissement('departement', period) == '02B':
             beneficie_corse = 1
         else : 
             beneficie_corse = 0
-        
-        total = [
-            #ces produits sont de carburants (L312-35)
-            etablissement('consommation_gazoles_mwh', period) * (parameters(period).energies.autres_produits_energetiques.accise.carburants.gazoles + etablissement('ticpe_majoration_regionale_gazole', period))
-            + etablissement('consommation_carbureactuers_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.carburants.carbureacteurs
-            + etablissement('consommation_essences_mwh', period) * (parameters(period).energies.autres_produits_energetiques.accise.carburants.essences + beneficie_corse * parameters(period).energies.autres_produits_energetiques.accise.minoration_corse + etablissement("ticpe_majoration_regionale_supercarburant", period))
-            + etablissement('consommation_gaz_de_petrole_liquefies_carburant_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.carburants.gaz_de_petrole_liquefies_carburant
-            
-            #ces produits sont de combustibles (L312-36)
-            + etablissement('consommation_fiouls_lourds_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.combustibles.fiouls_lourds
-            + etablissement('consommation_fiouls_domestiques_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.combustibles.fiouls_domestiques
-            + etablissement('consommation_petroles_lampants_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.combustibles.petroles_lampants
-            + etablissement('consommation_gaz_de_petrole_liquefies_combustible_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.combustibles.gaz_de_petrole_liquefies_combustibles
+        #Article L312-41, minoration pour l'essence pour la Corse
 
-            #ces produits sont des produits particuliers (L312-79)
-            + etablissement('consommation_ethanol_diesel_ed95_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.tariffs_particuliers.ethanol_diesel_ed95
-            + etablissement('consommation_gazole_b100_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.tariffs_particuliers.gazole_b100
-            + etablissement('consommation_essence_sp95_e10_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.tariffs_particuliers.essence_sp95_e10
-            + etablissement('consommation_superethanol_e85_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.tariffs_particuliers.superethanol_e85
-            + etablissement('consommation_grisou_et_gaz_assimiles_combustible_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.tariffs_particuliers.grisou_et_gaz_assimiles_combustible
-            + etablissement('consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.tariffs_particuliers.biogaz_combustible_non_injecte_dans_le_reseau
-        ]
+
+        #les carburants
+        #ça determine quel taux à appliquer aux gazoles 
+        if etablissement('gazoles_transport_guide', period) == True : 
+            taux_gazoles = parameters(period).energies.autres_produits_energetiques.accise.taux_selon_activite.gazoles_transport_guide
+        elif etablissement('gazoles_engins_travaux_statiques', period) == True:
+            taux_gazoles = parameters.energies.autres_produits_energetiques.accise.carburants.gazoles_engins_travaux_statiques 
+        elif etablissement('gazoles_transport_collective_personnes', period) == True:
+            taux_gazoles = parameters(period).energies.autres_produits_energetiques.accise.taux_selon_activite.gazoles_transport_collectif_routier_de_personnes
+        elif etablissement('gazoles_transport_taxi', period) == True:
+            taux_gazoles = parameters(period).energies.autres_produits_energetiques.accise.taux_selon_activite.gazoles_transport_de_personnes_par_taxi
+        elif etablissement('gazoles_transport_routier_marchandises', period) == True:
+            taux_gazoles = parameters(period).energies.autres_produits_energetiques.accise.taux_selon_activite.gazoles_transport_routier_de_marchandises
+        elif etablissement('gazoles_manutention_portuaire', period) == True:
+            taux_gazoles = parameters(period).energies.autres_produits_energetiques.accise.taux_selon_activite.gazoles_manutention_portuaire
+            #la formule de manutention portuaire existe qu'après 2023
+        elif etablissement('autres_produits_travaux_agricoles_et_forestiers', period) == True:
+            taux_gazoles = parameters(period).energies.autres_produits_energetiques.accise.taux_selon_activite.gazoles_travaux_agricoles
+        elif etablissement('gazoles_extraction_mineraux_industriels', period) == True:
+            taux_gazoles = parameters(period).energies.autres_produits_energetiques.accise.taux_selon_activite.gazoles_extraction_de_mineraux_industriels
+            #dès 2024
+        elif etablissement('autres_produits_amenagement_et_entretien_pistes_routes_massifs_montagneux', period) == True:
+            taux_gazoles = parameters(period).energies.autres_produits_energetiques.accise.taux_selon_activite.gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux
+        elif etablissement('autres_produits_intervention_vehicules_services_incendie_secours', period) == True:
+            taux_gazoles = 0
+        else :
+            taux_gazoles = parameters(period).energies.autres_produits_energetiques.accise.carburants.gazoles
+        
+        #essence
+        if etablissement('essence_transport_taxi', period) == True :
+            taux_essence = parameters(period).energies.autres_produits_energetiques.accise.taux_selon_activite.essences_transport_de_personnes_par_taxi
+        if etablissement('autres_produits_intervention_vehicules_services_incendie_secours', period) == True :
+            taux_essence = 0
+        else :    
+            taux_essence = parameters(period).energies.autres_produits_energetiques.accise.carburants.essences
+
+        #gaz de pétrole liquifié
+        if etablissement('autres_produits_travaux_agricoles_et_forestiers', period) == True :
+            taux_gaz_de_petrole_liquefies_combustible = parameters(period).energies.autres_produits_energetiques.accise.taux_selon_activite.gaz_de_petrole_liquefies_combustible_travaux_agricoles
+        else :    
+            taux_gaz_de_petrole_liquefies_combustible = parameters(period).energies.autres_produits_energetiques.accise.combustibles.gaz_de_petrole_liquefies_combustibles
+
+        #les combustibles
+
+
+        #ça determine quel taux à appliquer aux fiouls lourds 
+        if etablissement('autres_produits_travaux_agricoles_et_forestiers', period) == True :
+            taux_fiouls_lourds = parameters(period).energies.autres_produits_energetiques.accise.taux_selon_activite.fiouls_lourds_travaux_agricoles
+        else :    
+            taux_fiouls_lourds = parameters(period).energies.autres_produits_energetiques.accise.combustibles.fiouls_lourds
+
+        #pour les fiouls domestiques
+        
+        taux_fiouls_domestiques = parameters(period).energies.autres_produits_energetiques.accise.combustibles.fiouls_domestiques
+
+        #pétrole lampant
+        taux_petrole_lampant = parameters(period).energies.autres_produits_energetiques.accise.combustibles.petroles_lampants
+
+
+
+
+        #trois cas d'exoneration pour toute la consommation
+        if etablissement('autres_produits_navigation_interieure', period) == True:
+                total = 0
+        elif etablissement('autres_produits_navigation_maritime', period) == True:
+                total = 0
+        elif etablissement('autres_produits_navigation_aerienne', period) == True:
+                total = 0
+        elif etablissement('autres_produits_double_usage', period) == True:
+                total = 0
+        elif etablissement('autre_produits_fabrication_produits_mineraux_non_metalliques', period) == True:
+                total = 0
+        elif etablissement('autres_produits_secteurs_aeronautique_et_naval', period) == True:
+                total = 0
+        else :
+            total = [
+                #ces produits sont de carburants (L312-35)
+                
+                etablissement('consommation_gazoles_mwh', period) * (taux_gazoles + etablissement('ticpe_majoration_regionale_gazole', period))
+                + etablissement('consommation_carbureactuers_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.carburants.carbureacteurs
+                + etablissement('consommation_essences_mwh', period) * (taux_essence + beneficie_corse * parameters(period).energies.autres_produits_energetiques.accise.minoration_corse + etablissement("ticpe_majoration_regionale_supercarburant", period))
+                #^*** besoin des taux de majoration régionale pour l'essence 
+                + etablissement('consommation_gaz_de_petrole_liquefies_carburant_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.carburants.gaz_de_petrole_liquefies_carburant
+                
+                #ces produits sont de combustibles (L312-36)
+                + etablissement('consommation_fiouls_lourds_mwh', period) * taux_fiouls_lourds
+                + etablissement('consommation_fiouls_domestiques_mwh', period) * taux_fiouls_domestiques
+                + etablissement('consommation_petroles_lampants_mwh', period) * taux_petrole_lampant
+                + etablissement('consommation_gaz_de_petrole_liquefies_combustible_mwh', period) * taux_gaz_de_petrole_liquefies_combustible
+
+                #ces produits sont des produits particuliers (L312-79)
+                + etablissement('consommation_ethanol_diesel_ed95_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.tariffs_particuliers.ethanol_diesel_ed95
+                + etablissement('consommation_gazole_b100_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.tariffs_particuliers.gazole_b100
+                + etablissement('consommation_essence_sp95_e10_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.tariffs_particuliers.essence_sp95_e10
+                + etablissement('consommation_superethanol_e85_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.tariffs_particuliers.superethanol_e85
+                + etablissement('consommation_grisou_et_gaz_assimiles_combustible_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.tariffs_particuliers.grisou_et_gaz_assimiles_combustible
+                + etablissement('consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.tariffs_particuliers.biogaz_combustible_non_injecte_dans_le_reseau
+            ]
         return total
     
 
