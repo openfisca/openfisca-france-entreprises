@@ -1,0 +1,18 @@
+description:
+values:
+  2022-01-01:
+    value: 18.82
+  2024-01-01:
+    value: 24.81
+  2025-01-01:
+    value: 30.8
+
+#Toutefois, le tarif est réduit à 30,8 € par mégawattheure pour les produits de la catégorie 
+#fiscale des gazoles consommés pour les besoins des moteurs qui réalisent des travaux 
+#statiques aux fins de la réalisation d'activités économiques et des moteurs de propulsion 
+#des engins qui ne circulent pas habituellement sur les voies ouvertes à la circulation 
+#publique. Un arrêté du ministre chargé du budget détermine les caractéristiques physiques 
+#et chimiques des produits concernés, la liste des engins éligibles et les conditions 
+#auxquelles s'applique le tarif pour les moteurs pouvant alternativement être utilisés pour 
+#des travaux statiques et la propulsion d'engins.
+

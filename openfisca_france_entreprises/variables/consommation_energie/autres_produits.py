@@ -4,6 +4,8 @@ from openfisca_core.periods import MONTH, YEAR
 from openfisca_core.variables import Variable
 
 
+
+
 class consommation_goudrons_utilises_comme_combustibles(Variable): 
     value_type = float
     unit = '100 kg nets'
@@ -494,7 +496,7 @@ class consommation_additifs_huiles_lubrifiantes(Variable):
 #     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
 #     definition_period = YEAR
 
-    
+
 class consommation_gazoles_mwh(Variable): 
     value_type = float
     unit = 'MWh'
@@ -615,7 +617,13 @@ class consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051242692'
     definition_period = YEAR
 
-
+class gazoles_engins_travaux_statiques(Variable): 
+    value_type = float
+    unit = ''
+    entity = Etablissement
+    label = ''
+    reference = 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000044595989/LEGISCTA000044598327/#LEGISCTA000044603893:~:text=Toutefois%2C%20le%20tarif,la%20propulsion%20d%27engins.'
+    definition_period = YEAR
 
 
 

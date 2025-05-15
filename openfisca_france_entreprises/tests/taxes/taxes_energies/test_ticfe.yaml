@@ -185,7 +185,7 @@
   output:
     taxe_interieure_sur_consommation_finale_electricite: 500
 
-- name: test 2016 taxe_interieure_sur_consommation_finale_electricite tax_electricite_installations_industrielles_electro_intensives
+- name: test 2016 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_installations_industrielles_electro_intensives
 #
   period: 2016
   input:
@@ -195,7 +195,7 @@
   output:
     taxe_interieure_sur_consommation_finale_electricite: 2000
 
-- name: test 2016 taxe_interieure_sur_consommation_finale_electricite tax_electricite_installations_industrielles_electro_intensives
+- name: test 2016 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_installations_industrielles_electro_intensives
 #
   period: 2016
   input:
@@ -205,7 +205,7 @@
   output:
     taxe_interieure_sur_consommation_finale_electricite: 5000
 
-- name: test 2016 taxe_interieure_sur_consommation_finale_electricite tax_electricite_installations_industrielles_electro_intensives
+- name: test 2016 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_installations_industrielles_electro_intensives
 #
   period: 2016
   input:
@@ -216,8 +216,8 @@
     taxe_interieure_sur_consommation_finale_electricite: 7500
 
 
-#tax_electricite_risque_de_fuite_de_carbone
-- name: test 2016 taxe_interieure_sur_consommation_finale_electricite tax_electricite_risque_de_fuite_de_carbone
+#taxe_electricite_risque_de_fuite_de_carbone
+- name: test 2016 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_risque_de_fuite_de_carbone
 #
   period: 2016
   input:
@@ -227,8 +227,8 @@
   output:
     taxe_interieure_sur_consommation_finale_electricite: 1000
 
-#tax_electricite_risque_de_fuite_de_carbone
-- name: test 2016 taxe_interieure_sur_consommation_finale_electricite tax_electricite_risque_de_fuite_de_carbone
+#taxe_electricite_risque_de_fuite_de_carbone
+- name: test 2016 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_risque_de_fuite_de_carbone
 #
   period: 2016
   input:
@@ -238,8 +238,8 @@
   output:
     taxe_interieure_sur_consommation_finale_electricite: 2500
 
-#tax_electricite_risque_de_fuite_de_carbone
-- name: test 2016 taxe_interieure_sur_consommation_finale_electricite tax_electricite_risque_de_fuite_de_carbone
+#taxe_electricite_risque_de_fuite_de_carbone
+- name: test 2016 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_risque_de_fuite_de_carbone
 #
   period: 2016
   input:
@@ -249,7 +249,7 @@
   output:
     taxe_interieure_sur_consommation_finale_electricite: 5500
 
-- name: test 2016 taxe_interieure_sur_consommation_finale_electricite tax_electricite_risque_de_fuite_de_carbone
+- name: test 2016 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_risque_de_fuite_de_carbone
 #
   period: 2016
   input:
@@ -278,3 +278,46 @@
   output:
     taxe_interieure_sur_consommation_finale_electricite: 18000
 
+- name: test 2025  taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques
+#
+  period: 2025
+  input:
+    assiette_taxe_electricite: 1000
+    electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques: True
+
+  output:
+    #taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques : 1000
+    #^ça passe, 
+    taxe_electricite: 1000
+    #et ça passe pas 
+
+- name: test 2025  electricite_production_a_bord #ça passe aussi
+#
+  period: 2025
+  input:
+    assiette_taxe_electricite: 1000
+    electricite_production_a_bord: True
+
+  output:
+    #taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques : 1000
+    #^ça passe, 
+    taxe_electricite: 0
+    #et ça passe pas 
+
+# - name: test 2025  taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques
+#   period: 2025
+#   input:
+#     assiette_taxe_electricite: 1000
+#     electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques: True
+
+#   output:
+#     taxe_electricite: 1000
+
+# - name: test 2025  taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_economiques
+#   period: 2025
+#   input:
+#     assiette_taxe_electricite: 1000
+#     electricite_alimentation_aeronefs_stationnement_aerodromes_activites_economiques: True
+
+#   output:
+#     taxe_electricite: 500

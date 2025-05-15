@@ -394,4 +394,22 @@ class consommation_electricite_fournie_aux_navires(Variable):
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000043811132/2021-01-01/#:~:text=h.%20Le%20tarif%20de%20la%20taxe%20applicable%20%C3%A0%20l%27%C3%A9lectricit%C3%A9%20directement%20fournie%2C%20lors%20de%20leur%20stationnement%20%C3%A0%20quai%20dans%20les%20ports%2C%20aux%20navires%20mentionn%C3%A9s%20au%20c%20du%201%20de%20l%27article%20265%20bis%20et%20aux%20engins%20b%C3%A9n%C3%A9ficiant%20de%20l%27exon%C3%A9ration%20mentionn%C3%A9e%20au%20e%20du%20m%C3%AAme%201%20est%20fix%C3%A9%20%C3%A0%200%2C5%20%E2%82%AC%20par%20m%C3%A9gawattheure."
 
+#Alimentation des aéronefs lors de leur stationnement sur les aérodromes ouverts à la circulation aérienne publique	
+#Electricité consommée pour les besoins des activités économiques
+class electricite_alimentation_aeronefs_stationnement_aerodromes_activites_economiques(Variable):
+    value_type = float
+    entity = Etablissement
+    definition_period = YEAR
+    label = ""
+    reference = "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000044595989/LEGISCTA000044598327/#LEGISCTA000044603893:~:text=Alimentation%20des%20a%C3%A9ronefs%20lors%20de%20leur%20stationnement%20sur%20les%20a%C3%A9rodromes%20ouverts%20%C3%A0%20la%20circulation%20a%C3%A9rienne%20publique"
+
+#Alimentation des aéronefs lors de leur stationnement sur les aérodromes ouverts à la circulation aérienne publique	
+#Electricité consommée pour les besoins des activités non économiques
+class electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques(Variable):
+    value_type = float
+    entity = Etablissement
+    definition_period = YEAR
+    label = ""
+    reference = "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000044595989/LEGISCTA000044598327/#LEGISCTA000044603893:~:text=Alimentation%20des%20a%C3%A9ronefs%20lors%20de%20leur%20stationnement%20sur%20les%20a%C3%A9rodromes%20ouverts%20%C3%A0%20la%20circulation%20a%C3%A9rienne%20publique"
+
 
