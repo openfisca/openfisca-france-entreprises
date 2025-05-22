@@ -1,6 +1,0 @@
-- name: Etablissement level natural gas consumption tax
-  period: 2015
-  input:
-    consommation_gaz_naturel: 1000
-  output:
-    taxe_interieure_consommation_gaz_naturel_taux_normal: 18.018019

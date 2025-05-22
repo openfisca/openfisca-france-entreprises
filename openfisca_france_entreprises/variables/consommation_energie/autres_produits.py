@@ -188,7 +188,7 @@ class consommation_galzole_fioul_domestique_hectolitre(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
 
-class consommation_gazol_b_10_hectolitre(Variable): 
+class consommation_gazole_b_10_hectolitre(Variable): 
     value_type = float
     unit = 'Hectolitre'
     entity = Etablissement

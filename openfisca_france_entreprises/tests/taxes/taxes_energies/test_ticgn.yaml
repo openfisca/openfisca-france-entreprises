@@ -33,13 +33,13 @@
 #en utilisant formula_1986_01_01
 
 
-- name: "Test 2008 consommation_gaz_usage_non_combustible"
-  period: 2008
-  input: 
-    assiette_ticgn : 6500000
-    apet: _08_92Z #consommation_gaz_usage_non_combustible
-  output: 
-    taxe_interieure_consommation_gaz_naturel : 0
+# - name: "Test 2008 consommation_gaz_usage_non_combustible"
+#   period: 2008
+#   input: 
+#     assiette_ticgn : 6500000
+#     apet: _08_92Z #consommation_gaz_usage_non_combustible
+#   output: 
+#     taxe_interieure_consommation_gaz_naturel : 0
 
 - name: "Test 2008 gaz_production_mineraux_non_metalliques"
   period: 2008

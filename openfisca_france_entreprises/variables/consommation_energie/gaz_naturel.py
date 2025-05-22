@@ -158,21 +158,21 @@ class consommation_gaz_fabrication_soi(Variable):
     reference = "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006071570/LEGISCTA000006122062/2008-01-01/?anchor=LEGIARTI000018036100#LEGIARTI000018036100:~:text=III.%2DLa%20consommation,%C3%A0%20leur%20fabrication."
     definition_period = YEAR
 
-
-class consommation_gaz_usage_non_combustible(Variable):
-    #exonéré dès 2008 
-    #combiner gaz_matiere_premiere et gaz_huiles_minerales
-    value_type = float
-    unit = 'MWh'
-    entity = Etablissement
-    label = "La consommation de gaz naturel autrement que comme combustible"
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018036078/2008-04-01/"
-    definition_period = YEAR
-    def formula_2008_01_01(etablissement, period):
-        status = False
-        if etablissement("gaz_matiere_premiere", period) == True or etablissement("gaz_huiles_minerales", period) == True:
-            status = True
-        return status
+#remplacé par la logique que les formes de gaz naturel pas utilisé sont automatiquement prises en compte comme non combustible.
+# class consommation_gaz_usage_non_combustible(Variable):
+#     #exonéré dès 2008 
+#     #combiner gaz_matiere_premiere et gaz_huiles_minerales
+#     value_type = float
+#     unit = 'MWh'
+#     entity = Etablissement
+#     label = "La consommation de gaz naturel autrement que comme combustible"
+#     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018036078/2008-04-01/"
+#     definition_period = YEAR
+#     def formula_2008_01_01(etablissement, period):
+#         status = False
+#         if etablissement("gaz_matiere_premiere", period) == True or etablissement("gaz_huiles_minerales", period) == True:
+#             status = True
+#         return status
 
 #penser à ajouter des autres usages 
 

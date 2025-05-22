@@ -263,7 +263,7 @@ class assiette_ticc(Variable):
 
         return assiette
     def formula_2020_01_01(etablissement, period, parameters):
-        #à partir de 2020, carburant est inclus dans charbon
+        #à partir de 2020, charbon utilisé comme carburant est prise en compte 
         
         consommation_charbon = etablissement("consommation_charbon", period)
         consommation_autres_produits_energetique_ticc = etablissement('consommation_autres_produits_energetique_ticc', period)

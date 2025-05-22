@@ -1,0 +1,27 @@
+description: Majoration régionale TICPE Super en Auvergne
+values:
+  2007-01-01: 
+    value:	-0.55
+  2008-01-01: 
+    value:	0
+  2009-01-01: 
+    value:	0
+  2010-01-01: 
+    value:	0
+  2011-01-01: 
+    value:	0.73
+  2012-01-01: 
+    value:	0.73
+  2013-01-01: 
+    value:	-0.27
+  2014-01-01: 
+    value:	0.73
+  2015-01-01: 
+    value:	0.73
+  2016-01-01: 
+    value:	0.73
+
+metadata:
+  short_label: Auvergne
+  ipp_csv_id: maj_ticpe_super_auv
+  unit: currency

@@ -1,9 +1,26 @@
 description: Majoration régionale TICPE gazole en Poitou-Charentes
 values:
-  2007-01-01:
-    value: 0
-  2016-07-01:
-    value: 2.5
+  2007-01-01: 
+    value:	-1.15
+  2008-01-01: 
+    value:	-1.15
+  2009-01-01: 
+    value:	-1.15
+  2010-01-01: 
+    value:	0
+  2011-01-01: 
+    value:	-1.15
+  2012-01-01: 
+    value:	-1.15
+  2013-01-01: 
+    value:	-2.15
+  2014-01-01: 
+    value:	1.35
+  2015-01-01: 
+    value:	1.35
+  2016-01-01: 
+    value:	1.35
+
 metadata:
   short_label: Poitou-Charentes
   ipp_csv_id: maj_ticpe_die_p_c
