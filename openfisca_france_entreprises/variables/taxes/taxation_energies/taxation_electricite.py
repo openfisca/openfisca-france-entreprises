@@ -47,16 +47,52 @@ class taxe_electricite(Variable):
 
     def formula_2022_01_01(etablissement, period, parameters):
         #en 2022, la tdcfe est intégrée dans l'accise, un ans avant ça n'arrive à la tccfe
+        #mais exceptionellement, on a le bouclier tarifaire qui remplace le rôle de l'accise 
+        #due au fait que les montants sont calculés en unité des années, on divise le grand montant par 12
         taxe_accise_electricite = etablissement('taxe_accise_electricite', period)
+        taxe_electricite_bouclier_tarifaire = etablissement('taxe_electricite_bouclier_tarifaire', period)
         taxe_communale_consommation_finale_electricite = etablissement('taxe_communale_consommation_finale_electricite', period)
-    
-        total = taxe_accise_electricite + taxe_communale_consommation_finale_electricite 
+        if taxe_accise_electricite == 0: 
+            total = taxe_communale_consommation_finale_electricite 
+        else : 
+            total = taxe_accise_electricite/12 + taxe_electricite_bouclier_tarifaire*11/12 + taxe_communale_consommation_finale_electricite 
         return total 
     
     def formula_2023_01_01(etablissement, period, parameters):
+        #la difference entre 2022 et 2023 est que en 2023, on a pas d'accise et qu'un mois de la tccfe qui égale celle en 2022
+        #en 2022, la tdcfe est intégrée dans l'accise, un an avant ça n'arrive à la tccfe
+        #mais exceptionellement, on a le bouclier tarifaire qui remplace le rôle de l'accise 
+        #due au fait que les montants sont calculés en unité des années, on divise le grand montant par 12
+        taxe_electricite_bouclier_tarifaire = etablissement('taxe_electricite_bouclier_tarifaire', period)
+        taxe_communale_consommation_finale_electricite = etablissement('taxe_communale_consommation_finale_electricite', period)
         taxe_accise_electricite = etablissement('taxe_accise_electricite', period)
+
+        if taxe_accise_electricite == 0:
+            total = taxe_communale_consommation_finale_electricite/12 # pour janvier
+        else :
+            total = taxe_electricite_bouclier_tarifaire + taxe_communale_consommation_finale_electricite/12 # pour janvier
+        return total 
     
-        total = taxe_accise_electricite 
+    def formula_2024_01_01(etablissement, period, parameters):
+        #exceptionalement, le premier mois en 2022 nous appelle l'usage continue de la tccfe. et les taux - on assume - sont pareils que ceux de 2022
+        taxe_electricite_bouclier_tarifaire = etablissement('taxe_electricite_bouclier_tarifaire', period)
+        taxe_accise_electricite = etablissement('taxe_accise_electricite', period)
+
+        if taxe_accise_electricite == 0:
+            total = 0
+        else :
+            total = taxe_electricite_bouclier_tarifaire
+        return total 
+    
+    def formula_2025_01_01(etablissement, period, parameters):
+        #exceptionalement, le premier mois en 2022 nous appelle l'usage continue de la tccfe. et les taux - on assume - sont pareils que ceux de 2022
+        taxe_accise_electricite = etablissement('taxe_accise_electricite', period)
+        taxe_electricite_bouclier_tarifaire = etablissement('taxe_electricite_bouclier_tarifaire', period)
+
+        if taxe_accise_electricite == 0:
+            total = 0
+        else :
+            total = taxe_accise_electricite*11/12 + taxe_electricite_bouclier_tarifaire/12 #que pour janvier
         return total 
         
 
@@ -384,14 +420,14 @@ class taxe_accise_electricite(Variable):
         summation = taxe 
         return summation
     
-class verifie_periode(Variable): 
-    value_type = float
-    entity = Etablissement
-    definition_period = YEAR
-    def formula_2025_01_01(etablissement, period, parameters):
-        taux = parameters(period).energies.electricite.ticfe.alimentation_aeronefs_stationnement_aerodromes_activites_economiques
+# class verifie_periode(Variable): 
+#     value_type = float
+#     entity = Etablissement
+#     definition_period = YEAR
+#     def formula_2025_01_01(etablissement, period, parameters):
+#         taux = parameters(period).energies.electricite.ticfe.alimentation_aeronefs_stationnement_aerodromes_activites_economiques
         
-        return taux
+#         return taux
 
 
 class taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_economiques(Variable): 
