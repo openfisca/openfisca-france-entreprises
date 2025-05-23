@@ -526,10 +526,10 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         #les majorations régionales sont manquants.
         #menutention portuaire existe en tant qu'une catégorie dès 2023
 
-        if etablissement('departement', period) == '02A' or etablissement('departement', period) == '02B':
-            beneficie_corse = 1
-        else : 
-            beneficie_corse = 0
+        # if etablissement('departement', period) == '02A' or etablissement('departement', period) == '02B':
+        #     beneficie_corse = 1
+        # else : 
+        #     beneficie_corse = 0
         #Article L312-41, minoration pour l'essence pour la Corse
 
         #les carburants
@@ -632,7 +632,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 
                 etablissement('consommation_gazoles_mwh', period) * (taux_gazoles + etablissement('ticpe_majoration_regionale_gazole', period))
                 + etablissement('consommation_carbureactuers_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.carburants.carbureacteurs
-                + etablissement('consommation_essences_mwh', period) * (taux_essence + beneficie_corse * parameters(period).energies.autres_produits_energetiques.accise.minoration_corse + etablissement("ticpe_majoration_regionale_supercarburant_e10", period))
+                + etablissement('consommation_essences_mwh', period) * (taux_essence + etablissement("ticpe_majoration_regionale_supercarburant_e10", period)) #+ beneficie_corse * parameters(period).energies.autres_produits_energetiques.accise.minoration_corse 
                 #^*** besoin des taux de majoration régionale pour l'essence 
                 + etablissement('consommation_gaz_de_petrole_liquefies_carburant_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.carburants.gaz_de_petrole_liquefies_carburant
                 
@@ -658,10 +658,10 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     def formula_2024_01_01(etablissement, period, parameters):
         #par rapport à précédement, suprimmé consommation_essence_aviation_mwh et quelques tariffs visé à le seqe et concurrence internationale
 
-        if etablissement('departement', period) == '02A' or etablissement('departement', period) == '02B':
-            beneficie_corse = 1
-        else : 
-            beneficie_corse = 0
+        # if etablissement('departement', period) == '02A' or etablissement('departement', period) == '02B':
+        #     beneficie_corse = 1
+        # else : 
+        #     beneficie_corse = 0
         #Article L312-41, minoration pour l'essence pour la Corse
 
 
@@ -744,7 +744,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 
                 etablissement('consommation_gazoles_mwh', period) * (taux_gazoles + etablissement('ticpe_majoration_regionale_gazole', period))
                 + etablissement('consommation_carbureactuers_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.carburants.carbureacteurs
-                + etablissement('consommation_essences_mwh', period) * (taux_essence + beneficie_corse * parameters(period).energies.autres_produits_energetiques.accise.minoration_corse + etablissement("ticpe_majoration_regionale_supercarburant_e10", period))
+                + etablissement('consommation_essences_mwh', period) * (taux_essence + etablissement("ticpe_majoration_regionale_supercarburant_e10", period) ) #+ beneficie_corse * parameters(period).energies.autres_produits_energetiques.accise.minoration_corse
                 #^*** besoin des taux de majoration régionale pour l'essence 
                 + etablissement('consommation_gaz_de_petrole_liquefies_carburant_mwh', period) * parameters(period).energies.autres_produits_energetiques.accise.carburants.gaz_de_petrole_liquefies_carburant
                 
