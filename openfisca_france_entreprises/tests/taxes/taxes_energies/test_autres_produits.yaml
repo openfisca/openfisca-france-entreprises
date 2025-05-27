@@ -89,7 +89,7 @@
     consommation_essences_speciales_utilisees_comme_carburants_combustibles : 1000 #67.52
     consommation_huiles_legeres_preparation_essence_aviation : 1000 #56.39
     consommation_supercarburant_e5 : 1000 #68.29 + 2.5 = 70.79
-    consommation_super_plombe : 1000 #71.56
+    consommation_super_ars  : 1000 #71.56
     consommation_supercarburant_e10 : 1000 #66.29 + 2.5 = 68.79
     consommation_carbureacteurs_essence_carburants_avion_hL : 1000 #39.79
     consommation_carbureacteurs_essence_autres_hL : 1000 #68.51
@@ -131,7 +131,7 @@
     consommation_essences_speciales_utilisees_comme_carburants_combustibles : 1000 #67.52
     consommation_huiles_legeres_preparation_essence_aviation : 1000 #45.49
     consommation_supercarburant_e5 : 1000 #68.29 + 2.5 = 70.79
-    consommation_super_plombe : 1000 #71.56
+    consommation_super_ars  : 1000 #71.56
     consommation_supercarburant_e10 : 1000 #66.29 + 2.5 = 68.79
     consommation_carbureacteurs_essence_carburants_avion_hL : 1000 #39.79
     consommation_carbureacteurs_essence_autres_hL : 1000 #68.51
@@ -178,7 +178,7 @@
     consommation_essences_speciales_utilisees_comme_carburants_combustibles : 1000 #67.52
     consommation_huiles_legeres_preparation_essence_aviation : 1000 #45.49
     consommation_supercarburant_e5 : 1000 #68.29 + 2.5 = 70.79
-    consommation_super_plombe : 1000 #71.56
+    consommation_super_ars  : 1000 #71.56
     consommation_supercarburant_e10 : 1000 #66.29 + 2.5 = 68.79
     consommation_carbureacteurs_essence_carburants_avion_hL : 1000 #39.79
     consommation_carbureacteurs_essence_autres_hL : 1000 #68.51
@@ -227,7 +227,7 @@
     consommation_huiles_legeres_preparation_essence_aviation : 1000 #41.89
 
     consommation_supercarburant_e5 : 1000 #65.07 + 2.5 = 67.57
-    consommation_super_plombe : 1000 #68.34
+    consommation_super_ars  : 1000 #68.34
     consommation_supercarburant_e10 : 1000 #63.07 + 2.5 = 65.57
 
 
@@ -277,7 +277,7 @@
     consommation_huiles_legeres_preparation_essence_aviation : 1000 #35.90
 
     consommation_supercarburant_e5 : 1000 #60.69 + 1.77
-    consommation_super_plombe : 1000 #63.96
+    consommation_super_ars  : 1000 #63.96
     consommation_supercarburant_e10 : 1000 #60.69 + 1.77
 
 

@@ -16,6 +16,7 @@ from openfisca_core.variables import Variable
 # Import the Entities specifically defined for this tax and benefit system
 from openfisca_france_entreprises.entities import UniteLegale, Etablissement
 
+from openfisca_core.periods import Instant
 
 class taxe_electricite_bouclier_tarifaire(Variable):
     value_type = float
@@ -25,7 +26,7 @@ class taxe_electricite_bouclier_tarifaire(Variable):
     reference = ""  #
     def formula_2022_01_01(etablissement, period, parameters):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite",period)
-        taux = parameters(2022).energies.bouclier_tarifaire.entreprises #0.5 en 2022
+        taux = parameters(Instant((2022, 2, 1))).energies.bouclier_tarifaire.entreprises #0.5 en 2022
         taxe = assiette_taxe_electricite * taux
         taxe_accise_electricite = etablissement('taxe_accise_electricite', period)
 
@@ -36,7 +37,7 @@ class taxe_electricite_bouclier_tarifaire(Variable):
             return taxe
     def formula_2023_01_01(etablissement, period, parameters):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite",period)
-        taux = parameters(2023).energies.bouclier_tarifaire.entreprises #0.5 en 2023
+        taux = parameters(Instant((2023, 2, 1))).energies.bouclier_tarifaire.entreprises #0.5 en 2023
         taxe = assiette_taxe_electricite * taux
         taxe_accise_electricite = etablissement('taxe_accise_electricite', period)
 
@@ -48,7 +49,7 @@ class taxe_electricite_bouclier_tarifaire(Variable):
     def formula_2024_01_01(etablissement, period, parameters):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite",period)
         taxe_accise_electricite = etablissement('taxe_accise_electricite', period)
-        taux = parameters(2024).energies.bouclier_tarifaire.entreprises #20.5 en 2024
+        taux = parameters(Instant((2024, 2, 1))).energies.bouclier_tarifaire.entreprises #20.5 en 2024
         taxe = assiette_taxe_electricite * taux
 
         if taxe > taxe_accise_electricite: 

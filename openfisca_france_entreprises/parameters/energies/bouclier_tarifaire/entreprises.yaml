@@ -1,10 +1,10 @@
 description: Bouclier tarifaire - tarification exceptionnelle de la TICFE pour les entreprises
 values:
-  2022-01-01: #2022-02-01 en réalité
+  2022-02-01: #2022-02-01 en réalité
     value: 0.5
-  2023-01-01: #2023-02-01 en réalité
+  2023-02-01:
     value: 0.5
-  2024-01-01: #2024-02-01 en réalité
+  2024-02-01: 
     value: 20.5
   2025-02-01:
     value: null

@@ -97,11 +97,11 @@ class consommation_supercarburant_e85(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
 
-class consommation_super_plombe(Variable): 
+class consommation_super_ars(Variable): 
     value_type = float
     unit = 'Hectolitre'
     entity = Etablissement
-    label = ''
+    label = "-----supercarburant d'une teneur en plomb n'excédant pas 0,005 g/litre, contenant un additif spécifique améliorant les caractéristiques antirécession de soupape (ARS), à base de potassium, ou tout autre additif reconnu de qualité équivalente dans un autre Etat membre de la Communauté européenne ou dans un autre Etat membre de l'Espace économique européen."
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16'
     definition_period = YEAR
 
