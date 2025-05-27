@@ -63,7 +63,7 @@ class taxe_electricite(Variable):
         #en 2022, la tdcfe est intégrée dans l'accise, un an avant ça n'arrive à la tccfe
         #mais exceptionellement, on a le bouclier tarifaire qui remplace le rôle de l'accise 
         #due au fait que les montants sont calculés en unité des années, on divise le grand montant par 12
-        taxe_electricite_bouclier_tarifaire = etablissement('taxe_electricite_bouclier_tarifaire', period)
+        taxe_electricite_bouclier_tarifaire = etablissement('taxe_electricite_bouclier_tarifaire', period) #2024-02-01
         taxe_communale_consommation_finale_electricite = etablissement('taxe_communale_consommation_finale_electricite', period)
         taxe_accise_electricite = etablissement('taxe_accise_electricite', period)
 

@@ -1,3 +1,11 @@
+- name: test 2007 instant
+#
+  period: 2007
+  input: 
+    consommation_electricite: 10000
+  output:
+    instant_electrite: 10
+
 - name: test 2022 assiette_taxe_electricite 
 #
   period: 2022
