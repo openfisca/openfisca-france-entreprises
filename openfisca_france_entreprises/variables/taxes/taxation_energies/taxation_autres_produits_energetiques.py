@@ -58,7 +58,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_essences_speciales_utilisees_comme_carburants_combustibles', period) * parameters(period).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement('consommation_huiles_legeres_preparation_essence_aviation', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
             + etablissement('consommation_supercarburant_e5', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5
-            + etablissement('consommation_super_ars ', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
+            + etablissement('consommation_super_ars', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
             # + etablissement('consommation_supercarburant_e10', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10
             + etablissement('consommation_carbureacteurs_essence_carburants_avion_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.carburants_avion_hL
             # + etablissement('consommation_carbureacteurs_essence_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_hL (combiner en une variable de consommation)
@@ -123,7 +123,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_essences_speciales_utilisees_comme_carburants_combustibles', period) * parameters(period).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement('consommation_huiles_legeres_preparation_essence_aviation', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
             + etablissement('consommation_supercarburant_e5', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5 + etablissement("ticpe_majoration_regionale_supercarburant_95_98", period))
-            + etablissement('consommation_super_ars ', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
+            + etablissement('consommation_super_ars', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
             # + etablissement('consommation_supercarburant_e10', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10
             + etablissement('consommation_carbureacteurs_essence_carburants_avion_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.carburants_avion_hL
             + etablissement('consommation_carbureacteurs_essence_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_hL 
@@ -173,7 +173,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_essences_speciales_utilisees_comme_carburants_combustibles', period) * parameters(period).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement('consommation_huiles_legeres_preparation_essence_aviation', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
             + etablissement('consommation_supercarburant_e5', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5 + etablissement("ticpe_majoration_regionale_supercarburant_95_98", period))
-            + etablissement('consommation_super_ars ', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
+            + etablissement('consommation_super_ars', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
             + etablissement('consommation_supercarburant_e10', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10 + etablissement("ticpe_majoration_regionale_supercarburant_e10", period)
             + etablissement('consommation_carbureacteurs_essence_carburants_avion_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.carburants_avion_hL
             + etablissement('consommation_carbureacteurs_essence_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_hL
@@ -229,7 +229,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_essences_speciales_utilisees_comme_carburants_combustibles', period) * parameters(period).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement('consommation_huiles_legeres_preparation_essence_aviation', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
             + etablissement('consommation_supercarburant_e5', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5 + etablissement("ticpe_majoration_regionale_supercarburant_95_98", period))
-            + etablissement('consommation_super_ars ', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
+            + etablissement('consommation_super_ars', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
             + etablissement('consommation_supercarburant_e10', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10 + etablissement("ticpe_majoration_regionale_supercarburant_e10", period))
             + etablissement('consommation_carbureacteurs_essence_carburants_avion_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.carburants_avion_hL
             + etablissement('consommation_carbureacteurs_essence_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_hL
@@ -282,7 +282,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_essences_speciales_utilisees_comme_carburants_combustibles', period) * parameters(period).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement('consommation_huiles_legeres_preparation_essence_aviation', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
             + etablissement('consommation_supercarburant_e5', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5 + etablissement("ticpe_majoration_regionale_supercarburant_95_98", period))
-            + etablissement('consommation_super_ars ', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
+            + etablissement('consommation_super_ars', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
             + etablissement('consommation_supercarburant_e10', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10 + etablissement("ticpe_majoration_regionale_supercarburant_e10", period))
             + etablissement('consommation_carbureacteurs_essence_carburants_avion_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.carburants_avion_hL
             + etablissement('consommation_carbureacteurs_essence_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_hL
@@ -334,7 +334,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_essences_speciales_utilisees_comme_carburants_combustibles', period) * parameters(period).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement('consommation_huiles_legeres_preparation_essence_aviation', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
             + etablissement('consommation_supercarburant_e5', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5 + etablissement("ticpe_majoration_regionale_supercarburant_95_98", period))
-            + etablissement('consommation_super_ars ', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
+            + etablissement('consommation_super_ars', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
             + etablissement('consommation_supercarburant_e10', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10 + etablissement("ticpe_majoration_regionale_supercarburant_e10", period))
             + etablissement('consommation_carbureacteurs_essence_carburants_avion_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.carburants_avion_hL
             + etablissement('consommation_carbureacteurs_essence_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_hL
@@ -385,7 +385,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_essences_speciales_utilisees_comme_carburants_combustibles', period) * parameters(period).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement('consommation_huiles_legeres_preparation_essence_aviation', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
             + etablissement('consommation_supercarburant_e5', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5 + etablissement("ticpe_majoration_regionale_supercarburant_95_98", period))
-            + etablissement('consommation_super_ars ', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
+            + etablissement('consommation_super_ars', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
             + etablissement('consommation_supercarburant_e10', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10 + etablissement("ticpe_majoration_regionale_supercarburant_e10", period))
             + etablissement('consommation_carbureacteurs_essence_carburants_avion_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.carburants_avion_hL
             + etablissement('consommation_carbureacteurs_essence_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_hL
@@ -444,7 +444,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_essences_speciales_utilisees_comme_carburants_combustibles', period) * parameters(period).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement('consommation_huiles_legeres_preparation_essence_aviation', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
             + etablissement('consommation_supercarburant_e5', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5 + etablissement("ticpe_majoration_regionale_supercarburant_95_98", period))
-            + etablissement('consommation_super_ars ', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
+            + etablissement('consommation_super_ars', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
             + etablissement('consommation_supercarburant_e10', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10 + etablissement("ticpe_majoration_regionale_supercarburant_e10", period))
             + etablissement('consommation_carbureacteurs_essence_carburants_avion_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.carburants_avion_hL
             + etablissement('consommation_carbureacteurs_essence_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_hL
@@ -488,7 +488,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement('consommation_essences_speciales_utilisees_comme_carburants_combustibles', period) * parameters(period).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement('consommation_huiles_legeres_preparation_essence_aviation', period) * parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
             + etablissement('consommation_supercarburant_e5', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e5 + etablissement("ticpe_majoration_regionale_supercarburant_95_98", period))
-            + etablissement('consommation_super_ars ', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
+            + etablissement('consommation_super_ars', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_plombe
             + etablissement('consommation_supercarburant_e10', period) * (parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10 + etablissement("ticpe_majoration_regionale_supercarburant_e10", period))
             + etablissement('consommation_carbureacteurs_essence_carburants_avion_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.carburants_avion_hL
             + etablissement('consommation_carbureacteurs_essence_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_hL
@@ -926,6 +926,7 @@ class ticpe_majoration_regionale_gazole(Variable):
         return majoration 
     def formula_2022_01_01(etablissement, period, parameters):
         #suivant la reforme des régions en 2014, on les a changées
+        #la raison pour avoir une autre ensemble des variables c'est parce que l'unité change à MWh
         departement = etablissement('departement', period)
 
 
@@ -1130,6 +1131,7 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
 
         return majoration
     def formula_2022_01_01(etablissement, period, parameters):
+        #la raison pour avoir une autre ensemble des variables c'est parce que l'unité change à MWh
         #suivant la reforme des régions en 2014, on les a changées
         departement = etablissement('departement', period)
 
@@ -1332,6 +1334,7 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
 
         return majoration
     def formula_2017_01_01(etablissement, period, parameters):
+        #la raison pour avoir une autre ensemble des variables c'est parce que l'unité change à MWh
         #suivant la reforme des régions en 2014, on les a changées
         departement = etablissement('departement', period)
 
