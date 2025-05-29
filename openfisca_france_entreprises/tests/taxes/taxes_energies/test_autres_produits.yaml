@@ -113,7 +113,7 @@
     consommation_carburant_constitue_100_estars_methyliques_acides_gras : 1000 # 11.83
 
   output: 
-    taxe_interieure_consommation_sur_produits_energetiques: 960850
+    taxe_interieure_consommation_sur_produits_energetiques: 953350
 #10.08 + 15.25 + 67.52 + 56.39 + 68.29 + 2.5 + 71.56 + 66.29 + 2.5 + 39.79 + 68.51 + 67.52 + 
 #15.25 +  51.28 + 39.79 + 51.28 + 51.28 + 18.82 + 15.62 + 59.40 + 2.5 + 13.95 + 20.71 + 6.63 +  20.71 +  6.63 + 20.71+ 
 # 11.83 + 6.43 + 11.83 = 960.85
@@ -161,7 +161,7 @@
     consommation_emulsion_eau_gazoles_autres_hectolitre : 1000 #36.94
 
   output: 
-    taxe_interieure_consommation_sur_produits_energetiques: 1044920
+    taxe_interieure_consommation_sur_produits_energetiques: 1037420
 #10.08 + 15.25 + 67.52 + 45.49 + 68.29 + 2.5 + 71.56 + 66.29 + 2.5 + 39.79 + 68.51 + 67.52 + 
 #15.25 +  51.28 + 39.79 + 51.28 + 51.28 + 18.82 + 15.62 + 59.40 + 2.5 + 13.95 + 20.71 + 6.63 +  20.71 +  6.63 + 20.71+ 
 # 11.83 + 6.43 + 11.83 
@@ -212,7 +212,7 @@
     consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires : 1000 #9.5
 
   output: 
-    taxe_interieure_consommation_sur_produits_energetiques: 1119620
+    taxe_interieure_consommation_sur_produits_energetiques: 1112120
 
 
 - name : "test 2017"
@@ -261,7 +261,7 @@
     consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires : 1000 #6.5
 
   output: 
-    taxe_interieure_consommation_sur_produits_energetiques:  979810
+    taxe_interieure_consommation_sur_produits_energetiques:  972310
 
 
 
@@ -314,7 +314,7 @@
     consommation_carbureacteurs_essence_sous_conditions_hL: 1000 #2.54
     consommation_carbureacteurs_petrole_lampant_sous_conditions_hL: 1000 #2.54
   output: 
-    taxe_interieure_consommation_sur_produits_energetiques:  758030
+    taxe_interieure_consommation_sur_produits_energetiques:  753340
 
 
 
