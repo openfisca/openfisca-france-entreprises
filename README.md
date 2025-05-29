@@ -1,7 +1,7 @@
 # OpenFisca France Entreprises
 
 
-This package models the tax and subsidy system for French firms.
+This package models the tax and subsidy system for French firms on the subject of carbon tax.
 
 - The rates are in the `parameters` folder.
 - The formulas are in the `variables` folder.
@@ -47,7 +47,7 @@ In order to limit dependencies conflicts, we recommend using a [virtual environm
 
 - A [venv](https://docs.python.org/3/library/venv.html) is a project specific environment created to suit the needs of the project you are working on.
 
-To create a virtual environment, launch a terminal on your computer, `cd` into your directory and follow these instructions:
+To create a virtual environment, launch a terminal on your computer, `cd` into your directory of choice and follow the instructions below. Notice : Do NOT choose any of the directories that is part of this project as the destination! Reversely, do NOT install the openfisca country package directly in the folder for the virtual enviornment. They should be parallel of each other.
 
 ```sh
 python3 -m venv .venv # create a new virtual environment in the “.venv” folder, which will contain all dependencies
