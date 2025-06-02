@@ -25,6 +25,16 @@ class taux_tdcfe(Variable):
     entity = Etablissement
     label = "" 
     definition_period = YEAR
+    #*** et 2011 ? 
+    #pour 2011, j'ai juste copié les taux en 2012
+    def formula_2011_01_01(etablissement, period, parameters):
+        if etablissement('amperage', period) <= 36 and etablissement('amperage', period) != 0 : 
+            taux = parameters(period).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement('tdcfe_coefficient_multiplicateur_normal_2011', period)
+        elif etablissement('amperage', period) <= 250 and etablissement('amperage', period) != 0 : 
+            taux = parameters(period).energies.electricite.tcfe.taux_professionnel_36_a_250kVA * etablissement('tdcfe_coefficient_multiplicateur_normal_2011', period)
+        else :
+            taux = 0
+        return taux
     def formula_2012_01_01(etablissement, period, parameters):
         if etablissement('amperage', period) <= 36 and etablissement('amperage', period) != 0 : 
             taux = parameters(period).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement('tdcfe_coefficient_multiplicateur_normal_2012', period)

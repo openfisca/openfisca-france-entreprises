@@ -687,21 +687,23 @@ class assiette_ticgn(Variable):
         consommation = max(0, conso + consommation_autres_produits_energetique_ticgn - conso_exoneree)
         return consommation
     
-    def formula_2022_01_01(etablissement, period, parameters):
-        """suprimmé consommation_gaz_nc_4401_4402
-        """
-        conso = etablissement("consommation_gaz_combustible", period) + etablissement('consommation_gaz_carburant', period)
-        consommation_autres_produits_energetique_ticgn = etablissement('consommation_autres_produits_energetique_ticgn', period)
-        conso_exoneree = (
-            etablissement("consommation_gaz_fabrication_soi", period) +
-            etablissement("consommation_gaz_production_electricite", period) 
-            - etablissement("consommation_gaz_electricite_petits_producteurs", period) +
-            etablissement("consommation_gaz_particuliers", period) +
-            etablissement('consommation_gaz_nc_2711_29', period)
-        )
 
-        consommation = max(0, conso + consommation_autres_produits_energetique_ticgn - conso_exoneree)
-        return consommation
+    #pas de ticgn à partir de 2022
+    # def formula_2022_01_01(etablissement, period, parameters):
+    #     """suprimmé consommation_gaz_nc_4401_4402
+    #     """
+    #     conso = etablissement("consommation_gaz_combustible", period) + etablissement('consommation_gaz_carburant', period)
+    #     consommation_autres_produits_energetique_ticgn = etablissement('consommation_autres_produits_energetique_ticgn', period)
+    #     conso_exoneree = (
+    #         etablissement("consommation_gaz_fabrication_soi", period) +
+    #         etablissement("consommation_gaz_production_electricite", period) 
+    #         - etablissement("consommation_gaz_electricite_petits_producteurs", period) +
+    #         etablissement("consommation_gaz_particuliers", period) +
+    #         etablissement('consommation_gaz_nc_2711_29', period)
+    #     )
+
+    #     consommation = max(0, conso + consommation_autres_produits_energetique_ticgn - conso_exoneree)
+    #     return consommation
     
 
 
