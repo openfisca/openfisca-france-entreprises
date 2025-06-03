@@ -50,7 +50,7 @@ In order to limit dependencies conflicts, we recommend using a [virtual environm
 To create a virtual environment, launch a terminal on your computer, `cd` into your directory of choice and follow the instructions below. Notice : Do NOT choose any of the directories that is part of this project as the destination! Reversely, do NOT install the openfisca country package directly in the folder for the virtual enviornment. They should be parallel of each other.
 
 ```sh
-python3 -m venv .venv # create a new virtual environment in the “.venv” folder, which will contain all dependencies
+python -m venv .venv # create a new virtual environment in the “.venv” folder, which will contain all dependencies
 source .venv/bin/activate # activate the venv
 ```
 
