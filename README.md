@@ -125,7 +125,7 @@ python --version  # should print "Python 3.9.xx".
 Clone this Country Package on your machine:
 
 ```sh
-git clone git://github.com/pzuldp/openfisca-france-entreprises.git.git
+git clone git://github.com/pzuldp/openfisca-france-entreprises.git
 cd openfisca-france-entreprises.git
 pip install --upgrade pip build twine
 pip install --editable .[dev] --upgrade
