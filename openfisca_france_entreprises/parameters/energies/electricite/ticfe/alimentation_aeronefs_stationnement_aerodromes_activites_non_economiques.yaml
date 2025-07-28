@@ -1,0 +1,5 @@
+description: Relève d'un tarif réduit de l'accise l'électricité directement fournie aux aéronefs lors de leur stationnement sur les aérodromes ouverts à la circulation aérienne publique.
+values:
+  2025-01-01:
+    value: 1
+

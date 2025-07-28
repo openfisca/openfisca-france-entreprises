@@ -16,6 +16,8 @@ values:
     value: 11.65
   2018-01-01:
     value: 15.25
+  # 2022-01-01:
+  #   value: 15.686
 metadata:
   unit: currency
   reference:

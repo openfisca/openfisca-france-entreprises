@@ -1,0 +1,6 @@
+description: Taxe intérieure sur la consommation finale d'électricité applicable à l'électricité consommée par les exploitants d'aérodromes ouverts à la circulation aérienne publique
+values:
+  2022-01-01:
+    value: 0.5
+
+# L312-48, 

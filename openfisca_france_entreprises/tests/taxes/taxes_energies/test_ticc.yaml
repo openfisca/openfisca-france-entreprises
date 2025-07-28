@@ -1,0 +1,116 @@
+- name: test 2007
+#formula_
+  period: 2007
+  input:
+    assiette_ticc: 1000
+  output:
+    taxe_interieure_consommation_charbon: 1190
+
+
+- name: test 2008
+#formula_
+  period: 2008
+  input:
+    assiette_ticc: 1000
+    apet : _01_19Z
+    installation_seqe: True
+  output:
+    taxe_interieure_consommation_charbon: 0
+
+
+- name: test 2009
+#formula_
+  period: 2009
+  input:
+    assiette_ticc: 1000
+    apet : _01_19Z
+    installation_seqe: True
+    facture_energie_eta: 500
+    chiffre_affaires_eta: 5000
+  output:
+    taxe_interieure_consommation_charbon: 0
+
+
+
+- name: test 2022 taux normal
+#formula_
+  period: 2022
+  input:
+    assiette_ticc: 1000
+  output:
+    taxe_interieure_consommation_charbon: 14620
+
+- name: test 2022 navigation intérieur
+#formula_
+  period: 2022
+  input:
+    assiette_ticc: 1000
+    apet: _50_30Z
+  output:
+    taxe_interieure_consommation_charbon: 0
+
+- name: test 2022 navigation maritime
+#formula_
+  period: 2022
+  input:
+    assiette_ticc: 1000
+    apet: _50_10Z
+  output:
+    taxe_interieure_consommation_charbon: 0
+
+
+- name: test 2022 navigation aérienne
+#formula_
+  period: 2022
+  input:
+    assiette_ticc: 1000
+    apet: _51_21Z
+  output:
+    taxe_interieure_consommation_charbon: 0
+
+
+- name: test 2022 non metalliques
+#formula_
+  period: 2022
+  input:
+    assiette_ticc: 1000
+    apet: _23_70Z
+  output:
+    taxe_interieure_consommation_charbon: 0
+
+
+- name: test 2022 aeronautique et naval
+#formula_
+  period: 2022
+  input:
+    assiette_ticc: 1000
+    apet: _33_16Z
+  output:
+    taxe_interieure_consommation_charbon: 0
+
+- name: test 2022 taxe_interieure_taxation_consommation_charbon_seqe
+#formula_
+  period: 2022
+  input:
+    assiette_ticc : 1000
+    installation_seqe : True
+    intensite_energetique_valeur_production : 0.05
+  output:
+    taxe_interieure_taxation_consommation_charbon_seqe: 1190
+
+
+- name: test 2022 taxe_interieure_taxation_consommation_charbon_concurrence_internationale
+#formula_
+  period: 2022
+  input:
+    assiette_ticc: 1000
+    installation_seqe : False
+    intensite_energetique_valeur_production : 0.05
+  output:
+    taxe_interieure_taxation_consommation_charbon_concurrence_internationale: 2290
+
+
+
+
+
+

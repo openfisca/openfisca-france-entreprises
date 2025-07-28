@@ -1,0 +1,320 @@
+#
+- name: "test 2022"
+  period: 2022
+  input: 
+    consommation_gazoles_mwh : 1000
+    consommation_carbureactuers_mwh : 1000
+    consommation_essences_mwh : 1000
+    consommation_gaz_de_petrole_liquefies_carburant_mwh : 1000
+
+    consommation_fiouls_lourds_mwh : 1000
+    consommation_fiouls_domestiques_mwh : 1000
+    consommation_petroles_lampants_mwh : 1000
+    consommation_gaz_de_petrole_liquefies_combustible_mwh : 1000
+
+    consommation_ethanol_diesel_ed95_mwh : 1000
+    consommation_gazole_b100_mwh : 1000
+    consommation_essence_aviation_mwh : 1000
+    consommation_essence_sp95_e10_mwh : 1000
+    consommation_superethanol_e85_mwh : 1000
+    consommation_grisou_et_gaz_assimiles_combustible_mwh : 1000
+    consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh : 1000
+
+  output: 
+    taxe_interieure_consommation_sur_produits_energetiques : 471543
+#59400+76826+76826+16208+12555+15620+15686+5189+12157+12905+75701+74576+17894
+
+#
+- name: "test 2023"
+  period: 2023
+  input: 
+    consommation_gazoles_mwh : 1000
+    consommation_carbureactuers_mwh : 1000
+    consommation_essences_mwh : 1000
+    consommation_gaz_de_petrole_liquefies_carburant_mwh : 1000
+
+    consommation_fiouls_lourds_mwh : 1000
+    consommation_fiouls_domestiques_mwh : 1000
+    consommation_petroles_lampants_mwh : 1000
+    consommation_gaz_de_petrole_liquefies_combustible_mwh : 1000
+
+    consommation_ethanol_diesel_ed95_mwh : 1000
+    consommation_gazole_b100_mwh : 1000
+    consommation_essence_aviation_mwh : 1000
+    consommation_essence_sp95_e10_mwh : 1000
+    consommation_superethanol_e85_mwh : 1000
+    consommation_grisou_et_gaz_assimiles_combustible_mwh : 1000
+    consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh : 1000
+
+  output: 
+    taxe_interieure_consommation_sur_produits_energetiques : 454198
+#59400+59481+76826+16208+12555+15620+15686+5189+12157+12905+75701+74576+17894
+
+
+#
+- name: "test 2024"
+  period: 2024
+  input: 
+    consommation_gazoles_mwh : 1000
+    consommation_carbureactuers_mwh : 1000
+    consommation_essences_mwh : 1000
+    consommation_gaz_de_petrole_liquefies_carburant_mwh : 1000
+
+    consommation_fiouls_lourds_mwh : 1000
+    consommation_fiouls_domestiques_mwh : 1000
+    consommation_petroles_lampants_mwh : 1000
+    consommation_gaz_de_petrole_liquefies_combustible_mwh : 1000
+
+    consommation_ethanol_diesel_ed95_mwh : 1000
+    consommation_gazole_b100_mwh : 1000
+    consommation_essence_sp95_e10_mwh : 1000
+    consommation_superethanol_e85_mwh : 1000
+    consommation_grisou_et_gaz_assimiles_combustible_mwh : 1000
+    consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh : 1000
+
+  output: 
+    taxe_interieure_consommation_sur_produits_energetiques : 395804
+#59400+76826+76826+16208+12555+15620+15686+5189+12119+12905+74576+17894
+
+
+
+
+- name : "test 2021"
+  period : 2021
+  input:
+    departement: "1"
+
+    consommation_goudrons_utilises_comme_combustibles : 1000 #10.08
+    consommation_white_spirit_utilise_comme_combustible : 1000 #15.25
+    consommation_essences_speciales_utilisees_comme_carburants_combustibles : 1000 #67.52
+    consommation_huiles_legeres_preparation_essence_aviation : 1000 #56.39
+    consommation_supercarburant_e5 : 1000 #68.29 + 2.5 = 70.79
+    consommation_super_ars  : 1000 #71.56
+    consommation_supercarburant_e10 : 1000 #66.29 + 2.5 = 68.79
+    consommation_carbureacteurs_essence_carburants_avion_hL : 1000 #39.79
+    consommation_carbureacteurs_essence_autres_hL : 1000 #68.51
+    consommation_huiles_legeres_combustible_carburant_ou_autres : 1000 #67.52
+    consommation_petrole_lampant_utilise_comme_combustible_hectolitre : 1000 #15.25
+    consommation_petrole_lampant_autre_hectolitre : 1000 #51.28
+    consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL : 1000 #39.79
+    consommation_carbureacteurs_petrole_lampant_autres_hL : 1000 #51.28
+    consommation_huiles_moyennes_autres : 1000 #51.28
+    consommation_gazoles_carburants_sous_conditions_hectolitre: 1000 #18.82
+    consommation_galzole_fioul_domestique_hectolitre : 1000 #15.62
+    consommation_gazoles : 1000 #59.40 + 2.5 = 61.90
+    consommation_fioul_lourd_100kg_net : 1000 #13.95
+    consommation_propane_carburants_autres_100kg_nets : 1000 #20.71
+    consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets : 1000 #6.63
+    consommation_butanes_liquefies_autres_100kg_nets : 1000 #20.71
+    consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets : 1000 #6.63
+    consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg : 1000 #20.71
+    consommation_supercarburant_e85 : 1000 # 11.83
+    consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole : 1000 #6.43
+    consommation_carburant_constitue_100_estars_methyliques_acides_gras : 1000 # 11.83
+
+  output: 
+    taxe_interieure_consommation_sur_produits_energetiques: 953350
+#10.08 + 15.25 + 67.52 + 56.39 + 68.29 + 2.5 + 71.56 + 66.29 + 2.5 + 39.79 + 68.51 + 67.52 + 
+#15.25 +  51.28 + 39.79 + 51.28 + 51.28 + 18.82 + 15.62 + 59.40 + 2.5 + 13.95 + 20.71 + 6.63 +  20.71 +  6.63 + 20.71+ 
+# 11.83 + 6.43 + 11.83 = 960.85
+      
+
+
+
+- name : "test 2020"
+  period : 2020
+  input:
+    departement: "1"
+
+    consommation_goudrons_utilises_comme_combustibles : 1000 #10.08
+    consommation_white_spirit_utilise_comme_combustible : 1000 #15.25
+    consommation_essences_speciales_utilisees_comme_carburants_combustibles : 1000 #67.52
+    consommation_huiles_legeres_preparation_essence_aviation : 1000 #45.49
+    consommation_supercarburant_e5 : 1000 #68.29 + 2.5 = 70.79
+    consommation_super_ars  : 1000 #71.56
+    consommation_supercarburant_e10 : 1000 #66.29 + 2.5 = 68.79
+    consommation_carbureacteurs_essence_carburants_avion_hL : 1000 #39.79
+    consommation_carbureacteurs_essence_autres_hL : 1000 #68.51
+    consommation_huiles_legeres_combustible_carburant_ou_autres : 1000 #67.52
+    consommation_petrole_lampant_utilise_comme_combustible_hectolitre : 1000 #15.25
+    consommation_petrole_lampant_autre_hectolitre : 1000 #51.28
+    consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL : 1000 #39.79
+    consommation_carbureacteurs_petrole_lampant_autres_hL : 1000 #51.28
+    consommation_huiles_moyennes_autres : 1000 #51.28
+    consommation_gazoles_carburants_sous_conditions_hectolitre: 1000 #18.82
+    consommation_galzole_fioul_domestique_hectolitre : 1000 #15.62
+    consommation_gazoles : 1000 #59.40 + 2.5 = 61.90
+    consommation_fioul_lourd_100kg_net : 1000 #13.95
+    consommation_propane_carburants_autres_100kg_nets : 1000 #20.71
+    consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets : 1000 #6.63
+    consommation_butanes_liquefies_autres_100kg_nets : 1000 #20.71
+    consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets : 1000 #6.63
+    consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg : 1000 #20.71
+    consommation_supercarburant_e85 : 1000 # 11.83
+    consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole : 1000 #6.43
+    consommation_carburant_constitue_100_estars_methyliques_acides_gras : 1000 # 11.83
+
+    consommation_propane_carburants_sous_conditions_100kg_nets : 1000 #15.9
+    consommation_butanes_liquefies_sous_condition_100kg_nets : 1000 #15.9
+    consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg : 1000 #15.9
+    consommation_emulsion_eau_gazoles_sous_conditions_hectolitre : 1000 #10.33
+    consommation_emulsion_eau_gazoles_autres_hectolitre : 1000 #36.94
+
+  output: 
+    taxe_interieure_consommation_sur_produits_energetiques: 1037420
+#10.08 + 15.25 + 67.52 + 45.49 + 68.29 + 2.5 + 71.56 + 66.29 + 2.5 + 39.79 + 68.51 + 67.52 + 
+#15.25 +  51.28 + 39.79 + 51.28 + 51.28 + 18.82 + 15.62 + 59.40 + 2.5 + 13.95 + 20.71 + 6.63 +  20.71 +  6.63 + 20.71+ 
+# 11.83 + 6.43 + 11.83 
+#+ 15.9 + 15.9 + 15.9 + 10.33 + 36.94
+
+
+- name : "test 2018"
+  period : 2018
+  input:
+    departement: "1"
+
+    consommation_goudrons_utilises_comme_combustibles : 1000 #10.08
+    consommation_white_spirit_utilise_comme_combustible : 1000 #15.25
+    consommation_essences_speciales_utilisees_comme_carburants_combustibles : 1000 #67.52
+    consommation_huiles_legeres_preparation_essence_aviation : 1000 #45.49
+    consommation_supercarburant_e5 : 1000 #68.29 + 2.5 = 70.79
+    consommation_super_ars  : 1000 #71.56
+    consommation_supercarburant_e10 : 1000 #66.29 + 2.5 = 68.79
+    consommation_carbureacteurs_essence_carburants_avion_hL : 1000 #39.79
+    consommation_carbureacteurs_essence_autres_hL : 1000 #68.51
+    consommation_huiles_legeres_combustible_carburant_ou_autres : 1000 #67.52
+    consommation_petrole_lampant_utilise_comme_combustible_hectolitre : 1000 #15.25
+    consommation_petrole_lampant_autre_hectolitre : 1000 #51.28
+    consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL : 1000 #39.79
+    consommation_carbureacteurs_petrole_lampant_autres_hL : 1000 #51.28
+    consommation_huiles_moyennes_autres : 1000 #51.28
+    consommation_gazoles_carburants_sous_conditions_hectolitre: 1000 #18.82
+    consommation_galzole_fioul_domestique_hectolitre : 1000 #15.62
+    consommation_gazoles : 1000 #59.40 + 2.5 = 61.90
+    consommation_fioul_lourd_100kg_net : 1000 #13.95
+    consommation_propane_carburants_autres_100kg_nets : 1000 #20.71
+    consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets : 1000 #6.63
+    consommation_butanes_liquefies_autres_100kg_nets : 1000 #20.71
+    consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets : 1000 #6.63
+    consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg : 1000 #20.71
+    consommation_supercarburant_e85 : 1000 # 11.83
+    consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole : 1000 #6.43
+    consommation_carburant_constitue_100_estars_methyliques_acides_gras : 1000 # 11.83
+
+    consommation_propane_carburants_sous_conditions_100kg_nets : 1000 #15.9
+    consommation_butanes_liquefies_sous_condition_100kg_nets : 1000 #15.9
+    consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg : 1000 #15.9
+    consommation_emulsion_eau_gazoles_sous_conditions_hectolitre : 1000 #10.33
+    consommation_emulsion_eau_gazoles_autres_hectolitre : 1000 #36.94
+
+    consommation_gazole_b_10_hectolitre : 1000 #59.4
+    consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants : 1000 #5.8
+    consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires : 1000 #9.5
+
+  output: 
+    taxe_interieure_consommation_sur_produits_energetiques: 1112120
+
+
+- name : "test 2017"
+  period : 2017
+  input:
+    departement: "1"
+
+    consommation_goudrons_utilises_comme_combustibles : 1000 #6.89
+    consommation_white_spirit_utilise_comme_combustible : 1000 #12.02
+    consommation_essences_speciales_utilisees_comme_carburants_combustibles : 1000 #64.30
+
+    consommation_huiles_legeres_preparation_essence_aviation : 1000 #41.89
+
+    consommation_supercarburant_e5 : 1000 #65.07 + 2.5 = 67.57
+    consommation_super_ars  : 1000 #68.34
+    consommation_supercarburant_e10 : 1000 #63.07 + 2.5 = 65.57
+
+
+    consommation_carbureacteurs_essence_carburants_avion_hL : 1000 #36.19
+    consommation_carbureacteurs_essence_autres_hL : 1000 #64.91
+    consommation_huiles_legeres_combustible_carburant_ou_autres : 1000 #64.30
+    consommation_petrole_lampant_utilise_comme_combustible_hectolitre : 1000 #11.65
+    consommation_petrole_lampant_autre_hectolitre : 1000 #47.68
+    consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL : 1000 #36.19
+    consommation_carbureacteurs_petrole_lampant_autres_hL : 1000 #47.68
+
+    consommation_huiles_moyennes_autres : 1000 #47.68
+    consommation_gazoles_carburants_sous_conditions_hectolitre: 1000 #15.09
+    consommation_galzole_fioul_domestique_hectolitre : 1000 #11.89
+    consommation_gazoles : 1000 #53.07 + 2.5 = 55.57
+    consommation_fioul_lourd_100kg_net : 1000 #9.54
+    consommation_propane_carburants_autres_100kg_nets : 1000 #16.50
+    consommation_butanes_liquefies_autres_100kg_nets : 1000 #16.50
+    consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg : 1000 #16.5
+    consommation_supercarburant_e85 : 1000 # 9.41
+    consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole : 1000 #4.40
+
+    consommation_propane_carburants_sous_conditions_100kg_nets : 1000 #11.69
+    consommation_butanes_liquefies_sous_condition_100kg_nets : 1000 #11.69
+    consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg : 1000 #11.69
+    consommation_emulsion_eau_gazoles_sous_conditions_hectolitre : 1000 #7.25
+    consommation_emulsion_eau_gazoles_autres_hectolitre : 1000 #33.86
+
+    consommation_gazole_b_10_hectolitre : 1000 #53.07
+    consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants : 1000 #5.8
+    consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires : 1000 #6.5
+
+  output: 
+    taxe_interieure_consommation_sur_produits_energetiques:  972310
+
+
+
+- name : "test 2012"
+  period : 2012
+  input:
+    departement: "1"
+
+    consommation_goudrons_utilises_comme_combustibles : 1000 #1.5
+    consommation_white_spirit_utilise_comme_combustible : 1000 #5.66
+    consommation_essences_speciales_utilisees_comme_carburants_combustibles : 1000 #58.92
+
+    consommation_huiles_legeres_preparation_essence_aviation : 1000 #35.90
+
+    consommation_supercarburant_e5 : 1000 #60.69 + 1.77
+    consommation_super_ars  : 1000 #63.96
+    consommation_supercarburant_e10 : 1000 #60.69 + 1.77
+
+
+
+
+    #sous conditions 
+    consommation_carbureacteurs_essence_carburants_avion_hL : 1000 #30.20
+    consommation_carbureacteurs_essence_autres_hL : 1000 #58.92
+    consommation_huiles_legeres_combustible_carburant_ou_autres : 1000 #58.92
+    consommation_petrole_lampant_utilise_comme_combustible_hectolitre : 1000 #5.66
+    consommation_petrole_lampant_autre_hectolitre : 1000 #41.69
+    consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL : 1000 #30.2
+    consommation_carbureacteurs_petrole_lampant_autres_hL : 1000 #41.69
+
+    consommation_huiles_moyennes_autres : 1000 #41.69
+    consommation_gazoles_carburants_sous_conditions_hectolitre: 1000 #7.20
+    consommation_galzole_fioul_domestique_hectolitre : 1000 #5.66
+    consommation_gazoles : 1000 #42.84 + 1.15
+    consommation_fioul_lourd_100kg_net : 1000 #1.85
+    consommation_propane_carburants_autres_100kg_nets : 1000 #10.76
+    consommation_butanes_liquefies_autres_100kg_nets : 1000 #10.76
+    consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg : 1000 #10.76
+    consommation_supercarburant_e85 : 1000 #17.29
+
+    consommation_propane_carburants_sous_conditions_100kg_nets : 1000 #4.68
+    consommation_butanes_liquefies_sous_condition_100kg_nets : 1000 #4.68
+    consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg : 1000 #4.68
+    consommation_emulsion_eau_gazoles_sous_conditions_hectolitre : 1000 #2.1
+    consommation_emulsion_eau_gazoles_autres_hectolitre : 1000 #28.71
+
+    consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants : 1000 #0
+    consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires : 1000 #0
+
+    consommation_carbureacteurs_essence_sous_conditions_hL: 1000 #2.54
+    consommation_carbureacteurs_petrole_lampant_sous_conditions_hL: 1000 #2.54
+  output: 
+    taxe_interieure_consommation_sur_produits_energetiques:  753340
+
+
+

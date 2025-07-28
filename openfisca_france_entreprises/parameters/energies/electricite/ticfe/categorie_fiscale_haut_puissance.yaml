@@ -1,0 +1,6 @@
+description: 
+reference: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603823/2022-01-01"
+unit: "kVA"
+values:
+  2011-01-01:
+    value: 250

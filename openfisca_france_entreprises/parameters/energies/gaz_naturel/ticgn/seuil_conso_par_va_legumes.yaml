@@ -1,0 +1,6 @@
+description: Le tarif de la taxe applicable au produit consommé pour déshydrater les légumes et plantes aromatiques, autres que les pommes de terres, les champignons et les truffes, par les entreprises pour lesquelles cette consommation est supérieure à 800 wattheures par euro de valeur ajoutée, est fixé à 1,6 € par mégawattheure.
+            calculer, creer une variable value_ajouté, et ensuit appelle la variable ici, si ça depasse, 
+values:
+  2019-01-01:
+    value: 0.0008
+#MWh/Euro

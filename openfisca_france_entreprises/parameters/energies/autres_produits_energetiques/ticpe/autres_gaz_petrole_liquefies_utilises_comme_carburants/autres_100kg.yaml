@@ -28,6 +28,12 @@ values:
     value: 16.5
   2018-01-01:
     value: 20.71
+  # 2022-01-01:
+  #   value: 16.208
+  # 2023-01-01:
+  #   value: 16.208
+  # 2024-01-01:
+  #   value: 16.208
 metadata:
   ipp_csv_id: ticpe_autres_gaz_liq_autres
   unit: currency

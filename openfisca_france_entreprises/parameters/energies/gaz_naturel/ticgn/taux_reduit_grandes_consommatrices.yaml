@@ -1,6 +1,6 @@
 description: Taxe intérieure sur la consommation de gaz naturel (TICGN) - Taux réduit pour entreprise grande consommatrice d'énergie
 values:
-  2014-04-01:
+  2014-01-01:
     value: 1.19
   2016-01-01:
     value: 1.52

@@ -1,0 +1,323 @@
+- name: test 2020 taux normal
+#formula_2020
+  period: 2020
+  input:
+    amperage: 350 #en kVA
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite_taux_normal: 22500
+
+- name: test 2011 taxe finale taux normal
+#formula_2020
+  period: 2011
+  input:
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite_taux_normal: 500
+
+
+
+- name: test 2022 concurrence internationale
+#
+  period: 2022
+  input:
+    electro_intensite: 0.3
+    assiette_taxe_electricite: 1000
+    intensite_echanges_avec_pays_tiers: 26
+    electro_intensive_concurrence_internationale: True 
+  output:
+    taxe_accise_electricite_electro_intensive_concurrence_internationale: 5500
+
+- name: test 2022 concurrence internationale forumle finale
+#
+  period: 2022
+  input:
+    apet: _17_12Z
+    electro_intensite: 20
+    intensite_echanges_avec_pays_tiers: 26
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 500
+  
+- name: test 2022 activite industrielle
+#
+  period: 2022
+  input:
+    electro_intensite: 0.3
+    electro_intensive_activite_industrielle: True 
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite_electro_intensive_activite_industrielle: 7500
+
+- name: test 2022 activite industrielle formule finale 
+#
+  period: 2022
+  input:
+    electro_intensive_activite_industrielle: True
+    electro_intensite: 0.3
+    consommation_electricite: 1000 #pas de problèmes avec assiette_taxe_electricite, donc sa formule est en faute
+  output:
+    taxe_accise_electricite: 7500
+
+
+- name: test 2022 classification double usage
+#
+  period: 2022
+  input:
+    apet : _25_50A
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 0
+
+- name: test 2022 classification electricite_transport_guide
+#
+  period: 2022
+  input:
+    apet : _53_10Z
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 500
+
+- name: test 2024 classification electricite_fabrication_produits_mineraux_non_metalliques
+#
+  period: 2024
+  input:
+    apet : _23_99Z
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 0
+
+- name: test 2024 classification electricite_centres_de_stockage_donnees
+#
+  period: 2024
+  input:
+    apet : _63_11Z
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 12000
+
+- name: test 2024 classification electricite_transport_collectif_personnes
+#
+  period: 2024
+  input:
+    apet : _49_39A
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 500
+
+- name: test 2024 classification taxe_electricite_exploitation_aerodrome
+#
+  period: 2024
+  input:
+    apet : _52_23Z
+    electro_intensite: 0.7
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 7500
+
+- name: test 2024 classification electricite_alimentation_a_quai
+#
+  period: 2024
+  input:
+    apet : _52_22Z
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 500
+
+
+- name: test 2024 classification electricite_manutention_portuaire
+#
+  period: 2024
+  input:
+    apet : _52_24A
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 500
+
+- name: test 2011 taxe_interieure_sur_consommation_finale_electricite en dessous de 250
+#
+  period: 2011
+  input:
+    assiette_taxe_electricite : 1000
+    amperage : 5
+  output:
+    taxe_interieure_sur_consommation_finale_electricite: 0
+
+- name: test 2011 taxe_interieure_sur_consommation_finale_electricite normal
+#
+  period: 2011
+  input:
+    assiette_taxe_electricite : 1000
+    amperage : 260
+  output:
+    taxe_interieure_sur_consommation_finale_electricite: 500
+
+
+
+
+- name: test 2011 taxe_interieure_sur_consommation_finale_electricite installation_grande_consommatrice_energie
+#
+  period: 2011
+  input:
+    assiette_taxe_electricite : 1000
+    valeur_ajoutee_eta : 600
+  output:
+    taxe_interieure_sur_consommation_finale_electricite: 0
+
+- name: test 2011 taxe_interieure_sur_consommation_finale_electricite installation_grande_consommatrice_energie 2
+#
+  period: 2011
+  input:
+    assiette_taxe_electricite : 1000
+    installation_seqe : True
+    facture_energie_eta : 50
+    chiffre_affaires_eta : 1000
+  output:
+    taxe_interieure_sur_consommation_finale_electricite: 0
+
+- name: test 2016 taxe_interieure_sur_consommation_finale_electricite electricite_installations_industrielles_hyper_electro_intensives
+#
+  period: 2016
+  input:
+    assiette_taxe_electricite: 1000
+    consommation_par_valeur_ajoutee : 0.007
+    intensite_echanges_avec_pays_tiers : 27
+  output:
+    taxe_interieure_sur_consommation_finale_electricite: 500
+
+- name: test 2016 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_installations_industrielles_electro_intensives
+#
+  period: 2016
+  input:
+    assiette_taxe_electricite: 1000
+    consommation_par_valeur_ajoutee : 0.004 
+    valeur_ajoutee_eta: 10000
+  output:
+    taxe_interieure_sur_consommation_finale_electricite: 2000
+
+- name: test 2016 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_installations_industrielles_electro_intensives
+#
+  period: 2016
+  input:
+    assiette_taxe_electricite: 1000
+    consommation_par_valeur_ajoutee : 0.002 
+    valeur_ajoutee_eta: 10000
+  output:
+    taxe_interieure_sur_consommation_finale_electricite: 5000
+
+- name: test 2016 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_installations_industrielles_electro_intensives
+#
+  period: 2016
+  input:
+    assiette_taxe_electricite: 1000
+    consommation_par_valeur_ajoutee : 0.001 
+    valeur_ajoutee_eta: 10000
+  output:
+    taxe_interieure_sur_consommation_finale_electricite: 7500
+
+
+#taxe_electricite_risque_de_fuite_de_carbone
+- name: test 2016 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_risque_de_fuite_de_carbone
+#
+  period: 2016
+  input:
+    risque_de_fuite_carbone_eta: True
+    assiette_taxe_electricite: 1000
+    consommation_par_valeur_ajoutee : 0.004 
+  output:
+    taxe_interieure_sur_consommation_finale_electricite: 1000
+
+#taxe_electricite_risque_de_fuite_de_carbone
+- name: test 2016 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_risque_de_fuite_de_carbone
+#
+  period: 2016
+  input:
+    risque_de_fuite_carbone_eta: True
+    assiette_taxe_electricite: 1000
+    consommation_par_valeur_ajoutee : 0.002 
+  output:
+    taxe_interieure_sur_consommation_finale_electricite: 2500
+
+#taxe_electricite_risque_de_fuite_de_carbone
+- name: test 2016 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_risque_de_fuite_de_carbone
+#
+  period: 2016
+  input:
+    risque_de_fuite_carbone_eta: True
+    assiette_taxe_electricite: 1000
+    consommation_par_valeur_ajoutee : 0.001 
+  output:
+    taxe_interieure_sur_consommation_finale_electricite: 5500
+
+- name: test 2016 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_risque_de_fuite_de_carbone
+#
+  period: 2016
+  input:
+    risque_de_fuite_carbone_eta: True
+    assiette_taxe_electricite: 1000
+    consommation_par_valeur_ajoutee : 0.001 
+  output:
+    taxe_interieure_sur_consommation_finale_electricite: 5500
+
+
+- name: test 2019 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_centres_de_stockage_donnees
+#
+  period: 2019
+  input:
+    apet: _63_11Z
+    assiette_taxe_electricite: 2000
+  output:
+    taxe_interieure_sur_consommation_finale_electricite: 34500
+
+- name: test 2019 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_centres_de_stockage_donnees 2 
+#
+  period: 2019
+  input:
+    apet: _63_11Z
+    assiette_taxe_electricite: 800
+  output:
+    taxe_interieure_sur_consommation_finale_electricite: 18000
+
+- name: test 2025  taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques
+#
+  period: 2025
+  input:
+    assiette_taxe_electricite: 1000
+    electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques: True
+
+  output:
+    #taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques : 1000
+    #^ça passe, 
+    taxe_electricite: 1000
+    #et ça passe pas 
+
+- name: test 2025  electricite_production_a_bord #ça passe aussi
+#
+  period: 2025
+  input:
+    assiette_taxe_electricite: 1000
+    electricite_production_a_bord: True
+
+  output:
+    #taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques : 1000
+    #^ça passe, 
+    taxe_electricite: 0
+    #et ça passe pas 
+
+# - name: test 2025  taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques
+#   period: 2025
+#   input:
+#     assiette_taxe_electricite: 1000
+#     electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques: True
+
+#   output:
+#     taxe_electricite: 1000
+
+# - name: test 2025  taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_economiques
+#   period: 2025
+#   input:
+#     assiette_taxe_electricite: 1000
+#     electricite_alimentation_aeronefs_stationnement_aerodromes_activites_economiques: True
+
+#   output:
+#     taxe_electricite: 500

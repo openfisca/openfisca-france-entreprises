@@ -1,0 +1,7 @@
+- name: "Test tdcfe_coefficient_multiplicateur_normal_2012 3"
+  period: "2012"
+  input: 
+    departement: "3"
+  output: 
+    tdcfe_coefficient_multiplicateur_normal_2012 : 4.06
+

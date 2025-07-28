@@ -1,0 +1,147 @@
+# Test de l'assiette TICGN pour différentes périodes
+- name: "Test 1988 (exonération matière première, huiles minérales, chauffage habitation)"
+  period: 1999
+  input: 
+    consommation_gaz_combustible: 500
+    consommation_gaz_chauffage_habitation: 200
+  output: 
+    assiette_ticgn : 300  
+#en utilisant formula_1986_01_01
+
+- name: "Test en 2000 (ajout de l'exonération production électricité)"
+  period: 2000
+  input:
+    consommation_gaz_combustible: 500
+    consommation_gaz_chauffage_habitation: 200
+    date_installation_cogeneration: 2000
+    consommation_gaz_cogeneration: 100
+  output:
+    assiette_ticgn : 200  
+#en utilisant formula_2007_01_01
+
+- name: "Test en 2006"
+  period: 2006
+  input:
+    consommation_gaz_combustible: 1000
+    consommation_gaz_chauffage_habitation: 200
+    date_installation_cogeneration: 2002
+    consommation_gaz_cogeneration: 100
+    consommation_gaz_production_electricite: 200
+  output: 
+    assiette_ticgn: 500  
+
+- name: "Test en 2007"
+  period: 2007
+  input:
+    consommation_gaz_combustible: 1000
+    consommation_gaz_chauffage_habitation: 200
+    date_installation_cogeneration: 2002
+    consommation_gaz_cogeneration: 100
+    consommation_gaz_production_electricite: 200
+  output: 
+    assiette_ticgn: 500  
+
+- name: "Test en 2008"
+  period: 2008
+  input:
+    consommation_gaz_combustible: 1100
+    consommation_gaz_chauffage_habitation: 200
+    date_installation_cogeneration: 2005
+    consommation_gaz_cogeneration: 100
+    consommation_gaz_production_electricite: 200
+    consommation_gaz_fabrication_soi: 110
+    consommation_gaz_particuliers: 110
+    consommation_gaz_nc_4401_4402: 110
+    consommation_gaz_nc_2705: 110
+
+  output: 
+    assiette_ticgn: 160
+
+- name: "Test en 2011"
+  period: 2011
+  input:
+    consommation_gaz_combustible: 1100
+    consommation_gaz_chauffage_habitation: 200
+    date_installation_cogeneration: 2006
+    consommation_gaz_cogeneration: 100
+    consommation_gaz_production_electricite: 200
+    consommation_gaz_fabrication_soi: 110
+    consommation_gaz_particuliers: 110
+    consommation_gaz_nc_4401_4402: 110
+    consommation_gaz_nc_2705: 110
+    consommation_gaz_electricite_petits_producteurs: 50
+  output: 
+    assiette_ticgn: 210
+
+
+- name: "Test en 2014"
+  period: 2014
+  input:
+    consommation_gaz_combustible: 1100
+    consommation_gaz_production_electricite: 200
+    consommation_gaz_fabrication_soi: 110
+    consommation_gaz_particuliers: 110
+    consommation_gaz_nc_4401_4402: 110
+    consommation_gaz_nc_2705: 110
+    consommation_gaz_electricite_petits_producteurs: 50
+    consommation_gaz_nc_2711_29: 50
+  output: 
+    assiette_ticgn: 460
+
+- name: "Test en 2014"
+  period: 2014
+  input:
+    consommation_gaz_combustible: 1100
+    consommation_gaz_production_electricite: 200
+    consommation_gaz_fabrication_soi: 110
+    consommation_gaz_particuliers: 110
+    consommation_gaz_nc_4401_4402: 110
+    consommation_gaz_nc_2705: 110
+    consommation_gaz_electricite_petits_producteurs: 50
+    consommation_gaz_nc_2711_29: 50
+  output: 
+    assiette_ticgn: 460
+
+- name: "Test en 2020"
+  period: 2020
+  input:
+    consommation_gaz_combustible: 1100
+    consommation_gaz_carburant: 1000
+    consommation_gaz_production_electricite: 200
+    consommation_gaz_fabrication_soi: 110
+    consommation_gaz_particuliers: 110
+    consommation_gaz_nc_4401_4402: 110
+    consommation_gaz_nc_2705: 110
+    consommation_gaz_electricite_petits_producteurs: 50
+    consommation_gaz_nc_2711_29: 50
+  output: 
+    assiette_ticgn: 1460
+
+
+- name: "Test en 2021"
+  period: 2021
+  input:
+    consommation_gaz_combustible: 1100
+    consommation_gaz_carburant: 1000
+    consommation_gaz_production_electricite: 200
+    consommation_gaz_fabrication_soi: 110
+    consommation_gaz_particuliers: 110
+    consommation_gaz_nc_4401_4402: 110
+    consommation_gaz_electricite_petits_producteurs: 50
+    consommation_gaz_nc_2711_29: 50
+  output: 
+    assiette_ticgn: 1570
+
+
+- name: "Test en 2022"
+  period: 2022
+  input:
+    consommation_gaz_combustible: 1100
+    consommation_gaz_carburant: 1000
+    consommation_gaz_production_electricite: 200
+    consommation_gaz_fabrication_soi: 110
+    consommation_gaz_particuliers: 110
+    consommation_gaz_electricite_petits_producteurs: 50
+    consommation_gaz_nc_2711_29: 50
+  output: 
+    assiette_ticgn: 1680

@@ -1,0 +1,51 @@
+#test pour valeur_ajoutee et consommation_par_valeur_ajoutee
+- name: "Test pour valeur_ajoutee_eta"
+  period: "2000"
+  input: 
+    valeur_ajoutee_ul : 200
+    effectif_3112_ul: 200
+    effectif_3112_eta: 50
+  output: 
+    valeur_ajoutee_eta : 50  # 200*(50/200)
+
+- name: "Test pour consommation_par_valeur_ajoutee"
+  period: "2000"
+  input: 
+    assiette_ticgn: 1000000 #en MWh
+    valeur_ajoutee_eta : 200000000 #en Euro
+  output: 
+    consommation_par_valeur_ajoutee : 0.005  # 1000000 / 200, en MWh par Euro
+
+- name: "Test pour risque_de_fuite_carbone_eta"
+  period: "2019"
+  input: 
+    apet: _05_20Z
+  output: 
+    risque_de_fuite_carbone_eta : True
+
+- name: test formule intensite_energetique_valeur_ajoutee
+#
+  period: 2025
+  input:
+    valeur_ajoutee_eta: 100000 #(22500 + 14620 + 18170.7)/100000
+    consommation_electricite : 1000
+    #*22.5 
+    consommation_charbon : 1000
+    #*14.62
+    consommation_gaz_naturel : 1000
+    #*16.37*1.11
+  output:
+    intensite_energetique_valeur_ajoutee: 0.55290705
+
+
+- name: "Test pour intensite_energetique_valeur_production"
+  period: "2025"
+  input: 
+    facture_energie_eta : 500
+    chiffre_affaires_eta : 10000
+  output: 
+    intensite_energetique_valeur_production : .05
+
+
+
+

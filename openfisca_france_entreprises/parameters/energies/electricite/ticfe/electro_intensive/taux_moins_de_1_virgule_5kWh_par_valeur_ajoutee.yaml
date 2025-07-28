@@ -1,0 +1,5 @@
+description: 
+reference : https://www.legifrance.gouv.fr/codes/id/LEGIARTI000031814811/2016-01-01/#:~:text=2%20%E2%82%AC%20par%20m%C3%A9gawattheure%2C%20si%20la%20consommation%20du%20site%20ou%20de%20l%27entreprise%20est%20strictement%20sup%C3%A9rieure%20%C3%A0%203%20kilowattheures%20par%20euro%20de%20valeur%20ajout%C3%A9e%20%3B
+values:
+  2016-01-01:
+    value: 7.5 #7.5 euros par mégawattheure

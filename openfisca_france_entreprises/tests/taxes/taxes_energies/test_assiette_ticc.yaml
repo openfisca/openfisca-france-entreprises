@@ -1,0 +1,57 @@
+- name: test 2007
+#formula_2007_01_01
+  period: 2007
+  input:
+    consommation_charbon: 100000
+    consommation_charbon_combustible_interne: 1000
+    consommation_charbon_combustible_electricite: 1000
+    consommation_charbon_combustible_extraction: 1000
+    consommation_charbon_combustible_particuliers: 1000
+  output:
+    assiette_ticc: 96000 
+#assiette = consommation_charbon - (consommation_charbon_non_combustible + consommation_charbon_combustible_interne + consommation_charbon_combustible_electricite + consommation_charbon_combustible_extraction + consommation_charbon_combustible_particuliers )
+
+- name: test 2011
+#formula_2011_01_01
+  period: 2011
+  input:
+    consommation_charbon: 100000
+    consommation_charbon_combustible_interne: 1000
+    consommation_charbon_combustible_electricite: 1000
+    consommation_charbon_combustible_extraction: 1000
+    consommation_charbon_combustible_particuliers: 1000
+    consommation_charbon_combustible_electricite_petits_producteurs: 1000
+  output:
+    assiette_ticc: 97000 
+
+- name: test 2016
+  period: 2016
+  input:
+    consommation_charbon: 100000
+    consommation_autres_produits_energetique_ticc: 1000
+    consommation_charbon_combustible_electricite_petits_producteurs: 1000
+
+    consommation_charbon_combustible_interne: 1000
+    consommation_charbon_combustible_electricite: 1000
+    consommation_charbon_combustible_extraction: 1000
+  output:
+    assiette_ticc: 99000 
+#assiette = consommation_charbon + consommation_autres_produits_energetique_ticc - ( consommation_charbon_combustible_interne + (consommation_charbon_combustible_electricite - consommation_charbon_combustible_electricite_petits_producteurs) + consommation_charbon_combustible_extraction )
+
+
+- name: test 2020
+#formula_2020_01_01
+  period: 2020
+  input:
+    consommation_charbon_combustible: 100000
+    consommation_charbon_carburant: 1000 
+    consommation_autres_produits_energetique_ticc: 1000
+    consommation_charbon_combustible_electricite_petits_producteurs: 1000
+
+    consommation_charbon_combustible_interne: 1000
+    consommation_charbon_combustible_extraction: 1000
+    consommation_charbon_combustible_electricite: 1000
+  output:
+    assiette_ticc: 100000
+
+#assiette = consommation_charbon  + consommation_autres_produits_energetique_ticc - ( consommation_charbon_combustible_interne + (consommation_charbon_combustible_electricite - consommation_charbon_combustible_electricite_petits_producteurs) + consommation_charbon_combustible_extraction )

@@ -1,0 +1,101 @@
+- name: test 2007 instant
+#
+  period: 2007
+  input: 
+    consommation_electricite: 10000
+  output:
+    instant_electrite: 10
+
+- name: test 2022 assiette_taxe_electricite 
+#
+  period: 2022
+  input: 
+    consommation_electricite: 10000
+    consommation_electricite_energie_ou_gaz_renouvelable: 1000
+    consommation_electricite_puissance_moins_1_MW: 1000
+    consommation_electricite_auto_consommation: 1000
+  output:
+    assiette_taxe_electricite: 7000
+
+
+- name: test assiette 2011
+#
+  period: 2011
+  input:
+    consommation_electricite : 1000
+    consommation_electricite_petite_producteur_electricite : 200
+    consommation_electricite_auto_consommation : 200
+  output:
+    assiette_taxe_electricite: 600
+
+- name: test assiette 2017
+#
+  period: 2017
+  input:
+    consommation_electricite : 1000
+    consommation_electricite_petite_producteur_electricite : 200
+    consommation_electricite_auto_consommation : 200
+    consommation_electricite_puissance_moins_1_MW : 200
+  output:
+    assiette_taxe_electricite: 400
+
+
+- name: test 2022 classification double usage
+#
+  period: 2022
+  input:
+    apet : _25_50A
+  output:
+    electricite_double_usage: 1
+
+- name: test 2024 classification electricite_transport_guide
+#
+  period: 2024
+  input:
+    apet : _53_10Z
+  output:
+    electricite_transport_guide: 1
+
+- name: test 2024 classification electricite_fabrication_produits_mineraux_non_metalliques
+#
+  period: 2024
+  input:
+    apet : _23_99Z
+  output:
+    electricite_fabrication_produits_mineraux_non_metalliques: 1
+
+- name: test 2024 classification electricite_centres_de_stockage_donnees
+#
+  period: 2025
+  input:
+    apet : _63_11Z
+  output:
+    electricite_centres_de_stockage_donnees: 1
+
+
+- name: test formule electro_intensite
+#
+  period: 2025
+  input: #22500/100000
+    consommation_electricite : 1000
+    #*22.5
+    valeur_ajoutee_eta: 100000
+  output:
+    electro_intensite: 0.225
+
+- name: test formule intensite_energetique_valeur_ajoutee
+#
+  period: 2025
+  input:
+    valeur_ajoutee_eta: 100000 #(22500 + 14620 + 18170.7)/100000
+    consommation_electricite : 1000
+    #*22.5 
+    consommation_charbon : 1000
+    #*14.62
+    consommation_gaz_naturel : 1000
+    #*16.37*1.11
+  output:
+    intensite_energetique_valeur_ajoutee: 0.55290705
+
+
+

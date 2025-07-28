@@ -1,0 +1,8 @@
+description : 'L312-75'
+reference : 'https://www.legifrance.gouv.fr/codes/id/LEGIARTI000044603687/2022-01-01/#:~:text=Les%20tarifs%20r%C3%A9duits%20pour%20les%20activit%C3%A9s%20relevant%20du%20syst%C3%A8me%20d%27%C3%A9change%20de%20quotas%20de%20gaz%20%C3%A0%20effet%20de%20serre%20dans%20l%27Union%2C%20exprim%C3%A9s%20en%20euros%20par%20m%C3%A9gawattheure%2C%20les%20produits%20auxquels%20ils%20s%27appliquent%20et%20les%20articles%20pr%C3%A9voyant%20leurs%20conditions%20d%27application%20sont%20les%20suivants%20%3A'
+
+values:
+  2022-01-01:
+    value: 1.6
+  2024-01-01:
+    value: 1.6

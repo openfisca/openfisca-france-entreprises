@@ -1,0 +1,90 @@
+- name: test 2012  taxe_communale_consommation_finale_electricite
+#
+  period: 2012
+  input:
+    assiette_taxe_electricite: 1000
+    amperage : 22
+    #0.75
+    departement : 78
+    commune : 29
+    #8.12
+  output:
+    taxe_communale_consommation_finale_electricite: 6090
+#8.12*0.75*1000
+
+- name: test 2012  taxe_departementale_consommation_finale_electricite
+#
+  period: 2012
+  input:
+    assiette_taxe_electricite: 1000
+    amperage : 22
+    #0.75
+    departement : 78
+    commune : 29
+    #8.15
+  output:
+    taxe_departementale_consommation_finale_electricite: 3000
+#4*0.75*1000
+
+- name: test 2012  taxe_departementale_consommation_finale_electricite
+#
+  period: 2012
+  input:
+    assiette_taxe_electricite: 1000
+    amperage : 22
+    #0.75
+    departement : 78
+    commune : 29
+  output:
+    taxe_electricite: 18090
+    # taxe_contribution_service_public_electricite + taxe_interieure_sur_consommation_finale_electricite + taxe_communale_consommation_finale_electricite + taxe_departementale_consommation_finale_electricite
+    # 1000 * 9 + 0 + 6090 + 3000
+    # 18090
+
+
+- name: test 2012  taxe_contribution_service_public_electricite
+#
+  period: 2012
+  input:
+    assiette_taxe_electricite: 1000
+    amperage : 22
+    #0.75
+    departement : 78
+    #4
+    commune : 29
+    #8.12
+  output:
+    taxe_contribution_service_public_electricite: 9000
+
+
+- name: test 2012  taxe_interieure_sur_consommation_finale_electricite
+#
+  period: 2012
+  input:
+    assiette_taxe_electricite: 1000
+    amperage : 22
+    #0.75
+    departement : 78
+    #4
+    commune : 29
+    #8.12
+  output:
+    taxe_interieure_sur_consommation_finale_electricite: 0
+
+
+- name: test 2024  taxe_electricite_bouclier_tarifaire
+#
+  period: 2024 #2024-01-01 
+  input:
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_electricite_bouclier_tarifaire: 20500
+
+- name: test 2024  taxe_electricite
+#
+  period: 2024
+  input:
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_electricite: 20500
+
