@@ -44,13 +44,13 @@
     apet: _25_50A
     electricite_double_usage: 1
 
-# - name: test 2024 classification electricite_transport_guide
-#   period: 2024
-#   input:
-#     apet : _53_10Z
-#   output:
-#     apet : _53_10Z
-#     electricite_transport_guide: 1
+- name: test 2024 classification electricite_transport_guide
+  period: 2024
+  input:
+    apet : _53_10Z
+  output:
+    apet : _53_10Z
+    electricite_transport_guide: 1
 
 - name: test 2024 classification electricite_fabrication_produits_mineraux_non_metalliques
   period: 2024
