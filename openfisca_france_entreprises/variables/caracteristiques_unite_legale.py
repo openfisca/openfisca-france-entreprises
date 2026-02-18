@@ -37,13 +37,13 @@ class postal_code_unite_legale(Variable):
     """
 
     def formula(unite_legale, period):
-        hq = unite_legale.members(has_role ="siege_social")
+        hq = unite_legale.members(has_role="siege_social")
 
         return hq("postal_code", period)
 
 
 class effectif_3112_ul(Variable):
-    #le nombre de personnes qui travaillent 
+    # le nombre de personnes qui travaillent
     value_type = float
     entity = UniteLegale
     label = "Effectifs en fin d'année, ETP, au niveau d'unité legale"

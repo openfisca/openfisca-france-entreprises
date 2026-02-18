@@ -6,7 +6,7 @@ from openfisca_core.variables import Variable
 
 class consommation_energie(Variable):
     value_type = float
-    unit = 'MWh'
+    unit = "MWh"
     entity = Etablissement
     label = "Consommation d'énergie totale de l'établissement"
     definition_period = YEAR
@@ -17,12 +17,12 @@ class consommation_energie(Variable):
         electricite = etablissement("consommation_electricite", period)
         autres_produits = etablissement("consommation_autres_produits", period)
 
-        return (gaz + charbon + electricite + autres_produits)
+        return gaz + charbon + electricite + autres_produits
 
 
 class intensite_energetique_unite_legale(Variable):
     value_type = float
-    unit = 'kWh/€'
+    unit = "kWh/€"
     entity = UniteLegale
     label = "Intensité énergétique de l'entreprise"
     definition_period = YEAR
@@ -38,13 +38,15 @@ class intensite_energetique_unite_legale(Variable):
 
 class intensite_energetique_etablissement(Variable):
     value_type = float
-    unit = 'kWh/€'
+    unit = "kWh/€"
     entity = Etablissement
     label = "Intensité énergétique de l'établissement"
     definition_period = YEAR
 
     def formula(etablissement, period):
-        intensite = etablissement.unite_legale("intensite_energetique_unite_legale", period)
+        intensite = etablissement.unite_legale(
+            "intensite_energetique_unite_legale", period
+        )
 
         return intensite
 

@@ -7,7 +7,7 @@ from openfisca_france_entreprises.entities import UniteLegale, Etablissement  # 
 class benefice_attribue(Variable):
     cerfa_field = "GH"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = UniteLegale
     label = "Bénéfice attribuée ou perte transférée"
     definition_period = YEAR
@@ -16,7 +16,7 @@ class benefice_attribue(Variable):
 class perte_supportee(Variable):
     cerfa_field = "GI"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = UniteLegale
     label = "Perte supportée ou bénéfice transféré"
     definition_period = YEAR
@@ -24,7 +24,7 @@ class perte_supportee(Variable):
 
 class operations_en_commun(Variable):
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = UniteLegale
     label = "Opérations en commun"
     definition_period = YEAR

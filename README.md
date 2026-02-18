@@ -133,6 +133,12 @@ pip install --editable .[dev] --upgrade
 
 You can make sure that everything is working by running the provided tests with `make test`.
 
+If you run the test command yourself, use only the tests directory so parameter YAMLs are not collected:
+
+```sh
+openfisca test -c openfisca_france_entreprises openfisca_france_entreprises/tests
+```
+
 > [Learn more about tests](https://openfisca.org/doc/coding-the-legislation/writing_yaml_tests.html)
 
 :tada: This OpenFisca Country Package is now installed and ready!

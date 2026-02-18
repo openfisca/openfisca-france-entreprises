@@ -38,4 +38,4 @@ class CountryTaxBenefitSystem(TaxBenefitSystem):
             "variable_example": "example_disposable_income",
             "parameter_example": "example_taxes.example_income_tax_rate_flat",
             "simulation_example": couple,
-            }
+        }

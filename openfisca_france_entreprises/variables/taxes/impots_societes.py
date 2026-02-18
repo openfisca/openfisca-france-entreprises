@@ -39,7 +39,11 @@ class prelevement_exceptionnel_entreprises_hydrocarbures(Variable):
 
         assujetti = unite_legale("chiffre_affaires", period.n_1) <= 100e6
         benefice_imposable = unite_legale("benefice_imposable", period)
-        share_benefice_vente_hydrocarbures = unite_legale("part_benefice_ventes_hydrocarbures", period)
-        rate = .12
+        share_benefice_vente_hydrocarbures = unite_legale(
+            "part_benefice_ventes_hydrocarbures", period
+        )
+        rate = 0.12
 
-        return assujetti * benefice_imposable * share_benefice_vente_hydrocarbures * rate
+        return (
+            assujetti * benefice_imposable * share_benefice_vente_hydrocarbures * rate
+        )

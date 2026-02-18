@@ -1,6 +1,8 @@
 ---
-
 extends: relaxed
 
 rules:
+  truthy: enable
+  # Disable warning level rules to remove flood in yamllint output
+  indentation: disable
   line-length: disable
