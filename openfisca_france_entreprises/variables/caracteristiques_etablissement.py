@@ -7,9 +7,6 @@ See https://openfisca.org/doc/key-concepts/variables.html
 """
 
 # Import from openfisca-core the Python objects used to code the legislation in OpenFisca
-from openfisca_core.indexed_enums import Enum
-from openfisca_core.periods import MONTH, YEAR
-from openfisca_core.variables import Variable
 from openfisca_core.model_api import *
 from openfisca_france_entreprises.variables.naf import naf
 

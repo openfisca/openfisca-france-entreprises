@@ -2362,7 +2362,7 @@ class ticpe_majoration_regionale_gazole(Variable):
             p.corse,
             p.franche_comte,
             p.haute_normandie,
-            p.ils_france,
+            p.ile_france,
             p.languedoc_roussillon,
             p.limousin,
             p.lorraine,
@@ -2449,7 +2449,7 @@ class ticpe_majoration_regionale_gazole(Variable):
             _dep_in(departement, ["2A", "2B"]),
         ]
         values = [
-            p.ils_france,
+            p.ile_france,
             p.centre_val_loire,
             p.bourgogne_franche_comte,
             p.normandie,
@@ -2538,7 +2538,7 @@ class ticpe_majoration_regionale_gazole(Variable):
             _dep_in(departement, ["2A", "2B"]),
         ]
         values = [
-            p.ils_france,
+            p.ile_france,
             p.centre_val_loire,
             p.bourgogne_franche_comte,
             p.normandie,
@@ -2603,7 +2603,7 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
             p.corse,
             p.franche_comte,
             p.haute_normandie,
-            p.ils_france,
+            p.ile_france,
             p.languedoc_roussillon,
             p.limousin,
             p.lorraine,
@@ -2690,7 +2690,7 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
             _dep_in(departement, ["2A", "2B"]),
         ]
         values = [
-            p.ils_france,
+            p.ile_france,
             p.centre_val_loire,
             p.bourgogne_franche_comte,
             p.normandie,
@@ -2779,7 +2779,7 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
             _dep_in(departement, ["2A", "2B"]),
         ]
         values = [
-            p.ils_france,
+            p.ile_france,
             p.centre_val_loire,
             p.bourgogne_franche_comte,
             p.normandie,
@@ -2844,7 +2844,7 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
             p.corse,
             p.franche_comte,
             p.haute_normandie,
-            p.ils_france,
+            p.ile_france,
             p.languedoc_roussillon,
             p.limousin,
             p.lorraine,
@@ -2931,7 +2931,7 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
             _dep_in(departement, ["2A", "2B"]),
         ]
         values = [
-            p.ils_france,
+            p.ile_france,
             p.centre_val_loire,
             p.bourgogne_franche_comte,
             p.normandie,
@@ -3020,7 +3020,7 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
             _dep_in(departement, ["2A", "2B"]),
         ]
         values = [
-            p.ils_france,
+            p.ile_france,
             p.centre_val_loire,
             p.bourgogne_franche_comte,
             p.normandie,
