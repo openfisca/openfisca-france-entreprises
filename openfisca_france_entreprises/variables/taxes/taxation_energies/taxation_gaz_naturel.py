@@ -375,20 +375,27 @@ class taxe_accise_gaz_naturel_combustible(Variable):
                 period
             ).energies.gaz_naturel.ticgn.seuil_facture_energie_par_va,
         )
+        seuils = parameters(period).energies.seuils_seqe
         condition_seqe = _or(
-            _and(seqe, intensite_energetique_valeur_production >= 0.03),
-            _and(seqe, intensite_energetique_valeur_ajoutee >= 0.005),
+            _and(
+                seqe,
+                intensite_energetique_valeur_production >= seuils.intensite_production_min,
+            ),
+            _and(
+                seqe,
+                intensite_energetique_valeur_ajoutee >= seuils.intensite_valeur_ajoutee_min,
+            ),
         )
         condition_concurrence = _or(
             _and(
                 _not(seqe),
                 risque_de_fuite_carbone_eta,
-                intensite_energetique_valeur_production >= 0.03,
+                intensite_energetique_valeur_production >= seuils.intensite_production_min,
             ),
             _and(
                 _not(seqe),
                 risque_de_fuite_carbone_eta,
-                intensite_energetique_valeur_ajoutee >= 0.005,
+                intensite_energetique_valeur_ajoutee >= seuils.intensite_valeur_ajoutee_min,
             ),
         )
         condition_grande_consommatrice = _and(seqe, grande_consommatrice)

@@ -124,10 +124,11 @@ class taxe_interieure_consommation_charbon(Variable):
         charbon_double_usage = etablissement("charbon_double_usage", period)
 
         # Exonération : seqe + biomasse + seuil production, ou l'une des navigations / double usage
+        seuils = parameters(period).energies.seuils_seqe
         condition_exoneration = _or(
             _and(
                 installation_seqe,
-                intensite_energetique_valeur_production >= 0.03,
+                intensite_energetique_valeur_production >= seuils.intensite_production_min,
                 charbon_biomasse,
             ),
             charbon_navigation_interieure,
@@ -141,11 +142,11 @@ class taxe_interieure_consommation_charbon(Variable):
         condition_seqe = _or(
             _and(
                 installation_seqe,
-                intensite_energetique_valeur_production >= 0.03,
+                intensite_energetique_valeur_production >= seuils.intensite_production_min,
             ),
             _and(
                 installation_seqe,
-                intensite_energetique_valeur_ajoutee >= 0.005,
+                intensite_energetique_valeur_ajoutee >= seuils.intensite_valeur_ajoutee_min,
             ),
         )
         # Concurrence internationale (ça n'existe plus dès 2024)
@@ -153,12 +154,12 @@ class taxe_interieure_consommation_charbon(Variable):
             _and(
                 _not(installation_seqe),
                 risque_de_fuite_carbone_eta,
-                intensite_energetique_valeur_production >= 0.03,
+                intensite_energetique_valeur_production >= seuils.intensite_production_min,
             ),
             _and(
                 _not(installation_seqe),
                 risque_de_fuite_carbone_eta,
-                intensite_energetique_valeur_ajoutee >= 0.005,
+                intensite_energetique_valeur_ajoutee >= seuils.intensite_valeur_ajoutee_min,
             ),
         )
 
@@ -182,7 +183,7 @@ class taxe_interieure_consommation_charbon(Variable):
         return taxe
 
     def formula_2024_01_01(etablissement, period, parameters):
-
+        seuils = parameters(period).energies.seuils_seqe
         # les suivants sont liés à charbon_biomasse comme conditions d'application
         charbon_biomasse = etablissement("charbon_biomasse", period)
         installation_seqe = etablissement("installation_seqe", period)
@@ -215,7 +216,7 @@ class taxe_interieure_consommation_charbon(Variable):
         condition_exoneration = _or(
             _and(
                 installation_seqe,
-                intensite_energetique_valeur_production >= 0.03,
+                intensite_energetique_valeur_production >= seuils.intensite_production_min,
                 charbon_biomasse,
             ),
             charbon_navigation_interieure,
@@ -228,11 +229,11 @@ class taxe_interieure_consommation_charbon(Variable):
         condition_seqe = _or(
             _and(
                 installation_seqe,
-                intensite_energetique_valeur_production >= 0.03,
+                intensite_energetique_valeur_production >= seuils.intensite_production_min,
             ),
             _and(
                 installation_seqe,
-                intensite_energetique_valeur_ajoutee >= 0.005,
+                intensite_energetique_valeur_ajoutee >= seuils.intensite_valeur_ajoutee_min,
             ),
         )
 

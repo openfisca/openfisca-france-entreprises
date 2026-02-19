@@ -1,0 +1,6 @@
+description: Seuil minimal consommation / valeur ajoutée (kWh/€) pour hyper-électro-intensive (6 kWh/€)
+reference: "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000031814811"
+unit: "kWh_per_euro_VA"
+values:
+  2016-01-01:
+    value: 0.006

@@ -978,22 +978,28 @@ class taxe_accise_electricite_electro_intensive_activite_industrielle(Variable):
         electro_intensive_activite_industrielle = etablissement(
             "electro_intensive_activite_industrielle", period
         )
+        seuils = parameters(
+            period
+        ).energies.electricite.ticfe.electro_intensive.seuils
 
         assiette = etablissement("assiette_taxe_electricite", period)
         condition_05 = _and(
             electro_intensive_activite_industrielle,
             electro_intensite != 0,
-            electro_intensite < 0.5,
+            electro_intensite < seuils.electro_intensite_activite_industrielle_seuil_05,
         )
         condition_3375 = _and(
             electro_intensive_activite_industrielle,
             electro_intensite != 0,
-            electro_intensite >= 0.5,
-            electro_intensite < 3.375,
+            electro_intensite >= seuils.electro_intensite_activite_industrielle_seuil_05,
+            electro_intensite < seuils.electro_intensite_tranche_1_max,
         )
         condition_675 = _and(
             electro_intensive_activite_industrielle,
-            _or(electro_intensite == 0, electro_intensite >= 3.375),
+            _or(
+                electro_intensite == 0,
+                electro_intensite >= seuils.electro_intensite_tranche_1_max,
+            ),
         )
         taxe = select(
             [condition_05, condition_3375, condition_675],
@@ -1036,26 +1042,29 @@ class taxe_accise_electricite_electro_intensive_concurrence_internationale(Varia
         electro_intensive_concurrence_internationale = etablissement(
             "electro_intensive_concurrence_internationale", period
         )
+        seuils = parameters(
+            period
+        ).energies.electricite.ticfe.electro_intensive.seuils
 
         condition_13_5 = _and(
             electro_intensive_concurrence_internationale,
-            electro_intensite > 13.5,
+            electro_intensite > seuils.electro_intensite_tranche_3_max,
             risque_de_fuite_carbone_eta,
-            intensite_echanges_avec_pays_tiers > 25,
+            intensite_echanges_avec_pays_tiers > seuils.intensite_echanges_pays_tiers_min,
         )
         condition_6_75 = _and(
             electro_intensive_concurrence_internationale,
-            electro_intensite > 6.75,
-            electro_intensite <= 13.5,
+            electro_intensite > seuils.electro_intensite_tranche_2_max,
+            electro_intensite <= seuils.electro_intensite_tranche_3_max,
         )
         condition_3_375 = _and(
             electro_intensive_concurrence_internationale,
-            electro_intensite > 3.375,
-            electro_intensite <= 6.75,
+            electro_intensite > seuils.electro_intensite_tranche_1_max,
+            electro_intensite <= seuils.electro_intensite_tranche_2_max,
         )
         condition_0_5 = _and(
             electro_intensive_concurrence_internationale,
-            electro_intensite <= 3.375,
+            electro_intensite <= seuils.electro_intensite_tranche_1_max,
         )
         taxe = select(
             [condition_13_5, condition_6_75, condition_3_375, condition_0_5],

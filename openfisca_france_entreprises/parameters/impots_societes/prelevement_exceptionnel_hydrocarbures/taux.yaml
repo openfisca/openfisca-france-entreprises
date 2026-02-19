@@ -1,0 +1,5 @@
+description: Taux du prélèvement exceptionnel (12 %)
+reference: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000880778/"
+values:
+  1985-01-01:
+    value: 0.12

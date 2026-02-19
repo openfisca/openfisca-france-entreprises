@@ -353,13 +353,14 @@ class electricite_installations_industrielles_electro_intensives(Variable):
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000031814811/2016-01-01/#:~:text=C.%2Da.%20Pour,est%20fix%C3%A9%20%C3%A0%20%3A"
 
-    def formula_2016_01_01(etablissement, period):
+    def formula_2016_01_01(etablissement, period, parameters):
         taxe_accise_electricite_taux_normal = etablissement(
             "taxe_accise_electricite_taux_normal", period
         )
         valeur_ajoutee_eta = etablissement("valeur_ajoutee_eta", period)
+        part_min = parameters(period).energies.seuils_seqe.part_taxe_valeur_ajoutee_min
         return (valeur_ajoutee_eta != 0) & (
-            taxe_accise_electricite_taux_normal >= valeur_ajoutee_eta * 0.005
+            taxe_accise_electricite_taux_normal >= valeur_ajoutee_eta * part_min
         )
 
 
@@ -377,15 +378,22 @@ class electricite_installations_industrielles_hyper_electro_intensives(Variable)
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000031814811/2016-01-01/#:~:text=Est%20consid%C3%A9r%C3%A9e%20comme%20hyper%C3%A9lectro%2Dintensive%20une%20installation%20qui%20v%C3%A9rifie%20les%20deux%20conditions%20suivantes%20%3A"
 
-    def formula_2016_01_01(etablissement, period):
+    def formula_2016_01_01(etablissement, period, parameters):
         consommation_par_valeur_ajoutee = etablissement(
             "consommation_par_valeur_ajoutee", period
         )
         intensite_echanges_avec_pays_tiers = etablissement(
             "intensite_echanges_avec_pays_tiers", period
         )
-        return (consommation_par_valeur_ajoutee >= 0.006) & (
-            intensite_echanges_avec_pays_tiers >= 25
+        seuils = parameters(
+            period
+        ).energies.electricite.ticfe.electro_intensive.seuils
+        return (
+            consommation_par_valeur_ajoutee
+            >= seuils.consommation_par_valeur_ajoutee_min_hyper
+        ) & (
+            intensite_echanges_avec_pays_tiers
+            >= seuils.intensite_echanges_pays_tiers_min
         )
 
 

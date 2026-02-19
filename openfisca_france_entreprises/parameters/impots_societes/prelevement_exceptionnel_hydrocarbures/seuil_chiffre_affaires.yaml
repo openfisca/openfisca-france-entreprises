@@ -1,0 +1,6 @@
+description: Seuil de chiffre d'affaires (N-1) en deçà duquel le prélèvement s'applique (100 M€)
+reference: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000880778/"
+unit: "currency-EUR"
+values:
+  1985-01-01:
+    value: 100000000

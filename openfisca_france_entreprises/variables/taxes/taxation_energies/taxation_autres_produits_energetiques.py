@@ -1923,26 +1923,27 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             "intensite_energetique_valeur_ajoutee", period
         )
 
+        seuils = parameters(period).energies.seuils_seqe
         cond_seqe = _or(
             _and(
                 installation_seqe,
-                intensite_energetique_valeur_production >= 0.03,
+                intensite_energetique_valeur_production >= seuils.intensite_production_min,
             ),
             _and(
                 installation_seqe,
-                intensite_energetique_valeur_ajoutee >= 0.005,
+                intensite_energetique_valeur_ajoutee >= seuils.intensite_valeur_ajoutee_min,
             ),
         )
         cond_concurrence = _or(
             _and(
                 _not(installation_seqe),
                 risque_de_fuite_carbone_eta,
-                intensite_energetique_valeur_production >= 0.03,
+                intensite_energetique_valeur_production >= seuils.intensite_production_min,
             ),
             _and(
                 _not(installation_seqe),
                 risque_de_fuite_carbone_eta,
-                intensite_energetique_valeur_ajoutee >= 0.005,
+                intensite_energetique_valeur_ajoutee >= seuils.intensite_valeur_ajoutee_min,
             ),
         )
 

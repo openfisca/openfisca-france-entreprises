@@ -35,12 +35,18 @@ class prelevement_exceptionnel_entreprises_hydrocarbures(Variable):
 
         The formula to compute the income tax for a given etablissement at a given period
         """
-        assujetti = unite_legale("chiffre_affaires", period.n_1) <= 100e6
+        prelevement = parameters(
+            period
+        ).impots_societes.prelevement_exceptionnel_hydrocarbures
+        assujetti = (
+            unite_legale("chiffre_affaires", period.n_1)
+            <= prelevement.seuil_chiffre_affaires
+        )
         benefice_imposable = unite_legale("benefice_imposable", period)
         share_benefice_vente_hydrocarbures = unite_legale(
             "part_benefice_ventes_hydrocarbures", period
         )
-        rate = 0.12
+        rate = prelevement.taux
 
         return (
             assujetti * benefice_imposable * share_benefice_vente_hydrocarbures * rate

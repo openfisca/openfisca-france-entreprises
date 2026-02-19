@@ -97,7 +97,7 @@ class installation_grande_consommatrice_energie(Variable):
     label = "Installation grande consommatrice d'énergie"
     definition_period = YEAR
 
-    def formula(etablissement, period):
+    def formula(etablissement, period, parameters):
         seqe = etablissement("installation_seqe", period)
         facture_energie_eta = etablissement("facture_energie_eta", period)
         chiffre_affaires_eta = etablissement("chiffre_affaires_eta", period)
@@ -105,14 +105,19 @@ class installation_grande_consommatrice_energie(Variable):
             "taxe_accise_electricite_taux_normal", period
         )
         valeur_ajoutee_eta = etablissement("valeur_ajoutee_eta", period)
+        seuils = parameters(period).energies.seuils_seqe
 
         cond1 = (
             seqe
             & (chiffre_affaires_eta != 0)
-            & (facture_energie_eta >= 0.03 * chiffre_affaires_eta)
+            & (
+                facture_energie_eta
+                >= chiffre_affaires_eta * seuils.part_facture_energie_chiffre_affaires_min
+            )
         )
         cond2 = (valeur_ajoutee_eta != 0) & (
-            taxe_accise_electricite_taux_normal >= valeur_ajoutee_eta * 0.005
+            taxe_accise_electricite_taux_normal
+            >= valeur_ajoutee_eta * seuils.part_taxe_valeur_ajoutee_min
         )
         return cond1 | cond2
 

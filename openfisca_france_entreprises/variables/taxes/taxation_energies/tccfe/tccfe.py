@@ -31,8 +31,13 @@ class taux_tccfe(Variable):
 
     def formula_2011_01_01(etablissement, period, parameters):
         amperage = etablissement("amperage", period)
-        cond_36 = (amperage <= 36) & (amperage != 0)
-        cond_250 = (amperage <= 250) & (amperage != 0)
+        ticfe = parameters(period).energies.electricite.ticfe
+        cond_36 = (amperage <= ticfe.categorie_fiscale_petite_et_moyenne_entreprise) & (
+            amperage != 0
+        )
+        cond_250 = (amperage <= ticfe.categorie_fiscale_haut_puissance) & (
+            amperage != 0
+        )
         val_36 = parameters(
             period
         ).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement(
@@ -47,8 +52,13 @@ class taux_tccfe(Variable):
 
     def formula_2012_01_01(etablissement, period, parameters):
         amperage = etablissement("amperage", period)
-        cond_36 = (amperage <= 36) & (amperage != 0)
-        cond_250 = (amperage <= 250) & (amperage != 0)
+        ticfe = parameters(period).energies.electricite.ticfe
+        cond_36 = (amperage <= ticfe.categorie_fiscale_petite_et_moyenne_entreprise) & (
+            amperage != 0
+        )
+        cond_250 = (amperage <= ticfe.categorie_fiscale_haut_puissance) & (
+            amperage != 0
+        )
         val_36 = parameters(
             period
         ).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement(
@@ -63,8 +73,13 @@ class taux_tccfe(Variable):
 
     def formula_2013_01_01(etablissement, period, parameters):
         amperage = etablissement("amperage", period)
-        cond_36 = (amperage <= 36) & (amperage != 0)
-        cond_250 = (amperage <= 250) & (amperage != 0)
+        ticfe = parameters(period).energies.electricite.ticfe
+        cond_36 = (amperage <= ticfe.categorie_fiscale_petite_et_moyenne_entreprise) & (
+            amperage != 0
+        )
+        cond_250 = (amperage <= ticfe.categorie_fiscale_haut_puissance) & (
+            amperage != 0
+        )
         val_36 = parameters(
             period
         ).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement(
@@ -79,8 +94,13 @@ class taux_tccfe(Variable):
 
     def formula_2014_01_01(etablissement, period, parameters):
         amperage = etablissement("amperage", period)
-        cond_36 = (amperage <= 36) & (amperage != 0)
-        cond_250 = (amperage <= 250) & (amperage != 0)
+        ticfe = parameters(period).energies.electricite.ticfe
+        cond_36 = (amperage <= ticfe.categorie_fiscale_petite_et_moyenne_entreprise) & (
+            amperage != 0
+        )
+        cond_250 = (amperage <= ticfe.categorie_fiscale_haut_puissance) & (
+            amperage != 0
+        )
         val_36 = parameters(
             period
         ).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement(
@@ -95,8 +115,13 @@ class taux_tccfe(Variable):
 
     def formula_2015_01_01(etablissement, period, parameters):
         amperage = etablissement("amperage", period)
-        cond_36 = (amperage <= 36) & (amperage != 0)
-        cond_250 = (amperage <= 250) & (amperage != 0)
+        ticfe = parameters(period).energies.electricite.ticfe
+        cond_36 = (amperage <= ticfe.categorie_fiscale_petite_et_moyenne_entreprise) & (
+            amperage != 0
+        )
+        cond_250 = (amperage <= ticfe.categorie_fiscale_haut_puissance) & (
+            amperage != 0
+        )
         val_36 = parameters(
             period
         ).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement(
@@ -111,8 +136,13 @@ class taux_tccfe(Variable):
 
     def formula_2016_01_01(etablissement, period, parameters):
         amperage = etablissement("amperage", period)
-        cond_36 = (amperage <= 36) & (amperage != 0)
-        cond_250 = (amperage <= 250) & (amperage != 0)
+        ticfe = parameters(period).energies.electricite.ticfe
+        cond_36 = (amperage <= ticfe.categorie_fiscale_petite_et_moyenne_entreprise) & (
+            amperage != 0
+        )
+        cond_250 = (amperage <= ticfe.categorie_fiscale_haut_puissance) & (
+            amperage != 0
+        )
         val_36 = parameters(
             period
         ).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement(
@@ -127,8 +157,13 @@ class taux_tccfe(Variable):
 
     def formula_2017_01_01(etablissement, period, parameters):
         amperage = etablissement("amperage", period)
-        cond_36 = (amperage <= 36) & (amperage != 0)
-        cond_250 = (amperage <= 250) & (amperage != 0)
+        ticfe = parameters(period).energies.electricite.ticfe
+        cond_36 = (amperage <= ticfe.categorie_fiscale_petite_et_moyenne_entreprise) & (
+            amperage != 0
+        )
+        cond_250 = (amperage <= ticfe.categorie_fiscale_haut_puissance) & (
+            amperage != 0
+        )
         val_36 = parameters(
             period
         ).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement(
@@ -143,8 +178,13 @@ class taux_tccfe(Variable):
 
     def formula_2018_01_01(etablissement, period, parameters):
         amperage = etablissement("amperage", period)
-        cond_36 = (amperage <= 36) & (amperage != 0)
-        cond_250 = (amperage <= 250) & (amperage != 0)
+        ticfe = parameters(period).energies.electricite.ticfe
+        cond_36 = (amperage <= ticfe.categorie_fiscale_petite_et_moyenne_entreprise) & (
+            amperage != 0
+        )
+        cond_250 = (amperage <= ticfe.categorie_fiscale_haut_puissance) & (
+            amperage != 0
+        )
         val_36 = parameters(
             period
         ).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement(
@@ -159,8 +199,13 @@ class taux_tccfe(Variable):
 
     def formula_2019_01_01(etablissement, period, parameters):
         amperage = etablissement("amperage", period)
-        cond_36 = (amperage <= 36) & (amperage != 0)
-        cond_250 = (amperage <= 250) & (amperage != 0)
+        ticfe = parameters(period).energies.electricite.ticfe
+        cond_36 = (amperage <= ticfe.categorie_fiscale_petite_et_moyenne_entreprise) & (
+            amperage != 0
+        )
+        cond_250 = (amperage <= ticfe.categorie_fiscale_haut_puissance) & (
+            amperage != 0
+        )
         val_36 = parameters(
             period
         ).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement(
@@ -175,8 +220,13 @@ class taux_tccfe(Variable):
 
     def formula_2020_01_01(etablissement, period, parameters):
         amperage = etablissement("amperage", period)
-        cond_36 = (amperage <= 36) & (amperage != 0)
-        cond_250 = (amperage <= 250) & (amperage != 0)
+        ticfe = parameters(period).energies.electricite.ticfe
+        cond_36 = (amperage <= ticfe.categorie_fiscale_petite_et_moyenne_entreprise) & (
+            amperage != 0
+        )
+        cond_250 = (amperage <= ticfe.categorie_fiscale_haut_puissance) & (
+            amperage != 0
+        )
         val_36 = parameters(
             period
         ).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement(
@@ -195,8 +245,13 @@ class taux_tccfe(Variable):
     # 2022 : 6 ; 8 ; 8,5.
     def formula_2021_01_01(etablissement, period, parameters):
         amperage = etablissement("amperage", period)
-        cond_36 = (amperage <= 36) & (amperage != 0)
-        cond_250 = (amperage <= 250) & (amperage != 0)
+        ticfe = parameters(period).energies.electricite.ticfe
+        cond_36 = (amperage <= ticfe.categorie_fiscale_petite_et_moyenne_entreprise) & (
+            amperage != 0
+        )
+        cond_250 = (amperage <= ticfe.categorie_fiscale_haut_puissance) & (
+            amperage != 0
+        )
         val_36 = parameters(
             period
         ).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement(
@@ -211,8 +266,13 @@ class taux_tccfe(Variable):
 
     def formula_2022_01_01(etablissement, period, parameters):
         amperage = etablissement("amperage", period)
-        cond_36 = (amperage <= 36) & (amperage != 0)
-        cond_250 = (amperage <= 250) & (amperage != 0)
+        ticfe = parameters(period).energies.electricite.ticfe
+        cond_36 = (amperage <= ticfe.categorie_fiscale_petite_et_moyenne_entreprise) & (
+            amperage != 0
+        )
+        cond_250 = (amperage <= ticfe.categorie_fiscale_haut_puissance) & (
+            amperage != 0
+        )
         val_36 = parameters(
             period
         ).energies.electricite.tcfe.taux_professionnel_36kVA_et_moins * etablissement(
