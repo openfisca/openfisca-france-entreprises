@@ -167,9 +167,7 @@ class taxe_interieure_sur_consommation_finale_electricite(Variable):
     reference = ""
 
     def formula_2011_01_01(etablissement, period, parameters):
-        """
-        https://www.legifrance.gouv.fr/codes/id/LEGIARTI000023216102/2011-01-01/#:~:text=1.-,Il%20est%20institu%C3%A9,-une%20taxe%20int%C3%A9rieure
-        """
+        """https://www.legifrance.gouv.fr/codes/id/LEGIARTI000023216102/2011-01-01/#:~:text=1.-,Il%20est%20institu%C3%A9,-une%20taxe%20int%C3%A9rieure."""
         electricite_production_a_bord = etablissement(
             "electricite_production_a_bord", period
         )
@@ -210,9 +208,7 @@ class taxe_interieure_sur_consommation_finale_electricite(Variable):
         return summation
 
     def formula_2016_01_01(etablissement, period, parameters):
-        """
-        https://www.legifrance.gouv.fr/codes/id/LEGIARTI000023216102/2011-01-01/#:~:text=1.-,Il%20est%20institu%C3%A9,-une%20taxe%20int%C3%A9rieure
-        """
+        """https://www.legifrance.gouv.fr/codes/id/LEGIARTI000023216102/2011-01-01/#:~:text=1.-,Il%20est%20institu%C3%A9,-une%20taxe%20int%C3%A9rieure."""
         electricite_production_a_bord = etablissement(
             "electricite_production_a_bord", period
         )
@@ -267,9 +263,7 @@ class taxe_interieure_sur_consommation_finale_electricite(Variable):
         return summation
 
     def formula_2019_01_01(etablissement, period, parameters):
-        """
-        https://www.legifrance.gouv.fr/codes/id/LEGIARTI000023216102/2011-01-01/#:~:text=1.-,Il%20est%20institu%C3%A9,-une%20taxe%20int%C3%A9rieure
-        """
+        """https://www.legifrance.gouv.fr/codes/id/LEGIARTI000023216102/2011-01-01/#:~:text=1.-,Il%20est%20institu%C3%A9,-une%20taxe%20int%C3%A9rieure."""
         electricite_production_a_bord = etablissement(
             "electricite_production_a_bord", period
         )
@@ -344,7 +338,7 @@ class taxe_accise_electricite(Variable):
 
     # aussi ticfe selon la période
     def formula_2022_01_01(etablissement, period, parameters):
-        """à partir de maintenant, c'est l'accise"""
+        """à partir de maintenant, c'est l'accise."""
         # voici les conditions à appliquer
         electro_intensive_activite_industrielle = etablissement(
             "electro_intensive_activite_industrielle", period
@@ -421,7 +415,7 @@ class taxe_accise_electricite(Variable):
         return summation
 
     def formula_2023_01_01(etablissement, period, parameters):
-        """Par rapport à précedement, ajouté manutention_portuaire, réf : L312-48"""
+        """Par rapport à précedement, ajouté manutention_portuaire, réf : L312-48."""
         # voici les conditions à appliquer
         electro_intensive_activite_industrielle = etablissement(
             "electro_intensive_activite_industrielle", period
@@ -496,7 +490,7 @@ class taxe_accise_electricite(Variable):
         return summation
 
     def formula_2025_01_01(etablissement, period, parameters):
-        """Par rapport à précedement, ajouté consommation_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques et consommation_alimentation_aeronefs_stationnement_aerodromes_activites_economiques"""
+        """Par rapport à précedement, ajouté consommation_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques et consommation_alimentation_aeronefs_stationnement_aerodromes_activites_economiques."""
         # voici les conditions à appliquer
         electro_intensive_activite_industrielle = etablissement(
             "electro_intensive_activite_industrielle", period
@@ -839,12 +833,13 @@ class taxe_accise_electricite_taux_normal(Variable):
 
     def formula_2011_01_01(etablissement, period, parameters):
         """
-        2011-01-01:
+        2011-01-01.
+
             value: 0.5
         2016-01-01:
             value: 22.5
         2022-01-01:
-            value: 22.5
+            value: 22.5.
         """
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
 
@@ -856,7 +851,6 @@ class taxe_accise_electricite_taux_normal(Variable):
         return taxe
 
     def formula_2021_01_01(etablissement, period, parameters):
-        """ """
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
         consommation_electricite_fournie_aux_navires = etablissement(
             "consommation_electricite_fournie_aux_navires", period
@@ -878,7 +872,6 @@ class taxe_accise_electricite_taux_normal(Variable):
         return tout
 
     def formula_2022_01_01(etablissement, period, parameters):
-        """ """
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
         amperage = etablissement("amperage", period)
         if (
@@ -920,7 +913,6 @@ class taxe_accise_electricite_electro_intensive_activite_industrielle(Variable):
     reference = ""
 
     def formula_2022_01_01(etablissement, period, parameters):
-        """ """
         electro_intensite = etablissement("electro_intensite", period)
         electro_intensive_activite_industrielle = etablissement(
             "electro_intensive_activite_industrielle", period
@@ -961,7 +953,6 @@ class taxe_accise_electricite_electro_intensive_concurrence_internationale(Varia
     reference = ""
 
     def formula_2022_01_01(etablissement, period, parameters):
-        """ """
         electro_intensite = etablissement("electro_intensite", period)
 
         assiette = etablissement("assiette_taxe_electricite", period)
@@ -1061,7 +1052,7 @@ class assiette_taxe_electricite(Variable):
         )
 
     def formula_2022_01_01(etablissement, period, parameters):
-        """https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051216635#:~:text=Rel%C3%A8ve%20d%27un%20tarif%20particulier%20de%20l%27accise"""
+        """https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051216635#:~:text=Rel%C3%A8ve%20d%27un%20tarif%20particulier%20de%20l%27accise."""
         consommation_electricite = etablissement("consommation_electricite", period)
 
         consommation_electricite_energie_ou_gaz_renouvelable = etablissement(

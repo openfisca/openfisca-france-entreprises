@@ -17791,7 +17791,6 @@ class tccfe_coefficient_multiplicateur_normal_2018(Variable):
             ("49", "129"): 8.5,  # ECOUFLANT
             ("49", "130"): 8.5,  # ECUILLE
             ("49", "131"): 8.5,  # EPIEDS
-            ("49", "131"): 8.5,  # EPIEDS
             ("49", "132"): 8.5,  # ETRICHE
             ("49", "135"): 8.5,  # FENEU
             ("49", "138"): 8.5,  # LES BOIS D'ANJOU

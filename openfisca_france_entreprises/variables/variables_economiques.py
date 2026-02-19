@@ -133,11 +133,9 @@ class electro_intensite(Variable):
         )
 
         numerateur = partie_electricite
-        if valeur_ajoutee_eta != 0:
-            resultat = numerateur / valeur_ajoutee_eta
-        else:
-            resultat = 0
-
+        resultat = (
+            numerateur / valeur_ajoutee_eta if valeur_ajoutee_eta != 0 else 0
+        )
         return resultat
 
 
@@ -173,11 +171,9 @@ class intensite_energetique_valeur_ajoutee(Variable):
         # *** TO DO : ajout les autres formes d'énergie, i.g. gazoles
 
         numerateur = partie_electricite + partie_charbon + partie_gaz_naturel
-        if valeur_ajoutee_eta != 0:
-            resultat = numerateur / valeur_ajoutee_eta
-        else:
-            resultat = 0
-
+        resultat = (
+            numerateur / valeur_ajoutee_eta if valeur_ajoutee_eta != 0 else 0
+        )
         return resultat
 
 
