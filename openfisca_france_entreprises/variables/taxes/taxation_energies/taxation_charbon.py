@@ -11,6 +11,7 @@ See https://openfisca.org/doc/key-concepts/variables.html
 
 from numpy import logical_and, logical_or
 from openfisca_core.model_api import YEAR, Variable, not_, select
+from openfisca_core.periods import Instant
 
 from openfisca_france_entreprises.entities import Etablissement
 
@@ -469,9 +470,6 @@ class assiette_ticc(Variable):
         # également pour le charbon
         # NB -34, chaleur >= carburant
         # ajouter un engin_non_routier (-35) ?
-
-
-from openfisca_core.periods import Instant
 
 
 class instant_electrite(Variable):
