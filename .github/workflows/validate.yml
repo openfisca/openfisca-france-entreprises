@@ -52,10 +52,10 @@ jobs:
       - run: uv run make check-style
 
       - name: Lint Python files
-        run: uv run "${GITHUB_WORKSPACE}/.github/lint-files.sh '*.py' 'ruff check'"
+        run: bash "${GITHUB_WORKSPACE}/.github/lint-files.sh" "*.py" "uv run ruff check"
 
       - name: Lint YAML tests
-        run: uv run "${GITHUB_WORKSPACE}/.github/lint-files.sh 'tests/*.yaml' 'yamllint'"
+        run: bash "${GITHUB_WORKSPACE}/.github/lint-files.sh" "tests/*.yaml" "uv run yamllint"
 
   test-yaml:
     runs-on: ubuntu-22.04
