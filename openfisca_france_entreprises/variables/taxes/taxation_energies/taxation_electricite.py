@@ -1,5 +1,4 @@
 from numpy import logical_and, logical_or
-
 from openfisca_core.model_api import not_, select
 from openfisca_core.periods import YEAR
 from openfisca_core.variables import Variable

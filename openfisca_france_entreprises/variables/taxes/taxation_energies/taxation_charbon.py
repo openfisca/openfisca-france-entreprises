@@ -10,8 +10,8 @@ See https://openfisca.org/doc/key-concepts/variables.html
 # Import from openfisca-core the Python objects used to code the legislation in OpenFisca
 
 from numpy import logical_and, logical_or
-
 from openfisca_core.model_api import YEAR, Variable, not_, select
+
 from openfisca_france_entreprises.entities import Etablissement
 
 

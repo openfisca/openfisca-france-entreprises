@@ -28,10 +28,10 @@ build: clean
 	find dist -name "*.whl" -exec uv pip install --force-reinstall {}[dev] \;
 
 format:
-	@# Do not analyse .gitignored files.
+	@# Do not analyse .gitignored files. Ruff format + ruff check --fix (imports, etc.).
 	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
 	uv run ruff format `git ls-files | grep "\.py$$"`
-	uv run isort `git ls-files | grep "\.py$$"`
+	uv run ruff check --fix `git ls-files | grep "\.py$$"`
 
 check-syntax-errors:
 	@# Check Python syntax errors.
@@ -43,8 +43,8 @@ check-style: lint
 lint:
 	@# Do not analyse .gitignored files.
 	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
-	uv run isort --check `git ls-files | grep "\.py$$"`
 	uv run ruff check --exit-zero `git ls-files | grep "\.py$$"`
+	uv run ruff format --check `git ls-files | grep "\.py$$"`
 	uv run yamllint `git ls-files | grep "\.yaml$$"`
 
 test: clean

@@ -16,7 +16,6 @@ import os
 # We patch both _utils and the enum module, since enum.py does "from _utils import ..."
 # at load time and keeps a reference to the original functions.
 import numpy as _np
-
 from openfisca_core import indexed_enums
 from openfisca_core.taxbenefitsystems import TaxBenefitSystem
 
