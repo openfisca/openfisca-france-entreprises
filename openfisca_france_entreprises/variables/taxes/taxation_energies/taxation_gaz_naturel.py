@@ -10,14 +10,12 @@ Les commentaires avec *** indiquent qu'il y a des problèmes
 
 # Import from numpy the operations you need to apply on OpenFisca's population vectors
 # Import from openfisca-core the Python objects used to code the legislation in OpenFisca
-from numpy import maximum as max_
 
-from openfisca_core.periods import MONTH, YEAR
+from openfisca_core.periods import YEAR
 from openfisca_core.variables import Variable
 
 # Import the Entities specifically defined for this tax and benefit system
-from openfisca_france_entreprises.entities import UniteLegale, Etablissement
-from openfisca_france_entreprises.variables.naf import naf
+from openfisca_france_entreprises.entities import Etablissement
 
 
 class taxe_gaz_naturel(Variable):
@@ -71,9 +69,7 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
         gaz_huiles_minerales = etablissement("gaz_huiles_minerales", period)
         gaz_matiere_premiere = etablissement("gaz_matiere_premiere", period)
 
-        if gaz_matiere_premiere == True:
-            taxe = 0
-        elif gaz_huiles_minerales == True:
+        if gaz_matiere_premiere == True or gaz_huiles_minerales == True:
             taxe = 0
         else:
             taxe = etablissement(
@@ -103,11 +99,7 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
         gaz_extraction_production = etablissement("gaz_extraction_production", period)
         gaz_double_usage = etablissement("gaz_double_usage", period)
 
-        if gaz_production_mineraux_non_metalliques == True:
-            taxe = 0
-        elif gaz_double_usage == True:
-            taxe = 0
-        elif gaz_extraction_production == True:
+        if gaz_production_mineraux_non_metalliques == True or gaz_double_usage == True or gaz_extraction_production == True:
             taxe = 0
 
         else:
@@ -141,11 +133,7 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
         )
         gaz_extraction_production = etablissement("gaz_extraction_production", period)
 
-        if gaz_production_mineraux_non_metalliques == True:
-            taxe = 0
-        elif gaz_double_usage == True:
-            taxe = 0
-        elif gaz_extraction_production == True:
+        if gaz_production_mineraux_non_metalliques == True or gaz_double_usage == True or gaz_extraction_production == True:
             taxe = 0
         elif seqe == True and grande_consommatrice == True:
             taxe = taxe_interieure_consommation_gaz_naturel_grande_consommatrice
@@ -160,7 +148,6 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
             calculer, creer une variable value_ajouté, et ensuit appelle la variable ici, si ça depasse le seuil
 
         """
-
         gaz_double_usage = etablissement("gaz_double_usage", period)
         gaz_extraction_production = etablissement("gaz_extraction_production", period)
         gaz_production_mineraux_non_metalliques = etablissement(
@@ -187,11 +174,7 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
             "consommation_par_valeur_ajoutee", period
         )
 
-        if gaz_double_usage == True:
-            taxe = 0
-        elif gaz_production_mineraux_non_metalliques == True:
-            taxe = 0
-        elif gaz_extraction_production == True:
+        if gaz_double_usage == True or gaz_production_mineraux_non_metalliques == True or gaz_extraction_production == True:
             taxe = 0
         elif (
             gaz_dehydration_legumes_et_plantes_aromatiques == True
@@ -242,13 +225,7 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
             "consommation_par_valeur_ajoutee", period
         )
 
-        if gaz_double_usage == True:
-            taxe = 0
-        elif gaz_extraction_production == True:
-            taxe = 0
-        elif gaz_production_mineraux_non_metalliques == True:
-            taxe = 0
-        elif gaz_travaux_agricoles_et_forestiers == True:
+        if gaz_double_usage == True or gaz_extraction_production == True or gaz_production_mineraux_non_metalliques == True or gaz_travaux_agricoles_et_forestiers == True:
             taxe = 0
         elif (
             gaz_dehydration_legumes_et_plantes_aromatiques == True
@@ -272,7 +249,7 @@ class taxe_accise_gaz_naturel(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "Pour combiner les gaz naturels combustible et carburant"
-    reference = ""  #
+    reference = ""
 
     def formula_2022_01_01(etablissement, period, parameters):
         # faut changer la date après
@@ -289,7 +266,7 @@ class taxe_accise_gaz_naturel_combustible(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "Pour combiner les gaz naturels combustible et carburant"
-    reference = ""  #
+    reference = ""
 
     def formula_2022_01_01(etablissement, period, parameters):
         # faut changer la date après
@@ -338,11 +315,7 @@ class taxe_accise_gaz_naturel_combustible(Variable):
                     period
                 ).energies.gaz_naturel.accise.travaux_agricoles_forestaires
             )
-        elif gaz_production_mineraux_non_metalliques == True:
-            taxe = 0
-        elif gaz_extraction_production == True:
-            taxe = 0
-        elif consommation_gaz_usage_non_combustible == True:
+        elif gaz_production_mineraux_non_metalliques == True or gaz_extraction_production == True or consommation_gaz_usage_non_combustible == True:
             taxe = 0
         elif (
             gaz_dehydration_legumes_et_plantes_aromatiques == True
@@ -393,7 +366,7 @@ class taxe_accise_gaz_naturel_carburant(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "Pour combiner les gaz naturels combustible et carburant"
-    reference = ""  #
+    reference = ""
 
     def formula_2022_01_01(etablissement, period, parameters):
         gaz_double_usage = etablissement("gaz_double_usage", period)
@@ -423,9 +396,7 @@ class taxe_accise_gaz_naturel_carburant(Variable):
                     period
                 ).energies.gaz_naturel.accise.travaux_agricoles_forestaires
             )
-        elif gaz_production_mineraux_non_metalliques == True:
-            taxe = 0
-        elif gaz_extraction_production == True:
+        elif gaz_production_mineraux_non_metalliques == True or gaz_extraction_production == True:
             taxe = 0
         elif seqe == True and grande_consommatrice == True:
             taxe = ticgn_grande_conso
@@ -445,7 +416,7 @@ class taxe_interieure_taxation_consommation_gaz_naturel_concurrence_internationa
     entity = Etablissement
     definition_period = YEAR
     label = "Sous L312-75/77"
-    reference = ""  #
+    reference = ""
 
     def formula_2007_01_01(etablissement, period, parameters):
         # faut changer la date après
@@ -466,7 +437,7 @@ class taxe_interieure_taxation_consommation_gaz_naturel_seqe(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "Sous L312-75/76"
-    reference = ""  #
+    reference = ""
 
     def formula_2007_01_01(etablissement, period, parameters):
         # faut changer la date après
@@ -497,7 +468,7 @@ class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "Tax on gas consumption - TICGN"
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/"  #
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/"
 
     def formula_1986_01_01(etablissement, period, parameters):
         seuil = parameters(period).energies.gaz_naturel.ticgn.seuil_exoneration
@@ -514,7 +485,6 @@ class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
         """
         [à noter : plus de seuil ni d'abattement]
         """
-
         assiette = etablissement("assiette_ticgn", period)
         taux = parameters(period).energies.gaz_naturel.ticgn.taux_normal
         taxe = assiette * taux
@@ -526,7 +496,6 @@ class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
         [à noter : plus de seuil ni d'abattement]
         [à noter : le 1.11 serve à convertir le taux en pci au taux en pcs. On assume que pcs est au courant tout le temps]
         """
-
         assiette = etablissement("assiette_ticgn", period)
         taux_pci = parameters(period).energies.gaz_naturel.ticgn.taux_normal
         taux = (
@@ -543,13 +512,12 @@ class taxe_interieure_consommation_gaz_naturel_grande_consommatrice(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "Tax on gas consumption - TICGN"
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/"  #
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/"
 
     def formula_2014_01_01(etablissement, period, parameters):
         """
         [à noter : plus de seuil ni d'abattement]
         """
-
         assiette = etablissement("assiette_ticgn", period)
         taux = parameters(
             period
@@ -575,7 +543,6 @@ class taxe_interieure_consommation_gaz_naturel_ifp(Variable):
         Income tax.
         The formula to compute the income tax for a given etablissement at a given period
         """
-
         return (
             etablissement("consommation_gaz_naturel", period)
             * parameters(period).taxation_energies.natural_gas
@@ -589,19 +556,19 @@ class assiette_ticgn(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "Tax on gas consumption - TICGN"
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/"  #
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/"
 
     def formula_1986_01_01(etablissement, period, parameters):
         """
         Taxe sur la consommation de gaz naturel.
-        TODO:
+
+        Todo:
         Le gaz consommé :
             - comme matière première
             - comme combustible pour la fabrication d'huiles minérales
             - à destination du chauffage des immeubles d'habitation
             est exonéré.
         """
-
         conso = etablissement("consommation_gaz_combustible", period)
 
         conso_exoneree = etablissement("consommation_gaz_chauffage_habitation", period)
@@ -611,14 +578,14 @@ class assiette_ticgn(Variable):
     def formula_2000_01_01(etablissement, period, parameters):
         """
         Taxe sur la consommation de gaz naturel.
-        TODO:
+
+        Todo:
         Le gaz consommé :
             - comme matière première
             - comme combustible pour la fabrication d'huiles minérales
             - à destination du chauffage des immeubles d'habitation
             est exonéré.
         """
-
         conso = etablissement("consommation_gaz_combustible", period)
 
         date_installation_cogeneration = etablissement(
@@ -709,7 +676,8 @@ class assiette_ticgn(Variable):
     def formula_2008_01_01(etablissement, period, parameters):
         """
         [à noter : plus de seuil ni d'abattement]
-        TODO:
+
+        Todo:
         Ajout des nouvelles exonérations du gaz consommé :
             - autrement que comme combustible
             - à un double usage
@@ -758,12 +726,11 @@ class assiette_ticgn(Variable):
 
     def formula_2011_01_01(etablissement, period, parameters):
         """
-        TODO:
+        Todo:
         (par rapport à précédemment, )
             la consommation du gaz utilisé pour la production d'électricité par les petits producteurs d'électricité au sens du 4° du V de l'article L. 3333-2 du code général des collectivités territoriales.
             n'est plus exonérée à partir du 1er janvier 2011. Cette condition est intégrée comme une exception de consommation_gaz_production_electricite
         """
-
         date_installation_cogeneration = etablissement(
             "date_installation_cogeneration", period
         )
@@ -801,7 +768,7 @@ class assiette_ticgn(Variable):
 
     def formula_2014_01_01(etablissement, period, parameters):
         """
-        TODO:
+        Todo:
         (par rapport à précédemment, )
         ajouté
         -consommation_gaz_nc_2711_29
@@ -809,7 +776,6 @@ class assiette_ticgn(Variable):
         -consommation_gaz_chauffage_habitation
         -cogéneration car 2011 était la dernière année qu'il était possible de beneficier à une telle éxoneration
         """
-
         conso = etablissement("consommation_gaz_combustible", period)
         consommation_autres_produits_energetique_ticgn = etablissement(
             "consommation_autres_produits_energetique_ticgn", period
@@ -832,13 +798,12 @@ class assiette_ticgn(Variable):
 
     def formula_2020_01_01(etablissement, period, parameters):
         """
-        TODO:
+        Todo:
         (par rapport à précédemment, )
             Réintégration des usages carburants dans le champ de la TICGN >= consommation_gaz_carburant est ajoutée dans la formule de la variable consommation_gaz_naturel
             https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006071570/LEGISCTA000006122062/1993-01-01/?anchor=LEGIARTI000006615168#LEGIARTI000006615168
         avant c'était consideré comme un produit petrolier, et en 2020 il sont dit qu'ils sont desormais consideré comme du gaz naturel
         """
-
         conso = etablissement("consommation_gaz_combustible", period) + etablissement(
             "consommation_gaz_carburant", period
         )

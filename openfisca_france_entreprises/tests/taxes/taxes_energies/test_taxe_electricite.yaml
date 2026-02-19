@@ -74,7 +74,7 @@
 
 - name: test 2024  taxe_electricite_bouclier_tarifaire
 #
-  period: 2024 #2024-01-01 
+  period: 2024 #2024-01-01
   input:
     assiette_taxe_electricite: 1000
   output:

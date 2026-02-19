@@ -1,8 +1,9 @@
 from openfisca_core.model_api import *
+from openfisca_core.periods import YEAR
+from openfisca_core.variables import Variable
+
 from openfisca_france_entreprises.entities import Etablissement  # noqa F401
 from openfisca_france_entreprises.variables.naf import naf
-from openfisca_core.periods import MONTH, YEAR
-from openfisca_core.variables import Variable
 
 
 class consommation_electricite(Variable):
@@ -238,7 +239,7 @@ class electro_intensive_activite_industrielle(Variable):
     definition_period = YEAR
     label = "sous L312-64/65/71"
     reference = (
-        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603709"  #
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603709"
     )
 
     def formula_2022_01_01(etablissement, period, parameters):
@@ -257,7 +258,7 @@ class electro_intensive_concurrence_internationale(Variable):
     definition_period = YEAR
     label = "concurrence internationale sous L312-65/72"
     reference = (
-        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603709"  #
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603709"
     )
 
     def formula_2022_01_01(etablissement, period, parameters):
@@ -325,7 +326,7 @@ class electricite_production_electricite(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = ""
-    reference = "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000023216102/2011-01-01/#:~:text=la%20production%20de%20l%27%C3%A9lectricit%C3%A9, https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000044595989/LEGISCTA000044598327/#LEGISCTA000044603893:~:text=Sont%20exon%C3%A9r%C3%A9s%20de%20l%27accise%20les%20produits%20taxables%20consomm%C3%A9s%20pour%20les%20besoins%20de%20la%20production%20d%27%C3%A9lectricit%C3%A9"  #
+    reference = "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000023216102/2011-01-01/#:~:text=la%20production%20de%20l%27%C3%A9lectricit%C3%A9, https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000044595989/LEGISCTA000044598327/#LEGISCTA000044603893:~:text=Sont%20exon%C3%A9r%C3%A9s%20de%20l%27accise%20les%20produits%20taxables%20consomm%C3%A9s%20pour%20les%20besoins%20de%20la%20production%20d%27%C3%A9lectricit%C3%A9"
 
     def formula_2011_01_01(etablissement, period, parameters):
         apet = etablissement("apet", period)

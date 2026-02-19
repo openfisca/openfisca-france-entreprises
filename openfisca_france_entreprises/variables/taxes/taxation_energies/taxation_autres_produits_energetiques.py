@@ -10,14 +10,12 @@ See https://openfisca.org/doc/key-concepts/variables.html
 # Import from openfisca-core the Python objects used to code the legislation in OpenFisca
 from functools import reduce
 
-from numpy import maximum as max_
-
 from openfisca_core.model_api import select
-from openfisca_core.periods import MONTH, YEAR
+from openfisca_core.periods import YEAR
 from openfisca_core.variables import Variable
 
 # Import the Entities specifically defined for this tax and benefit system
-from openfisca_france_entreprises.entities import UniteLegale, Etablissement
+from openfisca_france_entreprises.entities import Etablissement
 
 
 def _dep_in(departement, codes):
@@ -32,7 +30,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "taxe intérieure de consommation sur les produits énergétiques"
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"  #
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
     # etablissement('', period) * parameters(period).
     # etablissement('', period) * parameters(period).
     # NB : pour cette variable, j'ai commencé avec l'année 2021, puis j'ai traveilé en inverse. Donc, les changements sont par rapport à l'année suivante, pas precedante.
@@ -1997,22 +1995,12 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             ).energies.autres_produits_energetiques.accise.combustibles.petroles_lampants
 
         # trois cas d'exoneration pour toute la consommation
-        if etablissement("autres_produits_navigation_interieure", period) == True:
-            total = 0
-        elif etablissement("autres_produits_navigation_maritime", period) == True:
-            total = 0
-        elif etablissement("autres_produits_navigation_aerienne", period) == True:
-            total = 0
-        elif etablissement("autres_produits_double_usage", period) == True:
-            total = 0
-        elif (
+        if etablissement("autres_produits_navigation_interieure", period) == True or etablissement("autres_produits_navigation_maritime", period) == True or etablissement("autres_produits_navigation_aerienne", period) == True or etablissement("autres_produits_double_usage", period) == True or (
             etablissement(
                 "autre_produits_fabrication_produits_mineraux_non_metalliques", period
             )
             == True
-        ):
-            total = 0
-        elif (
+        ) or (
             etablissement("autres_produits_secteurs_aeronautique_et_naval", period)
             == True
         ):
@@ -2218,22 +2206,12 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         ).energies.autres_produits_energetiques.accise.combustibles.petroles_lampants
 
         # trois cas d'exoneration pour toute la consommation
-        if etablissement("autres_produits_navigation_interieure", period) == True:
-            total = 0
-        elif etablissement("autres_produits_navigation_maritime", period) == True:
-            total = 0
-        elif etablissement("autres_produits_navigation_aerienne", period) == True:
-            total = 0
-        elif etablissement("autres_produits_double_usage", period) == True:
-            total = 0
-        elif (
+        if etablissement("autres_produits_navigation_interieure", period) == True or etablissement("autres_produits_navigation_maritime", period) == True or etablissement("autres_produits_navigation_aerienne", period) == True or etablissement("autres_produits_double_usage", period) == True or (
             etablissement(
                 "autre_produits_fabrication_produits_mineraux_non_metalliques", period
             )
             == True
-        ):
-            total = 0
-        elif (
+        ) or (
             etablissement("autres_produits_secteurs_aeronautique_et_naval", period)
             == True
         ):
@@ -2319,7 +2297,7 @@ class ticpe_majoration_regionale_gazole(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "taxe intérieure de consommation sur les produits énergétiques"
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"  #
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
 
     def formula_2007_01_01(etablissement, period, parameters):
         departement = etablissement("departement", period)
@@ -2560,7 +2538,7 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "taxe intérieure de consommation sur les produits énergétiques"
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"  #
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
 
     def formula_2007_01_01(etablissement, period, parameters):
         departement = etablissement("departement", period)
@@ -2801,7 +2779,7 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "taxe intérieure de consommation sur les produits énergétiques"
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"  #
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
 
     def formula_2007_01_01(etablissement, period, parameters):
         departement = etablissement("departement", period)

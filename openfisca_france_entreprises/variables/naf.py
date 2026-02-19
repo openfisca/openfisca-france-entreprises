@@ -1,7 +1,6 @@
 from openfisca_core.model_api import *
 
 # Import the Entities specifically defined for this tax and benefit system
-from openfisca_france_entreprises.entities import UniteLegale, Etablissement
 
 
 class naf(Enum):
@@ -54,7 +53,9 @@ class naf(Enum):
     _07_21Z = "Extraction de minerais d'uranium et de thorium"
     _07_29Z = "Extraction d'autres minerais de métaux non ferreux"
     _08_11Z = "Extraction de pierres ornementales et de construction, de calcaire industriel, de gypse, de craie et d'ardoise"
-    _08_12Z = "Exploitation de gravières et sablières, extraction d'argiles et de kaolin"
+    _08_12Z = (
+        "Exploitation de gravières et sablières, extraction d'argiles et de kaolin"
+    )
     _08_91Z = "Extraction des minéraux chimiques et d'engrais minéraux"
     _08_92Z = "Extraction de tourbe"
     _08_93Z = "Production de sel"
@@ -171,7 +172,9 @@ class naf(Enum):
     _21_20Z = "Fabrication de préparations pharmaceutiques"
     _22_11Z = "Fabrication et rechapage de pneumatiques"
     _22_19Z = "Fabrication d'autres articles en caoutchouc"
-    _22_21Z = "Fabrication de plaques, feuilles, tubes et profilés en matières plastiques"
+    _22_21Z = (
+        "Fabrication de plaques, feuilles, tubes et profilés en matières plastiques"
+    )
     _22_22Z = "Fabrication d'emballages en matières plastiques"
     _22_23Z = "Fabrication d'éléments en matières plastiques pour la construction"
     _22_29A = "Fabrication de pièces techniques à base de matières plastiques"
@@ -180,10 +183,14 @@ class naf(Enum):
     _23_12Z = "Façonnage et transformation du verre plat"
     _23_13Z = "Fabrication de verre creux"
     _23_14Z = "Fabrication de fibres de verre"
-    _23_19Z = "Fabrication et façonnage d'autres articles en verre, y compris verre technique"
+    _23_19Z = (
+        "Fabrication et façonnage d'autres articles en verre, y compris verre technique"
+    )
     _23_20Z = "Fabrication de produits réfractaires"
     _23_31Z = "Fabrication de carreaux en céramique"
-    _23_32Z = "Fabrication de briques, tuiles et produits de construction, en terre cuite"
+    _23_32Z = (
+        "Fabrication de briques, tuiles et produits de construction, en terre cuite"
+    )
     _23_41Z = "Fabrication d'articles céramiques à usage domestique ou ornemental"
     _23_42Z = "Fabrication d'appareils sanitaires en céramique"
     _23_43Z = "Fabrication d'isolateurs et pièces isolantes en céramique"
@@ -387,11 +394,15 @@ class naf(Enum):
     _46_12B = "Autres intermédiaires du commerce en combustibles, métaux, minéraux et produits chimiques"
     _46_13Z = "Intermédiaires du commerce en bois et matériaux de construction"
     _46_14Z = "Intermédiaires du commerce en machines, équipements industriels, navires et avions"
-    _46_15Z = "Intermédiaires du commerce en meubles, articles de ménage et quincaillerie"
+    _46_15Z = (
+        "Intermédiaires du commerce en meubles, articles de ménage et quincaillerie"
+    )
     _46_16Z = "Intermédiaires du commerce en textiles, habillement, fourrures, chaussures et articles en cuir"
     _46_17A = "Centrales d'achat alimentaires"
     _46_17B = "Autres intermédiaires du commerce en denrées, boissons et tabac"
-    _46_18Z = "Intermédiaires spécialisés dans le commerce d'autres produits spécifiques"
+    _46_18Z = (
+        "Intermédiaires spécialisés dans le commerce d'autres produits spécifiques"
+    )
     _46_19A = "Centrales d'achat non alimentaires"
     _46_19B = "Autres intermédiaires du commerce en produits divers"
     _46_21Z = "Commerce de gros (commerce interentreprises) de céréales, de tabac non manufacturé, de semences et d'aliments pour le bétail"
@@ -400,19 +411,29 @@ class naf(Enum):
     _46_24Z = "Commerce de gros (commerce interentreprises) de cuirs et peaux"
     _46_31Z = "Commerce de gros (commerce interentreprises) de fruits et légumes"
     _46_32A = "Commerce de gros (commerce interentreprises) de viandes de boucherie"
-    _46_32B = "Commerce de gros (commerce interentreprises) de produits à base de viande"
+    _46_32B = (
+        "Commerce de gros (commerce interentreprises) de produits à base de viande"
+    )
     _46_32C = "Commerce de gros (commerce interentreprises) de volailles et gibier"
     _46_33Z = "Commerce de gros (commerce interentreprises) de produits laitiers, œufs, huiles et matières grasses comestibles"
     _46_34Z = "Commerce de gros (commerce interentreprises) de boissons"
     _46_35Z = "Commerce de gros (commerce interentreprises) de produits à base de tabac"
-    _46_36Z = "Commerce de gros (commerce interentreprises) de sucre, chocolat et confiserie"
-    _46_37Z = "Commerce de gros (commerce interentreprises) de café, thé, cacao et épices"
+    _46_36Z = (
+        "Commerce de gros (commerce interentreprises) de sucre, chocolat et confiserie"
+    )
+    _46_37Z = (
+        "Commerce de gros (commerce interentreprises) de café, thé, cacao et épices"
+    )
     _46_38A = "Commerce de gros (commerce interentreprises) de poissons, crustacés et mollusques"
-    _46_38B = "Commerce de gros (commerce interentreprises) alimentaire spécialisé divers"
+    _46_38B = (
+        "Commerce de gros (commerce interentreprises) alimentaire spécialisé divers"
+    )
     _46_39A = "Commerce de gros (commerce interentreprises) de produits surgelés"
     _46_39B = "Commerce de gros (commerce interentreprises) alimentaire non spécialisé"
     _46_41Z = "Commerce de gros (commerce interentreprises) de textiles"
-    _46_42Z = "Commerce de gros (commerce interentreprises) d'habillement et de chaussures"
+    _46_42Z = (
+        "Commerce de gros (commerce interentreprises) d'habillement et de chaussures"
+    )
     _46_43Z = "Commerce de gros (commerce interentreprises) d'appareils électroménagers"
     _46_44Z = "Commerce de gros (commerce interentreprises) de vaisselle, verrerie et produits d'entretien"
     _46_45Z = "Commerce de gros (commerce interentreprises) de parfumerie et de produits de beauté"
@@ -438,7 +459,9 @@ class naf(Enum):
     _46_74A = "Commerce de gros (commerce interentreprises) de quincaillerie"
     _46_74B = "Commerce de gros (commerce interentreprises) de fournitures pour la plomberie et le chauffage"
     _46_75Z = "Commerce de gros (commerce interentreprises) de produits chimiques"
-    _46_76Z = "Commerce de gros (commerce interentreprises) d'autres produits intermédiaires"
+    _46_76Z = (
+        "Commerce de gros (commerce interentreprises) d'autres produits intermédiaires"
+    )
     _46_77Z = "Commerce de gros (commerce interentreprises) de déchets et débris"
     _46_90Z = "Commerce de gros (commerce interentreprises) non spécialisé"
     _47_11A = "Commerce de détail de produits surgelés"
@@ -451,14 +474,20 @@ class naf(Enum):
     _47_19B = "Autres commerces de détail en magasin non spécialisé"
     _47_21Z = "Commerce de détail de fruits et légumes en magasin spécialisé"
     _47_22Z = "Commerce de détail de viandes et de produits à base de viande en magasin spécialisé"
-    _47_23Z = "Commerce de détail de poissons, crustacés et mollusques en magasin spécialisé"
-    _47_24Z = "Commerce de détail de pain, pâtisserie et confiserie en magasin spécialisé"
+    _47_23Z = (
+        "Commerce de détail de poissons, crustacés et mollusques en magasin spécialisé"
+    )
+    _47_24Z = (
+        "Commerce de détail de pain, pâtisserie et confiserie en magasin spécialisé"
+    )
     _47_25Z = "Commerce de détail de boissons en magasin spécialisé"
     _47_26Z = "Commerce de détail de produits à base de tabac en magasin spécialisé"
     _47_29Z = "Autres commerces de détail alimentaires en magasin spécialisé"
     _47_30Z = "Commerce de détail de carburants en magasin spécialisé"
     _47_41Z = "Commerce de détail d'ordinateurs, d'unités périphériques et de logiciels en magasin spécialisé"
-    _47_42Z = "Commerce de détail de matériels de télécommunication en magasin spécialisé"
+    _47_42Z = (
+        "Commerce de détail de matériels de télécommunication en magasin spécialisé"
+    )
     _47_43Z = "Commerce de détail de matériels audio et vidéo en magasin spécialisé"
     _47_51Z = "Commerce de détail de textiles en magasin spécialisé"
     _47_52A = "Commerce de détail de quincaillerie, peintures et verres en petites surfaces (moins de 400 m²)"
@@ -469,14 +498,18 @@ class naf(Enum):
     _47_59B = "Commerce de détail d'autres équipements du foyer"
     _47_61Z = "Commerce de détail de livres en magasin spécialisé"
     _47_62Z = "Commerce de détail de journaux et papeterie en magasin spécialisé"
-    _47_63Z = "Commerce de détail d'enregistrements musicaux et vidéo en magasin spécialisé"
+    _47_63Z = (
+        "Commerce de détail d'enregistrements musicaux et vidéo en magasin spécialisé"
+    )
     _47_64Z = "Commerce de détail d'articles de sport en magasin spécialisé"
     _47_65Z = "Commerce de détail de jeux et jouets en magasin spécialisé"
     _47_71Z = "Commerce de détail d'habillement en magasin spécialisé"
     _47_72A = "Commerce de détail de la chaussure"
     _47_72B = "Commerce de détail de maroquinerie et d'articles de voyage"
     _47_73Z = "Commerce de détail de produits pharmaceutiques en magasin spécialisé"
-    _47_74Z = "Commerce de détail d'articles médicaux et orthopédiques en magasin spécialisé"
+    _47_74Z = (
+        "Commerce de détail d'articles médicaux et orthopédiques en magasin spécialisé"
+    )
     _47_75Z = "Commerce de détail de parfumerie et de produits de beauté en magasin spécialisé"
     _47_76Z = "Commerce de détail de fleurs, plantes, graines, engrais, animaux de compagnie et aliments pour ces animaux en magasin spécialisé"
     _47_77Z = "Commerce de détail d'articles d'horlogerie et de bijouterie en magasin spécialisé"
@@ -619,8 +652,12 @@ class naf(Enum):
     _77_22Z = "Location de vidéocassettes et disques vidéo"
     _77_29Z = "Location et location-bail d'autres biens personnels et domestiques"
     _77_31Z = "Location et location-bail de machines et équipements agricoles"
-    _77_32Z = "Location et location-bail de machines et équipements pour la construction"
-    _77_33Z = "Location et location-bail de machines de bureau et de matériel informatique"
+    _77_32Z = (
+        "Location et location-bail de machines et équipements pour la construction"
+    )
+    _77_33Z = (
+        "Location et location-bail de machines de bureau et de matériel informatique"
+    )
     _77_34Z = "Location et location-bail de matériels de transport par eau"
     _77_35Z = "Location et location-bail de matériels de transport aérien"
     _77_39Z = "Location et location-bail d'autres machines, équipements et biens matériels n_c_a_"
@@ -684,7 +721,9 @@ class naf(Enum):
     _86_90F = "Activités de santé humaine non classées ailleurs"
     _87_10A = "Hébergement médicalisé pour personnes âgées"
     _87_10B = "Hébergement médicalisé pour enfants handicapés"
-    _87_10C = "Hébergement médicalisé pour adultes handicapés et autre hébergement médicalisé"
+    _87_10C = (
+        "Hébergement médicalisé pour adultes handicapés et autre hébergement médicalisé"
+    )
     _87_20A = "Hébergement social pour handicapés mentaux et malades mentaux"
     _87_20B = "Hébergement social pour toxicomanes"
     _87_30A = "Hébergement social pour personnes âgées"
@@ -696,7 +735,9 @@ class naf(Enum):
     _88_10C = "Aide par le travail"
     _88_91A = "Accueil de jeunes enfants"
     _88_91B = "Accueil ou accompagnement sans hébergement d'enfants handicapés"
-    _88_99A = "Autre accueil ou accompagnement sans hébergement d'enfants et d'adolescents"
+    _88_99A = (
+        "Autre accueil ou accompagnement sans hébergement d'enfants et d'adolescents"
+    )
     _88_99B = "Action sociale sans hébergement n_c_a_"
     _90_01Z = "Arts du spectacle vivant"
     _90_02Z = "Activités de soutien au spectacle vivant"

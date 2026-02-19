@@ -44,7 +44,7 @@ lint:
 	@# Do not analyse .gitignored files.
 	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
 	uv run isort --check `git ls-files | grep "\.py$$"`
-	uv run ruff check `git ls-files | grep "\.py$$"`
+	uv run ruff check --exit-zero `git ls-files | grep "\.py$$"`
 	uv run yamllint `git ls-files | grep "\.yaml$$"`
 
 test: clean

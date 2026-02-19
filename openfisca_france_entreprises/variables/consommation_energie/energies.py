@@ -1,7 +1,11 @@
 from openfisca_core.model_api import *
-from openfisca_france_entreprises.entities import Etablissement, UniteLegale  # noqa F401
-from openfisca_core.periods import MONTH, YEAR
+from openfisca_core.periods import YEAR
 from openfisca_core.variables import Variable
+
+from openfisca_france_entreprises.entities import (  # noqa F401
+    Etablissement,
+    UniteLegale,
+)
 
 
 class consommation_energie(Variable):

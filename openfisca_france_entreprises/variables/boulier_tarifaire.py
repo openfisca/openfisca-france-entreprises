@@ -8,15 +8,12 @@ See https://openfisca.org/doc/key-concepts/variables.html
 
 # Import from numpy the operations you need to apply on OpenFisca's population vectors
 # Import from openfisca-core the Python objects used to code the legislation in OpenFisca
-from numpy import maximum as max_
 
-from openfisca_core.periods import MONTH, YEAR
+from openfisca_core.periods import YEAR, Instant
 from openfisca_core.variables import Variable
 
 # Import the Entities specifically defined for this tax and benefit system
-from openfisca_france_entreprises.entities import UniteLegale, Etablissement
-
-from openfisca_core.periods import Instant
+from openfisca_france_entreprises.entities import Etablissement
 
 
 class taxe_electricite_bouclier_tarifaire(Variable):
@@ -24,7 +21,7 @@ class taxe_electricite_bouclier_tarifaire(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = ""
-    reference = ""  #
+    reference = ""
 
     def formula_2022_01_01(etablissement, period, parameters):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
@@ -36,8 +33,7 @@ class taxe_electricite_bouclier_tarifaire(Variable):
 
         if taxe > taxe_accise_electricite:
             return taxe_accise_electricite
-        else:
-            return taxe
+        return taxe
 
     def formula_2023_01_01(etablissement, period, parameters):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
@@ -49,8 +45,7 @@ class taxe_electricite_bouclier_tarifaire(Variable):
 
         if taxe > taxe_accise_electricite:
             return taxe_accise_electricite
-        else:
-            return taxe
+        return taxe
 
     def formula_2024_01_01(etablissement, period, parameters):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
@@ -62,8 +57,7 @@ class taxe_electricite_bouclier_tarifaire(Variable):
 
         if taxe > taxe_accise_electricite:
             return taxe_accise_electricite
-        else:
-            return taxe
+        return taxe
 
 
 # On a fini par assumer que toutes les entreprises lui sont eligibles

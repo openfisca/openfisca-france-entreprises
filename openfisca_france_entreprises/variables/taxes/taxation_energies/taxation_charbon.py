@@ -8,13 +8,12 @@ See https://openfisca.org/doc/key-concepts/variables.html
 
 # Import from numpy the operations you need to apply on OpenFisca's population vectors
 # Import from openfisca-core the Python objects used to code the legislation in OpenFisca
-from numpy import maximum as max_
 
-from openfisca_core.periods import MONTH, YEAR
+from openfisca_core.periods import YEAR
 from openfisca_core.variables import Variable
 
 # Import the Entities specifically defined for this tax and benefit system
-from openfisca_france_entreprises.entities import UniteLegale, Etablissement
+from openfisca_france_entreprises.entities import Etablissement
 
 
 class taxe_interieure_consommation_charbon(Variable):
@@ -22,13 +21,12 @@ class taxe_interieure_consommation_charbon(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "Taxe intérieure de consommation sur les houilles, lignites et cokes - TICC"
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615177/2007-07-01/"  #
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615177/2007-07-01/"
 
     def formula_2007_01_01(etablissement, period, parameters):
         """
         Taxe sur la consommation de houilles, lignites, et cokes.
         """
-
         assiette_ticc = etablissement("assiette_ticc", period)
         ticc = assiette_ticc * parameters(period).energies.charbon.ticc
 
@@ -109,19 +107,7 @@ class taxe_interieure_consommation_charbon(Variable):
             installation_seqe == True
             and intensite_energetique_valeur_production >= 0.03
             and charbon_biomasse == True
-        ):
-            taxe = 0
-        elif charbon_navigation_interieure == True:
-            taxe = 0
-        elif charbon_navigation_maritime == True:
-            taxe = 0
-        elif charbon_navigation_aerienne == True:
-            taxe = 0
-        elif charbon_fabrication_produits_mineraux_non_metalliques == True:
-            taxe = 0
-        elif charbon_secteurs_aeronautique_et_naval == True:
-            taxe = 0
-        elif charbon_double_usage == True:
+        ) or charbon_navigation_interieure == True or charbon_navigation_maritime == True or charbon_navigation_aerienne == True or charbon_fabrication_produits_mineraux_non_metalliques == True or charbon_secteurs_aeronautique_et_naval == True or charbon_double_usage == True:
             taxe = 0
         elif (
             installation_seqe == True
@@ -187,19 +173,7 @@ class taxe_interieure_consommation_charbon(Variable):
             installation_seqe == True
             and intensite_energetique_valeur_production >= 0.03
             and charbon_biomasse == True
-        ):
-            taxe = 0
-        elif charbon_navigation_interieure == True:
-            taxe = 0
-        elif charbon_navigation_maritime == True:
-            taxe = 0
-        elif charbon_navigation_aerienne == True:
-            taxe = 0
-        elif charbon_fabrication_produits_mineraux_non_metalliques == True:
-            taxe = 0
-        elif charbon_secteurs_aeronautique_et_naval == True:
-            taxe = 0
-        elif charbon_double_usage == True:
+        ) or charbon_navigation_interieure == True or charbon_navigation_maritime == True or charbon_navigation_aerienne == True or charbon_fabrication_produits_mineraux_non_metalliques == True or charbon_secteurs_aeronautique_et_naval == True or charbon_double_usage == True:
             taxe = 0
         elif (
             installation_seqe == True
@@ -224,7 +198,7 @@ class taxe_interieure_taxation_consommation_charbon_concurrence_internationale(
     entity = Etablissement
     definition_period = YEAR
     label = "Sous L312-75"
-    reference = ""  #
+    reference = ""
 
     def formula_2007_01_01(etablissement, period, parameters):
         # faut changer la date après
@@ -243,7 +217,7 @@ class taxe_interieure_taxation_consommation_charbon_seqe(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "Sous L312-75"
-    reference = ""  #
+    reference = ""
 
     def formula_2007_01_01(etablissement, period, parameters):
         # faut changer la date après
@@ -259,7 +233,7 @@ class taxe_interieure_taxation_consommation_charbon_taux_normal(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "Sous L312-65"
-    reference = ""  #
+    reference = ""
 
     def formula_2007_01_01(etablissement, period, parameters):
         # faut changer la date après
@@ -275,7 +249,7 @@ class assiette_ticc(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "Coal consumption taxable according to TICC"
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615177/2007-07-01/"  #
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615177/2007-07-01/"
 
     def formula_2007_01_01(etablissement, period, parameters):
         consommation_charbon = etablissement("consommation_charbon", period)
@@ -448,7 +422,7 @@ class instant_electrite(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "Coal consumption taxable according to TICC"
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615177/2007-07-01/"  #
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615177/2007-07-01/"
 
     def formula_2007_01_01(etablissement, period, parameters):
         total = parameters(

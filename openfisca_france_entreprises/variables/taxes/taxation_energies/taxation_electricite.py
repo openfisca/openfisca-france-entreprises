@@ -1,10 +1,9 @@
-from numpy import maximum as max_
 
-from openfisca_core.periods import MONTH, YEAR
+from openfisca_core.periods import YEAR
 from openfisca_core.variables import Variable
 
 # Import the Entities specifically defined for this tax and benefit system
-from openfisca_france_entreprises.entities import UniteLegale, Etablissement
+from openfisca_france_entreprises.entities import Etablissement
 
 
 class taxe_electricite(Variable):
@@ -12,7 +11,7 @@ class taxe_electricite(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = ""
-    reference = ""  #
+    reference = ""
 
     def formula_2002_01_01(etablissement, period, parameters):
         taxe_contribution_service_public_electricite = etablissement(
@@ -145,7 +144,7 @@ class taxe_contribution_service_public_electricite(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "Contribution au Servie Public de l'Électricité"
-    reference = ""  #
+    reference = ""
 
     def formula_2002_01_01(etablissement, period, parameters):
 
@@ -165,7 +164,7 @@ class taxe_interieure_sur_consommation_finale_electricite(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = ""
-    reference = ""  #
+    reference = ""
 
     def formula_2011_01_01(etablissement, period, parameters):
         """
@@ -202,19 +201,7 @@ class taxe_interieure_sur_consommation_finale_electricite(Variable):
         ):  # la taxe s'applique seulement aux grandes consommatrice d'électricité
             taxe = 0
             # faut avoir un amperage pour s'exonerer de cette taxe
-        elif electricite_double_usage == True:
-            taxe = 0
-        elif electricite_fabrication_produits_mineraux_non_metalliques == True:
-            taxe = 0
-        elif electricite_production_biens_electro_intensive == True:
-            taxe = 0
-        elif electricite_production_a_bord == True:
-            taxe = 0
-        elif electricite_production_electricite == True:
-            taxe = 0
-        elif electricite_transport_guide == True:
-            taxe = 0
-        elif installation_grande_consommatrice_energie == True:
+        elif electricite_double_usage == True or electricite_fabrication_produits_mineraux_non_metalliques == True or electricite_production_biens_electro_intensive == True or electricite_production_a_bord == True or electricite_production_electricite == True or electricite_transport_guide == True or installation_grande_consommatrice_energie == True:
             taxe = 0
         else:
             taxe = etablissement("taxe_accise_electricite_taux_normal", period)
@@ -255,15 +242,7 @@ class taxe_interieure_sur_consommation_finale_electricite(Variable):
             "risque_de_fuite_carbone_eta", period
         )
 
-        if electricite_double_usage == True:
-            taxe = 0
-        elif electricite_fabrication_produits_mineraux_non_metalliques == True:
-            taxe = 0
-        elif electricite_production_biens_electro_intensive == True:
-            taxe = 0
-        elif electricite_production_a_bord == True:
-            taxe = 0
-        elif electricite_production_electricite == True:
+        if electricite_double_usage == True or electricite_fabrication_produits_mineraux_non_metalliques == True or electricite_production_biens_electro_intensive == True or electricite_production_a_bord == True or electricite_production_electricite == True:
             taxe = 0
         elif electricite_installations_industrielles_hyper_electro_intensives == True:
             taxe = etablissement(
@@ -326,15 +305,7 @@ class taxe_interieure_sur_consommation_finale_electricite(Variable):
             "electricite_exploitation_aerodrome", period
         )
 
-        if electricite_double_usage == True:
-            taxe = 0
-        elif electricite_fabrication_produits_mineraux_non_metalliques == True:
-            taxe = 0
-        elif electricite_production_biens_electro_intensive == True:
-            taxe = 0
-        elif electricite_production_a_bord == True:
-            taxe = 0
-        elif electricite_production_electricite == True:
+        if electricite_double_usage == True or electricite_fabrication_produits_mineraux_non_metalliques == True or electricite_production_biens_electro_intensive == True or electricite_production_a_bord == True or electricite_production_electricite == True:
             taxe = 0
         elif electricite_installations_industrielles_hyper_electro_intensives == True:
             taxe = etablissement(
@@ -369,7 +340,7 @@ class taxe_accise_electricite(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = ""
-    reference = ""  #
+    reference = ""
 
     # aussi ticfe selon la période
     def formula_2022_01_01(etablissement, period, parameters):
@@ -411,15 +382,7 @@ class taxe_accise_electricite(Variable):
             "electricite_production_electricite", period
         )
 
-        if electricite_production_a_bord == True:
-            taxe = 0
-        elif electricite_double_usage == True:
-            taxe = 0
-        elif electricite_fabrication_produits_mineraux_non_metalliques == True:
-            taxe = 0
-        elif electricite_production_biens_electro_intensive == True:
-            taxe = 0
-        elif electricite_production_electricite == True:
+        if electricite_production_a_bord == True or electricite_double_usage == True or electricite_fabrication_produits_mineraux_non_metalliques == True or electricite_production_biens_electro_intensive == True or electricite_production_electricite == True:
             taxe = 0
         elif electricite_transport_guide == True:
             taxe = etablissement("taxe_electricite_transport_guide", period)
@@ -458,7 +421,7 @@ class taxe_accise_electricite(Variable):
         return summation
 
     def formula_2023_01_01(etablissement, period, parameters):
-        """par rapport à précedement, ajouté manutention_portuaire, réf : L312-48"""
+        """Par rapport à précedement, ajouté manutention_portuaire, réf : L312-48"""
         # voici les conditions à appliquer
         electro_intensive_activite_industrielle = etablissement(
             "electro_intensive_activite_industrielle", period
@@ -498,15 +461,7 @@ class taxe_accise_electricite(Variable):
             "electricite_production_electricite", period
         )
 
-        if electricite_production_a_bord == True:
-            taxe = 0
-        elif electricite_double_usage == True:
-            taxe = 0
-        elif electricite_fabrication_produits_mineraux_non_metalliques == True:
-            taxe = 0
-        elif electricite_production_biens_electro_intensive == True:
-            taxe = 0
-        elif electricite_production_electricite == True:
+        if electricite_production_a_bord == True or electricite_double_usage == True or electricite_fabrication_produits_mineraux_non_metalliques == True or electricite_production_biens_electro_intensive == True or electricite_production_electricite == True:
             taxe = 0
         elif electricite_transport_guide == True:
             taxe = etablissement("taxe_electricite_transport_guide", period)
@@ -541,7 +496,7 @@ class taxe_accise_electricite(Variable):
         return summation
 
     def formula_2025_01_01(etablissement, period, parameters):
-        """par rapport à précedement, ajouté consommation_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques et consommation_alimentation_aeronefs_stationnement_aerodromes_activites_economiques"""
+        """Par rapport à précedement, ajouté consommation_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques et consommation_alimentation_aeronefs_stationnement_aerodromes_activites_economiques"""
         # voici les conditions à appliquer
         electro_intensive_activite_industrielle = etablissement(
             "electro_intensive_activite_industrielle", period
@@ -589,15 +544,7 @@ class taxe_accise_electricite(Variable):
             period,
         )
 
-        if electricite_production_a_bord == True:
-            taxe = 0
-        elif electricite_double_usage == True:
-            taxe = 0
-        elif electricite_fabrication_produits_mineraux_non_metalliques == True:
-            taxe = 0
-        elif electricite_production_biens_electro_intensive == True:
-            taxe = 0
-        elif electricite_production_electricite == True:
+        if electricite_production_a_bord == True or electricite_double_usage == True or electricite_fabrication_produits_mineraux_non_metalliques == True or electricite_production_biens_electro_intensive == True or electricite_production_electricite == True:
             taxe = 0
         elif electricite_transport_guide == True:
             taxe = etablissement("taxe_electricite_transport_guide", period)
@@ -888,7 +835,7 @@ class taxe_accise_electricite_taux_normal(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "Sous L312-37"
-    reference = "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000044595989/LEGISCTA000044598327/#LEGISCTA000044603893:~:text=Les%20tarifs%20normaux%20de%20l%27accise%2C%20exprim%C3%A9s%20en%20euros%20par%20m%C3%A9gawattheure%2C%20sont%2C%20en%202015%2C%20pour%20chacune%20des%20cat%C3%A9gories%20fiscales%20de%20l%27%C3%A9lectricit%C3%A9%2C%20les%20suivants%20%3A"  #
+    reference = "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000044595989/LEGISCTA000044598327/#LEGISCTA000044603893:~:text=Les%20tarifs%20normaux%20de%20l%27accise%2C%20exprim%C3%A9s%20en%20euros%20par%20m%C3%A9gawattheure%2C%20sont%2C%20en%202015%2C%20pour%20chacune%20des%20cat%C3%A9gories%20fiscales%20de%20l%27%C3%A9lectricit%C3%A9%2C%20les%20suivants%20%3A"
 
     def formula_2011_01_01(etablissement, period, parameters):
         """
@@ -970,7 +917,7 @@ class taxe_accise_electricite_electro_intensive_activite_industrielle(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "sous L312-65"
-    reference = ""  #
+    reference = ""
 
     def formula_2022_01_01(etablissement, period, parameters):
         """ """
@@ -1011,7 +958,7 @@ class taxe_accise_electricite_electro_intensive_concurrence_internationale(Varia
     entity = Etablissement
     definition_period = YEAR
     label = "Sous L312-65"
-    reference = ""  #
+    reference = ""
 
     def formula_2022_01_01(etablissement, period, parameters):
         """ """
@@ -1072,7 +1019,7 @@ class assiette_taxe_electricite(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "assiette de la Taxe Intérieure sur la Consommation Finale d'Électricité"
-    reference = ""  #
+    reference = ""
 
     def formula_2002_01_01(etablissement, period, parameters):
         # sous CPSE

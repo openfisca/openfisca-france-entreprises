@@ -2,7 +2,7 @@
 extends: relaxed
 
 rules:
-  truthy: enable
+  truthy: disable  # OpenFisca parameters use yes/no values
   # Disable warning level rules to remove flood in yamllint output
   indentation: disable
   line-length: disable

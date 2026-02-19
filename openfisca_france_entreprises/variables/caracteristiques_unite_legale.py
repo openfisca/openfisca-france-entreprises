@@ -10,7 +10,7 @@ See https://openfisca.org/doc/key-concepts/variables.html
 from openfisca_core.model_api import *
 
 # Import the Entities specifically defined for this tax and benefit system
-from openfisca_france_entreprises.entities import UniteLegale, Etablissement
+from openfisca_france_entreprises.entities import UniteLegale
 
 
 class apen(Enum):

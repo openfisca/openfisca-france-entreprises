@@ -1,10 +1,9 @@
-from openfisca_core.indexed_enums import Enum
-from openfisca_core.periods import MONTH, YEAR
-from openfisca_core.variables import Variable
 from openfisca_core.model_api import *
+from openfisca_core.periods import YEAR
+from openfisca_core.variables import Variable
 
 # Import the Entities specifically defined for this tax and benefit system
-from openfisca_france_entreprises.entities import UniteLegale, Etablissement
+from openfisca_france_entreprises.entities import Etablissement
 
 
 class tccfe_coefficient_multiplicateur_normal_2022(Variable):

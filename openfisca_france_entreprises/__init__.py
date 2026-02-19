@@ -10,15 +10,15 @@ See https://openfisca.org/doc/key-concepts/tax_and_benefit_system.html
 
 import os
 
-from openfisca_core import indexed_enums
-from openfisca_core.taxbenefitsystems import TaxBenefitSystem
-
 # Workaround for enum index overflow: openfisca_core encodes enum indices as uint8
 # (0-255), but our NAF enum has 733 members. Indices > 255 overflow (e.g. 555 -> 43).
 # Reimplement encoding to use int16 (ENUM_ARRAY_DTYPE) so all indices are preserved.
 # We patch both _utils and the enum module, since enum.py does "from _utils import ..."
 # at load time and keeps a reference to the original functions.
 import numpy as _np
+
+from openfisca_core import indexed_enums
+from openfisca_core.taxbenefitsystems import TaxBenefitSystem
 
 _enum_dtype = indexed_enums.ENUM_ARRAY_DTYPE
 _utils = indexed_enums._utils  # noqa: SLF001
@@ -51,7 +51,6 @@ for _mod in (_utils, _enum_module):
 
 from openfisca_france_entreprises import entities
 from openfisca_france_entreprises.situation_examples import couple
-
 
 COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
 
