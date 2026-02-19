@@ -1,9 +1,29 @@
+from numpy import logical_and, logical_or
 
+from openfisca_core.model_api import not_, select
 from openfisca_core.periods import YEAR
 from openfisca_core.variables import Variable
 
 # Import the Entities specifically defined for this tax and benefit system
 from openfisca_france_entreprises.entities import Etablissement
+
+
+def _and(*args):
+    r = args[0]
+    for a in args[1:]:
+        r = logical_and(r, a)
+    return r
+
+
+def _or(*args):
+    r = args[0]
+    for a in args[1:]:
+        r = logical_or(r, a)
+    return r
+
+
+def _not(x):
+    return not_(x)
 
 
 class taxe_electricite(Variable):
@@ -190,20 +210,27 @@ class taxe_interieure_sur_consommation_finale_electricite(Variable):
 
         amperage = etablissement("amperage", period)
 
-        if (
-            amperage != 0
-            and amperage
+        condition_amperage = _and(
+            amperage != 0,
+            amperage
             <= parameters(
                 period
-            ).energies.electricite.ticfe.categorie_fiscale_haut_puissance
-        ):  # la taxe s'applique seulement aux grandes consommatrice d'électricité
-            taxe = 0
-            # faut avoir un amperage pour s'exonerer de cette taxe
-        elif electricite_double_usage == True or electricite_fabrication_produits_mineraux_non_metalliques == True or electricite_production_biens_electro_intensive == True or electricite_production_a_bord == True or electricite_production_electricite == True or electricite_transport_guide == True or installation_grande_consommatrice_energie == True:
-            taxe = 0
-        else:
-            taxe = etablissement("taxe_accise_electricite_taux_normal", period)
-
+            ).energies.electricite.ticfe.categorie_fiscale_haut_puissance,
+        )
+        condition_exoneration = _or(
+            electricite_double_usage,
+            electricite_fabrication_produits_mineraux_non_metalliques,
+            electricite_production_biens_electro_intensive,
+            electricite_production_a_bord,
+            electricite_production_electricite,
+            electricite_transport_guide,
+            installation_grande_consommatrice_energie,
+        )
+        taxe = select(
+            [condition_amperage, condition_exoneration],
+            [0, 0],
+            default=etablissement("taxe_accise_electricite_taux_normal", period),
+        )
         summation = taxe
         return summation
 
@@ -238,27 +265,36 @@ class taxe_interieure_sur_consommation_finale_electricite(Variable):
             "risque_de_fuite_carbone_eta", period
         )
 
-        if electricite_double_usage == True or electricite_fabrication_produits_mineraux_non_metalliques == True or electricite_production_biens_electro_intensive == True or electricite_production_a_bord == True or electricite_production_electricite == True:
-            taxe = 0
-        elif electricite_installations_industrielles_hyper_electro_intensives == True:
-            taxe = etablissement(
-                "taxe_electricite_installations_industrielles_hyper_electro_intensives",
-                period,
-            )
-        elif electricite_installations_industrielles_electro_intensives == True:
-            taxe = etablissement(
-                "taxe_electricite_installations_industrielles_electro_intensives",
-                period,
-            )
-        elif electricite_transport_guide == True:
-            taxe = etablissement("taxe_electricite_transport_guide", period)
-            # dès 1 janvier 2017, ça comprends l'autobus hybride rechargeable ou électrique
-        elif risque_de_fuite_carbone_eta == True:
-            taxe = etablissement("taxe_electricite_risque_de_fuite_de_carbone", period)
-
-        else:
-            taxe = etablissement("taxe_accise_electricite_taux_normal", period)
-
+        condition_exoneration = _or(
+            electricite_double_usage,
+            electricite_fabrication_produits_mineraux_non_metalliques,
+            electricite_production_biens_electro_intensive,
+            electricite_production_a_bord,
+            electricite_production_electricite,
+        )
+        taxe = select(
+            [
+                condition_exoneration,
+                electricite_installations_industrielles_hyper_electro_intensives != 0,
+                electricite_installations_industrielles_electro_intensives != 0,
+                electricite_transport_guide != 0,
+                risque_de_fuite_carbone_eta != 0,
+            ],
+            [
+                0,
+                etablissement(
+                    "taxe_electricite_installations_industrielles_hyper_electro_intensives",
+                    period,
+                ),
+                etablissement(
+                    "taxe_electricite_installations_industrielles_electro_intensives",
+                    period,
+                ),
+                etablissement("taxe_electricite_transport_guide", period),
+                etablissement("taxe_electricite_risque_de_fuite_de_carbone", period),
+            ],
+            default=etablissement("taxe_accise_electricite_taux_normal", period),
+        )
         summation = taxe
         return summation
 
@@ -299,30 +335,40 @@ class taxe_interieure_sur_consommation_finale_electricite(Variable):
             "electricite_exploitation_aerodrome", period
         )
 
-        if electricite_double_usage == True or electricite_fabrication_produits_mineraux_non_metalliques == True or electricite_production_biens_electro_intensive == True or electricite_production_a_bord == True or electricite_production_electricite == True:
-            taxe = 0
-        elif electricite_installations_industrielles_hyper_electro_intensives == True:
-            taxe = etablissement(
-                "taxe_electricite_installations_industrielles_hyper_electro_intensives",
-                period,
-            )
-        elif electricite_installations_industrielles_electro_intensives == True:
-            taxe = etablissement(
-                "taxe_electricite_installations_industrielles_electro_intensives",
-                period,
-            )
-        elif electricite_transport_guide == True:
-            taxe = etablissement("taxe_electricite_transport_guide", period)
-            # dès 1 janvier 2017, ça comprends l'autobus hybride rechargeable ou électrique
-        elif risque_de_fuite_carbone_eta == True:
-            taxe = etablissement("taxe_electricite_risque_de_fuite_de_carbone", period)
-        elif electricite_centres_de_stockage_donnees == True:
-            taxe = etablissement("taxe_electricite_centres_de_stockage_donnees", period)
-        elif electricite_exploitation_aerodrome == True:
-            taxe = etablissement("taxe_electricite_exploitation_aerodrome", period)
-        else:
-            taxe = etablissement("taxe_accise_electricite_taux_normal", period)
-
+        condition_exoneration = _or(
+            electricite_double_usage,
+            electricite_fabrication_produits_mineraux_non_metalliques,
+            electricite_production_biens_electro_intensive,
+            electricite_production_a_bord,
+            electricite_production_electricite,
+        )
+        taxe = select(
+            [
+                condition_exoneration,
+                electricite_installations_industrielles_hyper_electro_intensives != 0,
+                electricite_installations_industrielles_electro_intensives != 0,
+                electricite_transport_guide != 0,
+                risque_de_fuite_carbone_eta != 0,
+                electricite_centres_de_stockage_donnees != 0,
+                electricite_exploitation_aerodrome != 0,
+            ],
+            [
+                0,
+                etablissement(
+                    "taxe_electricite_installations_industrielles_hyper_electro_intensives",
+                    period,
+                ),
+                etablissement(
+                    "taxe_electricite_installations_industrielles_electro_intensives",
+                    period,
+                ),
+                etablissement("taxe_electricite_transport_guide", period),
+                etablissement("taxe_electricite_risque_de_fuite_de_carbone", period),
+                etablissement("taxe_electricite_centres_de_stockage_donnees", period),
+                etablissement("taxe_electricite_exploitation_aerodrome", period),
+            ],
+            default=etablissement("taxe_accise_electricite_taux_normal", period),
+        )
         summation = taxe
         return summation
 
@@ -376,41 +422,49 @@ class taxe_accise_electricite(Variable):
             "electricite_production_electricite", period
         )
 
-        if electricite_production_a_bord == True or electricite_double_usage == True or electricite_fabrication_produits_mineraux_non_metalliques == True or electricite_production_biens_electro_intensive == True or electricite_production_electricite == True:
-            taxe = 0
-        elif electricite_transport_guide == True:
-            taxe = etablissement("taxe_electricite_transport_guide", period)
-        elif electricite_transport_collectif_personnes == True:
-            taxe = etablissement(
-                "taxe_electricite_transport_collectif_personnes", period
-            )
-        elif electricite_alimentation_a_quai == True:
-            taxe = etablissement("taxe_electricite_alimentation_a_quai", period)
-        elif electro_intensive_concurrence_internationale == True:
-            taxe = etablissement(
-                "taxe_accise_electricite_electro_intensive_concurrence_internationale",
-                period,
-            )
-        elif electro_intensive_activite_industrielle == True:
-            taxe = etablissement(
-                "taxe_accise_electricite_electro_intensive_activite_industrielle",
-                period,
-            )
-        elif (
-            electricite_exploitation_aerodrome == True
-            and electro_intensite
+        condition_exoneration = _or(
+            electricite_production_a_bord,
+            electricite_double_usage,
+            electricite_fabrication_produits_mineraux_non_metalliques,
+            electricite_production_biens_electro_intensive,
+            electricite_production_electricite,
+        )
+        condition_aerodrome = _and(
+            electricite_exploitation_aerodrome,
+            electro_intensite
             > parameters(
                 period
-            ).energies.electricite.ticfe.aerodromes_electro_intensite.yaml
-        ):
-            taxe = etablissement("taxe_electricite_exploitation_aerodrome", period)
-        elif electricite_centres_de_stockage_donnees == True:
-            taxe = etablissement("taxe_electricite_centres_de_stockage_donnees", period)
-        else:
-            taxe = etablissement("taxe_accise_electricite_taux_normal", period)
-
-        # voici toutes les autres formes de la taxe
-
+            ).energies.electricite.ticfe.aerodromes_electro_intensite,
+        )
+        taxe = select(
+            [
+                condition_exoneration,
+                electricite_transport_guide != 0,
+                electricite_transport_collectif_personnes != 0,
+                electricite_alimentation_a_quai != 0,
+                electro_intensive_concurrence_internationale != 0,
+                electro_intensive_activite_industrielle != 0,
+                condition_aerodrome,
+                electricite_centres_de_stockage_donnees != 0,
+            ],
+            [
+                0,
+                etablissement("taxe_electricite_transport_guide", period),
+                etablissement("taxe_electricite_transport_collectif_personnes", period),
+                etablissement("taxe_electricite_alimentation_a_quai", period),
+                etablissement(
+                    "taxe_accise_electricite_electro_intensive_concurrence_internationale",
+                    period,
+                ),
+                etablissement(
+                    "taxe_accise_electricite_electro_intensive_activite_industrielle",
+                    period,
+                ),
+                etablissement("taxe_electricite_exploitation_aerodrome", period),
+                etablissement("taxe_electricite_centres_de_stockage_donnees", period),
+            ],
+            default=etablissement("taxe_accise_electricite_taux_normal", period),
+        )
         summation = taxe
         return summation
 
@@ -455,37 +509,44 @@ class taxe_accise_electricite(Variable):
             "electricite_production_electricite", period
         )
 
-        if electricite_production_a_bord == True or electricite_double_usage == True or electricite_fabrication_produits_mineraux_non_metalliques == True or electricite_production_biens_electro_intensive == True or electricite_production_electricite == True:
-            taxe = 0
-        elif electricite_transport_guide == True:
-            taxe = etablissement("taxe_electricite_transport_guide", period)
-        elif electricite_transport_collectif_personnes == True:
-            taxe = etablissement(
-                "taxe_electricite_transport_collectif_personnes", period
-            )
-        elif electricite_manutention_portuaire == True:
-            taxe = etablissement("taxe_electricite_manutention_portuaire", period)
-        elif electricite_alimentation_a_quai == True:
-            taxe = etablissement("taxe_electricite_alimentation_a_quai", period)
-        elif electro_intensive_concurrence_internationale == True:
-            taxe = etablissement(
-                "taxe_accise_electricite_electro_intensive_concurrence_internationale",
-                period,
-            )
-        elif electro_intensive_activite_industrielle == True:
-            taxe = etablissement(
-                "taxe_accise_electricite_electro_intensive_activite_industrielle",
-                period,
-            )
-        elif electricite_exploitation_aerodrome == True:
-            taxe = etablissement("taxe_electricite_exploitation_aerodrome", period)
-        elif electricite_centres_de_stockage_donnees == True:
-            taxe = etablissement("taxe_electricite_centres_de_stockage_donnees", period)
-        else:
-            taxe = etablissement("taxe_accise_electricite_taux_normal", period)
-
-        # voici toutes les autres formes de la taxe
-
+        condition_exoneration = _or(
+            electricite_production_a_bord,
+            electricite_double_usage,
+            electricite_fabrication_produits_mineraux_non_metalliques,
+            electricite_production_biens_electro_intensive,
+            electricite_production_electricite,
+        )
+        taxe = select(
+            [
+                condition_exoneration,
+                electricite_transport_guide != 0,
+                electricite_transport_collectif_personnes != 0,
+                electricite_manutention_portuaire != 0,
+                electricite_alimentation_a_quai != 0,
+                electro_intensive_concurrence_internationale != 0,
+                electro_intensive_activite_industrielle != 0,
+                electricite_exploitation_aerodrome != 0,
+                electricite_centres_de_stockage_donnees != 0,
+            ],
+            [
+                0,
+                etablissement("taxe_electricite_transport_guide", period),
+                etablissement("taxe_electricite_transport_collectif_personnes", period),
+                etablissement("taxe_electricite_manutention_portuaire", period),
+                etablissement("taxe_electricite_alimentation_a_quai", period),
+                etablissement(
+                    "taxe_accise_electricite_electro_intensive_concurrence_internationale",
+                    period,
+                ),
+                etablissement(
+                    "taxe_accise_electricite_electro_intensive_activite_industrielle",
+                    period,
+                ),
+                etablissement("taxe_electricite_exploitation_aerodrome", period),
+                etablissement("taxe_electricite_centres_de_stockage_donnees", period),
+            ],
+            default=etablissement("taxe_accise_electricite_taux_normal", period),
+        )
         summation = taxe
         return summation
 
@@ -538,53 +599,56 @@ class taxe_accise_electricite(Variable):
             period,
         )
 
-        if electricite_production_a_bord == True or electricite_double_usage == True or electricite_fabrication_produits_mineraux_non_metalliques == True or electricite_production_biens_electro_intensive == True or electricite_production_electricite == True:
-            taxe = 0
-        elif electricite_transport_guide == True:
-            taxe = etablissement("taxe_electricite_transport_guide", period)
-        elif electricite_transport_collectif_personnes == True:
-            taxe = etablissement(
-                "taxe_electricite_transport_collectif_personnes", period
-            )
-        elif electricite_manutention_portuaire == True:
-            taxe = etablissement("taxe_electricite_manutention_portuaire", period)
-        elif electricite_alimentation_a_quai == True:
-            taxe = etablissement("taxe_electricite_alimentation_a_quai", period)
-        elif electro_intensive_concurrence_internationale == True:
-            taxe = etablissement(
-                "taxe_accise_electricite_electro_intensive_concurrence_internationale",
-                period,
-            )
-        elif electro_intensive_activite_industrielle == True:
-            taxe = etablissement(
-                "taxe_accise_electricite_electro_intensive_activite_industrielle",
-                period,
-            )
-        elif electricite_exploitation_aerodrome == True:
-            taxe = etablissement("taxe_electricite_exploitation_aerodrome", period)
-        elif electricite_centres_de_stockage_donnees == True:
-            taxe = etablissement("taxe_electricite_centres_de_stockage_donnees", period)
-        elif (
-            electricite_alimentation_aeronefs_stationnement_aerodromes_activites_economiques
-            == True
-        ):
-            taxe = etablissement(
-                "taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_economiques",
-                period,
-            )
-        elif (
-            electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques
-            == True
-        ):
-            taxe = etablissement(
-                "taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques",
-                period,
-            )
-        else:
-            taxe = etablissement("taxe_accise_electricite_taux_normal", period)
-
-        # voici toutes les autres formes de la taxe
-
+        condition_exoneration = _or(
+            electricite_production_a_bord,
+            electricite_double_usage,
+            electricite_fabrication_produits_mineraux_non_metalliques,
+            electricite_production_biens_electro_intensive,
+            electricite_production_electricite,
+        )
+        taxe = select(
+            [
+                condition_exoneration,
+                electricite_transport_guide != 0,
+                electricite_transport_collectif_personnes != 0,
+                electricite_manutention_portuaire != 0,
+                electricite_alimentation_a_quai != 0,
+                electro_intensive_concurrence_internationale != 0,
+                electro_intensive_activite_industrielle != 0,
+                electricite_exploitation_aerodrome != 0,
+                electricite_centres_de_stockage_donnees != 0,
+                electricite_alimentation_aeronefs_stationnement_aerodromes_activites_economiques
+                != 0,
+                electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques
+                != 0,
+            ],
+            [
+                0,
+                etablissement("taxe_electricite_transport_guide", period),
+                etablissement("taxe_electricite_transport_collectif_personnes", period),
+                etablissement("taxe_electricite_manutention_portuaire", period),
+                etablissement("taxe_electricite_alimentation_a_quai", period),
+                etablissement(
+                    "taxe_accise_electricite_electro_intensive_concurrence_internationale",
+                    period,
+                ),
+                etablissement(
+                    "taxe_accise_electricite_electro_intensive_activite_industrielle",
+                    period,
+                ),
+                etablissement("taxe_electricite_exploitation_aerodrome", period),
+                etablissement("taxe_electricite_centres_de_stockage_donnees", period),
+                etablissement(
+                    "taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_economiques",
+                    period,
+                ),
+                etablissement(
+                    "taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques",
+                    period,
+                ),
+            ],
+            default=etablissement("taxe_accise_electricite_taux_normal", period),
+        )
         summation = taxe
         return summation
 
@@ -919,29 +983,39 @@ class taxe_accise_electricite_electro_intensive_activite_industrielle(Variable):
         )
 
         assiette = etablissement("assiette_taxe_electricite", period)
-        if electro_intensive_activite_industrielle == True:
-            if electro_intensite != 0 and electro_intensite < 0.5:
-                taxe = (
-                    assiette
-                    * parameters(
-                        period
-                    ).energies.electricite.ticfe.electro_intensive.activite_industrielle.electro_intensive_0_virgule_5
-                )
-            elif electro_intensite != 0 and electro_intensite < 3.375:
-                taxe = (
-                    assiette
-                    * parameters(
-                        period
-                    ).energies.electricite.ticfe.electro_intensive.activite_industrielle.electro_intensive_3_virgule_375
-                )
-            else:
-                taxe = (
-                    assiette
-                    * parameters(
-                        period
-                    ).energies.electricite.ticfe.electro_intensive.activite_industrielle.electro_intensive_6_virgule_75
-                )
-
+        condition_05 = _and(
+            electro_intensive_activite_industrielle,
+            electro_intensite != 0,
+            electro_intensite < 0.5,
+        )
+        condition_3375 = _and(
+            electro_intensive_activite_industrielle,
+            electro_intensite != 0,
+            electro_intensite >= 0.5,
+            electro_intensite < 3.375,
+        )
+        condition_675 = _and(
+            electro_intensive_activite_industrielle,
+            _or(electro_intensite == 0, electro_intensite >= 3.375),
+        )
+        taxe = select(
+            [condition_05, condition_3375, condition_675],
+            [
+                assiette
+                * parameters(
+                    period
+                ).energies.electricite.ticfe.electro_intensive.activite_industrielle.electro_intensive_0_virgule_5,
+                assiette
+                * parameters(
+                    period
+                ).energies.electricite.ticfe.electro_intensive.activite_industrielle.electro_intensive_3_virgule_375,
+                assiette
+                * parameters(
+                    period
+                ).energies.electricite.ticfe.electro_intensive.activite_industrielle.electro_intensive_6_virgule_75,
+            ],
+            default=0,
+        )
         return taxe
 
 
@@ -966,42 +1040,48 @@ class taxe_accise_electricite_electro_intensive_concurrence_internationale(Varia
             "electro_intensive_concurrence_internationale", period
         )
 
-        if electro_intensive_concurrence_internationale == True:
-            if (
-                electro_intensite > 13.5
-                and risque_de_fuite_carbone_eta == True
-                and intensite_echanges_avec_pays_tiers > 25
-            ):
-                taxe = (
-                    assiette
-                    * parameters(
-                        period
-                    ).energies.electricite.ticfe.electro_intensive.concurrence_internationale.electro_intensive_13_virgule_5
-                )
-                # energies.electricite.ticfe.electro_intensive.concurrence_internationale.electro_intensive_13_virgule_5
-            elif electro_intensite > 6.75:
-                taxe = (
-                    assiette
-                    * parameters(
-                        period
-                    ).energies.electricite.ticfe.electro_intensive.concurrence_internationale.electro_intensive_6_virgule_75
-                )
-
-            elif electro_intensite > 3.375:
-                taxe = (
-                    assiette
-                    * parameters(
-                        period
-                    ).energies.electricite.ticfe.electro_intensive.concurrence_internationale.electro_intensive_3_virgule_375
-                )
-
-            else:
-                taxe = (
-                    assiette
-                    * parameters(
-                        period
-                    ).energies.electricite.ticfe.electro_intensive.concurrence_internationale.electro_intensive_0_virgule_5
-                )
+        condition_13_5 = _and(
+            electro_intensive_concurrence_internationale,
+            electro_intensite > 13.5,
+            risque_de_fuite_carbone_eta,
+            intensite_echanges_avec_pays_tiers > 25,
+        )
+        condition_6_75 = _and(
+            electro_intensive_concurrence_internationale,
+            electro_intensite > 6.75,
+            electro_intensite <= 13.5,
+        )
+        condition_3_375 = _and(
+            electro_intensive_concurrence_internationale,
+            electro_intensite > 3.375,
+            electro_intensite <= 6.75,
+        )
+        condition_0_5 = _and(
+            electro_intensive_concurrence_internationale,
+            electro_intensite <= 3.375,
+        )
+        taxe = select(
+            [condition_13_5, condition_6_75, condition_3_375, condition_0_5],
+            [
+                assiette
+                * parameters(
+                    period
+                ).energies.electricite.ticfe.electro_intensive.concurrence_internationale.electro_intensive_13_virgule_5,
+                assiette
+                * parameters(
+                    period
+                ).energies.electricite.ticfe.electro_intensive.concurrence_internationale.electro_intensive_6_virgule_75,
+                assiette
+                * parameters(
+                    period
+                ).energies.electricite.ticfe.electro_intensive.concurrence_internationale.electro_intensive_3_virgule_375,
+                assiette
+                * parameters(
+                    period
+                ).energies.electricite.ticfe.electro_intensive.concurrence_internationale.electro_intensive_0_virgule_5,
+            ],
+            default=0,
+        )
         return taxe
 
 

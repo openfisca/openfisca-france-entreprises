@@ -11,11 +11,32 @@ Les commentaires avec *** indiquent qu'il y a des problèmes
 # Import from numpy the operations you need to apply on OpenFisca's population vectors
 # Import from openfisca-core the Python objects used to code the legislation in OpenFisca
 
+from numpy import logical_and, logical_or
+
+from openfisca_core.model_api import not_, select
 from openfisca_core.periods import YEAR
 from openfisca_core.variables import Variable
 
 # Import the Entities specifically defined for this tax and benefit system
 from openfisca_france_entreprises.entities import Etablissement
+
+
+def _and(*args):
+    r = args[0]
+    for a in args[1:]:
+        r = logical_and(r, a)
+    return r
+
+
+def _or(*args):
+    r = args[0]
+    for a in args[1:]:
+        r = logical_or(r, a)
+    return r
+
+
+def _not(x):
+    return not_(x)
 
 
 class taxe_gaz_naturel(Variable):
@@ -53,14 +74,13 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
         # ajouté gaz_matiere_premiere
 
         gaz_matiere_premiere = etablissement("gaz_matiere_premiere", period)
-
-        if gaz_matiere_premiere == True:
-            taxe = 0
-        else:
-            taxe = etablissement(
+        taxe = select(
+            [gaz_matiere_premiere],
+            [0],
+            default=etablissement(
                 "taxe_interieure_consommation_gaz_naturel_taux_normal", period
-            )
-
+            ),
+        )
         return taxe
 
     def formula_2003_01_01(etablissement, period, parameters):
@@ -68,14 +88,14 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
 
         gaz_huiles_minerales = etablissement("gaz_huiles_minerales", period)
         gaz_matiere_premiere = etablissement("gaz_matiere_premiere", period)
-
-        if gaz_matiere_premiere == True or gaz_huiles_minerales == True:
-            taxe = 0
-        else:
-            taxe = etablissement(
+        condition_exoneration = _or(gaz_matiere_premiere, gaz_huiles_minerales)
+        taxe = select(
+            [condition_exoneration],
+            [0],
+            default=etablissement(
                 "taxe_interieure_consommation_gaz_naturel_taux_normal", period
-            )
-
+            ),
+        )
         return taxe
 
     def formula_2008_01_01(etablissement, period, parameters):
@@ -100,14 +120,18 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
         gaz_extraction_production = etablissement("gaz_extraction_production", period)
         gaz_double_usage = etablissement("gaz_double_usage", period)
 
-        if gaz_production_mineraux_non_metalliques == True or gaz_double_usage == True or gaz_extraction_production == True:
-            taxe = 0
-
-        else:
-            taxe = etablissement(
+        condition_exoneration = _or(
+            gaz_production_mineraux_non_metalliques,
+            gaz_double_usage,
+            gaz_extraction_production,
+        )
+        taxe = select(
+            [condition_exoneration],
+            [0],
+            default=etablissement(
                 "taxe_interieure_consommation_gaz_naturel_taux_normal", period
-            )
-
+            ),
+        )
         return taxe
 
     def formula_2014_01_01(etablissement, period, parameters):
@@ -135,12 +159,17 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
         )
         gaz_extraction_production = etablissement("gaz_extraction_production", period)
 
-        if gaz_production_mineraux_non_metalliques == True or gaz_double_usage == True or gaz_extraction_production == True:
-            taxe = 0
-        elif seqe == True and grande_consommatrice == True:
-            taxe = taxe_interieure_consommation_gaz_naturel_grande_consommatrice
-        else:
-            taxe = taxe_interieure_consommation_gaz_naturel_taux_normal
+        condition_exoneration = _or(
+            gaz_production_mineraux_non_metalliques,
+            gaz_double_usage,
+            gaz_extraction_production,
+        )
+        condition_grande_consommatrice = _and(seqe, grande_consommatrice)
+        taxe = select(
+            [condition_exoneration, condition_grande_consommatrice],
+            [0, taxe_interieure_consommation_gaz_naturel_grande_consommatrice],
+            default=taxe_interieure_consommation_gaz_naturel_taux_normal,
+        )
         return taxe
 
     def formula_2019_01_01(etablissement, period, parameters):
@@ -177,22 +206,32 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
             "consommation_par_valeur_ajoutee", period
         )
 
-        if gaz_double_usage == True or gaz_production_mineraux_non_metalliques == True or gaz_extraction_production == True:
-            taxe = 0
-        elif (
-            gaz_dehydration_legumes_et_plantes_aromatiques == True
-            and consommation_par_valeur_ajoutee
-            >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes
-        ):  # 0,0008 MWh par Euro
-            taxe = etablissement(
-                "taxe_interieure_consommation_gaz_naturel_legumes", period
-            )
-            # ***cette condition est valide jusqu'à 2022
-        elif seqe == True and grande_consommatrice == True:
-            taxe = taxe_interieure_consommation_gaz_naturel_grande_consommatrice
-        else:
-            taxe = taxe_interieure_consommation_gaz_naturel_taux_normal
-
+        condition_exoneration = _or(
+            gaz_double_usage,
+            gaz_production_mineraux_non_metalliques,
+            gaz_extraction_production,
+        )
+        condition_legumes = _and(
+            gaz_dehydration_legumes_et_plantes_aromatiques,
+            consommation_par_valeur_ajoutee
+            >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes,
+        )  # 0,0008 MWh par Euro
+        condition_grande_consommatrice = _and(seqe, grande_consommatrice)
+        taxe = select(
+            [
+                condition_exoneration,
+                condition_legumes,
+                condition_grande_consommatrice,
+            ],
+            [
+                0,
+                etablissement(
+                    "taxe_interieure_consommation_gaz_naturel_legumes", period
+                ),
+                taxe_interieure_consommation_gaz_naturel_grande_consommatrice,
+            ],
+            default=taxe_interieure_consommation_gaz_naturel_taux_normal,
+        )
         return taxe
 
     def formula_2020_01_01(etablissement, period, parameters):
@@ -229,22 +268,33 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
             "consommation_par_valeur_ajoutee", period
         )
 
-        if gaz_double_usage == True or gaz_extraction_production == True or gaz_production_mineraux_non_metalliques == True or gaz_travaux_agricoles_et_forestiers == True:
-            taxe = 0
-        elif (
-            gaz_dehydration_legumes_et_plantes_aromatiques == True
-            and consommation_par_valeur_ajoutee
-            >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes
-        ):  # 0.0008 MWh par Euro
-            taxe = etablissement(
-                "taxe_interieure_consommation_gaz_naturel_legumes", period
-            )
-            # ***cette condition est valide jusqu'à 2022
-        elif seqe == True and grande_consommatrice == True:
-            taxe = ticgn_grande_conso
-        else:
-            taxe = ticgn_normal
-
+        condition_exoneration = _or(
+            gaz_double_usage,
+            gaz_extraction_production,
+            gaz_production_mineraux_non_metalliques,
+            gaz_travaux_agricoles_et_forestiers,
+        )
+        condition_legumes = _and(
+            gaz_dehydration_legumes_et_plantes_aromatiques,
+            consommation_par_valeur_ajoutee
+            >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes,
+        )  # 0.0008 MWh par Euro
+        condition_grande_consommatrice = _and(seqe, grande_consommatrice)
+        taxe = select(
+            [
+                condition_exoneration,
+                condition_legumes,
+                condition_grande_consommatrice,
+            ],
+            [
+                0,
+                etablissement(
+                    "taxe_interieure_consommation_gaz_naturel_legumes", period
+                ),
+                ticgn_grande_conso,
+            ],
+            default=ticgn_normal,
+        )
         return taxe
 
 
@@ -308,58 +358,77 @@ class taxe_accise_gaz_naturel_combustible(Variable):
         )
         intensite_energetique = etablissement("intensite_energetique", period)
 
-        if gaz_double_usage == True:
-            taxe = 0
-        elif gaz_travaux_agricoles_et_forestiers == True:
-            taxe = (
-                etablissement("consommation_gaz_combustible", period)
-                * parameters(
-                    period
-                ).energies.gaz_naturel.accise.travaux_agricoles_forestaires
-            )
-        elif gaz_production_mineraux_non_metalliques == True or gaz_extraction_production == True or consommation_gaz_usage_non_combustible == True:
-            taxe = 0
-        elif (
-            gaz_dehydration_legumes_et_plantes_aromatiques == True
-            and intensite_energetique
+        condition_double_usage = gaz_double_usage
+        taxe_travaux_agricoles = (
+            etablissement("consommation_gaz_combustible", period)
+            * parameters(
+                period
+            ).energies.gaz_naturel.accise.travaux_agricoles_forestaires
+        )
+        condition_travaux_agricoles = gaz_travaux_agricoles_et_forestiers
+        condition_exoneration_autres = _or(
+            gaz_production_mineraux_non_metalliques,
+            gaz_extraction_production,
+            consommation_gaz_usage_non_combustible,
+        )
+        condition_legumes = _and(
+            gaz_dehydration_legumes_et_plantes_aromatiques,
+            intensite_energetique
             >= parameters(
                 period
-            ).energies.gaz_naturel.ticgn.seuil_facture_energie_par_va
-        ):
-            # le niveau d'intensité énergetique en valeur ajoutée est au moins égale à 0,6744 %.
-            taxe = etablissement(
-                "taxe_interieure_consommation_gaz_naturel_legumes", period
-            )
-            # cette condition est mis en effet dès 2022
-        elif (seqe == True and intensite_energetique_valeur_production >= 0.03) or (
-            seqe == True and intensite_energetique_valeur_ajoutee >= 0.005
-        ):
-            taxe = etablissement(
-                "taxe_interieure_taxation_consommation_gaz_naturel_seqe"
-            )
-            # ***faut faire un test pour .
-        elif (
-            seqe == False
-            and risque_de_fuite_carbone_eta == True
-            and intensite_energetique_valeur_production >= 0.03
-        ) or (
-            seqe == False
-            and risque_de_fuite_carbone_eta == True
-            and intensite_energetique_valeur_ajoutee >= 0.005
-        ):
-            taxe = etablissement(
-                "taxe_interieure_taxation_consommation_gaz_naturel_concurrence_internationale"
-            )
-            # ***faut faire un test pour
-            # ça n'existe plus dès 2024
-        elif seqe == True and grande_consommatrice == True:
-            taxe = ticgn_grande_conso
-        else:
-            taxe = (
-                etablissement("consommation_gaz_combustible", period)
-                * parameters(period).energies.gaz_naturel.accise.taux_normal_combustible
-            )
-        # *** c'est plus l'assiette mais les consommation individuelle
+            ).energies.gaz_naturel.ticgn.seuil_facture_energie_par_va,
+        )
+        condition_seqe = _or(
+            _and(seqe, intensite_energetique_valeur_production >= 0.03),
+            _and(seqe, intensite_energetique_valeur_ajoutee >= 0.005),
+        )
+        condition_concurrence = _or(
+            _and(
+                _not(seqe),
+                risque_de_fuite_carbone_eta,
+                intensite_energetique_valeur_production >= 0.03,
+            ),
+            _and(
+                _not(seqe),
+                risque_de_fuite_carbone_eta,
+                intensite_energetique_valeur_ajoutee >= 0.005,
+            ),
+        )
+        condition_grande_consommatrice = _and(seqe, grande_consommatrice)
+        taxe_normal_combustible = (
+            etablissement("consommation_gaz_combustible", period)
+            * parameters(period).energies.gaz_naturel.accise.taux_normal_combustible
+        )
+
+        taxe = select(
+            [
+                condition_double_usage,
+                condition_travaux_agricoles,
+                condition_exoneration_autres,
+                condition_legumes,
+                condition_seqe,
+                condition_concurrence,
+                condition_grande_consommatrice,
+            ],
+            [
+                0,
+                taxe_travaux_agricoles,
+                0,
+                etablissement(
+                    "taxe_interieure_consommation_gaz_naturel_legumes", period
+                ),
+                etablissement(
+                    "taxe_interieure_taxation_consommation_gaz_naturel_seqe",
+                    period,
+                ),
+                etablissement(
+                    "taxe_interieure_taxation_consommation_gaz_naturel_concurrence_internationale",
+                    period,
+                ),
+                ticgn_grande_conso,
+            ],
+            default=taxe_normal_combustible,
+        )
         return taxe
 
 
@@ -389,25 +458,34 @@ class taxe_accise_gaz_naturel_carburant(Variable):
             "taxe_interieure_consommation_gaz_naturel_grande_consommatrice", period
         )
 
-        if gaz_double_usage == True:
-            taxe = 0
-        elif gaz_travaux_agricoles_et_forestiers == True:
-            taxe = (
-                etablissement("consommation_gaz_combustible", period)
-                * parameters(
-                    period
-                ).energies.gaz_naturel.accise.travaux_agricoles_forestaires
-            )
-        elif gaz_production_mineraux_non_metalliques == True or gaz_extraction_production == True:
-            taxe = 0
-        elif seqe == True and grande_consommatrice == True:
-            taxe = ticgn_grande_conso
-        else:
-            taxe = (
-                etablissement("consommation_gaz_carburant", period)
-                * parameters(period).energies.gaz_naturel.accise.taux_normal_carburant
-            )
+        condition_double_usage = gaz_double_usage
+        condition_travaux_agricoles = gaz_travaux_agricoles_et_forestiers
+        taxe_travaux_agricoles = (
+            etablissement("consommation_gaz_combustible", period)
+            * parameters(
+                period
+            ).energies.gaz_naturel.accise.travaux_agricoles_forestaires
+        )
+        condition_exoneration = _or(
+            gaz_production_mineraux_non_metalliques,
+            gaz_extraction_production,
+        )
+        condition_grande_consommatrice = _and(seqe, grande_consommatrice)
+        taxe_normal_carburant = (
+            etablissement("consommation_gaz_carburant", period)
+            * parameters(period).energies.gaz_naturel.accise.taux_normal_carburant
+        )
 
+        taxe = select(
+            [
+                condition_double_usage,
+                condition_travaux_agricoles,
+                condition_exoneration,
+                condition_grande_consommatrice,
+            ],
+            [0, taxe_travaux_agricoles, 0, ticgn_grande_conso],
+            default=taxe_normal_carburant,
+        )
         return taxe
 
 

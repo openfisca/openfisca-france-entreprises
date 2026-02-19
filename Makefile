@@ -51,5 +51,11 @@ test: clean
 	@# Path must be openfisca_france_entreprises/tests only (not the whole package), so parameter YAMLs are not collected as tests.
 	uv run openfisca test -c openfisca_france_entreprises openfisca_france_entreprises/tests
 
+# Run the same checks as the CI (validate workflow), without the version/changelog check.
+ci: check-syntax-errors check-style
+	@bash .github/lint-files.sh "*.py" "uv run ruff check --exit-zero"
+	@bash .github/lint-files.sh "openfisca_france_entreprises/tests/*.yaml" "uv run yamllint"
+	$(MAKE) test
+
 serve-local: build
 	uv run openfisca serve --country-package openfisca_france_entreprises

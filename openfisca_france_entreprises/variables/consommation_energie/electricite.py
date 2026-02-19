@@ -238,9 +238,7 @@ class electro_intensive_activite_industrielle(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "sous L312-64/65/71"
-    reference = (
-        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603709"
-    )
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603709"
 
     def formula_2022_01_01(etablissement, period, parameters):
         apet = etablissement("apet", period)
@@ -257,9 +255,7 @@ class electro_intensive_concurrence_internationale(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = "concurrence internationale sous L312-65/72"
-    reference = (
-        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603709"
-    )
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603709"
 
     def formula_2022_01_01(etablissement, period, parameters):
         apet = etablissement("apet", period)
