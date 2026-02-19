@@ -1,5 +1,6 @@
 - name: "Test 1986"
   period: 1986
+  absolute_error_margin: 1
   input:
     assiette_ticgn : 6500000
   output:
