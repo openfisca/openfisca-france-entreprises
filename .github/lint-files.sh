@@ -3,7 +3,7 @@
 # Usage: lint-files.sh <file_pattern> <linter_command>
 #
 # Example usage: 
-#   lint-files.sh "*.py" "flake8"
+#   lint-files.sh "*.py" "ruff check"
 #   lint-files.sh "tests/*.yaml" "yamllint"
 
 file_pattern=$1

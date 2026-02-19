@@ -22,7 +22,9 @@ class example_salary(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period  # Optional attribute. Allows user to declare a example_salary for a year. OpenFisca will spread the yearly amount over the months contained in the year.
     label = "example_salary"
-    reference = "https://law.gov.example/example_salary"  # Always use the most official source
+    reference = (
+        "https://law.gov.example/example_salary"  # Always use the most official source
+    )
 
 
 class example_disposable_income(Variable):
@@ -35,8 +37,8 @@ class example_disposable_income(Variable):
     def formula(etablissement, period, _parameters):
         """Disposable income."""
         return (
-            + etablissement("example_salary", period)
+            +etablissement("example_salary", period)
             + etablissement("example_basic_income", period)
             - etablissement("example_income_tax_flat", period)
             - etablissement("example_income_tax_progressive", period)
-            )
+        )

@@ -10,11 +10,46 @@ See https://openfisca.org/doc/key-concepts/tax_and_benefit_system.html
 
 import os
 
+# Workaround for enum index overflow: openfisca_core encodes enum indices as uint8
+# (0-255), but our NAF enum has 733 members. Indices > 255 overflow (e.g. 555 -> 43).
+# Reimplement encoding to use int16 (ENUM_ARRAY_DTYPE) so all indices are preserved.
+# We patch both _utils and the enum module, since enum.py does "from _utils import ..."
+# at load time and keeps a reference to the original functions.
+import numpy as _np
+from openfisca_core import indexed_enums
 from openfisca_core.taxbenefitsystems import TaxBenefitSystem
+
+_enum_dtype = indexed_enums.ENUM_ARRAY_DTYPE
+_utils = indexed_enums._utils  # noqa: SLF001
+_enum_module = indexed_enums.enum  # noqa: SLF001
+
+
+def _str_to_index(enum_class, value):
+    values = _np.asarray(value)
+    names = enum_class.names
+    mask = _np.isin(values, names)
+    sorter = _np.argsort(names)
+    result = sorter[_np.searchsorted(names, values[mask], sorter=sorter)]
+    return result.astype(_enum_dtype)
+
+
+def _int_to_index(enum_class, value):
+    indices = enum_class.indices
+    values = _np.asarray(value)
+    return values[values < indices.size].astype(_enum_dtype)
+
+
+def _enum_to_index(value):
+    return _np.array([enum.index for enum in value], _enum_dtype)
+
+
+for _mod in (_utils, _enum_module):
+    _mod._str_to_index = _str_to_index
+    _mod._int_to_index = _int_to_index
+    _mod._enum_to_index = _enum_to_index
 
 from openfisca_france_entreprises import entities
 from openfisca_france_entreprises.situation_examples import couple
-
 
 COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -38,4 +73,4 @@ class CountryTaxBenefitSystem(TaxBenefitSystem):
             "variable_example": "example_disposable_income",
             "parameter_example": "example_taxes.example_income_tax_rate_flat",
             "simulation_example": couple,
-            }
+        }

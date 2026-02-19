@@ -24,7 +24,7 @@
     electro_intensite: 0.3
     assiette_taxe_electricite: 1000
     intensite_echanges_avec_pays_tiers: 26
-    electro_intensive_concurrence_internationale: True 
+    electro_intensive_concurrence_internationale: True
   output:
     taxe_accise_electricite_electro_intensive_concurrence_internationale: 5500
 
@@ -38,18 +38,18 @@
     assiette_taxe_electricite: 1000
   output:
     taxe_accise_electricite: 500
-  
+
 - name: test 2022 activite industrielle
 #
   period: 2022
   input:
     electro_intensite: 0.3
-    electro_intensive_activite_industrielle: True 
+    electro_intensive_activite_industrielle: True
     assiette_taxe_electricite: 1000
   output:
     taxe_accise_electricite_electro_intensive_activite_industrielle: 7500
 
-- name: test 2022 activite industrielle formule finale 
+- name: test 2022 activite industrielle formule finale
 #
   period: 2022
   input:
@@ -190,7 +190,7 @@
   period: 2016
   input:
     assiette_taxe_electricite: 1000
-    consommation_par_valeur_ajoutee : 0.004 
+    consommation_par_valeur_ajoutee : 0.004
     valeur_ajoutee_eta: 10000
   output:
     taxe_interieure_sur_consommation_finale_electricite: 2000
@@ -200,7 +200,7 @@
   period: 2016
   input:
     assiette_taxe_electricite: 1000
-    consommation_par_valeur_ajoutee : 0.002 
+    consommation_par_valeur_ajoutee : 0.002
     valeur_ajoutee_eta: 10000
   output:
     taxe_interieure_sur_consommation_finale_electricite: 5000
@@ -210,7 +210,7 @@
   period: 2016
   input:
     assiette_taxe_electricite: 1000
-    consommation_par_valeur_ajoutee : 0.001 
+    consommation_par_valeur_ajoutee : 0.001
     valeur_ajoutee_eta: 10000
   output:
     taxe_interieure_sur_consommation_finale_electricite: 7500
@@ -223,7 +223,7 @@
   input:
     risque_de_fuite_carbone_eta: True
     assiette_taxe_electricite: 1000
-    consommation_par_valeur_ajoutee : 0.004 
+    consommation_par_valeur_ajoutee : 0.004
   output:
     taxe_interieure_sur_consommation_finale_electricite: 1000
 
@@ -234,7 +234,7 @@
   input:
     risque_de_fuite_carbone_eta: True
     assiette_taxe_electricite: 1000
-    consommation_par_valeur_ajoutee : 0.002 
+    consommation_par_valeur_ajoutee : 0.002
   output:
     taxe_interieure_sur_consommation_finale_electricite: 2500
 
@@ -245,7 +245,7 @@
   input:
     risque_de_fuite_carbone_eta: True
     assiette_taxe_electricite: 1000
-    consommation_par_valeur_ajoutee : 0.001 
+    consommation_par_valeur_ajoutee : 0.001
   output:
     taxe_interieure_sur_consommation_finale_electricite: 5500
 
@@ -255,7 +255,7 @@
   input:
     risque_de_fuite_carbone_eta: True
     assiette_taxe_electricite: 1000
-    consommation_par_valeur_ajoutee : 0.001 
+    consommation_par_valeur_ajoutee : 0.001
   output:
     taxe_interieure_sur_consommation_finale_electricite: 5500
 
@@ -269,7 +269,7 @@
   output:
     taxe_interieure_sur_consommation_finale_electricite: 34500
 
-- name: test 2019 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_centres_de_stockage_donnees 2 
+- name: test 2019 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_centres_de_stockage_donnees 2
 #
   period: 2019
   input:
@@ -287,9 +287,9 @@
 
   output:
     #taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques : 1000
-    #^ça passe, 
+    #^ça passe,
     taxe_electricite: 1000
-    #et ça passe pas 
+    #et ça passe pas
 
 - name: test 2025  electricite_production_a_bord #ça passe aussi
 #
@@ -300,9 +300,9 @@
 
   output:
     #taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques : 1000
-    #^ça passe, 
+    #^ça passe,
     taxe_electricite: 0
-    #et ça passe pas 
+    #et ça passe pas
 
 # - name: test 2025  taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques
 #   period: 2025

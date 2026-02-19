@@ -47,7 +47,9 @@ class example_housing_occupancy_status(Variable):
     default_value = example_HousingOccupancyStatus.tenant
     entity = UniteLegale
     definition_period = MONTH
-    label = "Legal housing situation of the unite_legale concerning their main residence"
+    label = (
+        "Legal housing situation of the unite_legale concerning their main residence"
+    )
 
 
 class example_postal_code(Variable):

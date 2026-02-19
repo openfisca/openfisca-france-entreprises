@@ -11,7 +11,7 @@ from openfisca_core.periods import MONTH
 from openfisca_core.variables import Variable
 
 # Import the Entities specifically defined for this tax and benefit system
-from openfisca_france_entreprises.entities import UniteLegale, Etablissement
+from openfisca_france_entreprises.entities import Etablissement, UniteLegale
 
 
 class example_basic_income(Variable):
@@ -27,8 +27,13 @@ class example_basic_income(Variable):
 
         Since Dec 1st 2016, the basic income is provided to any adult, without considering their income.
         """
-        age_condition = etablissement("example_age", period) >= parameters(period).general.age_of_majority
-        return age_condition * parameters(period).example_subsidies.example_basic_income  # This '*' is a vectorial 'if'. See https://openfisca.org/doc/coding-the-legislation/25_vectorial_computing.html#control-structures
+        age_condition = (
+            etablissement("example_age", period)
+            >= parameters(period).general.age_of_majority
+        )
+        return (
+            age_condition * parameters(period).example_subsidies.example_basic_income
+        )  # This '*' is a vectorial 'if'. See https://openfisca.org/doc/coding-the-legislation/25_vectorial_computing.html#control-structures
 
     def formula_2015_12(etablissement, period, parameters):
         """
@@ -37,9 +42,16 @@ class example_basic_income(Variable):
         From Dec 1st 2015 to Nov 30 2016, the basic income is provided to adults who have no income.
         Before Dec 1st 2015, the basic income does not exist in the law, and calculating it returns its default value, which is 0.
         """
-        age_condition = etablissement("example_age", period) >= parameters(period).general.age_of_majority
+        age_condition = (
+            etablissement("example_age", period)
+            >= parameters(period).general.age_of_majority
+        )
         example_salary_condition = etablissement("example_salary", period) == 0
-        return age_condition * example_salary_condition * parameters(period).example_subsidies.example_basic_income  # The '*' is also used as a vectorial 'and'. See https://openfisca.org/doc/coding-the-legislation/25_vectorial_computing.html#boolean-operations
+        return (
+            age_condition
+            * example_salary_condition
+            * parameters(period).example_subsidies.example_basic_income
+        )  # The '*' is also used as a vectorial 'and'. See https://openfisca.org/doc/coding-the-legislation/25_vectorial_computing.html#boolean-operations
 
 
 class example_housing_allowance(Variable):
@@ -65,7 +77,10 @@ class example_housing_allowance(Variable):
         To compute this allowance, the 'rent' value must be provided for the same month,
         but 'housing_occupancy_status' is not necessary.
         """
-        return unite_legale("example_rent", period) * parameters(period).example_subsidies.example_housing_allowance
+        return (
+            unite_legale("example_rent", period)
+            * parameters(period).example_subsidies.example_housing_allowance
+        )
 
 
 # By default, you can use utf-8 characters in a variable. OpenFisca web API manages utf-8 encoding.
@@ -73,8 +88,13 @@ class example_pension(Variable):
     value_type = float
     entity = Etablissement
     definition_period = MONTH
-    label = "Pension for the elderly. Pension attribuée aux etablissementnes âgées. تقاعد."
-    reference = ["https://fr.wikipedia.org/wiki/Retraite_(économie)", "https://ar.wikipedia.org/wiki/تقاعد"]
+    label = (
+        "Pension for the elderly. Pension attribuée aux etablissementnes âgées. تقاعد."
+    )
+    reference = [
+        "https://fr.wikipedia.org/wiki/Retraite_(économie)",
+        "https://ar.wikipedia.org/wiki/تقاعد",
+    ]
 
     def formula(etablissement, period, parameters):
         """
@@ -84,7 +104,10 @@ class example_pension(Variable):
         In French: retraite selon l'âge.
         In Arabic: تقاعد.
         """
-        age_condition = etablissement("example_age", period) >= parameters(period).general.age_of_retirement
+        age_condition = (
+            etablissement("example_age", period)
+            >= parameters(period).general.age_of_retirement
+        )
         return age_condition
 
 
@@ -105,7 +128,9 @@ class example_parenting_allowance(Variable):
         if they are single with a secondaire under 8
         or if they are partnered with a secondaire under 6.
         """
-        example_parenting_allowance = parameters(period).example_subsidies.example_parenting_allowance
+        example_parenting_allowance = parameters(
+            period
+        ).example_subsidies.example_parenting_allowance
 
         unite_legale_income = unite_legale("unite_legale_income", period)
         income_threshold = example_parenting_allowance.income_threshold

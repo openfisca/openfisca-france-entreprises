@@ -1,7 +1,7 @@
 #
 - name: "test 2022"
   period: 2022
-  input: 
+  input:
     consommation_gazoles_mwh : 1000
     consommation_carbureactuers_mwh : 1000
     consommation_essences_mwh : 1000
@@ -20,14 +20,14 @@
     consommation_grisou_et_gaz_assimiles_combustible_mwh : 1000
     consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh : 1000
 
-  output: 
+  output:
     taxe_interieure_consommation_sur_produits_energetiques : 471543
 #59400+76826+76826+16208+12555+15620+15686+5189+12157+12905+75701+74576+17894
 
 #
 - name: "test 2023"
   period: 2023
-  input: 
+  input:
     consommation_gazoles_mwh : 1000
     consommation_carbureactuers_mwh : 1000
     consommation_essences_mwh : 1000
@@ -46,7 +46,7 @@
     consommation_grisou_et_gaz_assimiles_combustible_mwh : 1000
     consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh : 1000
 
-  output: 
+  output:
     taxe_interieure_consommation_sur_produits_energetiques : 454198
 #59400+59481+76826+16208+12555+15620+15686+5189+12157+12905+75701+74576+17894
 
@@ -54,7 +54,7 @@
 #
 - name: "test 2024"
   period: 2024
-  input: 
+  input:
     consommation_gazoles_mwh : 1000
     consommation_carbureactuers_mwh : 1000
     consommation_essences_mwh : 1000
@@ -72,7 +72,7 @@
     consommation_grisou_et_gaz_assimiles_combustible_mwh : 1000
     consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh : 1000
 
-  output: 
+  output:
     taxe_interieure_consommation_sur_produits_energetiques : 395804
 #59400+76826+76826+16208+12555+15620+15686+5189+12119+12905+74576+17894
 
@@ -112,12 +112,12 @@
     consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole : 1000 #6.43
     consommation_carburant_constitue_100_estars_methyliques_acides_gras : 1000 # 11.83
 
-  output: 
+  output:
     taxe_interieure_consommation_sur_produits_energetiques: 953350
-#10.08 + 15.25 + 67.52 + 56.39 + 68.29 + 2.5 + 71.56 + 66.29 + 2.5 + 39.79 + 68.51 + 67.52 + 
-#15.25 +  51.28 + 39.79 + 51.28 + 51.28 + 18.82 + 15.62 + 59.40 + 2.5 + 13.95 + 20.71 + 6.63 +  20.71 +  6.63 + 20.71+ 
+#10.08 + 15.25 + 67.52 + 56.39 + 68.29 + 2.5 + 71.56 + 66.29 + 2.5 + 39.79 + 68.51 + 67.52 +
+#15.25 +  51.28 + 39.79 + 51.28 + 51.28 + 18.82 + 15.62 + 59.40 + 2.5 + 13.95 + 20.71 + 6.63 +  20.71 +  6.63 + 20.71+
 # 11.83 + 6.43 + 11.83 = 960.85
-      
+
 
 
 
@@ -160,11 +160,11 @@
     consommation_emulsion_eau_gazoles_sous_conditions_hectolitre : 1000 #10.33
     consommation_emulsion_eau_gazoles_autres_hectolitre : 1000 #36.94
 
-  output: 
+  output:
     taxe_interieure_consommation_sur_produits_energetiques: 1037420
-#10.08 + 15.25 + 67.52 + 45.49 + 68.29 + 2.5 + 71.56 + 66.29 + 2.5 + 39.79 + 68.51 + 67.52 + 
-#15.25 +  51.28 + 39.79 + 51.28 + 51.28 + 18.82 + 15.62 + 59.40 + 2.5 + 13.95 + 20.71 + 6.63 +  20.71 +  6.63 + 20.71+ 
-# 11.83 + 6.43 + 11.83 
+#10.08 + 15.25 + 67.52 + 45.49 + 68.29 + 2.5 + 71.56 + 66.29 + 2.5 + 39.79 + 68.51 + 67.52 +
+#15.25 +  51.28 + 39.79 + 51.28 + 51.28 + 18.82 + 15.62 + 59.40 + 2.5 + 13.95 + 20.71 + 6.63 +  20.71 +  6.63 + 20.71+
+# 11.83 + 6.43 + 11.83
 #+ 15.9 + 15.9 + 15.9 + 10.33 + 36.94
 
 
@@ -211,7 +211,7 @@
     consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants : 1000 #5.8
     consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires : 1000 #9.5
 
-  output: 
+  output:
     taxe_interieure_consommation_sur_produits_energetiques: 1112120
 
 
@@ -260,7 +260,7 @@
     consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants : 1000 #5.8
     consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires : 1000 #6.5
 
-  output: 
+  output:
     taxe_interieure_consommation_sur_produits_energetiques:  972310
 
 
@@ -283,7 +283,7 @@
 
 
 
-    #sous conditions 
+    #sous conditions
     consommation_carbureacteurs_essence_carburants_avion_hL : 1000 #30.20
     consommation_carbureacteurs_essence_autres_hL : 1000 #58.92
     consommation_huiles_legeres_combustible_carburant_ou_autres : 1000 #58.92
@@ -313,7 +313,7 @@
 
     consommation_carbureacteurs_essence_sous_conditions_hL: 1000 #2.54
     consommation_carbureacteurs_petrole_lampant_sous_conditions_hL: 1000 #2.54
-  output: 
+  output:
     taxe_interieure_consommation_sur_produits_energetiques:  753340
 
 

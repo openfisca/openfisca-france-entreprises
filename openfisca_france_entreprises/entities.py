@@ -9,10 +9,10 @@ See https://openfisca.org/doc/key-concepts/etablissement,_entities,_role.html
 from openfisca_core.entities import build_entity
 
 UniteLegale = build_entity(
-    key = "unite_legale",
-    plural = "unite_legales",
-    label = "All the etablissements in a legal unit defined by a SIREN.",
-    doc = """
+    key="unite_legale",
+    plural="unite_legales",
+    label="All the etablissements in a legal unit defined by a SIREN.",
+    doc="""
     A unite_legale entity contains one or more etablissements.
     Each etablissement in a unite_legale has a role (e.g. siege_social or secondaire etablissement). There can only be one siege_social etablissement.
 
@@ -21,28 +21,28 @@ UniteLegale = build_entity(
 
     For more information, see: https://openfisca.org/doc/coding-the-legislation/50_entities.html
     """,
-    roles = [
+    roles=[
         {
             "key": "siege_social",
             "plural": "siege_social",
             "label": "Siege Social",
             "max": 1,
             "doc": "The one etablissement that is siege_social to the unite_legale.",
-            },
+        },
         {
             "key": "secondaire",
             "plural": "secondaires",
             "label": "Etablissements secondaires",
             "doc": "Other etablissements in the unite_legale.",
-            },
-        ],
-    )
+        },
+    ],
+)
 
 Etablissement = build_entity(
-    key = "etablissement",
-    plural = "etablissements",
-    label = "An etablissement. The minimal legal entity on which a legislation might be applied.",
-    doc = """
+    key="etablissement",
+    plural="etablissements",
+    label="An etablissement. The minimal legal entity on which a legislation might be applied.",
+    doc="""
 
     Variables like 'masse_salariale' and 'consommation_energie' are usually defined for the entity 'Etablissement'.
 
@@ -52,7 +52,7 @@ Etablissement = build_entity(
 
     For more information, see: https://openfisca.org/doc/coding-the-legislation/50_entities.html
     """,
-    is_person = True,
-    )
+    is_person=True,
+)
 
 entities = [UniteLegale, Etablissement]

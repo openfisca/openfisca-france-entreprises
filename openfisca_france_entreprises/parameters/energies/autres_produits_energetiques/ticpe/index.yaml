@@ -29,7 +29,7 @@ documentation: |-
   énergétiques sont classés dans l'ordre de leur numérotation dans l'article 265 du CDD
   avec pour seul objectif la lisibilité.).
 
-  A partir de 2022 : Article L312-35 et suivant du Code des Impositions des Biens et 
+  A partir de 2022 : Article L312-35 et suivant du Code des Impositions des Biens et
   Services (CIBS)
 
   De manière générale :
@@ -38,30 +38,30 @@ documentation: |-
   une première tranche de 1,77€/hl puis une seconde de 0,73€/hl (deuxième tranche destinée
   uniquement à des financements d'infrastructures spécifiques).
 
-  Les tarifs de ces majorations régionales sont encadrés par des plafonds (cf. le barème 
-  plafonds.yaml) ; les majorations régionales effectives sont votées par les conseils 
-  régionaux ; ce sont dans les actes de ces conseils régionaux qu'il faut chercher les 
+  Les tarifs de ces majorations régionales sont encadrés par des plafonds (cf. le barème
+  plafonds.yaml) ; les majorations régionales effectives sont votées par les conseils
+  régionaux ; ce sont dans les actes de ces conseils régionaux qu'il faut chercher les
   références législatives exactes.
 
   2022-01-01 :
 
-  En 2022, la taxation des énergies est déplacée du Code des douanes au nouvellement créé 
-  Code des impositions des biens et services. A cette occasion, tous les taux de l'accise 
-  sur l'énergie sont désormais exprimés en €/MWh. Un arrêté (Arrêté du 30 décembre 2022 
-  complétant l'arrêté du 13 décembre 2022 constatant pour l'année 2023 les montants révisés 
-  des tarifs de certaines impositions sur les biens et services indexés sur un indice, une 
-  quantité ou toute autre variable) complète ces taux en donnant les coefficients de 
-  conversion des giga-joules (GJ) aux unités de perception pour chaque énergie. L'arrêté 
+  En 2022, la taxation des énergies est déplacée du Code des douanes au nouvellement créé
+  Code des impositions des biens et services. A cette occasion, tous les taux de l'accise
+  sur l'énergie sont désormais exprimés en €/MWh. Un arrêté (Arrêté du 30 décembre 2022
+  complétant l'arrêté du 13 décembre 2022 constatant pour l'année 2023 les montants révisés
+  des tarifs de certaines impositions sur les biens et services indexés sur un indice, une
+  quantité ou toute autre variable) complète ces taux en donnant les coefficients de
+  conversion des giga-joules (GJ) aux unités de perception pour chaque énergie. L'arrêté
   précise que la règle de calcul devant s'appliquer est la suivante :
 
-  Taux en unité physique = taux CIBS / 3.6 * coefficient de conversion 
+  Taux en unité physique = taux CIBS / 3.6 * coefficient de conversion
 
   La division par 3,6 correspond à la conversion entre GJ et MWh.
 
   Ce même arrêté "constate" les taux issus de ces conversions.
 
-  2011-01-01: 
-  
+  2011-01-01:
+
   En 2011, le nom de TIPP (taxe intérieure de consommation sur les produits pétroliers)
   change pour TICPE (taxe intérieure de consommation sur les produits énergétiques).
   L'objectif est de souligner le changement d'assiette récent qui incorpore désormais

@@ -102,6 +102,6 @@ metadata:
     2018-01-01: "2017-12-31"
     2022-01-01: "2022-12-31"
   notes:
-    2022-01-01: 
+    2022-01-01:
       Pour les essences l'unité de perception est l'hL, et le coefficient de conversion 3,2 GJ/hL (/3.6 GJ/MWh).
       76,826 * 3,2 / 3,6 = 68,29

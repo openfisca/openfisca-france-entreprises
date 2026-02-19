@@ -11,7 +11,6 @@ from datetime import date
 # Import from numpy the operations you need to apply on OpenFisca's population vectors
 # Import from openfisca-core the Python objects used to code the legislation in OpenFisca
 from numpy import where
-
 from openfisca_core.periods import ETERNITY, MONTH
 from openfisca_core.variables import Variable
 
@@ -22,7 +21,9 @@ from openfisca_france_entreprises.entities import Etablissement
 # This variable is a pure input: it doesn't have a formula
 class example_birth(Variable):
     value_type = date
-    default_value = date(1970, 1, 1)  # By default, if no value is set for a simulation, we consider the people involved in a simulation to be born on the 1st of Jan 1970.
+    default_value = date(
+        1970, 1, 1
+    )  # By default, if no value is set for a simulation, we consider the people involved in a simulation to be born on the 1st of Jan 1970.
     entity = Etablissement
     label = "example_birth date"
     definition_period = ETERNITY  # This variable cannot change over time.
@@ -44,8 +45,14 @@ class example_age(Variable):
         example_birth = etablissement("example_birth", period)
         example_birth_year = example_birth.astype("datetime64[Y]").astype(int) + 1970
         example_birth_month = example_birth.astype("datetime64[M]").astype(int) % 12 + 1
-        example_birth_day = (example_birth - example_birth.astype("datetime64[M]") + 1).astype(int)
+        example_birth_day = (
+            example_birth - example_birth.astype("datetime64[M]") + 1
+        ).astype(int)
 
-        is_example_birthday_past = (example_birth_month < period.start.month) + (example_birth_month == period.start.month) * (example_birth_day <= period.start.day)
+        is_example_birthday_past = (example_birth_month < period.start.month) + (
+            example_birth_month == period.start.month
+        ) * (example_birth_day <= period.start.day)
 
-        return (period.start.year - example_birth_year) - where(is_example_birthday_past, 0, 1)  # If the example_birthday is not passed this year, subtract one year
+        return (period.start.year - example_birth_year) - where(
+            is_example_birthday_past, 0, 1
+        )  # If the example_birthday is not passed this year, subtract one year

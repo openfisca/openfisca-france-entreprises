@@ -1,47 +1,61 @@
 all: test
 
 uninstall:
-	pip freeze | grep -v "^-e" | xargs pip uninstall -y
+	uv pip uninstall openfisca_france_entreprises || true
 
 clean:
 	rm -rf build dist
 	find . -name '*.pyc' -exec rm \{\} \;
+	find . -type d -name '__pycache__' -exec rm -r {} +
 
 deps:
-	pip install --upgrade pip build twine
+	@# Dependencies are managed via uv sync, but keep this target for compatibility
+	uv sync --group dev
 
-install: deps
-	@# Install OpenFisca-Extension-Template for development.
+install:
+	@# Install openfisca_france_entreprises for development.
 	@# `make install` installs the editable version of openfisca_france_entreprises.
 	@# This allows contributors to test as they code.
-	pip install --editable .[dev] --upgrade --use-deprecated=legacy-resolver
+	uv sync --group dev
 
-build: clean deps
-	@# Install OpenFisca-Extension-Template for deployment and publishing.
-	@# `make build` allows us to be be sure tests are run against the packaged version
-	@# of OpenFisca-Extension-Template, the same we put in the hands of users and reusers.
-	python -m build
-	find dist -name "*.whl" -exec pip install --force-reinstall {}[dev] \;
+build: clean
+	@# Install openfisca_france_entreprises for deployment and publishing.
+	@# `make build` allows us to be sure tests are run against the packaged version
+	@# of openfisca_france_entreprises, the same we put in the hands of users and reusers.
+	uv sync --group dev
+	uv build
+	uv pip uninstall --yes openfisca_france_entreprises 2>/dev/null || true
+	find dist -name "*.whl" -exec uv pip install --force-reinstall {}[dev] \;
+
+format:
+	@# Do not analyse .gitignored files. Ruff format + ruff check --fix (imports, etc.).
+	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
+	uv run ruff format `git ls-files | grep "\.py$$"`
+	uv run ruff check --fix `git ls-files | grep "\.py$$"`
 
 check-syntax-errors:
-	python -m compileall -q .
+	@# Check Python syntax errors.
+	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
+	@uv run python -m py_compile `git ls-files | grep "\.py$$"` 2>&1 || (echo "Syntax errors found" && exit 1)
 
-format-style:
+check-style: lint
+
+lint:
 	@# Do not analyse .gitignored files.
 	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
-	isort `git ls-files | grep "\.py$$"`
-	autopep8 `git ls-files | grep "\.py$$"`
-	pyupgrade --py39-plus `git ls-files | grep "\.py$$"`
+	uv run ruff check --exit-zero `git ls-files | grep "\.py$$"`
+	uv run ruff format --check `git ls-files | grep "\.py$$"`
+	uv run yamllint `git ls-files | grep "\.yaml$$"`
 
-check-style:
-	@# Do not analyse .gitignored files.
-	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
-	flake8 `git ls-files | grep "\.py$$"`
-	pylint `git ls-files | grep "\.py$$"`
-	yamllint `git ls-files | grep "\.yaml$$"`
+test: clean
+	@# Path must be openfisca_france_entreprises/tests only (not the whole package), so parameter YAMLs are not collected as tests.
+	uv run openfisca test -c openfisca_france_entreprises openfisca_france_entreprises/tests
 
-test: clean check-syntax-errors check-style
-	openfisca test --country-package openfisca_france_entreprises openfisca_france_entreprises/tests
+# Run the same checks as the CI (validate workflow), without the version/changelog check.
+ci: check-syntax-errors check-style
+	@bash .github/lint-files.sh "*.py" "uv run ruff check --exit-zero"
+	@bash .github/lint-files.sh "openfisca_france_entreprises/tests/*.yaml" "uv run yamllint"
+	$(MAKE) test
 
 serve-local: build
-	openfisca serve --country-package openfisca_france_entreprises
+	uv run openfisca serve --country-package openfisca_france_entreprises
