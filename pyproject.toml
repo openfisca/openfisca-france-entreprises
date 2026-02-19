@@ -27,6 +27,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
+    "pre-commit>=4.0.0",
     "pytest>=8.3.2",
     "ruff>=0.6.9,<1",
     "yamllint>=1.35.1",
@@ -113,6 +114,7 @@ openfisca_france_entreprises = { workspace = true }
 [dependency-groups]
 dev = [
     "openfisca_france_entreprises",
+    "pre-commit>=4.0.0",
     "pytest>=8.3.2",
     "ruff>=0.6.9,<1",
     "yamllint>=1.35.1",

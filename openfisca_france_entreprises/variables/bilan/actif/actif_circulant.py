@@ -369,7 +369,6 @@ class creances_brutes(Variable):
     definition_period = YEAR
 
     def formula(UniteLegale, period):
-
         creances_clients = UniteLegale(
             "creances_clients_comptes_rattaches_brutes", period
         )
@@ -391,7 +390,6 @@ class creances_ar(Variable):
     definition_period = YEAR
 
     def formula(UniteLegale, period):
-
         creances_clients = UniteLegale("creances_clients_comptes_rattaches_ar", period)
         autres = UniteLegale("autres_creances_ar", period)
         capital_souscrit_appele = UniteLegale(

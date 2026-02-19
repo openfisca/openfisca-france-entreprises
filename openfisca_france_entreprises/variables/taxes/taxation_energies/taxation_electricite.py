@@ -164,7 +164,6 @@ class taxe_contribution_service_public_electricite(Variable):
     reference = ""
 
     def formula_2002_01_01(etablissement, period, parameters):
-
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
 
         montant = (
@@ -978,9 +977,7 @@ class taxe_accise_electricite_electro_intensive_activite_industrielle(Variable):
         electro_intensive_activite_industrielle = etablissement(
             "electro_intensive_activite_industrielle", period
         )
-        seuils = parameters(
-            period
-        ).energies.electricite.ticfe.electro_intensive.seuils
+        seuils = parameters(period).energies.electricite.ticfe.electro_intensive.seuils
 
         assiette = etablissement("assiette_taxe_electricite", period)
         condition_05 = _and(
@@ -991,7 +988,8 @@ class taxe_accise_electricite_electro_intensive_activite_industrielle(Variable):
         condition_3375 = _and(
             electro_intensive_activite_industrielle,
             electro_intensite != 0,
-            electro_intensite >= seuils.electro_intensite_activite_industrielle_seuil_05,
+            electro_intensite
+            >= seuils.electro_intensite_activite_industrielle_seuil_05,
             electro_intensite < seuils.electro_intensite_tranche_1_max,
         )
         condition_675 = _and(
@@ -1042,15 +1040,14 @@ class taxe_accise_electricite_electro_intensive_concurrence_internationale(Varia
         electro_intensive_concurrence_internationale = etablissement(
             "electro_intensive_concurrence_internationale", period
         )
-        seuils = parameters(
-            period
-        ).energies.electricite.ticfe.electro_intensive.seuils
+        seuils = parameters(period).energies.electricite.ticfe.electro_intensive.seuils
 
         condition_13_5 = _and(
             electro_intensive_concurrence_internationale,
             electro_intensite > seuils.electro_intensite_tranche_3_max,
             risque_de_fuite_carbone_eta,
-            intensite_echanges_avec_pays_tiers > seuils.intensite_echanges_pays_tiers_min,
+            intensite_echanges_avec_pays_tiers
+            > seuils.intensite_echanges_pays_tiers_min,
         )
         condition_6_75 = _and(
             electro_intensive_concurrence_internationale,

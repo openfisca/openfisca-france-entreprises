@@ -17,7 +17,6 @@ class consommation_gaz_naturel(Variable):
     definition_period = YEAR
 
     def formula_1986_01_01(etablissement, period):
-
         totale = etablissement("consommation_gaz_combustible", period)
 
         return totale

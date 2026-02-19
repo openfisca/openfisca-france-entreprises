@@ -128,7 +128,8 @@ class taxe_interieure_consommation_charbon(Variable):
         condition_exoneration = _or(
             _and(
                 installation_seqe,
-                intensite_energetique_valeur_production >= seuils.intensite_production_min,
+                intensite_energetique_valeur_production
+                >= seuils.intensite_production_min,
                 charbon_biomasse,
             ),
             charbon_navigation_interieure,
@@ -142,11 +143,13 @@ class taxe_interieure_consommation_charbon(Variable):
         condition_seqe = _or(
             _and(
                 installation_seqe,
-                intensite_energetique_valeur_production >= seuils.intensite_production_min,
+                intensite_energetique_valeur_production
+                >= seuils.intensite_production_min,
             ),
             _and(
                 installation_seqe,
-                intensite_energetique_valeur_ajoutee >= seuils.intensite_valeur_ajoutee_min,
+                intensite_energetique_valeur_ajoutee
+                >= seuils.intensite_valeur_ajoutee_min,
             ),
         )
         # Concurrence internationale (ça n'existe plus dès 2024)
@@ -154,12 +157,14 @@ class taxe_interieure_consommation_charbon(Variable):
             _and(
                 _not(installation_seqe),
                 risque_de_fuite_carbone_eta,
-                intensite_energetique_valeur_production >= seuils.intensite_production_min,
+                intensite_energetique_valeur_production
+                >= seuils.intensite_production_min,
             ),
             _and(
                 _not(installation_seqe),
                 risque_de_fuite_carbone_eta,
-                intensite_energetique_valeur_ajoutee >= seuils.intensite_valeur_ajoutee_min,
+                intensite_energetique_valeur_ajoutee
+                >= seuils.intensite_valeur_ajoutee_min,
             ),
         )
 
@@ -216,7 +221,8 @@ class taxe_interieure_consommation_charbon(Variable):
         condition_exoneration = _or(
             _and(
                 installation_seqe,
-                intensite_energetique_valeur_production >= seuils.intensite_production_min,
+                intensite_energetique_valeur_production
+                >= seuils.intensite_production_min,
                 charbon_biomasse,
             ),
             charbon_navigation_interieure,
@@ -229,11 +235,13 @@ class taxe_interieure_consommation_charbon(Variable):
         condition_seqe = _or(
             _and(
                 installation_seqe,
-                intensite_energetique_valeur_production >= seuils.intensite_production_min,
+                intensite_energetique_valeur_production
+                >= seuils.intensite_production_min,
             ),
             _and(
                 installation_seqe,
-                intensite_energetique_valeur_ajoutee >= seuils.intensite_valeur_ajoutee_min,
+                intensite_energetique_valeur_ajoutee
+                >= seuils.intensite_valeur_ajoutee_min,
             ),
         )
 

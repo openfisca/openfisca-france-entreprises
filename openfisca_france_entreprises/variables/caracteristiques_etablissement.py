@@ -112,7 +112,8 @@ class installation_grande_consommatrice_energie(Variable):
             & (chiffre_affaires_eta != 0)
             & (
                 facture_energie_eta
-                >= chiffre_affaires_eta * seuils.part_facture_energie_chiffre_affaires_min
+                >= chiffre_affaires_eta
+                * seuils.part_facture_energie_chiffre_affaires_min
             )
         )
         cond2 = (valeur_ajoutee_eta != 0) & (

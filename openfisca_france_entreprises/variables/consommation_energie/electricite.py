@@ -385,9 +385,7 @@ class electricite_installations_industrielles_hyper_electro_intensives(Variable)
         intensite_echanges_avec_pays_tiers = etablissement(
             "intensite_echanges_avec_pays_tiers", period
         )
-        seuils = parameters(
-            period
-        ).energies.electricite.ticfe.electro_intensive.seuils
+        seuils = parameters(period).energies.electricite.ticfe.electro_intensive.seuils
         return (
             consommation_par_valeur_ajoutee
             >= seuils.consommation_par_valeur_ajoutee_min_hyper
