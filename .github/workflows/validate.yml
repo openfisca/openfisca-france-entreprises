@@ -45,7 +45,7 @@ jobs:
             venv-${{ runner.os }}-
 
       - name: Sync dependencies
-        run: uv sync
+        run: uv sync --group dev
 
       - run: uv run make check-syntax-errors
 
@@ -91,7 +91,7 @@ jobs:
             venv-${{ runner.os }}-
 
       - name: Sync dependencies
-        run: uv sync
+        run: uv sync --group dev
 
       - run: uv run make test
 
@@ -129,7 +129,7 @@ jobs:
             venv-${{ runner.os }}-
 
       - name: Sync dependencies
-        run: uv sync
+        run: uv sync --group dev
 
       - name: Test the Web API
         run: uv run "${GITHUB_WORKSPACE}/.github/test-api.sh"

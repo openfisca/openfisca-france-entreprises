@@ -10,19 +10,19 @@ clean:
 
 deps:
 	@# Dependencies are managed via uv sync, but keep this target for compatibility
-	uv sync
+	uv sync --group dev
 
 install:
 	@# Install openfisca_france_entreprises for development.
 	@# `make install` installs the editable version of openfisca_france_entreprises.
 	@# This allows contributors to test as they code.
-	uv sync
+	uv sync --group dev
 
 build: clean
 	@# Install openfisca_france_entreprises for deployment and publishing.
 	@# `make build` allows us to be sure tests are run against the packaged version
 	@# of openfisca_france_entreprises, the same we put in the hands of users and reusers.
-	uv sync
+	uv sync --group dev
 	uv build
 	uv pip uninstall --yes openfisca_france_entreprises 2>/dev/null || true
 	find dist -name "*.whl" -exec uv pip install --force-reinstall {}[dev] \;

@@ -474,7 +474,12 @@ dev = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "isort" },
     { name = "openfisca-france-entreprises" },
+    { name = "pytest" },
+    { name = "ruff" },
+    { name = "yamllint", version = "1.37.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
+    { name = "yamllint", version = "1.38.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
 ]
 
 [package.metadata]
@@ -488,7 +493,13 @@ requires-dist = [
 provides-extras = ["dev"]
 
 [package.metadata.requires-dev]
-dev = [{ name = "openfisca-france-entreprises", editable = "." }]
+dev = [
+    { name = "isort", specifier = ">=5.13.2,<6" },
+    { name = "openfisca-france-entreprises", editable = "." },
+    { name = "pytest", specifier = ">=8.3.2" },
+    { name = "ruff", specifier = ">=0.6.9,<1" },
+    { name = "yamllint", specifier = ">=1.35.1" },
+]
 
 [[package]]
 name = "packaging"

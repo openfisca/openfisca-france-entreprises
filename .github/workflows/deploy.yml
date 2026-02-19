@@ -83,7 +83,7 @@ jobs:
           path: dist
           key: release-${{ runner.os }}-${{ hashFiles('uv.lock') }}-${{ github.sha }}
       - name: Sync dependencies
-        run: uv sync
+        run: uv sync --group dev
       - name: Upload a Python package to PyPi
         run: uv run twine upload dist/* --username __token__ --password ${{ secrets.PYPI_TOKEN }}
       - name: Publish a git tag
