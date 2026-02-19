@@ -546,6 +546,8 @@ dependencies = [
 
 [package.optional-dependencies]
 dev = [
+    { name = "pre-commit", version = "4.3.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
+    { name = "pre-commit", version = "4.5.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
     { name = "pytest" },
     { name = "ruff" },
     { name = "yamllint", version = "1.37.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
@@ -566,6 +568,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "openfisca-core", extras = ["web-api"], specifier = ">=43.3.8,<44.0.0" },
+    { name = "pre-commit", marker = "extra == 'dev'", specifier = ">=4.0.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.3.2" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.6.9,<1" },
     { name = "yamllint", marker = "extra == 'dev'", specifier = ">=1.35.1" },

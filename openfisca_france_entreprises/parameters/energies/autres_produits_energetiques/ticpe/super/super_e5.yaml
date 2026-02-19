@@ -30,12 +30,10 @@ values:
     value: 65.07
   2018-01-01:
     value: 68.29
-  2022-01-01:
-    value: 68.29
 metadata:
   ipp_csv_id: ticpe_sp95_sp98
   unit: currency
-  last_value_still_valid_on: "2023-08-22"
+  last_value_still_valid_on: '2023-08-22'
   reference:
     1993-01-01:
       title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
@@ -82,26 +80,28 @@ metadata:
       title: Loi 2017-1837 du 30/12/2017 (LF pour 2018)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036339197
     2022-01-01:
-      title: Arrêté du 30 décembre 2022 complétant l'arrêté du 13 décembre 2022 constatant pour l'année 2023 les montants révisés des tarifs de certaines impositions sur les biens et services indexés sur un indice, une quantité ou toute autre variable
+      title: Arrêté du 30 décembre 2022 complétant l'arrêté du 13 décembre 2022 constatant
+        pour l'année 2023 les montants révisés des tarifs de certaines impositions
+        sur les biens et services indexés sur un indice, une quantité ou toute autre
+        variable
       href: https://www.legifrance.gouv.fr/eli/arrete/2022/12/30/ECOE2237323A/jo/texte
   official_journal_date:
-    1993-01-01: "1992-12-31"
-    1993-04-15: "1992-12-31"
-    1994-01-01: "1993-12-31"
-    1995-01-01: "1994-12-30"
-    1996-01-01: "1995-12-31"
-    1997-01-01: "1996-12-31"
-    1998-01-01: "1997-12-31"
-    1999-01-01: "1998-12-31"
-    2002-01-01: "2001-12-29"
-    2003-01-01: "2002-12-31"
-    2006-01-01: "2004-12-31"
-    2015-01-01: "2014-12-30"
-    2016-01-01: "2015-12-30"
-    2017-01-01: "2016-12-30"
-    2018-01-01: "2017-12-31"
-    2022-01-01: "2022-12-31"
+    1993-01-01: '1992-12-31'
+    1993-04-15: '1992-12-31'
+    1994-01-01: '1993-12-31'
+    1995-01-01: '1994-12-30'
+    1996-01-01: '1995-12-31'
+    1997-01-01: '1996-12-31'
+    1998-01-01: '1997-12-31'
+    1999-01-01: '1998-12-31'
+    2002-01-01: '2001-12-29'
+    2003-01-01: '2002-12-31'
+    2006-01-01: '2004-12-31'
+    2015-01-01: '2014-12-30'
+    2016-01-01: '2015-12-30'
+    2017-01-01: '2016-12-30'
+    2018-01-01: '2017-12-31'
+    2022-01-01: '2022-12-31'
   notes:
-    2022-01-01:
-      Pour les essences l'unité de perception est l'hL, et le coefficient de conversion 3,2 GJ/hL (/3.6 GJ/MWh).
-      76,826 * 3,2 / 3,6 = 68,29
+    2022-01-01: Pour les essences l'unité de perception est l'hL, et le coefficient
+      de conversion 3,2 GJ/hL (/3.6 GJ/MWh). 76,826 * 3,2 / 3,6 = 68,29

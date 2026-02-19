@@ -48,6 +48,9 @@ lint:
 	uv run yamllint `git ls-files | grep "\.yaml$$"`
 
 test: clean
+	@# Remove stale or duplicate .dist-info so only one version's metadata is visible (avoids AttributeError on get("Name").lower()).
+	@rm -rf .venv/lib/python*/site-packages/openfisca_france_entreprises-*.dist-info
+	uv sync --group dev
 	@# Path must be openfisca_france_entreprises/tests only (not the whole package), so parameter YAMLs are not collected as tests.
 	uv run openfisca test -c openfisca_france_entreprises openfisca_france_entreprises/tests
 
