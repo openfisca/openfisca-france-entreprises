@@ -133,9 +133,10 @@ class electro_intensite(Variable):
         )
 
         numerateur = partie_electricite
-        resultat = (
-            numerateur / valeur_ajoutee_eta if valeur_ajoutee_eta != 0 else 0
-        )
+        condition_non_zero = valeur_ajoutee_eta != 0
+        # Avoid division by zero: use 1 where denominator is 0, then mask result
+        denom_safe = where(condition_non_zero, valeur_ajoutee_eta, 1)
+        resultat = where(condition_non_zero, numerateur / denom_safe, 0)
         return resultat
 
 
@@ -171,9 +172,10 @@ class intensite_energetique_valeur_ajoutee(Variable):
         # *** TO DO : ajout les autres formes d'énergie, i.g. gazoles
 
         numerateur = partie_electricite + partie_charbon + partie_gaz_naturel
-        resultat = (
-            numerateur / valeur_ajoutee_eta if valeur_ajoutee_eta != 0 else 0
-        )
+        condition_non_zero = valeur_ajoutee_eta != 0
+        # Avoid division by zero: use 1 where denominator is 0, then mask result
+        denom_safe = where(condition_non_zero, valeur_ajoutee_eta, 1)
+        resultat = where(condition_non_zero, numerateur / denom_safe, 0)
         return resultat
 
 
