@@ -1,38 +1,26 @@
 {
     "etablissements": {
-        "Alicia": {
-            "example_birth": {
-                "ETERNITY": "1980-01-01"
+        "eta1": {
+            "apet": {
+                "2024": "_63_11Z"
             },
-            "example_salary": {
-                "2017-01": 4000
-            },
-            "example_disposable_income": {
-                "2017-01": null
+            "postal_code": {
+                "2024-01": "75001"
             }
         },
-        "Javier": {
-            "example_birth": {
-                "ETERNITY": "1984-01-01"
+        "eta2": {
+            "apet": {
+                "2024": "_06_20Z"
             },
-            "example_salary": {
-                "2017-01": 2500
-            },
-            "example_disposable_income": {
-                "2017-01": null
+            "postal_code": {
+                "2024-01": "69001"
             }
         }
     },
     "unite_legales": {
-        "_": {
-            "siege_social": ["Alicia"],
-            "secondaires" : ["Javier"],
-            "total_benefits": {
-                "2017-01": null
-            },
-            "total_taxes": {
-                "2017-01": null
-            }
+        "ul1": {
+            "siege_social": ["eta1"],
+            "secondaires": ["eta2"]
         }
     }
 }
