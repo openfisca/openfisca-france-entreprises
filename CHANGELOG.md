@@ -1,4 +1,14 @@
-## 1.1.0 - Unreleased
+## 1.1.1 - Unreleased
+
+* Repository cleanup.
+* Impacted areas: repository structure, CI/CD, examples.
+* Details:
+  - Remove all openfisca-template leftover files (example variables, reforms, tests, parameters)
+  - Fix test-api.sh to use openfisca_france_entreprises instead of openfisca_country_template
+  - Update open_api_config to use real variables/parameters
+  - Update situation_examples to use real variables (apet, postal_code)
+
+## 1.1.0
 
 * Tooling and formula vectorization.
 * Impacted periods: all.

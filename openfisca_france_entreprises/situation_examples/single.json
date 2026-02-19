@@ -1,17 +1,17 @@
 {
     "etablissements": {
-        "Alicia": {
-            "example_birth": {
-                "2017-01": null
+        "eta1": {
+            "apet": {
+                "2024": "_63_11Z"
             },
-            "example_disposable_income": {
-                "2017-01": null
+            "postal_code": {
+                "2024-01": "75001"
             }
         }
     },
     "unite_legales": {
-        "_": {
-            "siege_social": ["Alicia"]
+        "ul1": {
+            "siege_social": ["eta1"]
         }
     }
 }
