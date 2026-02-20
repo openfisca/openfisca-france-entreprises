@@ -18,13 +18,11 @@ class consommation_charbon(Variable):
     # dès 2007, seules les usages comme combustible sont soumis à la TICGN.
     # dès 2020, les usages comme carbrant y sont somis aussi.
     def formula_2007_01_01(etablissement, period):
-
         totale = etablissement("consommation_charbon_combustible", period)
 
         return totale
 
     def formula_2020_01_01(etablissement, period):
-
         totale = etablissement(
             "consommation_charbon_combustible", period
         ) + etablissement("consommation_charbon_carburant", period)

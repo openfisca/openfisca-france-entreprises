@@ -46,7 +46,6 @@ class actif_total_iii_brut(Variable):
     definition_period = YEAR
 
     def formula(UniteLegale, period):
-
         actif_circulant = UniteLegale("actif_circulant_brut", period)
         charges_constatees_avance = UniteLegale(
             "charges_constatees_avance_brutes", period

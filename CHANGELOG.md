@@ -1,4 +1,13 @@
-## 1.1.1 - Unreleased
+## 1.1.2 - Unreleased
+
+* Move hardcoded parameters to OpenFisca YAML (audit steps 1–4).
+* Impacted areas: energies (SEQE, TICFE electro-intensité, TDCFE/TCCFE kVA), impôts sur les sociétés.
+* Details:
+  - Add parameters: energies.seuils_seqe (intensité production/VA, part facture énergie/CA, part taxe/VA); energies.electricite.ticfe.electro_intensive.seuils (tranches électro-intensité, intensité échanges pays tiers, hyper); impots_societes.prelevement_exceptionnel_hydrocarbures (seuil CA, taux).
+  - Formulas use parameters instead of literals in taxation_charbon, taxation_autres_produits_energetiques, taxation_gaz_naturel, taxation_electricite, caracteristiques_etablissement, consommation_energie.electricite, impots_societes, tdcfe, tccfe.
+  - TDCFE/TCCFE use TICFE categorie_fiscale_petite_et_moyenne_entreprise (36 kVA) and categorie_fiscale_haut_puissance (250 kVA); 36 kVA parameter extended to 2011 for TCFE formulas.
+
+## 1.1.1
 
 * Repository cleanup.
 * Impacted areas: repository structure, CI/CD, examples.

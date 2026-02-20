@@ -12,18 +12,16 @@ values:
     value: 63.07
   2018-01-01:
     value: 66.29
-  2022-01-01:
-    value: 66.29
 metadata:
   ipp_csv_id: ticpe_super_e10
   unit: currency
-  last_value_still_valid_on: "2023-08-22"
+  last_value_still_valid_on: '2023-08-22'
   reference:
     1993-01-01:
       title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
     2008-12-29:
-      title: "Loi 2008-1425 du 27/12/2008 (LF pour 2009)\_ - art. 16 et 17"
+      title: Loi 2008-1425 du 27/12/2008 (LF pour 2009)  - art. 16 et 17
     2015-01-01:
       title: Loi 2014-1654 du 29/12/2014 (LF pour 2015) - art. 36
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029994876&cidTexte=JORFTEXT000029988857
@@ -36,13 +34,16 @@ metadata:
       title: Loi 2017-1837 du 30/12/2017 (LF pour 2018)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036339197
     2022-01-01:
-      title: Arrêté du 30 décembre 2022 complétant l'arrêté du 13 décembre 2022 constatant pour l'année 2023 les montants révisés des tarifs de certaines impositions sur les biens et services indexés sur un indice, une quantité ou toute autre variable
+      title: Arrêté du 30 décembre 2022 complétant l'arrêté du 13 décembre 2022 constatant
+        pour l'année 2023 les montants révisés des tarifs de certaines impositions
+        sur les biens et services indexés sur un indice, une quantité ou toute autre
+        variable
       href: https://www.legifrance.gouv.fr/eli/arrete/2022/12/30/ECOE2237323A/jo/texte
   official_journal_date:
-    1993-01-01: "1992-12-31"
-    2008-12-29: "2008-12-28"
-    2015-01-01: "2014-12-30"
-    2016-01-01: "2015-12-30"
-    2017-01-01: "2016-12-30"
-    2018-01-01: "2017-12-31"
-    2022-01-01: "2022-12-31"
+    1993-01-01: '1992-12-31'
+    2008-12-29: '2008-12-28'
+    2015-01-01: '2014-12-30'
+    2016-01-01: '2015-12-30'
+    2017-01-01: '2016-12-30'
+    2018-01-01: '2017-12-31'
+    2022-01-01: '2022-12-31'

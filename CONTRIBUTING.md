@@ -96,3 +96,14 @@ Each change must be documented with the following elements:
 >      - All parameters are assumed to be valid until and end date is explicitely specified with an `<END>` tag
 
 When a Pull Request contains several disctincts changes, several paragraphs may be added to the Changelog. To be properly formatted in Markdown, these paragraphs must be separated by `<!-- -->`.
+
+## Pre-commit hooks
+
+Optional: install [pre-commit](https://pre-commit.com/) so that **ruff format** runs automatically before each commit:
+
+```sh
+uv sync
+uv run pre-commit install
+```
+
+After that, every `git commit` will format staged Python files with ruff. To run the hook manually on all files: `uv run pre-commit run ruff-format --all-files`.

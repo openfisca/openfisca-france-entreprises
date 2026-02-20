@@ -1,0 +1,6 @@
+description: Seuil minimal d'intensité des échanges avec pays tiers (%) pour concurrence internationale et hyper-électro
+reference: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603709"
+unit: "percent"
+values:
+  2016-01-01:
+    value: 25

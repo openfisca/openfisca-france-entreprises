@@ -1,6 +1,7 @@
 description: Taxation des énergies
 metadata:
   order:
+  - seuils_seqe
   - electricite
   - autres_produits_energetiques
   - gaz_naturel

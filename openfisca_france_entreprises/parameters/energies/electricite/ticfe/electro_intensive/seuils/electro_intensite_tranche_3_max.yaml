@@ -1,0 +1,6 @@
+description: Seuil max électro-intensité (kWh/€ VA) tranche 3 - concurrence internationale (≤ 13.5)
+reference: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603709"
+unit: "kWh_per_euro_VA"
+values:
+  2016-01-01:
+    value: 13.5
