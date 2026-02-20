@@ -8,6 +8,7 @@ See https://openfisca.org/doc/key-concepts/variables.html
 # Import from numpy the operations you need to apply on OpenFisca's population vectors
 # Import from openfisca-core the Python objects used to code the legislation in OpenFisca
 
+from openfisca_core.model_api import where
 from openfisca_core.periods import YEAR, Instant
 from openfisca_core.variables import Variable
 
@@ -29,10 +30,7 @@ class taxe_electricite_bouclier_tarifaire(Variable):
         ).energies.bouclier_tarifaire.entreprises  # 0.5 en 2022
         taxe = assiette_taxe_electricite * taux
         taxe_accise_electricite = etablissement("taxe_accise_electricite", period)
-
-        if taxe > taxe_accise_electricite:
-            return taxe_accise_electricite
-        return taxe
+        return where(taxe > taxe_accise_electricite, taxe_accise_electricite, taxe)
 
     def formula_2023_01_01(etablissement, period, parameters):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
@@ -41,10 +39,7 @@ class taxe_electricite_bouclier_tarifaire(Variable):
         ).energies.bouclier_tarifaire.entreprises  # 0.5 en 2023
         taxe = assiette_taxe_electricite * taux
         taxe_accise_electricite = etablissement("taxe_accise_electricite", period)
-
-        if taxe > taxe_accise_electricite:
-            return taxe_accise_electricite
-        return taxe
+        return where(taxe > taxe_accise_electricite, taxe_accise_electricite, taxe)
 
     def formula_2024_01_01(etablissement, period, parameters):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
@@ -53,10 +48,7 @@ class taxe_electricite_bouclier_tarifaire(Variable):
             Instant((2024, 2, 1)),
         ).energies.bouclier_tarifaire.entreprises  # 20.5 en 2024
         taxe = assiette_taxe_electricite * taux
-
-        if taxe > taxe_accise_electricite:
-            return taxe_accise_electricite
-        return taxe
+        return where(taxe > taxe_accise_electricite, taxe_accise_electricite, taxe)
 
 
 # On a fini par assumer que toutes les entreprises lui sont eligibles

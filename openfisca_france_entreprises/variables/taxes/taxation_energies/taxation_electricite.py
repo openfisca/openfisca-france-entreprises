@@ -1,6 +1,6 @@
 """Variables and formulas for this module."""
 
-from openfisca_core.model_api import YEAR, Variable, select
+from openfisca_core.model_api import YEAR, Variable, select, where
 
 # Import the Entities specifically defined for this tax and benefit system
 from openfisca_france_entreprises.entities import Etablissement
@@ -86,15 +86,16 @@ class taxe_electricite(Variable):
             "taxe_communale_consommation_finale_electricite",
             period,
         )
-        if taxe_accise_electricite == 0:
-            total = taxe_communale_consommation_finale_electricite
-        else:
-            total = (
-                taxe_accise_electricite / 12
-                + taxe_electricite_bouclier_tarifaire * 11 / 12
-                + taxe_communale_consommation_finale_electricite
-            )
-        return total
+        total_positive = (
+            taxe_accise_electricite / 12
+            + taxe_electricite_bouclier_tarifaire * 11 / 12
+            + taxe_communale_consommation_finale_electricite
+        )
+        return where(
+            taxe_accise_electricite == 0,
+            taxe_communale_consommation_finale_electricite,
+            total_positive,
+        )
 
     def formula_2023_01_01(etablissement, period, parameters):
         #
@@ -111,14 +112,11 @@ class taxe_electricite(Variable):
             period,
         )
         taxe_accise_electricite = etablissement("taxe_accise_electricite", period)
-
-        if taxe_accise_electricite == 0:
-            total = taxe_communale_consommation_finale_electricite / 12  # pour janvier
-        else:
-            total = (
-                taxe_electricite_bouclier_tarifaire + taxe_communale_consommation_finale_electricite / 12
-            )  # pour janvier
-        return total
+        total_zero = taxe_communale_consommation_finale_electricite / 12  # pour janvier
+        total_positive = (
+            taxe_electricite_bouclier_tarifaire + taxe_communale_consommation_finale_electricite / 12
+        )  # pour janvier
+        return where(taxe_accise_electricite == 0, total_zero, total_positive)
 
     def formula_2024_01_01(etablissement, period, parameters):
         #
@@ -129,7 +127,7 @@ class taxe_electricite(Variable):
         )
         taxe_accise_electricite = etablissement("taxe_accise_electricite", period)
 
-        return 0 if taxe_accise_electricite == 0 else taxe_electricite_bouclier_tarifaire
+        return where(taxe_accise_electricite == 0, 0, taxe_electricite_bouclier_tarifaire)
 
     def formula_2025_01_01(etablissement, period, parameters):
         #
@@ -140,11 +138,10 @@ class taxe_electricite(Variable):
             period,
         )
 
-        if taxe_accise_electricite == 0:
-            total = 0
-        else:
-            total = taxe_accise_electricite * 11 / 12 + taxe_electricite_bouclier_tarifaire / 12  # que pour janvier
-        return total
+        total_positive = (
+            taxe_accise_electricite * 11 / 12 + taxe_electricite_bouclier_tarifaire / 12
+        )  # que pour janvier
+        return where(taxe_accise_electricite == 0, 0, total_positive)
 
 
 class taxe_contribution_service_public_electricite(Variable):
@@ -740,23 +737,17 @@ class taxe_electricite_risque_de_fuite_de_carbone(Variable):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
 
         rfc = parameters(period).energies.electricite.ticfe.risque_de_fuite_de_carbone
-        if consommation_par_valeur_ajoutee >= rfc.seuil_3_kwh_par_va:
-            taxe = (
-                assiette_taxe_electricite
-                * rfc.taux_plus_de_3kWh_par_valeur_ajoutee
-            )
-        elif consommation_par_valeur_ajoutee >= rfc.seuil_1_5_kwh_par_va:
-            taxe = (
-                assiette_taxe_electricite
-                * rfc.taux_1_virgule_5_a_3kWh_par_valeur_ajoutee
-            )
-        else:
-            taxe = (
-                assiette_taxe_electricite
-                * rfc.taux_moins_de_1_virgule_5kWh_par_valeur_ajoutee
-            )
-
-        return taxe
+        taxe_plus_3 = assiette_taxe_electricite * rfc.taux_plus_de_3kWh_par_valeur_ajoutee
+        taxe_1_5_3 = assiette_taxe_electricite * rfc.taux_1_virgule_5_a_3kWh_par_valeur_ajoutee
+        taxe_moins_1_5 = assiette_taxe_electricite * rfc.taux_moins_de_1_virgule_5kWh_par_valeur_ajoutee
+        return select(
+            [
+                consommation_par_valeur_ajoutee >= rfc.seuil_3_kwh_par_va,
+                consommation_par_valeur_ajoutee >= rfc.seuil_1_5_kwh_par_va,
+            ],
+            [taxe_plus_3, taxe_1_5_3],
+            default=taxe_moins_1_5,
+        )
 
 
 class taxe_electricite_installations_industrielles_hyper_electro_intensives(Variable):
@@ -787,23 +778,17 @@ class taxe_electricite_installations_industrielles_electro_intensives(Variable):
         )
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
         ei = parameters(period).energies.electricite.ticfe.electro_intensive
-        if consommation_par_valeur_ajoutee >= ei.seuil_3_kwh_par_va:
-            taxe = (
-                assiette_taxe_electricite
-                * ei.taux_plus_de_3kWh_par_valeur_ajoutee
-            )
-        elif consommation_par_valeur_ajoutee >= ei.seuil_1_5_kwh_par_va:
-            taxe = (
-                assiette_taxe_electricite
-                * ei.taux_1_virgule_5_a_3kWh_par_valeur_ajoutee
-            )
-        else:
-            taxe = (
-                assiette_taxe_electricite
-                * ei.taux_moins_de_1_virgule_5kWh_par_valeur_ajoutee
-            )
-
-        return taxe
+        taxe_plus_3 = assiette_taxe_electricite * ei.taux_plus_de_3kWh_par_valeur_ajoutee
+        taxe_1_5_3 = assiette_taxe_electricite * ei.taux_1_virgule_5_a_3kWh_par_valeur_ajoutee
+        taxe_moins_1_5 = assiette_taxe_electricite * ei.taux_moins_de_1_virgule_5kWh_par_valeur_ajoutee
+        return select(
+            [
+                consommation_par_valeur_ajoutee >= ei.seuil_3_kwh_par_va,
+                consommation_par_valeur_ajoutee >= ei.seuil_1_5_kwh_par_va,
+            ],
+            [taxe_plus_3, taxe_1_5_3],
+            default=taxe_moins_1_5,
+        )
 
 
 class taxe_electricite_alimentation_a_quai(Variable):
@@ -879,15 +864,11 @@ class taxe_electricite_centres_de_stockage_donnees(Variable):
 
         ticfe = parameters(period).energies.electricite.ticfe
         plafond = ticfe.plafond_assiette_mwh
-        if assiette_taxe_electricite > plafond:
-            taxe = (
-                plafond * ticfe.taux_normal
-                + (assiette_taxe_electricite - plafond) * ticfe.data_center
-            )  # la portion qui dépasse un gigawatt
-        else:
-            taxe = assiette_taxe_electricite * ticfe.taux_normal
-
-        return taxe
+        taxe_above = (
+            plafond * ticfe.taux_normal + (assiette_taxe_electricite - plafond) * ticfe.data_center
+        )  # la portion qui dépasse un gigawatt
+        taxe_below = assiette_taxe_electricite * ticfe.taux_normal
+        return where(assiette_taxe_electricite > plafond, taxe_above, taxe_below)
 
     def formula_2022_01_01(etablissement, period, parameters):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
@@ -944,30 +925,17 @@ class taxe_accise_electricite_taux_normal(Variable):
     def formula_2022_01_01(etablissement, period, parameters):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
         amperage = etablissement("amperage", period)
-        if (
-            amperage != 0
-            and amperage < parameters.energies.electricite.ticfe.categorie_fiscale_petite_et_moyenne_entreprise
-        ):
-            taxe = (
-                assiette_taxe_electricite
-                * parameters(
-                    period,
-                ).energies.electricite.ticfe.taux_normal_36kVA_et_moins
-            )
-        elif (
-            amperage != 0
-            and amperage
-            < parameters(
-                period,
-            ).energies.electricite.ticfe.categorie_fiscale_haut_puissance
-        ):
-            taxe = assiette_taxe_electricite * parameters(period).energies.electricite.ticfe.taux_normal_36_a_250kVA
-        else:
-            taxe = (
-                assiette_taxe_electricite * parameters(period).energies.electricite.ticfe.taux_normal
-            )  # haut puissance, > 250 kVA
-
-        return taxe
+        ticfe = parameters(period).energies.electricite.ticfe
+        cond_36 = (amperage != 0) & (amperage < ticfe.categorie_fiscale_petite_et_moyenne_entreprise)
+        cond_250 = (
+            (amperage != 0)
+            & (amperage >= ticfe.categorie_fiscale_petite_et_moyenne_entreprise)
+            & (amperage < ticfe.categorie_fiscale_haut_puissance)
+        )
+        taxe_36 = assiette_taxe_electricite * ticfe.taux_normal_36kVA_et_moins
+        taxe_36_250 = assiette_taxe_electricite * ticfe.taux_normal_36_a_250kVA
+        taxe_haut = assiette_taxe_electricite * ticfe.taux_normal  # > 250 kVA
+        return select([cond_36, cond_250], [taxe_36, taxe_36_250], default=taxe_haut)
 
 
 class taxe_accise_electricite_electro_intensive_activite_industrielle(Variable):
