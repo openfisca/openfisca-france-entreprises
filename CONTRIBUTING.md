@@ -26,6 +26,22 @@ In case of breaking changes, you **must** give details about what features were 
 > You must also provide guidelines to help users adapt their code to be compatible with the new version of the package.
 
 
+## Code conventions
+
+### Imports from OpenFisca-Core
+
+Prefer a single import from `openfisca_core.model_api` for legislation-related symbols (`Variable`, `YEAR`, `select`, `where`, `Enum`, etc.):
+
+```python
+from openfisca_core.model_api import Variable, YEAR
+```
+
+Imports from other `openfisca_core` submodules should remain **rare** and justified:
+
+- **Package bootstrap**: `__init__.py` and `entities.py` use `TaxBenefitSystem` and `build_entity` from their dedicated modules.
+- **Instant**: when you need a specific instant (e.g. for parameter dates), use `from openfisca_core.periods import Instant`; it is not re-exported by `model_api`.
+
+
 ## Advertising changes
 
 ### Version number

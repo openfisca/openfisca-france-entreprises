@@ -1,7 +1,6 @@
 """Variables and formulas for this module."""
 
-from openfisca_core.periods import YEAR
-from openfisca_core.variables import Variable
+from openfisca_core.model_api import YEAR, Variable
 
 from openfisca_france_entreprises.entities import (
     Etablissement,
