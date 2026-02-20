@@ -50,9 +50,12 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
     # etablissement('', period) * parameters(period).
     # etablissement('', period) * parameters(period).
-    # NB : pour cette variable, j'ai commencé avec l'année 2021, puis j'ai traveilé en inverse. Donc, les changements sont par rapport à l'année suivante, pas precedante.
+    # NB : pour cette variable, j'ai commencé avec l'année 2021, puis j'ai
+    # traveilé en inverse. Donc, les changements sont par rapport à l'année
+    # suivante, pas precedante.
 
-    # les changements décrits en dessous sont remarqués par rapport aux années suivantes ; ils s'appliquent aux années précédents
+    # les changements décrits en dessous sont remarqués par rapport aux années
+    # suivantes ; ils s'appliquent aux années précédents
     # 2000
     # rien de changements
     # 2001
@@ -109,14 +112,17 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.super.super_plombe
-            # + etablissement('consommation_supercarburant_e10', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10
+            # + etablissement('consommation_supercarburant_e10', period) *
+            #     parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10
             + etablissement(
                 "consommation_carbureacteurs_essence_carburants_avion_hL", period
             )
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.carburants_avion_hL
-            # + etablissement('consommation_carbureacteurs_essence_autres_hL', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_hL (combiner en une variable de consommation)
+            # + etablissement('consommation_carbureacteurs_essence_autres_hL', period) *
+            #     parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_hL
+            #     (combiner en une variable de consommation)
             + etablissement(
                 "consommation_huiles_legeres_combustible_carburant_ou_autres", period
             )
@@ -167,12 +173,16 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
-            # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.usages_autres_que_comme_carburant_100kg_nets
+            # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) *
+            # parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
             + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.autres_100kg_nets
-            # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
+            # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) *
+            # parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
             + etablissement(
                 "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
                 period,
@@ -180,9 +190,14 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres_100kg
-            # + etablissement('consommation_supercarburant_e85', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e85
-            # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburant_constitue_minimum_90_alcool_ethylique_agricole
-            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburant_constitue_100_estars_methyliques_acides_gras
+            # + etablissement('consommation_supercarburant_e85', period) *
+            #     parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e85
+            # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
+            # parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     carburant_constitue_minimum_90_alcool_ethylique_agricole
+            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
+            # parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     carburant_constitue_100_estars_methyliques_acides_gras
             + etablissement(
                 "consommation_gazoles_carburants_sous_conditions_hectolitre", period
             )
@@ -226,7 +241,13 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.gaz_naturel_etat_gazeux_utilises_comme_carburants
-            # + etablissement('consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires', period) * parameters(period).energies.autres_produits_energetiques.ticpe.gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
+            # + etablissement(
+            #     'consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires',
+            #     period
+            # ) * (
+            #     parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
+            # )
             + etablissement(
                 "consommation_carbureacteurs_essence_sous_conditions_hL", period
             )
@@ -243,21 +264,29 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         return total
 
     # 2007
-    # (par rapport à précédement) majoration régionale pour consommation_gazole et consommation_supercarburant_e5, en plus de la réfaction
+    # (par rapport à précédement) majoration régionale pour consommation_gazole
+    # et consommation_supercarburant_e5, en plus de la réfaction
     # NB : quelquels changements dans les indices
     # par rapport aux années suivantes; ces changements s'appliquent aux années précédents :
-    # 1° Huiles légères, indice 4 bis, hectolitre, taxe intérieure applicable au fioul domestique visé à l'indice 20.
+    # 1° Huiles légères, indice 4 bis, hectolitre, taxe intérieure applicable
+    # au fioul domestique visé à l'indice 20.
     # parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres
     #
     # exempté :
-    # parameters(period).energies.autres_produits_energetiques.ticpe.gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
+    # parameters(period).energies.autres_produits_energetiques.ticpe.
+    #     gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
     #
     # remarques peu importantes :
     # ---huiles lubrifiantes et autres, exemption
-    # Ex 2715-00, Bitumes fluxés ("cut-backs"), émulsions de bitume de pétrole et similaires : indice 47, exemption.
-    # 3403-11, Préparations pour le traitement des matières textiles, du cuir, des pelleteries ou d'autres matières, contenant moins de 70 % en poids d'huiles de pétrole ou de minéraux bitumineux : indice 48, exemption.
-    # Ex 3403-19, Préparations lubrifiantes contenant moins de 70 % en poids d'huiles de pétrole ou de minéraux bitumineux : indice 49, exemption.
-    # 3811 21-00, Additifs pour huiles lubrifiantes, contenant des huiles de pétrole ou de minéraux bitumineux : indice 51, exemption.
+    # Ex 2715-00, Bitumes fluxés ("cut-backs"), émulsions de bitume de pétrole
+    # et similaires : indice 47, exemption.
+    # 3403-11, Préparations pour le traitement des matières textiles, du cuir,
+    # des pelleteries ou d'autres matières, contenant moins de 70 % en poids
+    # d'huiles de pétrole ou de minéraux bitumineux : indice 48, exemption.
+    # Ex 3403-19, Préparations lubrifiantes contenant moins de 70 % en poids
+    # d'huiles de pétrole ou de minéraux bitumineux : indice 49, exemption.
+    # 3811 21-00, Additifs pour huiles lubrifiantes, contenant des huiles de
+    # pétrole ou de minéraux bitumineux : indice 51, exemption.
     #
     # il a pas de tariff explicite après 2008, non plus
     #
@@ -301,7 +330,8 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.super.super_plombe
-            # + etablissement('consommation_supercarburant_e10', period) * parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10
+            # + etablissement('consommation_supercarburant_e10', period) *
+            #     parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10
             + etablissement(
                 "consommation_carbureacteurs_essence_carburants_avion_hL", period
             )
@@ -365,12 +395,16 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
-            # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.usages_autres_que_comme_carburant_100kg_nets
+            # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) *
+            # parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
             + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.autres_100kg_nets
-            # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
+            # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) *
+            # parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
             + etablissement(
                 "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
                 period,
@@ -382,8 +416,12 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.super.super_e85
-            # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburant_constitue_minimum_90_alcool_ethylique_agricole
-            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburant_constitue_100_estars_methyliques_acides_gras
+            # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
+            #     parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     carburant_constitue_minimum_90_alcool_ethylique_agricole
+            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
+            #     parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     carburant_constitue_100_estars_methyliques_acides_gras
             + etablissement(
                 "consommation_gazoles_carburants_sous_conditions_hectolitre", period
             )
@@ -427,7 +465,13 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.gaz_naturel_etat_gazeux_utilises_comme_carburants
-            # + etablissement('consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires', period) * parameters(period).energies.autres_produits_energetiques.ticpe.gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
+            # + etablissement(
+            #     'consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires',
+            #     period
+            # ) * (
+            #     parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
+            # )
             + etablissement(
                 "consommation_carbureacteurs_essence_sous_conditions_hL", period
             )
@@ -553,12 +597,16 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
-            # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.usages_autres_que_comme_carburant_100kg_nets
+            # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) *
+            # parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
             + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.autres_100kg_nets
-            # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
+            # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) *
+            # parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
             + etablissement(
                 "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
                 period,
@@ -570,8 +618,12 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.super.super_e85
-            # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburant_constitue_minimum_90_alcool_ethylique_agricole
-            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburant_constitue_100_estars_methyliques_acides_gras
+            # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
+            #     parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     carburant_constitue_minimum_90_alcool_ethylique_agricole
+            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
+            #     parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     carburant_constitue_100_estars_methyliques_acides_gras
             + etablissement(
                 "consommation_gazoles_carburants_sous_conditions_hectolitre", period
             )
@@ -754,12 +806,16 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
-            # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.usages_autres_que_comme_carburant_100kg_nets
+            # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) *
+            # parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
             + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.autres_100kg_nets
-            # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
+            # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) *
+            # parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
             + etablissement(
                 "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
                 period,
@@ -771,8 +827,12 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.super.super_e85
-            # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburant_constitue_minimum_90_alcool_ethylique_agricole
-            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburant_constitue_100_estars_methyliques_acides_gras
+            # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
+            #     parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     carburant_constitue_minimum_90_alcool_ethylique_agricole
+            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
+            #     parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     carburant_constitue_100_estars_methyliques_acides_gras
             + etablissement(
                 "consommation_gazoles_carburants_sous_conditions_hectolitre", period
             )
@@ -954,12 +1014,16 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
-            # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.usages_autres_que_comme_carburant_100kg_nets
+            # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) *
+            # parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
             + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.autres_100kg_nets
-            # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
+            # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) *
+            # parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
             + etablissement(
                 "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
                 period,
@@ -971,8 +1035,12 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.super.super_e85
-            # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburant_constitue_minimum_90_alcool_ethylique_agricole
-            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburant_constitue_100_estars_methyliques_acides_gras
+            # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
+            #     parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     carburant_constitue_minimum_90_alcool_ethylique_agricole
+            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
+            #     parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     carburant_constitue_100_estars_methyliques_acides_gras
             + etablissement(
                 "consommation_gazoles_carburants_sous_conditions_hectolitre", period
             )
@@ -1029,9 +1097,11 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         return total
 
     # 2017:
-    # parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.usages_autres_que_comme_carburant_100kg_nets
+    # parameters(period).energies.autres_produits_energetiques.ticpe.
+    #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
     # ^est exempté, également pendant les années précédantes
-    # parameters(period).energies.autres_produits_energetiques.ticpe.butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
+    # parameters(period).energies.autres_produits_energetiques.ticpe.
+    #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
     # ^également pour ça
     # consommation_carburant_constitue_100_estars_methyliques_acides_gras
     # parameters\energies\autres_produits_energetiques\ticpe\gazole\gazole_b_10_hectolitre.yaml
@@ -1145,12 +1215,16 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
-            # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.usages_autres_que_comme_carburant_100kg_nets
+            # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) *
+            # parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
             + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.autres_100kg_nets
-            # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) * parameters(period).energies.autres_produits_energetiques.ticpe.butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
+            # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) *
+            # parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
             + etablissement(
                 "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
                 period,
@@ -1169,7 +1243,9 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             * parameters(
                 period
             ).energies.autres_produits_energetiques.ticpe.carburant_constitue_minimum_90_alcool_ethylique_agricole
-            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) * parameters(period).energies.autres_produits_energetiques.ticpe.carburant_constitue_100_estars_methyliques_acides_gras
+            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
+            #     parameters(period).energies.autres_produits_energetiques.ticpe.
+            #     carburant_constitue_100_estars_methyliques_acides_gras
             + etablissement(
                 "consommation_gazoles_carburants_sous_conditions_hectolitre", period
             )
@@ -1233,7 +1309,8 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     # 2019 : par rapport à 2020,
     # parameters(period).energies.autres_produits_energetiques.ticpe.gazole.gazole_b_10_hectolitre
     # parameters(period).energies.autres_produits_energetiques.ticpe.gaz_naturel_etat_gazeux_utilises_comme_carburants
-    # parameters(period).energies.autres_produits_energetiques.ticpe.gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
+    # parameters(period).energies.autres_produits_energetiques.ticpe.
+    #     gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
     def formula_2018_01_01(etablissement, period, parameters):
         total = [
             # chaque objet dans la liste est positioné selon sa position dans le code législatif
@@ -1452,7 +1529,8 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     #
     # parameters(period).energies.autres_produits_energetiques.ticpe.butanes_liquefies.sous_condition_100kg_nets
     #
-    # parameters(period).energies.autres_produits_energetiques.ticpe.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions_100kg
+    # parameters(period).energies.autres_produits_energetiques.ticpe.
+    #     autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions_100kg
     # (en dessous est un nouveau catagorie)
     # parameters(period).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions_hectolitre
     #
@@ -2056,7 +2134,8 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         )
 
     def formula_2024_01_01(etablissement, period, parameters):
-        # par rapport à précédement, supprimé consommation_essence_aviation_mwh et quelques tarifs visés seqe et concurrence internationale
+        # par rapport à précédement, supprimé consommation_essence_aviation_mwh et quelques
+        # tarifs visés seqe et concurrence internationale
         p = parameters(period).energies.autres_produits_energetiques.accise
         t = p.taux_selon_activite
         c = p.carburants

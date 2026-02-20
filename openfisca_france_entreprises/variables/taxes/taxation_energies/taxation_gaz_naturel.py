@@ -158,7 +158,10 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
         """
         ajouté.
 
-        -Le tarif de la taxe applicable au produit consommé pour déshydrater les légumes et plantes aromatiques, autres que les pommes de terres, les champignons et les truffes, par les entreprises pour lesquelles cette consommation est supérieure à 800 wattheures par euro de valeur ajoutée, est fixé à 1,6 € par mégawattheure.
+        -Le tarif de la taxe applicable au produit consommé pour déshydrater les légumes
+        et plantes aromatiques, autres que les pommes de terres, les champignons et les
+        truffes, par les entreprises pour lesquelles cette consommation est supérieure à
+        800 wattheures par euro de valeur ajoutée, est fixé à 1,6 € par mégawattheure.
             calculer, creer une variable value_ajouté, et ensuit appelle la variable ici, si ça depasse le seuil.
 
         """
@@ -496,12 +499,14 @@ class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
         """
         [à noter : plus de seuil ni d'abattement].
 
-        [à noter : le 1.11 serve à convertir le taux en pci au taux en pcs. On assume que pcs est au courant tout le temps].
+        [à noter : le 1.11 serve à convertir le taux en pci au taux en pcs. On assume
+        que pcs est au courant tout le temps].
         """
         assiette = etablissement("assiette_ticgn", period)
         taux_pci = parameters(period).energies.gaz_naturel.ticgn.taux_normal
         taux = taux_pci * parameters(period).energies.gaz_naturel.ticgn.conversion_pcs_pci
-        # facteur de conversion PCI/PCS, cf. Circulaire du 29 avril 2014 "Taxe intérieure de consommation sur le gaz naturel (TICGN) NOR FCPD1408602C"
+        #
+        # naturel
         # ***faut vérrifier si cette calculation est valide. Paul a dit que l'assumption est que le PCS est tjrs valide
         taxe = assiette * taux
         return taxe
@@ -650,7 +655,8 @@ class assiette_ticgn(Variable):
             - dans les conditions prévues au III de l'article 265 C du CDD (consommation_gaz_fabrication_soi)
             - pour la production d'électricité
                 *
-                    sauf pour les installations visées à l'article 266 quinquies A (cogeneration, qui existe depuis longtemps)
+                    sauf pour les installations visées à l'article 266 quinquies A
+                    (cogeneration, qui existe depuis longtemps)
             ^par rapport à précedement, doit-on en créer un nouveau ?
             - pour les besoins de l'extraction et de la production de gaz naturel (gaz_extraction_production)
             - pour la consommation des particuliers (consommation_gaz_particuliers)
@@ -686,8 +692,11 @@ class assiette_ticgn(Variable):
         Todo.
 
         (par rapport à précédemment, )
-            la consommation du gaz utilisé pour la production d'électricité par les petits producteurs d'électricité au sens du 4° du V de l'article L. 3333-2 du code général des collectivités territoriales.
-            n'est plus exonérée à partir du 1er janvier 2011. Cette condition est intégrée comme une exception de consommation_gaz_production_electricite.
+            la consommation du gaz utilisé pour la production d'électricité par les
+            petits producteurs d'électricité au sens du 4° du V de l'article L. 3333-2
+            du code général des collectivités territoriales.
+            n'est plus exonérée à partir du 1er janvier 2011. Cette condition est
+            intégrée comme une exception de consommation_gaz_production_electricite.
         """
         date_installation_cogeneration = etablissement("date_installation_cogeneration", period)
         cogeneration_exoneree = False
@@ -749,9 +758,14 @@ class assiette_ticgn(Variable):
         Todo.
 
         (par rapport à précédemment, )
-            Réintégration des usages carburants dans le champ de la TICGN >= consommation_gaz_carburant est ajoutée dans la formule de la variable consommation_gaz_naturel
-            https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006071570/LEGISCTA000006122062/1993-01-01/?anchor=LEGIARTI000006615168#LEGIARTI000006615168
-        avant c'était consideré comme un produit petrolier, et en 2020 il sont dit qu'ils sont desormais consideré comme du gaz naturel.
+            Réintégration des usages carburants dans le champ de la TICGN >=
+            consommation_gaz_carburant est ajoutée dans la formule de la variable
+            consommation_gaz_naturel
+            https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006071570/
+            LEGISCTA000006122062/1993-01-01/?anchor=LEGIARTI000006615168#
+            LEGIARTI000006615168
+        avant c'était consideré comme un produit petrolier, et en 2020 il sont dit
+        qu'ils sont desormais consideré comme du gaz naturel.
         """
         conso = etablissement("consommation_gaz_combustible", period) + etablissement(
             "consommation_gaz_carburant", period
@@ -773,8 +787,9 @@ class assiette_ticgn(Variable):
 
     def formula_2021_01_01(etablissement, period, parameters):
         """suprimmé consommation_gaz_nc_2705."""
-        conso = etablissement("consommation_gaz_combustible", period) + etablissement(
-            "consommation_gaz_carburant", period
+        conso = (
+            etablissement("consommation_gaz_combustible", period)
+            + etablissement("consommation_gaz_carburant", period)
         )
         consommation_autres_produits_energetique_ticgn = etablissement(
             "consommation_autres_produits_energetique_ticgn", period
@@ -798,7 +813,8 @@ class assiette_ticgn(Variable):
         #     conso = etablissement("consommation_gaz_combustible", period) +
         etablissement("consommation_gaz_carburant", period)
 
-    #     consommation_autres_produits_energetique_ticgn = etablissement('consommation_autres_produits_energetique_ticgn', period)
+    #
+    # period)
     #     conso_exoneree = (
     #         etablissement("consommation_gaz_fabrication_soi", period) +
     #         etablissement("consommation_gaz_production_electricite", period)

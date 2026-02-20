@@ -1,3 +1,13 @@
+## 1.1.4
+
+* Code quality: fix E501 line length violations.
+* Impacted areas: code formatting, linting compliance.
+* Details:
+  - Fix all E501 (line too long) violations to comply with 120 character limit
+  - Reformatted long docstrings, comments, and expressions in taxation modules
+  - Updated pyproject.toml line-length setting to 120
+  - All tests pass, no functional changes
+
 ## 1.1.3
 
 * Technical improvement: use latest openfisca-core and remove monkey patches.

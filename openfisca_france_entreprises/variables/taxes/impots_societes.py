@@ -31,8 +31,8 @@ class prelevement_exceptionnel_entreprises_hydrocarbures(Variable):
     def formula_1985_01_01(unite_legale, period, parameters):
         """Exceptional corporate income tax.
 
-        Prélèvement "exceptionnel" de 12% sur le bénéfice imposable des entreprises exploitant des gisements d'hydrocarbures en
-                    France.
+        Prélèvement "exceptionnel" de 12% sur le bénéfice imposable des
+        entreprises exploitant des gisements d'hydrocarbures en France.
                 Instauré par l'article 25 de la loi de finances pour 1985, et reconduit chaque année.
 
                 https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000880778/#JORFARTI000001493148

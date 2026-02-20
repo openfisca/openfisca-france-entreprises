@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Add minimal docstrings for D100, D101, D102. Run from repo root after: ruff check openfisca_france_entreprises --select D100,D101,D102 --output-format=json."""
+"""Add minimal docstrings for D100, D101, D102.
+
+Run from repo root after:
+ruff check openfisca_france_entreprises --select D100,D101,D102 --output-format=json.
+"""
 
 import json
 import re
