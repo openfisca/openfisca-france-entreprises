@@ -572,7 +572,8 @@ class taxe_accise_electricite(Variable):
     def formula_2025_01_01(etablissement, period, parameters):
         """Par rapport à précedement, ajouté
         consommation_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques et
-        consommation_alimentation_aeronefs_stationnement_aerodromes_activites_economiques."""
+        consommation_alimentation_aeronefs_stationnement_aerodromes_activites_economiques.
+        """
         # voici les conditions à appliquer
         electro_intensive_activite_industrielle = etablissement(
             "electro_intensive_activite_industrielle",

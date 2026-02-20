@@ -2,7 +2,7 @@ from openfisca_core.model_api import *
 from openfisca_core.periods import YEAR
 from openfisca_core.variables import Variable
 
-from openfisca_france_entreprises.entities import Etablissement  # noqa F401
+from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.naf import naf
 
 

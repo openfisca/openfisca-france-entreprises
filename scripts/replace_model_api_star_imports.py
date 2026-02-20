@@ -86,7 +86,7 @@ def main():
         if new_text != text:
             py_path.write_text(new_text, encoding="utf-8")
             files_changed += 1
-            print(py_path.relative_to(REPO_ROOT), "->", need_sorted if need_sorted else "(removed)")
+            print(py_path.relative_to(REPO_ROOT), "->", need_sorted or "(removed)")
 
     print("Files updated:", files_changed, file=sys.stderr)
 
