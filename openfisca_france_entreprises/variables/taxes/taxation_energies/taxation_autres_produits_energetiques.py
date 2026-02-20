@@ -78,7 +78,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     # consommation_supercarburant_e85
     # ^exempté
     def formula_2000_01_01(etablissement, period, parameters):
-        total = [
+        return [
             # chaque objet dans la liste est positioné selon sa position dans le code législatif
             etablissement("consommation_goudrons_utilises_comme_combustibles", period)
             * parameters(
@@ -273,7 +273,6 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 period,
             ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.sous_conditions_hL,
         ]
-        return total
 
     # 2007
     # (par rapport à précédement) majoration régionale pour consommation_gazole
@@ -304,7 +303,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     #
     #
     def formula_2007_01_01(etablissement, period, parameters):
-        total = [
+        return [
             # chaque objet dans la liste est positioné selon sa position dans le code législatif
             etablissement("consommation_goudrons_utilises_comme_combustibles", period)
             * parameters(
@@ -511,13 +510,12 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 period,
             ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.sous_conditions_hL,
         ]
-        return total
 
     # 2008
     # par rapport aux années suivantes; ces changements s'appliquent aux années précédents :
     #  consommation_supercarburant_e10 exempté
     def formula_2008_01_01(etablissement, period, parameters):
-        total = [
+        return [
             # chaque objet dans la liste est positioné selon sa position dans le code législatif
             etablissement("consommation_goudrons_utilises_comme_combustibles", period)
             * parameters(
@@ -727,7 +725,6 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 period,
             ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.sous_conditions_hL,
         ]
-        return total
 
     # *** TODO : vérifie quand e10 s'est apparu 2011 pas 2012 ?
     # 2012
@@ -738,7 +735,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     # parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.sous_conditions_hL
     # parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.sous_conditions_hL
     def formula_2012_01_01(etablissement, period, parameters):
-        total = [
+        return [
             # chaque objet dans la liste est positioné selon sa position dans le code législatif
             etablissement("consommation_goudrons_utilises_comme_combustibles", period)
             * parameters(
@@ -950,7 +947,6 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 period,
             ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.sous_conditions_hL,
         ]
-        return total
 
     # 2014
     # pas de changement par rapport à 2015
@@ -960,7 +956,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     # consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole
     # ^exempté en 2016 et celles d'avant
     def formula_2014_01_01(etablissement, period, parameters):
-        total = [
+        return [
             # chaque objet dans la liste est positioné selon sa position dans le code législatif
             etablissement("consommation_goudrons_utilises_comme_combustibles", period)
             * parameters(
@@ -1160,7 +1156,6 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             # etablissement('', period) * parameters(period).
             # etablissement('', period) * parameters(period).
         ]
-        return total
 
     # 2017:
     # parameters(period).energies.autres_produits_energetiques.ticpe.
@@ -1173,7 +1168,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     # parameters\energies\autres_produits_energetiques\ticpe\gazole\gazole_b_10_hectolitre.yaml
     # ^également
     def formula_2017_01_01(etablissement, period, parameters):
-        total = [
+        return [
             # chaque objet dans la liste est positioné selon sa position dans le code législatif
             etablissement("consommation_goudrons_utilises_comme_combustibles", period)
             * parameters(
@@ -1381,7 +1376,6 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             # etablissement('', period) * parameters(period).
             # etablissement('', period) * parameters(period).
         ]
-        return total
 
     # 2018: pareil que 2019
     # 2019 : par rapport à 2020,
@@ -1390,7 +1384,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     # parameters(period).energies.autres_produits_energetiques.ticpe.
     #     gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
     def formula_2018_01_01(etablissement, period, parameters):
-        total = [
+        return [
             # chaque objet dans la liste est positioné selon sa position dans le code législatif
             etablissement("consommation_goudrons_utilises_comme_combustibles", period)
             * parameters(
@@ -1610,7 +1604,6 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             # etablissement('', period) * parameters(period).
             # etablissement('', period) * parameters(period).
         ]
-        return total
 
     # 2020 : par rapport à 2021,
     # carburants_sous_conditions_hectolitre,
@@ -1626,7 +1619,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     #
     # parameters(period).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres_hectolitre
     def formula_2020_01_01(etablissement, period, parameters):
-        total = [
+        return [
             # chaque objet dans la liste est positioné selon sa position dans le code législatif
             etablissement("consommation_goudrons_utilises_comme_combustibles", period)
             * parameters(
@@ -1827,10 +1820,9 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 period,
             ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres_hectolitre,
         ]
-        return total
 
     def formula_2021_01_01(etablissement, period, parameters):
-        total = [
+        return [
             # chaque objet dans la liste est positioné selon sa position dans le code législatif
             etablissement("consommation_goudrons_utilises_comme_combustibles", period)
             * parameters(
@@ -2000,7 +1992,6 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             # etablissement('', period) * parameters(period).
             # etablissement('', period) * parameters(period).
         ]
-        return total
 
     def formula_2022_01_01(etablissement, period, parameters):
         # à noter que l'accise est mise en effet dès cette année. beaucoup des categories sont éliminées
@@ -2077,7 +2068,8 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         )
 
         # gaz_de_petrole_liquefies_combustible_travaux_agricoles n'existe qu'à partir de 2023
-        if period.start.year >= 2023:
+        accise = parameters(period).energies.autres_produits_energetiques.accise
+        if period.start.year >= accise.annee_gaz_petrole_liquefies_travaux_agricoles:
             taux_gaz_de_petrole_liquefies_combustible = select(
                 [autres_produits_travaux_agricoles],
                 [t.gaz_de_petrole_liquefies_combustible_travaux_agricoles],

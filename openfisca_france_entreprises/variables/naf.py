@@ -1,4 +1,10 @@
-from openfisca_core.model_api import *
+"""NAF (Nomenclature d'Activités Française) rev. 2.
+
+French statistical classification of economic activities. Enum of activity
+codes and their labels, used for sector/activity variables (e.g. apet).
+"""
+
+from openfisca_core.model_api import Enum
 
 # Import the Entities specifically defined for this tax and benefit system
 

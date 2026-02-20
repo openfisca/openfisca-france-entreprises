@@ -147,14 +147,14 @@ class electricite_exploitation_aerodrome(Variable):
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
 
-    def formula_2019_01_01(etablissement, period):
+    def formula_2019_01_01(etablissement, period, parameters):
         apet = etablissement("apet", period)
         consommation_par_valeur_ajoutee = etablissement(
             "consommation_par_valeur_ajoutee",
             period,
         )
-        # 222 wattheures par valeur ajoutée
-        return (apet == naf._52_23Z) & (consommation_par_valeur_ajoutee > 0.000222)
+        seuil = parameters(period).energies.electricite.ticfe.seuil_consommation_par_va_52_23z
+        return (apet == naf._52_23Z) & (consommation_par_valeur_ajoutee > seuil)
 
     def formula_2022_01_01(etablissement, period):
         apet = etablissement("apet", period)

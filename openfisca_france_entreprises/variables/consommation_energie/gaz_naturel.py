@@ -176,8 +176,7 @@ class consommation_gaz_fabrication_soi(Variable):
     value_type = float
     unit = "MWh"
     entity = Etablissement
-    label = ""
-    reference = (
+    label = (
         "La consommation de gaz naturel dans l'enceinte des établissements de production de produits énergétiques"
     )
     reference = "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006071570/LEGISCTA000006122062/2008-01-01/?anchor=LEGIARTI000018036100#LEGIARTI000018036100:~:text=III.%2DLa%20consommation,%C3%A0%20leur%20fabrication."

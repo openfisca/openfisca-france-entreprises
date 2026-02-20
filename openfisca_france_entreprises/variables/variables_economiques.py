@@ -69,12 +69,8 @@ class chiffre_affaires_eta(Variable):
         chiffre_affaires_ul = etablissement.unite_legale("chiffre_affaires_ul", period)
         effectif_3112_ul = etablissement.unite_legale("effectif_3112_ul", period)
         effectif_3112_eta = etablissement("effectif_3112_eta", period)
-        if effectif_3112_ul:
-            chiffre_affaires_eta = chiffre_affaires_ul * (effectif_3112_eta / effectif_3112_ul)
-        else:
-            chiffre_affaires_eta = 0
+        return chiffre_affaires_ul * (effectif_3112_eta / effectif_3112_ul) if effectif_3112_ul else 0
 
-        return chiffre_affaires_eta
 
 
 class facture_energie_ul(Variable):
@@ -193,12 +189,8 @@ class intensite_energetique_valeur_production(Variable):
         facture_energie_eta = etablissement("facture_energie_eta", period)
         chiffre_affaires_eta = etablissement("chiffre_affaires_eta", period)
 
-        if chiffre_affaires_eta != 0:
-            quotient = facture_energie_eta / chiffre_affaires_eta
-        else:
-            quotient = 0
+        return facture_energie_eta / chiffre_affaires_eta if chiffre_affaires_eta != 0 else 0
 
-        return quotient
 
 
 # 1° Le niveau d'intensité énergétique en valeur de production s'entend du quotient entre :

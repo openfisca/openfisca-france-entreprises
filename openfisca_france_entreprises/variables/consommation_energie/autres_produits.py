@@ -1,6 +1,10 @@
-from openfisca_core.model_api import *
-from openfisca_core.periods import YEAR
-from openfisca_core.variables import Variable
+"""Energy consumption variables for other petroleum/energy products (TICPE scope).
+
+Establishment-level consumption of fuels and products such as gas oils, petrol,
+white spirit, LPG, heavy fuel oil, etc., as defined by the tax legislation.
+"""
+
+from openfisca_core.model_api import YEAR, Variable
 
 from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.naf import naf
@@ -421,7 +425,7 @@ class consommation_autres_produits_energetique_ticc(Variable):
     definition_period = YEAR
 
     def formula_2007_01_01(etablissement, period, parameters):
-        totale = (
+        return (
             etablissement("consommation_huiles_lubrifiantes_et_autres", period)
             + etablissement("consommation_vaseline", period)
             + etablissement("consommation_paraffine_moins_75_pourcent_huile", period)
@@ -437,7 +441,6 @@ class consommation_autres_produits_energetique_ticc(Variable):
             + etablissement("consommation_additifs_huiles_lubrifiantes", period)
         )
 
-        return totale
 
     def formula_2012_01_01(etablissement, period, parameters):
         # par rapport à précédement, ajouté consommation_melanges_hydrocarbures_aromatiques
@@ -471,9 +474,8 @@ class consommation_autres_produits_energetique_ticgn(Variable):
     definition_period = YEAR
 
     def formula_2007_01_01(etablissement, period, parameters):
-        totale = etablissement("consommation_ethylene_propylene_butylene_butadiene", period)
+        return etablissement("consommation_ethylene_propylene_butylene_butadiene", period)
 
-        return totale
 
 
 class consommation_melanges_hydrocarbures_aromatiques(Variable):
