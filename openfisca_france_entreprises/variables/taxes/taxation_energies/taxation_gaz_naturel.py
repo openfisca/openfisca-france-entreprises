@@ -790,7 +790,7 @@ class assiette_ticgn(Variable):
     def formula_2021_01_01(etablissement, period, parameters):
         """suprimmé consommation_gaz_nc_2705."""
         conso = etablissement("consommation_gaz_combustible", period) + etablissement(
-            "consommation_gaz_carburant", period
+            "consommation_gaz_carburant", period,
         )
         consommation_autres_produits_energetique_ticgn = etablissement(
             "consommation_autres_produits_energetique_ticgn",
