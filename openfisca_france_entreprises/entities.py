@@ -1,5 +1,4 @@
-"""
-This file defines the entities needed by our legislation.
+"""This file defines the entities needed by our legislation.
 
 Taxes and benefits can be calculated for different entities: etablissements, unite_legale, companies, etc.
 
@@ -14,10 +13,12 @@ UniteLegale = build_entity(
     label="All the etablissements in a legal unit defined by a SIREN.",
     doc="""
     A unite_legale entity contains one or more etablissements.
-    Each etablissement in a unite_legale has a role (e.g. siege_social or secondaire etablissement). There can only be one siege_social etablissement.
+    Each etablissement in a unite_legale has a role (e.g. siege_social or
+    secondaire etablissement). There can only be one siege_social etablissement.
 
     Usage:
-    Check the number of etablissements of a specific role (e.g. check if there is a unique 'siege_social' etablissement within a unite_legale).
+    Check the number of etablissements of a specific role (e.g. check if there
+    is a unique 'siege_social' etablissement within a unite_legale).
 
     For more information, see: https://openfisca.org/doc/coding-the-legislation/50_entities.html
     """,
@@ -47,8 +48,12 @@ Etablissement = build_entity(
     Variables like 'masse_salariale' and 'consommation_energie' are usually defined for the entity 'Etablissement'.
 
     Usage:
-    Calculate a variable applied to a 'Etablissement' (e.g. access the 'example_salary' of a specific month with etablissement("example_salary", "2017-05")).
-    Check the role of a 'Etablissement' in a group entity (e.g. check if a the 'Etablissement' is a 'siege_social' in a 'unite_legale' entity with etablissement.has_role(unite_legale.SIEGE_SOCIAL)).
+    Calculate a variable applied to a 'Etablissement' (e.g. access the
+    'example_salary' of a specific month with etablissement("example_salary",
+    "2017-05")).
+    Check the role of a 'Etablissement' in a group entity (e.g. check if a the
+    'Etablissement' is a 'siege_social' in a 'unite_legale' entity with
+    etablissement.has_role(unite_legale.SIEGE_SOCIAL)).
 
     For more information, see: https://openfisca.org/doc/coding-the-legislation/50_entities.html
     """,

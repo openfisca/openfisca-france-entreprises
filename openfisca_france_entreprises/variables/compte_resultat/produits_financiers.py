@@ -1,9 +1,9 @@
-from openfisca_core.model_api import *
+"""Variables and formulas for this module."""
+
 from openfisca_core.periods import YEAR
 from openfisca_core.variables import Variable
 
-from openfisca_france_entreprises.entities import (  # noqa F401
-    Etablissement,
+from openfisca_france_entreprises.entities import (
     UniteLegale,
 )
 
@@ -75,11 +75,12 @@ class produits_financiers(Variable):
         autres_interets = UniteLegale("autres_interets", period)
         reprises_provisions = UniteLegale("reprises_provisions", period)
         differences_positives_change = UniteLegale(
-            "differences_positives_change", period
+            "differences_positives_change",
+            period,
         )
         produits_nets_cessions = UniteLegale("produits_nets_cessions", period)
 
-        produits_financiers = (
+        return (
             produits_participations
             + produits_valeurs_mobilieres
             + autres_interets
@@ -87,5 +88,3 @@ class produits_financiers(Variable):
             + differences_positives_change
             + produits_nets_cessions
         )
-
-        return produits_financiers

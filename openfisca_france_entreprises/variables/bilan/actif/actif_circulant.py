@@ -1,8 +1,9 @@
-from openfisca_core.model_api import *
+"""Variables and formulas for this module."""
+
 from openfisca_core.periods import YEAR
 from openfisca_core.variables import Variable
 
-from openfisca_france_entreprises.entities import UniteLegale  # noqa F401
+from openfisca_france_entreprises.entities import UniteLegale
 
 
 class matieres_premieres_brutes(Variable):
@@ -176,20 +177,15 @@ class stocks_bruts(Variable):
         matieres_premieres = UniteLegale("matieres_premieres_brutes", period)
         encours_production_biens = UniteLegale("encours_production_biens_bruts", period)
         encours_production_services = UniteLegale(
-            "encours_production_services_bruts", period
+            "encours_production_services_bruts",
+            period,
         )
         produits_inter = UniteLegale("produits_intermediaires_finis_bruts", period)
         marchandises = UniteLegale("marchandises_brutes", period)
 
-        stocks = (
-            matieres_premieres
-            + encours_production_biens
-            + encours_production_services
-            + produits_inter
-            + marchandises
+        return (
+            matieres_premieres + encours_production_biens + encours_production_services + produits_inter + marchandises
         )
-
-        return stocks
 
 
 class stocks_ar(Variable):
@@ -203,20 +199,15 @@ class stocks_ar(Variable):
         matieres_premieres = UniteLegale("matieres_premieres_ar", period)
         encours_production_biens = UniteLegale("encours_production_biens_ar", period)
         encours_production_services = UniteLegale(
-            "encours_production_services_ar", period
+            "encours_production_services_ar",
+            period,
         )
         produits_inter = UniteLegale("produits_intermediaires_finis_ar", period)
         marchandises = UniteLegale("marchandises_ar", period)
 
-        stocks = (
-            matieres_premieres
-            + encours_production_biens
-            + encours_production_services
-            + produits_inter
-            + marchandises
+        return (
+            matieres_premieres + encours_production_biens + encours_production_services + produits_inter + marchandises
         )
-
-        return stocks
 
 
 class stocks_nets(Variable):
@@ -370,16 +361,16 @@ class creances_brutes(Variable):
 
     def formula(UniteLegale, period):
         creances_clients = UniteLegale(
-            "creances_clients_comptes_rattaches_brutes", period
+            "creances_clients_comptes_rattaches_brutes",
+            period,
         )
         autres = UniteLegale("autres_creances_brutes", period)
         capital_souscrit_appele = UniteLegale(
-            "capital_souscrit_appele_non_verse_brut", period
+            "capital_souscrit_appele_non_verse_brut",
+            period,
         )
 
-        creances = creances_clients + autres + capital_souscrit_appele
-
-        return creances
+        return creances_clients + autres + capital_souscrit_appele
 
 
 class creances_ar(Variable):
@@ -393,12 +384,11 @@ class creances_ar(Variable):
         creances_clients = UniteLegale("creances_clients_comptes_rattaches_ar", period)
         autres = UniteLegale("autres_creances_ar", period)
         capital_souscrit_appele = UniteLegale(
-            "capital_souscrit_appele_non_verse_ar", period
+            "capital_souscrit_appele_non_verse_ar",
+            period,
         )
 
-        creances = creances_clients + autres + capital_souscrit_appele
-
-        return creances
+        return creances_clients + autres + capital_souscrit_appele
 
 
 class creances_nettes(Variable):
@@ -490,9 +480,7 @@ class actif_circulant_divers_brut(Variable):
         valeurs_mobilieres = UniteLegale("valeurs_mobilieres_placement_brutes", period)
         disponibilites = UniteLegale("disponibilites_brutes", period)
 
-        divers = valeurs_mobilieres + disponibilites
-
-        return divers
+        return valeurs_mobilieres + disponibilites
 
 
 class actif_circulant_divers_ar(Variable):
@@ -506,9 +494,7 @@ class actif_circulant_divers_ar(Variable):
         valeurs_mobilieres = UniteLegale("valeurs_mobilieres_placement_ar", period)
         disponibilites = UniteLegale("disponibilites_ar", period)
 
-        divers = valeurs_mobilieres + disponibilites
-
-        return divers
+        return valeurs_mobilieres + disponibilites
 
 
 class actif_circulant_divers_net(Variable):
@@ -535,14 +521,13 @@ class actif_circulant_brut(Variable):
     def formula(UniteLegale, period):
         stocks = UniteLegale("stocks_bruts", period)
         avances_acomptes_commandes = UniteLegale(
-            "avances_acomptes_commandes_bruts", period
+            "avances_acomptes_commandes_bruts",
+            period,
         )
         creances = UniteLegale("creances_brutes", period)
         divers = UniteLegale("actif_circulant_divers_brut", period)
 
-        actif_circulant = stocks + avances_acomptes_commandes + creances + divers
-
-        return actif_circulant
+        return stocks + avances_acomptes_commandes + creances + divers
 
 
 class actif_circulant_ar(Variable):
@@ -555,14 +540,13 @@ class actif_circulant_ar(Variable):
     def formula(UniteLegale, period):
         stocks = UniteLegale("stocks_ar", period)
         avances_acomptes_commandes = UniteLegale(
-            "avances_acomptes_commandes_ar", period
+            "avances_acomptes_commandes_ar",
+            period,
         )
         creances = UniteLegale("creances_ar", period)
         divers = UniteLegale("actif_circulant_divers_ar", period)
 
-        actif_circulant = stocks + avances_acomptes_commandes + creances + divers
-
-        return actif_circulant
+        return stocks + avances_acomptes_commandes + creances + divers
 
 
 class actif_circulant_net(Variable):

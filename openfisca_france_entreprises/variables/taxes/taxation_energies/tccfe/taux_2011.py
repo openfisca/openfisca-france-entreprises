@@ -1,5 +1,6 @@
+"""Variables and formulas for this module."""
+
 # Import from openfisca-core the Python objects used to code the legislation in OpenFisca
-from openfisca_core.model_api import *
 from openfisca_core.periods import YEAR
 from openfisca_core.variables import Variable
 
@@ -33977,5 +33978,4 @@ class tccfe_coefficient_multiplicateur_normal_2011(Variable):
             "manquant": 0,
         }
         cle = (str(departement[0]), str(commune[0]))
-        resultat = taux.get(cle, taux["manquant"])
-        return resultat
+        return taux.get(cle, taux["manquant"])

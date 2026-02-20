@@ -1,8 +1,9 @@
-from openfisca_core.model_api import *
+"""Variables and formulas for this module."""
+
 from openfisca_core.periods import YEAR
 from openfisca_core.variables import Variable
 
-from openfisca_france_entreprises.entities import UniteLegale  # noqa F401
+from openfisca_france_entreprises.entities import UniteLegale
 
 
 class produit_emissions_titres_participatifs(Variable):
@@ -33,12 +34,9 @@ class autres_fonds_propres(Variable):
 
     def formula(UniteLegale, period):
         produit_emissions_titres_participatifs = UniteLegale(
-            "produit_emissions_titres_participatifs", period
+            "produit_emissions_titres_participatifs",
+            period,
         )
         avances_conditionnees = UniteLegale("avances_conditionnees", period)
 
-        autres_fonds_propres = (
-            produit_emissions_titres_participatifs + avances_conditionnees
-        )
-
-        return autres_fonds_propres
+        return produit_emissions_titres_participatifs + avances_conditionnees

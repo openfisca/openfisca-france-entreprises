@@ -1,9 +1,9 @@
-from openfisca_core.model_api import *
+"""Variables and formulas for this module."""
+
 from openfisca_core.periods import YEAR
 from openfisca_core.variables import Variable
 
-from openfisca_france_entreprises.entities import (  # noqa F401
-    Etablissement,
+from openfisca_france_entreprises.entities import (
     UniteLegale,
 )
 
@@ -56,15 +56,9 @@ class charges_financieres(Variable):
         dotations_financieres_ar = UniteLegale("dotations_financieres_ar", period)
         interets_charges = UniteLegale("interets_charges", period)
         differences_negatives_change = UniteLegale(
-            "differences_negatives_change", period
+            "differences_negatives_change",
+            period,
         )
         charges_nettes_cessions = UniteLegale("charges_nettes_cessions", period)
 
-        charges = (
-            dotations_financieres_ar
-            + interets_charges
-            + differences_negatives_change
-            + charges_nettes_cessions
-        )
-
-        return charges
+        return dotations_financieres_ar + interets_charges + differences_negatives_change + charges_nettes_cessions

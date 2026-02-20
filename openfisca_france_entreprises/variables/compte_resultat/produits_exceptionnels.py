@@ -1,9 +1,9 @@
-from openfisca_core.model_api import *
+"""Variables and formulas for this module."""
+
 from openfisca_core.periods import YEAR
 from openfisca_core.variables import Variable
 
-from openfisca_france_entreprises.entities import (  # noqa F401
-    Etablissement,
+from openfisca_france_entreprises.entities import (
     UniteLegale,
 )
 
@@ -45,19 +45,16 @@ class produits_exceptionnels(Variable):
 
     def formula(UniteLegale, period):
         produits_ex_operations_capital = UniteLegale(
-            "produits_ex_operations_capital", period
+            "produits_ex_operations_capital",
+            period,
         )
         produits_ex_operations_gestion = UniteLegale(
-            "produits_ex_operations_gestion", period
+            "produits_ex_operations_gestion",
+            period,
         )
         produits_ex_reprises_provisions = UniteLegale(
-            "produits_ex_reprises_provisions", period
+            "produits_ex_reprises_provisions",
+            period,
         )
 
-        produits_ex = (
-            produits_ex_operations_capital
-            + produits_ex_operations_gestion
-            + produits_ex_reprises_provisions
-        )
-
-        return produits_ex
+        return produits_ex_operations_capital + produits_ex_operations_gestion + produits_ex_reprises_provisions

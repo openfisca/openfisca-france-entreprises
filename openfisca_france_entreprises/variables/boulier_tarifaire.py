@@ -1,5 +1,4 @@
-"""
-This file defines variables for the modelled legislation.
+"""This file defines variables for the modelled legislation.
 
 A variable is a property of an Entity such as a Etablissement, a UniteLegale…
 
@@ -26,7 +25,7 @@ class taxe_electricite_bouclier_tarifaire(Variable):
     def formula_2022_01_01(etablissement, period, parameters):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
         taux = parameters(
-            Instant((2022, 2, 1))
+            Instant((2022, 2, 1)),
         ).energies.bouclier_tarifaire.entreprises  # 0.5 en 2022
         taxe = assiette_taxe_electricite * taux
         taxe_accise_electricite = etablissement("taxe_accise_electricite", period)
@@ -38,7 +37,7 @@ class taxe_electricite_bouclier_tarifaire(Variable):
     def formula_2023_01_01(etablissement, period, parameters):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
         taux = parameters(
-            Instant((2023, 2, 1))
+            Instant((2023, 2, 1)),
         ).energies.bouclier_tarifaire.entreprises  # 0.5 en 2023
         taxe = assiette_taxe_electricite * taux
         taxe_accise_electricite = etablissement("taxe_accise_electricite", period)
@@ -51,7 +50,7 @@ class taxe_electricite_bouclier_tarifaire(Variable):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
         taxe_accise_electricite = etablissement("taxe_accise_electricite", period)
         taux = parameters(
-            Instant((2024, 2, 1))
+            Instant((2024, 2, 1)),
         ).energies.bouclier_tarifaire.entreprises  # 20.5 en 2024
         taxe = assiette_taxe_electricite * taux
 
@@ -65,28 +64,36 @@ class taxe_electricite_bouclier_tarifaire(Variable):
 #     value_type = float
 #     entity = Etablissement
 #     definition_period = YEAR
-#     label = "https://www.economie.gouv.fr/entreprises/tpe-pme-aides-hausse-prix-energie#:~:text=Bouclier%20tarifaire%20%3A%20de%20quoi%20s,de%20l%27%C3%A9lectricit%C3%A9%20en%202022"
+#
+#
+# "https://www.economie.gouv.fr/entreprises/tpe-pme-aides-hausse-prix-energie#:~:text=Bouclier%20tarifaire%20%3A%20de%20quoi%20s,de%20l%27%C3%A9lectricit%C3%A9%20en%202022"
 #     reference = ""  #
 #     def formula_2022_01_01(etablissement, period, parameters):
 
 #         eligibilite = False
 
-#         if etablissement("effectif_3112_ul", period) < 10 and etablissement("chiffre_affaires_ul", period) < 4000000 and etablissement("amperage", period) < 36 :
+#         if (
+#             etablissement("effectif_3112_ul", period) < 10
+#             and etablissement("chiffre_affaires_ul", period) < 4000000
+#             and etablissement("amperage", period) < 36
+#         ):
 #             eligibilite = True
 
 #         return eligibilite
 
 # Moins de 10 salariés.
-# Un chiffre d’affaires inférieur à deux millions d’euros.
-# Un compteur électrique d’une puissance inférieure à 36 kVA.
+# Un chiffre d'affaires inférieur à deux millions d'euros.
+# Un compteur électrique d'une puissance inférieure à 36 kVA.
 
 
-# Le bouclier tarifaire est un dispositif qui permet de contenir à 4 % la hausse des prix de l’électricité en 2022.
+# Le bouclier tarifaire est un dispositif qui permet de contenir à 4 % la hausse des prix de l'électricité en 2022.
 # class bouclier_tarifaire(Variable):
 #     value_type = float
 #     entity = Etablissement
 #     definition_period = YEAR
-#     label = "https://www.economie.gouv.fr/entreprises/tpe-pme-aides-hausse-prix-energie#:~:text=Bouclier%20tarifaire%20%3A%20de%20quoi%20s,de%20l%27%C3%A9lectricit%C3%A9%20en%202022"
+#
+#
+# "https://www.economie.gouv.fr/entreprises/tpe-pme-aides-hausse-prix-energie#:~:text=Bouclier%20tarifaire%20%3A%20de%20quoi%20s,de%20l%27%C3%A9lectricit%C3%A9%20en%202022"
 #     reference = ""  #
 #     def formula_2022_01_01(etablissement, period, parameters):
 

@@ -1,8 +1,9 @@
-from openfisca_core.model_api import *
+"""Variables and formulas for this module."""
+
 from openfisca_core.periods import YEAR
 from openfisca_core.variables import Variable
 
-from openfisca_france_entreprises.entities import UniteLegale  # noqa F401
+from openfisca_france_entreprises.entities import UniteLegale
 
 
 class provisions_pour_risques(Variable):
@@ -35,6 +36,4 @@ class provisions_pour_risques_charges(Variable):
         risques = UniteLegale("provisions_pour_risques", period)
         charges = UniteLegale("provisions_pour_charges", period)
 
-        provisions = risques + charges
-
-        return provisions
+        return risques + charges

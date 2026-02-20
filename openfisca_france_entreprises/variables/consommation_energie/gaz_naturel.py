@@ -1,8 +1,9 @@
-from openfisca_core.model_api import *
+"""Variables and formulas for this module."""
+
 from openfisca_core.periods import YEAR
 from openfisca_core.variables import Variable
 
-from openfisca_france_entreprises.entities import Etablissement  # noqa F401
+from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.naf import naf
 
 
@@ -17,18 +18,15 @@ class consommation_gaz_naturel(Variable):
     definition_period = YEAR
 
     def formula_1986_01_01(etablissement, period):
-        totale = etablissement("consommation_gaz_combustible", period)
-
-        return totale
+        return etablissement("consommation_gaz_combustible", period)
 
     def formula_2020_01_01(etablissement, period):
         # la division entre les deux s'apparaître en cette année
 
-        totale = etablissement("consommation_gaz_combustible", period) + etablissement(
-            "consommation_gaz_carburant", period
+        return etablissement("consommation_gaz_combustible", period) + etablissement(
+            "consommation_gaz_carburant",
+            period,
         )
-
-        return totale
 
 
 class consommation_gaz_combustible(Variable):
@@ -50,7 +48,7 @@ class consommation_gaz_carburant(Variable):
     value_type = float
     unit = "MWh"
     entity = Etablissement
-    label = "consommation en consommation_gaz_carburant. Enlevé de taxation_produit petrolier (nom de concept) à gazoles_naturel dès 2020"
+    label = "consommation en consommation_gaz_carburant. Enlevé de taxation_produit petrolier (nom de"
     reference = " https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006071570/LEGISCTA000006122062/1993-01-01/?anchor=LEGIARTI000006615168#LEGIARTI000006615168"
     definition_period = YEAR
 
@@ -134,9 +132,7 @@ class consommation_gaz_chauffage_habitation(Variable):
     value_type = float
     unit = "MWh"
     entity = Etablissement
-    label = (
-        "La consommation de gaz naturel en chauffage d'habitation de l'etablissement"
-    )
+    label = "La consommation de gaz naturel en chauffage d'habitation de l'etablissement"
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/"
     definition_period = YEAR
 
@@ -148,9 +144,7 @@ class consommation_gaz_production_electricite(Variable):
     value_type = float
     unit = "MWh"
     entity = Etablissement
-    label = (
-        "La consommation de gaz naturel en production d'électricité de l'etablissement"
-    )
+    label = "La consommation de gaz naturel en production d'électricité de l'etablissement"
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615172/2006-12-31/"
     definition_period = YEAR
 
@@ -183,12 +177,15 @@ class consommation_gaz_fabrication_soi(Variable):
     unit = "MWh"
     entity = Etablissement
     label = ""
-    reference = "La consommation de gaz naturel dans l'enceinte des établissements de production de produits énergétiques"
+    reference = (
+        "La consommation de gaz naturel dans l'enceinte des établissements de production de produits énergétiques"
+    )
     reference = "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006071570/LEGISCTA000006122062/2008-01-01/?anchor=LEGIARTI000018036100#LEGIARTI000018036100:~:text=III.%2DLa%20consommation,%C3%A0%20leur%20fabrication."
     definition_period = YEAR
 
 
-# remplacé par la logique que les formes de gaz naturel pas utilisé sont automatiquement prises en compte comme non combustible.
+#
+# combustible.
 # class consommation_gaz_usage_non_combustible(Variable):
 #     #exonéré dès 2008
 #     #combiner gaz_matiere_premiere et gaz_huiles_minerales
@@ -200,7 +197,7 @@ class consommation_gaz_fabrication_soi(Variable):
 #     definition_period = YEAR
 #     def formula_2008_01_01(etablissement, period):
 #         status = False
-#         if etablissement("gaz_matiere_premiere", period) == True or etablissement("gaz_huiles_minerales", period) == True:
+#
 #             status = True
 #         return status
 
@@ -264,7 +261,9 @@ class gaz_production_mineraux_non_metalliques(Variable):
         return result
 
 
-# "3° Lorsqu'ils sont utilisés dans un procédé de fabrication de produits minéraux non métalliques, classé dans la nomenclature statistique des activités économiques dans la Communauté européenne, telle qu'elle résulte du règlement (CEE) n° 3037 / 90 du 9 octobre 1990 du Conseil, sous la rubrique " DI 26 "."
+#
+# nomenclature
+# (CEE)
 
 
 class gaz_extraction_production(Variable):
@@ -320,7 +319,7 @@ class gaz_dehydration_legumes_et_plantes_aromatiques(Variable):
 
 class gaz_travaux_agricoles_et_forestiers(Variable):
     # exonéré dès 2020
-    # TODO : pas d'exonération dans l'accise, c'est un tariff diffrent
+    # Note : pas d'exonération dans l'accise, c'est un tarif différent
     value_type = bool
     unit = ""
     entity = Etablissement
@@ -362,7 +361,9 @@ class consommation_gaz_nc_4401_4402(Variable):
 
 # I.-Les produits énergétiques mentionnés à l'article 265 ne sont pas soumis aux taxes intérieures de consommation :
 # 1° Lorsqu'il s'agit de produits repris aux codes NC 4401 et 4402 de la nomenclature douanière ;
-# 4401 	Bois de chauffage en rondins, bûches, ramilles, fagots ou sous formes similaires; bois en plaquettes ou en particules; sciures, déchets et débris de bois, même agglomérés sous forme de bûches, briquettes, granulés ou sous formes similaires
+#
+# particules;
+# formes
 # 4402	Charbon de bois (y compris le charbon de coques ou de noix), même aggloméré
 
 
@@ -377,7 +378,9 @@ class consommation_gaz_nc_2705(Variable):
 
 
 # NC 2705
-# 2705-50, Mélanges à forte teneur en hydrocarbures aromatiques distillant 65 % ou plus de leur volume à 250° C d'après la méthode ASTM D 86, destinés à être utilisés comme carburants ou combustibles : indice 2, hectolitre ou 100 kg net, taxe intérieure selon le type de produit.
+#
+# la
+# taxe
 # Sont également exonérés de la taxe intérieure de consommation mentionnée au 1 les gaz repris au code NC 2705
 
 
@@ -391,5 +394,6 @@ class consommation_gaz_nc_2711_29(Variable):
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/, https://www.edouane.com/wp-content/uploads/2019/07/7312.pdf"
 
 
-# ensemble des hydrocarbures à l’état gazeux, autres que le gaz naturel, notamment le biogaz
-# Sont également exonérés de la taxe intérieure de consommation mentionnée au 1 les gaz repris au code NC 2705, ainsi que le biogaz repris au code NC 2711-29, lorsqu'il n'est pas mélangé au gaz naturel.
+# ensemble des hydrocarbures à l'état gazeux, autres que le gaz naturel, notamment le biogaz
+#
+# le

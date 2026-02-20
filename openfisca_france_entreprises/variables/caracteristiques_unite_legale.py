@@ -1,5 +1,4 @@
-"""
-This file defines variables for the modelled legislation.
+"""This file defines variables for the modelled legislation.
 
 A variable is a property of an Entity such as a Etablissement, a UniteLegale…
 
@@ -7,7 +6,13 @@ See https://openfisca.org/doc/key-concepts/variables.html
 """
 
 # Import from openfisca-core the Python objects used to code the legislation in OpenFisca
-from openfisca_core.model_api import *
+from openfisca_core.model_api import (
+    MONTH,
+    YEAR,
+    Enum,
+    Variable,
+    set_input_dispatch_by_period,
+)
 
 # Import the Entities specifically defined for this tax and benefit system
 from openfisca_france_entreprises.entities import UniteLegale

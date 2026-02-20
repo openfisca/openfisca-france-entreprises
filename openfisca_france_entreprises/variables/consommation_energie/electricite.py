@@ -1,8 +1,9 @@
-from openfisca_core.model_api import *
+"""Variables and formulas for this module."""
+
 from openfisca_core.periods import YEAR
 from openfisca_core.variables import Variable
 
-from openfisca_france_entreprises.entities import Etablissement  # noqa F401
+from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.naf import naf
 
 
@@ -19,7 +20,9 @@ class amperage(Variable):
     value_type = float
     unit = "kVA"
     entity = Etablissement
-    label = "Amperage de la consommation de l'establissement. Ça determine la catégorie fiscale au sein du Article L312-24."
+    label = (
+        "Amperage de la consommation de l'establissement. Ça determine la catégorie fiscale au sein du Article L312-24."
+    )
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603823"
 
@@ -40,7 +43,9 @@ class electricite_double_usage(Variable):
 # 1° La réduction chimique ;
 # 2° L'électrolyse ;
 # 3° Les procédés métallurgiques ;
-# 4° Pour les produits taxables en tant que combustible et consommés pour les besoins d'un processus déterminé, la génération d'une substance indispensable à la réalisation de ce processus et ne pouvant être générée qu'à partir de ces produits.
+#
+# génération
+# produits.
 # pour la quatrème catagorie, j'ai aucune idée comment le faire.
 
 
@@ -96,9 +101,7 @@ class electricite_transport_collectif_personnes(Variable):
     value_type = bool
     unit = ""
     entity = Etablissement
-    label = (
-        "la catagorie du transport collectif d'éléctricité de personnes sous L312-48"
-    )
+    label = "la catagorie du transport collectif d'éléctricité de personnes sous L312-48"
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875774"
 
@@ -147,7 +150,8 @@ class electricite_exploitation_aerodrome(Variable):
     def formula_2019_01_01(etablissement, period):
         apet = etablissement("apet", period)
         consommation_par_valeur_ajoutee = etablissement(
-            "consommation_par_valeur_ajoutee", period
+            "consommation_par_valeur_ajoutee",
+            period,
         )
         # 222 wattheures par valeur ajoutée
         return (apet == naf._52_23Z) & (consommation_par_valeur_ajoutee > 0.000222)
@@ -216,7 +220,8 @@ class electricite_production_biens_electro_intensive(Variable):
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603703/2025-03-05"
 
 
-# si l’électricité représente plus de la moitié du coût total de production d’un bien, l’entreprise peut bénéficier d’un allègement fiscal
+#
+# allègement
 # to do : normalement il y aurait une formule quelque part, mais on a pas les donnés à ce niveau.
 
 
@@ -242,12 +247,7 @@ class electro_intensive_activite_industrielle(Variable):
 
     def formula_2022_01_01(etablissement, period, parameters):
         apet = etablissement("apet", period)
-        return (
-            (apet == naf._08_12Z)
-            | (apet == naf._08_99Z)
-            | (apet == naf._09_90Z)
-            | (apet == naf._28_92Z)
-        )
+        return (apet == naf._08_12Z) | (apet == naf._08_99Z) | (apet == naf._09_90Z) | (apet == naf._28_92Z)
 
 
 class electro_intensive_concurrence_internationale(Variable):
@@ -322,7 +322,14 @@ class electricite_production_electricite(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = ""
-    reference = "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000023216102/2011-01-01/#:~:text=la%20production%20de%20l%27%C3%A9lectricit%C3%A9, https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000044595989/LEGISCTA000044598327/#LEGISCTA000044603893:~:text=Sont%20exon%C3%A9r%C3%A9s%20de%20l%27accise%20les%20produits%20taxables%20consomm%C3%A9s%20pour%20les%20besoins%20de%20la%20production%20d%27%C3%A9lectricit%C3%A9"
+    reference = (
+        "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000023216102/2011-01-01/"
+        "#:~:text=la%20production%20de%20l%27%C3%A9lectricit%C3%A9,"
+        "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000044595989/"
+        "LEGISCTA000044598327/#LEGISCTA000044603893:~:text=Sont%20exon%C3%A9r%C3%A9s%20"
+        "de%20l%27accise%20les%20produits%20taxables%20consomm%C3%A9s%20pour%20les%20"
+        "besoins%20de%20la%20production%20d%27%C3%A9lectricit%C3%A9"
+    )
 
     def formula_2011_01_01(etablissement, period, parameters):
         apet = etablissement("apet", period)
@@ -338,11 +345,15 @@ class consommation_electricite_petite_producteur_electricite(Variable):
     definition_period = YEAR
     unit = "MWh"
     label = ""
-    reference = "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000023216102/2011-01-01/#:~:text=4%C2%B0%20Produite%20par,site%20de%20production%20%3B"
+    reference = (
+        "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000023216102/2011-01-01/"
+        "#:~:text=4%C2%B0%20Produite%20par,site%20de%20production%20%3B"
+    )
 
 
 # Produite par de petits producteurs d'électricité qui la consomment pour les besoins de leur activité.
-# Sont considérées comme petits producteurs d'électricité les personnes qui exploitent des installations de production d'électricité
+#
+# d'électricité
 # dont la production annuelle n'excède pas 240 millions de kilowattheures par site de production ;
 
 
@@ -351,17 +362,19 @@ class electricite_installations_industrielles_electro_intensives(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = ""
-    reference = "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000031814811/2016-01-01/#:~:text=C.%2Da.%20Pour,est%20fix%C3%A9%20%C3%A0%20%3A"
+    reference = (
+        "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000031814811/2016-01-01/"
+        "#:~:text=C.%2Da.%20Pour,est%20fix%C3%A9%20%C3%A0%20%3A"
+    )
 
     def formula_2016_01_01(etablissement, period, parameters):
         taxe_accise_electricite_taux_normal = etablissement(
-            "taxe_accise_electricite_taux_normal", period
+            "taxe_accise_electricite_taux_normal",
+            period,
         )
         valeur_ajoutee_eta = etablissement("valeur_ajoutee_eta", period)
         part_min = parameters(period).energies.seuils_seqe.part_taxe_valeur_ajoutee_min
-        return (valeur_ajoutee_eta != 0) & (
-            taxe_accise_electricite_taux_normal >= valeur_ajoutee_eta * part_min
-        )
+        return (valeur_ajoutee_eta != 0) & (taxe_accise_electricite_taux_normal >= valeur_ajoutee_eta * part_min)
 
 
 # C.-a. Pour les personnes qui exploitent des installations industrielles électro-intensives
@@ -376,22 +389,25 @@ class electricite_installations_industrielles_hyper_electro_intensives(Variable)
     entity = Etablissement
     definition_period = YEAR
     label = ""
-    reference = "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000031814811/2016-01-01/#:~:text=Est%20consid%C3%A9r%C3%A9e%20comme%20hyper%C3%A9lectro%2Dintensive%20une%20installation%20qui%20v%C3%A9rifie%20les%20deux%20conditions%20suivantes%20%3A"
+    reference = (
+        "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000031814811/2016-01-01/"
+        "#:~:text=Est%20consid%C3%A9r%C3%A9e%20comme%20hyper%C3%A9lectro%2Dintensive%20"
+        "une%20installation%20qui%20v%C3%A9rifie%20les%20deux%20conditions%20"
+        "suivantes%20%3A"
+    )
 
     def formula_2016_01_01(etablissement, period, parameters):
         consommation_par_valeur_ajoutee = etablissement(
-            "consommation_par_valeur_ajoutee", period
+            "consommation_par_valeur_ajoutee",
+            period,
         )
         intensite_echanges_avec_pays_tiers = etablissement(
-            "intensite_echanges_avec_pays_tiers", period
+            "intensite_echanges_avec_pays_tiers",
+            period,
         )
         seuils = parameters(period).energies.electricite.ticfe.electro_intensive.seuils
-        return (
-            consommation_par_valeur_ajoutee
-            >= seuils.consommation_par_valeur_ajoutee_min_hyper
-        ) & (
-            intensite_echanges_avec_pays_tiers
-            >= seuils.intensite_echanges_pays_tiers_min
+        return (consommation_par_valeur_ajoutee >= seuils.consommation_par_valeur_ajoutee_min_hyper) & (
+            intensite_echanges_avec_pays_tiers >= seuils.intensite_echanges_pays_tiers_min
         )
 
 
@@ -409,28 +425,49 @@ class consommation_electricite_fournie_aux_navires(Variable):
     entity = Etablissement
     definition_period = YEAR
     label = ""
-    reference = "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000043811132/2021-01-01/#:~:text=h.%20Le%20tarif%20de%20la%20taxe%20applicable%20%C3%A0%20l%27%C3%A9lectricit%C3%A9%20directement%20fournie%2C%20lors%20de%20leur%20stationnement%20%C3%A0%20quai%20dans%20les%20ports%2C%20aux%20navires%20mentionn%C3%A9s%20au%20c%20du%201%20de%20l%27article%20265%20bis%20et%20aux%20engins%20b%C3%A9n%C3%A9ficiant%20de%20l%27exon%C3%A9ration%20mentionn%C3%A9e%20au%20e%20du%20m%C3%AAme%201%20est%20fix%C3%A9%20%C3%A0%200%2C5%20%E2%82%AC%20par%20m%C3%A9gawattheure."
+    reference = (
+        "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000043811132/2021-01-01/"
+        "#:~:text=h.%20Le%20tarif%20de%20la%20taxe%20applicable%20%C3%A0%20"
+        "l%27%C3%A9lectricit%C3%A9%20directement%20fournie%2C%20lors%20de%20leur%20"
+        "stationnement%20%C3%A0%20quai%20dans%20les%20ports%2C%20aux%20navires%20"
+        "mentionn%C3%A9s%20au%20c%20du%201%20de%20l%27article%20265%20bis%20et%20"
+        "aux%20engins%20b%C3%A9n%C3%A9ficiant%20de%20l%27exon%C3%A9ration%20mentionn%C3%A9e%20"
+        "au%20e%20du%20m%C3%AAme%201%20est%20fix%C3%A9%20%C3%A0%200%2C5%20%E2%82%AC%20"
+        "par%20m%C3%A9gawattheure."
+    )
 
 
 # Alimentation des aéronefs lors de leur stationnement sur les aérodromes ouverts à la circulation aérienne publique
 # Electricité consommée pour les besoins des activités économiques
 class electricite_alimentation_aeronefs_stationnement_aerodromes_activites_economiques(
-    Variable
+    Variable,
 ):
     value_type = float
     entity = Etablissement
     definition_period = YEAR
     label = ""
-    reference = "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000044595989/LEGISCTA000044598327/#LEGISCTA000044603893:~:text=Alimentation%20des%20a%C3%A9ronefs%20lors%20de%20leur%20stationnement%20sur%20les%20a%C3%A9rodromes%20ouverts%20%C3%A0%20la%20circulation%20a%C3%A9rienne%20publique"
+    reference = (
+        "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000044595989/"
+        "LEGISCTA000044598327/#LEGISCTA000044603893:~:text=Alimentation%20des%20"
+        "a%C3%A9ronefs%20lors%20de%20leur%20stationnement%20sur%20les%20"
+        "a%C3%A9rodromes%20ouverts%20%C3%A0%20la%20circulation%20a%C3%A9rienne%20"
+        "publique"
+    )
 
 
 # Alimentation des aéronefs lors de leur stationnement sur les aérodromes ouverts à la circulation aérienne publique
 # Electricité consommée pour les besoins des activités non économiques
 class electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques(
-    Variable
+    Variable,
 ):
     value_type = float
     entity = Etablissement
     definition_period = YEAR
     label = ""
-    reference = "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000044595989/LEGISCTA000044598327/#LEGISCTA000044603893:~:text=Alimentation%20des%20a%C3%A9ronefs%20lors%20de%20leur%20stationnement%20sur%20les%20a%C3%A9rodromes%20ouverts%20%C3%A0%20la%20circulation%20a%C3%A9rienne%20publique"
+    reference = (
+        "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000044595989/"
+        "LEGISCTA000044598327/#LEGISCTA000044603893:~:text=Alimentation%20des%20"
+        "a%C3%A9ronefs%20lors%20de%20leur%20stationnement%20sur%20les%20"
+        "a%C3%A9rodromes%20ouverts%20%C3%A0%20la%20circulation%20a%C3%A9rienne%20"
+        "publique"
+    )
