@@ -59,7 +59,6 @@ class taxe_interieure_consommation_gaz_naturel(Variable):
     def formula_1986_01_01(etablissement, period, parameters):
         return etablissement("taxe_interieure_consommation_gaz_naturel_taux_normal", period)
 
-
     def formula_1993_01_01(etablissement, period, parameters):
         # ajouté gaz_matiere_premiere
 
@@ -266,7 +265,6 @@ class taxe_accise_gaz_naturel(Variable):
         )
 
 
-
 class taxe_accise_gaz_naturel_combustible(Variable):
     value_type = float
     entity = Etablissement
@@ -428,7 +426,6 @@ class taxe_interieure_taxation_consommation_gaz_naturel_concurrence_internationa
         return assiette_ticgn * parameters(period).energies.gaz_naturel.taux_reduit_concurrence_internationale
 
 
-
 class taxe_interieure_taxation_consommation_gaz_naturel_seqe(Variable):
     value_type = float
     entity = Etablissement
@@ -442,7 +439,6 @@ class taxe_interieure_taxation_consommation_gaz_naturel_seqe(Variable):
         return assiette_ticgn * parameters(period).energies.gaz_naturel.taux_reduit_seqe
 
 
-
 class taxe_interieure_consommation_gaz_naturel_legumes(Variable):
     value_type = float
     entity = Etablissement
@@ -454,7 +450,6 @@ class taxe_interieure_consommation_gaz_naturel_legumes(Variable):
         assiette = etablissement("assiette_ticgn", period)
         taux = parameters(period).energies.gaz_naturel.ticgn.taux_reduit_legumes
         return assiette * taux
-
 
 
 class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
@@ -473,13 +468,11 @@ class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
         taux = parameters(period).energies.gaz_naturel.ticgn.taux_normal
         return (assiette >= seuil) * (assiette - abattement) * taux
 
-
     def formula_2008_01_01(etablissement, period, parameters):
         """[à noter : plus de seuil ni d'abattement]."""
         assiette = etablissement("assiette_ticgn", period)
         taux = parameters(period).energies.gaz_naturel.ticgn.taux_normal
         return assiette * taux
-
 
     def formula_2014_01_01(etablissement, period, parameters):
         """[à noter : plus de seuil ni d'abattement].
@@ -508,7 +501,6 @@ class taxe_interieure_consommation_gaz_naturel_grande_consommatrice(Variable):
         assiette = etablissement("assiette_ticgn", period)
         taux = parameters(period).energies.gaz_naturel.ticgn.taux_reduit_grandes_consommatrices
         return assiette * taux
-
 
 
 class taxe_interieure_consommation_gaz_naturel_ifp(Variable):

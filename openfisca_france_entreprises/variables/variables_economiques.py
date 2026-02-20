@@ -72,7 +72,6 @@ class chiffre_affaires_eta(Variable):
         return chiffre_affaires_ul * (effectif_3112_eta / effectif_3112_ul) if effectif_3112_ul else 0
 
 
-
 class facture_energie_ul(Variable):
     value_type = float
     entity = UniteLegale
@@ -190,7 +189,6 @@ class intensite_energetique_valeur_production(Variable):
         chiffre_affaires_eta = etablissement("chiffre_affaires_eta", period)
 
         return facture_energie_eta / chiffre_affaires_eta if chiffre_affaires_eta != 0 else 0
-
 
 
 # 1° Le niveau d'intensité énergétique en valeur de production s'entend du quotient entre :

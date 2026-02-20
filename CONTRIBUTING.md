@@ -99,11 +99,27 @@ When a Pull Request contains several disctincts changes, several paragraphs may 
 
 ## Pre-commit hooks
 
-Optional: install [pre-commit](https://pre-commit.com/) so that **ruff format** runs automatically before each commit:
+We recommend installing [pre-commit](https://pre-commit.com/) so that **ruff format** and **ruff check** run automatically before each commit. That helps avoid CI failures on style and lint.
 
 ```sh
-uv sync
+uv sync --group dev
 uv run pre-commit install
 ```
 
-After that, every `git commit` will format staged Python files with ruff. To run the hook manually on all files: `uv run pre-commit run ruff-format --all-files`.
+After that, every `git commit` will:
+
+- Format staged Python files (`ruff format`)
+- Lint and auto-fix where possible (`ruff check --fix`)
+
+To run all hooks manually on every file:
+
+```sh
+uv run pre-commit run --all-files
+```
+
+To run a single hook (e.g. format only):
+
+```sh
+uv run pre-commit run ruff-format --all-files
+uv run pre-commit run ruff --all-files
+```
