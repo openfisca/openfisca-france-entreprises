@@ -1,4 +1,14 @@
-## 1.1.2 - Unreleased
+## 1.1.3
+
+* Technical improvement: use latest openfisca-core and remove monkey patches.
+* Impacted areas: dependency, Python version support.
+* Details:
+  - Bump openfisca-core to >=44 (uses int16 for enum indices; NAF overflow workaround no longer needed)
+  - Remove enum index overflow monkey patch from package __init__
+  - requires-python set to >=3.10 (openfisca-core 44 drops 3.9)
+  - test_ticgn: add absolute_error_margin: 1 for Test 1986 (float precision with core 44)
+
+## 1.1.2
 
 * Move hardcoded parameters to OpenFisca YAML (audit steps 1–4).
 * Impacted areas: energies (SEQE, TICFE electro-intensité, TDCFE/TCCFE kVA), impôts sur les sociétés.
