@@ -1,8 +1,8 @@
-from openfisca_core.model_api import *
-from openfisca_core.periods import YEAR
-from openfisca_core.variables import Variable
+"""Variables and formulas for this module."""
 
-from openfisca_france_entreprises.entities import UniteLegale  # noqa F401
+from openfisca_core.model_api import YEAR, Variable
+
+from openfisca_france_entreprises.entities import UniteLegale
 
 
 class ecart_reevaluation(Variable):

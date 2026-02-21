@@ -1,0 +1,6 @@
+description: Seuil électro-intensité (kWh/€ VA) - tranche « strictement supérieure à 3 kWh par euro de valeur ajoutée »
+reference: "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000031814811"
+unit: "kWh_per_euro_VA"
+values:
+  2016-01-01:
+    value: 0.003

@@ -1,8 +1,8 @@
-from openfisca_core.model_api import *
-from openfisca_core.periods import YEAR
-from openfisca_core.variables import Variable
+"""Variables and formulas for this module."""
 
-from openfisca_france_entreprises.entities import UniteLegale  # noqa F401
+from openfisca_core.model_api import YEAR, Variable
+
+from openfisca_france_entreprises.entities import UniteLegale
 
 
 class emprunts_obligatoires_convertibles(Variable):
@@ -104,24 +104,28 @@ class dettes(Variable):
 
     def formula(UniteLegale, period):
         emprunts_obligatoires_convertibles = UniteLegale(
-            "emprunts_obligatoires_convertibles", period
+            "emprunts_obligatoires_convertibles",
+            period,
         )
         autres_emprunts_obligatoires = UniteLegale(
-            "autres_emprunts_obligatoires", period
+            "autres_emprunts_obligatoires",
+            period,
         )
         emprunts_dettes_etablissement_credit = UniteLegale(
-            "emprunts_dettes_etablissement_credit", period
+            "emprunts_dettes_etablissement_credit",
+            period,
         )
         emprunts_dettes_divers = UniteLegale("emprunts_dettes_divers", period)
         avances_acomptes_recus_commandes = UniteLegale(
-            "avances_acomptes_recus_commandes", period
+            "avances_acomptes_recus_commandes",
+            period,
         )
         dettes_fournisseurs = UniteLegale("dettes_fournisseurs", period)
         dettes_fiscales_sociales = UniteLegale("dettes_fiscales_sociales", period)
         dettes_immobilisations = UniteLegale("dettes_immobilisations", period)
         autres_dettes = UniteLegale("autres_dettes", period)
 
-        dettes = (
+        return (
             emprunts_obligatoires_convertibles
             + autres_emprunts_obligatoires
             + emprunts_dettes_etablissement_credit
@@ -132,5 +136,3 @@ class dettes(Variable):
             + dettes_immobilisations
             + autres_dettes
         )
-
-        return dettes

@@ -1,9 +1,8 @@
-from openfisca_core.model_api import *
-from openfisca_core.periods import YEAR
-from openfisca_core.variables import Variable
+"""Variables and formulas for this module."""
 
-from openfisca_france_entreprises.entities import (  # noqa F401
-    Etablissement,
+from openfisca_core.model_api import YEAR, Variable
+
+from openfisca_france_entreprises.entities import (
     UniteLegale,
 )
 
@@ -45,17 +44,13 @@ class charges_exceptionnelles(Variable):
 
     def formula(UniteLegale, period):
         charges_ex_operations_capital = UniteLegale(
-            "charges_ex_operations_capital", period
+            "charges_ex_operations_capital",
+            period,
         )
         charges_ex_operations_gestion = UniteLegale(
-            "charges_ex_operations_gestion", period
+            "charges_ex_operations_gestion",
+            period,
         )
         charges_ex_reprises_ar = UniteLegale("charges_ex_reprises_ar", period)
 
-        charges_ex = (
-            charges_ex_operations_capital
-            + charges_ex_operations_gestion
-            + charges_ex_reprises_ar
-        )
-
-        return charges_ex
+        return charges_ex_operations_capital + charges_ex_operations_gestion + charges_ex_reprises_ar

@@ -1,8 +1,12 @@
-from openfisca_core.model_api import *
-from openfisca_core.periods import YEAR
-from openfisca_core.variables import Variable
+"""Energy consumption variables for other petroleum/energy products (TICPE scope).
 
-from openfisca_france_entreprises.entities import Etablissement  # noqa F401
+Establishment-level consumption of fuels and products such as gas oils, petrol,
+white spirit, LPG, heavy fuel oil, etc., as defined by the tax legislation.
+"""
+
+from openfisca_core.model_api import YEAR, Variable
+
+from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.naf import naf
 
 
@@ -53,9 +57,7 @@ class consommation_essences_speciales_utilisees_comme_carburants_combustibles(Va
     definition_period = YEAR
 
 
-class consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires(
-    Variable
-):
+class consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires(Variable):
     value_type = float
     unit = "Hectolitre"
     entity = Etablissement
@@ -86,7 +88,12 @@ class consommation_supercarburant_e5(Variable):
     value_type = float
     unit = "Hectolitre"
     entity = Etablissement
-    label = """-----supercarburant d'une teneur en plomb n'excédant pas 0,005 g/ litre, autre que le supercarburant correspondant à l'indice d'identification n° 11 bis, contenant jusqu'à 5 % volume/ volume d'éthanol, 22 % volume/ volume d'éthers contenant 5 atomes de carbone ou plus, par molécule et d'une teneur en oxygène maximale de 2,7 % en masse d'oxygène ;	"""
+    label = (
+        "-Supercarburant d'une teneur en plomb n'excédant pas 0,005 g/ litre, autre que le"
+        "supercarburant correspondant à l'indice d'identification n° 11 bis, contenant jusqu'à 5 %"
+        "volume/ volume d'éthanol, 22 % volume/ volume d'éthers contenant 5 atomes de carbone ou plus,"
+        "par molécule et d'une teneur en oxygène maximale de 2,7 % en masse d'oxygène ;"
+    )
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
     definition_period = YEAR
 
@@ -95,7 +102,12 @@ class consommation_supercarburant_e10(Variable):
     value_type = float
     unit = "Hectolitre"
     entity = Etablissement
-    label = """-----supercarburant d'une teneur en plomb n'excédant pas 0,005 g/ litre, autre que les supercarburants correspondant aux indices d'identification 11 et 11 bis, et contenant jusqu'à 10 % volume/ volume d'éthanol, 22 % volume/ volume d'éthers contenant 5 atomes de carbone, ou plus, par molécule et d'une teneur en oxygène maximale de 3,7 % en masse/ masse d'oxygène ;"""
+    label = (
+        "supercarburant d'une teneur en plomb n'excédant pas 0,005 g/ litre, autre que les"
+        "supercarburants correspondant aux indices d'identification 11 et 11 bis, et contenant jusqu'à"
+        "10 % volume/ volume d'éthanol, 22 % volume/ volume d'éthers contenant 5 atomes de carbone, ou"
+        "plus, par molécule et d'une teneur en oxygène maximale de 3,7 % en masse/ masse d'oxygène ;"
+    )
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
     definition_period = YEAR
 
@@ -114,7 +126,14 @@ class consommation_super_ars(Variable):
     value_type = float
     unit = "Hectolitre"
     entity = Etablissement
-    label = "-----supercarburant d'une teneur en plomb n'excédant pas 0,005 g/litre, contenant un additif spécifique améliorant les caractéristiques antirécession de soupape (ARS), à base de potassium, ou tout autre additif reconnu de qualité équivalente dans un autre Etat membre de la Communauté européenne ou dans un autre Etat membre de l'Espace économique européen."
+    label = (
+        "supercarburant d'une teneur en plomb n'excédant pas 0,005 g/litre, "
+        "contenant un additif spécifique améliorant les caractéristiques "
+        "antirécession de soupape (ARS), à base de potassium, ou tout autre "
+        "additif reconnu de qualité équivalente dans un autre Etat membre de "
+        "la Communauté européenne ou dans un autre Etat membre de l'Espace "
+        "économique européen."
+    )
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
     definition_period = YEAR
 
@@ -137,9 +156,7 @@ class consommation_propane_carburants_sous_conditions_100kg_nets(Variable):
     definition_period = YEAR
 
 
-class consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets(
-    Variable
-):
+class consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets(Variable):
     value_type = float
     unit = "100kg nets"
     entity = Etablissement
@@ -226,7 +243,9 @@ class consommation_gazoles(Variable):
     value_type = float
     unit = "Hectolitre"
     entity = Etablissement
-    label = """indice 22; ----autres, à l'exception du gazole coloré et tracé en apllication du a du 1 de l'article 265 B ;"""
+    label = (
+        "indice 22; ----autres, à l'exception du gazole coloré et tracé en apllication du a du 1 del'article 265 B ;"
+    )
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
     definition_period = YEAR
 
@@ -359,9 +378,7 @@ class consommation_butanes_liquefies_sous_condition_100kg_nets(Variable):
     definition_period = YEAR
 
 
-class consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets(
-    Variable
-):
+class consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets(Variable):
     value_type = float
     unit = "100 kg nets"
     entity = Etablissement
@@ -370,9 +387,7 @@ class consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_net
     definition_period = YEAR
 
 
-class consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg(
-    Variable
-):
+class consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg(Variable):
     # gaz de pétrole liquéfié combustible
     value_type = float
     unit = "100 kg nets"
@@ -382,9 +397,7 @@ class consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_aut
     definition_period = YEAR
 
 
-class consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg(
-    Variable
-):
+class consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg(Variable):
     value_type = float
     unit = "100 kg nets"
     entity = Etablissement
@@ -412,27 +425,21 @@ class consommation_autres_produits_energetique_ticc(Variable):
     definition_period = YEAR
 
     def formula_2007_01_01(etablissement, period, parameters):
-        totale = (
+        return (
             etablissement("consommation_huiles_lubrifiantes_et_autres", period)
             + etablissement("consommation_vaseline", period)
             + etablissement("consommation_paraffine_moins_75_pourcent_huile", period)
-            + etablissement(
-                "consommation_paraffine_cires_de_petrole_residus_paraffineux", period
-            )
+            + etablissement("consommation_paraffine_cires_de_petrole_residus_paraffineux", period)
             + etablissement("consommation_bitumes_de_petrole", period)
             + etablissement(
                 "consommation_autres_residus_huiles_petrole_ou_mineraux_bitumineux",
                 period,
             )
             + etablissement("consommation_melanges_bitumeux", period)
-            + etablissement(
-                "consommation_preparations_traitement_matiere_textiles", period
-            )
+            + etablissement("consommation_preparations_traitement_matiere_textiles", period)
             + etablissement("consommation_preparations_lubrifiantes", period)
             + etablissement("consommation_additifs_huiles_lubrifiantes", period)
         )
-
-        return totale
 
     def formula_2012_01_01(etablissement, period, parameters):
         # par rapport à précédement, ajouté consommation_melanges_hydrocarbures_aromatiques
@@ -441,18 +448,14 @@ class consommation_autres_produits_energetique_ticc(Variable):
             + etablissement("consommation_huiles_lubrifiantes_et_autres", period)
             + etablissement("consommation_vaseline", period)
             + etablissement("consommation_paraffine_moins_75_pourcent_huile", period)
-            + etablissement(
-                "consommation_paraffine_cires_de_petrole_residus_paraffineux", period
-            )
+            + etablissement("consommation_paraffine_cires_de_petrole_residus_paraffineux", period)
             + etablissement("consommation_bitumes_de_petrole", period)
             + etablissement(
                 "consommation_autres_residus_huiles_petrole_ou_mineraux_bitumineux",
                 period,
             )
             + etablissement("consommation_melanges_bitumeux", period)
-            + etablissement(
-                "consommation_preparations_traitement_matiere_textiles", period
-            )
+            + etablissement("consommation_preparations_traitement_matiere_textiles", period)
             + etablissement("consommation_preparations_lubrifiantes", period)
             + etablissement("consommation_additifs_huiles_lubrifiantes", period)
         )
@@ -470,11 +473,7 @@ class consommation_autres_produits_energetique_ticgn(Variable):
     definition_period = YEAR
 
     def formula_2007_01_01(etablissement, period, parameters):
-        totale = etablissement(
-            "consommation_ethylene_propylene_butylene_butadiene", period
-        )
-
-        return totale
+        return etablissement("consommation_ethylene_propylene_butylene_butadiene", period)
 
 
 class consommation_melanges_hydrocarbures_aromatiques(Variable):
@@ -482,10 +481,15 @@ class consommation_melanges_hydrocarbures_aromatiques(Variable):
     value_type = float
     unit = ""
     entity = Etablissement
-    label = """Ex 2707-50 Mélanges à forte teneur en hydrocarbures aromatiques distillant 65 % ou plus de leur volume (y compris les pertes) à 250° C d'après la méthode ASTM D 86, destinés à être utilisés comme carburants ou combustibles."""
+    label = (
+        "Ex 2707-50 Mélanges à forte teneur en hydrocarbures aromatiques distillant 65 % ou plus de"
+        "leur volume (y compris les pertes) à 250° C d'après la méthode ASTM D 86, destinés à être"
+        "utilisés comme carburants ou combustibles."
+    )
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
     definition_period = YEAR
-    # avant 2012 : Taxe intérieure applicable aux huiles légères ou moyennes du 2710, suivant les caractéristiques du produit.
+    # avant 2012 : Taxe intérieure applicable aux huiles légères ou moyennes
+    # du 2710, suivant les caractéristiques du produit.
 
 
 class consommation_huiles_lubrifiantes_et_autres(Variable):
@@ -528,7 +532,10 @@ class consommation_paraffine_cires_de_petrole_residus_paraffineux(Variable):
     value_type = float
     unit = ""
     entity = Etablissement
-    label = "Ex 2712-90 Paraffine (autre que celle mentionnée au 2712-20), cires de pétrole et résidus paraffineux, même colorés."
+    label = (
+        "Ex 2712-90 Paraffine (autre que celle mentionnée au 2712-20), "
+        "cires de pétrole et résidus paraffineux, même colorés."
+    )
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
     definition_period = YEAR
 
@@ -555,7 +562,10 @@ class consommation_melanges_bitumeux(Variable):
     value_type = float
     unit = ""
     entity = Etablissement
-    label = """2715-00 Mélanges bitumeux à base d'asphalte ou de bitume naturel, de bitume de pétrole, de goudrons minéraux ou de brai de goudron minéral."""
+    label = (
+        "2715-00 Mélanges bitumeux à base d'asphalte ou de bitume naturel, de bitume de pétrole, de"
+        "goudrons minéraux ou de brai de goudron minéral."
+    )
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
     definition_period = YEAR
 
@@ -564,7 +574,11 @@ class consommation_preparations_traitement_matiere_textiles(Variable):
     value_type = float
     unit = ""
     entity = Etablissement
-    label = """3403-11 Préparations pour le traitement des matières textiles, du cuir, des pelleteries ou d'autres matières, contenant moins de 70 % en poids d'huiles de pétrole ou de minéraux bitumeux."""
+    label = (
+        "3403-11 Préparations pour le traitement des matières textiles, du cuir, des pelleteries ou"
+        "d'autres matières, contenant moins de 70 % en poids d'huiles de pétrole ou de minéraux"
+        "bitumeux."
+    )
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
     definition_period = YEAR
 
@@ -573,7 +587,10 @@ class consommation_preparations_lubrifiantes(Variable):
     value_type = float
     unit = ""
     entity = Etablissement
-    label = """Ex 3403-19 Préparations lubrifiantes contenant moins de 70 % en poids d'huiles de pétrole ou de minéraux bitumeux."""
+    label = (
+        "Ex 3403-19 Préparations lubrifiantes contenant moins de 70 % en poids d'huiles de pétrole ou"
+        "de minéraux bitumeux."
+    )
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
     definition_period = YEAR
 
@@ -982,14 +999,21 @@ class gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux(Variable
     #     apet = etablissement("apet", period)
     #     type_eta = apet.possible_values
     #     status = 0
-    #     if apet == type_eta._42_11Z:  #_42_11Z	=	"	Construction de routes et autoroutes. corresponde pas exactement
+    #     if apet == type_eta._42_11Z:  #_42_11Z = "Construction de routes et
+    #     # autoroutes. corresponde pas exactement
     #         status = 1
     #     return status
 
 
-# Relèvent d'un tarif réduit de l'accise les gazoles consommés dans les massifs mentionnés à l'article 5 de la loi n° 85-30 du 9 janvier 1985 relative au développement et à la protection de la montagne pour les besoins des activités suivantes :
-# 1° Aménagement et préparation des parcours sur neige en extérieur réservés à la pratique des activités de glisse autorisées par des engins spécialement conçus à cet effet ;
-# 2° Déneigement des voies ouvertes à la circulation publique par des engins équipés d'outils spécifiques destinés à lutter contre le verglas ou la neige.
+# Relèvent d'un tarif réduit de l'accise les gazoles consommés dans les
+# massifs mentionnés à l'article 5 de la loi n° 85-30 du 9 janvier 1985
+# relative au développement et à la protection de la montagne pour les
+# besoins des activités suivantes :
+# 1° Aménagement et préparation des parcours sur neige en extérieur réservés
+# à la pratique des activités de glisse autorisées par des engins spécialement
+# conçus à cet effet ;
+# 2° Déneigement des voies ouvertes à la circulation publique par des engins
+# équipés d'outils spécifiques destinés à lutter contre le verglas ou la neige.
 
 
 class autres_produits_double_usage(Variable):

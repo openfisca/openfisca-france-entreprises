@@ -1,8 +1,8 @@
-from openfisca_core.model_api import *
-from openfisca_core.periods import YEAR
-from openfisca_core.variables import Variable
+"""Variables and formulas for this module."""
 
-from openfisca_france_entreprises.entities import UniteLegale  # noqa F401
+from openfisca_core.model_api import YEAR, Variable
+
+from openfisca_france_entreprises.entities import UniteLegale
 
 
 class frais_etablissement_bruts(Variable):
@@ -192,7 +192,8 @@ class immobilisations_incorporelles_avances_acomptes_nets(Variable):
 
     def formula(UniteLegale, period):
         brut = UniteLegale(
-            "immobilisations_incorporelles_avances_acomptes_bruts", period
+            "immobilisations_incorporelles_avances_acomptes_bruts",
+            period,
         )
         ar = UniteLegale("immobilisations_incorporelles_avances_acomptes_ar", period)
 
@@ -213,19 +214,11 @@ class immobilisations_incorporelles_brutes(Variable):
         fonds_comm = UniteLegale("fonds_commercial_brut", period)
         autres = UniteLegale("autres_immobilisations_incorporelles_brutes", period)
         avances_acomptes = UniteLegale(
-            "immobilisations_incorporelles_avances_acomptes_bruts", period
+            "immobilisations_incorporelles_avances_acomptes_bruts",
+            period,
         )
 
-        immo_incorp = (
-            frais_etab
-            + frais_dev
-            + concessions_brevets
-            + fonds_comm
-            + autres
-            + avances_acomptes
-        )
-
-        return immo_incorp
+        return frais_etab + frais_dev + concessions_brevets + fonds_comm + autres + avances_acomptes
 
 
 class immobilisations_incorporelles_ar(Variable):
@@ -242,19 +235,11 @@ class immobilisations_incorporelles_ar(Variable):
         fonds_comm = UniteLegale("fonds_commercial_ar", period)
         autres = UniteLegale("autres_immobilisations_incorporelles_ar", period)
         avances_acomptes = UniteLegale(
-            "immobilisations_incorporelles_avances_acomptes_ar", period
+            "immobilisations_incorporelles_avances_acomptes_ar",
+            period,
         )
 
-        immo_incorp = (
-            frais_etab
-            + frais_dev
-            + concessions_brevets
-            + fonds_comm
-            + autres
-            + avances_acomptes
-        )
-
-        return immo_incorp
+        return frais_etab + frais_dev + concessions_brevets + fonds_comm + autres + avances_acomptes
 
 
 class immobilisations_incorporelles_nettes(Variable):
@@ -474,22 +459,14 @@ class immobilisations_corporelles_brutes(Variable):
         terrains = UniteLegale("terrains_bruts", period)
         constructions = UniteLegale("constructions_brutes", period)
         installations_techniques = UniteLegale(
-            "installations_techniques_brutes", period
+            "installations_techniques_brutes",
+            period,
         )
         autres = UniteLegale("autres_immobilisations_corporelles_brutes", period)
         immo_en_cours = UniteLegale("immobilisations_en_cours_brutes", period)
         avances_acomptes = UniteLegale("avances_acomptes_bruts", period)
 
-        immo_corp = (
-            terrains
-            + constructions
-            + installations_techniques
-            + autres
-            + immo_en_cours
-            + avances_acomptes
-        )
-
-        return immo_corp
+        return terrains + constructions + installations_techniques + autres + immo_en_cours + avances_acomptes
 
 
 class immobilisations_corporelles_ar(Variable):
@@ -507,16 +484,7 @@ class immobilisations_corporelles_ar(Variable):
         immo_en_cours = UniteLegale("immobilisations_en_cours_ar", period)
         avances_acomptes = UniteLegale("avances_acomptes_ar", period)
 
-        immo_corp = (
-            terrains
-            + constructions
-            + installations_techniques
-            + autres
-            + immo_en_cours
-            + avances_acomptes
-        )
-
-        return immo_corp
+        return terrains + constructions + installations_techniques + autres + immo_en_cours + avances_acomptes
 
 
 class immobilisations_corporelles_nettes(Variable):
@@ -740,16 +708,7 @@ class immobilisations_financieres_brutes(Variable):
         prets = UniteLegale("prets_bruts", period)
         autres = UniteLegale("autres_immobilisations_financieres_brutes", period)
 
-        immo_fin = (
-            participations
-            + autres_participations
-            + creances
-            + autres_titres
-            + prets
-            + autres
-        )
-
-        return immo_fin
+        return participations + autres_participations + creances + autres_titres + prets + autres
 
 
 class immobilisations_financieres_ar(Variable):
@@ -767,16 +726,7 @@ class immobilisations_financieres_ar(Variable):
         prets = UniteLegale("prets_ar", period)
         autres = UniteLegale("autres_immobilisations_financieres_ar", period)
 
-        immo_fin = (
-            participations
-            + autres_participations
-            + creances
-            + autres_titres
-            + prets
-            + autres
-        )
-
-        return immo_fin
+        return participations + autres_participations + creances + autres_titres + prets + autres
 
 
 class immobilisations_financieres_nettes(Variable):

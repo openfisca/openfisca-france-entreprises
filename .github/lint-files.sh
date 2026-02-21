@@ -24,9 +24,17 @@ fi
 
 if ! changed_files=$(git diff-index --name-only --diff-filter=ACMR --exit-code $last_tagged_commit -- "$file_pattern")
 then
-    echo "Linting the following files:"
-    echo "$changed_files"
-    $linter_command $changed_files
+    # Exclude scripts/ from Python linting (dev utilities, not part of the package)
+    if [ "$file_pattern" = "*.py" ]; then
+        changed_files=$(echo "$changed_files" | grep -v '^scripts/' || true)
+    fi
+    if [ -n "$changed_files" ]; then
+        echo "Linting the following files:"
+        echo "$changed_files"
+        $linter_command $changed_files
+    else
+        echo "No changed files matching pattern '$file_pattern' to lint (excluding scripts/)."
+    fi
 else
     echo "No changed files matching pattern '$file_pattern' to lint."
 fi

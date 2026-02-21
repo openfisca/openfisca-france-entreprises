@@ -1,0 +1,6 @@
+description: Seuil minimal consommation / valeur ajoutée (Wh/€) pour les centres de stockage de données (NAF 52.23Z) - 222 Wh par euro de valeur ajoutée
+reference: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603711"
+unit: "MWh_per_euro_VA"
+values:
+  2019-01-01:
+    value: 0.000222

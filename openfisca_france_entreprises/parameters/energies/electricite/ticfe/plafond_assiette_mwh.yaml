@@ -1,0 +1,6 @@
+description: Plafond d'assiette (MWh) au-delà duquel le taux « centre de stockage de données » s'applique (1 GWh)
+reference: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603711"
+unit: "MWh"
+values:
+  2019-01-01:
+    value: 1000

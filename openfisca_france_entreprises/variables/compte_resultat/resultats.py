@@ -1,9 +1,8 @@
-from openfisca_core.model_api import *
-from openfisca_core.periods import YEAR
-from openfisca_core.variables import Variable
+"""Variables and formulas for this module."""
 
-from openfisca_france_entreprises.entities import (  # noqa F401
-    Etablissement,
+from openfisca_core.model_api import YEAR, Variable
+
+from openfisca_france_entreprises.entities import (
     UniteLegale,
 )
 
@@ -20,9 +19,7 @@ class resultat_exploitation(Variable):
         produits_exploitation = UniteLegale("produits_exploitation", period)
         charges_exploitation = UniteLegale("charges_exploitation", period)
 
-        resultat = produits_exploitation - charges_exploitation
-
-        return resultat
+        return produits_exploitation - charges_exploitation
 
 
 class resultat_financier(Variable):
@@ -37,9 +34,7 @@ class resultat_financier(Variable):
         produits_financiers = UniteLegale("produits_financiers", period)
         charges_financieres = UniteLegale("charges_financieres", period)
 
-        resultat = produits_financiers - charges_financieres
-
-        return resultat
+        return produits_financiers - charges_financieres
 
 
 class resultat_courant_avant_impot(Variable):
@@ -58,7 +53,7 @@ class resultat_courant_avant_impot(Variable):
         produits_financiers = UniteLegale("produits_financiers", period)
         charges_financieres = UniteLegale("charges_financieres", period)
 
-        resultat = (
+        return (
             produits_exploitation
             + charges_exploitation
             + benefice_attribue
@@ -66,8 +61,6 @@ class resultat_courant_avant_impot(Variable):
             + produits_financiers
             + charges_financieres
         )
-
-        return resultat
 
 
 class resultat_exceptionnel(Variable):
@@ -82,9 +75,7 @@ class resultat_exceptionnel(Variable):
         produits_exceptionnels = UniteLegale("produits_exceptionnels", period)
         charges_exceptionnelles = UniteLegale("charges_exceptionnelles", period)
 
-        resultat = produits_exceptionnels - charges_exceptionnelles
-
-        return resultat
+        return produits_exceptionnels - charges_exceptionnelles
 
 
 class participation_salaries(Variable):
@@ -119,14 +110,7 @@ class produits(Variable):
         benefice_attribue = UniteLegale("benefice_attribue", period)
         produits_exceptionnels = UniteLegale("produits_exceptionnels", period)
 
-        produits = (
-            produits_exploitation
-            + produits_financiers
-            + benefice_attribue
-            + produits_exceptionnels
-        )
-
-        return produits
+        return produits_exploitation + produits_financiers + benefice_attribue + produits_exceptionnels
 
 
 class charges(Variable):
@@ -143,14 +127,7 @@ class charges(Variable):
         perte_supportee = UniteLegale("perte_supportee", period)
         charges_exceptionnelles = UniteLegale("charges_exceptionnelles", period)
 
-        charges = (
-            charges_exploitation
-            + charges_financieres
-            + perte_supportee
-            + charges_exceptionnelles
-        )
-
-        return charges
+        return charges_exploitation + charges_financieres + perte_supportee + charges_exceptionnelles
 
 
 class resultat_exercice(Variable):
@@ -165,6 +142,4 @@ class resultat_exercice(Variable):
         produits = UniteLegale("produits", period)
         charges = UniteLegale("charges", period)
 
-        resultat = produits - charges
-
-        return resultat
+        return produits - charges

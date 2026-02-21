@@ -1,8 +1,8 @@
-from openfisca_core.model_api import *
-from openfisca_core.periods import YEAR
-from openfisca_core.variables import Variable
+"""Variables and formulas for this module."""
 
-from openfisca_france_entreprises.entities import (  # noqa F401
+from openfisca_core.model_api import YEAR, Variable
+
+from openfisca_france_entreprises.entities import (
     Etablissement,
     UniteLegale,
 )
@@ -48,11 +48,10 @@ class intensite_energetique_etablissement(Variable):
     definition_period = YEAR
 
     def formula(etablissement, period):
-        intensite = etablissement.unite_legale(
-            "intensite_energetique_unite_legale", period
+        return etablissement.unite_legale(
+            "intensite_energetique_unite_legale",
+            period,
         )
-
-        return intensite
 
 
 class etablissement_electrointensif(Variable):

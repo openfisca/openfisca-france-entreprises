@@ -4,3 +4,7 @@ repos:
     rev: v0.6.9
     hooks:
       - id: ruff-format
+        name: ruff format (run on commit)
+      - id: ruff
+        name: ruff check (run on commit)
+        args: [--fix]

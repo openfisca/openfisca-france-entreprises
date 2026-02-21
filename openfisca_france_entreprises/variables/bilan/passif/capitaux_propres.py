@@ -1,8 +1,8 @@
-from openfisca_core.model_api import *
-from openfisca_core.periods import YEAR
-from openfisca_core.variables import Variable
+"""Variables and formulas for this module."""
 
-from openfisca_france_entreprises.entities import UniteLegale  # noqa F401
+from openfisca_core.model_api import YEAR, Variable
+
+from openfisca_france_entreprises.entities import UniteLegale
 
 
 class capital_social_individuel(Variable):
@@ -142,12 +142,14 @@ class capitaux_propres(Variable):
     def formula(UniteLegale, period):
         capital_social_individuel = UniteLegale("capital_social_individuel", period)
         primes_emission_fusion_apport = UniteLegale(
-            "primes_emission_fusion_apport", period
+            "primes_emission_fusion_apport",
+            period,
         )
         ecarts_reevaluation = UniteLegale("ecarts_reevaluation", period)
         reserve_legale = UniteLegale("reserve_legale", period)
         reserves_statutaires_contractuelles = UniteLegale(
-            "reserves_statutaires_contractuelles", period
+            "reserves_statutaires_contractuelles",
+            period,
         )
         reserves_reglementees = UniteLegale("reserves_reglementees", period)
         autres_reserves = UniteLegale("autres_reserves", period)
@@ -155,7 +157,7 @@ class capitaux_propres(Variable):
         resultat_exercice_di = UniteLegale("resultat_exercice_di", period)
         subventions_investissement = UniteLegale("subventions_investissement", period)
         provisions_reglementees = UniteLegale("provisions_reglementees", period)
-        capitaux_propres = (
+        return (
             capital_social_individuel
             + primes_emission_fusion_apport
             + ecarts_reevaluation
@@ -168,5 +170,3 @@ class capitaux_propres(Variable):
             + subventions_investissement
             + provisions_reglementees
         )
-
-        return capitaux_propres

@@ -1,12 +1,9 @@
+"""Variables and formulas for this module."""
 # les valeurs qui varient avec l'ativité
 # valeur_ajouté
 
-# Import from openfisca-core the Python objects used to code the legislation in OpenFisca
-from openfisca_core.model_api import *
-from openfisca_core.periods import YEAR
-from openfisca_core.variables import Variable
+from openfisca_core.model_api import YEAR, Variable, where
 
-# Import the Entities specifically defined for this tax and benefit system
 from openfisca_france_entreprises.entities import Etablissement, UniteLegale
 
 
@@ -30,9 +27,7 @@ class valeur_ajoutee_eta(Variable):
         effectif_3112_eta = etablissement("effectif_3112_eta", period)
         valeur_ajoutee_eta = 0
         if effectif_3112_ul:
-            valeur_ajoutee_eta = valeur_ajoutee_ul * (
-                effectif_3112_eta / effectif_3112_ul
-            )
+            valeur_ajoutee_eta = valeur_ajoutee_ul * (effectif_3112_eta / effectif_3112_ul)
         return valeur_ajoutee_eta
 
 
@@ -49,9 +44,7 @@ class consommation_par_valeur_ajoutee(Variable):
 
         consommation__divisee_par_valeur_ajoutee = 0
         if valeur_ajoutee_eta:
-            consommation__divisee_par_valeur_ajoutee = (
-                assiette_ticgn / valeur_ajoutee_eta
-            )
+            consommation__divisee_par_valeur_ajoutee = assiette_ticgn / valeur_ajoutee_eta
         return consommation__divisee_par_valeur_ajoutee
 
 
@@ -72,14 +65,7 @@ class chiffre_affaires_eta(Variable):
         chiffre_affaires_ul = etablissement.unite_legale("chiffre_affaires_ul", period)
         effectif_3112_ul = etablissement.unite_legale("effectif_3112_ul", period)
         effectif_3112_eta = etablissement("effectif_3112_eta", period)
-        if effectif_3112_ul:
-            chiffre_affaires_eta = chiffre_affaires_ul * (
-                effectif_3112_eta / effectif_3112_ul
-            )
-        else:
-            chiffre_affaires_eta = 0
-
-        return chiffre_affaires_eta
+        return chiffre_affaires_ul * (effectif_3112_eta / effectif_3112_ul) if effectif_3112_ul else 0
 
 
 class facture_energie_ul(Variable):
@@ -108,9 +94,7 @@ class facture_energie_par_valeur_ajoutee_eta(Variable):
         facture_energie_eta = etablissement("facture_energie_eta", period)
         facture_energie_par_valeur_ajoutee_eta = 0
         if valeur_ajoutee_eta:
-            facture_energie_par_valeur_ajoutee_eta = (
-                facture_energie_eta / valeur_ajoutee_eta
-            )
+            facture_energie_par_valeur_ajoutee_eta = facture_energie_eta / valeur_ajoutee_eta
         return facture_energie_par_valeur_ajoutee_eta
 
 
@@ -127,17 +111,13 @@ class electro_intensite(Variable):
 
         consommation_electricite = etablissement("consommation_electricite", period)
 
-        partie_electricite = (
-            consommation_electricite
-            * parameters(period).energies.electricite.ticfe.taux_normal
-        )
+        partie_electricite = consommation_electricite * parameters(period).energies.electricite.ticfe.taux_normal
 
         numerateur = partie_electricite
         condition_non_zero = valeur_ajoutee_eta != 0
         # Avoid division by zero: use 1 where denominator is 0, then mask result
         denom_safe = where(condition_non_zero, valeur_ajoutee_eta, 1)
-        resultat = where(condition_non_zero, numerateur / denom_safe, 0)
-        return resultat
+        return where(condition_non_zero, numerateur / denom_safe, 0)
 
 
 class intensite_energetique_valeur_ajoutee(Variable):
@@ -154,10 +134,7 @@ class intensite_energetique_valeur_ajoutee(Variable):
 
         consommation_electricite = etablissement("consommation_electricite", period)
 
-        partie_electricite = (
-            consommation_electricite
-            * parameters(period).energies.electricite.ticfe.taux_normal
-        )
+        partie_electricite = consommation_electricite * parameters(period).energies.electricite.ticfe.taux_normal
 
         consommation_charbon = etablissement("consommation_charbon", period)
         partie_charbon = consommation_charbon * parameters(period).energies.charbon.ticc
@@ -175,8 +152,7 @@ class intensite_energetique_valeur_ajoutee(Variable):
         condition_non_zero = valeur_ajoutee_eta != 0
         # Avoid division by zero: use 1 where denominator is 0, then mask result
         denom_safe = where(condition_non_zero, valeur_ajoutee_eta, 1)
-        resultat = where(condition_non_zero, numerateur / denom_safe, 0)
-        return resultat
+        return where(condition_non_zero, numerateur / denom_safe, 0)
 
 
 # Le niveau d'intensité énergétique en valeur ajoutée s'entend du quotient entre :
@@ -189,7 +165,8 @@ class intensite_energetique_valeur_ajoutee(Variable):
 # Lorsque le niveau mentionné au 2° de l'article L. 312-44 est apprécié uniquement sur
 # l'électricité, il est dénommé niveau d'électro-intensité.
 
-# Montant théorique des accises au tarif normal (même si réduit en réalité) / Chiffre d'affaires – achats (les deux soumis à la TVA) = valeur ajoutée fiscale
+#
+# soumis
 
 
 class intensite_energetique_valeur_production(Variable):
@@ -207,12 +184,7 @@ class intensite_energetique_valeur_production(Variable):
         facture_energie_eta = etablissement("facture_energie_eta", period)
         chiffre_affaires_eta = etablissement("chiffre_affaires_eta", period)
 
-        if chiffre_affaires_eta != 0:
-            quotient = facture_energie_eta / chiffre_affaires_eta
-        else:
-            quotient = 0
-
-        return quotient
+        return facture_energie_eta / chiffre_affaires_eta if chiffre_affaires_eta != 0 else 0
 
 
 # 1° Le niveau d'intensité énergétique en valeur de production s'entend du quotient entre :
@@ -224,4 +196,5 @@ class intensite_energetique_valeur_production(Variable):
 # biens et services destinés à la revente ;
 
 # côut d'énergie / chiffres d'affaires
-# Coût réel TTC de l’énergie utilisée (toutes taxes sauf TVA récupérable) / Chiffre d'affaires + subventions + variation de stock – achats pour revente
+#
+# de
