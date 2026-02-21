@@ -5,12 +5,11 @@ A variable is a property of an Entity such as a Etablissement, a UniteLegale…
 See https://openfisca.org/doc/key-concepts/variables.html
 """
 
-# Import from openfisca-core the Python objects used to code the legislation in OpenFisca
 from openfisca_core.model_api import YEAR, Variable, select
 from openfisca_core.periods import Instant
 
 from openfisca_france_entreprises.entities import Etablissement
-from openfisca_france_entreprises.variables.taxes.taxation_energies.formula_helpers import (
+from openfisca_france_entreprises.variables.taxes.formula_helpers import (
     _and,
     _not,
     _or,

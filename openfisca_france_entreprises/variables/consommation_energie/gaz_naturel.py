@@ -325,11 +325,7 @@ class gaz_travaux_agricoles_et_forestiers(Variable):
 
     def formula_2022_01_01(etablissement, period):
         apet = etablissement("apet", period)
-        type_eta = apet.possible_values
-        status = 0
-        if apet == type_eta._10_39A:
-            status = 1
-        return status
+        return apet == naf._10_39A
 
 
 class consommation_gaz_cogeneration(Variable):

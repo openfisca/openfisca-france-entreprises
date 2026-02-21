@@ -7,32 +7,10 @@ See https://openfisca.org/doc/key-concepts/variables.html
 Les commentaires avec *** indiquent qu'il y a des problèmes
 """
 
-# Import from numpy the operations you need to apply on OpenFisca's population vectors
-# Import from openfisca-core the Python objects used to code the legislation in OpenFisca
+from openfisca_core.model_api import YEAR, Variable, select
 
-from numpy import logical_and, logical_or
-from openfisca_core.model_api import YEAR, Variable, not_, select
-
-# Import the Entities specifically defined for this tax and benefit system
 from openfisca_france_entreprises.entities import Etablissement
-
-
-def _and(*args):
-    r = args[0]
-    for a in args[1:]:
-        r = logical_and(r, a)
-    return r
-
-
-def _or(*args):
-    r = args[0]
-    for a in args[1:]:
-        r = logical_or(r, a)
-    return r
-
-
-def _not(x):
-    return not_(x)
+from openfisca_france_entreprises.variables.taxes.formula_helpers import _and, _not, _or
 
 
 class taxe_gaz_naturel(Variable):

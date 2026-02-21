@@ -2,9 +2,8 @@
 
 from openfisca_core.model_api import YEAR, Variable, select, where
 
-# Import the Entities specifically defined for this tax and benefit system
 from openfisca_france_entreprises.entities import Etablissement
-from openfisca_france_entreprises.variables.taxes.taxation_energies.formula_helpers import (
+from openfisca_france_entreprises.variables.taxes.formula_helpers import (
     _and,
     _or,
 )

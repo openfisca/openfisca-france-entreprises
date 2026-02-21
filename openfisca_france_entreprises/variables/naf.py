@@ -6,8 +6,6 @@ codes and their labels, used for sector/activity variables (e.g. apet).
 
 from openfisca_core.model_api import Enum
 
-# Import the Entities specifically defined for this tax and benefit system
-
 
 class naf(Enum):
     # Note: __order__ was removed as it's not needed in Python 3 (enums preserve

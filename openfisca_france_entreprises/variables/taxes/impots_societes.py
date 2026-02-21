@@ -6,11 +6,9 @@ See https://openfisca.org/doc/key-concepts/variables.html
 """
 
 # Import from numpy the operations you need to apply on OpenFisca's population vectors
-# Import from openfisca-core the Python objects used to code the legislation in OpenFisca
 
 from openfisca_core.model_api import YEAR, Variable
 
-# Import the Entities specifically defined for this tax and benefit system
 from openfisca_france_entreprises.entities import UniteLegale
 
 

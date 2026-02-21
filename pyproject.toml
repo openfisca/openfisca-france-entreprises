@@ -56,6 +56,7 @@ lint.select = ["ALL"]
 lint.ignore = [
     "ANN",     # Type annotations (not enforced in this codebase)
     "ARG002",  # Unused method arguments (common in OpenFisca formulas: entity, period, parameters)
+    "COM812",  # Missing trailing comma (conflicts with formatter)
     "ERA001",  # Commented-out code (many instances, cleanup needed)
     "FIX002",  # TODO comments (acceptable in codebase)
     "N801",    # Class name should use CapWords (Variable subclasses use lowercase names)

@@ -2,10 +2,8 @@
 # les valeurs qui varient avec l'ativité
 # valeur_ajouté
 
-# Import from openfisca-core the Python objects used to code the legislation in OpenFisca
 from openfisca_core.model_api import YEAR, Variable, where
 
-# Import the Entities specifically defined for this tax and benefit system
 from openfisca_france_entreprises.entities import Etablissement, UniteLegale
 
 
