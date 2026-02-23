@@ -1,7 +1,25 @@
-- name: "Test tdcfe_coefficient_multiplicateur_normal_2012 3"
+# Test coefficient TDCFE par département via taux_tdcfe
+# taux_tdcfe = taux_professionnel_36kVA_et_moins * coefficient (0.75) when amperage <= 36
+- name: "TDCFE 2012 (département 3) via taux_tdcfe"
   period: "2012"
   input:
+    amperage: 22
     departement: "3"
   output:
-    tdcfe_coefficient_multiplicateur_normal_2012 : 4.06
+    taux_tdcfe: 3.045
 
+- name: "TDCFE 2015 (département 3) via taux_tdcfe"
+  period: "2015"
+  input:
+    amperage: 22
+    departement: "3"
+  output:
+    taux_tdcfe: 3.1875
+
+- name: "TDCFE 2021 (département 3) via taux_tdcfe"
+  period: "2021"
+  input:
+    amperage: 22
+    departement: "3"
+  output:
+    taux_tdcfe: 3.1875
