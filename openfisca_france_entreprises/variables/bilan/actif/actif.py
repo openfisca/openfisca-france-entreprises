@@ -1,8 +1,8 @@
-from openfisca_core.model_api import *
-from openfisca_core.periods import YEAR
-from openfisca_core.variables import Variable
+"""Variables and formulas for this module."""
 
-from openfisca_france_entreprises.entities import UniteLegale  # noqa F401
+from openfisca_core.model_api import YEAR, Variable
+
+from openfisca_france_entreprises.entities import UniteLegale
 
 
 class actif_brut(Variable):
@@ -20,9 +20,7 @@ class actif_brut(Variable):
         total_iv = UniteLegale("frais_emission_emprunt", period)
         total_v = UniteLegale("primes_remboursement_obligations", period)
         total_vi = UniteLegale("ecarts_conversion_actif", period)
-        total_general = total_i + total_ii + total_iii + total_iv + total_v + total_vi
-
-        return total_general
+        return total_i + total_ii + total_iii + total_iv + total_v + total_vi
 
 
 class actif_ar(Variable):
@@ -36,9 +34,7 @@ class actif_ar(Variable):
     def formula(UniteLegale, period):
         total_ii = UniteLegale("actif_immobilise_ar", period)
         total_iii = UniteLegale("actif_total_iii_ar", period)
-        total_general = total_ii + total_iii
-
-        return total_general
+        return total_ii + total_iii
 
 
 class actif_net(Variable):

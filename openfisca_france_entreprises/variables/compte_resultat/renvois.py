@@ -1,9 +1,8 @@
-from openfisca_core.model_api import *
-from openfisca_core.periods import YEAR
-from openfisca_core.variables import Variable
+"""Variables and formulas for this module."""
 
-from openfisca_france_entreprises.entities import (  # noqa F401
-    Etablissement,
+from openfisca_core.model_api import YEAR, Variable
+
+from openfisca_france_entreprises.entities import (
     UniteLegale,
 )
 

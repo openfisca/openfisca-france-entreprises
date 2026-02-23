@@ -1,15 +1,12 @@
-"""
-This file defines variables for the modelled legislation.
+"""This file defines variables for the modelled legislation.
 
 A variable is a property of an Entity such as a Etablissement, a UniteLegale…
 
 See https://openfisca.org/doc/key-concepts/variables.html
 """
 
-# Import from openfisca-core the Python objects used to code the legislation in OpenFisca
-from openfisca_core.model_api import *
+from openfisca_core.model_api import MONTH, YEAR, Enum, Variable
 
-# Import the Entities specifically defined for this tax and benefit system
 from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.naf import naf
 
@@ -102,7 +99,8 @@ class installation_grande_consommatrice_energie(Variable):
         facture_energie_eta = etablissement("facture_energie_eta", period)
         chiffre_affaires_eta = etablissement("chiffre_affaires_eta", period)
         taxe_accise_electricite_taux_normal = etablissement(
-            "taxe_accise_electricite_taux_normal", period
+            "taxe_accise_electricite_taux_normal",
+            period,
         )
         valeur_ajoutee_eta = etablissement("valeur_ajoutee_eta", period)
         seuils = parameters(period).energies.seuils_seqe
@@ -110,15 +108,10 @@ class installation_grande_consommatrice_energie(Variable):
         cond1 = (
             seqe
             & (chiffre_affaires_eta != 0)
-            & (
-                facture_energie_eta
-                >= chiffre_affaires_eta
-                * seuils.part_facture_energie_chiffre_affaires_min
-            )
+            & (facture_energie_eta >= chiffre_affaires_eta * seuils.part_facture_energie_chiffre_affaires_min)
         )
         cond2 = (valeur_ajoutee_eta != 0) & (
-            taxe_accise_electricite_taux_normal
-            >= valeur_ajoutee_eta * seuils.part_taxe_valeur_ajoutee_min
+            taxe_accise_electricite_taux_normal >= valeur_ajoutee_eta * seuils.part_taxe_valeur_ajoutee_min
         )
         return cond1 | cond2
 
@@ -218,15 +211,14 @@ class intensite_echanges_avec_pays_tiers(Variable):
     value_type = float
     unit = "pourcentage"
     entity = Etablissement
-    label = (
-        "L'intensité des échanges avec les pays tiers, appliqué au sein de L312-65, -73"
-    )
+    label = "L'intensité des échanges avec les pays tiers, appliqué au sein de L312-65, -73"
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046196784"
 
 
 class departement(Variable):
-    # NB : les codes pour la corse est 02A et 02B, tandis que pour les autres codes départementales avec qu'une chiffre, le code commence PAS par un 0.
+    # NB : les codes pour la corse est 02A et 02B, tandis que pour les autres
+    # codes départementales avec qu'une chiffre, le code commence PAS par un 0.
     value_type = str
     unit = ""
     entity = Etablissement

@@ -1,8 +1,7 @@
-from openfisca_core.model_api import *
-from openfisca_core.periods import YEAR
-from openfisca_core.variables import Variable
+"""Variables and formulas for this module."""
 
-# Import the Entities specifically defined for this tax and benefit system
+from openfisca_core.model_api import YEAR, Variable
+
 from openfisca_france_entreprises.entities import Etablissement
 
 
@@ -33982,5 +33981,4 @@ class tccfe_coefficient_multiplicateur_normal_2022(Variable):
             "manquant": 0,
         }
         cle = (str(departement[0]), str(commune[0]))
-        resultat = taux.get(cle, taux["manquant"])
-        return resultat
+        return taux.get(cle, taux["manquant"])

@@ -1,8 +1,8 @@
-from openfisca_core.model_api import *
-from openfisca_core.periods import YEAR
-from openfisca_core.variables import Variable
+"""Variables and formulas for this module."""
 
-from openfisca_france_entreprises.entities import UniteLegale  # noqa F401
+from openfisca_core.model_api import YEAR, Variable
+
+from openfisca_france_entreprises.entities import UniteLegale
 
 
 class passif_total_iv(Variable):
@@ -17,9 +17,7 @@ class passif_total_iv(Variable):
         dettes = UniteLegale("dettes", period)
         produits_constates_avance = UniteLegale("produits_constates_avance", period)
 
-        passif_total_iv = dettes + produits_constates_avance
-
-        return passif_total_iv
+        return dettes + produits_constates_avance
 
 
 class ecart_conversion_passif(Variable):
@@ -46,6 +44,4 @@ class passif(Variable):
         total_iv = UniteLegale("passif_total_iv", period)
         total_v = UniteLegale("ecart_conversion_passif", period)
 
-        passif = total_i + total_ii + total_iii + total_iv + total_v
-
-        return passif
+        return total_i + total_ii + total_iii + total_iv + total_v

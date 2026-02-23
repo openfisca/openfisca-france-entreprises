@@ -1,8 +1,8 @@
-from openfisca_core.model_api import *
-from openfisca_core.periods import YEAR
-from openfisca_core.variables import Variable
+"""Variables and formulas for this module."""
 
-from openfisca_france_entreprises.entities import Etablissement  # noqa F401
+from openfisca_core.model_api import YEAR, Variable
+
+from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.naf import naf
 
 
@@ -18,23 +18,18 @@ class consommation_charbon(Variable):
     # dès 2007, seules les usages comme combustible sont soumis à la TICGN.
     # dès 2020, les usages comme carbrant y sont somis aussi.
     def formula_2007_01_01(etablissement, period):
-        totale = etablissement("consommation_charbon_combustible", period)
-
-        return totale
+        return etablissement("consommation_charbon_combustible", period)
 
     def formula_2020_01_01(etablissement, period):
-        totale = etablissement(
-            "consommation_charbon_combustible", period
+        return etablissement(
+            "consommation_charbon_combustible",
+            period,
         ) + etablissement("consommation_charbon_carburant", period)
-
-        return totale
 
     def formula_2022_01_01(etablissement, period):
         # selon L312-22, le charbon utilisé comme carburant est pas soumis à l'accise
 
-        totale = etablissement("consommation_charbon_combustible", period)
-
-        return totale
+        return etablissement("consommation_charbon_combustible", period)
 
 
 class consommation_charbon_carburant(Variable):
@@ -107,7 +102,12 @@ class consommation_charbon_di26(Variable):
     value_type = float
     unit = "MWh"
     entity = Etablissement
-    label = "Consommation de charbon de l'établissement, utilisé dans un procédé de fabrication de produits minéraux non métalliques classé dans la nomenclature statistique des activités économiques dans la Communauté européenne (NACE), telle qu'elle résulte du règlement (CEE) n° 3037/90 du Conseil, du 9 octobre 1990, sous la rubrique DI 26"
+    label = (
+        "Consommation de charbon de l'établissement, utilisé dans un procédé "
+        "de fabrication de produits minéraux non métalliques classé dans la "
+        "nomenclature statistique des activités économiques dans la Communauté "
+        "rubrique DI 26"
+    )
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
 
@@ -119,7 +119,13 @@ class consommation_charbon_combustible_interne(Variable):
     value_type = float
     unit = "MWh"
     entity = Etablissement
-    label = "Consommation de charbon de l'établissement, utilisé par établissements de production de produits pétroliers ou assimilés [...] lorsque cette consommation est effectuée pour la production de ces produits énergétiques ou pour la production de tout ou partie de l'énergie nécessaire à leur fabrication"
+    label = (
+        "Consommation de charbon de l'établissement, utilisé par "
+        "établissements de production de produits pétroliers ou assimilés "
+        "[...] lorsque cette consommation est effectuée pour la production "
+        "de ces produits énergétiques ou pour la production de tout ou partie "
+        "de l'énergie nécessaire à leur fabrication"
+    )
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
 
@@ -142,7 +148,12 @@ class consommation_charbon_combustible_electricite_petits_producteurs(Variable):
     value_type = float
     unit = "MWh"
     entity = Etablissement
-    label = "à exclure. Consommation de charbon de l'établissement, utilisé pour leurs besoins par les petits producteurs d'électricité au sens du 4° du V de l'article L. 3333-2 du code général des collectivités territoriales."
+    label = (
+        "à exclure. Consommation de charbon de l'établissement, utilisé "
+        "pour leurs besoins par les petits producteurs d'électricité au sens "
+        "du 4° du V de l'article L. 3333-2 du code général des collectivités "
+        "territoriales."
+    )
     definition_period = YEAR
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
@@ -153,7 +164,10 @@ class consommation_charbon_combustible_extraction(Variable):
     value_type = float
     unit = "MWh"
     entity = Etablissement
-    label = "Consommation de charbon de l'établissement, utilisé comme combustible dans le processus de sa fabrication et de son extraction."
+    label = (
+        "Consommation de charbon de l'établissement, utilisé comme "
+        "combustible dans le processus de sa fabrication et de son extraction."
+    )
     definition_period = YEAR
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
@@ -346,6 +360,10 @@ class charbon_secteurs_aeronautique_et_naval(Variable):
 class contrat_achat_electricite_314(Variable):
     value_type = bool
     entity = Etablissement
-    label = "bénéficient d'un contrat d'achat d'électricité conclu en application de l'article L. 314-1 du code de l'énergie ou mentionné à l'article L. 121-27 du même code "
+    label = (
+        "bénéficient d'un contrat d'achat d'électricité conclu en "
+        "application de l'article L. 314-1 du code de l'énergie ou mentionné "
+        "à l'article L. 121-27 du même code"
+    )
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032969945"

@@ -1,3 +1,23 @@
+## 1.1.5
+
+* Technical improvement: standardise OpenFisca-Core imports to `model_api`.
+* Impacted areas: variables (bilan, compte_resultat, consommation_energie, taxes), CONTRIBUTING.
+* Details:
+  - Replace `from openfisca_core.periods import YEAR` + `from openfisca_core.variables import Variable` with `from openfisca_core.model_api import Variable, YEAR` across the codebase
+  - Keep `from openfisca_core.periods import Instant` only where needed (boulier_tarifaire, taxation_charbon); `Instant` is not re-exported by model_api
+  - Merge existing model_api imports with YEAR/Variable/select/where/Instant where applicable (variables_economiques, boulier_tarifaire, taxation_charbon, tdcfe, tccfe)
+  - CONTRIBUTING: add "Code conventions → Imports from OpenFisca-Core" (prefer model_api; other core imports rare and justified)
+
+## 1.1.4
+
+* Code quality: fix E501 line length violations.
+* Impacted areas: code formatting, linting compliance.
+* Details:
+  - Fix all E501 (line too long) violations to comply with 120 character limit
+  - Reformatted long docstrings, comments, and expressions in taxation modules
+  - Updated pyproject.toml line-length setting to 120
+  - All tests pass, no functional changes
+
 ## 1.1.3
 
 * Technical improvement: use latest openfisca-core and remove monkey patches.

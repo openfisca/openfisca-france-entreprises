@@ -1,8 +1,8 @@
-from openfisca_core.model_api import *
-from openfisca_core.periods import YEAR
-from openfisca_core.variables import Variable
+"""Variables and formulas for this module."""
 
-from openfisca_france_entreprises.entities import UniteLegale  # noqa F401
+from openfisca_core.model_api import YEAR, Variable
+
+from openfisca_france_entreprises.entities import UniteLegale
 
 
 class charges_constatees_avance_brutes(Variable):
@@ -48,11 +48,10 @@ class actif_total_iii_brut(Variable):
     def formula(UniteLegale, period):
         actif_circulant = UniteLegale("actif_circulant_brut", period)
         charges_constatees_avance = UniteLegale(
-            "charges_constatees_avance_brutes", period
+            "charges_constatees_avance_brutes",
+            period,
         )
-        total = actif_circulant + charges_constatees_avance
-
-        return total
+        return actif_circulant + charges_constatees_avance
 
 
 class actif_total_iii_ar(Variable):
@@ -66,9 +65,7 @@ class actif_total_iii_ar(Variable):
     def formula(UniteLegale, period):
         actif_circulant = UniteLegale("actif_circulant_ar", period)
         charges_constatees_avance = UniteLegale("charges_constatees_avance_ar", period)
-        total = actif_circulant + charges_constatees_avance
-
-        return total
+        return actif_circulant + charges_constatees_avance
 
 
 class actif_total_iii_net(Variable):

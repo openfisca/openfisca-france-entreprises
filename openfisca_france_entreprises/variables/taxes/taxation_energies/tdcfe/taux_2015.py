@@ -1,9 +1,7 @@
-# Import from openfisca-core the Python objects used to code the legislation in OpenFisca
-from openfisca_core.model_api import *
-from openfisca_core.periods import YEAR
-from openfisca_core.variables import Variable
+"""Variables and formulas for this module."""
 
-# Import the Entities specifically defined for this tax and benefit system
+from openfisca_core.model_api import YEAR, Variable
+
 from openfisca_france_entreprises.entities import Etablissement
 
 # NB : le code départementale de Mayotte change de 143 en 2014 à 106 en 2015
@@ -123,6 +121,5 @@ class tdcfe_coefficient_multiplicateur_normal_2015(Variable):
             "manquant": 0,
         }
 
-        departement_str = str(departement[0])  # car c’est un tableau numpy apparemment
-        resultat = taux.get(departement_str, taux["manquant"])
-        return resultat
+        departement_str = str(departement[0])  # car c'est un tableau numpy apparemment
+        return taux.get(departement_str, taux["manquant"])

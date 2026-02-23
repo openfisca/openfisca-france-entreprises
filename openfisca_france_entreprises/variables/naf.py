@@ -1,10 +1,15 @@
-from openfisca_core.model_api import *
+"""NAF (Nomenclature d'Activités Française) rev. 2.
 
-# Import the Entities specifically defined for this tax and benefit system
+French statistical classification of economic activities. Enum of activity
+codes and their labels, used for sector/activity variables (e.g. apet).
+"""
+
+from openfisca_core.model_api import Enum
 
 
 class naf(Enum):
-    __order__ = "manquant _01_11Z _01_12Z _01_13Z _01_14Z _01_15Z _01_16Z _01_19Z _01_21Z _01_22Z _01_23Z _01_24Z _01_25Z _01_26Z _01_27Z _01_28Z _01_29Z _01_30Z _01_41Z _01_42Z _01_43Z _01_44Z _01_45Z _01_46Z _01_47Z _01_49Z _01_50Z _01_61Z _01_62Z _01_63Z _01_64Z _01_70Z _02_10Z _02_20Z _02_30Z _02_40Z _03_11Z _03_12Z _03_21Z _03_22Z _05_10Z _05_20Z _06_10Z _06_20Z _07_10Z _07_21Z _07_29Z _08_11Z _08_12Z _08_91Z _08_92Z _08_93Z _08_99Z _09_10Z _09_90Z _10_11Z _10_12Z _10_13A _10_13B _10_20Z _10_31Z _10_32Z _10_39A _10_39B _10_41A _10_41B _10_42Z _10_51A _10_51B _10_51C _10_51D _10_52Z _10_61A _10_61B _10_62Z _10_71A _10_71B _10_71C _10_71D _10_72Z _10_73Z _10_81Z _10_82Z _10_83Z _10_84Z _10_85Z _10_86Z _10_89Z _10_91Z _10_92Z _11_01Z _11_02A _11_02B _11_03Z _11_04Z _11_05Z _11_06Z _11_07A _11_07B _12_00Z _13_10Z _13_20Z _13_30Z _13_91Z _13_92Z _13_93Z _13_94Z _13_95Z _13_96Z _13_99Z _14_11Z _14_12Z _14_13Z _14_14Z _14_19Z _14_20Z _14_31Z _14_39Z _15_11Z _15_12Z _15_20Z _16_10A _16_10B _16_21Z _16_22Z _16_23Z _16_24Z _16_29Z _17_11Z _17_12Z _17_21A _17_21B _17_21C _17_22Z _17_23Z _17_24Z _17_29Z _18_11Z _18_12Z _18_13Z _18_14Z _18_20Z _19_10Z _19_20Z _20_11Z _20_12Z _20_13A _20_13B _20_14Z _20_15Z _20_16Z _20_17Z _20_20Z _20_30Z _20_41Z _20_42Z _20_51Z _20_52Z _20_53Z _20_59Z _20_60Z _21_10Z _21_20Z _22_11Z _22_19Z _22_21Z _22_22Z _22_23Z _22_29A _22_29B _23_11Z _23_12Z _23_13Z _23_14Z _23_19Z _23_20Z _23_31Z _23_32Z _23_41Z _23_42Z _23_43Z _23_44Z _23_49Z _23_51Z _23_52Z _23_61Z _23_62Z _23_63Z _23_64Z _23_65Z _23_69Z _23_70Z _23_91Z _23_99Z _24_10Z _24_20Z _24_31Z _24_32Z _24_33Z _24_34Z _24_41Z _24_42Z _24_43Z _24_44Z _24_45Z _24_46Z _24_51Z _24_52Z _24_53Z _24_54Z _25_11Z _25_12Z _25_21Z _25_29Z _25_30Z _25_40Z _25_50A _25_50B _25_61Z _25_62A _25_62B _25_71Z _25_72Z _25_73A _25_73B _25_91Z _25_92Z _25_93Z _25_94Z _25_99A _25_99B _26_11Z _26_12Z _26_20Z _26_30Z _26_40Z _26_51A _26_51B _26_52Z _26_60Z _26_70Z _26_80Z _27_11Z _27_12Z _27_20Z _27_31Z _27_32Z _27_33Z _27_40Z _27_51Z _27_52Z _27_90Z _28_11Z _28_12Z _28_13Z _28_14Z _28_15Z _28_21Z _28_22Z _28_23Z _28_24Z _28_25Z _28_29A _28_29B _28_30Z _28_41Z _28_49Z _28_91Z _28_92Z _28_93Z _28_94Z _28_95Z _28_96Z _28_99A _28_99B _29_10Z _29_20Z _29_31Z _29_32Z _30_11Z _30_12Z _30_20Z _30_30Z _30_40Z _30_91Z _30_92Z _30_99Z _31_01Z _31_02Z _31_03Z _31_09A _31_09B _32_11Z _32_12Z _32_13Z _32_20Z _32_30Z _32_40Z _32_50A _32_50B _32_91Z _32_99Z _33_11Z _33_12Z _33_13Z _33_14Z _33_15Z _33_16Z _33_17Z _33_19Z _33_20A _33_20B _33_20C _33_20D _35_11Z _35_12Z _35_13Z _35_14Z _35_21Z _35_22Z _35_23Z _35_30Z _36_00Z _37_00Z _38_11Z _38_12Z _38_21Z _38_22Z _38_31Z _38_32Z _39_00Z _41_10A _41_10B _41_10C _41_10D _41_20A _41_20B _42_11Z _42_12Z _42_13A _42_13B _42_21Z _42_22Z _42_91Z _42_99Z _43_11Z _43_12A _43_12B _43_13Z _43_21A _43_21B _43_22A _43_22B _43_29A _43_29B _43_31Z _43_32A _43_32B _43_32C _43_33Z _43_34Z _43_39Z _43_91A _43_91B _43_99A _43_99B _43_99C _43_99D _43_99E _45_11Z _45_19Z _45_20A _45_20B _45_31Z _45_32Z _45_40Z _46_11Z _46_12A _46_12B _46_13Z _46_14Z _46_15Z _46_16Z _46_17A _46_17B _46_18Z _46_19A _46_19B _46_21Z _46_22Z _46_23Z _46_24Z _46_31Z _46_32A _46_32B _46_32C _46_33Z _46_34Z _46_35Z _46_36Z _46_37Z _46_38A _46_38B _46_39A _46_39B _46_41Z _46_42Z _46_43Z _46_44Z _46_45Z _46_46Z _46_47Z _46_48Z _46_49Z _46_51Z _46_52Z _46_61Z _46_62Z _46_63Z _46_64Z _46_65Z _46_66Z _46_69A _46_69B _46_69C _46_71Z _46_72Z _46_73A _46_73B _46_74A _46_74B _46_75Z _46_76Z _46_77Z _46_90Z _47_11A _47_11B _47_11C _47_11D _47_11E _47_11F _47_19A _47_19B _47_21Z _47_22Z _47_23Z _47_24Z _47_25Z _47_26Z _47_29Z _47_30Z _47_41Z _47_42Z _47_43Z _47_51Z _47_52A _47_52B _47_53Z _47_54Z _47_59A _47_59B _47_61Z _47_62Z _47_63Z _47_64Z _47_65Z _47_71Z _47_72A _47_72B _47_73Z _47_74Z _47_75Z _47_76Z _47_77Z _47_78A _47_78B _47_78C _47_79Z _47_81Z _47_82Z _47_89Z _47_91A _47_91B _47_99A _47_99B _49_10Z _49_20Z _49_31Z _49_32Z _49_39A _49_39B _49_39C _49_41A _49_41B _49_41C _49_42Z _49_50Z _50_10Z _50_20Z _50_30Z _50_40Z _51_10Z _51_21Z _51_22Z _52_10A _52_10B _52_21Z _52_22Z _52_23Z _52_24A _52_24B _52_29A _52_29B _53_10Z _53_20Z _55_10Z _55_20Z _55_30Z _55_90Z _56_10A _56_10B _56_10C _56_21Z _56_29A _56_29B _56_30Z _58_11Z _58_12Z _58_13Z _58_14Z _58_19Z _58_21Z _58_29A _58_29B _58_29C _59_11A _59_11B _59_11C _59_12Z _59_13A _59_13B _59_14Z _59_20Z _60_10Z _60_20A _60_20B _61_10Z _61_20Z _61_30Z _61_90Z _62_01Z _62_02A _62_02B _62_03Z _62_09Z _63_11Z _63_12Z _63_91Z _63_99Z _64_11Z _64_19Z _64_20Z _64_30Z _64_91Z _64_92Z _64_99Z _65_11Z _65_12Z _65_20Z _65_30Z _66_11Z _66_12Z _66_19A _66_19B _66_21Z _66_22Z _66_29Z _66_30Z _68_10Z _68_20A _68_20B _68_31Z _68_32A _68_32B _69_10Z _69_20Z _70_10Z _70_21Z _70_22Z _71_11Z _71_12A _71_12B _71_20A _71_20B _72_11Z _72_19Z _72_20Z _73_11Z _73_12Z _73_20Z _74_10Z _74_20Z _74_30Z _74_90A _74_90B _75_00Z _77_11A _77_11B _77_12Z _77_21Z _77_22Z _77_29Z _77_31Z _77_32Z _77_33Z _77_34Z _77_35Z _77_39Z _77_40Z _78_10Z _78_20Z _78_30Z _79_11Z _79_12Z _79_90Z _80_10Z _80_20Z _80_30Z _81_10Z _81_21Z _81_22Z _81_29A _81_29B _81_30Z _82_11Z _82_19Z _82_20Z _82_30Z _82_91Z _82_92Z _82_99Z _84_11Z _84_12Z _84_13Z _84_21Z _84_22Z _84_23Z _84_24Z _84_25Z _84_30A _84_30B _84_30C _85_10Z _85_20Z _85_31Z _85_32Z _85_41Z _85_42Z _85_51Z _85_52Z _85_53Z _85_59A _85_59B _85_60Z _86_10Z _86_21Z _86_22A _86_22B _86_22C _86_23Z _86_90A _86_90B _86_90C _86_90D _86_90E _86_90F _87_10A _87_10B _87_10C _87_20A _87_20B _87_30A _87_30B _87_90A _87_90B _88_10A _88_10B _88_10C _88_91A _88_91B _88_99A _88_99B _90_01Z _90_02Z _90_03A _90_03B _90_04Z _91_01Z _91_02Z _91_03Z _91_04Z _92_00Z _93_11Z _93_12Z _93_13Z _93_19Z _93_21Z _93_29Z _94_11Z _94_12Z _94_20Z _94_91Z _94_92Z _94_99Z _95_11Z _95_12Z _95_21Z _95_22Z _95_23Z _95_24Z _95_25Z _95_29Z _96_01A _96_01B _96_02A _96_02B _96_03Z _96_04Z _96_09Z _97_00Z _98_10Z _98_20Z _99_00Z"  # Needed to preserve the enum order in Python 2
+    # Note: __order__ was removed as it's not needed in Python 3 (enums preserve
+    # definition order automatically)
     manquant = "donnés manquant"
     _01_11Z = "Culture de céréales (à l'exception du riz), de légumineuses et de graines oléagineuses"
     _01_12Z = "Culture du riz"
@@ -52,10 +57,10 @@ class naf(Enum):
     _07_10Z = "Extraction de minerais de fer"
     _07_21Z = "Extraction de minerais d'uranium et de thorium"
     _07_29Z = "Extraction d'autres minerais de métaux non ferreux"
-    _08_11Z = "Extraction de pierres ornementales et de construction, de calcaire industriel, de gypse, de craie et d'ardoise"
-    _08_12Z = (
-        "Exploitation de gravières et sablières, extraction d'argiles et de kaolin"
+    _08_11Z = (
+        "Extraction de pierres ornementales et de construction, de calcaire industriel, de gypse, de craie et d'ardoise"
     )
+    _08_12Z = "Exploitation de gravières et sablières, extraction d'argiles et de kaolin"
     _08_91Z = "Extraction des minéraux chimiques et d'engrais minéraux"
     _08_92Z = "Extraction de tourbe"
     _08_93Z = "Production de sel"
@@ -172,9 +177,7 @@ class naf(Enum):
     _21_20Z = "Fabrication de préparations pharmaceutiques"
     _22_11Z = "Fabrication et rechapage de pneumatiques"
     _22_19Z = "Fabrication d'autres articles en caoutchouc"
-    _22_21Z = (
-        "Fabrication de plaques, feuilles, tubes et profilés en matières plastiques"
-    )
+    _22_21Z = "Fabrication de plaques, feuilles, tubes et profilés en matières plastiques"
     _22_22Z = "Fabrication d'emballages en matières plastiques"
     _22_23Z = "Fabrication d'éléments en matières plastiques pour la construction"
     _22_29A = "Fabrication de pièces techniques à base de matières plastiques"
@@ -183,14 +186,10 @@ class naf(Enum):
     _23_12Z = "Façonnage et transformation du verre plat"
     _23_13Z = "Fabrication de verre creux"
     _23_14Z = "Fabrication de fibres de verre"
-    _23_19Z = (
-        "Fabrication et façonnage d'autres articles en verre, y compris verre technique"
-    )
+    _23_19Z = "Fabrication et façonnage d'autres articles en verre, y compris verre technique"
     _23_20Z = "Fabrication de produits réfractaires"
     _23_31Z = "Fabrication de carreaux en céramique"
-    _23_32Z = (
-        "Fabrication de briques, tuiles et produits de construction, en terre cuite"
-    )
+    _23_32Z = "Fabrication de briques, tuiles et produits de construction, en terre cuite"
     _23_41Z = "Fabrication d'articles céramiques à usage domestique ou ornemental"
     _23_42Z = "Fabrication d'appareils sanitaires en céramique"
     _23_43Z = "Fabrication d'isolateurs et pièces isolantes en céramique"
@@ -272,7 +271,10 @@ class naf(Enum):
     _28_15Z = "Fabrication d'engrenages et d'organes mécaniques de transmission"
     _28_21Z = "Fabrication de fours et brûleurs"
     _28_22Z = "Fabrication de matériel de levage et de manutention"
-    _28_23Z = "Fabrication de machines et d'équipements de bureau (à l'exception des ordinateurs et équipements périphériques)"
+    _28_23Z = (
+        "Fabrication de machines et d'équipements de bureau (à l'exception "
+        "des ordinateurs et équipements périphériques)"
+    )
     _28_24Z = "Fabrication d'outillage portatif à moteur incorporé"
     _28_25Z = "Fabrication d'équipements aérauliques et frigorifiques industriels"
     _28_29A = "Fabrication d'équipements d'emballage, de conditionnement et de pesage"
@@ -325,7 +327,9 @@ class naf(Enum):
     _33_19Z = "Réparation d'autres équipements"
     _33_20A = "Installation de structures métalliques, chaudronnées et de tuyauterie"
     _33_20B = "Installation de machines et équipements mécaniques"
-    _33_20C = "Conception d'ensemble et assemblage sur site industriel d'équipements de contrôle des processus industriels"
+    _33_20C = (
+        "Conception d'ensemble et assemblage sur site industriel d'équipements de contrôle des processus industriels"
+    )
     _33_20D = "Installation d'équipements électriques, de matériels électroniques et optiques ou d'autres matériels"
     _35_11Z = "Production d'électricité"
     _35_12Z = "Transport d'électricité"
@@ -389,51 +393,46 @@ class naf(Enum):
     _45_31Z = "Commerce de gros d'équipements automobiles"
     _45_32Z = "Commerce de détail d'équipements automobiles"
     _45_40Z = "Commerce et réparation de motocycles"
-    _46_11Z = "Intermédiaires du commerce en matières premières agricoles, animaux vivants, matières premières textiles et produits semi-finis"
+    _46_11Z = (
+        "Intermédiaires du commerce en matières premières agricoles, "
+        "animaux vivants, matières premières textiles et produits semi-finis"
+    )
     _46_12A = "Centrales d'achat de carburant"
     _46_12B = "Autres intermédiaires du commerce en combustibles, métaux, minéraux et produits chimiques"
     _46_13Z = "Intermédiaires du commerce en bois et matériaux de construction"
     _46_14Z = "Intermédiaires du commerce en machines, équipements industriels, navires et avions"
-    _46_15Z = (
-        "Intermédiaires du commerce en meubles, articles de ménage et quincaillerie"
-    )
+    _46_15Z = "Intermédiaires du commerce en meubles, articles de ménage et quincaillerie"
     _46_16Z = "Intermédiaires du commerce en textiles, habillement, fourrures, chaussures et articles en cuir"
     _46_17A = "Centrales d'achat alimentaires"
     _46_17B = "Autres intermédiaires du commerce en denrées, boissons et tabac"
-    _46_18Z = (
-        "Intermédiaires spécialisés dans le commerce d'autres produits spécifiques"
-    )
+    _46_18Z = "Intermédiaires spécialisés dans le commerce d'autres produits spécifiques"
     _46_19A = "Centrales d'achat non alimentaires"
     _46_19B = "Autres intermédiaires du commerce en produits divers"
-    _46_21Z = "Commerce de gros (commerce interentreprises) de céréales, de tabac non manufacturé, de semences et d'aliments pour le bétail"
+    _46_21Z = (
+        "Commerce de gros (commerce interentreprises) de céréales, de tabac "
+        "non manufacturé, de semences et d'aliments pour le bétail"
+    )
     _46_22Z = "Commerce de gros (commerce interentreprises) de fleurs et plantes"
     _46_23Z = "Commerce de gros (commerce interentreprises) d'animaux vivants"
     _46_24Z = "Commerce de gros (commerce interentreprises) de cuirs et peaux"
     _46_31Z = "Commerce de gros (commerce interentreprises) de fruits et légumes"
     _46_32A = "Commerce de gros (commerce interentreprises) de viandes de boucherie"
-    _46_32B = (
-        "Commerce de gros (commerce interentreprises) de produits à base de viande"
-    )
+    _46_32B = "Commerce de gros (commerce interentreprises) de produits à base de viande"
     _46_32C = "Commerce de gros (commerce interentreprises) de volailles et gibier"
-    _46_33Z = "Commerce de gros (commerce interentreprises) de produits laitiers, œufs, huiles et matières grasses comestibles"
+    _46_33Z = (
+        "Commerce de gros (commerce interentreprises) de produits laitiers, "
+        "œufs, huiles et matières grasses comestibles"
+    )
     _46_34Z = "Commerce de gros (commerce interentreprises) de boissons"
     _46_35Z = "Commerce de gros (commerce interentreprises) de produits à base de tabac"
-    _46_36Z = (
-        "Commerce de gros (commerce interentreprises) de sucre, chocolat et confiserie"
-    )
-    _46_37Z = (
-        "Commerce de gros (commerce interentreprises) de café, thé, cacao et épices"
-    )
+    _46_36Z = "Commerce de gros (commerce interentreprises) de sucre, chocolat et confiserie"
+    _46_37Z = "Commerce de gros (commerce interentreprises) de café, thé, cacao et épices"
     _46_38A = "Commerce de gros (commerce interentreprises) de poissons, crustacés et mollusques"
-    _46_38B = (
-        "Commerce de gros (commerce interentreprises) alimentaire spécialisé divers"
-    )
+    _46_38B = "Commerce de gros (commerce interentreprises) alimentaire spécialisé divers"
     _46_39A = "Commerce de gros (commerce interentreprises) de produits surgelés"
     _46_39B = "Commerce de gros (commerce interentreprises) alimentaire non spécialisé"
     _46_41Z = "Commerce de gros (commerce interentreprises) de textiles"
-    _46_42Z = (
-        "Commerce de gros (commerce interentreprises) d'habillement et de chaussures"
-    )
+    _46_42Z = "Commerce de gros (commerce interentreprises) d'habillement et de chaussures"
     _46_43Z = "Commerce de gros (commerce interentreprises) d'appareils électroménagers"
     _46_44Z = "Commerce de gros (commerce interentreprises) de vaisselle, verrerie et produits d'entretien"
     _46_45Z = "Commerce de gros (commerce interentreprises) de parfumerie et de produits de beauté"
@@ -441,17 +440,28 @@ class naf(Enum):
     _46_47Z = "Commerce de gros (commerce interentreprises) de meubles, de tapis et d'appareils d'éclairage"
     _46_48Z = "Commerce de gros (commerce interentreprises) d'articles d'horlogerie et de bijouterie"
     _46_49Z = "Commerce de gros (commerce interentreprises) d'autres biens domestiques"
-    _46_51Z = "Commerce de gros (commerce interentreprises) d'ordinateurs, d'équipements informatiques périphériques et de logiciels"
-    _46_52Z = "Commerce de gros (commerce interentreprises) de composants et d'équipements électroniques et de télécommunication"
+    _46_51Z = (
+        "Commerce de gros (commerce interentreprises) d'ordinateurs, "
+        "d'équipements informatiques périphériques et de logiciels"
+    )
+    _46_52Z = (
+        "Commerce de gros (commerce interentreprises) de composants et "
+        "d'équipements électroniques et de télécommunication"
+    )
     _46_61Z = "Commerce de gros (commerce interentreprises) de matériel agricole"
     _46_62Z = "Commerce de gros (commerce interentreprises) de machines-outils"
-    _46_63Z = "Commerce de gros (commerce interentreprises) de machines pour l'extraction, la construction et le génie civil"
+    _46_63Z = (
+        "Commerce de gros (commerce interentreprises) de machines pour l'extraction, la construction et le génie civil"
+    )
     _46_64Z = "Commerce de gros (commerce interentreprises) de machines pour l'industrie textile et l'habillement"
     _46_65Z = "Commerce de gros (commerce interentreprises) de mobilier de bureau"
     _46_66Z = "Commerce de gros (commerce interentreprises) d'autres machines et équipements de bureau"
     _46_69A = "Commerce de gros (commerce interentreprises) de matériel électrique"
     _46_69B = "Commerce de gros (commerce interentreprises) de fournitures et équipements industriels divers"
-    _46_69C = "Commerce de gros (commerce interentreprises) de fournitures et équipements divers pour le commerce et les services"
+    _46_69C = (
+        "Commerce de gros (commerce interentreprises) de fournitures et "
+        "équipements divers pour le commerce et les services"
+    )
     _46_71Z = "Commerce de gros (commerce interentreprises) de combustibles et de produits annexes"
     _46_72Z = "Commerce de gros (commerce interentreprises) de minerais et métaux"
     _46_73A = "Commerce de gros (commerce interentreprises) de bois et de matériaux de construction"
@@ -459,9 +469,7 @@ class naf(Enum):
     _46_74A = "Commerce de gros (commerce interentreprises) de quincaillerie"
     _46_74B = "Commerce de gros (commerce interentreprises) de fournitures pour la plomberie et le chauffage"
     _46_75Z = "Commerce de gros (commerce interentreprises) de produits chimiques"
-    _46_76Z = (
-        "Commerce de gros (commerce interentreprises) d'autres produits intermédiaires"
-    )
+    _46_76Z = "Commerce de gros (commerce interentreprises) d'autres produits intermédiaires"
     _46_77Z = "Commerce de gros (commerce interentreprises) de déchets et débris"
     _46_90Z = "Commerce de gros (commerce interentreprises) non spécialisé"
     _47_11A = "Commerce de détail de produits surgelés"
@@ -474,20 +482,14 @@ class naf(Enum):
     _47_19B = "Autres commerces de détail en magasin non spécialisé"
     _47_21Z = "Commerce de détail de fruits et légumes en magasin spécialisé"
     _47_22Z = "Commerce de détail de viandes et de produits à base de viande en magasin spécialisé"
-    _47_23Z = (
-        "Commerce de détail de poissons, crustacés et mollusques en magasin spécialisé"
-    )
-    _47_24Z = (
-        "Commerce de détail de pain, pâtisserie et confiserie en magasin spécialisé"
-    )
+    _47_23Z = "Commerce de détail de poissons, crustacés et mollusques en magasin spécialisé"
+    _47_24Z = "Commerce de détail de pain, pâtisserie et confiserie en magasin spécialisé"
     _47_25Z = "Commerce de détail de boissons en magasin spécialisé"
     _47_26Z = "Commerce de détail de produits à base de tabac en magasin spécialisé"
     _47_29Z = "Autres commerces de détail alimentaires en magasin spécialisé"
     _47_30Z = "Commerce de détail de carburants en magasin spécialisé"
     _47_41Z = "Commerce de détail d'ordinateurs, d'unités périphériques et de logiciels en magasin spécialisé"
-    _47_42Z = (
-        "Commerce de détail de matériels de télécommunication en magasin spécialisé"
-    )
+    _47_42Z = "Commerce de détail de matériels de télécommunication en magasin spécialisé"
     _47_43Z = "Commerce de détail de matériels audio et vidéo en magasin spécialisé"
     _47_51Z = "Commerce de détail de textiles en magasin spécialisé"
     _47_52A = "Commerce de détail de quincaillerie, peintures et verres en petites surfaces (moins de 400 m²)"
@@ -498,20 +500,19 @@ class naf(Enum):
     _47_59B = "Commerce de détail d'autres équipements du foyer"
     _47_61Z = "Commerce de détail de livres en magasin spécialisé"
     _47_62Z = "Commerce de détail de journaux et papeterie en magasin spécialisé"
-    _47_63Z = (
-        "Commerce de détail d'enregistrements musicaux et vidéo en magasin spécialisé"
-    )
+    _47_63Z = "Commerce de détail d'enregistrements musicaux et vidéo en magasin spécialisé"
     _47_64Z = "Commerce de détail d'articles de sport en magasin spécialisé"
     _47_65Z = "Commerce de détail de jeux et jouets en magasin spécialisé"
     _47_71Z = "Commerce de détail d'habillement en magasin spécialisé"
     _47_72A = "Commerce de détail de la chaussure"
     _47_72B = "Commerce de détail de maroquinerie et d'articles de voyage"
     _47_73Z = "Commerce de détail de produits pharmaceutiques en magasin spécialisé"
-    _47_74Z = (
-        "Commerce de détail d'articles médicaux et orthopédiques en magasin spécialisé"
-    )
+    _47_74Z = "Commerce de détail d'articles médicaux et orthopédiques en magasin spécialisé"
     _47_75Z = "Commerce de détail de parfumerie et de produits de beauté en magasin spécialisé"
-    _47_76Z = "Commerce de détail de fleurs, plantes, graines, engrais, animaux de compagnie et aliments pour ces animaux en magasin spécialisé"
+    _47_76Z = (
+        "Commerce de détail de fleurs, plantes, graines, engrais, animaux "
+        "de compagnie et aliments pour ces animaux en magasin spécialisé"
+    )
     _47_77Z = "Commerce de détail d'articles d'horlogerie et de bijouterie en magasin spécialisé"
     _47_78A = "Commerces de détail d'optique"
     _47_78B = "Commerces de détail de charbons et combustibles"
@@ -652,16 +653,15 @@ class naf(Enum):
     _77_22Z = "Location de vidéocassettes et disques vidéo"
     _77_29Z = "Location et location-bail d'autres biens personnels et domestiques"
     _77_31Z = "Location et location-bail de machines et équipements agricoles"
-    _77_32Z = (
-        "Location et location-bail de machines et équipements pour la construction"
-    )
-    _77_33Z = (
-        "Location et location-bail de machines de bureau et de matériel informatique"
-    )
+    _77_32Z = "Location et location-bail de machines et équipements pour la construction"
+    _77_33Z = "Location et location-bail de machines de bureau et de matériel informatique"
     _77_34Z = "Location et location-bail de matériels de transport par eau"
     _77_35Z = "Location et location-bail de matériels de transport aérien"
     _77_39Z = "Location et location-bail d'autres machines, équipements et biens matériels n_c_a_"
-    _77_40Z = "Location-bail de propriété intellectuelle et de produits similaires, à l'exception des œuvres soumises à copyright"
+    _77_40Z = (
+        "Location-bail de propriété intellectuelle et de produits similaires, "
+        "à l'exception des œuvres soumises à copyright"
+    )
     _78_10Z = "Activités des agences de placement de main-d'œuvre"
     _78_20Z = "Activités des agences de travail temporaire"
     _78_30Z = "Autre mise à disposition de ressources humaines"
@@ -681,11 +681,16 @@ class naf(Enum):
     _82_19Z = "Photocopie, préparation de documents et autres activités spécialisées de soutien de bureau"
     _82_20Z = "Activités de centres d'appels"
     _82_30Z = "Organisation de foires, salons professionnels et congrès"
-    _82_91Z = "Activités des agences de recouvrement de factures et des sociétés d'information financière sur la clientèle"
+    _82_91Z = (
+        "Activités des agences de recouvrement de factures et des sociétés d'information financière sur la clientèle"
+    )
     _82_92Z = "Activités de conditionnement"
     _82_99Z = "Autres activités de soutien aux entreprises n_c_a_"
     _84_11Z = "Administration publique générale"
-    _84_12Z = "Administration publique (tutelle) de la santé, de la formation, de la culture et des services sociaux, autre que sécurité sociale"
+    _84_12Z = (
+        "Administration publique (tutelle) de la santé, de la formation, de "
+        "la culture et des services sociaux, autre que sécurité sociale"
+    )
     _84_13Z = "Administration publique (tutelle) des activités économiques"
     _84_21Z = "Affaires étrangères"
     _84_22Z = "Défense"
@@ -721,9 +726,7 @@ class naf(Enum):
     _86_90F = "Activités de santé humaine non classées ailleurs"
     _87_10A = "Hébergement médicalisé pour personnes âgées"
     _87_10B = "Hébergement médicalisé pour enfants handicapés"
-    _87_10C = (
-        "Hébergement médicalisé pour adultes handicapés et autre hébergement médicalisé"
-    )
+    _87_10C = "Hébergement médicalisé pour adultes handicapés et autre hébergement médicalisé"
     _87_20A = "Hébergement social pour handicapés mentaux et malades mentaux"
     _87_20B = "Hébergement social pour toxicomanes"
     _87_30A = "Hébergement social pour personnes âgées"
@@ -735,9 +738,7 @@ class naf(Enum):
     _88_10C = "Aide par le travail"
     _88_91A = "Accueil de jeunes enfants"
     _88_91B = "Accueil ou accompagnement sans hébergement d'enfants handicapés"
-    _88_99A = (
-        "Autre accueil ou accompagnement sans hébergement d'enfants et d'adolescents"
-    )
+    _88_99A = "Autre accueil ou accompagnement sans hébergement d'enfants et d'adolescents"
     _88_99B = "Action sociale sans hébergement n_c_a_"
     _90_01Z = "Arts du spectacle vivant"
     _90_02Z = "Activités de soutien au spectacle vivant"

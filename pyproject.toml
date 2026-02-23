@@ -47,52 +47,31 @@ include = ["openfisca_france_entreprises", "openfisca_france_entreprises.*"]
 
 [tool.ruff]
 target-version = "py311"
+line-length = 120  # Increased from default 88 to accommodate long URLs and parameter paths
+exclude = ["scripts"]  # Dev utilities, not part of the package; excluded from lint
 format.docstring-code-line-length = 72
 format.docstring-code-format = true
 # format.quote-style = "single"
 lint.select = ["ALL"]
 lint.ignore = [
-    "ANN",
-    "ARG002",  # Unused method arguments (common in OpenFisca formulas)
-    "COM812",
-    "D100",
-    "D101",
-    "D102",
-    "D104",
-    "D107",
-    "D212",
-    "E402",
-    "ICN001",
-    "INP001",
-    "N803",
-    "PGH004",
-    "PIE794",  # Duplicate class field (reference field in variables)
-    "RET504",
-    "RUF100",
-    "E501",
-    "ERA001",
-    "F403",
-    "F405",
-    "FIX002",
-    "ISC001",
-    "N801",
-    "N805",
-    "N806",
-    "PLR0913",
-    "PLR2004",
-    "PTH100",
-    "PTH118",
-    "PTH120",
-    "PTH123",
-    "RUF001",
-    "RUF003",
-    "RUF012",
-    "S101",
-    "SLF001",
-    "TD002",
-    "TD003",
+    "ANN",     # Type annotations (not enforced in this codebase)
+    "ARG002",  # Unused method arguments (common in OpenFisca formulas: entity, period, parameters)
+    "COM812",  # Missing trailing comma (conflicts with formatter)
+    "ERA001",  # Commented-out code (many instances, cleanup needed)
+    "FIX002",  # TODO comments (acceptable in codebase)
+    "N801",    # Class name should use CapWords (Variable subclasses use lowercase names)
+    "N803",    # Argument name should be lowercase (OpenFisca convention: UniteLegale, Etablissement)
+    "N805",    # First argument of a method should be `self` (formulas use entity name)
+    "N806",    # Variable in function should be lowercase (some uppercase in formulas)
+    "PLR0913", # Too many arguments (formulas often have many parameters)
+    "SLF001",  # Private member access (e.g. _leading_underscore)
 ]
 lint.pydocstyle.convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+# No docstrings for Variable/Enum classes (D101) or formula methods (D102):
+# variables are documented via label, formulas are self-explanatory.
+"openfisca_france_entreprises/variables/**/*.py" = ["D101", "D102"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["openfisca_france_entreprises"]
