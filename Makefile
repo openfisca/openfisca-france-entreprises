@@ -29,22 +29,23 @@ build: clean
 
 format:
 	@# Do not analyse .gitignored files. Ruff format + ruff check --fix (imports, etc.).
+	@# Exclude scripts/ (dev utilities; see pyproject.toml exclude).
 	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
-	uv run ruff format `git ls-files | grep "\.py$$"`
-	uv run ruff check --fix `git ls-files | grep "\.py$$"`
+	uv run ruff format `git ls-files | grep "\.py$$" | grep -v '^scripts/'`
+	uv run ruff check --fix `git ls-files | grep "\.py$$" | grep -v '^scripts/'`
 
 check-syntax-errors:
-	@# Check Python syntax errors.
+	@# Check Python syntax errors. Exclude scripts/ (dev utilities).
 	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
-	@uv run python -m py_compile `git ls-files | grep "\.py$$"` 2>&1 || (echo "Syntax errors found" && exit 1)
+	@uv run python -m py_compile `git ls-files | grep "\.py$$" | grep -v '^scripts/'` 2>&1 || (echo "Syntax errors found" && exit 1)
 
 check-style: lint
 
 lint:
-	@# Do not analyse .gitignored files.
+	@# Do not analyse .gitignored files. Exclude scripts/ (dev utilities; see pyproject.toml).
 	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
-	uv run ruff check --exit-zero `git ls-files | grep "\.py$$"`
-	uv run ruff format --check `git ls-files | grep "\.py$$"`
+	uv run ruff check --exit-zero `git ls-files | grep "\.py$$" | grep -v '^scripts/'`
+	uv run ruff format --check `git ls-files | grep "\.py$$" | grep -v '^scripts/'`
 	uv run yamllint `git ls-files | grep "\.yaml$$"`
 
 test: clean

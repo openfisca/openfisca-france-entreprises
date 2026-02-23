@@ -20,3 +20,6 @@ dist
 
 .DS_Store
 *~
+
+# Cursor (project-specific rules can be committed elsewhere if needed)
+.cursor/

@@ -1,0 +1,60 @@
+# Test coefficient TCCFE pour (département 1, commune 1) via taux_tccfe
+# taux_tccfe = taux_professionnel_36kVA_et_moins * coefficient (0.75 pour ces années)
+- name: "Coefficient TCCFE 2011 (1_1) via taux_tccfe"
+  period: "2011"
+  input:
+    amperage: 22
+    departement: "1"
+    commune: "1"
+  output:
+    taux_tccfe: 6.09
+
+# 2012 : coefficient 8.12 -> 0.75 * 8.12 = 6.09
+- name: "Coefficient TCCFE 2012 (1_1) via taux_tccfe"
+  period: "2012"
+  input:
+    amperage: 22
+    departement: "1"
+    commune: "1"
+  output:
+    taux_tccfe: 6.09
+
+# 2013 : coefficient 8.28 -> 0.75 * 8.28 = 6.21
+- name: "Coefficient TCCFE 2013 (1_1) via taux_tccfe"
+  period: "2013"
+  input:
+    amperage: 22
+    departement: "1"
+    commune: "1"
+  output:
+    taux_tccfe: 6.21
+
+# 2018 : coefficient 8.5 -> 0.75 * 8.5 = 6.375
+- name: "Coefficient TCCFE 2018 (1_1) via taux_tccfe"
+  period: "2018"
+  input:
+    amperage: 22
+    departement: "1"
+    commune: "1"
+  output:
+    taux_tccfe: 6.375
+
+# 2022 : coefficient 8.5 -> 0.75 * 8.5 = 6.375
+- name: "Coefficient TCCFE 2022 (1_1) via taux_tccfe"
+  period: "2022"
+  input:
+    amperage: 22
+    departement: "1"
+    commune: "1"
+  output:
+    taux_tccfe: 6.375
+
+# Clé manquant (coefficient 0) : dep=manqu, commune=ant -> key "manquant" -> taux_tccfe = 0
+- name: "Coefficient TCCFE manquant (clé par défaut) -> taux_tccfe 0"
+  period: "2011"
+  input:
+    amperage: 22
+    departement: "manqu"
+    commune: "ant"
+  output:
+    taux_tccfe: 0
