@@ -2,6 +2,7 @@
 
 from functools import reduce
 
+import numpy as np
 from numpy import logical_and, logical_or
 from openfisca_core.model_api import not_
 
@@ -32,3 +33,16 @@ def _dep_in(departement, codes):
     if len(codes) == 1:
         return departement == codes[0]
     return reduce(lambda a, b: a | b, (departement == c for c in codes))
+
+
+def departement_commune(etablissement, period):
+    """Clé (département, commune) pour indexation des paramètres TCCFE/TDCFE.
+
+    Retourne le vecteur au format "dep_commune" (ex. "1_1", "02A_123").
+    Pour les tests : (dep="manqu", commune="ant") retourne "manquant".
+    """
+    departement = etablissement("departement", period).astype(str)
+    commune = etablissement("commune", period).astype(str)
+    key = departement + "_" + commune
+    # Permettre de tester la clé "manquant" via (manqu, ant)
+    return np.where((departement == "manqu") & (commune == "ant"), "manquant", key)
