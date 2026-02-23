@@ -41,8 +41,7 @@ def departement_commune(etablissement, period):
     Retourne le vecteur au format "dep_commune" (ex. "1_1", "02A_123").
     Pour les tests : (dep="manqu", commune="ant") retourne "manquant".
     """
-    departement = etablissement("departement", period).astype(str)
-    commune = etablissement("commune", period).astype(str)
-    key = departement + "_" + commune
-    # Permettre de tester la clé "manquant" via (manqu, ant)
-    return np.where((departement == "manqu") & (commune == "ant"), "manquant", key)
+    dep = etablissement("departement", period).astype("U32")
+    comm = etablissement("commune", period).astype("U32")
+    key = np.char.add(np.char.add(dep, "_"), comm)
+    return np.where((dep == "manqu") & (comm == "ant"), "manquant", key)

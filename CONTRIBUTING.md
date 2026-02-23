@@ -42,6 +42,26 @@ Imports from other `openfisca_core` submodules should remain **rare** and justif
 - **Instant**: when you need a specific instant (e.g. for parameter dates), use `from openfisca_core.periods import Instant`; it is not re-exported by `model_api`.
 
 
+### Python and NumPy version (CI vs local)
+
+The project supports **Python ≥ 3.10** (`pyproject.toml`). The lockfile pins:
+
+- **Python &lt; 3.11** → NumPy **1.26.x**
+- **Python ≥ 3.11** → NumPy **2.x**
+
+NumPy 1.26 is stricter than NumPy 2.x on string array operations: e.g. `array(dtype='<U2') + "_"` can raise `_UFuncNoLoopError` because there is no loop for `add(U2, U1)`. With NumPy 2.x the same expression may succeed. So the same code can pass locally (Python 3.11+, NumPy 2.x) and fail on CI (Python 3.10, NumPy 1.26).
+
+**Workaround in code**: when concatenating string arrays (e.g. for parameter keys), use a fixed dtype and `np.char.add` instead of `+`:
+
+```python
+dep = etablissement("departement", period).astype("U32")
+comm = etablissement("commune", period).astype("U32")
+key = np.char.add(np.char.add(dep, "_"), comm)
+```
+
+See `variables/taxes/formula_helpers.py` (`departement_commune`) for an example. A future move to **Python 3.11** as minimum would align CI with NumPy 2.x and reduce this class of issues (see [issue #20](https://github.com/openfisca/openfisca-france-entreprises/issues/20)).
+
+
 ## Advertising changes
 
 ### Version number
