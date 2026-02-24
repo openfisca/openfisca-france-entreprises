@@ -1,3 +1,12 @@
+## 1.1.6 - [#19](https://github.com/openfisca/openfisca-france-entreprises/pull/19)
+
+* Technical improvement: TDCFE coefficient as vectorized parameter (same approach as TCCFE in #18).
+* Impacted areas: variables/taxes/taxation_energies/tdcfe, parameters/energies/electricite/tcfe/tdcfe.
+* Details:
+  - Add parameter `tcfe.tdcfe.coefficient` (YAML) by department code, 2011–2021, only change dates
+  - Single `taux_tdcfe` formula reading `tcfe.tdcfe.coefficient[departement]` at period; remove 11 variables `tdcfe_coefficient_multiplicateur_normal_20XX` and 11 files `taux_2011.py` … `taux_2021.py`
+  - Tests: `test_tdcfe_taux.yaml` asserts `taux_tdcfe` for 2012, 2015, 2021
+
 ## 1.1.5
 
 * Technical improvement: standardise OpenFisca-Core imports to `model_api`.
