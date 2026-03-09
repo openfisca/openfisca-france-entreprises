@@ -1,0 +1,80 @@
+# Units used by variables in this country package.
+# Structure follows openfisca-france; only units actually used in this repo are listed.
+
+- name: /1
+  label:
+    one: pourcent
+    other: pourcents
+  ratio: true
+  short_label: "%"
+
+- name: currency
+  label:
+    one: Euro
+    other: Euros
+  units:
+    2002-01-01:
+      label:
+        one: Euro
+        other: Euros
+      name: currency-EUR
+      short_label: "€"
+
+- name: year
+  label:
+    one: année
+    other: années
+  short_label:
+    one: an
+    other: ans
+
+- name: MWh
+  label:
+    one: Mégawattheure
+    other: Mégawattheures
+  short_label: MWh
+
+- name: kVA
+  label:
+    one: kilovoltampère
+    other: kilovoltampères
+  short_label: kVA
+
+- name: Hectolitre
+  label:
+    one: hectolitre
+    other: hectolitres
+  short_label: hL
+
+- name: "100 kg nets"
+  label:
+    one: 100 kg nets
+    other: 100 kg nets
+  short_label: "100 kg nets"
+
+- name: "100kg nets"
+  label:
+    one: 100 kg nets
+    other: 100 kg nets
+  short_label: "100 kg nets"
+
+- name: "MWh par Euro"
+  label:
+    one: MWh par euro
+    other: MWh par euro
+  ratio: false
+  short_label: "MWh/€"
+
+- name: "kWh/€"
+  label:
+    one: kilowattheure par euro
+    other: kilowattheures par euro
+  ratio: false
+  short_label: "kWh/€"
+
+- name: pourcentage
+  label:
+    one: pourcent
+    other: pourcents
+  ratio: true
+  short_label: "%"
