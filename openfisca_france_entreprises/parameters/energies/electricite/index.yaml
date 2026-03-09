@@ -4,7 +4,6 @@ metadata:
   order:
   - cspe
   - cta
+  - tcfe
   - ticfe
-  - tccfe
-  - tdcfe
   - plafonds_tcfe_compteurs_36_kva_en_euros_par_mwh
