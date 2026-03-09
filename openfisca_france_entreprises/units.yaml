@@ -78,3 +78,10 @@
     other: pourcents
   ratio: true
   short_label: "%"
+
+- name: currency_per_mwh
+  label:
+    one: euro par mégawattheure
+    other: euros par mégawattheure
+  ratio: false
+  short_label: "€/MWh"
