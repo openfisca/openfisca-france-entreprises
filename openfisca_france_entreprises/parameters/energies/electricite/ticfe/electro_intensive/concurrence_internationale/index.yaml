@@ -2,6 +2,7 @@ description: Taxe intérieure sur la consommation finale d'électricité applica
 metadata:
   label_en: Taxes on electricity for energy-intensive industrial operations
   order:
-  - electro_intensive_1_5_kwh_euro_et_moins
-  - electro_intensive_1_5_a_3kwh_euro
-  - electro_intensive_3kwh_euro_et_plus
+  - electro_intensive_0_virgule_5
+  - electro_intensive_3_virgule_375
+  - electro_intensive_6_virgule_75
+  - electro_intensive_13_virgule_5

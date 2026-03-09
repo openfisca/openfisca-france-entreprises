@@ -7,5 +7,10 @@ metadata:
   - taux_reduit_risque_fuite_carbone
   - taux_reduit_travaux_agricoles_forestiers
   - taux_reduit_deshydratation
+  - taux_reduit_legumes
   - abattement
   - seuil_exoneration
+  - seuil_conso_par_va_legumes
+  - seuil_facture_energie_par_va
+  - annee_limite_cogeneration_exoneree
+  - conversion_pcs_pci

@@ -1,0 +1,6 @@
+description: Taxe départementale sur la consommation finale d'électricité (TDCFE)
+metadata:
+  order:
+  - coefficient
+  - coefficient_multiplicateur_minimum
+  - coefficient_multiplicateur_maximum

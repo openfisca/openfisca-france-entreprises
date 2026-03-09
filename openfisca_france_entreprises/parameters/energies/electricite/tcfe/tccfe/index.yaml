@@ -1,0 +1,6 @@
+description: Taxe communale sur la consommation finale d'électricité (TCCFE)
+metadata:
+  order:
+  - coefficient
+  - coefficient_multiplicateur_minimum
+  - coefficient_multiplicateur_maximum
