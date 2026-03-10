@@ -20,13 +20,6 @@
       name: currency-EUR
       short_label: "€"
 
-- name: currency-EUR
-  label:
-    one: Euro
-    other: Euros
-  ratio: false
-  short_label: "€"
-
 - name: year
   label:
     one: année
