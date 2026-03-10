@@ -10,8 +10,6 @@ This package models the tax and subsidy system for French firms on the subject o
 
 The files that are outside from the `openfisca_france_entreprises` folder are used to set up the development environment.
 
-**Cursor (IDE)** : les règles Cursor génériques pour OpenFisca sont dans le dépôt [openfisca/openfisca-cursor-rules](https://github.com/openfisca/openfisca-cursor-rules) (non publié sur PyPI). Pour les installer localement dans `.cursor/rules/`, exécutez `make cursor-rules` (téléchargement direct depuis GitHub, pas de sous-module). Voir le [README de `openfisca-cursor-rules/`](./openfisca-cursor-rules/README.md).
-
 ## Packaging your Country Package for Distribution
 
 Country packages are Python distributions. You can choose to distribute your package automatically via the predefined continuous deployment system on GitHub Actions, or manually.
