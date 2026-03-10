@@ -85,3 +85,24 @@
     other: euros par mégawattheure
   ratio: false
   short_label: "€/MWh"
+
+- name: kWh_per_euro_VA
+  label:
+    one: kilowattheure par euro de valeur ajoutée
+    other: kilowattheures par euro de valeur ajoutée
+  ratio: false
+  short_label: "kWh/€ VA"
+
+- name: MWh_per_euro_VA
+  label:
+    one: mégawattheure par euro de valeur ajoutée
+    other: mégawattheures par euro de valeur ajoutée
+  ratio: false
+  short_label: "MWh/€ VA"
+
+- name: percent
+  label:
+    one: pourcent
+    other: pourcents
+  ratio: true
+  short_label: "%"
