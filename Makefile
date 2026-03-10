@@ -63,3 +63,7 @@ ci: check-syntax-errors check-style
 
 serve-local: build
 	uv run openfisca serve --country-package openfisca_france_entreprises
+
+# Fetch generic Cursor rules from GitHub into .cursor/rules/ (no submodule).
+cursor-rules:
+	bash scripts/setup-cursor-rules.sh
