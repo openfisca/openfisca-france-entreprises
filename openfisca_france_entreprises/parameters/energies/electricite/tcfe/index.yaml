@@ -1,0 +1,8 @@
+description: Taxes sur la consommation finale d'électricité (TCFE)
+metadata:
+  order:
+  - taux_non_professionnel
+  - taux_professionnel_36kVA_et_moins
+  - taux_professionnel_36_a_250kVA
+  - tccfe
+  - tdcfe

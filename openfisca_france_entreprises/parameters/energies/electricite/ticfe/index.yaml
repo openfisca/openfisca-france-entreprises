@@ -1,0 +1,23 @@
+description: Taxe intérieure sur la consommation finale d'électricité (TICFE)
+metadata:
+  order:
+  - taux_normal
+  - taux_normal_36kVA_et_moins
+  - taux_normal_36_a_250kVA
+  - risque_de_fuite_de_carbone
+  - seuil_consommation_par_va_52_23z
+  - plafond_assiette_mwh
+  - electro_intensive
+  - categorie_fiscale_menage
+  - categorie_fiscale_petite_et_moyenne_entreprise
+  - categorie_fiscale_haut_puissance
+  - alimentation_a_quai
+  - electricite_fournie_aux_navires
+  - manutention_portuaire
+  - alimentation_aeronefs_stationnement_aerodromes_activites_economiques
+  - alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques
+  - aerodromes
+  - aerodromes_electro_intensite
+  - data_center
+  - transport_guide
+  - transport_collectif_personnes
