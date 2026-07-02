@@ -1,0 +1,7 @@
+name: test_seqe
+label: Test de la variable SEQE
+cases:
+  - date: 2024-01-01
+    description: "Cas de base de la taxe SEQE"
+    expected:
+      taxes.taxations_emissions.seqe: 0

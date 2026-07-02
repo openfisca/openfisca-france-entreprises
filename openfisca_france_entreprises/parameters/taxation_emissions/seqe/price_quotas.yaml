@@ -1,0 +1,35 @@
+description: Prix moyen des quotas du SEQE (EUR/tCO2) pondéré par le volume de quotas
+  vendus
+metadata:
+  reference: https://www.eex.com/en/market-data/environmental-markets/emission-spot-auction-report
+  source: EEX, European Energy Exchange
+  unit: EUR/tCO2
+values:
+  2012-01-01:
+    value: 6.95
+  2013-01-01:
+    value: 4.38
+  2014-01-01:
+    value: 5.9
+  2015-01-01:
+    value: 7.6
+  2016-01-01:
+    value: 5.26
+  2017-01-01:
+    value: 5.79
+  2018-01-01:
+    value: 15.34
+  2019-01-01:
+    value: 24.65
+  2020-01-01:
+    value: 24.42
+  2021-01-01:
+    value: 52.93
+  2022-01-01:
+    value: 78.91
+  2023-01-01:
+    value: 83.24
+  2024-01-01:
+    value: 64.74
+  2025-01-01:
+    value: 73.43
