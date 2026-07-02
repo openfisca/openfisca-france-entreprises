@@ -1,0 +1,9 @@
+- name: test_seqe_2011
+  period: 2011
+  absolute_error_margin: 1
+  input:
+    seqe_total_emissions: 10
+    seqe_free_quotas: 5
+  output:
+    seqe_price_paid: -1 # ¯\_(ツ)_/¯
+# ce test fail car il n'y a pas de prix de quotas pour 2011. Le prix des quotas est défini à partir de 2012.    

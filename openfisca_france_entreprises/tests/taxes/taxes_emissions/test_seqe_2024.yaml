@@ -1,0 +1,9 @@
+- name: test_seqe_2024
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    seqe_total_emissions: 1000
+    seqe_free_quotas: 200
+  output:
+    seqe_price_paid: 51792.0 
+

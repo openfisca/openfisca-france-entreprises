@@ -1,0 +1,10 @@
+- name: test_seqe_2026
+  period: 2026
+  absolute_error_margin: 1
+  input:
+    seqe_total_emissions: 10
+    seqe_free_quotas: 5
+  output:
+    seqe_price_paid: 367.15
+
+    
