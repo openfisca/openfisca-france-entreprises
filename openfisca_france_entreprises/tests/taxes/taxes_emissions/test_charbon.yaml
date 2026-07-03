@@ -1,0 +1,9 @@
+- name: test_charbon
+  period: 2011
+  absolute_error_margin: 1
+  input:
+    consommation_charbon_combustible: 100
+  output:
+    taxe_interieure_consommation_charbon: -1 # ¯\_(ツ)_/¯
+    tarification_effective_charbon: -1 # ¯\_(ツ)_/¯
+    

@@ -1,0 +1,7 @@
+description: "Facteur d'émission de CO2 du gaz naturel utilisé comme combustible (FAUSSE ATM)"
+metadata:
+  unit: t_CO2/MWh
+  reference: "Valeur fausse, à remplacer par une valeur correcte extraite de la Base Carbone de l'ADEME"
+values:
+  1990-01-01:
+    value: 1

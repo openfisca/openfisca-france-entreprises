@@ -16,7 +16,7 @@ class consommation_charbon(Variable):
 
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
     # dès 2007, seules les usages comme combustible sont soumis à la TICGN.
-    # dès 2020, les usages comme carbrant y sont somis aussi.
+    # dès 2020, les usages comme carbrant y sont soumis aussi.
     def formula_2007_01_01(etablissement, period):
         return etablissement("consommation_charbon_combustible", period)
 
