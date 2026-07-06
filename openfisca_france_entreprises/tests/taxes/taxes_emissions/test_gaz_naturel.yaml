@@ -1,0 +1,8 @@
+- name: test_gaz_naturel
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    consommation_gaz_combustible: 10
+  output:
+    tarification_effective_gaz_naturel: -1 # ¯\_(ツ)_/¯
+    
