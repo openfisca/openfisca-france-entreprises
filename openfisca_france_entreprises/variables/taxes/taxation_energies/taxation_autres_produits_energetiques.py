@@ -174,7 +174,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
             # parameters(period).energies.autres_produits_energetiques.ticpe.
             #     carburant_constitue_minimum_90_alcool_ethylique_agricole
-            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
+            # + etablissement('consommation_carburant_constitue_100_esters_methyliques_acides_gras', period) *
             # parameters(period).energies.autres_produits_energetiques.ticpe.
             #     carburant_constitue_100_estars_methyliques_acides_gras
             + etablissement(
@@ -411,7 +411,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
             #     parameters(period).energies.autres_produits_energetiques.ticpe.
             #     carburant_constitue_minimum_90_alcool_ethylique_agricole
-            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
+            # + etablissement('consommation_carburant_constitue_100_esters_methyliques_acides_gras', period) *
             #     parameters(period).energies.autres_produits_energetiques.ticpe.
             #     carburant_constitue_100_estars_methyliques_acides_gras
             + etablissement(
@@ -626,7 +626,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
             #     parameters(period).energies.autres_produits_energetiques.ticpe.
             #     carburant_constitue_minimum_90_alcool_ethylique_agricole
-            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
+            # + etablissement('consommation_carburant_constitue_100_esters_methyliques_acides_gras', period) *
             #     parameters(period).energies.autres_produits_energetiques.ticpe.
             #     carburant_constitue_100_estars_methyliques_acides_gras
             + etablissement(
@@ -848,7 +848,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
             #     parameters(period).energies.autres_produits_energetiques.ticpe.
             #     carburant_constitue_minimum_90_alcool_ethylique_agricole
-            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
+            # + etablissement('consommation_carburant_constitue_100_esters_methyliques_acides_gras', period) *
             #     parameters(period).energies.autres_produits_energetiques.ticpe.
             #     carburant_constitue_100_estars_methyliques_acides_gras
             + etablissement(
@@ -1069,7 +1069,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
             #     parameters(period).energies.autres_produits_energetiques.ticpe.
             #     carburant_constitue_minimum_90_alcool_ethylique_agricole
-            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
+            # + etablissement('consommation_carburant_constitue_100_esters_methyliques_acides_gras', period) *
             #     parameters(period).energies.autres_produits_energetiques.ticpe.
             #     carburant_constitue_100_estars_methyliques_acides_gras
             + etablissement(
@@ -1139,7 +1139,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     # parameters(period).energies.autres_produits_energetiques.ticpe.
     #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
     # ^également pour ça
-    # consommation_carburant_constitue_100_estars_methyliques_acides_gras
+    # consommation_carburant_constitue_100_esters_methyliques_acides_gras
     # parameters\energies\autres_produits_energetiques\ticpe\gazole\gazole_b_10_hectolitre.yaml
     # ^également
     def formula_2017_01_01(etablissement, period, parameters):
@@ -1285,7 +1285,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             * parameters(
                 period,
             ).energies.autres_produits_energetiques.ticpe.carburant_constitue_minimum_90_alcool_ethylique_agricole
-            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
+            # + etablissement('consommation_carburant_constitue_100_esters_methyliques_acides_gras', period) *
             #     parameters(period).energies.autres_produits_energetiques.ticpe.
             #     carburant_constitue_100_estars_methyliques_acides_gras
             + etablissement(
@@ -1510,7 +1510,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 period,
             ).energies.autres_produits_energetiques.ticpe.carburant_constitue_minimum_90_alcool_ethylique_agricole
             + etablissement(
-                "consommation_carburant_constitue_100_estars_methyliques_acides_gras",
+                "consommation_carburant_constitue_100_esters_methyliques_acides_gras",
                 period,
             )
             * parameters(
@@ -1752,7 +1752,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 period,
             ).energies.autres_produits_energetiques.ticpe.carburant_constitue_minimum_90_alcool_ethylique_agricole
             + etablissement(
-                "consommation_carburant_constitue_100_estars_methyliques_acides_gras",
+                "consommation_carburant_constitue_100_esters_methyliques_acides_gras",
                 period,
             )
             * parameters(
@@ -1955,7 +1955,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 period,
             ).energies.autres_produits_energetiques.ticpe.carburant_constitue_minimum_90_alcool_ethylique_agricole
             + etablissement(
-                "consommation_carburant_constitue_100_estars_methyliques_acides_gras",
+                "consommation_carburant_constitue_100_esters_methyliques_acides_gras",
                 period,
             )
             * parameters(

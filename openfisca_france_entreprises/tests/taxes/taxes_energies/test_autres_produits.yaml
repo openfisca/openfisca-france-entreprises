@@ -110,7 +110,7 @@
     consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg : 1000 #20.71
     consommation_supercarburant_e85 : 1000 # 11.83
     consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole : 1000 #6.43
-    consommation_carburant_constitue_100_estars_methyliques_acides_gras : 1000 # 11.83
+    consommation_carburant_constitue_100_esters_methyliques_acides_gras : 1000 # 11.83
 
   output:
     taxe_interieure_consommation_sur_produits_energetiques: 953350
@@ -152,7 +152,7 @@
     consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg : 1000 #20.71
     consommation_supercarburant_e85 : 1000 # 11.83
     consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole : 1000 #6.43
-    consommation_carburant_constitue_100_estars_methyliques_acides_gras : 1000 # 11.83
+    consommation_carburant_constitue_100_esters_methyliques_acides_gras : 1000 # 11.83
 
     consommation_propane_carburants_sous_conditions_100kg_nets : 1000 #15.9
     consommation_butanes_liquefies_sous_condition_100kg_nets : 1000 #15.9
@@ -199,7 +199,7 @@
     consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg : 1000 #20.71
     consommation_supercarburant_e85 : 1000 # 11.83
     consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole : 1000 #6.43
-    consommation_carburant_constitue_100_estars_methyliques_acides_gras : 1000 # 11.83
+    consommation_carburant_constitue_100_esters_methyliques_acides_gras : 1000 # 11.83
 
     consommation_propane_carburants_sous_conditions_100kg_nets : 1000 #15.9
     consommation_butanes_liquefies_sous_condition_100kg_nets : 1000 #15.9

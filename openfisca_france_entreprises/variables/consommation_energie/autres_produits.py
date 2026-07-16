@@ -19,7 +19,7 @@ class consommation_goudrons_utilises_comme_combustibles(Variable):
     definition_period = YEAR
 
 
-class consommation_carburant_constitue_100_estars_methyliques_acides_gras(Variable):
+class consommation_carburant_constitue_100_esters_methyliques_acides_gras(Variable):
     value_type = float
     unit = "Hectolitre"
     entity = Etablissement
