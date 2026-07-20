@@ -11,7 +11,7 @@ metadata:
   short_label: Bouclier tarifaire ménages
   last_value_still_valid_on: '2025-02-15'
   label_en: Tax shield for households
-  ipp_csv_id: ticfe_bouclier_entreprises
+  ipp_csv_id: ticfe_bouclier_menages
   unit: currency_per_mwh
   reference:
     2022-02-01:

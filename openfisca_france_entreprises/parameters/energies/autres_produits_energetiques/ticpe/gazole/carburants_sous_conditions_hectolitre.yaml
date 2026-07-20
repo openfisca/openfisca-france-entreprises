@@ -34,9 +34,13 @@ values:
     value: 15.09
   2018-01-01:
     value: 18.82
+  2020-07-01:
+    value: 37.68
+  2020-08-01:
+    value: 18.82
 metadata:
   ipp_csv_id: ticpe_gazoles_cond
-  unit: currency
+  unit: currency_per_hectoliter
   reference:
     1993-01-01:
       title: Loi 92-1376 du 30/12/1992 (LF pour 1993)

@@ -9,7 +9,7 @@ values:
   2023-01-01:
     value: null
 metadata:
-  ipp_csv_id: tddce_coef_max
+  ipp_csv_id: tccfe_coef_min
   unit: /1
   reference:
     2011-01-01:

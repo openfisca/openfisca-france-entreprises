@@ -7,7 +7,7 @@ values:
     value: 1.52
 metadata:
   ipp_csv_id: ticgn_taux_reduit_conso
-  unit: currency
+  unit: currency_per_mwh
   last_value_still_valid_on: '2024-08-01'
   reference:
     2014-04-01:
@@ -45,3 +45,9 @@ metadata:
     2022-01-01:
     - title: Le taux reste inchangé, on rappelle ici la refonte de la législation
         sous la forme du Code des impositions des biens et services en 2022.
+documentation: |-
+  ATTENTION - divergence connue avec le barème IPP, à trancher dans la passe « formules ».
+  Le barème IPP date ce tarif du 2014-04-01 (et la clé reference ci-dessus est bien 2014-04-01).
+  La valeur est laissée au 2014-01-01 : c'est la première valeur du paramètre, donc la déplacer
+  rend le paramètre introuvable au 2014-01-01 et taxation_gaz_naturel.py (formula_2014_01_01) lève
+  ParameterNotFoundError. Même arbitrage que taux_normal.yaml (périodes annuelles).

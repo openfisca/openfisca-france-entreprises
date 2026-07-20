@@ -13,8 +13,8 @@ values:
   2018-01-01:
     value: 14.62
 metadata:
-  ipp_csv_id: ticgn_taux
-  unit: currency
+  ipp_csv_id: ticc_taux
+  unit: currency_per_mwh
   reference:
     2007-01-01:
       title: Loi de finances pour 2003 (n° 2002-1575 du 30 décembre 2002), article

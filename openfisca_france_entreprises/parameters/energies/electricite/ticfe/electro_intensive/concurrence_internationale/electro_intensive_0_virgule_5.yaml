@@ -7,7 +7,7 @@ values:
   2016-01-01:
     value: 5.5
 metadata:
-  ipp_csv_id: ticfe_electro_intensive_1_5kwh_moins_risquefuite
+  ipp_csv_id: accise_electricite_industrie_concurrence_0_5
   unit: currency_per_mwh
   reference:
     2016-01-01:

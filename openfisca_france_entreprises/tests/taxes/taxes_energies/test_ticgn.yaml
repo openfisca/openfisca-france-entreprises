@@ -4,7 +4,9 @@
   input:
     assiette_ticgn : 6500000
   output:
-    taxe_interieure_consommation_gaz_naturel : 15555000
+    # 2026-07 : taux 1986 corrigé de 9.15 (typo) à 9.5 d'après le barème IPP.
+    # (6500000 - 400000*12) * 9.5 = 16150000
+    taxe_interieure_consommation_gaz_naturel : 16150000
     #(6500000 - 400000*12)*9.15
       # 1000000 - (200000 + 100000 + 50000)
 #en utilisant formula_1986_01_01

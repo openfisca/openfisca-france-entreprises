@@ -1,7 +1,7 @@
 description: Taxe intérieure sur la consommation de gaz naturel (TICGN) - prix par MWh
 values:
   1986-01-01:
-    value: 9.15
+    value: 9.5
   1987-01-01:
     value: 5.90
   1988-01-01:
@@ -44,7 +44,7 @@ values:
     value: 16.37
 metadata:
   ipp_csv_id: ticgn_taux
-  unit: currency
+  unit: currency_per_mwh
   last_value_still_valid_on: "2024-08-01"
   reference:
     1986-01-01:
@@ -143,3 +143,11 @@ metadata:
     - title: A noter que l'exonération des consommateurs particuliers prend fin. A partir de 2014, le taux de TICGN est exprimé en euros par MWh PCI, par opposition à MWh PCS.
     2022-01-01:
     - title: La taxe intérieure de consommation sur le gaz naturel (TICGN) devient la fraction prélevée sur le gaz naturel de l'accise sur l'énergie. Le Code de l'imposition des biens et services est créé, et absorbe les articles du code des douanes pertinents.
+documentation: |-
+  ATTENTION - divergence connue avec le barème IPP, à trancher dans la passe « formules ».
+  Le barème IPP date ce tarif du 2014-04-01 (LF 2014, art. 32 IV : entrée en vigueur au 1er avril),
+  et les blocs reference/official_journal_date ci-dessus portent d'ailleurs la clé 2014-04-01.
+  La valeur est laissée au 2014-01-01 parce que le modèle raisonne en périodes ANNUELLES :
+  adopter 2014-04-01 ferait basculer toute l'année 2014 sur le tarif antérieur (1.19), ce qui est
+  moins juste que l'approximation actuelle. Choisir entre (a) garder 2014-01-01 comme approximation
+  annuelle assumée, ou (b) passer au 2014-04-01 avec un traitement infra-annuel.

@@ -5,7 +5,7 @@ values:
   2016-01-01:
     value: 2
 metadata:
-  ipp_csv_id: ticfe_electro_intensive_3kwh_plus
+  ipp_csv_id: accise_electricite_industrie_6_75
   unit: currency_per_mwh
   reference:
     2016-01-01:

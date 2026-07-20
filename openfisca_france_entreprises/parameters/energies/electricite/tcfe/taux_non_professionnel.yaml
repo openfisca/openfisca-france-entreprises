@@ -3,7 +3,7 @@ values:
   2011-01-01:
     value: 0.75
 metadata:
-  ipp_csv_id: cspe
+  ipp_csv_id: tcfe_non_professionnel
   unit: currency_per_mwh
   reference:
     2011-01-01:
