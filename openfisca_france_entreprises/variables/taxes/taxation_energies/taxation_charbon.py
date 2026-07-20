@@ -6,7 +6,6 @@ See https://openfisca.org/doc/key-concepts/variables.html
 """
 
 from openfisca_core.model_api import YEAR, Variable, select
-from openfisca_core.periods import Instant
 
 from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.taxes.formula_helpers import (
@@ -480,17 +479,3 @@ class assiette_ticc(Variable):
         # ajouter un engin_non_routier (-35) ?
 
 
-class instant_electrite(Variable):
-    value_type = float
-    entity = Etablissement
-    definition_period = YEAR
-    label = "Coal consumption taxable according to TICC"
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615177/2007-07-01/"
-
-    def formula_2007_01_01(etablissement, period, parameters):
-        return parameters(
-            Instant((2023, 2, 1)),
-        ).energies.bouclier_tarifaire.majoration_tccfe_maximum
-
-
-# parameters(Instant((YYYY, MM, DD)))

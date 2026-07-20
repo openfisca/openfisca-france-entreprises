@@ -426,7 +426,9 @@ class taxe_interieure_consommation_gaz_naturel_legumes(Variable):
 
     def formula_2019_01_01(etablissement, period, parameters):
         assiette = etablissement("assiette_ticgn", period)
-        taux = parameters(period).energies.gaz_naturel.ticgn.taux_reduit_legumes
+        # taux_reduit_legumes faisait doublon avec taux_reduit_deshydratation
+        # (même valeur, même date, même disposition : LF 2019, art. 67).
+        taux = parameters(period).energies.gaz_naturel.ticgn.taux_reduit_deshydratation
         return assiette * taux
 
 
@@ -479,23 +481,6 @@ class taxe_interieure_consommation_gaz_naturel_grande_consommatrice(Variable):
         assiette = etablissement("assiette_ticgn", period)
         taux = parameters(period).energies.gaz_naturel.ticgn.taux_reduit_grandes_consommatrices
         return assiette * taux
-
-
-class taxe_interieure_consommation_gaz_naturel_ifp(Variable):
-    # pas encore intégrée
-    value_type = float
-    entity = Etablissement
-    definition_period = YEAR
-    label = "Tax on gas consumption for the benefit of the French Institute for Petroleum"
-    reference = ""  # Always use the most official source
-    """je ne trouve que ce résultat bizzare : https://www.legifrance.gouv.fr/search/all?tab_selection=all&searchField=ALL&query=institut+fran%C3%A7ais+du+p%C3%A9trole&searchType=ALL&fonds=CODE&typePagination=DEFAULT&pageSize=10&page=1&tab_selection=all#all"""
-
-    def formula(etablissement, period, parameters):
-        """Income tax.
-
-        The formula to compute the income tax for a given etablissement at a given period.
-        """
-        return etablissement("consommation_gaz_naturel", period) * parameters(period).taxation_energies.natural_gas
 
 
 class assiette_ticgn(Variable):
