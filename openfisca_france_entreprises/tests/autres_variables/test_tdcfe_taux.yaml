@@ -1,5 +1,7 @@
 # Test coefficient TDCFE par département via taux_tdcfe
-# taux_tdcfe = taux_professionnel_36kVA_et_moins * coefficient (0.75) when amperage <= 36
+# taux_tdcfe = taux_professionnel_36kVA_et_moins * coefficient, si amperage <= 36 kVA.
+# Le tarif de référence n'est pas constant : 0.75 jusqu'en 2018, puis 0.76 en 2019,
+# 0.77 en 2020 et 0.78 à partir de 2021 (cf. tcfe/taux_professionnel_36kVA_et_moins.yaml).
 - name: "TDCFE 2012 (département 3) via taux_tdcfe"
   period: "2012"
   input:
@@ -22,4 +24,14 @@
     amperage: 22
     departement: "3"
   output:
-    taux_tdcfe: 3.1875
+    # 2026-07 : le tarif de référence était figé à 0.75 depuis 2011, alors que le barème
+    # IPP l'indexe à 0.78 en 2021. L'attendu passe de 3.1875 à 3.315 (0.78 x 4.25).
+    taux_tdcfe: 3.315
+
+- name: "TDCFE 2022 : incorporation à l'accise sur l'électricité"
+  period: "2022"
+  input:
+    amperage: 22
+    departement: "3"
+  output:
+    taux_tdcfe: 0

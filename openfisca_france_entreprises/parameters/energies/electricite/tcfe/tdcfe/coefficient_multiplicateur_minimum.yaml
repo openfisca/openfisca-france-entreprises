@@ -6,7 +6,7 @@ values:
     value: 2
   2021-01-01:
     value: 4.25
-  2023-01-01:
+  2022-01-01:
     value: null
 metadata:
   short_label: Coefficient minimal TDCFE
@@ -30,5 +30,4 @@ metadata:
   documentation: La TDCFE est calculée en appliquant un coefficient, choisi par le
     conseil départemental, à une valeur de référence. Ce coefficient est encadré par
     un minimum et un maximum fixés par la loi. A partir de 2021, les coefficients
-    départementaux sont homogénéisés jusqu'à atteindre 4,25 ; la TDCFE est ensuite
-    incorporée à la TICFE.
+    départementaux sont homogénéisés jusqu'à atteindre 4,25 ; la TDCFE est ensuite incorporée à la TICFE en 2022.
