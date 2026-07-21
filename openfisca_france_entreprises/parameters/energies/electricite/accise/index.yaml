@@ -1,0 +1,12 @@
+description: Fraction de l'accise sur les énergies perçue sur l'électricité
+metadata:
+  label_en: Part of energy excise duty levied on electricity
+  order:
+  - tarifs_normaux
+  - tarifs_reduits
+documentation: |-
+  Au 1er janvier 2022, les taxes sur l'énergie sont basculées vers le Code des impositions sur les
+  biens et services. L'ancienne TICFE, ainsi que la TDCFE (en 2022) et la TCCFE (en 2023) qui y sont
+  incorporées, deviennent la fraction perçue sur l'électricité de l'accise sur les énergies.
+  Les paramètres antérieurs à la réforme restent sous electricite/ticfe/ et electricite/tcfe/,
+  clôturés à la date de bascule.

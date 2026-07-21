@@ -2,8 +2,6 @@ description: Taxe intérieure sur la consommation finale d'électricité (TICFE)
 metadata:
   order:
   - taux_normal
-  - taux_normal_36kVA_et_moins
-  - taux_normal_36_a_250kVA
   - risque_de_fuite_de_carbone
   - seuil_consommation_par_va_52_23z
   - plafond_assiette_mwh
@@ -11,13 +9,22 @@ metadata:
   - categorie_fiscale_menage
   - categorie_fiscale_petite_et_moyenne_entreprise
   - categorie_fiscale_haut_puissance
-  - alimentation_a_quai
   - electricite_fournie_aux_navires
   - manutention_portuaire
-  - alimentation_aeronefs_stationnement_aerodromes_activites_economiques
-  - alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques
   - aerodromes
   - aerodromes_electro_intensite
   - data_center
   - transport_guide
-  - transport_collectif_personnes
+documentation: |-
+  Paramètres de la TICFE antérieurs à la réforme CIBS du 1er janvier 2022, clôturés à cette date.
+  Les tarifs applicables au-delà se trouvent sous electricite/accise/.
+
+  Ce nœud conserve en revanche les seuils et catégories, qui ne sont pas des tarifs mais des
+  critères d'éligibilité ou de classement propres à la modélisation, sans équivalent dans le
+  barème IPP et applicables de part et d'autre de la réforme : seuil_consommation_par_va_52_23z,
+  plafond_assiette_mwh, electro_intensive/seuils et les trois categorie_fiscale_*.
+
+  manutention_portuaire n'est volontairement pas clôturé : le barème place le tarif d'accise au
+  2023-01-01 alors que ce paramètre porte 0.5 au 2024-01-01, et le barème est lui-même incohérent
+  sur ce point (date de journal officiel antérieure de deux ans à la valeur, référence orpheline
+  en 2024). Arbitrage juridique requis, cf. SYNC_ENERGIES_REPORT.md.

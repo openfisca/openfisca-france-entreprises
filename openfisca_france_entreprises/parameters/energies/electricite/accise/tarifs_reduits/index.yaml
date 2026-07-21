@@ -1,0 +1,13 @@
+description: Tarifs réduits de l'accise sur l'électricité
+metadata:
+  label_en: Reduced rates of excise duty on electricity
+  order:
+  - electrointensives_industrie
+  - electrointensives_concurrence
+  - aerodromes
+  - data_center
+  - transport_personnes_marchandises
+  - transport_collectif_routier_personnes
+  - alimentation_engins_flottants
+  - alimentation_aeronefs_activites_economiques
+  - alimentation_aeronefs_activites_non_economiques

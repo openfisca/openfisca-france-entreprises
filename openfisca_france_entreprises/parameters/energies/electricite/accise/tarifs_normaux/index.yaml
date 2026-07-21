@@ -1,0 +1,12 @@
+description: Tarifs normaux de l'accise sur l'électricité, par catégorie fiscale
+metadata:
+  label_en: Standard rates of excise duty on electricity, by tax category
+  order:
+  - menages_et_assimiles
+  - pme_activites_economiques
+  - haute_puissance
+documentation: |-
+  Le CIBS distingue trois catégories fiscales selon la puissance souscrite : les ménages et
+  assimilés (moins de 36 kVA), les petites et moyennes entreprises (de 36 à 250 kVA) et la haute
+  puissance (au-delà de 250 kVA). Les seuils de puissance eux-mêmes sont portés par les paramètres
+  electricite/ticfe/categorie_fiscale_*.yaml.

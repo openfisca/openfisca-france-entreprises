@@ -4,6 +4,8 @@ description: Taxe intérieure sur la consommation finale d'électricité applica
 values:
   2019-01-01:
     value: 12
+  2022-01-01:
+    value: null
 metadata:
   ipp_csv_id: ticfe_datacenter
   unit: currency_per_mwh

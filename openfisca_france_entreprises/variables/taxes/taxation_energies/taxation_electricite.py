@@ -682,7 +682,7 @@ class taxe_accise_electricite(Variable):
 #     definition_period = YEAR
 #     def formula_2025_01_01(etablissement, period, parameters):
 #
-# parameters(period).energies.electricite.ticfe.alimentation_aeronefs_stationnement_aerodromes_activites_economiques
+# parameters(period).energies.electricite.accise.tarifs_reduits.alimentation_aeronefs_activites_economiques
 
 #         return taux
 
@@ -701,7 +701,7 @@ class taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_
             assiette_taxe_electricite
             * parameters(
                 period,
-            ).energies.electricite.ticfe.alimentation_aeronefs_stationnement_aerodromes_activites_economiques
+            ).energies.electricite.accise.tarifs_reduits.alimentation_aeronefs_activites_economiques
         )
 
 
@@ -719,7 +719,7 @@ class taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_
             assiette_taxe_electricite
             * parameters(
                 period,
-            ).energies.electricite.ticfe.alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques
+            ).energies.electricite.accise.tarifs_reduits.alimentation_aeronefs_activites_non_economiques
         )
 
 
@@ -798,7 +798,7 @@ class taxe_electricite_alimentation_a_quai(Variable):
 
     def formula_2022_01_01(etablissement, period, parameters):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-        taux = parameters(period).energies.electricite.ticfe.alimentation_a_quai
+        taux = parameters(period).energies.electricite.accise.tarifs_reduits.alimentation_engins_flottants
         return assiette_taxe_electricite * taux
 
 
@@ -811,6 +811,12 @@ class taxe_electricite_exploitation_aerodrome(Variable):
     def formula_2019_01_01(etablissement, period, parameters):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
         taux = parameters(period).energies.electricite.ticfe.aerodromes
+        return assiette_taxe_electricite * taux
+
+    def formula_2022_01_01(etablissement, period, parameters):
+        """Le tarif réduit aérodromes passe sous l'accise (CIBS). Valeur inchangée (7.5)."""
+        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
+        taux = parameters(period).energies.electricite.accise.tarifs_reduits.aerodromes
         return assiette_taxe_electricite * taux
 
 
@@ -836,7 +842,7 @@ class taxe_electricite_transport_collectif_personnes(Variable):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
         taux = parameters(
             period,
-        ).energies.electricite.ticfe.transport_collectif_personnes
+        ).energies.electricite.accise.tarifs_reduits.transport_collectif_routier_personnes
         return assiette_taxe_electricite * taux
 
 
@@ -849,6 +855,18 @@ class taxe_electricite_transport_guide(Variable):
     def formula_2016_01_01(etablissement, period, parameters):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
         taux = parameters(period).energies.electricite.ticfe.transport_guide
+        return assiette_taxe_electricite * taux
+
+    def formula_2022_01_01(etablissement, period, parameters):
+        """Le tarif réduit du transport ferré ou guidé passe sous l'accise (CIBS).
+
+        Valeur inchangée (0.5). À distinguer du transport collectif routier de personnes,
+        tarif distinct créé par le CIBS.
+        """
+        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
+        taux = parameters(
+            period,
+        ).energies.electricite.accise.tarifs_reduits.transport_personnes_marchandises
         return assiette_taxe_electricite * taux
 
 
@@ -871,7 +889,7 @@ class taxe_electricite_centres_de_stockage_donnees(Variable):
 
     def formula_2022_01_01(etablissement, period, parameters):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-        taux = parameters(period).energies.electricite.ticfe.data_center
+        taux = parameters(period).energies.electricite.accise.tarifs_reduits.data_center
         return assiette_taxe_electricite * taux
 
 
@@ -931,9 +949,10 @@ class taxe_accise_electricite_taux_normal(Variable):
             & (amperage >= ticfe.categorie_fiscale_petite_et_moyenne_entreprise)
             & (amperage < ticfe.categorie_fiscale_haut_puissance)
         )
-        taxe_36 = assiette_taxe_electricite * ticfe.taux_normal_36kVA_et_moins
-        taxe_36_250 = assiette_taxe_electricite * ticfe.taux_normal_36_a_250kVA
-        taxe_haut = assiette_taxe_electricite * ticfe.taux_normal  # > 250 kVA
+        tn = parameters(period).energies.electricite.accise.tarifs_normaux
+        taxe_36 = assiette_taxe_electricite * tn.menages_et_assimiles
+        taxe_36_250 = assiette_taxe_electricite * tn.pme_activites_economiques
+        taxe_haut = assiette_taxe_electricite * tn.haute_puissance  # > 250 kVA
         return select([cond_36, cond_250], [taxe_36, taxe_36_250], default=taxe_haut)
 
 
@@ -977,15 +996,15 @@ class taxe_accise_electricite_electro_intensive_activite_industrielle(Variable):
                 assiette
                 * parameters(
                     period,
-                ).energies.electricite.ticfe.electro_intensive.activite_industrielle.electro_intensive_0_virgule_5,
+                ).energies.electricite.accise.tarifs_reduits.electrointensives_industrie.electro_intensive_0_virgule_5,
                 assiette
                 * parameters(
                     period,
-                ).energies.electricite.ticfe.electro_intensive.activite_industrielle.electro_intensive_3_virgule_375,
+                ).energies.electricite.accise.tarifs_reduits.electrointensives_industrie.electro_intensive_3_virgule_375,
                 assiette
                 * parameters(
                     period,
-                ).energies.electricite.ticfe.electro_intensive.activite_industrielle.electro_intensive_6_virgule_75,
+                ).energies.electricite.accise.tarifs_reduits.electrointensives_industrie.electro_intensive_6_virgule_75,
             ],
             default=0,
         )
@@ -1042,19 +1061,19 @@ class taxe_accise_electricite_electro_intensive_concurrence_internationale(Varia
                 assiette
                 * parameters(
                     period,
-                ).energies.electricite.ticfe.electro_intensive.concurrence_internationale.electro_intensive_13_virgule_5,
+                ).energies.electricite.accise.tarifs_reduits.electrointensives_concurrence.electro_intensive_13_virgule_5,
                 assiette
                 * parameters(
                     period,
-                ).energies.electricite.ticfe.electro_intensive.concurrence_internationale.electro_intensive_6_virgule_75,
+                ).energies.electricite.accise.tarifs_reduits.electrointensives_concurrence.electro_intensive_6_virgule_75,
                 assiette
                 * parameters(
                     period,
-                ).energies.electricite.ticfe.electro_intensive.concurrence_internationale.electro_intensive_3_virgule_375,
+                ).energies.electricite.accise.tarifs_reduits.electrointensives_concurrence.electro_intensive_3_virgule_375,
                 assiette
                 * parameters(
                     period,
-                ).energies.electricite.ticfe.electro_intensive.concurrence_internationale.electro_intensive_0_virgule_5,
+                ).energies.electricite.accise.tarifs_reduits.electrointensives_concurrence.electro_intensive_0_virgule_5,
             ],
             default=0,
         )

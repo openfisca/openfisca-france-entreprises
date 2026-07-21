@@ -86,7 +86,38 @@
 > `emulsion_eau_gazole/*`, `*/sous_conditions*` (2020-07-01), `gazole/carburants_sous_conditions` (2021-07-01),
 > `fioul_lourd_bts`/`hts`/`point_eclair` (2003), `essence_normale` (2000).
 >
-> ### ⛔ Reste à faire côté électricité — scission accise/ des paramètres fusionnés
+> ### ✅ Scission accise/ côté électricité — FAITE
+> `electricite/accise/{tarifs_normaux,tarifs_reduits}/` est créé. Les paramètres purement CIBS sont
+> **déplacés** (`git mv`, historique conservé) : les deux tarifs normaux ménages et PME, l'alimentation
+> à quai, le transport collectif routier, les deux tarifs aéronefs 2025 et les deux dossiers
+> électro-intensifs. Les paramètres **fusionnés** sont scindés : `ticfe/{taux_normal, aerodromes,
+> data_center, transport_guide}` sont clôturés au 2022-01-01 et leurs tarifs d'accise créés en face.
+> Les seuils et catégories restent sous `ticfe/` : ce ne sont pas des tarifs mais des critères de
+> modélisation sans équivalent au barème, valables de part et d'autre de la réforme.
+>
+> Deux variables n'avaient **aucune** formule postérieure à 2022 (`taxe_electricite_exploitation_aerodrome`,
+> formule 2019 seule ; `taxe_electricite_transport_guide`, formule 2016 seule) : la clôture les aurait
+> cassées en 2023. Une `formula_2022_01_01` leur est ajoutée. De même `electro_intensite`, qui n'avait
+> qu'une formule non datée et lisait donc `ticfe.taux_normal` jusqu'en 2025.
+> `intensite_energetique_valeur_ajoutee` et `electro_intensite` lisent désormais
+> `accise.tarifs_normaux.haute_puissance`, conformément au L312-44 qui retient le tarif normal haute
+> puissance — c'était le principal risque de dérive visé par cette passe.
+>
+> Vérifié par calcul de part et d'autre de la bascule : tarif normal 225000, aérodromes 75000,
+> transport guidé 5000, data center 120000, électro-intensité 0.225 — continus en 2021, 2022, 2023 et
+> 2025. La scission est neutre en résultat, ce qui était l'objectif.
+>
+> **Effet voulu des clôtures** : appelées après 2022, les variables d'avant réforme
+> (`taxe_interieure_consommation_gaz_naturel`, `taxe_electricite_installations_industrielles_*`,
+> `taxe_electricite_risque_de_fuite_de_carbone`) lèvent désormais `ParameterNotFound` au lieu
+> d'appliquer un tarif abrogé. Aucune n'est atteinte depuis les variables de tête, dont le calcul
+> reste continu.
+> **Échecs préexistants, sans rapport avec ces passes** (aucun des fichiers concernés n'est touché par
+> la branche) : `taxe_electricite` et les taxes communale et départementale échouent faute de code
+> commune ou département, les coefficients étant indexés sur 35 325 communes et 103 départements ;
+> `taxe_contribution_service_public_electricite` lit la CSPE, déjà close en 2016 avant ces travaux.
+>
+> ### ⛔ Reste à faire côté électricité — le cas manutention portuaire
 > OpenFisca fusionne dans un seul fichier `ticfe/` les séries d'avant et d'après réforme, là où le
 > barème les sépare (`ticfe/` clôturé, `accise/` rouvert). Sont concernés les paramètres encore lus
 > après 2022 : `taux_normal` (22.5), `aerodromes` (7.5), `data_center` (12), `transport_guide` (0.5),
