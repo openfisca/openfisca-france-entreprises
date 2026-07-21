@@ -3,7 +3,7 @@ values:
   2023-01-01:
     value: 9.36
   2023-02-01:
-    value: 10 #null originalement
+    value: null
 metadata:
   short_label: Bouclier tarifaire majoration exceptionnelle TCCFE max
   last_value_still_valid_on: "2025-02-15"
@@ -23,3 +23,9 @@ metadata:
   notes:
     2023-01-01:
     - title: Ce montant est égal au plus grand des tarifs de la taxe locale sur la consommation finale d'électricité multiplié par le coefficient maximal applicable au niveau communal, soit 0,78*12
+documentation: |-
+  La valeur du 1er février 2023 portait 10, avec la mention « null originalement » : une
+  modification manuelle, contraire au barème et à son propre fichier frère
+  majoration_tccfe_minimum.yaml, qui porte bien null à la même date. La majoration cesse en effet
+  à cette date, la TCCFE étant incorporée à l'accise sur l'électricité. Valeur rétablie à null.
+  Aucune formule ne lit ce paramètre.

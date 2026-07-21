@@ -12,6 +12,8 @@ values:
     value: 9.99
   2018-01-01:
     value: 14.62
+  2019-01-01:
+    value: 14.62
   2022-01-01:
     value: null
 metadata:

@@ -356,6 +356,91 @@ class taxe_accise_gaz_naturel_combustible(Variable):
             default=taxe_normal_combustible,
         )
 
+    def formula_2024_01_01(etablissement, period, parameters):
+        """Suppression du tarif réduit « concurrence internationale ».
+
+        Le tarif applicable aux installations exposées à un risque de fuite de carbone non
+        soumises au SEQE est abrogé au 1er janvier 2024 par l'article 94 II K 2° de la loi
+        n° 2023-1322 du 29 décembre 2023 de finances pour 2024. Ces installations relèvent
+        désormais du tarif normal. Le reste de la formule est inchangé.
+        """
+        gaz_double_usage = etablissement("gaz_double_usage", period)
+        gaz_travaux_agricoles_et_forestiers = etablissement("gaz_travaux_agricoles_et_forestiers", period)
+        gaz_extraction_production = etablissement("gaz_extraction_production", period)
+        gaz_production_mineraux_non_metalliques = etablissement("gaz_production_mineraux_non_metalliques", period)
+        gaz_usage_non_combustible = _or(
+            etablissement("gaz_matiere_premiere", period),
+            etablissement("gaz_huiles_minerales", period),
+        )
+
+        seqe = etablissement("installation_seqe", period)
+        grande_consommatrice = etablissement("installation_grande_consommatrice_energie", period)
+        intensite_energetique_valeur_production = etablissement("intensite_energetique_valeur_production", period)
+        intensite_energetique_valeur_ajoutee = etablissement("intensite_energetique_valeur_ajoutee", period)
+
+        ticgn_grande_conso = etablissement("taxe_interieure_consommation_gaz_naturel_grande_consommatrice", period)
+
+        gaz_dehydration_legumes_et_plantes_aromatiques = etablissement(
+            "gaz_dehydration_legumes_et_plantes_aromatiques",
+            period,
+        )
+        consommation_par_valeur_ajoutee = etablissement("consommation_par_valeur_ajoutee", period)
+
+        condition_double_usage = gaz_double_usage
+        taxe_travaux_agricoles = (
+            etablissement("consommation_gaz_combustible", period)
+            * parameters(period).energies.gaz_naturel.accise.travaux_agricoles_forestaires
+        )
+        condition_travaux_agricoles = gaz_travaux_agricoles_et_forestiers
+        condition_exoneration_autres = _or(
+            gaz_production_mineraux_non_metalliques,
+            gaz_extraction_production,
+            gaz_usage_non_combustible,
+        )
+        condition_legumes = _and(
+            gaz_dehydration_legumes_et_plantes_aromatiques,
+            consommation_par_valeur_ajoutee >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes,
+        )  # 0,0008 MWh par Euro
+        seuils = parameters(period).energies.seuils_seqe
+        condition_seqe = _or(
+            _and(
+                seqe,
+                intensite_energetique_valeur_production >= seuils.intensite_production_min,
+            ),
+            _and(
+                seqe,
+                intensite_energetique_valeur_ajoutee >= seuils.intensite_valeur_ajoutee_min,
+            ),
+        )
+        condition_grande_consommatrice = _and(seqe, grande_consommatrice)
+        taxe_normal_combustible = (
+            etablissement("consommation_gaz_combustible", period)
+            * parameters(period).energies.gaz_naturel.accise.taux_normal_combustible
+        )
+
+        return select(
+            [
+                condition_double_usage,
+                condition_travaux_agricoles,
+                condition_exoneration_autres,
+                condition_legumes,
+                condition_seqe,
+                condition_grande_consommatrice,
+            ],
+            [
+                0,
+                taxe_travaux_agricoles,
+                0,
+                etablissement("taxe_interieure_consommation_gaz_naturel_legumes", period),
+                etablissement(
+                    "taxe_interieure_taxation_consommation_gaz_naturel_seqe",
+                    period,
+                ),
+                ticgn_grande_conso,
+            ],
+            default=taxe_normal_combustible,
+        )
+
 
 class taxe_accise_gaz_naturel_carburant(Variable):
     value_type = float

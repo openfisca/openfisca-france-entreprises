@@ -136,3 +136,31 @@
 
 
 
+
+
+# Abrogation au 1er janvier 2024 du tarif réduit « concurrence internationale », par
+# l'article 94 II K 2° de la loi n° 2023-1322 de finances pour 2024. Jusqu'ici la formule
+# de 2022 continuait de l'appliquer : un établissement exposé au risque de fuite de carbone
+# et non soumis au SEQE était taxé à 1.6 au lieu du tarif normal, soit un dixième du dû.
+- name: "test 2023 tarif concurrence internationale encore applicable"
+  period: 2023
+  input:
+    consommation_gaz_combustible: 10000
+    valeur_ajoutee_eta: 100000
+    installation_seqe: false
+    risque_de_fuite_carbone_eta: true
+    intensite_energetique_valeur_ajoutee: 0.5
+  output:
+    taxe_gaz_naturel: 16000  # 10000 x 1.6
+
+- name: "test 2024 tarif concurrence internationale abroge, retour au tarif normal"
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    consommation_gaz_combustible: 10000
+    valeur_ajoutee_eta: 100000
+    installation_seqe: false
+    risque_de_fuite_carbone_eta: true
+    intensite_energetique_valeur_ajoutee: 0.5
+  output:
+    taxe_gaz_naturel: 163700  # 10000 x 16.37
