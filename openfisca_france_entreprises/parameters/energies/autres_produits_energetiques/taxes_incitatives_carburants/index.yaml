@@ -1,0 +1,28 @@
+description: Taxe incitative relative à l'utilisation d'énergie renouvelable dans les transports (TIRUERT ex TIRIB)
+metadata:
+  label_en: Incentive tax on the use of renewable energy in transport
+  order:
+  - tarifs_carbureacteurs
+  - tarifs_essences
+  - tarifs_gazoles
+  - taux_carbureacteurs
+  - taux_essences
+  - taux_gazoles
+documentation: |-
+  Données renseignées dans l'article 266 quindecies du code des douanes.
+  La TIRIB ("taxe incitative relative à l’incorporation de biocarburants") est renommée TIRUERT ("taxe incitative relative à l’utilisation d’énergie renouvelable dans les transports")
+  Elle remplace la TGAP carburants au 1er janvier 2019. La méthode de calcul de la taxe diffère :
+  Elle est calculée en multipliant le volume de carburants par un montant forfaitaire,
+  auquel est appliqué un coefficient égal à la différence entre le pourcentage national cible d'incorporation d’énergie renouvelable dans les transports et la proportion d’énergie renouvelable contenue dans les carburants du redevable.
+  Les énergies entrant dans cette proportion d'énergies renouvelables sont définies au V de l'article 266 quindecies du code des douanes et leur prise en compte peut évoluer avec la législation.
+
+  ATTENTION - ces paramètres ne sont encore lus par aucune formule.
+  Ils sont importés du barème IPP pour assurer la parité des données et documenter la taxe
+  qui succède à la TGAP carburants, clôturée au 1er janvier 2019.
+  Modéliser la TIRUERT suppose deux décisions qui dépassent la synchronisation des paramètres :
+  - le redevable de la TIRUERT est celui qui met le carburant à la consommation, c'est-à-dire un
+    fournisseur ou un distributeur, alors que le modèle représente les établissements comme des
+    consommateurs d'énergie ;
+  - le calcul exige la proportion d'énergie renouvelable contenue dans les carburants du redevable,
+    grandeur dont le modèle ne dispose d'aucune variable d'entrée.
+  Tant que ces deux points ne sont pas tranchés, la taxe ne peut pas être calculée.

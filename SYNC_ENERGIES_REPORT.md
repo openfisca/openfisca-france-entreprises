@@ -99,6 +99,31 @@
 > Cas à arbitrer juridiquement : `manutention_portuaire`, daté 2024-01-01 dans OpenFisca et 2023-01-01
 > dans le barème — mais le barème est lui-même incohérent sur ce point (cf. §6.7), à trancher sur le texte.
 >
+> ### ✅ Passe TGAP + TIRUERT — et une correction du diagnostic initial
+> **⚠️ Rectification.** Ce rapport affirmait plus bas (§2d) que la TGAP non terminée était un
+> « bug à fort impact » et qu'OpenFisca « continue de prélever une taxe morte ». **C'est faux.**
+> Vérification faite, **aucune formule ne lit les paramètres `tgap_carburants`** : `grep` ne trouve
+> `tgap` dans aucun fichier `.py` ni aucun test, la seule occurrence hors du dossier de paramètres
+> étant l'entrée d'ordre dans `index.yaml`. Ce sont des données orphelines. Il n'y avait donc pas
+> de sur-taxation. L'affirmation venait du rapport de comparaison initial, qui avait supposé un
+> usage sans le vérifier. §2d est à lire avec cette rectification.
+>
+> La donnée restait néanmoins fausse : les 7 fichiers `tgap_carburants/*` portaient 0.079 au
+> 2019-01-01 (valeur recopiée du taux cible TIRUERT essences) là où le barème constate l'abrogation.
+> Ils sont désormais clôturés à cette date.
+>
+> **TIRUERT importée en données seules** (6 paramètres + index). La modélisation n'est pas faite,
+> pour deux raisons de fond consignées dans l'index importé : le redevable de la TIRUERT est celui
+> qui met le carburant à la consommation, soit un fournisseur ou un distributeur, alors que le
+> modèle représente les établissements comme des consommateurs ; et le calcul exige la proportion
+> d'énergie renouvelable des carburants du redevable, dont le modèle n'a aucune variable d'entrée.
+> Décisions à prendre avant toute implémentation.
+>
+> Côté barème, les 6 fichiers TIRUERT partageaient l'identifiant `ticgn_taux`, celui de la TICGN :
+> un même identifiant pour sept paramètres de deux taxes sans rapport. Corrigé en
+> `tiruert_{tarif,taux}_{essences,gazoles,carbureacteurs}`. `tarifs_carbureacteurs` déclarait en
+> outre `unit: /1` sur des forfaits en euros : corrigé en `currency_per_mwh`.
+>
 > ### ⛔ Reporté à la passe suivante — dont 3 découvertes de cette passe
 > 1. **`gazoles_extraction_de_mineraux_industriels` : date 2022→2023 impossible en paramètre seul.**
 >    `taxation_autres_produits_energetiques.py::formula_2022_01_01` lit ce tarif dès 2022 → `ParameterNotFoundError`.
