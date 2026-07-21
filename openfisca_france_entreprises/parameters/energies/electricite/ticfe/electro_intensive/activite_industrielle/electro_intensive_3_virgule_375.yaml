@@ -2,7 +2,7 @@ description: Taxe intérieure sur la consommation finale d'électricité applica
   installations industrielles électro-intensives dont la consommation du site ou de
   l'entreprise est comprise entre 1,5 et 3 kilowattheures par euro de valeur ajoutée.
 values:
-  2016-01-01:
+  2022-01-01:
     value: 5
 metadata:
   ipp_csv_id: accise_electricite_industrie_3_375

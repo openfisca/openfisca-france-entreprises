@@ -30,6 +30,8 @@ values:
     value: 3.99
   2017-01-01:
     value: 5.8
+  2022-01-01:
+    value: null
 metadata:
   ipp_csv_id: ticpe_gaz_naturels_gazeux
   unit: currency

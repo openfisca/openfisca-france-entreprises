@@ -18,6 +18,8 @@ values:
     value: 15.25
   # 2022-01-01:
   #   value: 15.686
+  2022-01-01:
+    value: null
 metadata:
   unit: currency
   reference:

@@ -34,6 +34,8 @@ values:
   #   value: 16.208
   # 2024-01-01:
   #   value: 16.208
+  2022-01-01:
+    value: null
 metadata:
   ipp_csv_id: ticpe_autres_gaz_liq_autres
   unit: currency

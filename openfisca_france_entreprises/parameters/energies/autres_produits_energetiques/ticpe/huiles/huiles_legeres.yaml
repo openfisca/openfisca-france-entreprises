@@ -40,6 +40,8 @@ values:
   #   value: 76.826
   # 2024-01-01:
   #   value: 76.826
+  2022-01-01:
+    value: null
 metadata:
   unit: currency
   reference:

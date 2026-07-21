@@ -4,6 +4,8 @@ values:
     value: null
   2018-01-01:
     value: 6.63
+  2022-01-01:
+    value: null
 metadata:
   short_label: Autres que comme carburant (100kg nets)
   unit: currency

@@ -18,6 +18,8 @@ values:
   #   value: 59.481
   # 2024-01-01:
   #   value: 76.826
+  2022-01-01:
+    value: null
 metadata:
   ipp_csv_id: ticpe_carbu_petrole_lampant_autres
   unit: currency

@@ -3,3 +3,6 @@ reference : https://www.legifrance.gouv.fr/codes/id/LEGIARTI000031814811/2016-01
 values:
   2016-01-01:
     value: 5.5 #euros par mégawattheure
+
+  2022-01-01:
+    value: null

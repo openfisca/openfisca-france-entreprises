@@ -16,6 +16,8 @@ values:
     value: 13.95
   # 2022-01-01:
   #   value: 12.555
+  2022-01-01:
+    value: null
 metadata:
   ipp_csv_id: ticpe_fioul_lourd
   unit: currency

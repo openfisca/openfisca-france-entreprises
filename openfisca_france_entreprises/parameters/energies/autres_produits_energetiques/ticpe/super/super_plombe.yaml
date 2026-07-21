@@ -30,6 +30,8 @@ values:
     value: 68.34
   2018-01-01:
     value: 71.56
+  2022-01-01:
+    value: null
 metadata:
   ipp_csv_id: ticpe_super_additif
   unit: currency

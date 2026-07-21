@@ -68,6 +68,37 @@
 >   signalée par le `***faut vérrifier` du code. Non modifiée ici.
 > - `seuil_facture_energie_par_va` (0.6744) n'est désormais plus lu par aucune formule : candidat à suppression.
 >
+> ### ✅ Passe CIBS TICPE + électro-intensifs
+> **TICPE** : les 28 paramètres dont le barème constate la disparition au 1er janvier 2022 sont
+> clôturés. Vérifié au préalable par graphe d'appel : aucun n'est lu par une formule postérieure à
+> 2022 (les formules basculaient déjà correctement sur l'accise), seuls les paramètres restaient
+> ouverts indéfiniment.
+> **Électro-intensifs électricité** : les deux régimes se recouvraient. Les 7 fichiers de l'ère CIBS
+> (`activite_industrielle/`, `concurrence_internationale/`) étaient datés du 2016-01-01 alors que leur
+> propre référence est l'ordonnance CIBS de 2022 ; ils sont redatés au 2022-01-01. Les 7 paramètres
+> antérieurs (`electro_intensive/taux_*`, `hyperelectro_intensive`, `risque_de_fuite_de_carbone/taux_*`)
+> sont clôturés au 2022-01-01. Vérifié : à 2021 les variables pré-réforme calculent toujours
+> (75000, 5000, 55000) ; à 2023 elles échouent désormais explicitement au lieu d'appliquer un tarif
+> abrogé, ce qui est le comportement recherché.
+>
+> **Clôtures TICPE volontairement NON faites** (motif juridique distinct de la réforme CIBS, et même
+> subtilité infra-annuelle que la TICGN 2014) : produits abolis à d'autres dates — `gazole_b_10` (2019),
+> `emulsion_eau_gazole/*`, `*/sous_conditions*` (2020-07-01), `gazole/carburants_sous_conditions` (2021-07-01),
+> `fioul_lourd_bts`/`hts`/`point_eclair` (2003), `essence_normale` (2000).
+>
+> ### ⛔ Reste à faire côté électricité — scission accise/ des paramètres fusionnés
+> OpenFisca fusionne dans un seul fichier `ticfe/` les séries d'avant et d'après réforme, là où le
+> barème les sépare (`ticfe/` clôturé, `accise/` rouvert). Sont concernés les paramètres encore lus
+> après 2022 : `taux_normal` (22.5), `aerodromes` (7.5), `data_center` (12), `transport_guide` (0.5),
+> `transport_collectif_personnes` (0.5), `alimentation_a_quai` (0.5), `manutention_portuaire`.
+> **Impact numérique nul aujourd'hui** — les valeurs sont identiques de part et d'autre de la réforme.
+> L'enjeu est la dérive future : si un tarif d'accise est indexé par arrêté, OpenFisca continuerait de
+> lire la valeur TICFE périmée (c'est exactement le mécanisme qui avait fait manquer 17.16 sur le gaz).
+> À traiter avec `intensite_energetique_valeur_ajoutee`, qui doit lire le tarif normal haute puissance
+> de l'accise (L312-44) et lit encore `ticfe.taux_normal`.
+> Cas à arbitrer juridiquement : `manutention_portuaire`, daté 2024-01-01 dans OpenFisca et 2023-01-01
+> dans le barème — mais le barème est lui-même incohérent sur ce point (cf. §6.7), à trancher sur le texte.
+>
 > ### ⛔ Reporté à la passe suivante — dont 3 découvertes de cette passe
 > 1. **`gazoles_extraction_de_mineraux_industriels` : date 2022→2023 impossible en paramètre seul.**
 >    `taxation_autres_produits_energetiques.py::formula_2022_01_01` lit ce tarif dès 2022 → `ParameterNotFoundError`.

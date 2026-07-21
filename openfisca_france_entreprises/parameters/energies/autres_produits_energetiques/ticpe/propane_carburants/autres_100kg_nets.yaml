@@ -16,6 +16,8 @@ values:
     value: 16.5
   2018-01-01:
     value: 20.71
+  2022-01-01:
+    value: null
 metadata:
   ipp_csv_id: ticpe_propane_autres
   unit: currency

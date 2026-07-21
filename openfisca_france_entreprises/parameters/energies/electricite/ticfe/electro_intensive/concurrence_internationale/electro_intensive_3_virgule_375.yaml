@@ -4,7 +4,7 @@ description: Taxe intérieure sur la consommation finale d'électricité applica
   et qui sont exposées à un risque important de fuite de carbone en raison des coûts
   des émissions indirectes.
 values:
-  2016-01-01:
+  2022-01-01:
     value: 2.5
 metadata:
   ipp_csv_id: accise_electricite_industrie_concurrence_3_375

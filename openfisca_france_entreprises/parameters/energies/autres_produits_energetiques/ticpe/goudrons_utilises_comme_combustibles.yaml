@@ -32,6 +32,8 @@ values:
     value: 6.89
   2018-01-01:
     value: 10.08
+  2022-01-01:
+    value: null
 metadata:
   ipp_csv_id: ticpe_goudron_combustible
   unit: currency

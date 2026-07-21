@@ -30,6 +30,8 @@ values:
     value: 65.07
   2018-01-01:
     value: 68.29
+  2022-01-01:
+    value: null
 metadata:
   ipp_csv_id: ticpe_sp95_sp98
   unit: currency

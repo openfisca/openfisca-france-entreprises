@@ -34,6 +34,8 @@ values:
     value: 64.3
   2018-01-01:
     value: 67.52
+  2022-01-01:
+    value: null
 metadata:
   ipp_csv_id: ticpe_essences_speciales
   unit: currency

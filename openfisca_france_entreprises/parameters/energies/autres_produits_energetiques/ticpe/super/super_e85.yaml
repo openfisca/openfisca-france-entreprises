@@ -20,6 +20,8 @@ values:
     value: 9.41
   2018-01-01:
     value: 11.83
+  2022-01-01:
+    value: null
 metadata:
   ipp_csv_id: ticpe_super_e85
   unit: currency

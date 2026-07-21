@@ -18,6 +18,8 @@ values:
     value: 12.02
   2018-01-01:
     value: 15.25
+  2022-01-01:
+    value: null
 metadata:
   ipp_csv_id: ticpe_white_spirit_combustible
   unit: currency

@@ -4,6 +4,8 @@ values:
     value: null
   2018-01-01:
     value: 11.83
+  2022-01-01:
+    value: null
 metadata:
   unit: currency
   reference:

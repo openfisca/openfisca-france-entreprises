@@ -22,6 +22,8 @@ values:
     value: 36.19
   2018-01-01:
     value: 39.79
+  2022-01-01:
+    value: null
 metadata:
   ipp_csv_id: ticpe_carbu_petrole_lampant
   unit: currency
