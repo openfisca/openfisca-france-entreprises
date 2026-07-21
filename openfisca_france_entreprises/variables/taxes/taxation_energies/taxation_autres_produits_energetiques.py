@@ -2583,7 +2583,7 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
         departement = etablissement("departement", period)
         p = parameters(
             period,
-        ).energies.autres_produits_energetiques.major_regionale_ticpe_super_e10
+        ).energies.autres_produits_energetiques.major_regionale_ticpe_super
         conditions = [
             _dep_in(departement, ["67", "68"]),
             _dep_in(departement, ["24", "33", "40", "47", "64"]),
@@ -2638,7 +2638,7 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
         departement = etablissement("departement", period)
         p = parameters(
             period,
-        ).energies.autres_produits_energetiques.major_regionale_ticpe_super_e10.depuis_2017
+        ).energies.autres_produits_energetiques.major_regionale_ticpe_super.depuis_2017
         conditions = [
             _dep_in(departement, ["75", "77", "78", "91", "92", "93", "94", "95"]),
             _dep_in(departement, ["18", "28", "36", "37", "41", "45"]),
@@ -2727,7 +2727,7 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
         departement = etablissement("departement", period)
         p = parameters(
             period,
-        ).energies.autres_produits_energetiques.major_regionale_ticpe_super_e10.depuis_2022
+        ).energies.autres_produits_energetiques.major_regionale_ticpe_super.depuis_2022
         conditions = [
             _dep_in(departement, ["75", "77", "78", "91", "92", "93", "94", "95"]),
             _dep_in(departement, ["18", "28", "36", "37", "41", "45"]),
@@ -2824,7 +2824,7 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
         departement = etablissement("departement", period)
         p = parameters(
             period,
-        ).energies.autres_produits_energetiques.major_regionale_ticpe_super_95_98
+        ).energies.autres_produits_energetiques.major_regionale_ticpe_super
         conditions = [
             _dep_in(departement, ["67", "68"]),
             _dep_in(departement, ["24", "33", "40", "47", "64"]),
@@ -2879,7 +2879,7 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
         departement = etablissement("departement", period)
         p = parameters(
             period,
-        ).energies.autres_produits_energetiques.major_regionale_ticpe_super_95_98.depuis_2017
+        ).energies.autres_produits_energetiques.major_regionale_ticpe_super.depuis_2017
         conditions = [
             _dep_in(departement, ["75", "77", "78", "91", "92", "93", "94", "95"]),
             _dep_in(departement, ["18", "28", "36", "37", "41", "45"]),
@@ -2968,7 +2968,7 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
         departement = etablissement("departement", period)
         p = parameters(
             period,
-        ).energies.autres_produits_energetiques.major_regionale_ticpe_super_95_98.depuis_2022
+        ).energies.autres_produits_energetiques.major_regionale_ticpe_super.depuis_2022
         conditions = [
             _dep_in(departement, ["75", "77", "78", "91", "92", "93", "94", "95"]),
             _dep_in(departement, ["18", "28", "36", "37", "41", "45"]),

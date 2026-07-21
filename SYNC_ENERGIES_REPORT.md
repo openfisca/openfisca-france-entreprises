@@ -155,6 +155,50 @@
 > `tiruert_{tarif,taux}_{essences,gazoles,carbureacteurs}`. `tarifs_carbureacteurs` déclarait en
 > outre `unit: /1` sur des forfaits en euros : corrigé en `currency_per_mwh`.
 >
+> ### ✅ Fusion des deux arbres `major_regionale_ticpe_super_*` et reconstruction de la Corse
+> OpenFisca portait deux arbres parallèles, `_95_98` et `_e10`, dont 47 fichiers sur 49 étaient
+> identiques au octet près et dont les 22 `ipp_csv_id` étaient dupliqués deux à deux. Ils sont fusionnés
+> en un seul `major_regionale_ticpe_super/`, conforme au barème. **Plus aucun `ipp_csv_id` dupliqué dans
+> l'arbre énergies d'OpenFisca**, contre 22 auparavant.
+>
+> **La majoration régionale ne distingue pas le SP95/98 du SP95-E10.** Trois éléments concordants :
+> le dépôt openfisca-france-indirect-taxation la modélise par un paramètre unique explicitement intitulé
+> « SP95, SP98 et SP95 E10 », documenté comme couvrant les indices d'identification 11 et 11 ter ensemble ;
+> le barème n'a qu'un seul arbre ; et les valeurs impliquées par l'arbre `_e10` comprenaient une majoration
+> absolue négative, juridiquement impossible.
+>
+> **Convention d'écart établie puis vérifiée** : `OpenFisca = barème − 1.77`, exactement, sur l'Alsace
+> (1.4→−0.37, 1.77→0, 2.5→0.73), la Bretagne (1.1→−0.67) et PACA (0.98→−0.79) ; l'écart passe à 2.77 en
+> 2013 puis revient à 1.77 en 2014, ce qui reflète une variation nationale d'accise. Les valeurs de
+> `depuis_2022` valent celles de `depuis_2017` multipliées par 1.125, conversion d'unité vérifiée sur
+> l'ensemble des régions (0.73→0.821, 1.75→1.969).
+>
+> **Corse reconstruite** à partir du barème et de cette convention : −1.77 en 2007, −0.76 en 2009,
+> −1.77 en 2010, −2.77 en 2013, −1.77 en 2014, soit exactement les valeurs absolues du barème
+> (0, 1.01, 0, 0, 0). Les valeurs antérieures étaient inférieures d'exactement 1.00 en 2007 et 2009,
+> montant de la réfaction corse d'avant 2022, et plaçaient la Corse au plafond national à partir de 2011
+> alors que le barème l'y maintient à zéro jusqu'en 2017.
+>
+> **Corrigé au passage** : `depuis_2022/corse.yaml` et `depuis_2022/nouvelle_aquitaine.yaml` portaient la
+> clé 2017-01-01 dans un dossier « depuis 2022 » ; Nouvelle-Aquitaine portait en outre 0.73 au lieu de
+> 0.821, valeur non convertie.
+>
+> **Mise en garde sur une conclusion trop rapide** : `depuis_2022/corse = −1.125` avait d'abord été pris
+> pour la réfaction post-2022, dont le montant est aussi 1.125. C'est en réalité −1.00 × 1.125, la
+> conversion appliquée à toutes les régions. Coïncidence numérique ; la valeur était correcte.
+>
+> ### ⛔ La réfaction corse n'est modélisée nulle part — à traiter
+> C'est une minoration propre à la Corse, distincte de la majoration régionale, prévue à l'article
+> 265 A bis du code des douanes puis à l'article L312-41 du CIBS. Montant de 1.0, puis 1.125 à compter
+> de 2022. Elle se distingue selon le carburant **non par son montant mais par sa date d'entrée en
+> vigueur** : 2002 pour les SP95 et SP98 (indice 11), 2019 seulement pour le SP95-E10 (indice 11 ter),
+> créé par l'article 66 de la loi de finances pour 2019. C'est la seule différence légale connue entre
+> ces deux carburants — et elle ne relève pas de la majoration régionale.
+> Ni OpenFisca ni le barème ne la portent. Le dépôt openfisca-france-indirect-taxation la modélise, dans
+> `parameters/imposition_indirecte/produits_energetiques/refraction_corse_ticpe.yaml`, sous le nom mal
+> orthographié « refraction » — le terme juridique exact est **réfaction**. À reprendre, en corrigeant
+> l'orthographe, et à proposer au barème.
+>
 > ### ⛔ Reporté à la passe suivante — dont 3 découvertes de cette passe
 > 1. **`gazoles_extraction_de_mineraux_industriels` : date 2022→2023 impossible en paramètre seul.**
 >    `taxation_autres_produits_energetiques.py::formula_2022_01_01` lit ce tarif dès 2022 → `ParameterNotFoundError`.
