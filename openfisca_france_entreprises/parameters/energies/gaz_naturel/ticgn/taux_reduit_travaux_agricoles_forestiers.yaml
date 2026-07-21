@@ -5,6 +5,8 @@ values:
     value: 0.119
   2020-01-01:
     value: 0.54
+  2022-01-01:
+    value: null
 metadata:
   ipp_csv_id: ticgn_taux_reduit_agricole
   unit: currency

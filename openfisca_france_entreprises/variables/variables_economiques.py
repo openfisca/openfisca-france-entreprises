@@ -154,6 +154,41 @@ class intensite_energetique_valeur_ajoutee(Variable):
         denom_safe = where(condition_non_zero, valeur_ajoutee_eta, 1)
         return where(condition_non_zero, numerateur / denom_safe, 0)
 
+    def formula_2022_01_01(etablissement, period, parameters):
+        """Depuis la réforme CIBS, le numérateur s'apprécie au tarif normal de l'accise.
+
+        Le niveau d'intensité énergétique est une notion créée par le CIBS (L312-44) : il doit
+        donc s'appuyer sur les tarifs normaux de l'accise, et non sur les taxes qu'elle remplace
+        (TICGN, TICC), clôturées au 1er janvier 2022.
+
+        Pour le gaz et le charbon, les tarifs de l'accise reprennent à l'identique ceux de la
+        TICGN et de la TICC en 2022 : ce changement de source ne modifie donc pas le résultat
+        avant 2025, où l'accise gaz est indexée à 17.16 alors que la série TICGN s'arrêtait à 16.37.
+
+        Pour l'électricité, le texte précise que c'est le tarif normal des consommations haute
+        puissance (> 250 kVA) qui est retenu : c'est ce que porte electricite.ticfe.taux_normal,
+        inchangé ici (voir SYNC_ENERGIES_REPORT.md pour la clôture restante côté électricité).
+        """
+        valeur_ajoutee_eta = etablissement("valeur_ajoutee_eta", period)
+
+        consommation_electricite = etablissement("consommation_electricite", period)
+        partie_electricite = consommation_electricite * parameters(period).energies.electricite.ticfe.taux_normal
+
+        consommation_charbon = etablissement("consommation_charbon", period)
+        partie_charbon = consommation_charbon * parameters(period).energies.charbon.accise.tarif_normal
+
+        consommation_gaz_naturel = etablissement("consommation_gaz_naturel", period)
+        partie_gaz_naturel = (
+            consommation_gaz_naturel
+            * parameters(period).energies.gaz_naturel.accise.taux_normal_combustible
+            * parameters(period).energies.gaz_naturel.ticgn.conversion_pcs_pci
+        )
+
+        numerateur = partie_electricite + partie_charbon + partie_gaz_naturel
+        condition_non_zero = valeur_ajoutee_eta != 0
+        denom_safe = where(condition_non_zero, valeur_ajoutee_eta, 1)
+        return where(condition_non_zero, numerateur / denom_safe, 0)
+
 
 # Le niveau d'intensité énergétique en valeur ajoutée s'entend du quotient entre :
 # a) Au numérateur, le montant total de l'accise sur les produits utilisés, en appliquant le

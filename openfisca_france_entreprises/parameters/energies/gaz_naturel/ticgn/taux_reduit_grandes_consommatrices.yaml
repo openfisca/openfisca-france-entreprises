@@ -5,6 +5,8 @@ values:
     value: 1.19
   2016-01-01:
     value: 1.52
+  2022-01-01:
+    value: null
 metadata:
   ipp_csv_id: ticgn_taux_reduit_conso
   unit: currency_per_mwh

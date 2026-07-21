@@ -39,9 +39,7 @@ values:
   2021-01-01:
     value: 8.43
   2022-01-01:
-    value: 8.45
-  2024-01-01:
-    value: 16.37
+    value: null
 metadata:
   ipp_csv_id: ticgn_taux
   unit: currency_per_mwh

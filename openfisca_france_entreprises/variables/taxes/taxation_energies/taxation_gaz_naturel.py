@@ -256,7 +256,14 @@ class taxe_accise_gaz_naturel_combustible(Variable):
         gaz_travaux_agricoles_et_forestiers = etablissement("gaz_travaux_agricoles_et_forestiers", period)
         gaz_extraction_production = etablissement("gaz_extraction_production", period)
         gaz_production_mineraux_non_metalliques = etablissement("gaz_production_mineraux_non_metalliques", period)
-        consommation_gaz_usage_non_combustible = etablissement("consommation_gaz_usage_non_combustible", period)
+        # consommation_gaz_usage_non_combustible n'existe pas : la classe est commentée dans
+        # consommation_energie/gaz_naturel.py. On rétablit ici l'intention documentée en tête de
+        # ce fichier — cette variable « combinait gaz_matiere_premiere et gaz_huiles_minerales »
+        # (le gaz consommé autrement que comme combustible, exonéré).
+        gaz_usage_non_combustible = _or(
+            etablissement("gaz_matiere_premiere", period),
+            etablissement("gaz_huiles_minerales", period),
+        )
 
         seqe = etablissement("installation_seqe", period)
         grande_consommatrice = etablissement("installation_grande_consommatrice_energie", period)
@@ -270,7 +277,12 @@ class taxe_accise_gaz_naturel_combustible(Variable):
             "gaz_dehydration_legumes_et_plantes_aromatiques",
             period,
         )
-        intensite_energetique = etablissement("intensite_energetique", period)
+        # « intensite_energetique » (sans suffixe) n'existe pas dans le modèle, et le seuil
+        # qui lui était comparé (seuil_facture_energie_par_va = 0.6744) n'a aucune source.
+        # On aligne donc la condition déshydratation sur celle des formules 2019 et 2020,
+        # qui applique le critère légal : consommation supérieure à 800 Wh par euro de valeur
+        # ajoutée (LF 2019, art. 67), soit 0.0008 MWh/€.
+        consommation_par_valeur_ajoutee = etablissement("consommation_par_valeur_ajoutee", period)
 
         condition_double_usage = gaz_double_usage
         taxe_travaux_agricoles = (
@@ -281,12 +293,12 @@ class taxe_accise_gaz_naturel_combustible(Variable):
         condition_exoneration_autres = _or(
             gaz_production_mineraux_non_metalliques,
             gaz_extraction_production,
-            consommation_gaz_usage_non_combustible,
+            gaz_usage_non_combustible,
         )
         condition_legumes = _and(
             gaz_dehydration_legumes_et_plantes_aromatiques,
-            intensite_energetique >= parameters(period).energies.gaz_naturel.ticgn.seuil_facture_energie_par_va,
-        )
+            consommation_par_valeur_ajoutee >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes,
+        )  # 0,0008 MWh par Euro
         seuils = parameters(period).energies.seuils_seqe
         condition_seqe = _or(
             _and(
@@ -431,6 +443,15 @@ class taxe_interieure_consommation_gaz_naturel_legumes(Variable):
         taux = parameters(period).energies.gaz_naturel.ticgn.taux_reduit_deshydratation
         return assiette * taux
 
+    def formula_2022_01_01(etablissement, period, parameters):
+        """Le tarif réduit déshydratation passe sous l'accise (CIBS) au 1er janvier 2022.
+
+        Valeur inchangée (1.6) ; la série TICGN est clôturée à cette date.
+        """
+        assiette = etablissement("assiette_ticgn", period)
+        taux = parameters(period).energies.gaz_naturel.accise.deshydratation
+        return assiette * taux
+
 
 class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
     value_type = float
@@ -480,6 +501,19 @@ class taxe_interieure_consommation_gaz_naturel_grande_consommatrice(Variable):
         """[à noter : plus de seuil ni d'abattement]."""
         assiette = etablissement("assiette_ticgn", period)
         taux = parameters(period).energies.gaz_naturel.ticgn.taux_reduit_grandes_consommatrices
+        return assiette * taux
+
+    def formula_2022_01_01(etablissement, period, parameters):
+        """Sous le CIBS, le tarif « grande consommatrice » devient le tarif réduit SEQE.
+
+        La notion TICGN d'entreprise grande consommatrice d'énergie disparaît avec la réforme :
+        le barème IPP ne conserve, pour les gaz naturels combustibles, que les tarifs réduits
+        « intensive en énergie soumise au SEQE » (1.52) et « SEQE indirect » (1.6). Le tarif SEQE
+        reprend exactement la valeur que portait le tarif réduit grandes consommatrices depuis
+        2016 (1.52) : le résultat est donc inchangé, seule la source du paramètre l'est.
+        """
+        assiette = etablissement("assiette_ticgn", period)
+        taux = parameters(period).energies.gaz_naturel.taux_reduit_seqe
         return assiette * taux
 
 

@@ -443,7 +443,7 @@ class consommation_autres_produits_energetique_ticc(Variable):
 
     def formula_2012_01_01(etablissement, period, parameters):
         # par rapport à précédement, ajouté consommation_melanges_hydrocarbures_aromatiques
-        totale = (
+        return (
             etablissement("consommation_melanges_hydrocarbures_aromatiques", period)
             + etablissement("consommation_huiles_lubrifiantes_et_autres", period)
             + etablissement("consommation_vaseline", period)
@@ -459,9 +459,6 @@ class consommation_autres_produits_energetique_ticc(Variable):
             + etablissement("consommation_preparations_lubrifiantes", period)
             + etablissement("consommation_additifs_huiles_lubrifiantes", period)
         )
-        etablissement("", period)
-
-        return totale
 
 
 class consommation_autres_produits_energetique_ticgn(Variable):

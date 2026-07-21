@@ -41,6 +41,33 @@
 > (les erreurs CRLF `new-lines` sont pré-existantes sur tout le checkout Windows, y compris fichiers non touchés).
 > Côté barèmes : 3 commits sur `energies` (réorganisation territoriale, unités hectolitre→mwh, collision d'id bouclier).
 >
+> ### ✅ Passe CIBS gaz + charbon (commit à venir) — et 3 bugs latents découverts
+> Les paramètres pré-réforme gaz et charbon sont désormais clôturés au 2022-01-01 et les formules
+> lisent l'accise après cette date. Vérifié par calcul effectif sur 2019→2025 (et non seulement par
+> les tests) : gaz 84500 (2022) / 163700 (2024) / **171600 (2025, valeur 17.16 auparavant absente
+> de tout OF)** ; charbon 73100 constant de part et d'autre de la réforme.
+>
+> **3 bugs latents pré-existants découverts et corrigés** (le chemin gaz post-2022 et TOUT le chemin
+> charbon étaient non fonctionnels, sans qu'aucun test ne le détecte) :
+> 1. `consommation_energie/autres_produits.py` : ligne morte `etablissement("", period)` → cassait
+>    l'intégralité du calcul charbon, à toutes les années.
+> 2. `taxation_gaz_naturel.py` : appel à `consommation_gaz_usage_non_combustible`, classe commentée
+>    dans `consommation_energie/gaz_naturel.py` → cassait tout le chemin gaz post-2022. Rétabli
+>    conformément à l'intention documentée (`gaz_matiere_premiere` OU `gaz_huiles_minerales`).
+> 3. `taxation_gaz_naturel.py` : appel à `intensite_energetique` (variable inexistante), comparée au
+>    seuil non sourcé `seuil_facture_energie_par_va` (0.6744). Aligné sur le test légal des formules
+>    2019/2020 : `consommation_par_valeur_ajoutee >= seuil_conso_par_va_legumes` (800 Wh/€ VA, LF 2019 art. 67).
+>
+> **⚠️ À faire confirmer** (choix de modélisation pris pour rétablir le calcul, à valider) :
+> - le rétablissement (2) et (3) ci-dessus ;
+> - `taxe_interieure_consommation_gaz_naturel_grande_consommatrice` : la notion TICGN de « grande
+>   consommatrice » disparaît sous CIBS ; la formule 2022 pointe désormais sur `taux_reduit_seqe`
+>   (1.52), valeur identique à celle du tarif TICGN depuis 2016, donc résultat inchangé ;
+> - **discontinuité PCS/PCI** : avant 2022 le gaz est taxé `conso × taux × 1.11`, après 2022
+>   `conso × taux` sans conversion (d'où 93573 en 2021 → 84500 en 2022). Incohérence pré-existante,
+>   signalée par le `***faut vérrifier` du code. Non modifiée ici.
+> - `seuil_facture_energie_par_va` (0.6744) n'est désormais plus lu par aucune formule : candidat à suppression.
+>
 > ### ⛔ Reporté à la passe suivante — dont 3 découvertes de cette passe
 > 1. **`gazoles_extraction_de_mineraux_industriels` : date 2022→2023 impossible en paramètre seul.**
 >    `taxation_autres_produits_energetiques.py::formula_2022_01_01` lit ce tarif dès 2022 → `ParameterNotFoundError`.

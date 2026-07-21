@@ -3,6 +3,8 @@ description: Taxe intérieure sur la consommation de gaz naturel (TICGN) - Taux 
 values:
   2019-01-01:
     value: 1.6
+  2022-01-01:
+    value: null
 metadata:
   ipp_csv_id: ticgn_taux_reduit_deshydratation
   unit: currency

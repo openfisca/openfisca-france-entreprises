@@ -287,9 +287,17 @@ class taxe_interieure_taxation_consommation_charbon_taux_normal(Variable):
     reference = ""
 
     def formula_2007_01_01(etablissement, period, parameters):
-        # faut changer la date après
         assiette_ticc = etablissement("assiette_ticc", period)
         return assiette_ticc * parameters(period).energies.charbon.ticc
+
+    def formula_2022_01_01(etablissement, period, parameters):
+        """La TICC devient la fraction charbons de l'accise sur les énergies (CIBS).
+
+        La valeur du tarif est inchangée (14.62) ; seule la source du paramètre change,
+        la série ticc étant clôturée au 1er janvier 2022.
+        """
+        assiette_ticc = etablissement("assiette_ticc", period)
+        return assiette_ticc * parameters(period).energies.charbon.accise.tarif_normal
 
 
 class assiette_ticc(Variable):
