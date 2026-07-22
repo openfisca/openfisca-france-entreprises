@@ -206,7 +206,7 @@ class intensite_energetique_valeur_ajoutee(Variable):
         consommation_gaz_naturel = etablissement("consommation_gaz_naturel", period)
         partie_gaz_naturel = (
             consommation_gaz_naturel
-            * parameters(period).energies.gaz_naturel.accise.taux_normal_combustible
+            * parameters(period).energies.gaz_naturel.accise.combustibles.tarif_normal
             * parameters(period).energies.gaz_naturel.ticgn.conversion_pcs_pci
         )
 

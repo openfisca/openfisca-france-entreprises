@@ -1,0 +1,5 @@
+description: Accise sur les gaz naturels utilisés comme carburants
+metadata:
+  order:
+  - tarif_normal
+  - tarifs_reduits
