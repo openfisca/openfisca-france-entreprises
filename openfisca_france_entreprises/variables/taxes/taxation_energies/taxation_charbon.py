@@ -114,20 +114,18 @@ class taxe_interieure_consommation_charbon(Variable):
         )
         charbon_double_usage = etablissement("charbon_double_usage", period)
 
-        # Exonération : seqe + biomasse + seuil production, ou l'une des navigations / double usage
+        # Chaque activité exonérée relève d'un tarif réduit propre, porté par un paramètre.
+        # Ces tarifs valent tous zéro à ce jour, mais ce sont bien des tarifs réduits au sens du
+        # Code des impositions sur les biens et services, et non des exonérations : les faire
+        # porter par la donnée permet qu'un changement de tarif reste un changement de donnée.
         seuils = parameters(period).energies.seuils_seqe
-        condition_exoneration = _or(
-            _and(
-                installation_seqe,
-                intensite_energetique_valeur_production >= seuils.intensite_production_min,
-                charbon_biomasse,
-            ),
-            charbon_navigation_interieure,
-            charbon_navigation_maritime,
-            charbon_navigation_aerienne,
-            charbon_fabrication_produits_mineraux_non_metalliques,
-            charbon_secteurs_aeronautique_et_naval,
-            charbon_double_usage,
+        assiette_ticc = etablissement("assiette_ticc", period)
+        tarifs_reduits = parameters(period).energies.charbon.accise.tarifs_reduits
+
+        condition_biomasse = _and(
+            installation_seqe,
+            intensite_energetique_valeur_production >= seuils.intensite_production_min,
+            charbon_biomasse,
         )
         # Taux SEGE
         condition_seqe = _or(
@@ -155,9 +153,25 @@ class taxe_interieure_consommation_charbon(Variable):
         )
 
         return select(
-            [condition_exoneration, condition_seqe, condition_concurrence],
             [
-                0,
+                condition_biomasse,
+                charbon_navigation_interieure,
+                charbon_navigation_maritime,
+                charbon_navigation_aerienne,
+                charbon_fabrication_produits_mineraux_non_metalliques,
+                charbon_secteurs_aeronautique_et_naval,
+                charbon_double_usage,
+                condition_seqe,
+                condition_concurrence,
+            ],
+            [
+                assiette_ticc * tarifs_reduits.valorisation_biomasse,
+                assiette_ticc * tarifs_reduits.navigation_interieure,
+                assiette_ticc * tarifs_reduits.navigation_maritime,
+                assiette_ticc * tarifs_reduits.navigation_aerienne,
+                assiette_ticc * tarifs_reduits.fabrication_mineraux,
+                assiette_ticc * tarifs_reduits.aeronautique_naval,
+                assiette_ticc * tarifs_reduits.doubles_usages,
                 etablissement(
                     "taxe_interieure_taxation_consommation_charbon_seqe",
                     period,
@@ -211,18 +225,13 @@ class taxe_interieure_consommation_charbon(Variable):
         )
         charbon_double_usage = etablissement("charbon_double_usage", period)
 
-        condition_exoneration = _or(
-            _and(
-                installation_seqe,
-                intensite_energetique_valeur_production >= seuils.intensite_production_min,
-                charbon_biomasse,
-            ),
-            charbon_navigation_interieure,
-            charbon_navigation_maritime,
-            charbon_navigation_aerienne,
-            charbon_fabrication_produits_mineraux_non_metalliques,
-            charbon_secteurs_aeronautique_et_naval,
-            charbon_double_usage,
+        assiette_ticc = etablissement("assiette_ticc", period)
+        tarifs_reduits = parameters(period).energies.charbon.accise.tarifs_reduits
+
+        condition_biomasse = _and(
+            installation_seqe,
+            intensite_energetique_valeur_production >= seuils.intensite_production_min,
+            charbon_biomasse,
         )
         condition_seqe = _or(
             _and(
@@ -236,9 +245,24 @@ class taxe_interieure_consommation_charbon(Variable):
         )
 
         return select(
-            [condition_exoneration, condition_seqe],
             [
-                0,
+                condition_biomasse,
+                charbon_navigation_interieure,
+                charbon_navigation_maritime,
+                charbon_navigation_aerienne,
+                charbon_fabrication_produits_mineraux_non_metalliques,
+                charbon_secteurs_aeronautique_et_naval,
+                charbon_double_usage,
+                condition_seqe,
+            ],
+            [
+                assiette_ticc * tarifs_reduits.valorisation_biomasse,
+                assiette_ticc * tarifs_reduits.navigation_interieure,
+                assiette_ticc * tarifs_reduits.navigation_maritime,
+                assiette_ticc * tarifs_reduits.navigation_aerienne,
+                assiette_ticc * tarifs_reduits.fabrication_mineraux,
+                assiette_ticc * tarifs_reduits.aeronautique_naval,
+                assiette_ticc * tarifs_reduits.doubles_usages,
                 etablissement(
                     "taxe_interieure_taxation_consommation_charbon_seqe",
                     period,
@@ -263,7 +287,7 @@ class taxe_interieure_taxation_consommation_charbon_concurrence_internationale(
     def formula_2007_01_01(etablissement, period, parameters):
         # faut changer la date après
         assiette_ticc = etablissement("assiette_ticc", period)
-        return assiette_ticc * parameters(period).energies.charbon.taux_reduit_concurrence_internationale
+        return assiette_ticc * parameters(period).energies.charbon.accise.tarifs_reduits.intensive_energie_indirect_SEQE
 
 
 class taxe_interieure_taxation_consommation_charbon_seqe(Variable):
@@ -276,7 +300,7 @@ class taxe_interieure_taxation_consommation_charbon_seqe(Variable):
     def formula_2007_01_01(etablissement, period, parameters):
         # faut changer la date après
         assiette_ticc = etablissement("assiette_ticc", period)
-        return assiette_ticc * parameters(period).energies.charbon.taux_reduit_seqe
+        return assiette_ticc * parameters(period).energies.charbon.accise.tarifs_reduits.intensive_energie_SEQE
 
 
 class taxe_interieure_taxation_consommation_charbon_taux_normal(Variable):
