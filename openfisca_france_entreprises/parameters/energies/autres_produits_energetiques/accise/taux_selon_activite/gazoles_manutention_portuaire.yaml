@@ -2,3 +2,6 @@ description:
 values:
   2023-01-01:
     value: 3.86
+
+metadata:
+  ipp_csv_id: accise_gazoles_ports

@@ -8,3 +8,6 @@ values:
     value: 2.79
   2025-01-01:
     value: 4.39
+
+metadata:
+  ipp_csv_id: accise_charbons_seqe

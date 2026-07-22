@@ -7,6 +7,8 @@ values:
   2025-01-01:
     value: 30.8
 
+metadata:
+  ipp_csv_id: accise_gazoles_travaux_statiques
 #Toutefois, le tarif est réduit à 30,8 € par mégawattheure pour les produits de la catégorie
 #fiscale des gazoles consommés pour les besoins des moteurs qui réalisent des travaux
 #statiques aux fins de la réalisation d'activités économiques et des moteurs de propulsion

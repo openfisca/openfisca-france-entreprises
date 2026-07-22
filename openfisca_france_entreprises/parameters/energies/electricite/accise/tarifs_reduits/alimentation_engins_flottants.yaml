@@ -3,4 +3,6 @@ values:
   2022-01-01:
     value: 0.5
 
+metadata:
+  ipp_csv_id: accise_electricite_engins_flottants
 # L312-48,

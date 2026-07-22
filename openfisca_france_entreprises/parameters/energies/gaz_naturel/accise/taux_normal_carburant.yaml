@@ -2,3 +2,6 @@ description: taux s'applique au gaz naturel carburant depuis 2022
 values:
   2022-01-01:
     value: 5.23
+
+metadata:
+  ipp_csv_id: accise_normale_gaz_naturel_carburants

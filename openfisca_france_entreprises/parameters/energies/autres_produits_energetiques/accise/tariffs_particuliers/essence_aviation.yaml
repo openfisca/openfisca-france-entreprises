@@ -4,3 +4,6 @@ values:
     value: 75.701
   2024-01-01:
     value: null
+
+metadata:
+  ipp_csv_id: accise_particulier_essence_aviation

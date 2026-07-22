@@ -8,3 +8,5 @@ values:
 
   2022-01-01:
     value: null
+metadata:
+  ipp_csv_id: ticfe_electrointensive_3kwh_plus

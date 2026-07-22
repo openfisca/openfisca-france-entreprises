@@ -2,3 +2,6 @@ description:
 values:
   2022-01-01:
     value: 0.54
+
+metadata:
+  ipp_csv_id: accise_gaz_naturel_comb_agricoles

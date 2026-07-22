@@ -2,3 +2,6 @@ description:
 values:
   2022-01-01:
     value: 39.19
+
+metadata:
+  ipp_csv_id: accise_gazoles_transport_collectif

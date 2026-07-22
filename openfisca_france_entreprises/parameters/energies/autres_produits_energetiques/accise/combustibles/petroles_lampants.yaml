@@ -2,3 +2,6 @@ description:
 values:
   2022-01-01:
     value: 15.686
+
+metadata:
+  ipp_csv_id: accise_normale_petroles_lampants
