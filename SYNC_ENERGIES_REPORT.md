@@ -1,4 +1,124 @@
-> ## ⏸️ REPRISE — où on en est (mis à jour 2026-07-17)
+# ⏸️ REPRISE AU 2026-07-22 — à lire en premier
+
+Ce bloc remplace l'état décrit plus bas, qui date du 17 juillet et n'est conservé que pour
+l'historique des décisions. **Tout ce qui suit est à jour et suffit pour reprendre sur une
+autre machine** : aucune information nécessaire ne réside ailleurs que dans les dépôts.
+
+## Dépôts et branches
+
+| dépôt | branche | état |
+|---|---|---|
+| `openfisca-france-entreprises` | `sync/energies-no-regret` | travail de synchronisation, **poussée** |
+| `openfisca-france-entreprises` | `assets/agregats-tic` | agrégats fiscaux TIC pour un collègue, **poussée** |
+| `baremes-ipp-yaml` | `energies` | corrections amont, **poussée** |
+
+Le barème est la source de vérité (chaque valeur adossée à une référence Légifrance).
+Racine énergies du barème : `parameters/taxation_indirecte/energies`.
+
+⚠️ **Un worktree git local avait été créé** (`../baremes-ipp-yaml-energies`, détaché sur
+`energies`) pour lire le barème pendant que la copie principale servait à d'autres travaux.
+**Il n'existe pas sur une autre machine.** Pour le recréer si besoin :
+`git worktree add --detach ../baremes-ipp-yaml-energies energies`. Sinon, lire simplement
+le barème depuis sa copie principale, branche `energies`.
+
+Troisième dépôt utile : `openfisca-france-indirect-taxation`, branche `energies_migration`.
+Il modélise la **réfaction corse** (fichier mal nommé `refraction_corse_ticpe.yaml` : le terme
+juridique exact est *réfaction*) et documente dans `ENERGIES_MIGRATION_NOTES.md` une
+réconciliation barème/OFFIT qui recoupe ces travaux.
+
+## Objectif final
+
+À terme, OpenFisca doit **appeler directement le barème** plutôt que recopier ses paramètres.
+L'arbre actuel ne peut pas être branché tel quel dessus : voir « Ce qui bloque la référence
+directe » plus bas.
+
+## Décisions permanentes
+
+1. Architecture **hybride** : noms plats côté OpenFisca, mais découpage avant/après réforme
+   CIBS du barème (clôture `null` au 2022-01-01, lecture de `accise/` ensuite).
+2. **Élaguer OpenFisca et le repeupler depuis le barème** plutôt que maintenir des paramètres
+   propres non vérifiables.
+3. Corriger les défauts du barème **dans les deux dépôts**, pas seulement en aval.
+4. **Préférer la duplication des formules à la factorisation** : une formule doit se lire comme
+   un instantané du droit à sa date.
+5. Tarifs réduits à zéro : **les paramétrer** depuis le barème plutôt que coder `return 0`.
+
+## Travaux terminés
+
+Côté barème (branche `energies`) : suppression du découpage territorial `metropole`/`drom` en
+premier nœud ; correction de l'unité `currency_per_hectoliter` sur onze tarifs gaz et charbon
+exprimés en euros par MWh ; identifiants des six paramètres TIRUERT qui partageaient tous
+`ticgn_taux` ; libellés du tarif réduit charbons SEQE recopiés de son voisin indirect.
+
+Côté OpenFisca (branche `sync/energies-no-regret`, dans l'ordre) : corrections « sans regret » ;
+élagage des doublons et du code mort ; réforme CIBS pour le gaz et le charbon, puis pour la TICPE
+et les électro-intensifs, puis scission `accise/` de l'électricité ; clôture de la TGAP en 2019 et
+import des paramètres TIRUERT en données seules ; fusion des deux arbres de majoration régionale
+super et reconstruction de la Corse ; indexation des tarifs TCFE et incorporation des taxes locales
+à l'accise ; abrogation du tarif concurrence internationale en 2024 ; attribution de 33 `ipp_csv_id`
+repris du barème ; paramétrage des tarifs réduits charbon puis gaz naturel.
+
+Défauts vivants corrigés en cours de route, dont aucun n'était détecté par les tests : un appel mort
+`etablissement("", period)` qui cassait tout le calcul charbon ; un appel à une classe commentée qui
+cassait le chemin gaz après 2022 ; le tarif concurrence internationale, abrogé en 2024, encore
+appliqué au gaz, soit un dixième du montant dû ; les tarifs TCFE figés depuis 2011, sous-estimant
+TCCFE et TDCFE de 2019 à 2022 ; le tarif agricole gaz carburant appliqué à l'assiette combustible.
+
+## PROCHAINE ACTION — reprendre ici
+
+Passe **C1b**, paramétrage des tarifs réduits à zéro. Charbon et gaz sont faits. Restent :
+
+**Électricité (4 tarifs, analyse déjà faite).** Le barème porte quatre tarifs à zéro sous
+`electricite/accise/tarifs_reduits` : `doubles_usages`, `fabrication_mineraux`,
+`production_biens_intensive`, `production_navires`. Les quatre variables d'activité existent côté
+OpenFisca sous d'autres noms : `electricite_double_usage`,
+`electricite_fabrication_produits_mineraux_non_metalliques`,
+`electricite_production_biens_electro_intensive`, `electricite_production_a_bord`.
+Il restait à localiser la formule CIBS de `taxe_accise_electricite` (classe ligne 370 de
+`taxation_electricite.py`) et à y remplacer la branche `condition_exoneration` renvoyant zéro par
+une branche par activité lisant son tarif, sur le modèle de ce qui a été fait pour le charbon.
+
+**Autres produits énergétiques (44 tarifs).** Le plus gros morceau, non entamé.
+`taxation_autres_produits_energetiques.py` fait 3 054 lignes et vingt formules ; quatre branches y
+renvoient zéro. À évaluer avant de se lancer.
+
+Méthode éprouvée sur charbon et gaz : importer les fichiers du barème dans
+`<produit>/accise/tarifs_reduits/`, écrire les `index.yaml`, remplacer la condition unique par une
+branche par activité, puis **vérifier par calcul effectif** que chaque exonération donne toujours
+zéro de part et d'autre des dates charnières — les tests seuls ne suffisent pas, ils n'ont détecté
+aucun des cinq défauts vivants ci-dessus.
+
+## Ce qui bloque la référence directe
+
+- OpenFisca stocke les majorations régionales en **écart** (barème moins 1,77 pour le super, moins
+  1,15 pour le gazole) là où le barème stocke des valeurs absolues.
+- Les dates TICPE sont normalisées côté OpenFisca (`AAAA-01-11` → `AAAA-01-01`), et des marqueurs
+  `1993-01-01: null` y sont ajoutés.
+- **98 paramètres OpenFisca n'ont pas d'`ipp_csv_id`**, seule clé de jointure stable. Dont les
+  52 régions postérieures à 2016 et les seuils propres à la modélisation, qui n'ont pas
+  d'équivalent au barème et demandent soit des identifiants inventés, soit un ajout au barème.
+- Reste à décider **comment** OpenFisca consommerait le barème : sous-module git, dépendance
+  versionnée, ou paquet `.openfisca/openfisca_baremes_ipp` déjà présent dans le dépôt barème.
+
+## Décisions en attente d'un arbitrage juridique
+
+- `manutention_portuaire` électricité : barème au 2023-01-01, OpenFisca au 2024-01-01, le barème
+  étant lui-même incohérent sur ce point.
+- TICGN 2014 : le barème date du 2014-04-01, mais le modèle raisonne en périodes annuelles ;
+  adopter cette date basculerait toute l'année 2014 sur le tarif antérieur.
+- TICC : trois dates concurrentes, 2007-01-01 côté modèle, 2007-06-01 côté barème, 2007-07-01 dans
+  l'article Légifrance que les deux citent.
+- Abrogations TICPE hors CIBS (2019, 2020, 2021) : même question infra-annuelle.
+- **Réfaction corse** : mécanisme réel modélisé nulle part, ni dans OpenFisca ni dans le barème.
+
+## Défauts du barème connus et non corrigés
+
+Six tarifs réduits GPL combustible reprennent les identifiants de leurs équivalents carburants ;
+`tccfe_coef_max` est partagé par trois fichiers, dont les deux DROM.
+
+---
+
+> ## ⏸️ Historique — état au 2026-07-17
 > **Phase terminée :** comparaison + reporting des 5 domaines (§0–§5 ci-dessous). Aucun fichier modifié à ce jour.
 > **Décisions prises (via l'utilisateur) :**
 > 1. Architecture cible = **Hybride** : garder les noms plats OF, mais adopter le découpage propre pré-2022/post-2022 des barèmes (ajouter les `null` de clôture au 2022-01-01, lire `accise/` après 2022). → passe *structurelle* ultérieure.
