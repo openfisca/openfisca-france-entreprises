@@ -1,4 +1,56 @@
-# ⏸️ REPRISE AU 2026-07-22 — à lire en premier
+# ⏸️ REPRISE AU 2026-07-23 — à lire en premier
+
+Tout est **commité et poussé** sur `sync/energies-no-regret` (jusqu'à `289900e`). Arbre de travail
+propre. Reprendre ici ; le bloc du 2026-07-22 ci-dessous reste valable pour le contexte.
+
+## Fait et poussé depuis le 2026-07-22
+- **Électricité — tarifs réduits à zéro** paramétrés (`b6f5d4e`).
+- **Autres produits — exonérations sectorielles** paramétrées + tarif incendie/secours + date
+  extraction alignée + **majorations régionales pré-2016 en valeurs absolues** (`8eb5cfb`).
+- **Doc arbitrages** `ARBITRAGES_JURIDIQUES_ENERGIES.md` créée (`476d8bb`), plusieurs décisions remplies.
+- **Majorations régionales post-2016 en absolu** (`dc30f29`) puis **fusion depuis_2017/depuis_2022**
+  en un palier unique, `formula_2022` supprimées (`378afc5`). Tout est neutre en taxe (base_nationale
+  soustraite par les formules), sauf les divergences pré-2016 signalées ci-dessous.
+- **Arbitrages appliqués** (`289900e`) : référence TICC corrigée (LFR 2006 art. 36 III) ; manutention
+  portuaire électricité ramenée à 2023-01-01 (0,5 €/MWh, au lieu de 2024).
+
+Correspondance avec le plan utilisateur : **item 1 ✅, item 3 ✅ (palier pré-2016 + post-2016), item 5
+✅ (conversion + fusion + fichiers barème générés), item 4 partiel** (#1, #3 faits).
+
+## Artéfacts hors dépôt OF
+- **Fichiers barème à remonter** (régions post-2016, valeurs absolues, `ipp_csv_id` INSEE proposés) :
+  `../baremes-ipp-yaml-energies/_propositions_regions_post_2016/` (+ README). **Non commités** (worktree
+  détaché) — les déplacer vers une branche du dépôt barème pour en faire une PR avant que le worktree
+  ne soit supprimé.
+- **Worktree barème** : recréer avec `git worktree add --detach ../baremes-ipp-yaml-energies origin/energies`
+  (⚠️ `origin/energies`, PAS `energies` local qui est périmé — cf. mémoire du projet).
+
+## Issue OFF-E à ouvrir
+Changements de taxe dus à l'adoption des valeurs absolues du barème (majoration régionale, cellules
+divergentes à faire vérifier sur Légifrance) : super {rhone_alpes 2010, limousin 2010, poitou_charentes
+2010/2014/2015} ; gazole {rhone_alpes 2010, limousin 2010, corse 2010/2014-16, poitou_charentes
+2010/2014/2015}. Détail dans le message du commit `8eb5cfb`. Bug latent connexe : format de code
+département incohérent (`2A` vs `02A`) entre formules → la Corse peut tomber sur `default=0`.
+
+## PROCHAINE ACTION — reprendre ici (fin item 4, puis item 2)
+1. **#6 Réfaction corse** (décidé) : créer les paramètres OF **et** les fichiers barème (réfaction 1,0
+   à partir de 2002 pour SP95/98, à partir de 2019 pour SP95-E10 ; 1,125 à partir de 2022) — **sans
+   coder les formules**.
+2. **#5 bis Extraction** (décidé, 2023) : passer l'indicateur `gazoles_extraction_mineraux_industriels`
+   de `formula_2024` à `formula_2023`, et **scinder une `formula_2023`** dans
+   `taxe_interieure_consommation_sur_produits_energetiques` pour router l'extraction dès 2023 sans
+   `ParameterNotFound` en 2022.
+3. **#4 Intervention** (2023-07-12) et **#2 TICGN 2014**, **#5 abrogations TICPE** : purement
+   infra-annuels. Décision d'architecture en attente — **passage des variables de conso en `MONTH` +
+   `set_input_divide_by_period`** : correct mais c'est un chantier à part (sa propre branche/PR), voir
+   la question posée dans la doc arbitrages #2. Recommandation : rester en **convention annuelle** pour
+   la synchro ; traiter le mensuel comme projet dédié ultérieur.
+4. Ensuite **item 2 (TIRUERT)** : modélisation (données déjà importées) ; **item 6 (restructuration par
+   grade / référence directe)** réservé à une autre branche+PR.
+
+---
+
+# ⏸️ REPRISE AU 2026-07-22
 
 Ce bloc remplace l'état décrit plus bas, qui date du 17 juillet et n'est conservé que pour
 l'historique des décisions. **Tout ce qui suit est à jour et suffit pour reprendre sur une
