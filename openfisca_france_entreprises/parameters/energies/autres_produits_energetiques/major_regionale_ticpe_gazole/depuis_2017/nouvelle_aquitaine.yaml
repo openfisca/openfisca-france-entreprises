@@ -1,5 +1,7 @@
 description:
 values:
   2017-01-01:
-    value:  2.5
+    value: 2.5
 
+  2022-01-01:
+    value: 2.5

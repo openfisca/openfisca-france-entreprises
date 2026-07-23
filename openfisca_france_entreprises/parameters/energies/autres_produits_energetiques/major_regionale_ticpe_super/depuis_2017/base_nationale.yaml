@@ -2,6 +2,8 @@ description: Composante nationale de la majoration régionale TICPE super (depui
 values:
   2017-01-01:
     value: 1.77
+  2022-01-01:
+    value: 1.99125
 metadata:
   unit: currency
   short_label: Base nationale super depuis_2017

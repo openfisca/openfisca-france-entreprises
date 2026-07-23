@@ -2,6 +2,8 @@ description: Composante nationale de la majoration régionale TICPE gazole (depu
 values:
   2017-01-01:
     value: 1.15
+  2022-01-01:
+    value: 1.15
 metadata:
   unit: currency
   short_label: Base nationale gazole depuis_2017
