@@ -425,13 +425,8 @@ class taxe_accise_electricite(Variable):
             period,
         )
 
-        condition_exoneration = _or(
-            electricite_production_a_bord,
-            electricite_double_usage,
-            electricite_fabrication_produits_mineraux_non_metalliques,
-            electricite_production_biens_electro_intensive,
-            electricite_production_electricite,
-        )
+        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
+        tarifs_reduits = parameters(period).energies.electricite.accise.tarifs_reduits
         condition_aerodrome = _and(
             electricite_exploitation_aerodrome,
             electro_intensite
@@ -441,7 +436,11 @@ class taxe_accise_electricite(Variable):
         )
         return select(
             [
-                condition_exoneration,
+                electricite_production_a_bord != 0,
+                electricite_double_usage != 0,
+                electricite_fabrication_produits_mineraux_non_metalliques != 0,
+                electricite_production_biens_electro_intensive != 0,
+                electricite_production_electricite != 0,
                 electricite_transport_guide != 0,
                 electricite_transport_collectif_personnes != 0,
                 electricite_alimentation_a_quai != 0,
@@ -451,6 +450,11 @@ class taxe_accise_electricite(Variable):
                 electricite_centres_de_stockage_donnees != 0,
             ],
             [
+                assiette_taxe_electricite * tarifs_reduits.production_navires,
+                assiette_taxe_electricite * tarifs_reduits.doubles_usages,
+                assiette_taxe_electricite * tarifs_reduits.fabrication_mineraux,
+                assiette_taxe_electricite * tarifs_reduits.production_biens_intensive,
+                # électricité utilisée pour produire de l'électricité : hors champ (pas de tarif au barème)
                 0,
                 etablissement("taxe_electricite_transport_guide", period),
                 etablissement("taxe_electricite_transport_collectif_personnes", period),
@@ -522,16 +526,15 @@ class taxe_accise_electricite(Variable):
             period,
         )
 
-        condition_exoneration = _or(
-            electricite_production_a_bord,
-            electricite_double_usage,
-            electricite_fabrication_produits_mineraux_non_metalliques,
-            electricite_production_biens_electro_intensive,
-            electricite_production_electricite,
-        )
+        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
+        tarifs_reduits = parameters(period).energies.electricite.accise.tarifs_reduits
         return select(
             [
-                condition_exoneration,
+                electricite_production_a_bord != 0,
+                electricite_double_usage != 0,
+                electricite_fabrication_produits_mineraux_non_metalliques != 0,
+                electricite_production_biens_electro_intensive != 0,
+                electricite_production_electricite != 0,
                 electricite_transport_guide != 0,
                 electricite_transport_collectif_personnes != 0,
                 electricite_manutention_portuaire != 0,
@@ -542,6 +545,11 @@ class taxe_accise_electricite(Variable):
                 electricite_centres_de_stockage_donnees != 0,
             ],
             [
+                assiette_taxe_electricite * tarifs_reduits.production_navires,
+                assiette_taxe_electricite * tarifs_reduits.doubles_usages,
+                assiette_taxe_electricite * tarifs_reduits.fabrication_mineraux,
+                assiette_taxe_electricite * tarifs_reduits.production_biens_intensive,
+                # électricité utilisée pour produire de l'électricité : hors champ (pas de tarif au barème)
                 0,
                 etablissement("taxe_electricite_transport_guide", period),
                 etablissement("taxe_electricite_transport_collectif_personnes", period),
@@ -626,16 +634,15 @@ class taxe_accise_electricite(Variable):
             period,
         )
 
-        condition_exoneration = _or(
-            electricite_production_a_bord,
-            electricite_double_usage,
-            electricite_fabrication_produits_mineraux_non_metalliques,
-            electricite_production_biens_electro_intensive,
-            electricite_production_electricite,
-        )
+        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
+        tarifs_reduits = parameters(period).energies.electricite.accise.tarifs_reduits
         return select(
             [
-                condition_exoneration,
+                electricite_production_a_bord != 0,
+                electricite_double_usage != 0,
+                electricite_fabrication_produits_mineraux_non_metalliques != 0,
+                electricite_production_biens_electro_intensive != 0,
+                electricite_production_electricite != 0,
                 electricite_transport_guide != 0,
                 electricite_transport_collectif_personnes != 0,
                 electricite_manutention_portuaire != 0,
@@ -648,6 +655,11 @@ class taxe_accise_electricite(Variable):
                 electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques != 0,
             ],
             [
+                assiette_taxe_electricite * tarifs_reduits.production_navires,
+                assiette_taxe_electricite * tarifs_reduits.doubles_usages,
+                assiette_taxe_electricite * tarifs_reduits.fabrication_mineraux,
+                assiette_taxe_electricite * tarifs_reduits.production_biens_intensive,
+                # électricité utilisée pour produire de l'électricité : hors champ (pas de tarif au barème)
                 0,
                 etablissement("taxe_electricite_transport_guide", period),
                 etablissement("taxe_electricite_transport_collectif_personnes", period),

@@ -11,3 +11,11 @@ metadata:
   - alimentation_engins_flottants
   - alimentation_aeronefs_activites_economiques
   - alimentation_aeronefs_activites_non_economiques
+  - doubles_usages
+  - fabrication_mineraux
+  - production_biens_intensive
+  - production_navires
+documentation: |-
+  Les tarifs à zéro correspondent aux exonérations prévues par le Code des impositions sur les
+  biens et services. Le modèle les codait auparavant en dur dans les formules ; ils sont désormais
+  portés par des paramètres, de sorte qu'un changement de tarif relève de la donnée et non du code.
