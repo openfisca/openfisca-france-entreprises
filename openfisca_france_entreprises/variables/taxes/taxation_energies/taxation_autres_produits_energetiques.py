@@ -2513,7 +2513,9 @@ class ticpe_majoration_regionale_gazole(Variable):
             p.paca,
             p.corse,
         ]
-        return select(conditions, values, default=0)
+        # Valeurs absolues ; on retranche la composante nationale déjà incluse dans le tarif.
+        base = p.base_nationale
+        return select(conditions, [v - base for v in values], default=0)
 
     def formula_2022_01_01(etablissement, period, parameters):
         departement = etablissement("departement", period)
@@ -2602,7 +2604,9 @@ class ticpe_majoration_regionale_gazole(Variable):
             p.paca,
             p.corse,
         ]
-        return select(conditions, values, default=0)
+        # Valeurs absolues ; on retranche la composante nationale déjà incluse dans le tarif.
+        base = p.base_nationale
+        return select(conditions, [v - base for v in values], default=0)
 
 
 class ticpe_majoration_regionale_supercarburant_e10(Variable):
@@ -2757,7 +2761,9 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
             p.paca,
             p.corse,
         ]
-        return select(conditions, values, default=0)
+        # Valeurs absolues ; on retranche la composante nationale déjà incluse dans le tarif.
+        base = p.base_nationale
+        return select(conditions, [v - base for v in values], default=0)
 
     def formula_2022_01_01(etablissement, period, parameters):
         departement = etablissement("departement", period)
@@ -2846,7 +2852,9 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
             p.paca,
             p.corse,
         ]
-        return select(conditions, values, default=0)
+        # Valeurs absolues ; on retranche la composante nationale déjà incluse dans le tarif.
+        base = p.base_nationale
+        return select(conditions, [v - base for v in values], default=0)
 
 
 class ticpe_majoration_regionale_supercarburant_95_98(Variable):
@@ -3001,7 +3009,9 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
             p.paca,
             p.corse,
         ]
-        return select(conditions, values, default=0)
+        # Valeurs absolues ; on retranche la composante nationale déjà incluse dans le tarif.
+        base = p.base_nationale
+        return select(conditions, [v - base for v in values], default=0)
 
     def formula_2022_01_01(etablissement, period, parameters):
         departement = etablissement("departement", period)
@@ -3090,4 +3100,6 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
             p.paca,
             p.corse,
         ]
-        return select(conditions, values, default=0)
+        # Valeurs absolues ; on retranche la composante nationale déjà incluse dans le tarif.
+        base = p.base_nationale
+        return select(conditions, [v - base for v in values], default=0)
