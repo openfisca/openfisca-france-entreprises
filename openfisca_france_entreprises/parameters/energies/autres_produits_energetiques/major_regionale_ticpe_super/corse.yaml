@@ -1,38 +1,14 @@
 description: Majoration régionale TICPE Super en Corse
 values:
   2007-01-01:
-    value: -1.77
+    value: 0
   2009-01-01:
-    value: -0.76
+    value: 1.01
   2010-01-01:
-    value: -1.77
-  2013-01-01:
-    value: -2.77
-  2014-01-01:
-    value: -1.77
+    value: 0
+  2017-01-01:
+    value: 0.77
 metadata:
   short_label: Corse
   ipp_csv_id: maj_ticpe_super_cor
   unit: currency
-documentation: |-
-  Valeurs reconstruites à partir du barème IPP et de la convention d'écart utilisée par ce dossier.
-  Le barème donne la majoration en valeur absolue : 0 en 2007, 1.01 en 2009, 0 en 2010, puis 0.77 en
-  2017 (portée par depuis_2017/corse.yaml). Ce dossier stocke un écart par rapport au tarif de première
-  tranche, égal à 1.77, sauf en 2013 où il vaut 2.77. Convention vérifiée sur l'Alsace, la Bretagne et
-  PACA, dont les écarts se déduisent exactement des valeurs du barème.
-  D'où 0 - 1.77 = -1.77 en 2007, 1.01 - 1.77 = -0.76 en 2009, puis le retour à -1.77 en 2010.
-
-  Les valeurs antérieures portaient deux défauts. En 2007 et 2009 elles étaient inférieures d'exactement
-  1.00 à la valeur du barème, soit le montant de la réfaction corse d'avant 2022 : ce mécanisme, distinct
-  de la majoration régionale, y avait été incorporé. À partir de 2011 elles plaçaient la Corse au plafond
-  national, alors que le barème l'y maintient à zéro jusqu'en 2017.
-
-  ATTENTION - la réfaction corse n'est modélisée nulle part, ni ici ni dans le barème.
-  C'est une minoration propre à la Corse, prévue à l'article 265 A bis du code des douanes puis à
-  l'article L312-41 du code des impositions sur les biens et services, d'un montant de 1.0 puis de 1.125
-  à compter de 2022. Elle se distingue selon le carburant, non par son montant mais par sa date d'entrée
-  en vigueur : 2002 pour les SP95 et SP98 (indice d'identification 11), 2019 seulement pour le SP95-E10
-  (indice 11 ter), créé par l'article 66 de la loi de finances pour 2019. C'est la seule différence
-  légale connue entre ces deux carburants, et elle ne relève pas de la majoration régionale.
-  Le dépôt openfisca-france-indirect-taxation la modélise, sous le nom mal orthographié
-  refraction_corse_ticpe. À reprendre, cf. SYNC_ENERGIES_REPORT.md.

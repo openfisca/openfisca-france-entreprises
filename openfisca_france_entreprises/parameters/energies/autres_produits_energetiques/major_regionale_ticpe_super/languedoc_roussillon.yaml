@@ -1,15 +1,11 @@
 description: Majoration régionale TICPE Super en Languedoc-Roussillon
 values:
   2007-01-01:
-    value: -0.49
+    value: 1.28
   2008-01-01:
-    value: 0
+    value: 1.77
   2011-01-01:
-    value: 0.73
-  2013-01-01:
-    value: -0.27
-  2014-01-01:
-    value: 0.73
+    value: 2.5
 metadata:
   short_label: Languedoc-Roussillon
   ipp_csv_id: maj_ticpe_super_l_r

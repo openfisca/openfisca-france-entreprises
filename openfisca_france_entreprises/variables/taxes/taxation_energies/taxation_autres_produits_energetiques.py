@@ -1977,6 +1977,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         c = p.carburants
         comb = p.combustibles
         part = p.tariffs_particuliers
+        t2 = p.tarifs_reduits
 
         # Variables utilisées comme conditions (booléen pour select)
         gazoles_transport_guide = etablissement("gazoles_transport_guide", period) != 0
@@ -1987,7 +1988,9 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         autres_produits_travaux_agricoles = (
             etablissement("autres_produits_travaux_agricoles_et_forestiers", period) != 0
         )
-        gazoles_extraction_mineraux = etablissement("gazoles_extraction_mineraux_industriels", period) != 0
+        # gazoles_extraction_mineraux_industriels : l'indicateur n'existe qu'à partir de 2024
+        # (formula_2024_01_01) et le tarif réduit correspondant ne commence qu'au 2023-01-01 au
+        # barème. La branche est donc inerte avant 2024 ; elle n'est portée que par formula_2024.
         gazoles_amenagement_pistes = (
             etablissement(
                 "gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux",
@@ -2012,7 +2015,6 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 gazoles_transport_taxi,
                 gazoles_transport_routier_marchandises,
                 autres_produits_travaux_agricoles,
-                gazoles_extraction_mineraux,
                 gazoles_amenagement_pistes,
                 intervention_incendie_secours,
             ],
@@ -2023,9 +2025,8 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 t.gazoles_transport_de_personnes_par_taxi,
                 t.gazoles_transport_routier_de_marchandises,
                 t.gazoles_travaux_agricoles,
-                t.gazoles_extraction_de_mineraux_industriels,
                 t.gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux,
-                0,
+                t2.intervention_vehicules_incendie_secours,
             ],
             default=c.gazoles,
         )
@@ -2036,7 +2037,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 essence_transport_taxi,
             ],
             [
-                0,
+                t2.intervention_vehicules_incendie_secours,
                 t.essences_transport_de_personnes_par_taxi,
             ],
             default=c.essences,
@@ -2126,18 +2127,18 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             default=comb.petroles_lampants,
         )
 
-        condition_exoneration = _or(
-            etablissement("autres_produits_navigation_interieure", period) != 0,
-            etablissement("autres_produits_navigation_maritime", period) != 0,
-            etablissement("autres_produits_navigation_aerienne", period) != 0,
-            etablissement("autres_produits_double_usage", period) != 0,
-            etablissement(
-                "autre_produits_fabrication_produits_mineraux_non_metalliques",
-                period,
-            )
-            != 0,
-            etablissement("autres_produits_secteurs_aeronautique_et_naval", period) != 0,
+        # Exonérations sectorielles de l'accise (tarifs réduits à zéro). L'établissement est classé
+        # par code NAF ; s'il relève d'un secteur exonéré, l'ensemble de sa consommation de produits
+        # énergétiques est taxé au tarif réduit correspondant (nul à ce jour, mais lu au barème).
+        conso_totale = etablissement("consommation_autres_produits_energetiques_totale_mwh", period)
+        cond_navigation_interieure = etablissement("autres_produits_navigation_interieure", period) != 0
+        cond_navigation_maritime = etablissement("autres_produits_navigation_maritime", period) != 0
+        cond_navigation_aerienne = etablissement("autres_produits_navigation_aerienne", period) != 0
+        cond_double_usage = etablissement("autres_produits_double_usage", period) != 0
+        cond_fabrication_mineraux = (
+            etablissement("autre_produits_fabrication_produits_mineraux_non_metalliques", period) != 0
         )
+        cond_aeronautique_naval = etablissement("autres_produits_secteurs_aeronautique_et_naval", period) != 0
 
         total_calcule = (
             etablissement("consommation_gazoles_mwh", period)
@@ -2176,8 +2177,22 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         )
 
         return select(
-            [condition_exoneration],
-            [0],
+            [
+                cond_navigation_interieure,
+                cond_navigation_maritime,
+                cond_navigation_aerienne,
+                cond_double_usage,
+                cond_fabrication_mineraux,
+                cond_aeronautique_naval,
+            ],
+            [
+                conso_totale * t2.navigation_interieure,
+                conso_totale * t2.navigation_maritime,
+                conso_totale * t2.navigation_aerienne,
+                conso_totale * t2.doubles_usages,
+                conso_totale * t2.fabrication_mineraux,
+                conso_totale * t2.aeronautique_naval,
+            ],
             default=total_calcule,
         )
 
@@ -2189,6 +2204,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         c = p.carburants
         comb = p.combustibles
         part = p.tariffs_particuliers
+        t2 = p.tarifs_reduits
 
         gazoles_transport_guide = etablissement("gazoles_transport_guide", period) != 0
         gazoles_engins_travaux_statiques = etablissement("gazoles_engins_travaux_statiques", period) != 0
@@ -2239,7 +2255,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 t.gazoles_travaux_agricoles,
                 t.gazoles_extraction_de_mineraux_industriels,
                 t.gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux,
-                0,
+                t2.intervention_vehicules_incendie_secours,
             ],
             default=c.gazoles,
         )
@@ -2250,7 +2266,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 essence_transport_taxi,
             ],
             [
-                0,
+                t2.intervention_vehicules_incendie_secours,
                 t.essences_transport_de_personnes_par_taxi,
             ],
             default=c.essences,
@@ -2271,18 +2287,18 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         taux_fiouls_domestiques = comb.fiouls_domestiques
         taux_petrole_lampant = comb.petroles_lampants
 
-        condition_exoneration = _or(
-            etablissement("autres_produits_navigation_interieure", period) != 0,
-            etablissement("autres_produits_navigation_maritime", period) != 0,
-            etablissement("autres_produits_navigation_aerienne", period) != 0,
-            etablissement("autres_produits_double_usage", period) != 0,
-            etablissement(
-                "autre_produits_fabrication_produits_mineraux_non_metalliques",
-                period,
-            )
-            != 0,
-            etablissement("autres_produits_secteurs_aeronautique_et_naval", period) != 0,
+        # Exonérations sectorielles de l'accise (tarifs réduits à zéro). L'établissement est classé
+        # par code NAF ; s'il relève d'un secteur exonéré, l'ensemble de sa consommation de produits
+        # énergétiques est taxé au tarif réduit correspondant (nul à ce jour, mais lu au barème).
+        conso_totale = etablissement("consommation_autres_produits_energetiques_totale_mwh", period)
+        cond_navigation_interieure = etablissement("autres_produits_navigation_interieure", period) != 0
+        cond_navigation_maritime = etablissement("autres_produits_navigation_maritime", period) != 0
+        cond_navigation_aerienne = etablissement("autres_produits_navigation_aerienne", period) != 0
+        cond_double_usage = etablissement("autres_produits_double_usage", period) != 0
+        cond_fabrication_mineraux = (
+            etablissement("autre_produits_fabrication_produits_mineraux_non_metalliques", period) != 0
         )
+        cond_aeronautique_naval = etablissement("autres_produits_secteurs_aeronautique_et_naval", period) != 0
 
         total_calcule = (
             etablissement("consommation_gazoles_mwh", period)
@@ -2320,8 +2336,22 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         )
 
         return select(
-            [condition_exoneration],
-            [0],
+            [
+                cond_navigation_interieure,
+                cond_navigation_maritime,
+                cond_navigation_aerienne,
+                cond_double_usage,
+                cond_fabrication_mineraux,
+                cond_aeronautique_naval,
+            ],
+            [
+                conso_totale * t2.navigation_interieure,
+                conso_totale * t2.navigation_maritime,
+                conso_totale * t2.navigation_aerienne,
+                conso_totale * t2.doubles_usages,
+                conso_totale * t2.fabrication_mineraux,
+                conso_totale * t2.aeronautique_naval,
+            ],
             default=total_calcule,
         )
 
@@ -2391,7 +2421,10 @@ class ticpe_majoration_regionale_gazole(Variable):
             p.poitou_charentes,
             p.rhone_alpes,
         ]
-        return select(conditions, values, default=0)
+        # Les fichiers de région portent la valeur absolue du barème ; la contribution à la taxe
+        # est l'écart à la composante nationale déjà incluse dans le tarif national.
+        base = p.base_nationale
+        return select(conditions, [v - base for v in values], default=0)
 
     def formula_2017_01_01(etablissement, period, parameters):
         departement = etablissement("departement", period)
@@ -2632,7 +2665,10 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
             p.poitou_charentes,
             p.rhone_alpes,
         ]
-        return select(conditions, values, default=0)
+        # Les fichiers de région portent la valeur absolue du barème ; la contribution à la taxe
+        # est l'écart à la composante nationale déjà incluse dans le tarif national.
+        base = p.base_nationale
+        return select(conditions, [v - base for v in values], default=0)
 
     def formula_2017_01_01(etablissement, period, parameters):
         departement = etablissement("departement", period)
@@ -2873,7 +2909,10 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
             p.poitou_charentes,
             p.rhone_alpes,
         ]
-        return select(conditions, values, default=0)
+        # Les fichiers de région portent la valeur absolue du barème ; la contribution à la taxe
+        # est l'écart à la composante nationale déjà incluse dans le tarif national.
+        base = p.base_nationale
+        return select(conditions, [v - base for v in values], default=0)
 
     def formula_2017_01_01(etablissement, period, parameters):
         departement = etablissement("departement", period)

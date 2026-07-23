@@ -1,0 +1,23 @@
+description: Tarifs réduits de l'accise sur les autres produits énergétiques (exonérations sectorielles)
+metadata:
+  label_en: Reduced rates of excise duty on other energy products (sector exemptions)
+  order:
+  - navigation_interieure
+  - navigation_maritime
+  - navigation_aerienne
+  - doubles_usages
+  - fabrication_mineraux
+  - aeronautique_naval
+  - intervention_vehicules_incendie_secours
+documentation: |-
+  Tarifs à zéro correspondant aux exonérations sectorielles prévues par le Code des impositions
+  sur les biens et services. Le modèle les codait auparavant en dur dans les formules (return 0) ;
+  ils sont désormais portés par des paramètres, de sorte qu'un changement de tarif relève de la
+  donnée et non du code.
+
+  Ces paramètres sont volontairement agnostiques au grade de produit : le modèle applique une
+  exonération à l'échelle de l'établissement (classé par code NAF), là où le barème sépare chaque
+  exonération par grade (huiles légères / moyennes / lourdes / hydrocarbures gazeux liquéfiés) et
+  par usage (carburant / combustible). Les tarifs valant tous zéro, l'agrégat est numériquement
+  exact. Faute d'équivalent unique au barème, aucun ipp_csv_id n'est attaché ici : la jonction
+  fine par grade relève de la passe de restructuration par grade (référence directe au barème).

@@ -1107,3 +1107,38 @@ class autres_produits_intervention_vehicules_services_incendie_secours(Variable)
     def formula_2022_01_01(etablissement, period):
         apet = etablissement("apet", period)
         return apet == naf._84_25Z  # Services du feu et de secours
+
+
+class consommation_autres_produits_energetiques_totale_mwh(Variable):
+    value_type = float
+    unit = "MWh"
+    entity = Etablissement
+    label = "Consommation totale de produits énergétiques (hors électricité, gaz naturel et charbon), en MWh"
+    definition_period = YEAR
+
+    def formula_2022_01_01(etablissement, period):
+        """Somme des consommations de tous les produits pétroliers et assimilés.
+
+        Sert d'assiette à l'exonération sectorielle de l'accise : un établissement exonéré
+        (navigation, doubles usages, fabrication de minéraux, secteurs aéronautique et naval)
+        voit l'ensemble de sa consommation taxé au tarif réduit correspondant. Les termes
+        reprennent ceux de la formule taxe_interieure_consommation_sur_produits_energetiques.
+        """
+        composants = [
+            "consommation_gazoles_mwh",
+            "consommation_carbureactuers_mwh",
+            "consommation_essences_mwh",
+            "consommation_gaz_de_petrole_liquefies_carburant_mwh",
+            "consommation_fiouls_lourds_mwh",
+            "consommation_fiouls_domestiques_mwh",
+            "consommation_petroles_lampants_mwh",
+            "consommation_gaz_de_petrole_liquefies_combustible_mwh",
+            "consommation_ethanol_diesel_ed95_mwh",
+            "consommation_gazole_b100_mwh",
+            "consommation_essence_aviation_mwh",
+            "consommation_essence_sp95_e10_mwh",
+            "consommation_superethanol_e85_mwh",
+            "consommation_grisou_et_gaz_assimiles_combustible_mwh",
+            "consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh",
+        ]
+        return sum(etablissement(nom, period) for nom in composants)
