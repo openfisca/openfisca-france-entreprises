@@ -6,6 +6,7 @@ from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.taxes.formula_helpers import (
     _and,
     _or,
+    tarif_moyen_annuel,
 )
 
 
@@ -153,7 +154,10 @@ class taxe_contribution_service_public_electricite(Variable):
     def formula_2002_01_01(etablissement, period, parameters):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
 
-        return assiette_taxe_electricite * parameters(period).energies.electricite.cspe
+        return assiette_taxe_electricite * tarif_moyen_annuel(
+            period,
+            lambda mois: parameters(mois).energies.electricite.cspe,
+        )
 
     # condition d'application est pareil jusqu'à 2011
 
@@ -840,7 +844,10 @@ class taxe_electricite_manutention_portuaire(Variable):
 
     def formula_2022_01_01(etablissement, period, parameters):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-        taux = parameters(period).energies.electricite.ticfe.manutention_portuaire
+        taux = tarif_moyen_annuel(
+            period,
+            lambda mois: parameters(mois).energies.electricite.ticfe.manutention_portuaire,
+        )
         return assiette_taxe_electricite * taux
 
 
@@ -961,10 +968,17 @@ class taxe_accise_electricite_taux_normal(Variable):
             & (amperage >= ticfe.categorie_fiscale_petite_et_moyenne_entreprise)
             & (amperage < ticfe.categorie_fiscale_haut_puissance)
         )
-        tn = parameters(period).energies.electricite.accise.tarifs_normaux
-        taxe_36 = assiette_taxe_electricite * tn.menages_et_assimiles
-        taxe_36_250 = assiette_taxe_electricite * tn.pme_activites_economiques
-        taxe_haut = assiette_taxe_electricite * tn.haute_puissance  # > 250 kVA
+
+        def tn(nom):
+            # Les tarifs normaux d'accise changent en cours d'année (2025-02-01).
+            return tarif_moyen_annuel(
+                period,
+                lambda mois: getattr(parameters(mois).energies.electricite.accise.tarifs_normaux, nom),
+            )
+
+        taxe_36 = assiette_taxe_electricite * tn("menages_et_assimiles")
+        taxe_36_250 = assiette_taxe_electricite * tn("pme_activites_economiques")
+        taxe_haut = assiette_taxe_electricite * tn("haute_puissance")  # > 250 kVA
         return select([cond_36, cond_250], [taxe_36, taxe_36_250], default=taxe_haut)
 
 
