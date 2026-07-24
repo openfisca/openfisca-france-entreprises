@@ -170,8 +170,13 @@
     consommation_emulsion_eau_gazoles_sous_conditions_hectolitre : 1000 #10.33
     consommation_emulsion_eau_gazoles_autres_hectolitre : 1000 #36.94
 
+  absolute_error_margin: 0.01
   output:
-    taxe_interieure_consommation_sur_produits_energetiques: 1037420
+    # 2026-07 (périodes) : le tarif du gazole « carburants sous conditions » bondit à 37,68 pour le
+    # seul mois de juillet 2020, avant de revenir à 18,82 au 1er août. Lu au 1er janvier, ce pic
+    # était invisible. En moyenne mensuelle le tarif vaut 20,39167 (onze mois à 18,82, un à 37,68),
+    # soit +1 571,67 € pour 1 000 hL : l'attendu passe de 1 037 420 à 1 038 991,67.
+    taxe_interieure_consommation_sur_produits_energetiques: 1038991.67
 #10.08 + 15.25 + 67.52 + 45.49 + 68.29 + 2.5 + 71.56 + 66.29 + 2.5 + 39.79 + 68.51 + 67.52 +
 #15.25 +  51.28 + 39.79 + 51.28 + 51.28 + 18.82 + 15.62 + 59.40 + 2.5 + 13.95 + 20.71 + 6.63 +  20.71 +  6.63 + 20.71+
 # 11.83 + 6.43 + 11.83
