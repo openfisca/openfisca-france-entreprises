@@ -20,12 +20,16 @@
     consommation_grisou_et_gaz_assimiles_combustible_mwh : 1000
     consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh : 1000
 
+  absolute_error_margin: 0.01
   output:
-    taxe_interieure_consommation_sur_produits_energetiques : 436848
-#59400+76826+42131+16208+12555+15620+15686+5189+12157+12905+75701+74576+17894
+    taxe_interieure_consommation_sur_produits_energetiques : 436835.33
+#59400+76826+42131+16208+12555+15620+15686+5189+12144.33+12905+75701+74576+17894
 # 2026-07 : le tarif normal des carburéacteurs en 2022 valait 76.826 dans les paramètres
 # (valeur du tarif essences, recopiée par erreur). Le barème IPP donne 42.131.
 # L'attendu passe donc de 471543 à 436848 (1000 hL x 34.695).
+# 2026-07 (périodes) : le tarif de l'éthanol-diesel ED95 baisse de 12.157 à 12.119 au 18 août 2022.
+# Il est désormais appliqué en moyenne mensuelle (8 mois à 12.157, 4 à 12.119 = 12.14433) au lieu
+# de la seule valeur du 1er janvier : le terme ED95 passe de 12157 à 12144.33, d'où 436835.33.
 
 #
 - name: "test 2023"

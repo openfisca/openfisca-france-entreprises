@@ -13,6 +13,7 @@ from openfisca_france_entreprises.variables.taxes.formula_helpers import (
     _dep_in,
     _not,
     _or,
+    tarif_moyen_annuel,
 )
 
 
@@ -2024,7 +2025,14 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 t.gazoles_transport_collectif_routier_de_personnes,
                 t.gazoles_transport_de_personnes_par_taxi,
                 t.gazoles_transport_routier_de_marchandises,
-                t.gazoles_travaux_agricoles,
+                tarif_moyen_annuel(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.accise.taux_selon_activite.gazoles_travaux_agricoles
+                    ),
+                ),
                 t.gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux,
                 t2.intervention_vehicules_incendie_secours,
             ],
@@ -2159,7 +2167,15 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 period,
             )
             * taux_gaz_de_petrole_liquefies_combustible
-            + etablissement("consommation_ethanol_diesel_ed95_mwh", period) * part.ethanol_diesel_ed95
+            + etablissement("consommation_ethanol_diesel_ed95_mwh", period)
+            * tarif_moyen_annuel(
+                period,
+                lambda mois: (
+                    parameters(
+                        mois
+                    ).energies.autres_produits_energetiques.accise.tariffs_particuliers.ethanol_diesel_ed95
+                ),
+            )
             + etablissement("consommation_gazole_b100_mwh", period) * part.gazole_b100
             + etablissement("consommation_essence_aviation_mwh", period) * part.essence_aviation
             + etablissement("consommation_essence_sp95_e10_mwh", period) * part.essence_sp95_e10
@@ -2252,7 +2268,14 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 t.gazoles_transport_collectif_routier_de_personnes,
                 t.gazoles_transport_de_personnes_par_taxi,
                 t.gazoles_transport_routier_de_marchandises,
-                t.gazoles_travaux_agricoles,
+                tarif_moyen_annuel(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.accise.taux_selon_activite.gazoles_travaux_agricoles
+                    ),
+                ),
                 t.gazoles_extraction_de_mineraux_industriels,
                 t.gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux,
                 t2.intervention_vehicules_incendie_secours,
@@ -2388,7 +2411,15 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 period,
             )
             * taux_gaz_de_petrole_liquefies_combustible
-            + etablissement("consommation_ethanol_diesel_ed95_mwh", period) * part.ethanol_diesel_ed95
+            + etablissement("consommation_ethanol_diesel_ed95_mwh", period)
+            * tarif_moyen_annuel(
+                period,
+                lambda mois: (
+                    parameters(
+                        mois
+                    ).energies.autres_produits_energetiques.accise.tariffs_particuliers.ethanol_diesel_ed95
+                ),
+            )
             + etablissement("consommation_gazole_b100_mwh", period) * part.gazole_b100
             + etablissement("consommation_essence_aviation_mwh", period) * part.essence_aviation
             + etablissement("consommation_essence_sp95_e10_mwh", period) * part.essence_sp95_e10
@@ -2481,7 +2512,14 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 t.gazoles_transport_de_personnes_par_taxi,
                 t.gazoles_transport_routier_de_marchandises,
                 t.gazoles_manutention_portuaire,
-                t.gazoles_travaux_agricoles,
+                tarif_moyen_annuel(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.accise.taux_selon_activite.gazoles_travaux_agricoles
+                    ),
+                ),
                 t.gazoles_extraction_de_mineraux_industriels,
                 t.gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux,
                 t2.intervention_vehicules_incendie_secours,
@@ -2548,7 +2586,15 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 period,
             )
             * taux_gaz_de_petrole_liquefies_combustible
-            + etablissement("consommation_ethanol_diesel_ed95_mwh", period) * part.ethanol_diesel_ed95
+            + etablissement("consommation_ethanol_diesel_ed95_mwh", period)
+            * tarif_moyen_annuel(
+                period,
+                lambda mois: (
+                    parameters(
+                        mois
+                    ).energies.autres_produits_energetiques.accise.tariffs_particuliers.ethanol_diesel_ed95
+                ),
+            )
             + etablissement("consommation_gazole_b100_mwh", period) * part.gazole_b100
             + etablissement("consommation_essence_sp95_e10_mwh", period) * part.essence_sp95_e10
             + etablissement("consommation_superethanol_e85_mwh", period) * part.superethanol_e85
