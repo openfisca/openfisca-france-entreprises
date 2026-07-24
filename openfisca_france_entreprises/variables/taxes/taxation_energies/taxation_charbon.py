@@ -12,6 +12,7 @@ from openfisca_france_entreprises.variables.taxes.formula_helpers import (
     _and,
     _not,
     _or,
+    tarif_moyen_annuel,
 )
 
 
@@ -25,7 +26,9 @@ class taxe_interieure_consommation_charbon(Variable):
     def formula_2007_01_01(etablissement, period, parameters):
         """Taxe sur la consommation de houilles, lignites, et cokes."""
         assiette_ticc = etablissement("assiette_ticc", period)
-        return assiette_ticc * parameters(period).energies.charbon.ticc
+        # Le tarif de la TICC change en cours d'année (2014-04-01) : on applique sa moyenne
+        # mensuelle, la consommation étant réputée répartie uniformément sur l'année.
+        return assiette_ticc * tarif_moyen_annuel(period, lambda mois: parameters(mois).energies.charbon.ticc)
 
     def formula_2008_01_01(etablissement, period, parameters):
         # (2008) Par rapport à precedement: ajout conso_combustible_biomasse, seqe
@@ -312,7 +315,9 @@ class taxe_interieure_taxation_consommation_charbon_taux_normal(Variable):
 
     def formula_2007_01_01(etablissement, period, parameters):
         assiette_ticc = etablissement("assiette_ticc", period)
-        return assiette_ticc * parameters(period).energies.charbon.ticc
+        # Le tarif de la TICC change en cours d'année (2014-04-01) : on applique sa moyenne
+        # mensuelle, la consommation étant réputée répartie uniformément sur l'année.
+        return assiette_ticc * tarif_moyen_annuel(period, lambda mois: parameters(mois).energies.charbon.ticc)
 
     def formula_2022_01_01(etablissement, period, parameters):
         """La TICC devient la fraction charbons de l'accise sur les énergies (CIBS).
@@ -509,5 +514,3 @@ class assiette_ticc(Variable):
         # également pour le charbon
         # NB -34, chaleur >= carburant
         # ajouter un engin_non_routier (-35) ?
-
-
