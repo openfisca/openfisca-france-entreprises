@@ -10,7 +10,12 @@ Les commentaires avec *** indiquent qu'il y a des problèmes
 from openfisca_core.model_api import YEAR, Variable, select
 
 from openfisca_france_entreprises.entities import Etablissement
-from openfisca_france_entreprises.variables.taxes.formula_helpers import _and, _not, _or
+from openfisca_france_entreprises.variables.taxes.formula_helpers import (
+    _and,
+    _not,
+    _or,
+    tarif_moyen_annuel,
+)
 
 
 class taxe_gaz_naturel(Variable):
@@ -574,13 +579,13 @@ class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
         abattement = parameters(period).energies.gaz_naturel.ticgn.abattement * 12
         # 400000
         assiette = etablissement("assiette_ticgn", period)
-        taux = parameters(period).energies.gaz_naturel.ticgn.taux_normal
+        taux = tarif_moyen_annuel(period, lambda mois: parameters(mois).energies.gaz_naturel.ticgn.taux_normal)
         return (assiette >= seuil) * (assiette - abattement) * taux
 
     def formula_2008_01_01(etablissement, period, parameters):
         """[à noter : plus de seuil ni d'abattement]."""
         assiette = etablissement("assiette_ticgn", period)
-        taux = parameters(period).energies.gaz_naturel.ticgn.taux_normal
+        taux = tarif_moyen_annuel(period, lambda mois: parameters(mois).energies.gaz_naturel.ticgn.taux_normal)
         return assiette * taux
 
     def formula_2014_01_01(etablissement, period, parameters):
@@ -590,7 +595,7 @@ class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
         que pcs est au courant tout le temps].
         """
         assiette = etablissement("assiette_ticgn", period)
-        taux_pci = parameters(period).energies.gaz_naturel.ticgn.taux_normal
+        taux_pci = tarif_moyen_annuel(period, lambda mois: parameters(mois).energies.gaz_naturel.ticgn.taux_normal)
         taux = taux_pci * parameters(period).energies.gaz_naturel.ticgn.conversion_pcs_pci
         #
         # naturel
