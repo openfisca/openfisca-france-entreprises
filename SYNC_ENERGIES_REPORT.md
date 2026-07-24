@@ -1,3 +1,9 @@
+> 📌 **Reprise du lundi 2026-07-27** : voir `ACTIONS_EN_ATTENTE.md` pour tout ce qui demande une
+> action humaine (PR à ouvrir, issue OFF-E, propositions barème **non commitées** dans le worktree,
+> arbitrages §5 et §7). Côté agent, l'item 2 (TIRUERT) a été terminé le 2026-07-24 : `sync/energies-no-regret`
+> est à `fca4534`, 205 tests passent. La branche `refactor/energies-periodes-mensuelles` (`3a9dcb6`)
+> attend sa PR ; les arbitrages §2, §4 et §5 en dépendent.
+
 # ⏸️ REPRISE AU 2026-07-23 — à lire en premier
 
 Tout est **commité et poussé** sur `sync/energies-no-regret` (jusqu'à `289900e`). Arbre de travail
