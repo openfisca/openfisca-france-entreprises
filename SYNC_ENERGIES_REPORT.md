@@ -33,13 +33,13 @@ divergentes à faire vérifier sur Légifrance) : super {rhone_alpes 2010, limou
 département incohérent (`2A` vs `02A`) entre formules → la Corse peut tomber sur `default=0`.
 
 ## PROCHAINE ACTION — reprendre ici (fin item 4, puis item 2)
-1. **#6 Réfaction corse** (décidé) : créer les paramètres OF **et** les fichiers barème (réfaction 1,0
-   à partir de 2002 pour SP95/98, à partir de 2019 pour SP95-E10 ; 1,125 à partir de 2022) — **sans
-   coder les formules**.
-2. **#5 bis Extraction** (décidé, 2023) : passer l'indicateur `gazoles_extraction_mineraux_industriels`
-   de `formula_2024` à `formula_2023`, et **scinder une `formula_2023`** dans
-   `taxe_interieure_consommation_sur_produits_energetiques` pour router l'extraction dès 2023 sans
-   `ParameterNotFound` en 2022.
+1. ~~**#6 Réfaction corse**~~ ✅ **fait** (`0dfb241`) : paramètres OF sous
+   `autres_produits_energetiques/refaction_corse/` (SP95/98 depuis 2002, SP95-E10 depuis 2019, plombé
+   clôturé en 2022), sans formule ; fichiers barème proposés dans
+   `../baremes-ipp-yaml-energies/_propositions_refaction_corse/`.
+2. ~~**#5 bis Extraction**~~ ✅ **fait** (`0dfb241`) : indicateur passé à `formula_2023` et
+   `formula_2023` scindée dans `taxe_interieure_consommation_sur_produits_energetiques`. Vérifié :
+   59 400 € en 2022 (tarif normal), 3 860 € à partir de 2023.
 3. **#4 Intervention** (2023-07-12) et **#2 TICGN 2014**, **#5 abrogations TICPE** : purement
    infra-annuels. Décision d'architecture en attente — **passage des variables de conso en `MONTH` +
    `set_input_divide_by_period`** : correct mais c'est un chantier à part (sa propre branche/PR), voir

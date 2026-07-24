@@ -12,6 +12,22 @@
 >
 > Voir aussi `SYNC_ENERGIES_REPORT.md` (section « Décisions en attente d'un arbitrage juridique »).
 
+## État d'avancement
+
+| § | Sujet | Décision | Application |
+|---|---|---|---|
+| 1 | Date TICC | ✅ 1er juillet 2007, réf. LFR 2006 art. 36 III | ✅ référence corrigée (date au 1er janvier par convention annuelle, cf. §2) |
+| 2 | TICGN 2014 | ❓ question ouverte : passer les conso en `MONTH` ? | ⏸️ en attente — chantier d'architecture à part |
+| 3 | Manutention portuaire | ✅ 1er janvier 2023 | ✅ tarif ramené à 2023-01-01 (0,5 €/MWh) |
+| 4 | Intervention incendie/secours | ✅ 12 juillet 2023 | ⏸️ infra-annuel : dépend de §2 |
+| 5 | Abrogations TICPE | ⏸️ à remplir | ⏸️ infra-annuel : dépend de §2 |
+| 5 bis | Extraction de minéraux | ✅ 1er janvier 2023 | ✅ indicateur en 2023 + `formula_2023` scindée |
+| 6 | Réfaction corse | ✅ paramètres oui, formules non | ✅ paramètres OF + fichiers barème proposés |
+| 7 | PCS/PCI (facteur 1,11) | ⏸️ à remplir | ⏸️ |
+
+Les points 4 et 5 sont purement **infra-annuels** : leur application exacte dépend de l'arbitrage du
+point 2 (rester en convention annuelle, ou passer le modèle en périodes mensuelles).
+
 ---
 
 ## 1. Date de début de la TICC (charbon) — trois dates concurrentes
