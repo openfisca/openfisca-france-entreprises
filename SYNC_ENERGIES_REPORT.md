@@ -40,11 +40,32 @@ département incohérent (`2A` vs `02A`) entre formules → la Corse peut tomber
 2. ~~**#5 bis Extraction**~~ ✅ **fait** (`0dfb241`) : indicateur passé à `formula_2023` et
    `formula_2023` scindée dans `taxe_interieure_consommation_sur_produits_energetiques`. Vérifié :
    59 400 € en 2022 (tarif normal), 3 860 € à partir de 2023.
-3. **#4 Intervention** (2023-07-12) et **#2 TICGN 2014**, **#5 abrogations TICPE** : purement
-   infra-annuels. Décision d'architecture en attente — **passage des variables de conso en `MONTH` +
-   `set_input_divide_by_period`** : correct mais c'est un chantier à part (sa propre branche/PR), voir
-   la question posée dans la doc arbitrages #2. Recommandation : rester en **convention annuelle** pour
-   la synchro ; traiter le mensuel comme projet dédié ultérieur.
+3. ~~**#4 Intervention**, **#2 TICGN 2014**, **#5 abrogations TICPE**~~ 🔓 **débloqués** : le verrou
+   infra-annuel est levé par la branche `refactor/energies-periodes-mensuelles` (voir plus bas). Les
+   dates exactes peuvent désormais être posées ; il ne reste que la décision juridique (#5 non tranché).
+
+## Branche parallèle : `refactor/energies-periodes-mensuelles`
+
+Traite les tarifs qui entrent en vigueur **en cours d'année** et que le modèle, raisonnant en périodes
+annuelles, lisait au seul 1er janvier. La bascule complète des variables en périodes mensuelles a été
+écartée après chiffrage : 153 variables de consommation et 101 formules, avec réécriture de tous les
+accès inter-périodes, les variables annuelles (`apet`, `installation_seqe`, chiffre d'affaires) n'étant
+pas lisibles depuis une formule mensuelle. À la place, l'utilitaire `tarif_moyen_annuel`
+(`variables/taxes/formula_helpers.py`) intègre le tarif mois par mois **dans** les formules annuelles :
+la consommation étant réputée uniformément répartie, `conso * moyenne mensuelle des tarifs` donne le
+même résultat qu'une bascule mensuelle complète, pour une fraction du risque.
+
+Déployé sur les quatre produits. Corrections obtenues : TICC 2014 1 190 → 2 015 ; TICGN 1993-2000
+(8 années) ; CSPE 2011 et 2012 ; gazole agricole 2025 9 560 → 4 810 ; éthanol-diesel ED95 2022 ; et
+278 lectures de tarifs TICPE des formules antérieures à 2022, qui modifient 12 couples (tarif, année)
+sur 1993, 2010, 2014 et 2020 — dont les tarifs gaz naturel 2014 qui valaient 0,000 et le pic de
+juillet 2020 sur le gazole sous conditions, jusque-là invisibles. Quatre attendus de test corrigés,
+chacun commenté. 198 tests passent.
+
+**Non traités volontairement** : le bouclier tarifaire (il proratise déjà à la main via
+`Instant((2022, 2, 1))` et `/12`, `*11/12` — c'est un basculement de régime, pas un tarif) ; les
+paramètres de CTA (lus par aucune formule) ; le seuil d'exonération et l'abattement TICGN au
+2008-04-01 (abrogations de seuil, relèvent de l'arbitrage §5).
 4. Ensuite **item 2 (TIRUERT)** : modélisation (données déjà importées) ; **item 6 (restructuration par
    grade / référence directe)** réservé à une autre branche+PR.
 

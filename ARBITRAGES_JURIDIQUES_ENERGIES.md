@@ -17,16 +17,35 @@
 | § | Sujet | Décision | Application |
 |---|---|---|---|
 | 1 | Date TICC | ✅ 1er juillet 2007, réf. LFR 2006 art. 36 III | ✅ référence corrigée (date au 1er janvier par convention annuelle, cf. §2) |
-| 2 | TICGN 2014 | ❓ question ouverte : passer les conso en `MONTH` ? | ⏸️ en attente — chantier d'architecture à part |
+| 2 | TICGN 2014 | ✅ tranché : moyenne mensuelle des tarifs, sans bascule des variables en `MONTH` | ✅ mécanisme en place (`tarif_moyen_annuel`) — reste à poser la date 2014-04-01 |
 | 3 | Manutention portuaire | ✅ 1er janvier 2023 | ✅ tarif ramené à 2023-01-01 (0,5 €/MWh) |
-| 4 | Intervention incendie/secours | ✅ 12 juillet 2023 | ⏸️ infra-annuel : dépend de §2 |
-| 5 | Abrogations TICPE | ⏸️ à remplir | ⏸️ infra-annuel : dépend de §2 |
+| 4 | Intervention incendie/secours | ✅ 12 juillet 2023 | 🔓 débloqué par §2 — la date exacte peut être posée |
+| 5 | Abrogations TICPE | ⏸️ à remplir, produit par produit | 🔓 débloqué par §2 — plus d'obstacle technique |
 | 5 bis | Extraction de minéraux | ✅ 1er janvier 2023 | ✅ indicateur en 2023 + `formula_2023` scindée |
 | 6 | Réfaction corse | ✅ paramètres oui, formules non | ✅ paramètres OF + fichiers barème proposés |
 | 7 | PCS/PCI (facteur 1,11) | ⏸️ à remplir | ⏸️ |
 
-Les points 4 et 5 sont purement **infra-annuels** : leur application exacte dépend de l'arbitrage du
-point 2 (rester en convention annuelle, ou passer le modèle en périodes mensuelles).
+### Le verrou infra-annuel est levé
+
+Les points 2, 4 et 5 butaient tous sur le même obstacle : le modèle raisonne en périodes annuelles
+et lisait chaque tarif au 1er janvier, de sorte qu'une entrée en vigueur en cours d'année basculait
+toute l'année sur un seul tarif. Poser la date exacte revenait donc à introduire une erreur.
+
+Cet obstacle est levé par la branche `refactor/energies-periodes-mensuelles` : plutôt que de basculer
+les 153 variables de consommation et les 101 formules en périodes mensuelles — ce qu'interdisaient en
+pratique les variables annuelles comme `apet`, `installation_seqe` ou le chiffre d'affaires, illisibles
+depuis une formule mensuelle — l'utilitaire `tarif_moyen_annuel` intègre le tarif mois par mois à
+l'intérieur des formules annuelles. La consommation étant réputée uniformément répartie, la taxe vaut
+`conso * moyenne mensuelle des tarifs`, résultat identique à une bascule mensuelle complète.
+
+**Conséquence pour ces arbitrages** : les dates exactes peuvent désormais être posées telles quelles.
+La TICGN au 2014-04-01 donnera 3 mois à l'ancien tarif et 9 au nouveau, au lieu de basculer toute
+l'année 2014 ; il en va de même pour l'intervention incendie au 2023-07-12 (§4) et pour les
+abrogations TICPE en cours d'année (§5). Ces trois points ne sont plus bloqués que par la décision
+juridique elle-même.
+
+⚠️ Ces implémentations supposent la branche `refactor/energies-periodes-mensuelles` fusionnée
+(ou d'être réalisées sur cette branche) : le mécanisme n'existe pas sur `sync/energies-no-regret`.
 
 ---
 
