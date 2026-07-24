@@ -16,13 +16,13 @@ documentation: |-
   auquel est appliqué un coefficient égal à la différence entre le pourcentage national cible d'incorporation d’énergie renouvelable dans les transports et la proportion d’énergie renouvelable contenue dans les carburants du redevable.
   Les énergies entrant dans cette proportion d'énergies renouvelables sont définies au V de l'article 266 quindecies du code des douanes et leur prise en compte peut évoluer avec la législation.
 
-  ATTENTION - ces paramètres ne sont encore lus par aucune formule.
-  Ils sont importés du barème IPP pour assurer la parité des données et documenter la taxe
-  qui succède à la TGAP carburants, clôturée au 1er janvier 2019.
-  Modéliser la TIRUERT suppose deux décisions qui dépassent la synchronisation des paramètres :
+  ATTENTION - ces paramètres sont lus par une modélisation volontairement APPROCHÉE
+  (variables/taxes/taxation_energies/taxation_tiruert.py), dont les montants ne valent pas
+  liquidation de la taxe. Deux écarts au droit sont assumés :
   - le redevable de la TIRUERT est celui qui met le carburant à la consommation, c'est-à-dire un
-    fournisseur ou un distributeur, alors que le modèle représente les établissements comme des
-    consommateurs d'énergie ;
-  - le calcul exige la proportion d'énergie renouvelable contenue dans les carburants du redevable,
-    grandeur dont le modèle ne dispose d'aucune variable d'entrée.
-  Tant que ces deux points ne sont pas tranchés, la taxe ne peut pas être calculée.
+    fournisseur ou un distributeur, alors que le modèle retient l'établissement consommateur ;
+  - l'assiette légale est le volume mis à la consommation, alors que le modèle retient la
+    consommation propre de l'établissement, faute de connaître les volumes mis à la consommation.
+  Le calcul exige en outre la proportion d'énergie renouvelable contenue dans les carburants du
+  redevable : elle est portée par des variables d'entrée qui, à défaut d'être renseignées, valent
+  le pourcentage cible, de sorte que la taxe est nulle par défaut.
