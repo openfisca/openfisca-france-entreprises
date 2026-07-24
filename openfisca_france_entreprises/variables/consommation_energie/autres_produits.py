@@ -953,7 +953,7 @@ class gazoles_extraction_mineraux_industriels(Variable):
     definition_period = YEAR
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044875772"
 
-    def formula_2024_01_01(etablissement, period):
+    def formula_2023_01_01(etablissement, period):
         apet = etablissement("apet", period)
         return (apet == naf._08_11Z) | (apet == naf._23_52Z) | (apet == naf._08_12Z)
 
