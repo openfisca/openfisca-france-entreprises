@@ -1,4 +1,59 @@
-# ⏸️ REPRISE AU 2026-07-23 — à lire en premier
+# ⏸️ REPRISE AU 2026-07-28 — à lire en premier
+
+Deux branches actives : **`refactor/energies-periodes-mensuelles`** (tête `b60f5c0`, 199 tests) porte
+le travail périodes mensuelles + tous les arbitrages ; **`sync/energies-no-regret`** (tête `93f93f4`)
+porte la synchro et attend la fusion de la PR périodes. Tout est poussé. Voir `ACTIONS_EN_ATTENTE.md`
+pour la liste des actions humaines (PR, issue OFF-E, décisions §… déjà toutes tranchées).
+
+## Arbitrages : tous les points tranchés sont appliqués
+§1 (réf. TICC), §3 (manutention 2023), §5 bis (extraction 2023), §6 (réfaction corse, données) — sur
+`sync`. §7 (facteur PCS/PCI retiré, gaz -11 %), §5 (émulsion close au 2020-07-01), §2 (TICGN 2014-04-01),
+§4 (intervention 2023-07-12) — sur `refactor`, établis via **legisdata** (fiche énergie + PISTE sur
+l'article 265 du code des douanes). Ne restent que les « points connexes » (confirmations de
+modélisation, pas des questions juridiques) et §7 côté `variables_economiques.py` (facture, à vérifier).
+
+## Écart des paramètres OF ↔ barème (mesuré le 2026-07-27, barème `origin/energies` = `2ccec9a56`)
+
+| | Barème | OF (refactor) |
+|---|---|---|
+| Fichiers de paramètres | 266 | 289 |
+| `ipp_csv_id` distincts | 258 | 204 |
+| Params OF sans id | — | 85 |
+| **Appariés (id commun)** | **179 (69 % du barème)** | |
+| ids barème absents d'OF | 79 | |
+| ids OF absents du barème | 25 (dont **20** en `ticpe_*`) | |
+
+**L'écart brut surestime la divergence réelle** : les listes « 79 barème sans OF » et « 25 OF sans
+barème » décrivent en grande partie **les mêmes produits sous des id différents** (surtout TICPE
+pré-2022) : émulsion (`ticpe_emulsion_eau` vs `ticpe_emulsion_eau_gazoles_autres`), white spirit
+(`ticpe_white_spirit` vs `ticpe_white_spirit_combustible`), super plombé (`ticpe_super_plombe` vs
+`ticpe_super_additif`), etc. Réconcilier ces **noms d'identifiants** ferait basculer une grande part
+des 79/25 dans « appariés », sans toucher aux données.
+
+Trois catégories réelles :
+1. **OF seul, sans équivalent barème (légitime)** : les seuils de modélisation (`seuils_seqe`, seuils
+   électro-intensifs, catégories fiscales — ~29 des 85 sans id) et la **réfaction corse** (3 id) — dont
+   les fichiers barème sont proposés sur la branche `energies-propositions-openfisca` du dépôt barème.
+2. **Couverture barème repliée par OF** : les exonérations navigation par grade
+   (`accise_{gazoles,fiouls,essences,lampants,carbureacteurs}_navig_*`, ~15 id) — couvertes
+   numériquement par les paramètres d'exonération à plat d'OF, volontairement sans id.
+3. **Barème seul, non couvert** : GPL accise (`accise_gaz_petrole`, 6).
+
+**Évolution depuis la 1re mesure** : OF 308 → 289 fichiers et 107 → 85 params sans id (la fusion des
+paliers `depuis_2022` a supprimé les doublons de région sans id) ; majorations régionales désormais en
+**valeurs absolues** (le verrou « écart vs absolu » de la référence directe est levé) ; régions
+post-2016 préparées comme propositions barème.
+
+## PROCHAINE ACTION — item 6 (référence directe), à attaquer demain
+« ~70 % du barème est directement jointable ; les 30 % restants ne sont pas surtout des données
+manquantes, mais (a) de la **réconciliation de noms d'id** pour les produits TICPE pré-2022 présents
+des deux côtés, et (b) l'**attribution d'id** aux ~85 params OF sans id (dont ~29 légitimement OF). »
+C'est le cœur de l'item 6 (préparation de la référence directe au barème). Reste aussi à trancher le
+mode de consommation du barème (sous-module git / dépendance versionnée / paquet `.openfisca`).
+
+---
+
+# ⏸️ REPRISE AU 2026-07-23
 
 Tout est **commité et poussé** sur `sync/energies-no-regret` (jusqu'à `289900e`). Arbre de travail
 propre. Reprendre ici ; le bloc du 2026-07-22 ci-dessous reste valable pour le contexte.
