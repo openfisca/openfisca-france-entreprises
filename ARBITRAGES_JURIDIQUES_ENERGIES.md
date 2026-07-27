@@ -20,10 +20,10 @@
 | 2 | TICGN 2014 | ✅ tranché : moyenne mensuelle des tarifs, sans bascule des variables en `MONTH` | ✅ mécanisme en place (`tarif_moyen_annuel`) — reste à poser la date 2014-04-01 |
 | 3 | Manutention portuaire | ✅ 1er janvier 2023 | ✅ tarif ramené à 2023-01-01 (0,5 €/MWh) |
 | 4 | Intervention incendie/secours | ✅ 12 juillet 2023 | 🔓 débloqué par §2 — la date exacte peut être posée |
-| 5 | Abrogations TICPE | ⏸️ à remplir, produit par produit | 🔓 débloqué par §2 — plus d'obstacle technique |
+| 5 | Abrogations TICPE | ✅ tranché (recherche PISTE/fiche) | ✅ émulsion close au 2020-07-01 ; GNR non abrogé ; art. 265 abrogé en bloc au 2022 |
 | 5 bis | Extraction de minéraux | ✅ 1er janvier 2023 | ✅ indicateur en 2023 + `formula_2023` scindée |
 | 6 | Réfaction corse | ✅ paramètres oui, formules non | ✅ paramètres OF + fichiers barème proposés |
-| 7 | PCS/PCI (facteur 1,11) | ⏸️ à remplir | ⏸️ |
+| 7 | PCS/PCI (facteur 1,11) | ✅ tranché : facteur erroné, retiré | ✅ facteur supprimé, gaz 2014-2021 ramené au tarif légal |
 
 ### Le verrou infra-annuel est levé
 
@@ -153,7 +153,29 @@ Ces clôtures ont été **volontairement NON faites** dans les passes précéden
 annuelle) ou à la date exacte (avec bascule d'année). Concerne surtout les produits marginaux, mais deux
 (gazole B10, émulsions) sont réels.
 
-**Décision.** _(à remplir, produit par produit)_
+**Décision (tranchée le 2026-07-27, recherche legisdata/PISTE sur l'article 265 du code des douanes).**
+
+La prémisse du rapport était en grande partie inexacte :
+
+- **`carburants_sous_conditions` = le gazole non routier (GNR, indice 20/22) : NON abrogé.** La fiche
+  de fiscalité énergétique montre une trajectoire de convergence vers le tarif routier (24,81 en
+  2024, 30,8 en 2025, 36,79 en 2026, … suppression seulement en 2030), et le produit bascule sur
+  l'accise CIBS au 2022. La date « 2021-07-01 » du rapport est fausse. → rien à clôturer.
+- **Article 265 (tout le tableau B des TICPE) abrogé en bloc au 2022-01-01** (bascule CIBS,
+  ordonnance 2021-1843). Tous les produits pré-2022 cessent alors ensemble ; les formules
+  postérieures lisent l'accise. Aucune surtaxation à la charnière 2022.
+- **`emulsion_eau_gazole` : abrogée, retirée du tableau B au 2020-07-01.** Présente dans la version
+  de l'article valable en 2000, absente dès la version 2021-01-01 (versions consultées via PISTE,
+  en cache dans `legisdata/sources/legifrance/265_*.md`). Elle n'est lue que jusqu'à `formula_2020`
+  (abandonnée dès `formula_2021`), donc surappliquée sur le seul second semestre 2020. Les deux
+  paramètres (`sous_conditions_hectolitre`, `autres_hectolitre`) sont **clôturés au 2020-07-01
+  (`value: null`)** ; les lectures dans `formula_2020` passent `defaut_si_absent=0`, si bien que la
+  moyenne mensuelle mélange correctement le semestre taxé (36,94 / 10,33) et le semestre abrogé (0).
+  Vérifié : 2019 plein tarif, 2020 à la moitié, 2021 nul.
+- **`gazole_b_10` : pas d'indice propre au tableau B** (seul le B100, esters méthyliques, y figure) ;
+  le B10 est taxé comme le gazole. Pas d'abrogation distincte à porter. Laissé tel quel.
+- **`essence_normale` et les trois `fioul_lourd_*` : déjà clôturés** (null au 2000-01-01 et
+  2003-01-01) et lus par aucune formule. Rien à faire.
 
 ---
 
@@ -214,7 +236,20 @@ et les assiettes légales.
 
 **Fichiers concernés.** OF : `gaz_naturel/…/conversion_pcs_pci`, formules de `taxation_gaz_naturel.py`.
 
-**Décision.** _(à remplir)_
+**Décision (tranchée le 2026-07-27, fiche legisdata `fiscalite_energies_accise_tic.md`).**
+
+**Le facteur 1,11 est une erreur ; il est retiré.** La fiche établit que le tarif normal publié par
+le barème est déjà exprimé en €/MWh au bon pouvoir calorifique, et les valeurs brutes du modèle
+coïncident **exactement** avec la série légale (1,19 en 2003 ; 1,41 en 2014 ; 2,93 en 2015 ; 4,34 ;
+5,88 ; 8,45 ; 8,43 en 2021). Appliquer ×1,11 de 2014 à 2021 surtaxait donc le gaz de 11 % — et ce
+facteur n'était pas appliqué au tarif réduit des grandes consommatrices, incohérence confirmant
+l'erreur. `formula_2014_01_01` de `taxe_interieure_consommation_gaz_naturel_taux_normal` ne fait plus
+que `assiette × tarif`. Le gaz normal 2014-2021 revient au tarif légal (ex. 2015 : 2 930 € au lieu de
+3 252 € pour 1 000 MWh).
+
+⚠️ **À vérifier séparément (hors §7)** : `conversion_pcs_pci` est encore lu par `variables_economiques.py`
+(lignes 167 et 210, calcul de facture d'énergie). Si le même facteur y est indûment appliqué, c'est un
+défaut distinct à traiter dans la passe « facture énergie » — non touché ici.
 
 ---
 

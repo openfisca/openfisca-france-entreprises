@@ -589,17 +589,18 @@ class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
         return assiette * taux
 
     def formula_2014_01_01(etablissement, period, parameters):
-        """[à noter : plus de seuil ni d'abattement].
+        """Tarif normal de la TICGN, sans conversion PCS/PCI (arbitrage §7).
 
-        [à noter : le 1.11 serve à convertir le taux en pci au taux en pcs. On assume
-        que pcs est au courant tout le temps].
+        Aucun facteur PCS/PCI n'est appliqué. La fiche de fiscalité énergétique (legisdata,
+        `fiscalite_energies_accise_tic.md`) établit que le tarif normal publié par le barème est
+        déjà exprimé en €/MWh au bon pouvoir calorifique : les valeurs brutes coïncident
+        exactement avec la série légale (1,19 en 2003 ; 1,41 en 2014 ; 2,93 en 2015 ; … ; 8,43
+        en 2021). L'ancien facteur 1,11, appliqué de 2014 à 2021 sous l'hypothèse « le PCS est
+        toujours valide », surtaxait donc le gaz de 11 % — et n'était d'ailleurs pas appliqué au
+        tarif réduit des grandes consommatrices, incohérence qui confirme l'erreur.
         """
         assiette = etablissement("assiette_ticgn", period)
-        taux_pci = tarif_moyen_annuel(period, lambda mois: parameters(mois).energies.gaz_naturel.ticgn.taux_normal)
-        taux = taux_pci * parameters(period).energies.gaz_naturel.ticgn.conversion_pcs_pci
-        #
-        # naturel
-        # ***faut vérrifier si cette calculation est valide. Paul a dit que l'assumption est que le PCS est tjrs valide
+        taux = tarif_moyen_annuel(period, lambda mois: parameters(mois).energies.gaz_naturel.ticgn.taux_normal)
         return assiette * taux
 
 

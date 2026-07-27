@@ -2597,6 +2597,10 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                     ).energies.autres_produits_energetiques.ticpe.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions_100kg
                 ),
             )
+            # L'émulsion eau-gazole quitte le tableau B de l'article 265 du code des douanes au
+            # 2020-07-01 (arbitrage §5, vérifié via legisdata/PISTE) : à partir de cette date le
+            # produit n'a plus de tarif propre. defaut_si_absent=0 fait compter zéro pour les mois
+            # postérieurs, de sorte que 2020 mélange le semestre taxé et le semestre abrogé.
             + etablissement(
                 "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
                 period,
@@ -2608,6 +2612,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                         mois
                     ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions_hectolitre
                 ),
+                defaut_si_absent=0,
             )
             + etablissement(
                 "consommation_emulsion_eau_gazoles_autres_hectolitre",
@@ -2618,6 +2623,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 lambda mois: (
                     parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres_hectolitre
                 ),
+                defaut_si_absent=0,
             ),
         ]
 
