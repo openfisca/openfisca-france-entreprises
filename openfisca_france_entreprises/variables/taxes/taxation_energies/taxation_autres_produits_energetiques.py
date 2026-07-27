@@ -2946,7 +2946,17 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                     ),
                 ),
                 t.gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux,
-                t2.intervention_vehicules_incendie_secours,
+                # Tarif réduit incendie/secours : n'existe qu'à partir du 2023-07-12 (arbitrage §4).
+                # Avant cette date, ces véhicules paient le tarif gazole normal (defaut_si_absent).
+                tarif_moyen_annuel(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.accise.tarifs_reduits.intervention_vehicules_incendie_secours
+                    ),
+                    defaut_si_absent=c.gazoles,
+                ),
             ],
             default=c.gazoles,
         )
@@ -2957,7 +2967,17 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 essence_transport_taxi,
             ],
             [
-                t2.intervention_vehicules_incendie_secours,
+                # Tarif réduit incendie/secours : à partir du 2023-07-12 seulement (arbitrage §4) ;
+                # avant, tarif essence normal (defaut_si_absent).
+                tarif_moyen_annuel(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.accise.tarifs_reduits.intervention_vehicules_incendie_secours
+                    ),
+                    defaut_si_absent=c.essences,
+                ),
                 t.essences_transport_de_personnes_par_taxi,
             ],
             default=c.essences,
@@ -3190,7 +3210,17 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 ),
                 t.gazoles_extraction_de_mineraux_industriels,
                 t.gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux,
-                t2.intervention_vehicules_incendie_secours,
+                # Tarif réduit incendie/secours : n'existe qu'à partir du 2023-07-12 (arbitrage §4).
+                # Avant cette date, ces véhicules paient le tarif gazole normal (defaut_si_absent).
+                tarif_moyen_annuel(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.accise.tarifs_reduits.intervention_vehicules_incendie_secours
+                    ),
+                    defaut_si_absent=c.gazoles,
+                ),
             ],
             default=c.gazoles,
         )
@@ -3201,7 +3231,17 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 essence_transport_taxi,
             ],
             [
-                t2.intervention_vehicules_incendie_secours,
+                # Tarif réduit incendie/secours : à partir du 2023-07-12 seulement (arbitrage §4) ;
+                # avant, tarif essence normal (defaut_si_absent).
+                tarif_moyen_annuel(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.accise.tarifs_reduits.intervention_vehicules_incendie_secours
+                    ),
+                    defaut_si_absent=c.essences,
+                ),
                 t.essences_transport_de_personnes_par_taxi,
             ],
             default=c.essences,
@@ -3434,7 +3474,17 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 ),
                 t.gazoles_extraction_de_mineraux_industriels,
                 t.gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux,
-                t2.intervention_vehicules_incendie_secours,
+                # Tarif réduit incendie/secours : n'existe qu'à partir du 2023-07-12 (arbitrage §4).
+                # Avant cette date, ces véhicules paient le tarif gazole normal (defaut_si_absent).
+                tarif_moyen_annuel(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.accise.tarifs_reduits.intervention_vehicules_incendie_secours
+                    ),
+                    defaut_si_absent=c.gazoles,
+                ),
             ],
             default=c.gazoles,
         )
@@ -3445,7 +3495,17 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 essence_transport_taxi,
             ],
             [
-                t2.intervention_vehicules_incendie_secours,
+                # Tarif réduit incendie/secours : à partir du 2023-07-12 seulement (arbitrage §4) ;
+                # avant, tarif essence normal (defaut_si_absent).
+                tarif_moyen_annuel(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.accise.tarifs_reduits.intervention_vehicules_incendie_secours
+                    ),
+                    defaut_si_absent=c.essences,
+                ),
                 t.essences_transport_de_personnes_par_taxi,
             ],
             default=c.essences,

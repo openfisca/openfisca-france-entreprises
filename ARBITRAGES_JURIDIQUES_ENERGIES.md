@@ -17,9 +17,9 @@
 | § | Sujet | Décision | Application |
 |---|---|---|---|
 | 1 | Date TICC | ✅ 1er juillet 2007, réf. LFR 2006 art. 36 III | ✅ référence corrigée (date au 1er janvier par convention annuelle, cf. §2) |
-| 2 | TICGN 2014 | ✅ tranché : moyenne mensuelle des tarifs, sans bascule des variables en `MONTH` | ✅ mécanisme en place (`tarif_moyen_annuel`) — reste à poser la date 2014-04-01 |
+| 2 | TICGN 2014 | ✅ tranché : moyenne mensuelle des tarifs, sans bascule des variables en `MONTH` | ✅ date posée au 2014-04-01 ; 2014 mélangé (1,355 au lieu de 1,41) |
 | 3 | Manutention portuaire | ✅ 1er janvier 2023 | ✅ tarif ramené à 2023-01-01 (0,5 €/MWh) |
-| 4 | Intervention incendie/secours | ✅ 12 juillet 2023 | 🔓 débloqué par §2 — la date exacte peut être posée |
+| 4 | Intervention incendie/secours | ✅ 12 juillet 2023 | ✅ tarif posé au 2023-07-12 ; avant, tarif normal (defaut_si_absent) |
 | 5 | Abrogations TICPE | ✅ tranché (recherche PISTE/fiche) | ✅ émulsion close au 2020-07-01 ; GNR non abrogé ; art. 265 abrogé en bloc au 2022 |
 | 5 bis | Extraction de minéraux | ✅ 1er janvier 2023 | ✅ indicateur en 2023 + `formula_2023` scindée |
 | 6 | Réfaction corse | ✅ paramètres oui, formules non | ✅ paramètres OF + fichiers barème proposés |

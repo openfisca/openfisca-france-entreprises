@@ -1,6 +1,6 @@
 description: Tarif réduit de l'accise applicable aux produits énergétiques utilisés pour l'intervention des véhicules des services d'incendie et de secours
 values:
-  2022-01-01:
+  2023-07-12:
     value: 0
 metadata:
   short_label: Accise produits énergétiques pour véhicules incendie et secours
@@ -14,9 +14,9 @@ metadata:
   official_journal_date:
     2023-07-12: "2023-07-11"
 documentation: |-
-  Le barème date ce tarif réduit du 2023-07-12 (art. 50 de la loi 2023-580). Le modèle l'applique
-  toutefois dès 2022 : sa formule taxe_interieure_consommation_sur_produits_energetiques lit ce
-  tarif à partir de formula_2022_01_01, et l'ouverture au 2022-01-01 (valeur nulle) préserve le
-  comportement existant tout en évitant un ParameterNotFound. L'écart de date (2022 côté modèle,
-  2023-07-12 au barème) est une divergence à arbitrer : avant l'entrée en vigueur de la réfaction,
-  ces véhicules relevaient-ils du tarif normal ? Cf. SYNC_ENERGIES_REPORT.md.
+  Tarif réduit institué au 2023-07-12 par l'article 50 de la loi 2023-580 (arbitrage §4 tranché).
+  Le paramètre commence donc à cette date. Avant, ces véhicules paient le tarif normal du carburant :
+  la formule taxe_interieure_consommation_sur_produits_energetiques lit ce tarif via tarif_moyen_annuel
+  avec defaut_si_absent = tarif normal (gazole ou essence), de sorte que 2023 mélange le semestre au
+  tarif normal (jusqu'au 12 juillet, approché au 1er juillet en granularité mensuelle) et le semestre
+  au tarif réduit nul.

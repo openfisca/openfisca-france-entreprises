@@ -116,17 +116,30 @@
   output:
     taxe_interieure_consommation_sur_produits_energetiques: 0
 
-# Tarif réduit "intervention véhicules incendie et secours" (rate 0) appliqué au gazole et à
-# l'essence via taux_selon_activite, désormais lu au paramètre au lieu du 0 codé en dur.
-- name: intervention incendie secours gazole 2022
+# Tarif réduit "intervention véhicules incendie et secours" : institué au 2023-07-12 (arbitrage §4).
+# Avant cette date, ces véhicules paient le tarif normal ; ensuite le tarif réduit nul. La granularité
+# mensuelle place la bascule au 1er août 2023 (le mois de juillet est lu à sa valeur du 1er, antérieure
+# au 12), d'où en 2023 sept mois au tarif normal (59,4) et cinq à zéro.
+- name: intervention incendie secours gazole 2022 - avant le tarif reduit, tarif normal
   period: 2022
   input:
     consommation_gazoles_mwh: 1000
     autres_produits_intervention_vehicules_services_incendie_secours: true
   output:
-    taxe_interieure_consommation_sur_produits_energetiques: 0
+    # tarif gazole normal 59,4 : le tarif réduit n'existe pas encore
+    taxe_interieure_consommation_sur_produits_energetiques: 59400
 
-- name: intervention incendie secours gazole 2024
+- name: intervention incendie secours gazole 2023 - annee de bascule
+  absolute_error_margin: 0.01
+  period: 2023
+  input:
+    consommation_gazoles_mwh: 1000
+    autres_produits_intervention_vehicules_services_incendie_secours: true
+  output:
+    # 7 mois à 59,4 + 5 mois à 0 = 34,65 /MWh
+    taxe_interieure_consommation_sur_produits_energetiques: 34650
+
+- name: intervention incendie secours gazole 2024 - tarif reduit plein
   period: 2024
   input:
     consommation_gazoles_mwh: 1000
