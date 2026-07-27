@@ -16,28 +16,21 @@ Toutes poussées. 205 tests passent sur `sync`, 198 sur `refactor`.
 
 ---
 
-## 🔴 Urgent — risque de perte
+## ✅ Fait le 2026-07-27 — propositions barème sécurisées
 
-**Les fichiers de proposition pour le barème ne sont pas commités.** 32 fichiers, uniquement présents
-comme fichiers non suivis dans le worktree **détaché** `../baremes-ipp-yaml-energies` :
+Les 32 fichiers de proposition sont désormais **commités** dans le dépôt barème, sur la branche
+`energies-propositions-openfisca` (commit `eae753da2`, basée sur `origin/energies` à jour), sous
+`_propositions_regions_post_2016/` (27) et `_propositions_refaction_corse/` (5). Plus aucun risque de
+perte : ils vivent dans l'object store git, indépendamment du worktree. Le dépôt principal reste sur
+`master`, intact.
 
-- `_propositions_regions_post_2016/` (27 fichiers) — les 13 régions post-2016, valeurs absolues,
-  `ipp_csv_id` INSEE proposés ;
-- `_propositions_refaction_corse/` (5 fichiers) — réfaction corse (SP95/98 depuis 2002, SP95-E10
-  depuis 2019, plombé clôturé en 2022).
-
-Un `git worktree remove --force` ou un prune les supprimerait définitivement. La copie principale du
-dépôt barème est **déjà sur la branche `energies`**, donc :
-
-```bash
-cp -r ../baremes-ipp-yaml-energies/_propositions_* ../baremes-ipp-yaml/
-cd ../baremes-ipp-yaml && git checkout -b energies-propositions-openfisca
-git add _propositions_* && git commit
-```
-
-Chaque dossier contient un README expliquant les décisions d'intégration : nouvelles régions contre
-extension des fichiers existants (`bretagne`, `corse`, `paca`, `ile_de_france`), différence de nommage
-`ile_france` (OF) / `ile_de_france` (barème), et les `ipp_csv_id` proposés à valider.
+**Reste à faire** (côté humain) :
+- **Pousser** la branche : `git -C ../baremes-ipp-yaml push -u origin energies-propositions-openfisca`
+  (l'agent ne pousse pas de lui-même sur le dépôt barème ; `gh` est absent de toute façon).
+- **Intégrer** les propositions dans l'arbre (`parameters/taxation_indirecte/energies/…`) puis PR vers
+  `energies`. Décisions dans chaque README : nouvelles régions contre extension des fichiers existants
+  (`bretagne`, `corse`, `paca`, `ile_de_france`), nommage `ile_france` (OF) / `ile_de_france` (barème),
+  `ipp_csv_id` INSEE à valider.
 
 ---
 
