@@ -33,7 +33,7 @@ values:
   2022-01-01:
     value: null
 metadata:
-  ipp_csv_id: ticpe_sp95_sp98
+  ipp_csv_id: ticpe_super_e5
   unit: currency
   last_value_still_valid_on: '2023-08-22'
   reference:

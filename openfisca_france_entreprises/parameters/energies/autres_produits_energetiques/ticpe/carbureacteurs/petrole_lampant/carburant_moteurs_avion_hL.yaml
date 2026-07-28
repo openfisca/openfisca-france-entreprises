@@ -25,7 +25,7 @@ values:
   2022-01-01:
     value: null
 metadata:
-  ipp_csv_id: ticpe_carbu_petrole_lampant
+  ipp_csv_id: ticpe_carbueacteurs_lampant_avion
   unit: currency
   reference:
     1993-01-01:

@@ -7,6 +7,7 @@ values:
   2022-01-01:
     value: null
 metadata:
+  ipp_csv_id: ticpe_butanes_non_carburants
   short_label: Autres que comme carburant (100kg nets)
   unit: currency
   reference:

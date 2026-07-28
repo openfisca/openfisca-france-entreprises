@@ -25,7 +25,7 @@ values:
   2014-04-01:
     value: null
 metadata:
-  ipp_csv_id: ticpe_carbu_petrole_lampant_cond
+  ipp_csv_id: ticpe_carbueacteurs_lampant_conditions
   unit: currency
   reference:
     1993-01-01:

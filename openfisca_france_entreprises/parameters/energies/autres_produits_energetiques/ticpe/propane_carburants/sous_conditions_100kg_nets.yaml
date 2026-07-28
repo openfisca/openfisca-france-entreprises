@@ -17,7 +17,7 @@ values:
   2018-01-01:
     value: 15.9
 metadata:
-  ipp_csv_id: ticpe_propane_cond
+  ipp_csv_id: ticpe_propane_conditions
   unit: currency
   reference:
     1993-01-01:

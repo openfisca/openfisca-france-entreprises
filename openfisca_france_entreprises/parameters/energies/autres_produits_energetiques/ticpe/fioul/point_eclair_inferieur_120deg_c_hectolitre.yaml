@@ -9,7 +9,7 @@ values:
   2003-01-01:
     value: null
 metadata:
-  ipp_csv_id: ticpe_fioul_lourd_cond
+  ipp_csv_id: ticpe_fioul_eclair_inf_120
   unit: currency
   reference:
     1993-01-01:

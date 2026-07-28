@@ -18,7 +18,7 @@ values:
     value: 15.9
 metadata:
   short_label: Sous condition (100kg nets)
-  ipp_csv_id: ticpe_butane_cond
+  ipp_csv_id: ticpe_butanes_conditions
   unit: currency
   reference:
     1993-01-01:

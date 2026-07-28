@@ -35,7 +35,7 @@ values:
   2022-01-01:
     value: null
 metadata:
-  ipp_csv_id: ticpe_goudron_combustible
+  ipp_csv_id: ticpe_goudrons_combustible
   unit: currency
   reference:
     1993-01-01:

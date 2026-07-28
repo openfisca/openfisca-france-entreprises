@@ -25,6 +25,7 @@ values:
   2022-01-01:
     value: null
 metadata:
+  ipp_csv_id: ticpe_lampant_autres
   unit: currency
   reference:
     1993-01-01:

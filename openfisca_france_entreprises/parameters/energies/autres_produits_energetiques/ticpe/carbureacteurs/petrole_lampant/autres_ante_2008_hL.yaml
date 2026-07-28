@@ -1,22 +1,22 @@
-description: Gazole, autres (hectolitre) *
+description: Carburéacteurs de type pétrole lampant, autres (classification avant 2008)
 values:
   1993-01-01:
     value: null
   1993-04-15:
     value: 174.06
-  1994-01-01:
+  1994-01-11:
     value: 210.22
-  1995-01-01:
+  1995-01-11:
     value: 213.79
-  1996-01-01:
+  1996-01-11:
     value: 226.79
-  1997-01-01:
+  1997-01-11:
     value: 232.79
-  1998-01-01:
+  1998-01-11:
     value: 240.79
-  1999-01-01:
+  1999-01-11:
     value: 248.18
-  2000-01-01:
+  2000-01-11:
     value: 255.18
   2002-01-01:
     value: 38.9
@@ -26,19 +26,14 @@ values:
     value: 41.69
   2006-01-01:
     value: 42.84
-  2015-01-01:
-    value: 46.82
-  2016-01-01:
-    value: 49.81
-  2017-01-01:
-    value: 53.07
-  2018-01-01:
-    value: 59.4
-  2022-01-01:
+  2008-01-01:
     value: null
 metadata:
-  ipp_csv_id: ticpe_gazole_autres
-  unit: currency
+  short_label: Carburéacteurs pétrole lampant autres ante 2008
+  last_value_still_valid_on: "2025-03-01"
+  label_en: Other kerosene-type jet fuels, before 2008
+  ipp_csv_id: ticpe_carbueacteurs_lampant_autres_ante_2008
+  unit: currency_per_hectoliter
   reference:
     1993-01-01:
       title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
@@ -46,30 +41,30 @@ metadata:
     1993-04-15:
       title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
-    1994-01-01:
+    1994-01-11:
       title: Loi 93-1352 du 30/12/1993 (LF pour 1994)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000509319
-    1995-01-01:
+    1995-01-11:
       title: Loi 94-1162 du 29/12/1994 (LF pour 1995)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000367398
-    1996-01-01:
+    1996-01-11:
       title: Loi 95-1346 du 30/12/1995 (LF pour 1996)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000191068
-    1997-01-01:
+    1997-01-11:
       title: Loi 96-1181 du 30/12/1996 (LF pour 1997)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000380034
-    1998-01-01:
+    1998-01-11:
       title: Loi 97-1269 du 30/12/1997 (LF pour 1998)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000569621
-    1999-01-01:
+    1999-01-11:
       title: Loi 98-1266 du 30/12/1998 (LF pour 1999)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000209044
-    2000-01-01:
+    2000-01-11:
       title: Loi 99-1172 du 30/12/1999 (LF pour 2000)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000762233
     2002-01-01:
-      title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000592233
+      title: Ordonnance n° 2000-916 du 19 septembre 2000 portant adaptation de la valeur en euros de certains montants exprimés en francs dans les textes législatifs
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000219672
     2003-01-01:
       title: Loi 2002-1575 du 30/12/2002 (LF pour 2003)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000234121
@@ -79,32 +74,24 @@ metadata:
     2006-01-01:
       title: Loi 2004-1484 du 30/12/2004 (LF pour 2005)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000789373
-    2015-01-01:
-      title: Loi 2014-1654 du 29/12/2014 (LF pour 2015) - art. 36
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029994876&cidTexte=JORFTEXT000029988857
-    2016-01-01:
-      title: Loi 2015-1786 du 29/12/2015 (LFR pour 2015) - art. 14 et 17
-    2017-01-01:
-      title: Loi 2016-1918 du 29/12/2016 (LFR pour 2016)
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000033734341
-    2018-01-01:
-      title: Loi 2017-1837 du 30/12/2017 (LF pour 2018)
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036339197
+    2008-01-01:
+      title: LOI n° 2007-1824 du 25 décembre 2007 de finances rectificative pour 2007 (1)
+      href: https://www.legifrance.gouv.fr/eli/loi/2007/12/25/BCFX0770033L/jo/texte
   official_journal_date:
     1993-01-01: "1992-12-31"
     1993-04-15: "1992-12-31"
-    1994-01-01: "1993-12-31"
-    1995-01-01: "1994-12-30"
-    1996-01-01: "1995-12-31"
-    1997-01-01: "1996-12-31"
-    1998-01-01: "1997-12-31"
-    1999-01-01: "1998-12-31"
-    2000-01-01: "1999-12-31"
-    2002-01-01: "2001-12-29"
+    1994-01-11: "1993-12-31"
+    1995-01-11: "1994-12-30"
+    1996-01-11: "1995-12-31"
+    1997-01-11: "1996-12-31"
+    1998-01-11: "1997-12-31"
+    1999-01-11: "1998-12-31"
+    2000-01-11: "1999-12-31"
+    2002-01-01: "2000-09-22"
     2003-01-01: "2002-12-31"
     2004-01-01: "2003-12-31"
     2006-01-01: "2004-12-31"
-    2015-01-01: "2014-12-30"
-    2016-01-01: "2015-12-30"
-    2017-01-01: "2016-12-30"
-    2018-01-01: "2017-12-31"
+    2008-01-01: "2007-12-28"
+  notes:
+    2008-01-01:
+    - title: En 2008, la catégorie "autres" des carburéacteurs de type pétrole lampant est affinée en deux sous-catégories, objets de barèmes associés, "autres" et "carburants pour moteurs d'avions"

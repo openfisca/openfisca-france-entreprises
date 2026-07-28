@@ -17,7 +17,7 @@ values:
   2022-01-01:
     value: null
 metadata:
-  ipp_csv_id: ticpe_gaz_naturels_gazeux_cond
+  ipp_csv_id: ticpe_gaz_naturel_moteurs_stationnaires_conditions
   unit: currency
   reference:
     1993-01-01:

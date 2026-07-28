@@ -35,7 +35,7 @@ values:
   2022-01-01:
     value: null
 metadata:
-  ipp_csv_id: ticpe_huiles_legeres_ess_avion
+  ipp_csv_id: ticpe_essence_aviation
   unit: currency
   reference:
     1993-01-01:

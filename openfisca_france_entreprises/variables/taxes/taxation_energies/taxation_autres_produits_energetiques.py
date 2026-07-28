@@ -131,7 +131,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.autres_hL
+            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.autres_ante_2008_hL
             + etablissement("consommation_huiles_moyennes_autres", period)
             * parameters(
                 period,
@@ -331,7 +331,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_hL
+            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_ante_2008_hL
             + etablissement(
                 "consommation_huiles_legeres_combustible_carburant_ou_autres",
                 period,
@@ -363,7 +363,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.autres_hL
+            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.autres_ante_2008_hL
             + etablissement("consommation_huiles_moyennes_autres", period)
             * parameters(
                 period,

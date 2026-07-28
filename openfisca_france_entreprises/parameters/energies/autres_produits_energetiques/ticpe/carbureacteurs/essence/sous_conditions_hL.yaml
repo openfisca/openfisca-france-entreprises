@@ -25,6 +25,7 @@ values:
   2014-04-01:
     value: null
 metadata:
+  ipp_csv_id: ticpe_carbureacteurs_essence_conditions
   unit: currency
   reference:
     1993-01-01:

@@ -37,6 +37,7 @@ values:
   2022-01-01:
     value: null
 metadata:
+  ipp_csv_id: ticpe_carbureacteurs_essence_avion
   unit: currency
   reference:
     1993-01-01:

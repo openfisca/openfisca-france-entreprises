@@ -33,7 +33,7 @@ values:
   2022-01-01:
     value: null
 metadata:
-  ipp_csv_id: ticpe_gaz_naturels_gazeux
+  ipp_csv_id: ticpe_gaz_naturel_carburant
   unit: currency
   reference:
     1993-01-01:

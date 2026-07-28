@@ -37,7 +37,7 @@ values:
   2022-01-01:
     value: null
 metadata:
-  ipp_csv_id: ticpe_essences_speciales
+  ipp_csv_id: ticpe_essence_speciales
   unit: currency
   reference:
     1993-01-01:
