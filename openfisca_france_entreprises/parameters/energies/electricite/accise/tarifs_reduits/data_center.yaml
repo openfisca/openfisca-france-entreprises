@@ -6,7 +6,7 @@ values:
 metadata:
   short_label: Accise électricité centres de stockage de données
   label_en: Excise duty on electricity for data centres
-  ipp_csv_id: accise_electricite_data_center
+  ipp_csv_id: accise_electricite_data_centers
   unit: currency_per_mwh
   last_value_still_valid_on: "2025-03-04"
   reference:
