@@ -2,7 +2,8 @@
 > ont été mergées (fast-forward, additif) sur la branche `energies` du dépôt barème ; la **mise à plat
 > des 6 exonérations d'accise** est **intégrée et poussée** (`origin/energies` → `818ef584d`, MR IPP
 > #498). Régions post-2016 et réfaction corse **restent en proposition** (`_propositions_*/`, à
-> restructurer en unité avant intégration). Couverture OF↔barème : **218/228 = 95,6 %** (détail ci-dessous).
+> restructurer en unité avant intégration). Couverture OF↔barème : **226/228 = 99,1 %** après import des
+> 8 paramètres barème-only (`c67531b`) — ne restent barème-only que les 2 résidus « intervention » (par conception ; détail ci-dessous).
 
 # ✅ JALON 2026-07-29 — état OF ↔ barème `energies` (BIY)
 
@@ -26,29 +27,32 @@
 |---|---|
 | ids OF distincts | 222 |
 | ids barème distincts | 228 |
-| **appariés** | **218 — soit 95,6 % du barème** |
+| **appariés** | **226 — soit 99,1 % du barème** (218 → 226 après import des 8, `c67531b`) |
 | OF-only | 4 |
-| barème-only | 10 |
+| barème-only | 2 |
 
 **OF-only (4)** — tous attendus : `plafond_tcfe` (pas d'équivalent barème) ;
 `refaction_corse_ticpe_{sp95_sp98,sp95_e10,super_plombe}` (le barème garde la réfaction en proposition —
 ces 3 s'apparieront à son intégration).
 
-**Barème-only (10)** :
-- *Résidu par conception (2)* : `accise_essences_secours`, `accise_gazoles_secours` — OF modélise
-  l'intervention **à plat** (un seul paramètre), donc pas d'appariement par id (symétrique du choix ci-dessus).
-- *À importer côté OF (8)* : `accise_electricite_ports`, `accise_electricite_renouvelable_autoconsommee`,
-  `accise_majoration_zni`, `max_accise_essences_drom`, `max_accise_gazoles_drom`,
-  `ticpe_gazole_carburant_conditions_fioul_domestique`, `ticpe_melange_propane_butane_autre`,
-  `ticpe_melange_propane_butane_conditions`.
+**Barème-only (2)** — *résidu par conception* : `accise_essences_secours`, `accise_gazoles_secours` —
+OF modélise l'intervention **à plat** (un seul paramètre), donc pas d'appariement par id (symétrique du
+choix fait lors de la mise à plat).
+
+**Import fait (`c67531b`)** — les 8 paramètres jadis barème-only sont importés côté OF (verbatim, `ipp_csv_id`
+préservé, rangés à la convention OF) : accise électricité manutention portuaire + renouvelable autoconsommée,
+majoration ZNI (racine), plafonds DROM essences/gazoles, TICPE historiques gazole-sous-condition-fioul-domestique
++ mélanges propane/butane (autres, sous conditions). Paramètres de données — câblage formule = travail distinct.
 
 ## Reste à faire
 1. **Régions post-2016 + réfaction corse** (proposition → intégration) : restructurer selon la convention
    barème — fichier €/hL **clos à `null` en 2022** + fichier €/MWh séparé, **ne pas mêler les unités dans
    un même fichier** ; trancher les renommages (centre→centre_val_loire, pays_loire→pays_la_loire, étendre
    les régions au périmètre inchangé plutôt que dupliquer) et la clôture des régions pré-2016.
-2. **Importer les 8 paramètres barème-only** côté OF → couverture ~99 %.
+2. ~~**Importer les 8 paramètres barème-only**~~ ✅ **fait** (`c67531b`) → couverture 99,1 %.
 3. L'intégration de la réfaction côté barème appariera les 3 ids OF-only.
+4. *(optionnel)* Câbler dans les formules les paramètres importés qui doivent peser sur le calcul
+   (manutention portuaire électricité, plafonds DROM, majoration ZNI) — hors périmètre pur « couverture ».
 
 ---
 
