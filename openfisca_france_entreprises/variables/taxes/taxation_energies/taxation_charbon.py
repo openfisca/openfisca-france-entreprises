@@ -120,7 +120,7 @@ class taxe_interieure_consommation_charbon(Variable):
         # porter par la donnée permet qu'un changement de tarif reste un changement de donnée.
         seuils = parameters(period).energies.seuils_seqe
         assiette_ticc = etablissement("assiette_ticc", period)
-        tarifs_reduits = parameters(period).energies.charbon.accise.tarifs_reduits
+        tarifs_reduits = parameters(period).energies.charbon.accise.combustibles.tarifs_reduits
 
         condition_biomasse = _and(
             installation_seqe,
@@ -226,7 +226,7 @@ class taxe_interieure_consommation_charbon(Variable):
         charbon_double_usage = etablissement("charbon_double_usage", period)
 
         assiette_ticc = etablissement("assiette_ticc", period)
-        tarifs_reduits = parameters(period).energies.charbon.accise.tarifs_reduits
+        tarifs_reduits = parameters(period).energies.charbon.accise.combustibles.tarifs_reduits
 
         condition_biomasse = _and(
             installation_seqe,
@@ -287,7 +287,7 @@ class taxe_interieure_taxation_consommation_charbon_concurrence_internationale(
     def formula_2007_01_01(etablissement, period, parameters):
         # faut changer la date après
         assiette_ticc = etablissement("assiette_ticc", period)
-        return assiette_ticc * parameters(period).energies.charbon.accise.tarifs_reduits.intensive_energie_indirect_SEQE
+        return assiette_ticc * parameters(period).energies.charbon.accise.combustibles.tarifs_reduits.intensive_energie_indirect_SEQE
 
 
 class taxe_interieure_taxation_consommation_charbon_seqe(Variable):
@@ -300,7 +300,7 @@ class taxe_interieure_taxation_consommation_charbon_seqe(Variable):
     def formula_2007_01_01(etablissement, period, parameters):
         # faut changer la date après
         assiette_ticc = etablissement("assiette_ticc", period)
-        return assiette_ticc * parameters(period).energies.charbon.accise.tarifs_reduits.intensive_energie_SEQE
+        return assiette_ticc * parameters(period).energies.charbon.accise.combustibles.tarifs_reduits.intensive_energie_SEQE
 
 
 class taxe_interieure_taxation_consommation_charbon_taux_normal(Variable):
