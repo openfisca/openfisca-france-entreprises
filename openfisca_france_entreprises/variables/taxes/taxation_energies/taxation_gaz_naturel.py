@@ -548,7 +548,7 @@ class taxe_interieure_consommation_gaz_naturel_legumes(Variable):
         assiette = etablissement("assiette_ticgn", period)
         # taux_reduit_legumes faisait doublon avec taux_reduit_deshydratation
         # (même valeur, même date, même disposition : LF 2019, art. 67).
-        taux = parameters(period).energies.gaz_naturel.ticgn.taux_reduit_deshydratation
+        taux = parameters(period).energies.gaz_naturel.ticgn.taux_reduits.deshydratation
         return assiette * taux
 
     def formula_2022_01_01(etablissement, period, parameters):
@@ -608,7 +608,7 @@ class taxe_interieure_consommation_gaz_naturel_grande_consommatrice(Variable):
     def formula_2014_01_01(etablissement, period, parameters):
         """[à noter : plus de seuil ni d'abattement]."""
         assiette = etablissement("assiette_ticgn", period)
-        taux = parameters(period).energies.gaz_naturel.ticgn.taux_reduit_grandes_consommatrices
+        taux = parameters(period).energies.gaz_naturel.ticgn.taux_reduits.grandes_consommatrices
         return assiette * taux
 
     def formula_2022_01_01(etablissement, period, parameters):
