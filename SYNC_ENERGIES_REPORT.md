@@ -1,3 +1,57 @@
+> 📌 **Jalon du 2026-07-29 — mise à plat des exonérations intégrée au barème** : les 3 propositions
+> ont été mergées (fast-forward, additif) sur la branche `energies` du dépôt barème ; la **mise à plat
+> des 6 exonérations d'accise** est **intégrée et poussée** (`origin/energies` → `818ef584d`, MR IPP
+> #498). Régions post-2016 et réfaction corse **restent en proposition** (`_propositions_*/`, à
+> restructurer en unité avant intégration). Couverture OF↔barème : **218/228 = 95,6 %** (détail ci-dessous).
+
+# ✅ JALON 2026-07-29 — état OF ↔ barème `energies` (BIY)
+
+## Ce qui a été fait
+- **Merge** (fast-forward, purement additif) des 3 propositions sur la branche `energies` du dépôt barème.
+- **Mise à plat des exonérations d'accise intégrée + poussée** (`818ef584d`) : les 6 exonérations que
+  le CIBS définit **sans distinction de grade** (navigation intérieure/maritime/aérienne, doubles usages,
+  fabrication de minéraux, secteurs aéronautique/naval — art. L. 312-54 à 58 et 66 à 69) passent de
+  **42 fichiers par grade à 6 fichiers à plat** sous `accise/tarifs_reduits/`, catégorie fiscale portée
+  en métadonnée. Valeurs toutes nulles → agrégat identique. Les 6 `ipp_csv_id` correspondent 1:1 à ceux
+  déjà posés côté OF (`13e6124`) : **la principale divergence structurelle est résolue des deux côtés**.
+- **Audit de cohérence** (16 activités par grade) : 6 « blanket » mises à plat ; 9 réellement
+  différenciées par carburant (taxi, transports guidé/collectif/routier, agricoles, extraction,
+  manutention, montagnes, travaux statiques) → **conservées par grade**, à juste titre.
+- **Intervention incendie/secours** (art. 50 loi 2023-580) : **laissée par grade** — hors tableau CIBS,
+  codée seulement essences+gazoles ; sa mise à plat suppose de confirmer d'abord qu'elle vaut pour
+  toutes les catégories fiscales (documenté dans `accise/tarifs_reduits/index.yaml`).
+
+## Couverture OF ↔ barème `energies` (au `818ef584d`)
+| | valeur |
+|---|---|
+| ids OF distincts | 222 |
+| ids barème distincts | 228 |
+| **appariés** | **218 — soit 95,6 % du barème** |
+| OF-only | 4 |
+| barème-only | 10 |
+
+**OF-only (4)** — tous attendus : `plafond_tcfe` (pas d'équivalent barème) ;
+`refaction_corse_ticpe_{sp95_sp98,sp95_e10,super_plombe}` (le barème garde la réfaction en proposition —
+ces 3 s'apparieront à son intégration).
+
+**Barème-only (10)** :
+- *Résidu par conception (2)* : `accise_essences_secours`, `accise_gazoles_secours` — OF modélise
+  l'intervention **à plat** (un seul paramètre), donc pas d'appariement par id (symétrique du choix ci-dessus).
+- *À importer côté OF (8)* : `accise_electricite_ports`, `accise_electricite_renouvelable_autoconsommee`,
+  `accise_majoration_zni`, `max_accise_essences_drom`, `max_accise_gazoles_drom`,
+  `ticpe_gazole_carburant_conditions_fioul_domestique`, `ticpe_melange_propane_butane_autre`,
+  `ticpe_melange_propane_butane_conditions`.
+
+## Reste à faire
+1. **Régions post-2016 + réfaction corse** (proposition → intégration) : restructurer selon la convention
+   barème — fichier €/hL **clos à `null` en 2022** + fichier €/MWh séparé, **ne pas mêler les unités dans
+   un même fichier** ; trancher les renommages (centre→centre_val_loire, pays_loire→pays_la_loire, étendre
+   les régions au périmètre inchangé plutôt que dupliquer) et la clôture des régions pré-2016.
+2. **Importer les 8 paramètres barème-only** côté OF → couverture ~99 %.
+3. L'intégration de la réfaction côté barème appariera les 3 ids OF-only.
+
+---
+
 > 📌 **Reprise du lundi 2026-07-27** : voir `ACTIONS_EN_ATTENTE.md` pour tout ce qui demande une
 > action humaine (PR à ouvrir, issue OFF-E, propositions barème **non commitées** dans le worktree,
 > arbitrages §5 et §7). Côté agent, l'item 2 (TIRUERT) a été terminé le 2026-07-24 : `sync/energies-no-regret`
