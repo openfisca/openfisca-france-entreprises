@@ -1,9 +1,9 @@
 > 📌 **Jalon du 2026-07-29 — mise à plat des exonérations intégrée au barème** : les 3 propositions
 > ont été mergées (fast-forward, additif) sur la branche `energies` du dépôt barème ; la **mise à plat
 > des 6 exonérations d'accise** est **intégrée et poussée** (`origin/energies` → `818ef584d`, MR IPP
-> #498). Régions post-2016 et réfaction corse **restent en proposition** (`_propositions_*/`, à
-> restructurer en unité avant intégration). Couverture OF↔barème : **226/228 = 99,1 %** après import des
-> 8 paramètres barème-only (`c67531b`) — ne restent barème-only que les 2 résidus « intervention » (par conception ; détail ci-dessous).
+> #498). **Réfaction corse intégrée** au barème (`7ef3a631b`) ; **proposition régions post-2016 abandonnée**
+> (régions déjà synchronisées — cf. plus bas). Import des 8 paramètres barème-only côté OF (`c67531b`).
+> État final : **229 ids appariés**, OF-only **1** (`plafond_tcfe`), barème-only **2** (résidu « intervention »).
 
 # ✅ JALON 2026-07-29 — état OF ↔ barème `energies` (BIY)
 
@@ -21,38 +21,46 @@
 - **Intervention incendie/secours** (art. 50 loi 2023-580) : **laissée par grade** — hors tableau CIBS,
   codée seulement essences+gazoles ; sa mise à plat suppose de confirmer d'abord qu'elle vaut pour
   toutes les catégories fiscales (documenté dans `accise/tarifs_reduits/index.yaml`).
+- **Réfaction corse intégrée au barème** (`7ef3a631b`) sous `autres_produits_energetiques/refaction_corse/`
+  (SP95/SP98 depuis 2002, SP95-E10 depuis 2019, plombé clôturé 2022). Identifiants et valeurs identiques
+  à OF → **résout 3 des 4 ids OF-only**. Aucune restructuration d'unité nécessaire : le `unit: currency`
+  générique + note de doc (1,0 €/hL → 1,125 €/MWh en 2022) est déjà la convention d'OF pour ce paramètre.
+- **Proposition régions post-2016 : ABANDONNÉE** (`7ef3a631b`, dossier retiré). Vérification : OF n'utilise
+  **pas** de régions fusionnées ; il porte les **mêmes 22 régions pré-2016 que le barème**, avec des
+  identifiants **identiques** et les **mêmes valeurs et couverture** (corse/IDF → 2017, paca 2012, poitou
+  2016, rhône-alpes 2014, identiques des deux côtés). Les régions sont **déjà synchronisées**. La proposition
+  créait 13 fichiers à ids (`ges`, `hdf`, `ara`…) présents dans **aucun** des deux dépôts : l'intégrer aurait
+  ajouté des ids barème-only et **dégradé** l'alignement. La prémisse « unité à restructurer » était erronée.
 
-## Couverture OF ↔ barème `energies` (au `818ef584d`)
+## Couverture OF ↔ barème `energies` (au `7ef3a631b` / OF `sync`)
 | | valeur |
 |---|---|
-| ids OF distincts | 222 |
-| ids barème distincts | 228 |
-| **appariés** | **226 — soit 99,1 % du barème** (218 → 226 après import des 8, `c67531b`) |
-| OF-only | 4 |
+| ids OF distincts | 230 |
+| ids barème distincts | 231 |
+| **appariés** | **229** — OF-only 1, barème-only 2 (alignement mutuel ≈ 99,5 %) |
+| OF-only | **1** |
 | barème-only | 2 |
 
-**OF-only (4)** — tous attendus : `plafond_tcfe` (pas d'équivalent barème) ;
-`refaction_corse_ticpe_{sp95_sp98,sp95_e10,super_plombe}` (le barème garde la réfaction en proposition —
-ces 3 s'apparieront à son intégration).
+**OF-only (1)** : `plafond_tcfe` — pas d'équivalent barème (divergence légitime).
 
 **Barème-only (2)** — *résidu par conception* : `accise_essences_secours`, `accise_gazoles_secours` —
 OF modélise l'intervention **à plat** (un seul paramètre), donc pas d'appariement par id (symétrique du
 choix fait lors de la mise à plat).
 
-**Import fait (`c67531b`)** — les 8 paramètres jadis barème-only sont importés côté OF (verbatim, `ipp_csv_id`
-préservé, rangés à la convention OF) : accise électricité manutention portuaire + renouvelable autoconsommée,
-majoration ZNI (racine), plafonds DROM essences/gazoles, TICPE historiques gazole-sous-condition-fioul-domestique
-+ mélanges propane/butane (autres, sous conditions). Paramètres de données — câblage formule = travail distinct.
+**Import des 8 barème-only fait (`c67531b`)** — accise électricité manutention portuaire + renouvelable
+autoconsommée, majoration ZNI (racine), plafonds DROM essences/gazoles, TICPE historiques gazole-sous-
+condition-fioul-domestique + mélanges propane/butane. Verbatim, `ipp_csv_id` préservé, convention OF.
+Paramètres de données — câblage formule = travail distinct.
 
 ## Reste à faire
-1. **Régions post-2016 + réfaction corse** (proposition → intégration) : restructurer selon la convention
-   barème — fichier €/hL **clos à `null` en 2022** + fichier €/MWh séparé, **ne pas mêler les unités dans
-   un même fichier** ; trancher les renommages (centre→centre_val_loire, pays_loire→pays_la_loire, étendre
-   les régions au périmètre inchangé plutôt que dupliquer) et la clôture des régions pré-2016.
-2. ~~**Importer les 8 paramètres barème-only**~~ ✅ **fait** (`c67531b`) → couverture 99,1 %.
-3. L'intégration de la réfaction côté barème appariera les 3 ids OF-only.
-4. *(optionnel)* Câbler dans les formules les paramètres importés qui doivent peser sur le calcul
+1. ~~**Régions post-2016**~~ — sans objet : déjà synchronisées ; proposition abandonnée (`7ef3a631b`).
+2. ~~**Réfaction corse**~~ ✅ **intégrée** au barème (`7ef3a631b`) → 3 ids OF-only résolus.
+3. ~~**Importer les 8 paramètres barème-only**~~ ✅ **fait** (`c67531b`).
+4. Reste **un seul écart légitime** : OF-only `plafond_tcfe` (sans équivalent barème) et le résidu
+   « intervention » barème-only (par conception). La synchronisation des identifiants est **essentiellement complète**.
+5. *(optionnel)* Câbler dans les formules les paramètres importés qui doivent peser sur le calcul
    (manutention portuaire électricité, plafonds DROM, majoration ZNI) — hors périmètre pur « couverture ».
+6. *(objectif de fond)* Faire pointer OF directement vers le barème plutôt que copier les valeurs.
 
 ---
 
