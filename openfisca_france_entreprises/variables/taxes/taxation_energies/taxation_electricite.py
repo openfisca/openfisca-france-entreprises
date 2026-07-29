@@ -1008,15 +1008,15 @@ class taxe_accise_electricite_electro_intensive_activite_industrielle(Variable):
                 assiette
                 * parameters(
                     period,
-                ).energies.electricite.accise.tarifs_reduits.electrointensives_industrie.electro_intensive_0_virgule_5,
+                ).energies.electricite.accise.tarifs_reduits.electrointensives.industrie_0_5,
                 assiette
                 * parameters(
                     period,
-                ).energies.electricite.accise.tarifs_reduits.electrointensives_industrie.electro_intensive_3_virgule_375,
+                ).energies.electricite.accise.tarifs_reduits.electrointensives.industrie_3_375,
                 assiette
                 * parameters(
                     period,
-                ).energies.electricite.accise.tarifs_reduits.electrointensives_industrie.electro_intensive_6_virgule_75,
+                ).energies.electricite.accise.tarifs_reduits.electrointensives.industrie_6_75,
             ],
             default=0,
         )
@@ -1073,19 +1073,19 @@ class taxe_accise_electricite_electro_intensive_concurrence_internationale(Varia
                 assiette
                 * parameters(
                     period,
-                ).energies.electricite.accise.tarifs_reduits.electrointensives_concurrence.electro_intensive_13_virgule_5,
+                ).energies.electricite.accise.tarifs_reduits.electrointensives.industrie_concurrence_13_5,
                 assiette
                 * parameters(
                     period,
-                ).energies.electricite.accise.tarifs_reduits.electrointensives_concurrence.electro_intensive_6_virgule_75,
+                ).energies.electricite.accise.tarifs_reduits.electrointensives.industrie_concurrence_6_75,
                 assiette
                 * parameters(
                     period,
-                ).energies.electricite.accise.tarifs_reduits.electrointensives_concurrence.electro_intensive_3_virgule_375,
+                ).energies.electricite.accise.tarifs_reduits.electrointensives.industrie_concurrence_3_375,
                 assiette
                 * parameters(
                     period,
-                ).energies.electricite.accise.tarifs_reduits.electrointensives_concurrence.electro_intensive_0_virgule_5,
+                ).energies.electricite.accise.tarifs_reduits.electrointensives.industrie_concurrence_0_5,
             ],
             default=0,
         )
