@@ -1,0 +1,10 @@
+description: TICPE - Mélanges spéciaux de butane et de propane destinés à être utilisés comme carburant
+metadata:
+  label_en: TICPE - Special blends of butane and propane used as fuel
+  order:
+  - autres_100kg_nets
+  - sous_condition_100kg_nets
+documentation: |-
+  Indices d'identification 31 et voisins. Au 1er janvier 2000, les mélanges de propane et de butane
+  ont été incorporés aux catégories propane liquéfié / butanes liquéfiés selon l'alcane majoritaire ;
+  ces séries s'arrêtent donc à cette date (importées du barème IPP, join par ipp_csv_id).

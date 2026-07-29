@@ -3,6 +3,7 @@ metadata:
   label_en: TICPE - Energy products
   order:
   - carburants_sous_conditions_hectolitre
+  - carburants_sous_conditions_fioul_domestique_hectolitre
   - fioul_domestique_hectolitre
   - gazole
   - gazole_b_10_hectolitre

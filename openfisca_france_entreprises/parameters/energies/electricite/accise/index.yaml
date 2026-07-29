@@ -4,6 +4,7 @@ metadata:
   order:
   - tarifs_normaux
   - tarifs_reduits
+  - renouvelable_autoconsommee
 documentation: |-
   Au 1er janvier 2022, les taxes sur l'énergie sont basculées vers le Code des impositions sur les
   biens et services. L'ancienne TICFE, ainsi que la TDCFE (en 2022) et la TCCFE (en 2023) qui y sont

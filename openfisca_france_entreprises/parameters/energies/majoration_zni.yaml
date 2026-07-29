@@ -1,0 +1,24 @@
+description: Majoration des tarifs normaux de l'accise sur les catégories fiscales des combustibles et de l'électricité, au titre du financement des zones non interconnectées (ZNI)
+values:
+  2026-02-01:
+    value: 5.66
+metadata:
+  short_label: Majoration au titre des zones non interconnectées
+  last_value_still_valid_on: "2026-07-24"
+  label_en: Surcharge on energy excise duty financing non-interconnected zones
+  ipp_csv_id: accise_majoration_zni
+  unit: currency_per_mwh
+  reference:
+    2026-02-01:
+      title: Article 0-3 de l'arrêté du 13 décembre 2022, inséré par le d du 1° de l'article 2 de l'arrêté du 24 décembre 2025 constatant les tarifs de certaines impositions sur les biens et services
+      href: https://www.legifrance.gouv.fr/eli/arrete/2025/12/24/CPPE2534454A/jo/texte
+  official_journal_date:
+    2026-02-01: "2025-12-31"
+  notes:
+    2026-02-01:
+      - title: "Date d'application fixee par l'article 3 de l'arrete du 24 decembre 2025, qui prevoit une entree en vigueur au 1er fevrier 2026 pour les dispositions des a a d du 1° de son article 2 (le reste de l'arrete entrant en vigueur au 1er janvier 2026, et ses 4° a 6° de l'article 1er au 1er avril 2026)."
+documentation: |-
+  Majoration prevue a l'article L. 312-37-1 du code des impositions sur les biens et services (CIBS), cree par la loi de finances pour 2025. Elle s'ajoute aux tarifs normaux resultant des articles L. 312-36 (combustibles) et L. 312-37 (electricite) : elle ne constitue donc pas un tarif autonome mais un supplement applicable aux deux familles, d'ou son placement a la racine de l'arborescence.
+  Son montant est determine chaque annee civile comme le quotient entre, au numerateur, le montant a financer au titre des zones non interconnectees (article L. 121-10 du code de l'energie) et, au denominateur, la quantite totale d'energie relevant des tarifs normaux concernes. Pour 2026, ces donnees sont fixees a l'article 0-2 de l'arrete du 13 decembre 2022 : 3 648 millions d'euros a financer et 644 terawattheures consommes en 2024.
+  L'article L. 312-37-1 precise que la majoration est applicable aux consommations intervenant du 1er fevrier d'une annee civile au 31 janvier de l'annee suivante, ce qui explique la date d'effet au 1er fevrier et non au 1er janvier.
+  La loi de finances pour 2026 (article 72, III) a ensuite scinde la periode : la majoration est portee a 5,93 euros par megawattheure du 1er aout 2026 au 31 janvier 2027. Cette valeur, posterieure a la date du jour, est portee par une branche dediee et n'a pas vocation a figurer sur master tant qu'elle n'est pas entree en vigueur.

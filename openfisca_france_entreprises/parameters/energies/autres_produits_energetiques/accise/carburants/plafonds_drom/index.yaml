@@ -1,0 +1,9 @@
+description: Tarifs maximaux de l'accise sur les carburants dans les départements et régions d'outre-mer
+metadata:
+  label_en: Maximum excise duty on fuels in overseas departments and regions
+  order:
+  - essences
+  - gazoles
+documentation: |-
+  Plafonds prévus par le code des impositions sur les biens et services : dans les DROM, le tarif de
+  l'accise sur les carburants ne peut excéder ces montants. Importés du barème IPP (join par ipp_csv_id).

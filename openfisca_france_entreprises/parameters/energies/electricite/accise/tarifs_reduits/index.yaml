@@ -15,6 +15,7 @@ metadata:
   - fabrication_mineraux
   - production_biens_intensive
   - production_navires
+  - manutention_portuaire
 documentation: |-
   Les tarifs à zéro correspondent aux exonérations prévues par le Code des impositions sur les
   biens et services. Le modèle les codait auparavant en dur dans les formules ; ils sont désormais
