@@ -98,7 +98,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 period,
             ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
             # + etablissement('consommation_carbureacteurs_essence_autres_hL', period) *
-            #     parameters(period).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
+            #     ...ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
             #     (combiner en une variable de consommation)
             + etablissement(
                 "consommation_huiles_legeres_combustible_carburant_ou_autres",
@@ -707,8 +707,8 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     # la majoration régionale inclus désormais 11 ter, consommation_supercarburant_e10
     # par rapport aux années suivantes; ces changements s'appliquent aux années précédents :
     # ajouté
-    # parameters(period).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_sous_conditions
-    # parameters(period).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_sous_conditions
+    # ...ticpe.huiles_legeres.carbureacteurs_essence.essence_sous_conditions
+    # ...ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_sous_conditions
     def formula_2012_01_01(etablissement, period, parameters):
         return [
             # chaque objet dans la liste est positioné selon sa position dans le code législatif
@@ -1583,9 +1583,9 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     # 2020 : par rapport à 2021,
     # carburants_sous_conditions_hectolitre,
     # sous_conditions_100kg_nets (propane)
-    # parameters(period).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
+    # ...ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
     #
-    # parameters(period).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
+    # ...ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
     #
     # parameters(period).energies.autres_produits_energetiques.ticpe.
     #     autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions_100kg
@@ -2048,7 +2048,9 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 default=p.combustibles.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies,
             )
         else:
-            taux_gaz_de_petrole_liquefies_combustible = p.combustibles.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
+            taux_gaz_de_petrole_liquefies_combustible = (
+                p.combustibles.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
+            )
 
         installation_seqe = etablissement("installation_seqe", period) != 0
         risque_de_fuite_carbone_eta = etablissement("risque_de_fuite_carbone_eta", period) != 0
@@ -2155,11 +2157,15 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 period,
             )
             * taux_gaz_de_petrole_liquefies_combustible
-            + etablissement("consommation_ethanol_diesel_ed95_mwh", period) * p.carburants.tarifs_particuliers.ethanol_diesel_ed95
+            + etablissement("consommation_ethanol_diesel_ed95_mwh", period)
+            * p.carburants.tarifs_particuliers.ethanol_diesel_ed95
             + etablissement("consommation_gazole_b100_mwh", period) * p.carburants.tarifs_particuliers.gazole_b100
-            + etablissement("consommation_essence_aviation_mwh", period) * p.carburants.tarifs_particuliers.essence_aviation
-            + etablissement("consommation_essence_sp95_e10_mwh", period) * p.carburants.tarifs_particuliers.essence_sp95_e10
-            + etablissement("consommation_superethanol_e85_mwh", period) * p.carburants.tarifs_particuliers.superethanol_e85
+            + etablissement("consommation_essence_aviation_mwh", period)
+            * p.carburants.tarifs_particuliers.essence_aviation
+            + etablissement("consommation_essence_sp95_e10_mwh", period)
+            * p.carburants.tarifs_particuliers.essence_sp95_e10
+            + etablissement("consommation_superethanol_e85_mwh", period)
+            * p.carburants.tarifs_particuliers.superethanol_e85
             + etablissement(
                 "consommation_grisou_et_gaz_assimiles_combustible_mwh",
                 period,
@@ -2273,7 +2279,9 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 default=p.combustibles.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies,
             )
         else:
-            taux_gaz_de_petrole_liquefies_combustible = p.combustibles.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
+            taux_gaz_de_petrole_liquefies_combustible = (
+                p.combustibles.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
+            )
 
         installation_seqe = etablissement("installation_seqe", period) != 0
         risque_de_fuite_carbone_eta = etablissement("risque_de_fuite_carbone_eta", period) != 0
@@ -2380,11 +2388,15 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 period,
             )
             * taux_gaz_de_petrole_liquefies_combustible
-            + etablissement("consommation_ethanol_diesel_ed95_mwh", period) * p.carburants.tarifs_particuliers.ethanol_diesel_ed95
+            + etablissement("consommation_ethanol_diesel_ed95_mwh", period)
+            * p.carburants.tarifs_particuliers.ethanol_diesel_ed95
             + etablissement("consommation_gazole_b100_mwh", period) * p.carburants.tarifs_particuliers.gazole_b100
-            + etablissement("consommation_essence_aviation_mwh", period) * p.carburants.tarifs_particuliers.essence_aviation
-            + etablissement("consommation_essence_sp95_e10_mwh", period) * p.carburants.tarifs_particuliers.essence_sp95_e10
-            + etablissement("consommation_superethanol_e85_mwh", period) * p.carburants.tarifs_particuliers.superethanol_e85
+            + etablissement("consommation_essence_aviation_mwh", period)
+            * p.carburants.tarifs_particuliers.essence_aviation
+            + etablissement("consommation_essence_sp95_e10_mwh", period)
+            * p.carburants.tarifs_particuliers.essence_sp95_e10
+            + etablissement("consommation_superethanol_e85_mwh", period)
+            * p.carburants.tarifs_particuliers.superethanol_e85
             + etablissement(
                 "consommation_grisou_et_gaz_assimiles_combustible_mwh",
                 period,
@@ -2536,10 +2548,13 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 period,
             )
             * taux_gaz_de_petrole_liquefies_combustible
-            + etablissement("consommation_ethanol_diesel_ed95_mwh", period) * p.carburants.tarifs_particuliers.ethanol_diesel_ed95
+            + etablissement("consommation_ethanol_diesel_ed95_mwh", period)
+            * p.carburants.tarifs_particuliers.ethanol_diesel_ed95
             + etablissement("consommation_gazole_b100_mwh", period) * p.carburants.tarifs_particuliers.gazole_b100
-            + etablissement("consommation_essence_sp95_e10_mwh", period) * p.carburants.tarifs_particuliers.essence_sp95_e10
-            + etablissement("consommation_superethanol_e85_mwh", period) * p.carburants.tarifs_particuliers.superethanol_e85
+            + etablissement("consommation_essence_sp95_e10_mwh", period)
+            * p.carburants.tarifs_particuliers.essence_sp95_e10
+            + etablissement("consommation_superethanol_e85_mwh", period)
+            * p.carburants.tarifs_particuliers.superethanol_e85
             + etablissement(
                 "consommation_grisou_et_gaz_assimiles_combustible_mwh",
                 period,

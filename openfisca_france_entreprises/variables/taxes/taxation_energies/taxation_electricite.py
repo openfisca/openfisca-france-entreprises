@@ -748,9 +748,24 @@ class taxe_electricite_risque_de_fuite_de_carbone(Variable):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
 
         rfc = parameters(period).energies.electricite.ticfe.risque_de_fuite_de_carbone
-        taxe_plus_3 = assiette_taxe_electricite * parameters(period).energies.electricite.ticfe.taux_reduits.secteur_risque_fuite.risque_fuite_3kwh_euro_et_plus
-        taxe_1_5_3 = assiette_taxe_electricite * parameters(period).energies.electricite.ticfe.taux_reduits.secteur_risque_fuite.risque_fuite_1_5_a_3kwh_euro
-        taxe_moins_1_5 = assiette_taxe_electricite * parameters(period).energies.electricite.ticfe.taux_reduits.secteur_risque_fuite.risque_fuite_1_5_kwh_euro_et_moins
+        taxe_plus_3 = (
+            assiette_taxe_electricite
+            * parameters(
+                period
+            ).energies.electricite.ticfe.taux_reduits.secteur_risque_fuite.risque_fuite_3kwh_euro_et_plus
+        )
+        taxe_1_5_3 = (
+            assiette_taxe_electricite
+            * parameters(
+                period
+            ).energies.electricite.ticfe.taux_reduits.secteur_risque_fuite.risque_fuite_1_5_a_3kwh_euro
+        )
+        taxe_moins_1_5 = (
+            assiette_taxe_electricite
+            * parameters(
+                period
+            ).energies.electricite.ticfe.taux_reduits.secteur_risque_fuite.risque_fuite_1_5_kwh_euro_et_moins
+        )
         return select(
             [
                 consommation_par_valeur_ajoutee >= rfc.seuil_3_kwh_par_va,
@@ -789,9 +804,24 @@ class taxe_electricite_installations_industrielles_electro_intensives(Variable):
         )
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
         ei = parameters(period).energies.electricite.ticfe.electro_intensive
-        taxe_plus_3 = assiette_taxe_electricite * parameters(period).energies.electricite.ticfe.taux_reduits.electrointensives.electrointensive_3kwh_euro_et_plus
-        taxe_1_5_3 = assiette_taxe_electricite * parameters(period).energies.electricite.ticfe.taux_reduits.electrointensives.electrointensive_1_5_a_3kwh_euro
-        taxe_moins_1_5 = assiette_taxe_electricite * parameters(period).energies.electricite.ticfe.taux_reduits.electrointensives.electrointensive_1_5_kwh_euro_et_moins
+        taxe_plus_3 = (
+            assiette_taxe_electricite
+            * parameters(
+                period
+            ).energies.electricite.ticfe.taux_reduits.electrointensives.electrointensive_3kwh_euro_et_plus
+        )
+        taxe_1_5_3 = (
+            assiette_taxe_electricite
+            * parameters(
+                period
+            ).energies.electricite.ticfe.taux_reduits.electrointensives.electrointensive_1_5_a_3kwh_euro
+        )
+        taxe_moins_1_5 = (
+            assiette_taxe_electricite
+            * parameters(
+                period
+            ).energies.electricite.ticfe.taux_reduits.electrointensives.electrointensive_1_5_kwh_euro_et_moins
+        )
         return select(
             [
                 consommation_par_valeur_ajoutee >= ei.seuil_3_kwh_par_va,
@@ -894,7 +924,9 @@ class taxe_electricite_centres_de_stockage_donnees(Variable):
         ticfe = parameters(period).energies.electricite.ticfe
         plafond = ticfe.plafond_assiette_mwh
         taxe_above = (
-            plafond * parameters(period).energies.electricite.ticfe.taux_normal + (assiette_taxe_electricite - plafond) * parameters(period).energies.electricite.ticfe.taux_reduits.data_center
+            plafond * parameters(period).energies.electricite.ticfe.taux_normal
+            + (assiette_taxe_electricite - plafond)
+            * parameters(period).energies.electricite.ticfe.taux_reduits.data_center
         )  # la portion qui dépasse un gigawatt
         taxe_below = assiette_taxe_electricite * parameters(period).energies.electricite.ticfe.taux_normal
         return where(assiette_taxe_electricite > plafond, taxe_above, taxe_below)

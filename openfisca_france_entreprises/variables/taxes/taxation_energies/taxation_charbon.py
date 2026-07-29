@@ -287,7 +287,10 @@ class taxe_interieure_taxation_consommation_charbon_concurrence_internationale(
     def formula_2007_01_01(etablissement, period, parameters):
         # faut changer la date après
         assiette_ticc = etablissement("assiette_ticc", period)
-        return assiette_ticc * parameters(period).energies.charbon.accise.combustibles.tarifs_reduits.intensive_energie_indirect_SEQE
+        return (
+            assiette_ticc
+            * parameters(period).energies.charbon.accise.combustibles.tarifs_reduits.intensive_energie_indirect_SEQE
+        )
 
 
 class taxe_interieure_taxation_consommation_charbon_seqe(Variable):
@@ -300,7 +303,10 @@ class taxe_interieure_taxation_consommation_charbon_seqe(Variable):
     def formula_2007_01_01(etablissement, period, parameters):
         # faut changer la date après
         assiette_ticc = etablissement("assiette_ticc", period)
-        return assiette_ticc * parameters(period).energies.charbon.accise.combustibles.tarifs_reduits.intensive_energie_SEQE
+        return (
+            assiette_ticc
+            * parameters(period).energies.charbon.accise.combustibles.tarifs_reduits.intensive_energie_SEQE
+        )
 
 
 class taxe_interieure_taxation_consommation_charbon_taux_normal(Variable):
@@ -509,5 +515,3 @@ class assiette_ticc(Variable):
         # également pour le charbon
         # NB -34, chaleur >= carburant
         # ajouter un engin_non_routier (-35) ?
-
-

@@ -32,7 +32,7 @@ metadata:
     2025-01-01:
     - title: La taxe sur les carburéacteurs est supprimée pour l'année 2025.
 documentation: |-
-  La TIRIB (puis TIRUERT) remplace la TGAP carburants en 2019. 
+  La TIRIB (puis TIRUERT) remplace la TGAP carburants en 2019.
   Elle est calculée en multipliant le volume de carburants par un montant forfaitaire (qui fait l'objet de barèmes associés),
   auquel est appliqué un coefficient égal à la différence entre le pourcentage national cible d'incorporation d’énergie renouvelable dans les transports (objet de ce barème)  et la proportion d’énergie renouvelable contenue dans les carburants du redevable.
   Les énergies entrant dans cette proportion d'énergies renouvelables sont définies au V de l'article 266 quindecies du code des douanes et leur prise en compte peut évoluer avec la législation.
