@@ -1,0 +1,63 @@
+# Arbitrage en attente — bornes des tranches d'électro-intensité (accise électricité)
+#
+# CE FICHIER EST EN ÉCHEC VOLONTAIRE. Il est hors de
+# openfisca_france_entreprises/tests/ pour ne pas casser la CI, qui lance
+# `openfisca test` sur tout ce répertoire. À lancer à la demande :
+#
+#   .venv/bin/openfisca test scripts/agregats_tic/arbitrages/ -c openfisca_france_entreprises
+#
+# ---------------------------------------------------------------------------
+# Le désaccord
+#
+# Les taux concordent entre la déclaration 2040-TIC et le barème : 7,5 / 5 / 2
+# €/MWh pour les installations industrielles au sein de sites IEI (cases _911331,
+# _911329, _911327 — tarif implicite vérifié sur les quatre millésimes).
+#
+# Les BORNES, elles, divergent :
+#
+#   - la déclaration découpe à 1,5 et 3 kWh par € de valeur ajoutée
+#     (« strictement inférieure à 1,5 » / « comprise entre 1,5 et 3 » /
+#      « strictement supérieure à 3 ») ;
+#   - taxe_accise_electricite_electro_intensive_activite_industrielle découpe à
+#     0,5 et 3,375, via electro_intensite_activite_industrielle_seuil_05 et
+#     electro_intensite_tranche_1_max.
+#
+# Les paramètres aux bornes de la déclaration existent pourtant au barème
+# (electricite/ticfe/electro_intensive/seuil_1_5_kwh_par_va et seuil_3_kwh_par_va)
+# mais ne servent que les formules TICFE antérieures à 2022.
+#
+# Aucune cellule déclarée ne tombe dans les bandes litigieuses [0,5 ; 1,5[ ou
+# [3 ; 3,375[ : les agrégats ne peuvent donc pas trancher seuls. Ce cas construit
+# la situation manquante.
+#
+# Attendu ci-dessous : la valeur commandée par la déclaration (7,5 €/MWh).
+# Rendu par le modèle aujourd'hui : 5 €/MWh, soit 5 000 €.
+#
+# À arbitrer contre l'article L312-65 du code des impositions sur les biens et
+# services avant de corriger quoi que ce soit.
+
+- name: "Tranche IEI — électro-intensité de 1,0 kWh/€ de VA (bande litigieuse [0,5 ; 1,5[)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    assiette_taxe_electricite: 1000
+    electro_intensive_activite_industrielle: true
+    electro_intensite: 1.0
+  output:
+    # 1 000 MWh sous 1,5 kWh/€ de VA : la déclaration commande le tarif de
+    # 7,5 €/MWh (case _911331), soit 7 500 €.
+    # Le modèle place 1,0 dans [0,5 ; 3,375[ et applique 5 €/MWh, soit 5 000 €.
+    taxe_accise_electricite: 7500
+
+- name: "Tranche IEI — électro-intensité de 3,2 kWh/€ de VA (bande litigieuse [3 ; 3,375[)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    assiette_taxe_electricite: 1000
+    electro_intensive_activite_industrielle: true
+    electro_intensite: 3.2
+  output:
+    # 1 000 MWh au-dessus de 3 kWh/€ de VA : la déclaration commande le tarif de
+    # 2 €/MWh (case _911327), soit 2 000 €.
+    # Le modèle place 3,2 sous 3,375 et applique 5 €/MWh, soit 5 000 €.
+    taxe_accise_electricite: 2000

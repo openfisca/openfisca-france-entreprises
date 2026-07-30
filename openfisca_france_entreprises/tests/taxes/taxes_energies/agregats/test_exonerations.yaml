@@ -1,0 +1,317 @@
+# Exonérations et exemptions — quantité déclarée, accise nulle
+#
+# Fichier généré par scripts/agregats_tic/generer_tests.py — ne pas éditer à la main.
+# Source : assets/agregats.csv, agrégats annuels de la déclaration 2040-TIC
+# déposée par les fournisseurs d'énergie.
+#
+# Chaque cas reprend la quantité et le montant réellement déclarés pour une case
+# et un millésime. Le millésime est l'année de dépôt ; la période du test est
+# l'année du tarif porté par la case.
+
+- name: "_911252 — Gaz naturel — double usage (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    consommation_gaz_combustible: 10529068
+    gaz_double_usage: true
+  output:
+    # 10,529,068 MWh déclarés en quantités exemptées : accise nulle
+    taxe_accise_gaz_naturel_combustible: 0.00
+
+- name: "_911252 — Gaz naturel — double usage (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 1
+  input:
+    consommation_gaz_combustible: 12704425
+    gaz_double_usage: true
+  output:
+    # 12,704,425 MWh déclarés en quantités exemptées : accise nulle
+    taxe_accise_gaz_naturel_combustible: 0.00
+
+- name: "_911252 — Gaz naturel — double usage (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    consommation_gaz_combustible: 13091185
+    gaz_double_usage: true
+  output:
+    # 13,091,185 MWh déclarés en quantités exemptées : accise nulle
+    taxe_accise_gaz_naturel_combustible: 0.00
+
+- name: "_911252 — Gaz naturel — double usage (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 1
+  input:
+    consommation_gaz_combustible: 11741741
+    gaz_double_usage: true
+  output:
+    # 11,741,741 MWh déclarés en quantités exemptées : accise nulle
+    taxe_accise_gaz_naturel_combustible: 0.00
+
+- name: "_911253 — Gaz naturel — fabrication de minéraux non métalliques (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    consommation_gaz_combustible: 13836964
+    gaz_production_mineraux_non_metalliques: true
+  output:
+    # 13,836,964 MWh déclarés en quantités exemptées : accise nulle
+    taxe_accise_gaz_naturel_combustible: 0.00
+
+- name: "_911253 — Gaz naturel — fabrication de minéraux non métalliques (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 1
+  input:
+    consommation_gaz_combustible: 14312955
+    gaz_production_mineraux_non_metalliques: true
+  output:
+    # 14,312,955 MWh déclarés en quantités exemptées : accise nulle
+    taxe_accise_gaz_naturel_combustible: 0.00
+
+- name: "_911253 — Gaz naturel — fabrication de minéraux non métalliques (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    consommation_gaz_combustible: 13833258
+    gaz_production_mineraux_non_metalliques: true
+  output:
+    # 13,833,258 MWh déclarés en quantités exemptées : accise nulle
+    taxe_accise_gaz_naturel_combustible: 0.00
+
+- name: "_911253 — Gaz naturel — fabrication de minéraux non métalliques (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 1
+  input:
+    consommation_gaz_combustible: 11222124
+    gaz_production_mineraux_non_metalliques: true
+  output:
+    # 11,222,124 MWh déclarés en quantités exemptées : accise nulle
+    taxe_accise_gaz_naturel_combustible: 0.00
+
+- name: "_911256 — Gaz naturel — production ou extraction de gaz naturel (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    consommation_gaz_combustible: 564400
+    gaz_extraction_production: true
+  output:
+    # 564,400 MWh déclarés en quantités exemptées : accise nulle
+    taxe_accise_gaz_naturel_combustible: 0.00
+
+- name: "_911256 — Gaz naturel — production ou extraction de gaz naturel (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 1
+  input:
+    consommation_gaz_combustible: 1113546
+    gaz_extraction_production: true
+  output:
+    # 1,113,546 MWh déclarés en quantités exemptées : accise nulle
+    taxe_accise_gaz_naturel_combustible: 0.00
+
+- name: "_911459 — Charbon — double usage (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    assiette_ticc: 1859797
+    charbon_double_usage: true
+  output:
+    # 1,859,797 MWh déclarés en quantités exemptées : accise nulle
+    taxe_interieure_consommation_charbon: 0.00
+
+- name: "_911459 — Charbon — double usage (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 1
+  input:
+    assiette_ticc: 1333492
+    charbon_double_usage: true
+  output:
+    # 1,333,492 MWh déclarés en quantités exemptées : accise nulle
+    taxe_interieure_consommation_charbon: 0.00
+
+- name: "_911459 — Charbon — double usage (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    assiette_ticc: 1051075
+    charbon_double_usage: true
+  output:
+    # 1,051,075 MWh déclarés en quantités exemptées : accise nulle
+    taxe_interieure_consommation_charbon: 0.00
+
+- name: "_911459 — Charbon — double usage (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 1
+  input:
+    assiette_ticc: 661440
+    charbon_double_usage: true
+  output:
+    # 661,440 MWh déclarés en quantités exemptées : accise nulle
+    taxe_interieure_consommation_charbon: 0.00
+
+- name: "_911460 — Charbon — fabrication de produits minéraux non métalliques (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    assiette_ticc: 997616
+    charbon_fabrication_produits_mineraux_non_metalliques: true
+  output:
+    # 997,616 MWh déclarés en quantités exemptées : accise nulle
+    taxe_interieure_consommation_charbon: 0.00
+
+- name: "_911460 — Charbon — fabrication de produits minéraux non métalliques (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 1
+  input:
+    assiette_ticc: 766607
+    charbon_fabrication_produits_mineraux_non_metalliques: true
+  output:
+    # 766,607 MWh déclarés en quantités exemptées : accise nulle
+    taxe_interieure_consommation_charbon: 0.00
+
+- name: "_911460 — Charbon — fabrication de produits minéraux non métalliques (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    assiette_ticc: 787717
+    charbon_fabrication_produits_mineraux_non_metalliques: true
+  output:
+    # 787,717 MWh déclarés en quantités exemptées : accise nulle
+    taxe_interieure_consommation_charbon: 0.00
+
+- name: "_911460 — Charbon — fabrication de produits minéraux non métalliques (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 1
+  input:
+    assiette_ticc: 606018
+    charbon_fabrication_produits_mineraux_non_metalliques: true
+  output:
+    # 606,018 MWh déclarés en quantités exemptées : accise nulle
+    taxe_interieure_consommation_charbon: 0.00
+
+- name: "_911464 — Charbon — valorisation de la biomasse (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    assiette_ticc: 437497
+    charbon_biomasse: true
+    installation_seqe: true
+    intensite_energetique_valeur_production: 0.05
+  output:
+    # 437,497 MWh déclarés en quantités exemptées : accise nulle
+    taxe_interieure_consommation_charbon: 0.00
+
+- name: "_911464 — Charbon — valorisation de la biomasse (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 1
+  input:
+    assiette_ticc: 92115
+    charbon_biomasse: true
+    installation_seqe: true
+    intensite_energetique_valeur_production: 0.05
+  output:
+    # 92,115 MWh déclarés en quantités exemptées : accise nulle
+    taxe_interieure_consommation_charbon: 0.00
+
+- name: "_911464 — Charbon — valorisation de la biomasse (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    assiette_ticc: 125909
+    charbon_biomasse: true
+    installation_seqe: true
+    intensite_energetique_valeur_production: 0.05
+  output:
+    # 125,909 MWh déclarés en quantités exemptées : accise nulle
+    taxe_interieure_consommation_charbon: 0.00
+
+- name: "_911464 — Charbon — valorisation de la biomasse (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 1
+  input:
+    assiette_ticc: 63666
+    charbon_biomasse: true
+    installation_seqe: true
+    intensite_energetique_valeur_production: 0.05
+  output:
+    # 63,666 MWh déclarés en quantités exemptées : accise nulle
+    taxe_interieure_consommation_charbon: 0.00
+
+- name: "_911352 — Électricité — fabrication de produits minéraux non métalliques (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    assiette_taxe_electricite: 6406829.37
+    electricite_fabrication_produits_mineraux_non_metalliques: true
+  output:
+    # 6,406,829 MWh déclarés en quantités exemptées : accise nulle
+    taxe_accise_electricite: 0.00
+
+- name: "_911352 — Électricité — fabrication de produits minéraux non métalliques (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 1
+  input:
+    assiette_taxe_electricite: 5224242.049
+    electricite_fabrication_produits_mineraux_non_metalliques: true
+  output:
+    # 5,224,242 MWh déclarés en quantités exemptées : accise nulle
+    taxe_accise_electricite: 0.00
+
+- name: "_911352 — Électricité — fabrication de produits minéraux non métalliques (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    assiette_taxe_electricite: 5719224.458
+    electricite_fabrication_produits_mineraux_non_metalliques: true
+  output:
+    # 5,719,224 MWh déclarés en quantités exemptées : accise nulle
+    taxe_accise_electricite: 0.00
+
+- name: "_911352 — Électricité — fabrication de produits minéraux non métalliques (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 1
+  input:
+    assiette_taxe_electricite: 4268935.94
+    electricite_fabrication_produits_mineraux_non_metalliques: true
+  output:
+    # 4,268,936 MWh déclarés en quantités exemptées : accise nulle
+    taxe_accise_electricite: 0.00
+
+- name: "_911355 — Électricité — production d'électricité (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    assiette_taxe_electricite: 10240308.011
+    electricite_production_electricite: true
+  output:
+    # 10,240,308 MWh déclarés en quantités exemptées : accise nulle
+    taxe_accise_electricite: 0.00
+
+- name: "_911355 — Électricité — production d'électricité (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 1
+  input:
+    assiette_taxe_electricite: 1364719.924
+    electricite_production_electricite: true
+  output:
+    # 1,364,720 MWh déclarés en quantités exemptées : accise nulle
+    taxe_accise_electricite: 0.00
+
+- name: "_911355 — Électricité — production d'électricité (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    assiette_taxe_electricite: 1730138.155
+    electricite_production_electricite: true
+  output:
+    # 1,730,138 MWh déclarés en quantités exemptées : accise nulle
+    taxe_accise_electricite: 0.00
+
+- name: "_911355 — Électricité — production d'électricité (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 1
+  input:
+    assiette_taxe_electricite: 3407745.748
+    electricite_production_electricite: true
+  output:
+    # 3,407,746 MWh déclarés en quantités exemptées : accise nulle
+    taxe_accise_electricite: 0.00
