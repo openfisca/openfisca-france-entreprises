@@ -65,40 +65,40 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.white_spirit_utilise_comme_combustible
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
             + etablissement(
                 "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement(
                 "consommation_huiles_legeres_preparation_essence_aviation",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
             + etablissement("consommation_supercarburant_e5", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.super.super_e5
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
             + etablissement("consommation_super_ars", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.super.super_plombe
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
             # + etablissement('consommation_supercarburant_e10', period) *
-            #     parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10
+            #     parameters(period).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
             + etablissement(
                 "consommation_carbureacteurs_essence_carburants_avion_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.carburants_avion_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
             # + etablissement('consommation_carbureacteurs_essence_autres_hL', period) *
-            #     parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_hL
+            #     parameters(period).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
             #     (combiner en une variable de consommation)
             + etablissement(
                 "consommation_huiles_legeres_combustible_carburant_ou_autres",
@@ -106,59 +106,59 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
             + etablissement(
                 "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.petrole_lampant.utilise_comme_combustible_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
             + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.petrole_lampant.autre_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.carburant_moteurs_avion_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_autres_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.autres_ante_2008_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_avant_2008
             + etablissement("consommation_huiles_moyennes_autres", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_moyennes
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
             + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.fioul_domestique_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
             + etablissement("consommation_gazoles", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.gazole
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
             + etablissement("consommation_fioul_lourd_100kg_net", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.fioul.fioul_lourd_100kg_net
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
             + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
             # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) *
             # parameters(period).energies.autres_produits_energetiques.ticpe.
             #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
             + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.autres_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
             # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) *
             # parameters(period).energies.autres_produits_energetiques.ticpe.
             #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
@@ -168,9 +168,9 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres_100kg
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
             # + etablissement('consommation_supercarburant_e85', period) *
-            #     parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e85
+            #     parameters(period).energies.autres_produits_energetiques.ticpe.super_e85
             # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
             # parameters(period).energies.autres_produits_energetiques.ticpe.
             #     carburant_constitue_minimum_90_alcool_ethylique_agricole
@@ -183,49 +183,49 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.carburants_sous_conditions_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
             + etablissement(
                 "consommation_propane_carburants_sous_conditions_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.propane_carburants.sous_conditions_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
             + etablissement(
                 "consommation_butanes_liquefies_sous_condition_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.sous_condition_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
             + etablissement(
                 "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions_100kg
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
             + etablissement(
                 "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
             + etablissement(
                 "consommation_emulsion_eau_gazoles_autres_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres
             + etablissement(
                 "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gaz_naturel_etat_gazeux_utilises_comme_carburants
+            ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
             # + etablissement(
             #     'consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires',
             #     period
@@ -239,14 +239,14 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.sous_conditions_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_sous_conditions
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_sous_conditions_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.sous_conditions_hL,
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_sous_conditions,
         ]
 
     # 2007
@@ -256,7 +256,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     # par rapport aux années suivantes; ces changements s'appliquent aux années précédents :
     # 1° Huiles légères, indice 4 bis, hectolitre, taxe intérieure applicable
     # au fioul domestique visé à l'indice 20.
-    # parameters(period).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres
+    # parameters(period).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
     #
     # exempté :
     # parameters(period).energies.autres_produits_energetiques.ticpe.
@@ -290,26 +290,26 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.white_spirit_utilise_comme_combustible
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
             + etablissement(
                 "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement(
                 "consommation_huiles_legeres_preparation_essence_aviation",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
             + etablissement("consommation_supercarburant_e5", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.super.super_e5
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
                 + etablissement(
                     "ticpe_majoration_regionale_supercarburant_95_98",
                     period,
@@ -318,82 +318,82 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement("consommation_super_ars", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.super.super_plombe
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
             # + etablissement('consommation_supercarburant_e10', period) *
-            #     parameters(period).energies.autres_produits_energetiques.ticpe.super.super_e10
+            #     parameters(period).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
             + etablissement(
                 "consommation_carbureacteurs_essence_carburants_avion_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.carburants_avion_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
             + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_ante_2008_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_avant_2008
             + etablissement(
                 "consommation_huiles_legeres_combustible_carburant_ou_autres",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
             + etablissement(
                 "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.petrole_lampant.utilise_comme_combustible_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
             + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.petrole_lampant.autre_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.carburant_moteurs_avion_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_autres_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.autres_ante_2008_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_avant_2008
             + etablissement("consommation_huiles_moyennes_autres", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_moyennes
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
             + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.fioul_domestique_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
             + etablissement("consommation_gazoles", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.gazole.gazole
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
                 + etablissement("ticpe_majoration_regionale_gazole", period)
             )
             + etablissement("consommation_fioul_lourd_100kg_net", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.fioul.fioul_lourd_100kg_net
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
             + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
             # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) *
             # parameters(period).energies.autres_produits_energetiques.ticpe.
             #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
             + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.autres_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
             # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) *
             # parameters(period).energies.autres_produits_energetiques.ticpe.
             #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
@@ -403,11 +403,11 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres_100kg
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
             + etablissement("consommation_supercarburant_e85", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.super.super_e85
+            ).energies.autres_produits_energetiques.ticpe.super_e85
             # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
             #     parameters(period).energies.autres_produits_energetiques.ticpe.
             #     carburant_constitue_minimum_90_alcool_ethylique_agricole
@@ -420,49 +420,49 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.carburants_sous_conditions_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
             + etablissement(
                 "consommation_propane_carburants_sous_conditions_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.propane_carburants.sous_conditions_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
             + etablissement(
                 "consommation_butanes_liquefies_sous_condition_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.sous_condition_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
             + etablissement(
                 "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions_100kg
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
             + etablissement(
                 "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
             + etablissement(
                 "consommation_emulsion_eau_gazoles_autres_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres
             + etablissement(
                 "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gaz_naturel_etat_gazeux_utilises_comme_carburants
+            ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
             # + etablissement(
             #     'consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires',
             #     period
@@ -476,14 +476,14 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.sous_conditions_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_sous_conditions
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_sous_conditions_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.sous_conditions_hL,
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_sous_conditions,
         ]
 
     # 2008
@@ -502,26 +502,26 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.white_spirit_utilise_comme_combustible
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
             + etablissement(
                 "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement(
                 "consommation_huiles_legeres_preparation_essence_aviation",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
             + etablissement("consommation_supercarburant_e5", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.super.super_e5
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
                 + etablissement(
                     "ticpe_majoration_regionale_supercarburant_95_98",
                     period,
@@ -530,11 +530,11 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement("consommation_super_ars", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.super.super_plombe
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
             + etablissement("consommation_supercarburant_e10", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.super.super_e10
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
             + etablissement("ticpe_majoration_regionale_supercarburant_e10", period)
             + etablissement(
                 "consommation_carbureacteurs_essence_carburants_avion_hL",
@@ -542,73 +542,73 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.carburants_avion_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
             + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
             + etablissement(
                 "consommation_huiles_legeres_combustible_carburant_ou_autres",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
             + etablissement(
                 "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.petrole_lampant.utilise_comme_combustible_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
             + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.petrole_lampant.autre_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.carburant_moteurs_avion_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_autres_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.autres_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
             + etablissement("consommation_huiles_moyennes_autres", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_moyennes
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
             + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.fioul_domestique_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
             + etablissement("consommation_gazoles", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.gazole.gazole
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
                 + etablissement("ticpe_majoration_regionale_gazole", period)
             )
             + etablissement("consommation_fioul_lourd_100kg_net", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.fioul.fioul_lourd_100kg_net
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
             + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
             # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) *
             # parameters(period).energies.autres_produits_energetiques.ticpe.
             #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
             + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.autres_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
             # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) *
             # parameters(period).energies.autres_produits_energetiques.ticpe.
             #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
@@ -618,11 +618,11 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres_100kg
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
             + etablissement("consommation_supercarburant_e85", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.super.super_e85
+            ).energies.autres_produits_energetiques.ticpe.super_e85
             # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
             #     parameters(period).energies.autres_produits_energetiques.ticpe.
             #     carburant_constitue_minimum_90_alcool_ethylique_agricole
@@ -635,70 +635,70 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.carburants_sous_conditions_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
             + etablissement(
                 "consommation_propane_carburants_sous_conditions_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.propane_carburants.sous_conditions_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
             + etablissement(
                 "consommation_butanes_liquefies_sous_condition_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.sous_condition_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
             + etablissement(
                 "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions_100kg
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
             + etablissement(
                 "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
             + etablissement(
                 "consommation_emulsion_eau_gazoles_autres_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres
             + etablissement(
                 "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gaz_naturel_etat_gazeux_utilises_comme_carburants
+            ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
             + etablissement(
                 "consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
+            ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_sous_conditions_aux_moteurs_stationnaires
             + etablissement(
                 "consommation_carbureacteurs_essence_sous_conditions_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.sous_conditions_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_sous_conditions
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_sous_conditions_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.sous_conditions_hL,
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_sous_conditions,
         ]
 
     # *** TODO : vérifie quand e10 s'est apparu 2011 pas 2012 ?
@@ -707,8 +707,8 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     # la majoration régionale inclus désormais 11 ter, consommation_supercarburant_e10
     # par rapport aux années suivantes; ces changements s'appliquent aux années précédents :
     # ajouté
-    # parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.sous_conditions_hL
-    # parameters(period).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.sous_conditions_hL
+    # parameters(period).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_sous_conditions
+    # parameters(period).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_sous_conditions
     def formula_2012_01_01(etablissement, period, parameters):
         return [
             # chaque objet dans la liste est positioné selon sa position dans le code législatif
@@ -722,26 +722,26 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.white_spirit_utilise_comme_combustible
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
             + etablissement(
                 "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement(
                 "consommation_huiles_legeres_preparation_essence_aviation",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
             + etablissement("consommation_supercarburant_e5", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.super.super_e5
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
                 + etablissement(
                     "ticpe_majoration_regionale_supercarburant_95_98",
                     period,
@@ -750,12 +750,12 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement("consommation_super_ars", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.super.super_plombe
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
             + etablissement("consommation_supercarburant_e10", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.super.super_e10
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
                 + etablissement("ticpe_majoration_regionale_supercarburant_e10", period)
             )
             + etablissement(
@@ -764,73 +764,73 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.carburants_avion_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
             + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
             + etablissement(
                 "consommation_huiles_legeres_combustible_carburant_ou_autres",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
             + etablissement(
                 "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.petrole_lampant.utilise_comme_combustible_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
             + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.petrole_lampant.autre_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.carburant_moteurs_avion_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_autres_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.autres_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
             + etablissement("consommation_huiles_moyennes_autres", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_moyennes
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
             + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.fioul_domestique_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
             + etablissement("consommation_gazoles", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.gazole.gazole
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
                 + etablissement("ticpe_majoration_regionale_gazole", period)
             )
             + etablissement("consommation_fioul_lourd_100kg_net", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.fioul.fioul_lourd_100kg_net
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
             + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
             # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) *
             # parameters(period).energies.autres_produits_energetiques.ticpe.
             #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
             + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.autres_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
             # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) *
             # parameters(period).energies.autres_produits_energetiques.ticpe.
             #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
@@ -840,11 +840,11 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres_100kg
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
             + etablissement("consommation_supercarburant_e85", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.super.super_e85
+            ).energies.autres_produits_energetiques.ticpe.super_e85
             # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
             #     parameters(period).energies.autres_produits_energetiques.ticpe.
             #     carburant_constitue_minimum_90_alcool_ethylique_agricole
@@ -857,70 +857,70 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.carburants_sous_conditions_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
             + etablissement(
                 "consommation_propane_carburants_sous_conditions_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.propane_carburants.sous_conditions_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
             + etablissement(
                 "consommation_butanes_liquefies_sous_condition_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.sous_condition_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
             + etablissement(
                 "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions_100kg
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
             + etablissement(
                 "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
             + etablissement(
                 "consommation_emulsion_eau_gazoles_autres_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres
             + etablissement(
                 "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gaz_naturel_etat_gazeux_utilises_comme_carburants
+            ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
             + etablissement(
                 "consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
+            ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_sous_conditions_aux_moteurs_stationnaires
             + etablissement(
                 "consommation_carbureacteurs_essence_sous_conditions_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.sous_conditions_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_sous_conditions
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_sous_conditions_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.sous_conditions_hL,
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_sous_conditions,
         ]
 
     # 2014
@@ -943,26 +943,26 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.white_spirit_utilise_comme_combustible
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
             + etablissement(
                 "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement(
                 "consommation_huiles_legeres_preparation_essence_aviation",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
             + etablissement("consommation_supercarburant_e5", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.super.super_e5
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
                 + etablissement(
                     "ticpe_majoration_regionale_supercarburant_95_98",
                     period,
@@ -971,12 +971,12 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement("consommation_super_ars", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.super.super_plombe
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
             + etablissement("consommation_supercarburant_e10", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.super.super_e10
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
                 + etablissement("ticpe_majoration_regionale_supercarburant_e10", period)
             )
             + etablissement(
@@ -985,73 +985,73 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.carburants_avion_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
             + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
             + etablissement(
                 "consommation_huiles_legeres_combustible_carburant_ou_autres",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
             + etablissement(
                 "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.petrole_lampant.utilise_comme_combustible_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
             + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.petrole_lampant.autre_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.carburant_moteurs_avion_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_autres_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.autres_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
             + etablissement("consommation_huiles_moyennes_autres", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_moyennes
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
             + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.fioul_domestique_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
             + etablissement("consommation_gazoles", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.gazole.gazole
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
                 + etablissement("ticpe_majoration_regionale_gazole", period)
             )
             + etablissement("consommation_fioul_lourd_100kg_net", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.fioul.fioul_lourd_100kg_net
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
             + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
             # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) *
             # parameters(period).energies.autres_produits_energetiques.ticpe.
             #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
             + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.autres_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
             # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) *
             # parameters(period).energies.autres_produits_energetiques.ticpe.
             #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
@@ -1061,11 +1061,11 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres_100kg
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
             + etablissement("consommation_supercarburant_e85", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.super.super_e85
+            ).energies.autres_produits_energetiques.ticpe.super_e85
             # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
             #     parameters(period).energies.autres_produits_energetiques.ticpe.
             #     carburant_constitue_minimum_90_alcool_ethylique_agricole
@@ -1078,56 +1078,56 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.carburants_sous_conditions_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
             + etablissement(
                 "consommation_propane_carburants_sous_conditions_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.propane_carburants.sous_conditions_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
             + etablissement(
                 "consommation_butanes_liquefies_sous_condition_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.sous_condition_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
             + etablissement(
                 "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions_100kg
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
             + etablissement(
                 "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
             + etablissement(
                 "consommation_emulsion_eau_gazoles_autres_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres
             + etablissement(
                 "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gaz_naturel_etat_gazeux_utilises_comme_carburants
+            ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
             + etablissement(
                 "consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires,
+            ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_sous_conditions_aux_moteurs_stationnaires,
             # etablissement('', period) * parameters(period).
             # etablissement('', period) * parameters(period).
         ]
@@ -1155,26 +1155,26 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.white_spirit_utilise_comme_combustible
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
             + etablissement(
                 "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement(
                 "consommation_huiles_legeres_preparation_essence_aviation",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
             + etablissement("consommation_supercarburant_e5", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.super.super_e5
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
                 + etablissement(
                     "ticpe_majoration_regionale_supercarburant_95_98",
                     period,
@@ -1183,12 +1183,12 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement("consommation_super_ars", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.super.super_plombe
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
             + etablissement("consommation_supercarburant_e10", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.super.super_e10
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
                 + etablissement("ticpe_majoration_regionale_supercarburant_e10", period)
             )
             + etablissement(
@@ -1197,73 +1197,73 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.carburants_avion_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
             + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
             + etablissement(
                 "consommation_huiles_legeres_combustible_carburant_ou_autres",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
             + etablissement(
                 "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.petrole_lampant.utilise_comme_combustible_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
             + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.petrole_lampant.autre_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.carburant_moteurs_avion_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_autres_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.autres_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
             + etablissement("consommation_huiles_moyennes_autres", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_moyennes
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
             + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.fioul_domestique_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
             + etablissement("consommation_gazoles", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.gazole.gazole
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
                 + etablissement("ticpe_majoration_regionale_gazole", period)
             )
             + etablissement("consommation_fioul_lourd_100kg_net", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.fioul.fioul_lourd_100kg_net
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
             + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
             # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) *
             # parameters(period).energies.autres_produits_energetiques.ticpe.
             #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
             + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.autres_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
             # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) *
             # parameters(period).energies.autres_produits_energetiques.ticpe.
             #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
@@ -1273,11 +1273,11 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres_100kg
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
             + etablissement("consommation_supercarburant_e85", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.super.super_e85
+            ).energies.autres_produits_energetiques.ticpe.super_e85
             + etablissement(
                 "consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole",
                 period,
@@ -1294,68 +1294,68 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.carburants_sous_conditions_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
             + etablissement(
                 "consommation_propane_carburants_sous_conditions_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.propane_carburants.sous_conditions_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
             + etablissement(
                 "consommation_butanes_liquefies_sous_condition_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.sous_condition_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
             + etablissement(
                 "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions_100kg
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
             + etablissement(
                 "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
             + etablissement(
                 "consommation_emulsion_eau_gazoles_autres_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres
             + etablissement("consommation_gazole_b_10_hectolitre", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.gazole_b_10_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_b_10
             + etablissement(
                 "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gaz_naturel_etat_gazeux_utilises_comme_carburants
+            ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
             + etablissement(
                 "consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires,
+            ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_sous_conditions_aux_moteurs_stationnaires,
             # etablissement('', period) * parameters(period).
             # etablissement('', period) * parameters(period).
         ]
 
     # 2018: pareil que 2019
     # 2019 : par rapport à 2020,
-    # parameters(period).energies.autres_produits_energetiques.ticpe.gazole.gazole_b_10_hectolitre
-    # parameters(period).energies.autres_produits_energetiques.ticpe.gaz_naturel_etat_gazeux_utilises_comme_carburants
+    # parameters(period).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_b_10
+    # parameters(period).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
     # parameters(period).energies.autres_produits_energetiques.ticpe.
     #     gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
     def formula_2018_01_01(etablissement, period, parameters):
@@ -1371,26 +1371,26 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.white_spirit_utilise_comme_combustible
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
             + etablissement(
                 "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement(
                 "consommation_huiles_legeres_preparation_essence_aviation",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
             + etablissement("consommation_supercarburant_e5", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.super.super_e5
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
                 + etablissement(
                     "ticpe_majoration_regionale_supercarburant_95_98",
                     period,
@@ -1399,12 +1399,12 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement("consommation_super_ars", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.super.super_plombe
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
             + etablissement("consommation_supercarburant_e10", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.super.super_e10
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
                 + etablissement("ticpe_majoration_regionale_supercarburant_e10", period)
             )
             + etablissement(
@@ -1413,95 +1413,95 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.carburants_avion_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
             + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
             + etablissement(
                 "consommation_huiles_legeres_combustible_carburant_ou_autres",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
             + etablissement(
                 "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.petrole_lampant.utilise_comme_combustible_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
             + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.petrole_lampant.autre_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.carburant_moteurs_avion_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_autres_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.autres_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
             + etablissement("consommation_huiles_moyennes_autres", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_moyennes
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
             + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.fioul_domestique_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
             + etablissement("consommation_gazoles", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.gazole.gazole
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
                 + etablissement("ticpe_majoration_regionale_gazole", period)
             )
             + etablissement("consommation_fioul_lourd_100kg_net", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.fioul.fioul_lourd_100kg_net
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
             + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
             + etablissement(
                 "consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.propane_carburants.usages_autres_que_comme_carburant_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.usages_autres_que_comme_carburant
             + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.autres_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
             + etablissement(
                 "consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.usages_autres_que_comme_carburant
             + etablissement(
                 "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres_100kg
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
             + etablissement("consommation_supercarburant_e85", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.super.super_e85
+            ).energies.autres_produits_energetiques.ticpe.super_e85
             + etablissement(
                 "consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole",
                 period,
@@ -1515,67 +1515,67 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carburant_constitue_100_estars_methyliques_acides_gras
+            ).energies.autres_produits_energetiques.ticpe.carburant_constitue_100_esters_methyliques_acides_gras
             + etablissement(
                 "consommation_gazoles_carburants_sous_conditions_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.carburants_sous_conditions_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
             + etablissement(
                 "consommation_propane_carburants_sous_conditions_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.propane_carburants.sous_conditions_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
             + etablissement(
                 "consommation_butanes_liquefies_sous_condition_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.sous_condition_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
             + etablissement(
                 "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions_100kg
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
             + etablissement(
                 "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
             + etablissement(
                 "consommation_emulsion_eau_gazoles_autres_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres
             + etablissement("consommation_gazole_b_10_hectolitre", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.gazole_b_10_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_b_10
             + etablissement(
                 "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gaz_naturel_etat_gazeux_utilises_comme_carburants
+            ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
             + etablissement(
                 "consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires,
+            ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_sous_conditions_aux_moteurs_stationnaires,
             # etablissement('', period) * parameters(period).
             # etablissement('', period) * parameters(period).
         ]
@@ -1583,16 +1583,16 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     # 2020 : par rapport à 2021,
     # carburants_sous_conditions_hectolitre,
     # sous_conditions_100kg_nets (propane)
-    # parameters(period).energies.autres_produits_energetiques.ticpe.propane_carburants.sous_conditions_100kg_nets
+    # parameters(period).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
     #
-    # parameters(period).energies.autres_produits_energetiques.ticpe.butanes_liquefies.sous_condition_100kg_nets
+    # parameters(period).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
     #
     # parameters(period).energies.autres_produits_energetiques.ticpe.
     #     autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions_100kg
     # (en dessous est un nouveau catagorie)
-    # parameters(period).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions_hectolitre
+    # parameters(period).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
     #
-    # parameters(period).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres_hectolitre
+    # parameters(period).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres
     def formula_2020_01_01(etablissement, period, parameters):
         return [
             # chaque objet dans la liste est positioné selon sa position dans le code législatif
@@ -1606,26 +1606,26 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.white_spirit_utilise_comme_combustible
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
             + etablissement(
                 "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement(
                 "consommation_huiles_legeres_preparation_essence_aviation",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
             + etablissement("consommation_supercarburant_e5", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.super.super_e5
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
                 + etablissement(
                     "ticpe_majoration_regionale_supercarburant_95_98",
                     period,
@@ -1634,12 +1634,12 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement("consommation_super_ars", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.super.super_plombe
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
             + etablissement("consommation_supercarburant_e10", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.super.super_e10
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
                 + etablissement("ticpe_majoration_regionale_supercarburant_e10", period)
             )
             + etablissement(
@@ -1648,102 +1648,102 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.carburants_avion_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
             + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
             + etablissement(
                 "consommation_huiles_legeres_combustible_carburant_ou_autres",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
             + etablissement(
                 "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.petrole_lampant.utilise_comme_combustible_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
             + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.petrole_lampant.autre_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.carburant_moteurs_avion_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_autres_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.autres_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
             + etablissement("consommation_huiles_moyennes_autres", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_moyennes
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
             + etablissement(
                 "consommation_gazoles_carburants_sous_conditions_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.carburants_sous_conditions_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
             + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.fioul_domestique_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
             + etablissement("consommation_gazoles", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.gazole.gazole
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
                 + etablissement("ticpe_majoration_regionale_gazole", period)
             )
             + etablissement("consommation_fioul_lourd_100kg_net", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.fioul.fioul_lourd_100kg_net
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
             + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
             + etablissement(
                 "consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.propane_carburants.usages_autres_que_comme_carburant_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.usages_autres_que_comme_carburant
             + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.autres_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
             + etablissement(
                 "consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.usages_autres_que_comme_carburant
             + etablissement(
                 "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres_100kg
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
             + etablissement("consommation_supercarburant_e85", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.super.super_e85
+            ).energies.autres_produits_energetiques.ticpe.super_e85
             + etablissement(
                 "consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole",
                 period,
@@ -1757,7 +1757,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carburant_constitue_100_estars_methyliques_acides_gras
+            ).energies.autres_produits_energetiques.ticpe.carburant_constitue_100_esters_methyliques_acides_gras
             # additions, en plus de 2021
             + etablissement(
                 "consommation_propane_carburants_sous_conditions_100kg_nets",
@@ -1765,35 +1765,35 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.propane_carburants.sous_conditions_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
             + etablissement(
                 "consommation_butanes_liquefies_sous_condition_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.sous_condition_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
             + etablissement(
                 "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions_100kg
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
             + etablissement(
                 "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
             + etablissement(
                 "consommation_emulsion_eau_gazoles_autres_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres_hectolitre,
+            ).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres,
         ]
 
     def formula_2021_01_01(etablissement, period, parameters):
@@ -1809,26 +1809,26 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.white_spirit_utilise_comme_combustible
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
             + etablissement(
                 "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.essences_speciales_utilisees_comme_carburants_combustibles
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
             + etablissement(
                 "consommation_huiles_legeres_preparation_essence_aviation",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres_preparation_essence_aviation
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
             + etablissement("consommation_supercarburant_e5", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.super.super_e5
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
                 + etablissement(
                     "ticpe_majoration_regionale_supercarburant_95_98",
                     period,
@@ -1837,12 +1837,12 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             + etablissement("consommation_super_ars", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.super.super_plombe
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
             + etablissement("consommation_supercarburant_e10", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.super.super_e10
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
                 + etablissement("ticpe_majoration_regionale_supercarburant_e10", period)
             )
             + etablissement(
@@ -1851,102 +1851,102 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.carburants_avion_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
             + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.essence.autres_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
             + etablissement(
                 "consommation_huiles_legeres_combustible_carburant_ou_autres",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_legeres
+            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
             + etablissement(
                 "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.petrole_lampant.utilise_comme_combustible_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
             + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.petrole_lampant.autre_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.carburant_moteurs_avion_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
             + etablissement(
                 "consommation_carbureacteurs_petrole_lampant_autres_hL",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carbureacteurs.petrole_lampant.autres_hL
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
             + etablissement("consommation_huiles_moyennes_autres", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.huiles.huiles_moyennes
+            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
             + etablissement(
                 "consommation_gazoles_carburants_sous_conditions_hectolitre",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.carburants_sous_conditions_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
             + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.gazole.fioul_domestique_hectolitre
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
             + etablissement("consommation_gazoles", period)
             * (
                 parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.gazole.gazole
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
                 + etablissement("ticpe_majoration_regionale_gazole", period)
             )
             + etablissement("consommation_fioul_lourd_100kg_net", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.fioul.fioul_lourd_100kg_net
+            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
             + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.propane_carburants.autres_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
             + etablissement(
                 "consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.propane_carburants.usages_autres_que_comme_carburant_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.usages_autres_que_comme_carburant
             + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.autres_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
             + etablissement(
                 "consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.usages_autres_que_comme_carburant
             + etablissement(
                 "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
                 period,
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres_100kg
+            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
             + etablissement("consommation_supercarburant_e85", period)
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.super.super_e85
+            ).energies.autres_produits_energetiques.ticpe.super_e85
             + etablissement(
                 "consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole",
                 period,
@@ -1960,7 +1960,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * parameters(
                 period,
-            ).energies.autres_produits_energetiques.ticpe.carburant_constitue_100_estars_methyliques_acides_gras,
+            ).energies.autres_produits_energetiques.ticpe.carburant_constitue_100_esters_methyliques_acides_gras,
             # etablissement('', period) * parameters(period).
             # etablissement('', period) * parameters(period).
             # etablissement('', period) * parameters(period).

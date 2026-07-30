@@ -321,7 +321,7 @@ class taxe_interieure_taxation_consommation_charbon_taux_normal(Variable):
         la série ticc étant clôturée au 1er janvier 2022.
         """
         assiette_ticc = etablissement("assiette_ticc", period)
-        return assiette_ticc * parameters(period).energies.charbon.accise.tarif_normal
+        return assiette_ticc * parameters(period).energies.charbon.accise.combustibles.tarif_normal
 
 
 class assiette_ticc(Variable):

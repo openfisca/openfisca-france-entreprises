@@ -201,7 +201,7 @@ class intensite_energetique_valeur_ajoutee(Variable):
         )
 
         consommation_charbon = etablissement("consommation_charbon", period)
-        partie_charbon = consommation_charbon * parameters(period).energies.charbon.accise.tarif_normal
+        partie_charbon = consommation_charbon * parameters(period).energies.charbon.accise.combustibles.tarif_normal
 
         consommation_gaz_naturel = etablissement("consommation_gaz_naturel", period)
         partie_gaz_naturel = (
