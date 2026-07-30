@@ -54,7 +54,7 @@ metadata:
     2022-01-01:
     - title: La TIRIB ("taxe incitative relative à l’incorporation de biocarburants") est renommée TIRUERT ("taxe incitative relative à l’utilisation d’énergie renouvelable dans les transports") et inclut désormais une composante sur les carburéacteurs.
 documentation: |-
-  La TIRIB (puis TIRUERT) remplace la TGAP carburants en 2019. 
+  La TIRIB (puis TIRUERT) remplace la TGAP carburants en 2019.
   Elle est calculée en multipliant le volume de carburants par un montant forfaitaire (qui fait l'objet de barèmes associés),
   auquel est appliqué un coefficient égal à la différence entre le pourcentage national cible d'incorporation d’énergie renouvelable dans les transports (objet de ce barème)  et la proportion d’énergie renouvelable contenue dans les carburants du redevable.
   Les énergies entrant dans cette proportion d'énergies renouvelables sont définies au V de l'article 266 quindecies du code des douanes et leur prise en compte peut évoluer avec la législation.

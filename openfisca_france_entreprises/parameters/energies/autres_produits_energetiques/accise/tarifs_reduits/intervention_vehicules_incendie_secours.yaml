@@ -7,6 +7,7 @@ metadata:
   last_value_still_valid_on: "2025-03-04"
   label_en: Excise duty on energy products for intervention by fire and rescue service vehicles
   unit: currency_per_mwh
+  ipp_csv_id: accise_secours
   reference:
     2023-07-12:
       title: Article 50 de la loi n° 2023-580 du 10 juillet 2023 visant à renforcer la prévention et la lutte contre l'intensification et l'extension du risque incendie
