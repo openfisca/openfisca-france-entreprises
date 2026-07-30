@@ -98,7 +98,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 period,
             ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
             # + etablissement('consommation_carbureacteurs_essence_autres_hL', period) *
-            #     parameters(period).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
+            #     ...ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
             #     (combiner en une variable de consommation)
             + etablissement(
                 "consommation_huiles_legeres_combustible_carburant_ou_autres",
@@ -707,8 +707,8 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     # la majoration régionale inclus désormais 11 ter, consommation_supercarburant_e10
     # par rapport aux années suivantes; ces changements s'appliquent aux années précédents :
     # ajouté
-    # parameters(period).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_sous_conditions
-    # parameters(period).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_sous_conditions
+    # ...ticpe.huiles_legeres.carbureacteurs_essence.essence_sous_conditions
+    # ...ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_sous_conditions
     def formula_2012_01_01(etablissement, period, parameters):
         return [
             # chaque objet dans la liste est positioné selon sa position dans le code législatif
@@ -1583,9 +1583,9 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     # 2020 : par rapport à 2021,
     # carburants_sous_conditions_hectolitre,
     # sous_conditions_100kg_nets (propane)
-    # parameters(period).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
+    # ...ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
     #
-    # parameters(period).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
+    # ...ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
     #
     # parameters(period).energies.autres_produits_energetiques.ticpe.
     #     autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions_100kg
@@ -1973,10 +1973,6 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         # les majorations régionales sont manquants.
         # manutention portuaire : paramètre absent en 2022 (existe à partir de 2023)
         p = parameters(period).energies.autres_produits_energetiques.accise
-        t = p.taux_selon_activite
-        c = p.carburants
-        comb = p.combustibles
-        part = p.tariffs_particuliers
         t2 = p.tarifs_reduits
 
         # Variables utilisées comme conditions (booléen pour select)
@@ -2019,16 +2015,16 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 intervention_incendie_secours,
             ],
             [
-                t.gazoles_transport_guide,
-                c.gazoles_engins_travaux_statiques,
-                t.gazoles_transport_collectif_routier_de_personnes,
-                t.gazoles_transport_de_personnes_par_taxi,
-                t.gazoles_transport_routier_de_marchandises,
-                t.gazoles_travaux_agricoles,
-                t.gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux,
+                p.carburants.huiles_lourdes.tarifs_reduits.transport_guide_personnes_marchandises,
+                p.carburants.huiles_lourdes.tarifs_reduits.travaux_statiques_et_hors_circulation,
+                p.carburants.huiles_lourdes.tarifs_reduits.transport_collectif_routier_personnes,
+                p.carburants.huiles_lourdes.tarifs_reduits.taxi,
+                p.carburants.huiles_lourdes.tarifs_reduits.transport_routier_marchandises,
+                p.carburants.huiles_lourdes.tarifs_reduits.agricoles_forestiers,
+                p.carburants.huiles_lourdes.tarifs_reduits.montagnes,
                 t2.intervention_vehicules_incendie_secours,
             ],
-            default=c.gazoles,
+            default=p.carburants.huiles_lourdes.gazoles,
         )
 
         taux_essence = select(
@@ -2038,9 +2034,9 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             ],
             [
                 t2.intervention_vehicules_incendie_secours,
-                t.essences_transport_de_personnes_par_taxi,
+                p.carburants.huiles_legeres.tarifs_reduits.taxi,
             ],
-            default=c.essences,
+            default=p.carburants.huiles_legeres.essences,
         )
 
         # gaz_de_petrole_liquefies_combustible_travaux_agricoles n'existe qu'à partir de 2023
@@ -2048,11 +2044,13 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         if period.start.year >= accise.annee_gaz_petrole_liquefies_travaux_agricoles:
             taux_gaz_de_petrole_liquefies_combustible = select(
                 [autres_produits_travaux_agricoles],
-                [t.gaz_de_petrole_liquefies_combustible_travaux_agricoles],
-                default=comb.gaz_de_petrole_liquefies_combustibles,
+                [p.taux_selon_activite.gaz_de_petrole_liquefies_combustible_travaux_agricoles],
+                default=p.combustibles.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies,
             )
         else:
-            taux_gaz_de_petrole_liquefies_combustible = comb.gaz_de_petrole_liquefies_combustibles
+            taux_gaz_de_petrole_liquefies_combustible = (
+                p.combustibles.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
+            )
 
         installation_seqe = etablissement("installation_seqe", period) != 0
         risque_de_fuite_carbone_eta = etablissement("risque_de_fuite_carbone_eta", period) != 0
@@ -2096,11 +2094,11 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 cond_concurrence,
             ],
             [
-                t.fiouls_lourds_travaux_agricoles,
-                t.fiouls_lourds_seqe,
-                t.fiouls_lourds_concurrence_internationale,
+                p.combustibles.huiles_lourdes.tarifs_reduits.agricoles_forestiers,
+                p.taux_selon_activite.fiouls_lourds_seqe,
+                p.taux_selon_activite.fiouls_lourds_concurrence_internationale,
             ],
-            default=comb.fiouls_lourds,
+            default=p.combustibles.huiles_lourdes.fiouls_lourds,
         )
 
         taux_fiouls_domestiques = select(
@@ -2109,10 +2107,10 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 cond_concurrence,
             ],
             [
-                t.fiouls_domestiques_seqe,
-                t.fiouls_domestiques_concurrence_internationale,
+                p.taux_selon_activite.fiouls_domestiques_seqe,
+                p.taux_selon_activite.fiouls_domestiques_concurrence_internationale,
             ],
-            default=comb.fiouls_domestiques,
+            default=p.combustibles.huiles_lourdes.fiouls_domestiques,
         )
 
         taux_petrole_lampant = select(
@@ -2121,10 +2119,10 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 cond_concurrence,
             ],
             [
-                t.petroles_lampants_seqe,
-                t.petroles_lampants_concurrence_internationale,
+                p.taux_selon_activite.petroles_lampants_seqe,
+                p.taux_selon_activite.petroles_lampants_concurrence_internationale,
             ],
-            default=comb.petroles_lampants,
+            default=p.combustibles.huiles_moyennes.petroles_lampants,
         )
 
         # Exonérations sectorielles de l'accise (tarifs réduits à zéro). L'établissement est classé
@@ -2143,14 +2141,14 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         total_calcule = (
             etablissement("consommation_gazoles_mwh", period)
             * (taux_gazoles + etablissement("ticpe_majoration_regionale_gazole", period))
-            + etablissement("consommation_carbureactuers_mwh", period) * c.carbureacteurs
+            + etablissement("consommation_carbureactuers_mwh", period) * p.carburants.huiles_moyennes.carbureacteurs
             + etablissement("consommation_essences_mwh", period)
             * (taux_essence + etablissement("ticpe_majoration_regionale_supercarburant_e10", period))
             + etablissement(
                 "consommation_gaz_de_petrole_liquefies_carburant_mwh",
                 period,
             )
-            * c.gaz_de_petrole_liquefies_carburant
+            * p.carburants.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
             + etablissement("consommation_fiouls_lourds_mwh", period) * taux_fiouls_lourds
             + etablissement("consommation_fiouls_domestiques_mwh", period) * taux_fiouls_domestiques
             + etablissement("consommation_petroles_lampants_mwh", period) * taux_petrole_lampant
@@ -2159,21 +2157,25 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 period,
             )
             * taux_gaz_de_petrole_liquefies_combustible
-            + etablissement("consommation_ethanol_diesel_ed95_mwh", period) * part.ethanol_diesel_ed95
-            + etablissement("consommation_gazole_b100_mwh", period) * part.gazole_b100
-            + etablissement("consommation_essence_aviation_mwh", period) * part.essence_aviation
-            + etablissement("consommation_essence_sp95_e10_mwh", period) * part.essence_sp95_e10
-            + etablissement("consommation_superethanol_e85_mwh", period) * part.superethanol_e85
+            + etablissement("consommation_ethanol_diesel_ed95_mwh", period)
+            * p.carburants.tarifs_particuliers.ethanol_diesel_ed95
+            + etablissement("consommation_gazole_b100_mwh", period) * p.carburants.tarifs_particuliers.gazole_b100
+            + etablissement("consommation_essence_aviation_mwh", period)
+            * p.carburants.tarifs_particuliers.essence_aviation
+            + etablissement("consommation_essence_sp95_e10_mwh", period)
+            * p.carburants.tarifs_particuliers.essence_sp95_e10
+            + etablissement("consommation_superethanol_e85_mwh", period)
+            * p.carburants.tarifs_particuliers.superethanol_e85
             + etablissement(
                 "consommation_grisou_et_gaz_assimiles_combustible_mwh",
                 period,
             )
-            * part.grisou_et_gaz_assimiles_combustible
+            * p.combustibles.tarifs_particuliers.grisou_et_assimiles
             + etablissement(
                 "consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh",
                 period,
             )
-            * part.biogaz_combustible_non_injecte_dans_le_reseau
+            * p.combustibles.tarifs_particuliers.biogaz_non_injecte_reseau
         )
 
         return select(
@@ -2202,10 +2204,6 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         # les majorations régionales sont manquants.
         # manutention portuaire : paramètre absent en 2022 (existe à partir de 2023)
         p = parameters(period).energies.autres_produits_energetiques.accise
-        t = p.taux_selon_activite
-        c = p.carburants
-        comb = p.combustibles
-        part = p.tariffs_particuliers
         t2 = p.tarifs_reduits
 
         # Variables utilisées comme conditions (booléen pour select)
@@ -2247,17 +2245,17 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 intervention_incendie_secours,
             ],
             [
-                t.gazoles_transport_guide,
-                c.gazoles_engins_travaux_statiques,
-                t.gazoles_transport_collectif_routier_de_personnes,
-                t.gazoles_transport_de_personnes_par_taxi,
-                t.gazoles_transport_routier_de_marchandises,
-                t.gazoles_travaux_agricoles,
-                t.gazoles_extraction_de_mineraux_industriels,
-                t.gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux,
+                p.carburants.huiles_lourdes.tarifs_reduits.transport_guide_personnes_marchandises,
+                p.carburants.huiles_lourdes.tarifs_reduits.travaux_statiques_et_hors_circulation,
+                p.carburants.huiles_lourdes.tarifs_reduits.transport_collectif_routier_personnes,
+                p.carburants.huiles_lourdes.tarifs_reduits.taxi,
+                p.carburants.huiles_lourdes.tarifs_reduits.transport_routier_marchandises,
+                p.carburants.huiles_lourdes.tarifs_reduits.agricoles_forestiers,
+                p.carburants.huiles_lourdes.tarifs_reduits.extraction_mineraux,
+                p.carburants.huiles_lourdes.tarifs_reduits.montagnes,
                 t2.intervention_vehicules_incendie_secours,
             ],
-            default=c.gazoles,
+            default=p.carburants.huiles_lourdes.gazoles,
         )
 
         taux_essence = select(
@@ -2267,9 +2265,9 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             ],
             [
                 t2.intervention_vehicules_incendie_secours,
-                t.essences_transport_de_personnes_par_taxi,
+                p.carburants.huiles_legeres.tarifs_reduits.taxi,
             ],
-            default=c.essences,
+            default=p.carburants.huiles_legeres.essences,
         )
 
         # gaz_de_petrole_liquefies_combustible_travaux_agricoles n'existe qu'à partir de 2023
@@ -2277,11 +2275,13 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         if period.start.year >= accise.annee_gaz_petrole_liquefies_travaux_agricoles:
             taux_gaz_de_petrole_liquefies_combustible = select(
                 [autres_produits_travaux_agricoles],
-                [t.gaz_de_petrole_liquefies_combustible_travaux_agricoles],
-                default=comb.gaz_de_petrole_liquefies_combustibles,
+                [p.taux_selon_activite.gaz_de_petrole_liquefies_combustible_travaux_agricoles],
+                default=p.combustibles.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies,
             )
         else:
-            taux_gaz_de_petrole_liquefies_combustible = comb.gaz_de_petrole_liquefies_combustibles
+            taux_gaz_de_petrole_liquefies_combustible = (
+                p.combustibles.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
+            )
 
         installation_seqe = etablissement("installation_seqe", period) != 0
         risque_de_fuite_carbone_eta = etablissement("risque_de_fuite_carbone_eta", period) != 0
@@ -2325,11 +2325,11 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 cond_concurrence,
             ],
             [
-                t.fiouls_lourds_travaux_agricoles,
-                t.fiouls_lourds_seqe,
-                t.fiouls_lourds_concurrence_internationale,
+                p.combustibles.huiles_lourdes.tarifs_reduits.agricoles_forestiers,
+                p.taux_selon_activite.fiouls_lourds_seqe,
+                p.taux_selon_activite.fiouls_lourds_concurrence_internationale,
             ],
-            default=comb.fiouls_lourds,
+            default=p.combustibles.huiles_lourdes.fiouls_lourds,
         )
 
         taux_fiouls_domestiques = select(
@@ -2338,10 +2338,10 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 cond_concurrence,
             ],
             [
-                t.fiouls_domestiques_seqe,
-                t.fiouls_domestiques_concurrence_internationale,
+                p.taux_selon_activite.fiouls_domestiques_seqe,
+                p.taux_selon_activite.fiouls_domestiques_concurrence_internationale,
             ],
-            default=comb.fiouls_domestiques,
+            default=p.combustibles.huiles_lourdes.fiouls_domestiques,
         )
 
         taux_petrole_lampant = select(
@@ -2350,10 +2350,10 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 cond_concurrence,
             ],
             [
-                t.petroles_lampants_seqe,
-                t.petroles_lampants_concurrence_internationale,
+                p.taux_selon_activite.petroles_lampants_seqe,
+                p.taux_selon_activite.petroles_lampants_concurrence_internationale,
             ],
-            default=comb.petroles_lampants,
+            default=p.combustibles.huiles_moyennes.petroles_lampants,
         )
 
         # Exonérations sectorielles de l'accise (tarifs réduits à zéro). L'établissement est classé
@@ -2372,14 +2372,14 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         total_calcule = (
             etablissement("consommation_gazoles_mwh", period)
             * (taux_gazoles + etablissement("ticpe_majoration_regionale_gazole", period))
-            + etablissement("consommation_carbureactuers_mwh", period) * c.carbureacteurs
+            + etablissement("consommation_carbureactuers_mwh", period) * p.carburants.huiles_moyennes.carbureacteurs
             + etablissement("consommation_essences_mwh", period)
             * (taux_essence + etablissement("ticpe_majoration_regionale_supercarburant_e10", period))
             + etablissement(
                 "consommation_gaz_de_petrole_liquefies_carburant_mwh",
                 period,
             )
-            * c.gaz_de_petrole_liquefies_carburant
+            * p.carburants.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
             + etablissement("consommation_fiouls_lourds_mwh", period) * taux_fiouls_lourds
             + etablissement("consommation_fiouls_domestiques_mwh", period) * taux_fiouls_domestiques
             + etablissement("consommation_petroles_lampants_mwh", period) * taux_petrole_lampant
@@ -2388,21 +2388,25 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 period,
             )
             * taux_gaz_de_petrole_liquefies_combustible
-            + etablissement("consommation_ethanol_diesel_ed95_mwh", period) * part.ethanol_diesel_ed95
-            + etablissement("consommation_gazole_b100_mwh", period) * part.gazole_b100
-            + etablissement("consommation_essence_aviation_mwh", period) * part.essence_aviation
-            + etablissement("consommation_essence_sp95_e10_mwh", period) * part.essence_sp95_e10
-            + etablissement("consommation_superethanol_e85_mwh", period) * part.superethanol_e85
+            + etablissement("consommation_ethanol_diesel_ed95_mwh", period)
+            * p.carburants.tarifs_particuliers.ethanol_diesel_ed95
+            + etablissement("consommation_gazole_b100_mwh", period) * p.carburants.tarifs_particuliers.gazole_b100
+            + etablissement("consommation_essence_aviation_mwh", period)
+            * p.carburants.tarifs_particuliers.essence_aviation
+            + etablissement("consommation_essence_sp95_e10_mwh", period)
+            * p.carburants.tarifs_particuliers.essence_sp95_e10
+            + etablissement("consommation_superethanol_e85_mwh", period)
+            * p.carburants.tarifs_particuliers.superethanol_e85
             + etablissement(
                 "consommation_grisou_et_gaz_assimiles_combustible_mwh",
                 period,
             )
-            * part.grisou_et_gaz_assimiles_combustible
+            * p.combustibles.tarifs_particuliers.grisou_et_assimiles
             + etablissement(
                 "consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh",
                 period,
             )
-            * part.biogaz_combustible_non_injecte_dans_le_reseau
+            * p.combustibles.tarifs_particuliers.biogaz_non_injecte_reseau
         )
 
         return select(
@@ -2429,10 +2433,6 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         # par rapport à précédement, supprimé consommation_essence_aviation_mwh et quelques
         # tarifs visés seqe et concurrence internationale
         p = parameters(period).energies.autres_produits_energetiques.accise
-        t = p.taux_selon_activite
-        c = p.carburants
-        comb = p.combustibles
-        part = p.tariffs_particuliers
         t2 = p.tarifs_reduits
 
         gazoles_transport_guide = etablissement("gazoles_transport_guide", period) != 0
@@ -2475,18 +2475,18 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 intervention_incendie_secours,
             ],
             [
-                t.gazoles_transport_guide,
-                c.gazoles_engins_travaux_statiques,
-                t.gazoles_transport_collectif_routier_de_personnes,
-                t.gazoles_transport_de_personnes_par_taxi,
-                t.gazoles_transport_routier_de_marchandises,
-                t.gazoles_manutention_portuaire,
-                t.gazoles_travaux_agricoles,
-                t.gazoles_extraction_de_mineraux_industriels,
-                t.gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux,
+                p.carburants.huiles_lourdes.tarifs_reduits.transport_guide_personnes_marchandises,
+                p.carburants.huiles_lourdes.tarifs_reduits.travaux_statiques_et_hors_circulation,
+                p.carburants.huiles_lourdes.tarifs_reduits.transport_collectif_routier_personnes,
+                p.carburants.huiles_lourdes.tarifs_reduits.taxi,
+                p.carburants.huiles_lourdes.tarifs_reduits.transport_routier_marchandises,
+                p.carburants.huiles_lourdes.tarifs_reduits.manutention_portuaire,
+                p.carburants.huiles_lourdes.tarifs_reduits.agricoles_forestiers,
+                p.carburants.huiles_lourdes.tarifs_reduits.extraction_mineraux,
+                p.carburants.huiles_lourdes.tarifs_reduits.montagnes,
                 t2.intervention_vehicules_incendie_secours,
             ],
-            default=c.gazoles,
+            default=p.carburants.huiles_lourdes.gazoles,
         )
 
         taux_essence = select(
@@ -2496,25 +2496,25 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             ],
             [
                 t2.intervention_vehicules_incendie_secours,
-                t.essences_transport_de_personnes_par_taxi,
+                p.carburants.huiles_legeres.tarifs_reduits.taxi,
             ],
-            default=c.essences,
+            default=p.carburants.huiles_legeres.essences,
         )
 
         taux_gaz_de_petrole_liquefies_combustible = select(
             [autres_produits_travaux_agricoles],
-            [t.gaz_de_petrole_liquefies_combustible_travaux_agricoles],
-            default=comb.gaz_de_petrole_liquefies_combustibles,
+            [p.taux_selon_activite.gaz_de_petrole_liquefies_combustible_travaux_agricoles],
+            default=p.combustibles.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies,
         )
 
         taux_fiouls_lourds = select(
             [autres_produits_travaux_agricoles],
-            [t.fiouls_lourds_travaux_agricoles],
-            default=comb.fiouls_lourds,
+            [p.combustibles.huiles_lourdes.tarifs_reduits.agricoles_forestiers],
+            default=p.combustibles.huiles_lourdes.fiouls_lourds,
         )
 
-        taux_fiouls_domestiques = comb.fiouls_domestiques
-        taux_petrole_lampant = comb.petroles_lampants
+        taux_fiouls_domestiques = p.combustibles.huiles_lourdes.fiouls_domestiques
+        taux_petrole_lampant = p.combustibles.huiles_moyennes.petroles_lampants
 
         # Exonérations sectorielles de l'accise (tarifs réduits à zéro). L'établissement est classé
         # par code NAF ; s'il relève d'un secteur exonéré, l'ensemble de sa consommation de produits
@@ -2532,14 +2532,14 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         total_calcule = (
             etablissement("consommation_gazoles_mwh", period)
             * (taux_gazoles + etablissement("ticpe_majoration_regionale_gazole", period))
-            + etablissement("consommation_carbureactuers_mwh", period) * c.carbureacteurs
+            + etablissement("consommation_carbureactuers_mwh", period) * p.carburants.huiles_moyennes.carbureacteurs
             + etablissement("consommation_essences_mwh", period)
             * (taux_essence + etablissement("ticpe_majoration_regionale_supercarburant_e10", period))
             + etablissement(
                 "consommation_gaz_de_petrole_liquefies_carburant_mwh",
                 period,
             )
-            * c.gaz_de_petrole_liquefies_carburant
+            * p.carburants.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
             + etablissement("consommation_fiouls_lourds_mwh", period) * taux_fiouls_lourds
             + etablissement("consommation_fiouls_domestiques_mwh", period) * taux_fiouls_domestiques
             + etablissement("consommation_petroles_lampants_mwh", period) * taux_petrole_lampant
@@ -2548,20 +2548,23 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 period,
             )
             * taux_gaz_de_petrole_liquefies_combustible
-            + etablissement("consommation_ethanol_diesel_ed95_mwh", period) * part.ethanol_diesel_ed95
-            + etablissement("consommation_gazole_b100_mwh", period) * part.gazole_b100
-            + etablissement("consommation_essence_sp95_e10_mwh", period) * part.essence_sp95_e10
-            + etablissement("consommation_superethanol_e85_mwh", period) * part.superethanol_e85
+            + etablissement("consommation_ethanol_diesel_ed95_mwh", period)
+            * p.carburants.tarifs_particuliers.ethanol_diesel_ed95
+            + etablissement("consommation_gazole_b100_mwh", period) * p.carburants.tarifs_particuliers.gazole_b100
+            + etablissement("consommation_essence_sp95_e10_mwh", period)
+            * p.carburants.tarifs_particuliers.essence_sp95_e10
+            + etablissement("consommation_superethanol_e85_mwh", period)
+            * p.carburants.tarifs_particuliers.superethanol_e85
             + etablissement(
                 "consommation_grisou_et_gaz_assimiles_combustible_mwh",
                 period,
             )
-            * part.grisou_et_gaz_assimiles_combustible
+            * p.combustibles.tarifs_particuliers.grisou_et_assimiles
             + etablissement(
                 "consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh",
                 period,
             )
-            * part.biogaz_combustible_non_injecte_dans_le_reseau
+            * p.combustibles.tarifs_particuliers.biogaz_non_injecte_reseau
         )
 
         return select(
@@ -2638,7 +2641,7 @@ class ticpe_majoration_regionale_gazole(Variable):
             p.corse,
             p.franche_comte,
             p.haute_normandie,
-            p.ile_france,
+            p.ile_de_france,
             p.languedoc_roussillon,
             p.limousin,
             p.lorraine,
@@ -2728,7 +2731,7 @@ class ticpe_majoration_regionale_gazole(Variable):
             _dep_in(departement, ["2A", "2B"]),
         ]
         values = [
-            p.ile_france,
+            p.ile_de_france,
             p.centre,
             p.bourgogne_franche_comte,
             p.normandie,
@@ -2795,7 +2798,7 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
             p.corse,
             p.franche_comte,
             p.haute_normandie,
-            p.ile_france,
+            p.ile_de_france,
             p.languedoc_roussillon,
             p.limousin,
             p.lorraine,
@@ -2885,7 +2888,7 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
             _dep_in(departement, ["2A", "2B"]),
         ]
         values = [
-            p.ile_france,
+            p.ile_de_france,
             p.centre,
             p.bourgogne_franche_comte,
             p.normandie,
@@ -2952,7 +2955,7 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
             p.corse,
             p.franche_comte,
             p.haute_normandie,
-            p.ile_france,
+            p.ile_de_france,
             p.languedoc_roussillon,
             p.limousin,
             p.lorraine,
@@ -3042,7 +3045,7 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
             _dep_in(departement, ["2A", "2B"]),
         ]
         values = [
-            p.ile_france,
+            p.ile_de_france,
             p.centre,
             p.bourgogne_franche_comte,
             p.normandie,

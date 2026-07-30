@@ -36,8 +36,8 @@ class taux_tccfe(Variable):
         cond_250 = (amperage <= ticfe.categorie_fiscale_haut_puissance) & (amperage != 0)
         key = departement_commune(etablissement, period)
         coeff = tcfe.tccfe.coefficient[key]
-        val_36 = tcfe.taux_professionnel_36kVA_et_moins * coeff
-        val_250 = tcfe.taux_professionnel_36_a_250kVA * coeff
+        val_36 = tcfe.tarif_professionnel_36kVA_et_moins * coeff
+        val_250 = tcfe.tarif_professionnel_36_a_250kVA * coeff
         return select([cond_36, cond_250], [val_36, val_250], default=0)
 
     def formula_2023_01_01(etablissement, period, parameters):
