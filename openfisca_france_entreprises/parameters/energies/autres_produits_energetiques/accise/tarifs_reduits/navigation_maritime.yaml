@@ -8,7 +8,6 @@ metadata:
   label_en: Excise duty on energy products for marine navigation
   unit: currency_per_mwh
   ipp_csv_id: accise_navig_maritime
-  categorie_fiscale: Toutes sauf électricité
   reference:
     2022-01-01:
       title: Ordonnance n° 2021-1843 du 22 décembre 2021 portant partie législative du code des impositions sur les biens et services et transposant diverses normes du droit de l'Union européenne
