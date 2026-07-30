@@ -6,6 +6,10 @@ values:
     value: 2.15
   2014-01-01:
     value: 1.15
+  2017-01-01:
+    value: 1.15
+  2022-01-01:
+    value: 1.15
 metadata:
   unit: currency
   short_label: Base nationale majoration gazole

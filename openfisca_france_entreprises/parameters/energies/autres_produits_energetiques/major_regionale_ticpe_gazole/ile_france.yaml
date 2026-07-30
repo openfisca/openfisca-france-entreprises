@@ -6,6 +6,8 @@ values:
     value: 2.5
   2017-01-01:
     value: 4.39
+  2022-01-01:
+    value: 4.39
 metadata:
   short_label: Ile-de-France
   ipp_csv_id: maj_ticpe_die_idf

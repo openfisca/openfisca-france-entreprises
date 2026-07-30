@@ -2659,7 +2659,7 @@ class ticpe_majoration_regionale_gazole(Variable):
         departement = etablissement("departement", period)
         p = parameters(
             period,
-        ).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.depuis_2017
+        ).energies.autres_produits_energetiques.major_regionale_ticpe_gazole
         conditions = [
             _dep_in(departement, ["75", "77", "78", "91", "92", "93", "94", "95"]),
             _dep_in(departement, ["18", "28", "36", "37", "41", "45"]),
@@ -2729,12 +2729,12 @@ class ticpe_majoration_regionale_gazole(Variable):
         ]
         values = [
             p.ile_france,
-            p.centre_val_loire,
+            p.centre,
             p.bourgogne_franche_comte,
             p.normandie,
             p.hauts_france,
             p.grand_est,
-            p.pays_la_loire,
+            p.pays_loire,
             p.bretagne,
             p.nouvelle_aquitaine,
             p.occitanie,
@@ -2816,7 +2816,7 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
         departement = etablissement("departement", period)
         p = parameters(
             period,
-        ).energies.autres_produits_energetiques.major_regionale_ticpe_super.depuis_2017
+        ).energies.autres_produits_energetiques.major_regionale_ticpe_super
         conditions = [
             _dep_in(departement, ["75", "77", "78", "91", "92", "93", "94", "95"]),
             _dep_in(departement, ["18", "28", "36", "37", "41", "45"]),
@@ -2886,12 +2886,12 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
         ]
         values = [
             p.ile_france,
-            p.centre_val_loire,
+            p.centre,
             p.bourgogne_franche_comte,
             p.normandie,
             p.hauts_france,
             p.grand_est,
-            p.pays_la_loire,
+            p.pays_loire,
             p.bretagne,
             p.nouvelle_aquitaine,
             p.occitanie,
@@ -2973,7 +2973,7 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
         departement = etablissement("departement", period)
         p = parameters(
             period,
-        ).energies.autres_produits_energetiques.major_regionale_ticpe_super.depuis_2017
+        ).energies.autres_produits_energetiques.major_regionale_ticpe_super
         conditions = [
             _dep_in(departement, ["75", "77", "78", "91", "92", "93", "94", "95"]),
             _dep_in(departement, ["18", "28", "36", "37", "41", "45"]),
@@ -3043,12 +3043,12 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
         ]
         values = [
             p.ile_france,
-            p.centre_val_loire,
+            p.centre,
             p.bourgogne_franche_comte,
             p.normandie,
             p.hauts_france,
             p.grand_est,
-            p.pays_la_loire,
+            p.pays_loire,
             p.bretagne,
             p.nouvelle_aquitaine,
             p.occitanie,

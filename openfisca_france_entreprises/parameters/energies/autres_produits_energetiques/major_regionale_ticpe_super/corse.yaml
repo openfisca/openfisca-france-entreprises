@@ -8,6 +8,8 @@ values:
     value: 0
   2017-01-01:
     value: 0.77
+  2022-01-01:
+    value: 0.86625
 metadata:
   short_label: Corse
   ipp_csv_id: maj_ticpe_super_cor
