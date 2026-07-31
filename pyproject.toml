@@ -24,6 +24,10 @@ classifiers = [
 requires-python = ">=3.10"
 dependencies = [
     "openfisca-core[web-api] >=44",
+    # numpy 2.5.0 triggers a metaclass conflict in openfisca-core's EnumArray
+    # (ndarray gained its own metaclass that clashes with abc.ABCMeta).
+    # openfisca-core's own pin (numpy<=3) is too loose to exclude it.
+    "numpy <2.5",
 ]
 
 [project.optional-dependencies]
