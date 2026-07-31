@@ -73,8 +73,9 @@ def periode_lue(node):
 class Visiteur(ast.NodeVisitor):
     def __init__(self, chemin):
         self.chemin = chemin
-        self.alias = {}       # nom -> (prefixe_noeud, periode)
-        self.lectures = []    # (ligne, noeud_complet, periode, sous_enveloppe)
+        self.alias = {}        # nom -> (prefixe_noeud, periode)
+        self.lectures = []     # (ligne, noeud_complet, periode, sous_enveloppe)
+        self.lectures_ast = []  # (noeud_ast, noeud_complet, periode, sous_enveloppe)
         self.pile_enveloppe = []
 
     # --- suivi de l'enveloppement existant
@@ -109,9 +110,9 @@ class Visiteur(ast.NodeVisitor):
             prefixe, periode = self.alias[base.id]
             noeud = ".".join([prefixe, *attrs]) if prefixe else ".".join(attrs)
         if noeud:
-            self.lectures.append(
-                (node.lineno, noeud, periode, bool(self.pile_enveloppe)),
-            )
+            sous_enveloppe = bool(self.pile_enveloppe)
+            self.lectures.append((node.lineno, noeud, periode, sous_enveloppe))
+            self.lectures_ast.append((node, noeud, periode, sous_enveloppe))
             return  # ne pas redescendre : la chaine est deja capturee
         self.generic_visit(node)
 

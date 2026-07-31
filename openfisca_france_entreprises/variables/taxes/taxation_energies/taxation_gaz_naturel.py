@@ -10,7 +10,12 @@ Les commentaires avec *** indiquent qu'il y a des problèmes
 from openfisca_core.model_api import YEAR, Variable, select
 
 from openfisca_france_entreprises.entities import Etablissement
-from openfisca_france_entreprises.variables.taxes.formula_helpers import _and, _not, _or
+from openfisca_france_entreprises.variables.taxes.formula_helpers import (
+    _and,
+    _not,
+    _or,
+    tarif_moyen_annuel,
+)
 
 
 class taxe_gaz_naturel(Variable):
@@ -328,9 +333,9 @@ class taxe_accise_gaz_naturel_combustible(Variable):
             ),
         )
         condition_grande_consommatrice = _and(seqe, grande_consommatrice)
-        taxe_normal_combustible = (
-            etablissement("consommation_gaz_combustible", period)
-            * parameters(period).energies.gaz_naturel.accise.combustibles.tarif_normal
+        taxe_normal_combustible = etablissement("consommation_gaz_combustible", period) * tarif_moyen_annuel(
+            period,
+            lambda mois: parameters(mois).energies.gaz_naturel.accise.combustibles.tarif_normal,
         )
 
         return select(
@@ -425,9 +430,9 @@ class taxe_accise_gaz_naturel_combustible(Variable):
             ),
         )
         condition_grande_consommatrice = _and(seqe, grande_consommatrice)
-        taxe_normal_combustible = (
-            etablissement("consommation_gaz_combustible", period)
-            * parameters(period).energies.gaz_naturel.accise.combustibles.tarif_normal
+        taxe_normal_combustible = etablissement("consommation_gaz_combustible", period) * tarif_moyen_annuel(
+            period,
+            lambda mois: parameters(mois).energies.gaz_naturel.accise.combustibles.tarif_normal,
         )
 
         return select(
@@ -569,18 +574,33 @@ class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/"
 
     def formula_1986_01_01(etablissement, period, parameters):
-        seuil = parameters(period).energies.gaz_naturel.ticgn.seuil_exoneration
+        seuil = tarif_moyen_annuel(
+            period,
+            lambda mois: parameters(mois).energies.gaz_naturel.ticgn.seuil_exoneration,
+        )
         # 5000000
-        abattement = parameters(period).energies.gaz_naturel.ticgn.abattement * 12
+        abattement = (
+            tarif_moyen_annuel(
+                period,
+                lambda mois: parameters(mois).energies.gaz_naturel.ticgn.abattement,
+            )
+            * 12
+        )
         # 400000
         assiette = etablissement("assiette_ticgn", period)
-        taux = parameters(period).energies.gaz_naturel.ticgn.taux_normal
+        taux = tarif_moyen_annuel(
+            period,
+            lambda mois: parameters(mois).energies.gaz_naturel.ticgn.taux_normal,
+        )
         return (assiette >= seuil) * (assiette - abattement) * taux
 
     def formula_2008_01_01(etablissement, period, parameters):
         """[à noter : plus de seuil ni d'abattement]."""
         assiette = etablissement("assiette_ticgn", period)
-        taux = parameters(period).energies.gaz_naturel.ticgn.taux_normal
+        taux = tarif_moyen_annuel(
+            period,
+            lambda mois: parameters(mois).energies.gaz_naturel.ticgn.taux_normal,
+        )
         return assiette * taux
 
     def formula_2014_01_01(etablissement, period, parameters):
@@ -590,7 +610,10 @@ class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
         que pcs est au courant tout le temps].
         """
         assiette = etablissement("assiette_ticgn", period)
-        taux_pci = parameters(period).energies.gaz_naturel.ticgn.taux_normal
+        taux_pci = tarif_moyen_annuel(
+            period,
+            lambda mois: parameters(mois).energies.gaz_naturel.ticgn.taux_normal,
+        )
         taux = taux_pci * parameters(period).energies.gaz_naturel.ticgn.conversion_pcs_pci
         #
         # naturel
