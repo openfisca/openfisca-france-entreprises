@@ -1,0 +1,135 @@
+# Vérifie que les exonérations sectorielles de l'accise sur les autres produits énergétiques
+# restent taxées à zéro après leur passage en paramètres (tarifs_reduits) au lieu du zéro codé
+# en dur. Couvre les deux versions de formule concernées : 2022 et 2024 (le barème n'ayant que
+# des tarifs nuls à ce jour, assiette × tarif = 0 de part et d'autre des dates charnières).
+#
+# Un établissement non exonéré consommant 1000 MWh de gazole paie 59400 € (tarif 59.4 €/MWh) :
+# ce témoin garde la voie normale de calcul, inchangée par la mise en paramètre des zéros.
+
+- name: temoin non exonere gazole 2022
+  period: 2022
+  input:
+    consommation_gazoles_mwh: 1000
+  output:
+    taxe_interieure_consommation_sur_produits_energetiques: 59400
+
+- name: temoin non exonere gazole 2024
+  period: 2024
+  input:
+    consommation_gazoles_mwh: 1000
+  output:
+    taxe_interieure_consommation_sur_produits_energetiques: 59400
+
+- name: exoneration navigation interieure 2022
+  period: 2022
+  input:
+    consommation_gazoles_mwh: 1000
+    autres_produits_navigation_interieure: true
+  output:
+    taxe_interieure_consommation_sur_produits_energetiques: 0
+
+- name: exoneration navigation interieure 2024
+  period: 2024
+  input:
+    consommation_gazoles_mwh: 1000
+    autres_produits_navigation_interieure: true
+  output:
+    taxe_interieure_consommation_sur_produits_energetiques: 0
+
+- name: exoneration navigation maritime 2022
+  period: 2022
+  input:
+    consommation_gazoles_mwh: 1000
+    autres_produits_navigation_maritime: true
+  output:
+    taxe_interieure_consommation_sur_produits_energetiques: 0
+
+- name: exoneration navigation maritime 2024
+  period: 2024
+  input:
+    consommation_gazoles_mwh: 1000
+    autres_produits_navigation_maritime: true
+  output:
+    taxe_interieure_consommation_sur_produits_energetiques: 0
+
+- name: exoneration navigation aerienne 2022
+  period: 2022
+  input:
+    consommation_gazoles_mwh: 1000
+    autres_produits_navigation_aerienne: true
+  output:
+    taxe_interieure_consommation_sur_produits_energetiques: 0
+
+- name: exoneration navigation aerienne 2024
+  period: 2024
+  input:
+    consommation_gazoles_mwh: 1000
+    autres_produits_navigation_aerienne: true
+  output:
+    taxe_interieure_consommation_sur_produits_energetiques: 0
+
+- name: exoneration double usage 2022
+  period: 2022
+  input:
+    consommation_gazoles_mwh: 1000
+    autres_produits_double_usage: true
+  output:
+    taxe_interieure_consommation_sur_produits_energetiques: 0
+
+- name: exoneration double usage 2024
+  period: 2024
+  input:
+    consommation_gazoles_mwh: 1000
+    autres_produits_double_usage: true
+  output:
+    taxe_interieure_consommation_sur_produits_energetiques: 0
+
+- name: exoneration fabrication mineraux 2022
+  period: 2022
+  input:
+    consommation_gazoles_mwh: 1000
+    autre_produits_fabrication_produits_mineraux_non_metalliques: true
+  output:
+    taxe_interieure_consommation_sur_produits_energetiques: 0
+
+- name: exoneration fabrication mineraux 2024
+  period: 2024
+  input:
+    consommation_gazoles_mwh: 1000
+    autre_produits_fabrication_produits_mineraux_non_metalliques: true
+  output:
+    taxe_interieure_consommation_sur_produits_energetiques: 0
+
+- name: exoneration secteurs aeronautique et naval 2022
+  period: 2022
+  input:
+    consommation_gazoles_mwh: 1000
+    autres_produits_secteurs_aeronautique_et_naval: true
+  output:
+    taxe_interieure_consommation_sur_produits_energetiques: 0
+
+- name: exoneration secteurs aeronautique et naval 2024
+  period: 2024
+  input:
+    consommation_gazoles_mwh: 1000
+    autres_produits_secteurs_aeronautique_et_naval: true
+  output:
+    taxe_interieure_consommation_sur_produits_energetiques: 0
+
+# Tarif réduit "intervention véhicules incendie et secours" (rate 0) appliqué au gazole et à
+# l'essence via taux_selon_activite, désormais lu au paramètre au lieu du 0 codé en dur.
+- name: intervention incendie secours gazole 2022
+  period: 2022
+  input:
+    consommation_gazoles_mwh: 1000
+    autres_produits_intervention_vehicules_services_incendie_secours: true
+  output:
+    taxe_interieure_consommation_sur_produits_energetiques: 0
+
+- name: intervention incendie secours gazole 2024
+  period: 2024
+  input:
+    consommation_gazoles_mwh: 1000
+    autres_produits_intervention_vehicules_services_incendie_secours: true
+  output:
+    taxe_interieure_consommation_sur_produits_energetiques: 0

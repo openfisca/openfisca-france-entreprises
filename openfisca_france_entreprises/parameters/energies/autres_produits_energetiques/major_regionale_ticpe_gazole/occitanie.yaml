@@ -1,0 +1,10 @@
+description: Majoration régionale TICPE gazole en Occitanie
+values:
+  2017-01-01:
+    value: 2.5
+  2022-01-01:
+    value: 2.5
+metadata:
+  short_label: Occitanie
+  ipp_csv_id: maj_ticpe_die_occ
+  unit: currency

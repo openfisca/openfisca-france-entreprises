@@ -4,7 +4,7 @@ metadata:
   order:
   - accise
   - ticpe
+  - taxes_incitatives_carburants
   - tgap_carburants
   - major_regionale_ticpe_gazole
-  - major_regionale_ticpe_super_95_98
-  - major_regionale_ticpe_super_e10
+  - major_regionale_ticpe_super

@@ -1,0 +1,28 @@
+description: Réfaction corse de l'accise sur les supercarburants (TICPE)
+metadata:
+  label_en: Corsican abatement on petrol excise duty
+  order:
+  - supercarburants_sp95_sp98
+  - supercarburant_sp95_e10
+  - supercarburant_plombe
+documentation: |-
+  Minoration propre à la Corse, **distincte de la majoration régionale**, prévue à l'article 265 A bis
+  du code des douanes puis à l'article L312-41 du code des impositions sur les biens et services.
+
+  Elle ne se distingue pas selon le carburant par son montant, identique, mais par sa **date d'entrée
+  en vigueur** : 2002 pour les supercarburants SP95 et SP98 (indice d'identification 11), 2019 seulement
+  pour le SP95-E10 (indice 11 ter), créé par l'article 66 de la loi de finances pour 2019. C'est la seule
+  différence légale connue entre ces carburants pour la fiscalité — et elle ne relève pas de la
+  majoration régionale, qui, elle, ne les distingue pas.
+
+  Unités : euros par hectolitre avant 2022, euros par MWh à partir de 2022. Le passage de 1,0 à 1,125
+  au 2022-01-01 est la conversion d'unité propre aux supercarburants (~0,88 MWh/hL), et non une hausse.
+
+  ⚠️ **Aucune formule ne lit ces paramètres à ce jour** : ils sont importés en données seules, par
+  décision d'arbitrage (cf. ARBITRAGES_JURIDIQUES_ENERGIES.md §6), la modélisation du mécanisme restant
+  à faire. Les identifiants ipp_csv_id sont **proposés** : le barème ne porte pas encore la réfaction,
+  à laquelle ces paramètres sont destinés à être remontés.
+
+  Source reprise du dépôt openfisca-france-indirect-taxation
+  (`parameters/imposition_indirecte/produits_energetiques/refraction_corse_ticpe.yaml`), dont
+  l'orthographe « refraction » et l'identifiant « tipce » sont ici corrigés en « réfaction » et « ticpe ».

@@ -1,0 +1,33 @@
+description: Coefficients de conversion des tarifs d'accise sur les énergies
+metadata:
+  documentation_start: true
+  short_label: Coefficients de conversion
+  label_en: Energy excise conversion coefficients
+  order:
+  - essences
+  - gazoles
+  - carbureacteurs
+  - fiouls_lourds
+  - gaz_petrole_liquefies_combustible
+documentation: |-
+  Depuis le 1er janvier 2022, les tarifs de l'accise sur les énergies sont fixés
+  en euros par mégawattheure (article L. 312-24 du CIBS). Lorsque l'unité
+  d'assiette du produit n'est pas le mégawattheure, l'article L. 312-25 prévoit
+  une conversion, réalisée selon l'article L. 312-29 par arrêté conjoint des
+  ministres chargés du budget et de l'énergie.
+
+  La conversion consiste à multiplier :
+  1. le tarif applicable, en euros par mégawattheure ;
+  2. le nombre 1/3,6 ;
+  3. le coefficient de conversion ci-dessous, en gigajoules par unité d'assiette.
+
+  Ce coefficient est le pouvoir calorifique inférieur du produit représentatif
+  de la catégorie fiscale, arrondi au dixième.
+
+  Contrôle arithmétique : 76,826 EUR/MWh x 3,2 / 3,6 = 68,29 EUR/hL, soit
+  exactement le tarif de TICPE sur le super E5 en vigueur en 2018 ; de même
+  59,40 EUR/MWh x 3,6 / 3,6 = 59,40 EUR/hL pour le gazole. Les coefficients
+  gouvernaient donc déjà les conversions au 1er janvier 2022, mais le texte
+  d'origine n'a pas été identifié : les valeurs sont datées ici du 1er janvier
+  2023, date couverte par l'arrêté cité en référence. Une extension à
+  2022-01-01 suppose d'identifier l'arrêté correspondant.

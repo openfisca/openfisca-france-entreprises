@@ -15,7 +15,7 @@ values:
   2017-01-01:
     value: 0.075
   2019-01-01:
-    value: 0.079
+    value: null
 metadata:
   short_label: Super 98
   ipp_csv_id: tgap_super98

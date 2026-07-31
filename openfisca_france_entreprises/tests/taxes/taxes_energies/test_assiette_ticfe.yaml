@@ -1,10 +1,3 @@
-- name: test 2007 instant
-  period: 2007
-  input:
-    consommation_electricite: 10000
-  output:
-    instant_electrite: 10
-
 - name: test 2022 assiette_taxe_electricite
   period: 2022
   input:
@@ -81,12 +74,18 @@
 - name: test formule intensite_energetique_valeur_ajoutee
   period: 2025
   input:
-    valeur_ajoutee_eta: 100000 #(22500 + 14620 + 18170.7)/100000
+    valeur_ajoutee_eta: 100000 #(22500 + 14620 + 19047.6)/100000
     consommation_electricite : 1000
     #*22.5
     consommation_charbon : 1000
     #*14.62
     consommation_gaz_naturel : 1000
-    #*16.37*1.11
+    #*17.16*1.11
   output:
-    intensite_energetique_valeur_ajoutee: 0.55290705
+    # 2026-07 : depuis la réforme CIBS, le numérateur s'apprécie au tarif normal de
+    # l'accise (L312-44) et non plus à celui de la TICGN, clôturée au 2022-01-01.
+    # En 2025 le tarif accise gaz combustible est indexé à 17.16 (la série TICGN
+    # s'arrêtait à 16.37). L'attendu passe de 0.55290705 à 0.561676.
+    # NB : ce cas de test est dupliqué dans
+    # autres_variables/variables_economiques/test_valeur_ajoutee.yaml
+    intensite_energetique_valeur_ajoutee: 0.561676

@@ -21,8 +21,11 @@
     consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh : 1000
 
   output:
-    taxe_interieure_consommation_sur_produits_energetiques : 471543
-#59400+76826+76826+16208+12555+15620+15686+5189+12157+12905+75701+74576+17894
+    taxe_interieure_consommation_sur_produits_energetiques : 436848
+#59400+76826+42131+16208+12555+15620+15686+5189+12157+12905+75701+74576+17894
+# 2026-07 : le tarif normal des carburéacteurs en 2022 valait 76.826 dans les paramètres
+# (valeur du tarif essences, recopiée par erreur). Le barème IPP donne 42.131.
+# L'attendu passe donc de 471543 à 436848 (1000 hL x 34.695).
 
 #
 - name: "test 2023"
@@ -47,8 +50,11 @@
     consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh : 1000
 
   output:
-    taxe_interieure_consommation_sur_produits_energetiques : 454198
-#59400+59481+76826+16208+12555+15620+15686+5189+12157+12905+75701+74576+17894
+    taxe_interieure_consommation_sur_produits_energetiques : 454160
+#59400+59481+76826+16208+12555+15620+15686+5189+12119+12905+75701+74576+17894
+# 2026-07 : le tarif particulier du diesel ED95 (12.119) était daté 2024-01-01 dans les
+# paramètres ; le barème IPP le date du 2022-08-18 (LFR 2022, art. 9 VI 18°). Il s'applique
+# donc dès 2023. L'attendu passe de 454198 à 454160 (1000 x 0.038).
 
 
 #

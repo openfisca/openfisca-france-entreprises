@@ -4,6 +4,8 @@ values:
     value: 0.5
   2016-01-01:
     value: 22.5
+  2022-01-01:
+    value: null
 metadata:
   ipp_csv_id: ticfe
   unit: currency_per_mwh

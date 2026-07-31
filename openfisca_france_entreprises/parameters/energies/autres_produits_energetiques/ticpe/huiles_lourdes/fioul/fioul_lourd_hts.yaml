@@ -1,0 +1,49 @@
+description: TICPE - produits énergétiques, fioul lourd HTS
+values:
+  1993-04-15:
+    value: 12.9
+  1994-01-01:
+    value: 14.01
+  1995-01-01:
+    value: 14.25
+  1996-01-01:
+    value: 14.52
+  1997-01-01:
+    value: 14.82
+  1998-01-01:
+    value: 15.01
+  1999-01-01:
+    value: 15.15
+  2000-01-01:
+    value: 15.23
+  2002-01-01:
+    value: 2.32
+  2003-01-01:
+    value: null
+metadata:
+  short_label: Fioul lourd HTS
+  last_value_still_valid_on: "2025-03-01"
+  label_en: High-sulphur heavy fuel oil
+  ipp_csv_id: ticpe_fioul_lourd_hts
+  unit: currency_per_100kg
+  reference:
+    1993-04-15:
+      title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
+    1994-01-01:
+      title: Loi 93-1352 du 30/12/1993 (LF pour 1994)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000509319
+    2002-01-01:
+      title: Ordonnance n° 2000-916 du 19 septembre 2000 portant adaptation de la valeur en euros de certains montants exprimés en francs dans les textes législatifs
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000219672
+    2003-01-01:
+      title: Loi 2002-1575 du 30/12/2002 (LF pour 2003)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000234121
+  official_journal_date:
+    1993-04-15: "1992-12-31"
+    1994-01-01: "1993-12-31"
+    2002-01-01: "2000-09-22"
+    2003-01-01: "2002-12-31"
+  notes:
+    2003-01-01:
+    - title: Au 1er janvier 2003, les fiouls lourds à forte et faible teneur en soufre sont unifiés sous une même catégorie "fioul lourd", objet d'un barème associé.

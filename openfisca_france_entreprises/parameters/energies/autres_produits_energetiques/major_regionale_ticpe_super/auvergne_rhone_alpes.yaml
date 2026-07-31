@@ -1,0 +1,12 @@
+description: Majoration régionale TICPE Super en Auvergne-Rhône-Alpes
+values:
+  2017-01-01:
+    value: 2.5
+  2019-01-01:
+    value: 2.35
+  2022-01-01:
+    value: 2.64425
+metadata:
+  short_label: Auvergne-Rhône-Alpes
+  ipp_csv_id: maj_ticpe_super_ara
+  unit: currency

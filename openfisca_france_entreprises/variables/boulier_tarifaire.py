@@ -24,7 +24,7 @@ class taxe_electricite_bouclier_tarifaire(Variable):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
         taux = parameters(
             Instant((2022, 2, 1)),
-        ).energies.bouclier_tarifaire.entreprises  # 0.5 en 2022
+        ).energies.electricite.accise.bouclier_tarifaire.entreprises  # 0.5 en 2022
         taxe = assiette_taxe_electricite * taux
         taxe_accise_electricite = etablissement("taxe_accise_electricite", period)
         return where(taxe > taxe_accise_electricite, taxe_accise_electricite, taxe)
@@ -33,7 +33,7 @@ class taxe_electricite_bouclier_tarifaire(Variable):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
         taux = parameters(
             Instant((2023, 2, 1)),
-        ).energies.bouclier_tarifaire.entreprises  # 0.5 en 2023
+        ).energies.electricite.accise.bouclier_tarifaire.entreprises  # 0.5 en 2023
         taxe = assiette_taxe_electricite * taux
         taxe_accise_electricite = etablissement("taxe_accise_electricite", period)
         return where(taxe > taxe_accise_electricite, taxe_accise_electricite, taxe)
@@ -43,7 +43,7 @@ class taxe_electricite_bouclier_tarifaire(Variable):
         taxe_accise_electricite = etablissement("taxe_accise_electricite", period)
         taux = parameters(
             Instant((2024, 2, 1)),
-        ).energies.bouclier_tarifaire.entreprises  # 20.5 en 2024
+        ).energies.electricite.accise.bouclier_tarifaire.entreprises  # 20.5 en 2024
         taxe = assiette_taxe_electricite * taux
         return where(taxe > taxe_accise_electricite, taxe_accise_electricite, taxe)
 

@@ -1,0 +1,89 @@
+# TIRUERT — modélisation approchée (assiette = consommation propre de l'établissement).
+# Cf. l'en-tête de variables/taxes/taxation_energies/taxation_tiruert.py : ni l'assiette ni le
+# redevable retenus ne sont ceux de l'article 266 quindecies. Ces tests vérifient le mécanisme,
+# pas la conformité juridique de la liquidation.
+#
+# Le coefficient est l'écart entre la cible nationale et la proportion d'EnR du redevable. À défaut
+# d'être renseignée, cette proportion vaut la cible : la taxe est donc nulle par défaut.
+
+- name: defaut 2019 - la cible est reputee atteinte, taxe nulle
+  period: 2019
+  input:
+    consommation_essences_mwh: 1000
+    consommation_gazoles_mwh: 1000
+  output:
+    taxe_incitative_energie_renouvelable_transports: 0
+
+- name: defaut 2022 - taxe nulle, carbureacteurs inclus
+  period: 2022
+  input:
+    consommation_essences_mwh: 1000
+    consommation_gazoles_mwh: 1000
+    consommation_carbureactuers_mwh: 1000
+  output:
+    taxe_incitative_energie_renouvelable_transports: 0
+
+# Aucune incorporation declaree : l'ecart vaut la cible entiere, la taxe est maximale.
+- name: aucune incorporation 2019
+  absolute_error_margin: 0.01
+  period: 2019
+  input:
+    consommation_essences_mwh: 1000
+    consommation_gazoles_mwh: 1000
+    proportion_energie_renouvelable_essences: 0
+    proportion_energie_renouvelable_gazoles: 0
+  output:
+    # essences 1000 x 98 x 0.079 + gazoles 1000 x 98 x 0.079
+    taxe_incitative_energie_renouvelable_transports: 15484
+
+- name: aucune incorporation 2022 - trois composantes
+  absolute_error_margin: 0.01
+  period: 2022
+  input:
+    consommation_essences_mwh: 1000
+    consommation_gazoles_mwh: 1000
+    consommation_carbureactuers_mwh: 1000
+    proportion_energie_renouvelable_essences: 0
+    proportion_energie_renouvelable_gazoles: 0
+    proportion_energie_renouvelable_carbureacteurs: 0
+  output:
+    # 1000 x 104 x 0.092 + 1000 x 104 x 0.084 + 1000 x 125 x 0.01
+    taxe_incitative_energie_renouvelable_transports: 19554
+
+# Au 1er janvier 2025 la composante carburéacteurs est clôturée : seules essences et gazoles restent.
+- name: aucune incorporation 2025 - carbureacteurs clotures
+  absolute_error_margin: 0.01
+  period: 2025
+  input:
+    consommation_essences_mwh: 1000
+    consommation_gazoles_mwh: 1000
+    consommation_carbureactuers_mwh: 1000
+    proportion_energie_renouvelable_essences: 0
+    proportion_energie_renouvelable_gazoles: 0
+  output:
+    # 1000 x 140 x 0.105 + 1000 x 140 x 0.094, la consommation de carburéacteurs n'est plus taxée
+    taxe_incitative_energie_renouvelable_transports: 27860
+
+# Dépasser la cible n'ouvre pas droit à restitution : l'écart est borné à zéro.
+- name: depassement de la cible - plancher a zero
+  period: 2022
+  input:
+    consommation_essences_mwh: 1000
+    consommation_gazoles_mwh: 1000
+    consommation_carbureactuers_mwh: 1000
+    proportion_energie_renouvelable_essences: 0.5
+    proportion_energie_renouvelable_gazoles: 0.5
+    proportion_energie_renouvelable_carbureacteurs: 0.5
+  output:
+    taxe_incitative_energie_renouvelable_transports: 0
+
+# Incorporation partielle : seul l'écart à la cible est taxé.
+- name: incorporation partielle 2023 essences
+  absolute_error_margin: 0.01
+  period: 2023
+  input:
+    consommation_essences_mwh: 1000
+    proportion_energie_renouvelable_essences: 0.045
+  output:
+    # cible 0.095, declare 0.045 -> ecart 0.05 ; 1000 x 140 x 0.05
+    taxe_incitative_energie_renouvelable_transports: 7000

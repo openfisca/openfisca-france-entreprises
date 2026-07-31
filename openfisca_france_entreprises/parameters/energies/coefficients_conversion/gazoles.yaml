@@ -1,0 +1,13 @@
+description: Coefficient de conversion de l'accise sur les énergies, gazoles
+values:
+  2023-01-01:
+    value: 3.6
+metadata:
+  short_label: Coefficient de conversion, gazoles
+  label_en: Conversion coefficient, diesel
+  reference:
+    2023-01-01:
+      title: Arrêté du 13 décembre 2022 constatant divers tarifs et seuils de régime d'impositions relatifs à certaines impositions sur les biens et services - art. 2-3
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000046820130
+documentation: |-
+  Exprimé en gigajoules par hectolitre. Produit représentatif : gazole B7.

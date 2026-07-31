@@ -15,7 +15,7 @@ values:
   2014-01-01:
     value: 0.077
   2019-01-01:
-    value: 0.079
+    value: null
 metadata:
   short_label: Gazole B30
   ipp_csv_id: tgap_b30

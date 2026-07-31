@@ -1,0 +1,29 @@
+description: Taxe locale sur la consommation finale d'électricité pour les usages professionnels
+  puissance souscrite inférieure à 36 kVA
+values:
+  2011-01-01:
+    value: 0.75
+  2016-01-01:
+    value: 0.75
+  2019-01-01:
+    value: 0.76
+  2020-01-01:
+    value: 0.77
+  2021-01-01:
+    value: 0.78
+  2023-01-01:
+    value: null
+metadata:
+  short_label: Tarif TCFE professionnel basse puissance
+  label_en: Local tax on final electricity consumption, low-power professional use
+  ipp_csv_id: tcfe_pro_basse_puissance
+  unit: currency_per_mwh
+  last_value_still_valid_on: "2025-02-14"
+  reference:
+    2011-01-01:
+      note: Taxe locale (TCFE) fixée par les collectivités.
+documentation: |-
+  Tarif de référence auquel les collectivités appliquent leur coefficient multiplicateur.
+  Il est indexé à compter de 2019 : la série était jusqu'ici figée à 0.75 depuis 2011, ce qui
+  sous-estimait la TCCFE et la TDCFE de 2019 à 2022.
+  Clôturé au 1er janvier 2023, la TCCFE étant alors incorporée à l'accise sur l'électricité.

@@ -1,0 +1,11 @@
+description: Fraction de l'accise sur les énergies perçue sur les gaz naturels
+metadata:
+  label_en: Part of energy excise duty levied on natural gases
+  order:
+  - combustibles
+  - carburants
+documentation: |-
+  Au 1er janvier 2022, la TICGN devient la fraction perçue sur les gaz naturels de l'accise sur
+  les énergies. Les paramètres antérieurs restent sous gaz_naturel/ticgn, clôturés à cette date.
+  Le barème distingue les gaz utilisés comme combustibles de ceux utilisés comme carburants, y
+  compris pour les tarifs réduits dont les valeurs coïncident : ce découpage est repris ici.

@@ -1,0 +1,74 @@
+description: Emulsion d'eau dans du gazole, autres
+values:
+  2000-01-01:
+    value: 196.95
+  2002-01-01:
+    value: 24.54
+  2008-01-01:
+    value: 30.2
+  2009-01-01:
+    value: 26.27
+  2010-01-01:
+    value: 24.78
+  2010-03-11:
+    value: 28.71
+  2015-01-01:
+    value: 30.35
+  2016-01-01:
+    value: 32
+  2017-01-01:
+    value: 33.86
+  2018-01-01:
+    value: 36.94
+  2020-07-01:
+    value: null
+metadata:
+  short_label: Emulsion eau gazole autres
+  last_value_still_valid_on: "2025-03-01"
+  label_en: Other water-in-diesel emulsions
+  ipp_csv_id: ticpe_emulsion_eau_gazole_autres
+  unit: currency_per_hectoliter
+  reference:
+    2000-01-01:
+      title: Loi 99-1172 du 30/12/1999 (LF pour 2000)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000762233
+    2002-01-01:
+      title: Ordonnance n° 2000-916 du 19 septembre 2000 portant adaptation de la valeur en euros de certains montants exprimés en francs dans les textes législatifs
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000219672
+    2008-01-01:
+      title: LOI n° 2007-1824 du 25 décembre 2007 de finances rectificative pour 2007 (1)
+      href: https://www.legifrance.gouv.fr/eli/loi/2007/12/25/BCFX0770033L/jo/texte
+    2009-01-01:
+      title: Loi 2008-1443 du 30/12/2008 (LFR pour 2008)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000020014790
+    2010-01-01:
+      title: Loi 2009-1674 du 30/12/2009 (LFR pour 2009) - art. 76
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000021580225&cidTexte=JORFTEXT000021559075
+    2010-03-11:
+      title: Loi 2010-237 du 09/03/2010 (LFR pour 2010) - art. 4 et 5
+    2015-01-01:
+      title: Loi 2014-1654 du 29/12/2014 (LF pour 2015) - art. 36
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029994876&cidTexte=JORFTEXT000029988857
+    2016-01-01:
+      title: Loi 2015-1786 du 29/12/2015 (LFR pour 2015) - art. 14 et 17
+    2017-01-01:
+      title: Loi 2016-1918 du 29/12/2016 (LFR pour 2016)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000033734341
+    2018-01-01:
+      title: Loi 2017-1837 du 30/12/2017 (LF pour 2018)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036339197
+    2020-07-01:
+      title: Article 60 I 1° de la loi n° 2019-1479 du 28 décembre 2019 de finances pour 2020
+      href: https://www.legifrance.gouv.fr/eli/loi/2019/12/28/CPAX1925229L/jo/texte
+  official_journal_date:
+    2000-01-01: "1999-12-31"
+    2002-01-01: "2000-09-22"
+    2008-01-01: "2007-12-28"
+    2009-01-01: "2008-12-31"
+    2010-01-01: "2009-12-31"
+    2010-03-11: "2010-03-10"
+    2015-01-01: "2014-12-30"
+    2016-01-01: "2015-12-30"
+    2017-01-01: "2016-12-30"
+    2018-01-01: "2017-12-31"
+    2020-07-01: "2019-12-28"

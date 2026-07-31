@@ -2,6 +2,8 @@ description: Contribution au service public du gaz (CSPG) - prix par MWh
 values:
   2011-01-01:
     value: 0
+  2012-01-01:
+    value: 0
   2013-01-01:
     value: 0.0015
   2014-01-01:

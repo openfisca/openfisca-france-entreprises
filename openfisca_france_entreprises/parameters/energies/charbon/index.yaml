@@ -3,5 +3,4 @@ metadata:
   label_en: Taxes on coal
   order:
   - ticc
-  - taux_reduit_seqe
-  - taux_reduit_concurrence_internationale
+  - accise

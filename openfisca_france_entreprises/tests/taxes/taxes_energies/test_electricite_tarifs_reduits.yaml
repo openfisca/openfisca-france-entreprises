@@ -1,0 +1,128 @@
+# Vérifie que les cinq activités exonérées d'accise sur l'électricité restent taxées à zéro
+# après leur passage en paramètres (tarifs_reduits) au lieu du zéro codé en dur.
+# Couvre les trois versions de formule de taxe_accise_electricite : 2022, 2023 (ajout
+# manutention_portuaire) et 2025 (ajout alimentation aéronefs). Chaque tarif réduit vaut 0
+# au barème à ce jour ; le test garantit que assiette × tarif reste nul de part et d'autre
+# des dates charnières, et se mettra à jour automatiquement si le barème publiait un tarif non nul.
+
+- name: exoneration doubles usages 2022
+  period: 2022
+  input:
+    electricite_double_usage: 500
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 0
+
+- name: exoneration doubles usages 2023
+  period: 2023
+  input:
+    electricite_double_usage: 500
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 0
+
+- name: exoneration doubles usages 2025
+  period: 2025
+  input:
+    electricite_double_usage: 500
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 0
+
+- name: exoneration fabrication mineraux 2022
+  period: 2022
+  input:
+    electricite_fabrication_produits_mineraux_non_metalliques: 500
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 0
+
+- name: exoneration fabrication mineraux 2023
+  period: 2023
+  input:
+    electricite_fabrication_produits_mineraux_non_metalliques: 500
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 0
+
+- name: exoneration fabrication mineraux 2025
+  period: 2025
+  input:
+    electricite_fabrication_produits_mineraux_non_metalliques: 500
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 0
+
+- name: exoneration production biens intensive 2022
+  period: 2022
+  input:
+    electricite_production_biens_electro_intensive: 500
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 0
+
+- name: exoneration production biens intensive 2023
+  period: 2023
+  input:
+    electricite_production_biens_electro_intensive: 500
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 0
+
+- name: exoneration production biens intensive 2025
+  period: 2025
+  input:
+    electricite_production_biens_electro_intensive: 500
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 0
+
+- name: exoneration production a bord navires 2022
+  period: 2022
+  input:
+    electricite_production_a_bord: 500
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 0
+
+- name: exoneration production a bord navires 2023
+  period: 2023
+  input:
+    electricite_production_a_bord: 500
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 0
+
+- name: exoneration production a bord navires 2025
+  period: 2025
+  input:
+    electricite_production_a_bord: 500
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 0
+
+# Électricité utilisée pour produire de l'électricité : hors champ (aucun tarif au barème),
+# maintenu à zéro dans la formule. On vérifie que ce comportement est préservé.
+- name: hors champ production electricite 2022
+  period: 2022
+  input:
+    electricite_production_electricite: 500
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 0
+
+- name: hors champ production electricite 2023
+  period: 2023
+  input:
+    electricite_production_electricite: 500
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 0
+
+- name: hors champ production electricite 2025
+  period: 2025
+  input:
+    electricite_production_electricite: 500
+    assiette_taxe_electricite: 1000
+  output:
+    taxe_accise_electricite: 0

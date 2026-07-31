@@ -6,6 +6,8 @@ values:
     value: 4.4
   2018-01-01:
     value: 6.43
+  2022-01-01:
+    value: null
 metadata:
   ipp_csv_id: ticpe_carburant_ethanol_agricole
   unit: currency

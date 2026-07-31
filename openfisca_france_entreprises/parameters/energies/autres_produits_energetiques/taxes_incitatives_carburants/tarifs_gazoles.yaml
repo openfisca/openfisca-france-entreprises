@@ -1,0 +1,48 @@
+description: Tarif de la taxe incitative relative à l'utilisation d'énergie renouvelable dans les transports (TIRUERT gazoles)
+values:
+  2019-01-01:
+    value: 98
+  2020-01-01:
+    value: 101
+  2021-01-01:
+    value: 104
+  2022-01-01:
+    value: 104
+  2023-01-01:
+    value: 140
+metadata:
+  short_label: Tarifs TIRUERT gazoles
+  last_value_still_valid_on: "2025-02-25"
+  label_en: Tariff for the incentive tax on the use of renewable energy in transport for diesel (TIRUERT)
+  ipp_csv_id: tiruert_tarif_gazoles
+  unit: currency_per_mwh
+  reference:
+    2019-01-01:
+      title: LOI n° 2018-1317 du 28 décembre 2018 de finances pour 2019, article 192 I
+      href: https://www.legifrance.gouv.fr/eli/loi/2018/12/28/CPAX1823550L/jo/texte
+    2020-01-01:
+      title: LOI n° 2019-1479 du 28 décembre 2019 de finances pour 2020, article 212 I 1°
+      href: https://www.legifrance.gouv.fr/eli/loi/2019/12/28/CPAX1925229L/jo/texte
+    2021-01-01:
+      title: LOI n° 2019-1479 du 28 décembre 2019 de finances pour 2020, article 212 I 1°
+      href: https://www.legifrance.gouv.fr/eli/loi/2019/12/28/CPAX1925229L/jo/texte
+    2022-01-01:
+      title: LOI n° 2020-1721 du 29 décembre 2020 de finances pour 2021, article 58 I 4°
+      href: https://www.legifrance.gouv.fr/eli/loi/2020/12/29/ECOX2023814L/jo/texte
+    2023-01-01:
+      title: LOI n° 2022-1726 du 30 décembre 2022 de finances pour 2023, article 67 I 2°
+      href: https://www.legifrance.gouv.fr/eli/loi/2022/12/30/ECOX2225087L/jo/texte
+  official_journal_date:
+    2019-01-01: "2018-12-30"
+    2020-01-01: "2019-12-29"
+    2021-01-01: "2019-12-29"
+    2022-01-01: "2020-12-30"
+    2023-01-01: "2021-12-31"
+  notes:
+    2022-01-01:
+    - title: La TIRIB ("taxe incitative relative à l’incorporation de biocarburants") est renommée TIRUERT ("taxe incitative relative à l’utilisation d’énergie renouvelable dans les transports") et inclut désormais une composante sur les carburéacteurs.
+documentation: |-
+  La TIRIB (puis TIRUERT) remplace la TGAP carburants en 2019.
+  Elle est calculée en multipliant le volume de carburants par un montant forfaitaire (objet de ce barème),
+  auquel est appliqué un coefficient égal à la différence entre le pourcentage national cible d'incorporation d’énergie renouvelable dans les transports (qui fait l'objet de barèmes associés)  et la proportion d’énergie renouvelable contenue dans les carburants du redevable.
+  Les énergies entrant dans cette proportion d'énergies renouvelables sont définies au V de l'article 266 quindecies du code des douanes et leur prise en compte peut évoluer avec la législation.

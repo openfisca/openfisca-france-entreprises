@@ -2,6 +2,7 @@ description: Taxes sur l'électricité
 metadata:
   label_en: Taxes on electricity
   order:
+  - accise
   - cspe
   - cta
   - tcfe

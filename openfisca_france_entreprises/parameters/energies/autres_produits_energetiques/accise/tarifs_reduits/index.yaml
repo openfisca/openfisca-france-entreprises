@@ -1,0 +1,29 @@
+description: Tarifs réduits de l'accise sur les autres produits énergétiques (exonérations sectorielles)
+metadata:
+  label_en: Reduced rates of excise duty on other energy products (sector exemptions)
+  order:
+  - navigation_interieure
+  - navigation_maritime
+  - navigation_aerienne
+  - doubles_usages
+  - fabrication_mineraux
+  - aeronautique_naval
+  - intervention_vehicules_incendie_secours
+documentation: |-
+  Tarifs à zéro correspondant aux exonérations sectorielles prévues par le Code des impositions
+  sur les biens et services. Le modèle les codait auparavant en dur dans les formules (return 0) ;
+  ils sont désormais portés par des paramètres, de sorte qu'un changement de tarif relève de la
+  donnée et non du code.
+
+  Ces paramètres sont agnostiques au grade de produit, **conformément au texte de loi** : les
+  articles L. 312-48 et L. 312-64 du CIBS définissent ces exonérations par un tableau
+  consommation × catégorie fiscale, la catégorie valant « Toutes » ou « Toutes sauf électricité ».
+  La loi ne distingue donc pas le grade — c'est le
+  barème IPP qui, lui, éclate chaque exonération en un fichier par grade. Le modèle applique
+  l'exonération à l'échelle de l'établissement (classé par code NAF), ce qui est fidèle à la loi.
+
+  Chaque paramètre porte l'identifiant à plat proposé au barème (`accise_navig_maritime`,
+  `accise_doubles_usages`…) : voir la proposition de convergence côté barème
+  (`_propositions_exonerations_a_plat/`, branche `energies-propositions-openfisca`), qui remplace les
+  ~36 identifiants par grade par ces 6 identifiants. La jonction sera effective dès la fusion de cette
+  proposition ; d'ici là ces identifiants n'existent que côté OpenFisca.

@@ -256,7 +256,14 @@ class taxe_accise_gaz_naturel_combustible(Variable):
         gaz_travaux_agricoles_et_forestiers = etablissement("gaz_travaux_agricoles_et_forestiers", period)
         gaz_extraction_production = etablissement("gaz_extraction_production", period)
         gaz_production_mineraux_non_metalliques = etablissement("gaz_production_mineraux_non_metalliques", period)
-        consommation_gaz_usage_non_combustible = etablissement("consommation_gaz_usage_non_combustible", period)
+        # consommation_gaz_usage_non_combustible n'existe pas : la classe est commentée dans
+        # consommation_energie/gaz_naturel.py. On rétablit ici l'intention documentée en tête de
+        # ce fichier — cette variable « combinait gaz_matiere_premiere et gaz_huiles_minerales »
+        # (le gaz consommé autrement que comme combustible, exonéré).
+        gaz_usage_non_combustible = _or(
+            etablissement("gaz_matiere_premiere", period),
+            etablissement("gaz_huiles_minerales", period),
+        )
 
         seqe = etablissement("installation_seqe", period)
         grande_consommatrice = etablissement("installation_grande_consommatrice_energie", period)
@@ -270,23 +277,33 @@ class taxe_accise_gaz_naturel_combustible(Variable):
             "gaz_dehydration_legumes_et_plantes_aromatiques",
             period,
         )
-        intensite_energetique = etablissement("intensite_energetique", period)
+        # « intensite_energetique » (sans suffixe) n'existe pas dans le modèle, et le seuil
+        # qui lui était comparé (seuil_facture_energie_par_va = 0.6744) n'a aucune source.
+        # On aligne donc la condition déshydratation sur celle des formules 2019 et 2020,
+        # qui applique le critère légal : consommation supérieure à 800 Wh par euro de valeur
+        # ajoutée (LF 2019, art. 67), soit 0.0008 MWh/€.
+        consommation_par_valeur_ajoutee = etablissement("consommation_par_valeur_ajoutee", period)
 
+        conso_gaz_combustible = etablissement("consommation_gaz_combustible", period)
+        tarifs_reduits_comb = parameters(period).energies.gaz_naturel.accise.combustibles.tarifs_reduits
         condition_double_usage = gaz_double_usage
         taxe_travaux_agricoles = (
             etablissement("consommation_gaz_combustible", period)
-            * parameters(period).energies.gaz_naturel.accise.travaux_agricoles_forestaires
+            * parameters(period).energies.gaz_naturel.accise.combustibles.tarifs_reduits.travaux_agricoles_forestiers
         )
         condition_travaux_agricoles = gaz_travaux_agricoles_et_forestiers
+        # La fabrication de produits minéraux relève d'un tarif réduit propre, porté par un
+        # paramètre. Les deux autres cas ne sont pas des tarifs réduits mais des exclusions
+        # du champ de l'accise : ils restent à zéro, sans paramètre au barème.
+        condition_fabrication_mineraux = gaz_production_mineraux_non_metalliques
         condition_exoneration_autres = _or(
-            gaz_production_mineraux_non_metalliques,
             gaz_extraction_production,
-            consommation_gaz_usage_non_combustible,
+            gaz_usage_non_combustible,
         )
         condition_legumes = _and(
             gaz_dehydration_legumes_et_plantes_aromatiques,
-            intensite_energetique >= parameters(period).energies.gaz_naturel.ticgn.seuil_facture_energie_par_va,
-        )
+            consommation_par_valeur_ajoutee >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes,
+        )  # 0,0008 MWh par Euro
         seuils = parameters(period).energies.seuils_seqe
         condition_seqe = _or(
             _and(
@@ -313,13 +330,14 @@ class taxe_accise_gaz_naturel_combustible(Variable):
         condition_grande_consommatrice = _and(seqe, grande_consommatrice)
         taxe_normal_combustible = (
             etablissement("consommation_gaz_combustible", period)
-            * parameters(period).energies.gaz_naturel.accise.taux_normal_combustible
+            * parameters(period).energies.gaz_naturel.accise.combustibles.tarif_normal
         )
 
         return select(
             [
                 condition_double_usage,
                 condition_travaux_agricoles,
+                condition_fabrication_mineraux,
                 condition_exoneration_autres,
                 condition_legumes,
                 condition_seqe,
@@ -327,8 +345,9 @@ class taxe_accise_gaz_naturel_combustible(Variable):
                 condition_grande_consommatrice,
             ],
             [
-                0,
+                conso_gaz_combustible * tarifs_reduits_comb.doubles_usages,
                 taxe_travaux_agricoles,
+                conso_gaz_combustible * tarifs_reduits_comb.fabrication_mineraux,
                 0,
                 etablissement("taxe_interieure_consommation_gaz_naturel_legumes", period),
                 etablissement(
@@ -337,6 +356,98 @@ class taxe_accise_gaz_naturel_combustible(Variable):
                 ),
                 etablissement(
                     "taxe_interieure_taxation_consommation_gaz_naturel_concurrence_internationale",
+                    period,
+                ),
+                ticgn_grande_conso,
+            ],
+            default=taxe_normal_combustible,
+        )
+
+    def formula_2024_01_01(etablissement, period, parameters):
+        """Suppression du tarif réduit « concurrence internationale ».
+
+        Le tarif applicable aux installations exposées à un risque de fuite de carbone non
+        soumises au SEQE est abrogé au 1er janvier 2024 par l'article 94 II K 2° de la loi
+        n° 2023-1322 du 29 décembre 2023 de finances pour 2024. Ces installations relèvent
+        désormais du tarif normal. Le reste de la formule est inchangé.
+        """
+        gaz_double_usage = etablissement("gaz_double_usage", period)
+        gaz_travaux_agricoles_et_forestiers = etablissement("gaz_travaux_agricoles_et_forestiers", period)
+        gaz_extraction_production = etablissement("gaz_extraction_production", period)
+        gaz_production_mineraux_non_metalliques = etablissement("gaz_production_mineraux_non_metalliques", period)
+        gaz_usage_non_combustible = _or(
+            etablissement("gaz_matiere_premiere", period),
+            etablissement("gaz_huiles_minerales", period),
+        )
+
+        seqe = etablissement("installation_seqe", period)
+        grande_consommatrice = etablissement("installation_grande_consommatrice_energie", period)
+        intensite_energetique_valeur_production = etablissement("intensite_energetique_valeur_production", period)
+        intensite_energetique_valeur_ajoutee = etablissement("intensite_energetique_valeur_ajoutee", period)
+
+        ticgn_grande_conso = etablissement("taxe_interieure_consommation_gaz_naturel_grande_consommatrice", period)
+
+        gaz_dehydration_legumes_et_plantes_aromatiques = etablissement(
+            "gaz_dehydration_legumes_et_plantes_aromatiques",
+            period,
+        )
+        consommation_par_valeur_ajoutee = etablissement("consommation_par_valeur_ajoutee", period)
+
+        conso_gaz_combustible = etablissement("consommation_gaz_combustible", period)
+        tarifs_reduits_comb = parameters(period).energies.gaz_naturel.accise.combustibles.tarifs_reduits
+        condition_double_usage = gaz_double_usage
+        taxe_travaux_agricoles = (
+            etablissement("consommation_gaz_combustible", period)
+            * parameters(period).energies.gaz_naturel.accise.combustibles.tarifs_reduits.travaux_agricoles_forestiers
+        )
+        condition_travaux_agricoles = gaz_travaux_agricoles_et_forestiers
+        # La fabrication de produits minéraux relève d'un tarif réduit propre, porté par un
+        # paramètre. Les deux autres cas ne sont pas des tarifs réduits mais des exclusions
+        # du champ de l'accise : ils restent à zéro, sans paramètre au barème.
+        condition_fabrication_mineraux = gaz_production_mineraux_non_metalliques
+        condition_exoneration_autres = _or(
+            gaz_extraction_production,
+            gaz_usage_non_combustible,
+        )
+        condition_legumes = _and(
+            gaz_dehydration_legumes_et_plantes_aromatiques,
+            consommation_par_valeur_ajoutee >= parameters(period).energies.gaz_naturel.ticgn.seuil_conso_par_va_legumes,
+        )  # 0,0008 MWh par Euro
+        seuils = parameters(period).energies.seuils_seqe
+        condition_seqe = _or(
+            _and(
+                seqe,
+                intensite_energetique_valeur_production >= seuils.intensite_production_min,
+            ),
+            _and(
+                seqe,
+                intensite_energetique_valeur_ajoutee >= seuils.intensite_valeur_ajoutee_min,
+            ),
+        )
+        condition_grande_consommatrice = _and(seqe, grande_consommatrice)
+        taxe_normal_combustible = (
+            etablissement("consommation_gaz_combustible", period)
+            * parameters(period).energies.gaz_naturel.accise.combustibles.tarif_normal
+        )
+
+        return select(
+            [
+                condition_double_usage,
+                condition_travaux_agricoles,
+                condition_fabrication_mineraux,
+                condition_exoneration_autres,
+                condition_legumes,
+                condition_seqe,
+                condition_grande_consommatrice,
+            ],
+            [
+                conso_gaz_combustible * tarifs_reduits_comb.doubles_usages,
+                taxe_travaux_agricoles,
+                conso_gaz_combustible * tarifs_reduits_comb.fabrication_mineraux,
+                0,
+                etablissement("taxe_interieure_consommation_gaz_naturel_legumes", period),
+                etablissement(
+                    "taxe_interieure_taxation_consommation_gaz_naturel_seqe",
                     period,
                 ),
                 ticgn_grande_conso,
@@ -363,30 +474,37 @@ class taxe_accise_gaz_naturel_carburant(Variable):
 
         ticgn_grande_conso = etablissement("taxe_interieure_consommation_gaz_naturel_grande_consommatrice", period)
 
+        conso_gaz_carburant = etablissement("consommation_gaz_carburant", period)
+        tarifs_reduits_carb = parameters(period).energies.gaz_naturel.accise.carburants.tarifs_reduits
+
         condition_double_usage = gaz_double_usage
         condition_travaux_agricoles = gaz_travaux_agricoles_et_forestiers
-        taxe_travaux_agricoles = (
-            etablissement("consommation_gaz_combustible", period)
-            * parameters(period).energies.gaz_naturel.accise.travaux_agricoles_forestaires
-        )
-        condition_exoneration = _or(
-            gaz_production_mineraux_non_metalliques,
-            gaz_extraction_production,
-        )
+        taxe_travaux_agricoles = conso_gaz_carburant * tarifs_reduits_carb.travaux_agricoles_forestiers
+        # La fabrication de produits minéraux relève d'un tarif réduit propre, porté par un
+        # paramètre. L'extraction et la production de gaz sont en revanche exclues du champ de
+        # l'accise : elles restent à zéro, sans paramètre au barème.
+        condition_fabrication_mineraux = gaz_production_mineraux_non_metalliques
+        condition_exoneration = gaz_extraction_production
         condition_grande_consommatrice = _and(seqe, grande_consommatrice)
         taxe_normal_carburant = (
-            etablissement("consommation_gaz_carburant", period)
-            * parameters(period).energies.gaz_naturel.accise.taux_normal_carburant
+            conso_gaz_carburant * parameters(period).energies.gaz_naturel.accise.carburants.tarif_normal
         )
 
         return select(
             [
                 condition_double_usage,
                 condition_travaux_agricoles,
+                condition_fabrication_mineraux,
                 condition_exoneration,
                 condition_grande_consommatrice,
             ],
-            [0, taxe_travaux_agricoles, 0, ticgn_grande_conso],
+            [
+                conso_gaz_carburant * tarifs_reduits_carb.doubles_usages,
+                taxe_travaux_agricoles,
+                conso_gaz_carburant * tarifs_reduits_carb.fabrication_mineraux,
+                0,
+                ticgn_grande_conso,
+            ],
             default=taxe_normal_carburant,
         )
 
@@ -401,7 +519,8 @@ class taxe_interieure_taxation_consommation_gaz_naturel_concurrence_internationa
     def formula_2007_01_01(etablissement, period, parameters):
         # faut changer la date après
         assiette_ticgn = etablissement("assiette_ticgn", period)
-        return assiette_ticgn * parameters(period).energies.gaz_naturel.taux_reduit_concurrence_internationale
+        tarifs_reduits = parameters(period).energies.gaz_naturel.accise.combustibles.tarifs_reduits
+        return assiette_ticgn * tarifs_reduits.intensive_energie_indirect_SEQE
 
 
 class taxe_interieure_taxation_consommation_gaz_naturel_seqe(Variable):
@@ -414,7 +533,8 @@ class taxe_interieure_taxation_consommation_gaz_naturel_seqe(Variable):
     def formula_2007_01_01(etablissement, period, parameters):
         # faut changer la date après
         assiette_ticgn = etablissement("assiette_ticgn", period)
-        return assiette_ticgn * parameters(period).energies.gaz_naturel.taux_reduit_seqe
+        tarifs_reduits = parameters(period).energies.gaz_naturel.accise.combustibles.tarifs_reduits
+        return assiette_ticgn * tarifs_reduits.intensive_energie_SEQE
 
 
 class taxe_interieure_consommation_gaz_naturel_legumes(Variable):
@@ -426,7 +546,18 @@ class taxe_interieure_consommation_gaz_naturel_legumes(Variable):
 
     def formula_2019_01_01(etablissement, period, parameters):
         assiette = etablissement("assiette_ticgn", period)
-        taux = parameters(period).energies.gaz_naturel.ticgn.taux_reduit_legumes
+        # taux_reduit_legumes faisait doublon avec taux_reduit_deshydratation
+        # (même valeur, même date, même disposition : LF 2019, art. 67).
+        taux = parameters(period).energies.gaz_naturel.ticgn.taux_reduits.deshydratation
+        return assiette * taux
+
+    def formula_2022_01_01(etablissement, period, parameters):
+        """Le tarif réduit déshydratation passe sous l'accise (CIBS) au 1er janvier 2022.
+
+        Valeur inchangée (1.6) ; la série TICGN est clôturée à cette date.
+        """
+        assiette = etablissement("assiette_ticgn", period)
+        taux = parameters(period).energies.gaz_naturel.accise.combustibles.tarifs_reduits.deshydratation
         return assiette * taux
 
 
@@ -477,25 +608,21 @@ class taxe_interieure_consommation_gaz_naturel_grande_consommatrice(Variable):
     def formula_2014_01_01(etablissement, period, parameters):
         """[à noter : plus de seuil ni d'abattement]."""
         assiette = etablissement("assiette_ticgn", period)
-        taux = parameters(period).energies.gaz_naturel.ticgn.taux_reduit_grandes_consommatrices
+        taux = parameters(period).energies.gaz_naturel.ticgn.taux_reduits.grandes_consommatrices
         return assiette * taux
 
+    def formula_2022_01_01(etablissement, period, parameters):
+        """Sous le CIBS, le tarif « grande consommatrice » devient le tarif réduit SEQE.
 
-class taxe_interieure_consommation_gaz_naturel_ifp(Variable):
-    # pas encore intégrée
-    value_type = float
-    entity = Etablissement
-    definition_period = YEAR
-    label = "Tax on gas consumption for the benefit of the French Institute for Petroleum"
-    reference = ""  # Always use the most official source
-    """je ne trouve que ce résultat bizzare : https://www.legifrance.gouv.fr/search/all?tab_selection=all&searchField=ALL&query=institut+fran%C3%A7ais+du+p%C3%A9trole&searchType=ALL&fonds=CODE&typePagination=DEFAULT&pageSize=10&page=1&tab_selection=all#all"""
-
-    def formula(etablissement, period, parameters):
-        """Income tax.
-
-        The formula to compute the income tax for a given etablissement at a given period.
+        La notion TICGN d'entreprise grande consommatrice d'énergie disparaît avec la réforme :
+        le barème IPP ne conserve, pour les gaz naturels combustibles, que les tarifs réduits
+        « intensive en énergie soumise au SEQE » (1.52) et « SEQE indirect » (1.6). Le tarif SEQE
+        reprend exactement la valeur que portait le tarif réduit grandes consommatrices depuis
+        2016 (1.52) : le résultat est donc inchangé, seule la source du paramètre l'est.
         """
-        return etablissement("consommation_gaz_naturel", period) * parameters(period).taxation_energies.natural_gas
+        assiette = etablissement("assiette_ticgn", period)
+        taux = parameters(period).energies.gaz_naturel.accise.combustibles.tarifs_reduits.intensive_energie_SEQE
+        return assiette * taux
 
 
 class assiette_ticgn(Variable):

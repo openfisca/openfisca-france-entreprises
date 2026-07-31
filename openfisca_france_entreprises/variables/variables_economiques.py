@@ -119,6 +119,27 @@ class electro_intensite(Variable):
         denom_safe = where(condition_non_zero, valeur_ajoutee_eta, 1)
         return where(condition_non_zero, numerateur / denom_safe, 0)
 
+    def formula_2022_01_01(etablissement, period, parameters):
+        """Depuis la réforme CIBS, le numérateur s'apprécie au tarif normal de l'accise.
+
+        Le niveau d'électro-intensité est le niveau d'intensité énergétique de l'article L312-44
+        apprécié sur la seule électricité, et retient donc lui aussi le tarif normal des
+        consommations haute puissance. La série ticfe.taux_normal étant clôturée au 1er janvier
+        2022, il faut lire le tarif d'accise. La valeur est identique (22.5).
+        """
+        valeur_ajoutee_eta = etablissement("valeur_ajoutee_eta", period)
+
+        consommation_electricite = etablissement("consommation_electricite", period)
+        partie_electricite = (
+            consommation_electricite
+            * parameters(period).energies.electricite.accise.tarifs_normaux.haute_puissance
+        )
+
+        numerateur = partie_electricite
+        condition_non_zero = valeur_ajoutee_eta != 0
+        denom_safe = where(condition_non_zero, valeur_ajoutee_eta, 1)
+        return where(condition_non_zero, numerateur / denom_safe, 0)
+
 
 class intensite_energetique_valeur_ajoutee(Variable):
     value_type = float
@@ -151,6 +172,46 @@ class intensite_energetique_valeur_ajoutee(Variable):
         numerateur = partie_electricite + partie_charbon + partie_gaz_naturel
         condition_non_zero = valeur_ajoutee_eta != 0
         # Avoid division by zero: use 1 where denominator is 0, then mask result
+        denom_safe = where(condition_non_zero, valeur_ajoutee_eta, 1)
+        return where(condition_non_zero, numerateur / denom_safe, 0)
+
+    def formula_2022_01_01(etablissement, period, parameters):
+        """Depuis la réforme CIBS, le numérateur s'apprécie au tarif normal de l'accise.
+
+        Le niveau d'intensité énergétique est une notion créée par le CIBS (L312-44) : il doit
+        donc s'appuyer sur les tarifs normaux de l'accise, et non sur les taxes qu'elle remplace
+        (TICGN, TICC), clôturées au 1er janvier 2022.
+
+        Pour le gaz et le charbon, les tarifs de l'accise reprennent à l'identique ceux de la
+        TICGN et de la TICC en 2022 : ce changement de source ne modifie donc pas le résultat
+        avant 2025, où l'accise gaz est indexée à 17.16 alors que la série TICGN s'arrêtait à 16.37.
+
+        Pour l'électricité, le texte précise que c'est le tarif normal des consommations haute
+        puissance (supérieure à 250 kVA) qui est retenu : depuis la réforme, c'est le tarif
+        d'accise accise.tarifs_normaux.haute_puissance, la série ticfe.taux_normal étant clôturée
+        au 1er janvier 2022. La valeur est la même (22.5), le changement de source prévient une
+        divergence si l'un des deux tarifs venait à être indexé.
+        """
+        valeur_ajoutee_eta = etablissement("valeur_ajoutee_eta", period)
+
+        consommation_electricite = etablissement("consommation_electricite", period)
+        partie_electricite = (
+            consommation_electricite
+            * parameters(period).energies.electricite.accise.tarifs_normaux.haute_puissance
+        )
+
+        consommation_charbon = etablissement("consommation_charbon", period)
+        partie_charbon = consommation_charbon * parameters(period).energies.charbon.accise.combustibles.tarif_normal
+
+        consommation_gaz_naturel = etablissement("consommation_gaz_naturel", period)
+        partie_gaz_naturel = (
+            consommation_gaz_naturel
+            * parameters(period).energies.gaz_naturel.accise.combustibles.tarif_normal
+            * parameters(period).energies.gaz_naturel.ticgn.conversion_pcs_pci
+        )
+
+        numerateur = partie_electricite + partie_charbon + partie_gaz_naturel
+        condition_non_zero = valeur_ajoutee_eta != 0
         denom_safe = where(condition_non_zero, valeur_ajoutee_eta, 1)
         return where(condition_non_zero, numerateur / denom_safe, 0)
 

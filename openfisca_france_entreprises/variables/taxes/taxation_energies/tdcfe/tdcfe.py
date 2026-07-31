@@ -31,6 +31,14 @@ class taux_tdcfe(Variable):
         coeff = tcfe.tdcfe.coefficient[departement]
         cond_36 = (amperage <= ticfe.categorie_fiscale_petite_et_moyenne_entreprise) & (amperage != 0)
         cond_250 = (amperage <= ticfe.categorie_fiscale_haut_puissance) & (amperage != 0)
-        val_36 = tcfe.taux_professionnel_36kVA_et_moins * coeff
-        val_250 = tcfe.taux_professionnel_36_a_250kVA * coeff
+        val_36 = tcfe.tarif_professionnel_36kVA_et_moins * coeff
+        val_250 = tcfe.tarif_professionnel_36_a_250kVA * coeff
         return select([cond_36, cond_250], [val_36, val_250], default=0)
+
+    def formula_2022_01_01(etablissement, period, parameters):
+        """La TDCFE est incorporée à l'accise sur l'électricité au 1er janvier 2022.
+
+        Elle cesse d'être prélevée séparément : son produit est repris dans les tarifs normaux
+        de l'accise, différenciés par catégorie fiscale de puissance. Le taux propre est donc nul.
+        """
+        return etablissement("assiette_taxe_electricite", period) * 0

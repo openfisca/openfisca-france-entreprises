@@ -1,0 +1,18 @@
+description: Tarifs réduits de l'accise sur les gaz naturels combustibles
+metadata:
+  order:
+  - intensive_energie_SEQE
+  - intensive_energie_indirect_SEQE
+  - deshydratation
+  - travaux_agricoles_forestiers
+  - aeronautique_naval
+  - doubles_usages
+  - fabrication_mineraux
+  - navigation_aerienne
+  - navigation_interieure
+  - navigation_maritime
+documentation: |-
+  ATTENTION - les tarifs navigation_aerienne, navigation_interieure, navigation_maritime et
+  aeronautique_naval ne sont lus par aucune formule, faute de variable d'activité correspondante.
+  Le modèle décrit ces exonérations pour les charbons, où charbon_navigation_maritime et ses
+  voisines existent, mais pas pour les gaz naturels. Asymétrie de couverture à combler.
