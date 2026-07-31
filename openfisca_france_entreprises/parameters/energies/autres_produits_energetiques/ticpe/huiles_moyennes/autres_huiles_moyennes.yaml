@@ -1,4 +1,4 @@
-description: Autres huiles moyennes (hectolitre)
+description: Autres huiles moyennes
 values:
   1993-01-01:
     value: null
@@ -25,8 +25,11 @@ values:
   2022-01-01:
     value: null
 metadata:
+  short_label: Autres huiles moyennes
+  last_value_still_valid_on: "2025-03-01"
+  label_en: Other medium oils
   ipp_csv_id: ticpe_autres_huiles_moyennes
-  unit: currency
+  unit: currency_per_hectoliter
   reference:
     1993-01-01:
       title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
@@ -35,8 +38,8 @@ metadata:
       title: Loi 99-1172 du 30/12/1999 (LF pour 2000)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000762233
     2002-01-01:
-      title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000592233
+      title: Ordonnance n° 2000-916 du 19 septembre 2000 portant adaptation de la valeur en euros de certains montants exprimés en francs dans les textes législatifs
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000219672
     2003-01-01:
       title: Loi 2002-1575 du 30/12/2002 (LF pour 2003)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000234121
@@ -47,8 +50,8 @@ metadata:
       title: Loi 2004-1484 du 30/12/2004 (LF pour 2005)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000789373
     2008-01-01:
-      title: Loi 2007-1822 du 24/12/2007 (LF pour 2008)
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000017853368
+      title: Loi n° 2007-1824 du 25 décembre 2007 de finances rectificative pour 2007 (1)
+      href: https://www.legifrance.gouv.fr/eli/loi/2007/12/25/BCFX0770033L/jo/texte
     2015-01-01:
       title: Loi 2014-1654 du 29/12/2014 (LF pour 2015) - art. 36
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029994876&cidTexte=JORFTEXT000029988857
@@ -63,11 +66,11 @@ metadata:
   official_journal_date:
     1993-01-01: "1992-12-31"
     2000-01-01: "1999-12-31"
-    2002-01-01: "2001-12-29"
+    2002-01-01: "2000-09-22"
     2003-01-01: "2002-12-31"
     2004-01-01: "2003-12-31"
     2006-01-01: "2004-12-31"
-    2008-01-01: "2007-12-27"
+    2008-01-01: "2007-12-28"
     2015-01-01: "2014-12-30"
     2016-01-01: "2015-12-30"
     2017-01-01: "2016-12-30"
