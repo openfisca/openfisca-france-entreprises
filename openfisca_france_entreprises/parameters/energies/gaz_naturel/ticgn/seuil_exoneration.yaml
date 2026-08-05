@@ -1,13 +1,15 @@
-description: Taxe intérieure sur la consommation de gaz naturel (TICGN) - seuil d'exonération (kWh)
+description: Seuil d'exonération de la TICGN
 values:
   1986-01-01:
     value: 5000000
   2008-04-01:
     value: null
 metadata:
+  short_label: Seuil d'exonération
+  last_value_still_valid_on: "2025-02-21"
+  label_en: Exemption threshold
   ipp_csv_id: ticgn_seuil
-  unit: /1
-  last_value_still_valid_on: "2024-08-01"
+  unit: kWh
   reference:
     1986-01-01:
       title: Loi de finances pour 1986, article 23 I

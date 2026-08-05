@@ -8,10 +8,10 @@ values:
     value: 76.826
 metadata:
   short_label: Tarif normal de l'accise sur les carburéacteurs
+  last_value_still_valid_on: "2025-03-04"
   label_en: Standard rate of excise duty on jet fuels
   ipp_csv_id: accise_normale_carbureacteurs
   unit: currency_per_mwh
-  last_value_still_valid_on: "2025-03-04"
   reference:
     2022-01-01:
       title: Ordonnance n° 2021-1843 du 22 décembre 2021 portant partie législative du code des impositions sur les biens et services et transposant diverses normes du droit de l'Union européenne

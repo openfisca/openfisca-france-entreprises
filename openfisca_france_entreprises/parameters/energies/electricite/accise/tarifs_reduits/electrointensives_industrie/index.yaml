@@ -1,7 +1,0 @@
-description: Taxe intérieure sur la consommation finale d'électricité applicable aux installations industrielles électro-intensives
-metadata:
-  label_en: Taxes on electricity for energy-intensive industrial operations
-  order:
-  - electro_intensive_0_virgule_5
-  - electro_intensive_3_virgule_375
-  - electro_intensive_6_virgule_75
