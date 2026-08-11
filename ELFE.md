@@ -88,10 +88,17 @@ TICPE gazole au barème vaut **59,40 depuis 2018**
 (`taxation_indirecte/produits_energetiques/ticpe/gazole/gazole.yaml`). Les trois
 autres paliers s'en déduisent par addition : +1,08, +1,35, +3,24.
 
-**Question ouverte n° 1 — l'unité.** Le barème est en €/hL, la colonne Elfe est
-titrée €/MWh, et les deux nombres coïncident. Soit Elfe applique un PCI de 1 MWh/hL
-au gazole (le PCI physique vaut ≈ 0,99), soit la coïncidence est fortuite. À
-établir avant tout test : c'est la calibration évoquée au §4.
+**Question ouverte n° 1 — l'unité. ~~Ouverte~~ → tranchée le 2026-08-11.** Il n'y a
+aucun PCI en jeu depuis 2022 : la recodification CIBS a converti les tarifs légaux
+en €/MWh, et les paramètres le portent explicitement
+(`accise/carburants/huiles_lourdes/gazoles.yaml` : `unit: currency_per_mwh`,
+valeur 59,4 au 2022-01-01). La coïncidence n'en est pas une — c'est la même unité.
+Contrôle supplémentaire : `accise/carburants/huiles_legeres/essences.yaml` vaut
+**76,826**, soit exactement l'un des cinq paliers Elfe de l'essence routière.
+
+La question d'unité ne subsiste donc que pour le sous-arbre `ticpe/` d'avant 2022,
+qui reste en €/hL et €/100 kg. Le §4 ci-dessous est à lire dans ce périmètre réduit,
+et le Tier 1 n'est plus bloqué pour les millésimes 2022-2024.
 
 **Question ouverte n° 2 — la grille.** Les écarts additifs (+1,08 / +1,35 / +3,24)
 ne se retrouvent pas tels quels dans `major_regionale_ticpe_gazole/`, dont les
@@ -203,10 +210,23 @@ excéder le taux de taxation net.
 
 **b) La décomposition se raccroche aux régimes.** Le tableau `Instruments` ne porte
 aucun libellé de régime : 75 lignes contre 121 côté `Régime fiscal`, car il regroupe
-les cellules partageant une même décomposition. L'appariement sur le couple
-(tarif, quantité) ne rend que 40 %. Mais **l'appariement sur le seul tarif effectif
-rend 100 %**, et sans ambiguïté : vérifié sur 2022 et 2023, chaque palier tarifaire
-renvoie à une décomposition et une seule. La jointure est donc sûre.
+les cellules partageant une même décomposition. **L'appariement sur le seul tarif
+effectif rend 100 %** : 1 114 clés de part et d'autre, aucune ligne non appariée.
+
+> **Correction du 2026-08-11 — l'unicité était fausse.** Elle n'avait été vérifiée
+> que sur 2022 et 2023. Sur les onze millésimes, **332 clés portent plusieurs
+> décompositions distinctes** : un même tarif effectif naît de mélanges différents,
+> le cas dominant opposant quotas ETS **gratuits** et **achetés** (même
+> `prix_quotas_ets`, `prix_reel_quotas_ets` nul ou plein).
+>
+> Et l'appariement sur le couple (tarif, quantité), écarté ici sur son taux de
+> rendement, est en réalité ce qui lève l'ambiguïté : il rend la décomposition
+> *exacte* sur 51,7 % de la masse carbone et 62,1 % de la masse énergie. Les 40 %
+> mesurés étaient un taux de couverture, pas un taux d'échec.
+>
+> Conséquence portée dans `assets/elfe/elfe_atomes.csv` et documentée dans
+> `SOURCES.md` : la clé `(perimetre, millesime, tarif, quantite)` sert aussi à
+> recoller les libellés **entre dimensions**, ce que le seul tarif ne permet pas.
 
 **c) Conséquence.** On sait isoler la part accise **pour tout régime**, y compris
 ceux exposés à l'ETS — les six régimes charbon/gaz à 25 paliers cessent d'être un
@@ -364,19 +384,16 @@ Conduite à tenir, à arbitrer :
 - ne pas chercher à modéliser la pondération : on introduirait une hypothèse qui
   n'est pas dans le barème.
 
-Second point dur, plus tractable : la **conversion d'unités** (question ouverte n° 1
-du §1). Elfe affiche des €/MWh, le barème porte des €/hL ou €/100 kg pour les
-produits pétroliers. Le rapport `tarif Elfe ÷ tarif barème`, calculé régime par
-régime sur les régimes à taux stable, restitue le PCI implicite retenu par le CGDD.
+Second point dur, **désormais réduit** : la conversion d'unités. Depuis 2022 elle
+n'existe plus — les tarifs CIBS sont en €/MWh comme Elfe (cf. §1, question n° 1).
+Elle ne concerne que les millésimes 2017-2021, confrontés au sous-arbre `ticpe/` en
+€/hL et €/100 kg. Le rapport `tarif Elfe ÷ tarif barème` sur les régimes à taux
+stable y restitue toujours le PCI implicite du CGDD, et reste un livrable utile :
+la branche `param/taux_conversion_euro_par_mwh_a_euro_par_hectolitre` d'OFFIT s'y
+confronte à une source externe publique.
 
-C'est un livrable à part entière, et sans doute le premier à produire : il existe
-déjà une branche `param/taux_conversion_euro_par_mwh_a_euro_par_hectolitre` sur
-openfisca-france-indirect-taxation, que ces données permettent de **confronter à une
-source externe publique**. Ce gain-là ne dépend d'aucune des fusions du §6 — c'est
-le seul morceau du chantier qui peut démarrer tout de suite.
-
-Tant que ce rapport n'est pas établi, aucun test Tier 1 n'est écrivable : on ne sait
-pas dans quelle unité comparer.
+Mais ce n'est plus un préalable : **les tests Tier 1 sur 2022-2024 sont écrivables
+sans aucune conversion.**
 
 ---
 
@@ -414,15 +431,17 @@ Tu l'as dit, le calculateur n'est pas prêt. Dans l'ordre :
 
 ### Ce qui peut démarrer tout de suite
 
-Deux chantiers ne dépendent d'aucune fusion :
-
-- la **calibration des unités** (§4) — et elle est bloquante pour tout le reste, donc
-  c'est la première chose à faire ;
+- ~~la **calibration des unités** (§4), bloquante pour tout le reste~~ — **sans
+  objet depuis 2022** : les tarifs CIBS sont déjà en €/MWh. Ne subsiste que pour
+  2017-2021, et n'est plus bloquante ;
+- la **reconstruction des cellules** — **faite** (`scripts/elfe/cellules.py`,
+  2026-08-11) : `elfe_cellules.csv`, `elfe_atomes.csv`, `elfe_sous_cellules.csv` ;
 - les **facteurs d'émission**, dans les deux sens : constituer les nôtres, et
   extraire ceux du CGDD depuis `assets/`.
 
-Tout le reste — `correspondance.py`, les tests générés, la décomposition d'écarts —
-attend les points 1 à 3.
+Le Tier 1 sur les millésimes **2022-2024** est donc débloqué, et ne dépend plus que
+de `correspondance.py`. Les millésimes 2017-2021, la décomposition d'écarts et le
+Tier 4 attendent toujours les points 1 à 3.
 
 Ce n'est qu'ensuite que `correspondance.py` — la table de ~100 régimes Elfe vers
 les variables — vaut la peine d'être écrite : c'est le gros du travail, et il est
@@ -435,6 +454,11 @@ entièrement dépendant de l'arbre de paramètres final.
 - Client Shiny fonctionnel et moissonnage des 114 combinaisons (`.xlsx` bruts).
 - Confirmation que la donnée porte bien le signal recherché (paliers régionaux).
 - Confirmation que le périmètre carbone est bloqué faute de facteurs d'émission.
+- Consolidation en CSV long et `SOURCES.md`.
+- **Reconstruction des cellules** (2026-08-11) : une ligne par valeur de tarif
+  implicite, composantes en colonnes, libellés recollés entre dimensions par la clé
+  `(tarif, quantité)`. Voir `SOURCES.md` pour les rendements mesurés.
+- **Question d'unité tranchée** (2026-08-11) : pas de PCI depuis 2022.
 
-Reste à faire avant d'ouvrir la branche : consolidation en CSV long, `SOURCES.md`,
-et la table de correspondance — cette dernière après les fusions du §6.
+Reste à faire : `correspondance.py` — la table des ~100 régimes Elfe vers les
+variables. C'est le gros du travail, et il dépend de l'arbre de paramètres final.

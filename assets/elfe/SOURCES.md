@@ -87,10 +87,19 @@ Deux pièges de lecture :
   indicatif, qui peut excéder le taux de taxation net.
 
 Le tableau ne porte **aucun libellé de régime**. Il se raccroche à `elfe.csv` par
-**jointure sur le tarif effectif**, vérifiée à 100 % et sans ambiguïté sur les deux
-périmètres (2022 et 2023). La jointure sur le couple (tarif, quantité) ne rend que
-40 % et ne doit pas être utilisée : `Instruments` regroupe les cellules partageant
-une même décomposition.
+**jointure sur le tarif effectif** : 1 114 clés `(perimetre, millesime, tarif)` de
+part et d'autre, **aucune ligne non appariée**, sur les onze millésimes.
+
+> **Correction (2026-08-11).** L'unicité de cette jointure n'avait été vérifiée que
+> sur 2022 et 2023. Sur l'ensemble des millésimes, **332 clés portent plusieurs
+> décompositions distinctes** — un même tarif effectif naît de mélanges différents.
+> Le cas dominant oppose **quotas ETS gratuits et quotas achetés** : même
+> `prix_quotas_ets`, `prix_reel_quotas_ets` à 0 pour les uns et à sa valeur pleine
+> pour les autres. C'est de l'information, pas du bruit d'agrégation.
+>
+> La jointure sur le couple **(tarif, quantité)** — écartée à tort — est précisément
+> ce qui lève l'ambiguïté : elle rend la décomposition *exacte* sur 51,7 % de la
+> masse carbone et 62,1 % de la masse énergie. Voir `elfe_atomes.csv`.
 
 Côté énergie il n'y a pas de colonne `remboursement_indirect_ets` (sept colonnes
 d'origine au lieu de neuf) ; elle est vide dans le fichier consolidé.
@@ -129,6 +138,73 @@ carbone et effet d'incorporation, et ne doit pas être lu comme le seul premier.
 
 La colonne `cv_pct` reporte ce coefficient de variation, pour que la distinction
 reste lisible sans recalcul.
+
+## Fichiers reconstruits — `scripts/elfe/cellules.py`
+
+L'application publie six vues **marginales** d'un même jeu de cellules ; aucun export
+ne les porte conjointement. Deux clés permettent de les recombiner :
+
+| clé | ce qu'elle identifie |
+|---|---|
+| `(perimetre, millesime, tarif)` | une **valeur de tarif implicite**, présente à l'identique dans les six vues |
+| `(perimetre, millesime, tarif, quantite)` | un **atome** — les quantités portent ~15 chiffres significatifs, donc une même valeur dans deux vues désigne le même jeu d'enregistrements |
+
+La quasi-injectivité de la quantité est mesurée : **20 collisions sur 9 391 lignes**.
+
+### `elfe_cellules.csv` — 1 114 lignes
+
+Une ligne par valeur de tarif implicite, **composantes en colonnes**. C'est la table
+qui somme juste : la quantité d'une clé est identique d'une dimension à l'autre
+(écart max mesuré 4 · 10⁻⁹, soit l'arrondi de la clé).
+
+Colonnes propres : les six composantes, plus `taux_taxation_net` (= taux + boucliers,
+ce que le calculateur couvre) et `hors_calculateur` (= prix des quotas, ce qu'il ne
+couvrira jamais). Quand une clé porte plusieurs décompositions, elles sont moyennées
+par les quantités — opération **exacte au sens de l'identité**, puisque toutes les
+sous-cellules partagent le même tarif et que toute combinaison convexe le vérifie
+encore. `decomposition_homogene` signale les 332 clés concernées.
+
+Par dimension : `<dim>` porte le libellé quand la cellule n'en a qu'un, `<dim>_n` le
+nombre de catégories. Un tarif ne détermine pas une catégorie — jusqu'à **36 régimes
+fiscaux partagent le tarif nul**.
+
+### `elfe_atomes.csv` — 6 347 lignes
+
+Le grain le plus renseigné, et le seul qui recolle des libellés **entre** dimensions.
+
+> ⚠️ **Union de marginales, pas une partition.** Deux dimensions qui découpent une
+> même cellule différemment y produisent des atomes distincts et redondants. Sommer
+> `quantite` sur toute la table donne ~3 fois la masse réelle. Pour sommer :
+> `elfe_cellules.csv`, ou `elfe.csv` filtré sur une seule dimension.
+
+| colonne | contenu |
+|---|---|
+| `n_dimensions_propres` | nombre de vues qui reconnaissent l'atome par sa quantité |
+| `<dim>_herite` | le libellé vient de la cellule entière (dimension à catégorie unique) et non de l'atome |
+| `n_dimensions` | libellés propres **et** hérités |
+| `decomposition_exacte` | l'atome existe tel quel dans `Instruments` : composantes non moyennées |
+| `partition_verifiee` | les atomes à `n_dimensions_propres ≥ 2` épuisent la masse de leur cellule — les dimensions y découpent à l'identique |
+
+Rendement mesuré :
+
+| | Carbone | Énergie |
+|---|---|---|
+| atomes | 3 706 | 2 641 |
+| ≥ 2 libellés (dont propres) | 3 158 (980) | 2 204 (560) |
+| ≥ 3 libellés (dont propres) | 2 735 (613) | 1 272 (280) |
+| décomposition exacte | 496 atomes, 51,7 % de la masse | 281 atomes, 62,1 % |
+| cellules à partition vérifiée | 378 / 624 | 342 / 490 |
+
+**La table croisée complète n'est pas reconstituée, et ne peut pas l'être** : les
+dimensions sont des marginales, leur jointe n'est pas identifiée. `Secteur
+économique` est le goulot — catégorie unique sur ~35 % des cellules seulement. Les
+colonnes `*_n` et `n_dimensions` disent exactement ce qui est su.
+
+### `elfe_sous_cellules.csv` — 1 467 lignes
+
+Les lignes `Instruments` intactes, rangées sous leur clé tarifaire avec un `rang`.
+À utiliser quand la distinction quotas gratuits / quotas achetés compte, puisque
+c'est elle que la moyenne pondérée de `elfe_cellules.csv` efface.
 
 ## Contrôle d'intégrité de l'extraction
 

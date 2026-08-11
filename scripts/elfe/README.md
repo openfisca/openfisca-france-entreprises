@@ -9,8 +9,14 @@ Voir [`../../ELFE.md`](../../ELFE.md) pour le plan d'ensemble et
     python scripts/elfe/harvest.py       # 106 .xlsx  (~45 min, réseau)
     python scripts/elfe/consolidate.py   # -> elfe.csv, elfe_instruments.csv
     python scripts/elfe/facteurs.py      # -> facteurs_emission_cgdd.csv
+    python -m scripts.elfe.cellules      # -> elfe_cellules.csv, elfe_atomes.csv,
+                                         #    elfe_sous_cellules.csv
 
 Dépendances : `requests`, `websocket-client`, `pandas`, `openpyxl`.
+
+`cellules.py` est le seul à lire et écrire directement dans `assets/elfe/`, et le
+seul à imprimer ses contrôles d'intégrité (identité additive, concordance des
+quantités entre dimensions) — il s'arrête sur `assert` si l'un d'eux tombe.
 
 ## ⚠️ Chemins à reprendre
 
