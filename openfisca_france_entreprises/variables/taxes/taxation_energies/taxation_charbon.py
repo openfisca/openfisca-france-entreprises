@@ -24,11 +24,17 @@ class taxe_interieure_consommation_charbon(Variable):
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615177/2007-07-01/"
 
     def formula_2007_01_01(etablissement, period, parameters):
-        """Taxe sur la consommation de houilles, lignites, et cokes."""
+        """Taxe sur la consommation de houilles, lignites, et cokes.
+
+        La TICC est créée au 1er juillet 2007 par le III de l'article 36 de la LFR 2006
+        (arbitrage §1) : sur janvier-juin 2007 elle n'existe pas, d'où le repli à zéro. La
+        moyenne mensuelle donne donc la moitié du tarif sur 2007, puis le tarif plein.
+        """
         assiette_ticc = etablissement("assiette_ticc", period)
         return assiette_ticc * tarif_moyen_annuel(
             period,
             lambda mois: parameters(mois).energies.charbon.ticc,
+            defaut_si_absent=0,
         )
 
     def formula_2008_01_01(etablissement, period, parameters):

@@ -4,7 +4,10 @@
   input:
     assiette_ticc: 1000
   output:
-    taxe_interieure_consommation_charbon: 1190
+    # La TICC est creee au 1er juillet 2007 (art. 36 III de la LFR 2006, arbitrage §1) :
+    # six mois sans taxe puis six mois a 1,19, soit une moyenne annuelle de 0,595.
+    # Attendu historique : 1 190, qui appliquait 1,19 a toute l'annee 2007.
+    taxe_interieure_consommation_charbon: 595
 
 
 - name: test 2008
