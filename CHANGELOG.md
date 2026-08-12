@@ -1,4 +1,4 @@
-## 1.1.7 - [#XX](https://github.com/openfisca/openfisca-france-entreprises/pull/XX)
+## 1.1.7 - [#31](https://github.com/openfisca/openfisca-france-entreprises/pull/31)
 
 * Tax and benefit system evolution.
 * Impacted periods: from 01/01/1993.

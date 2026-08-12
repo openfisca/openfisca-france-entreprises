@@ -131,8 +131,7 @@ class electro_intensite(Variable):
 
         consommation_electricite = etablissement("consommation_electricite", period)
         partie_electricite = (
-            consommation_electricite
-            * parameters(period).energies.electricite.accise.tarifs_normaux.haute_puissance
+            consommation_electricite * parameters(period).energies.electricite.accise.tarifs_normaux.haute_puissance
         )
 
         numerateur = partie_electricite
@@ -196,8 +195,7 @@ class intensite_energetique_valeur_ajoutee(Variable):
 
         consommation_electricite = etablissement("consommation_electricite", period)
         partie_electricite = (
-            consommation_electricite
-            * parameters(period).energies.electricite.accise.tarifs_normaux.haute_puissance
+            consommation_electricite * parameters(period).energies.electricite.accise.tarifs_normaux.haute_puissance
         )
 
         consommation_charbon = etablissement("consommation_charbon", period)
