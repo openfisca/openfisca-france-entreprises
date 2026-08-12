@@ -1,4 +1,4 @@
-# Voies et moyens tome II : les dépenses fiscales, PLF 2001 à 2025
+# Voies et moyens tome II : les dépenses fiscales, PLF 2001 à 2026
 
 État au 2026-08-12. Branche `assets/vmt2-depenses-fiscales`, partant de `main`.
 
@@ -6,7 +6,7 @@ Troisième jeu de données réelles adossé au modèle, après les agrégats 204
 (`assets/agregats-tic`) et la comparaison au modèle Elfe (`assets/elfe-cgdd`).
 Il apporte ce que les deux autres ne donnent pas : le **coût budgétaire officiel
 de chaque régime dérogatoire**, exonération par exonération et tarif réduit par
-tarif réduit, sur vingt-cinq millésimes — soit les années fiscales 1999 à 2025.
+tarif réduit, sur vingt-six millésimes — soit les années fiscales 1999 à 2026.
 
 ## La source
 
@@ -20,10 +20,15 @@ Il n'existe pas de version en données ouvertes exploitable : le seul jeu publi�
 ([PLF 2023 sur data.economie.gouv.fr](https://data.economie.gouv.fr/explore/dataset/plf2023_voies_et_moyens_t2_liste_des_depenses_fiscales/))
 renvoie `total_count: 0` et sa ressource CSV pèse 109 octets. Le PDF est la source.
 
-Le corpus couvre le PLF 2001 au PLF 2025 sans trou, **sauf le PLF 2000**, dont
+Le corpus couvre le PLF 2001 au PLF 2026 sans trou, **sauf le PLF 2000**, dont
 seul le tome 1 figure au fonds. Trois mises en page se succèdent, une par
 parseur : régime A (2001-2008, numéros espacés « 80 01 01 »), régime B
-(2009-2019, lignes de tableau) et régime C (2020-2025, fiches encadrées).
+(2009-2019, lignes de tableau) et régime C (2020-2026, fiches encadrées).
+
+L'annexe par mission est lue selon deux extractions concurrentes, `-layout` et
+`-raw`, la mieux chiffrée l'emportant : au PLF 2026 la première débite le tableau
+en colonnes verticales désynchronisées, où le numéro d'une mesure voisine le
+libellé d'une autre et le montant d'une troisième.
 
 ## Quatre pièges, à connaître avant d'utiliser la table
 
@@ -66,8 +71,8 @@ celles-là.
 
 ## Ce que produit l'extraction
 
-    assets/vmt2/chiffrages.csv               35 787 lignes : (plf, numero, annee)
-    assets/vmt2/fiches.csv                   11 929 lignes : (plf, numero)
+    assets/vmt2/chiffrages.csv               37 182 lignes : (plf, numero, annee)
+    assets/vmt2/fiches.csv                   12 394 lignes : (plf, numero)
     assets/vmt2/crosswalk.csv                mouvements d'identifiants déclarés
     assets/vmt2/mouvements.csv               entrées/sorties, expliquées ou non
     assets/vmt2/controle_cout_par_impot.csv  somme extraite vs total publié
@@ -88,8 +93,8 @@ chiffrage), **`fiabilite`** (qualité du chiffrage déclarée par la DLF),
 `creation`, `modification`, `fin_fait_generateur`, `fin_incidence`,
 `observations` et `nombre_beneficiaires` (ces deux-là propres au régime A).
 
-La `fiabilite` est renseignée sur 8 043 des 11 523 couples (millésime, dépense
-fiscale) : 3 484 « Ordre de grandeur », 2 157 « Très bonne », 1 834 « Bonne »,
+La `fiabilite` est renseignée sur 8 436 des 11 988 couples (millésime, dépense
+fiscale) : 3 608 « ordre de grandeur », 2 345 « Très bonne », 1 914 « Bonne »,
 plus 568 fiches du régime A qui écrivent « bon » et « très bon » au masculin.
 Le vocabulaire n'est pas harmonisé ici : c'est celui du document. Sur l'accise
 sur les énergies au PLF 2025, 28 des 39 dépenses sont « Bonne » ou « Très bonne ».
@@ -104,10 +109,10 @@ puis les valeurs sont confrontées à une seconde source.
 
 | Contrôle | Portée | Résultat |
 |---|---|---|
-| Nombre de fiches = nombre d'ancres du document | 2001-2025 | 25/25 millésimes, 0 anomalie de structure |
+| Nombre de fiches = nombre d'ancres du document | 2001-2026 | 26/26 millésimes, 0 anomalie de structure |
 | Nombre de dépenses = décompte annoncé en introduction | 2001-2005 | **5/5** millésimes exacts |
-| Montant de la fiche = montant de l'annexe mission-programme | 2022-2025 | 1 877/1 877 concordants |
-| Somme par impôt = total publié en sous-partie II | 2009-2025 | **75/78** postes-années exacts à l'euro sur l'année de réalisation |
+| Montant de la fiche = montant de l'annexe mission-programme | 2022-2026 | **2 342/2 342** concordants |
+| Somme par impôt = total publié en sous-partie II | 2009-2026 | **82/82** postes-années exacts à l'euro sur l'année de réalisation |
 
 Le deuxième contrôle est extérieur au parseur : les tomes de 2001 à 2005 écrivent
 en toutes lettres « Le présent fascicule recense 452 dépenses fiscales », et les
@@ -115,14 +120,19 @@ cinq comptes tombent juste (408, 414, 418, 422, 452). Les millésimes suivants o
 cessé de publier le chiffre. Le décompte du PLF 2015 ressort quant à lui à 453,
 chiffre publié par la DLF pour ce millésime.
 
-Le troisième contrôle **n'est pas exact et ne doit jamais être présenté comme
+Le quatrième contrôle **n'est pas exact et ne doit jamais être présenté comme
 tel** hors de l'année de réalisation : les mesures `nc` entrent dans le total
 publié sans valeur sommable, les `ε` sont comptées 0, et le nombre de `nc`
-augmente mécaniquement sur les années de prévision. Le résultat le dit
-clairement : 75/78 exacts sur la réalisation, 27/78 sur la prévision N-1,
-20/78 sur la prévision N. Les trois écarts résiduels sur l'année de réalisation
-sont tous au PLF 2021 (IS +761 M€, TVA +21 M€, TICC +1 M€) et restent à
-élucider.
+augmente mécaniquement sur les années de prévision. Sur l'année de réalisation,
+en revanche, l'accord est total — 82 postes-années sur 82, à l'euro.
+
+Ces deux derniers contrôles ne sont pas décoratifs : c'est le recoupement par
+l'annexe du PLF 2026 qui a révélé que l'appariement des montants aux années
+échouait quand la grille serre les années à gauche et étale les montants. Huit
+fiches de 2026 y perdaient une colonne, et trois postes-années de 2021 en
+sortaient faux. Les montants sont désormais appariés **par ordre de lecture**
+quand il y a autant de valeurs que d'années, la proximité de colonne n'étant
+gardée que pour les grilles à cellule vide.
 
 Le suivi des identifiants s'appuie uniquement sur ce que le document publie
 (renumérotations, classements, déclassements, créations, suppressions) plus les
@@ -139,7 +149,7 @@ La couverture dépend entièrement de ce que le document publie :
 |---|---|
 | A, 2002-2008 | **0 / 391** |
 | B, 2009-2019 | 228 / 457 |
-| C, 2020-2025 | 118 / 258 |
+| C, 2020-2026 | 127 / 285 |
 
 Le zéro du régime A n'est pas un défaut d'extraction : la sous-partie
 « Évolution depuis le précédent PLF » n'apparaît qu'au PLF 2009, et avant elle
@@ -152,7 +162,7 @@ doit donc être vérifiée à la main sur les identifiants.**
 
 ## Utilisation
 
-    .venv/Scripts/python.exe -m scripts.vmt2.cli extraire --de 2001 --a 2025
+    .venv/Scripts/python.exe -m scripts.vmt2.cli extraire --de 2001 --a 2026
     .venv/Scripts/python.exe -m scripts.vmt2.cli crosswalk
 
 Le texte des PDF est extrait par `pdftotext -layout` et mis en cache dans

@@ -37,28 +37,38 @@ SOURCES = {
     2023: r"LF2023\PLF 2023 VM T2.pdf",
     2024: r"LF2024\PLF 2024 VM T2.pdf",
     2025: r"LF2025\PLF 2025 - Voies_et_moyens_Tome_2_Depenses fiscales.pdf",
+    2026: r"LF2026\PLF pour 2026_V&M tome II.pdf",
 }
 
 #: régime de mise en page par millésime (cf. note d'exploration).
 REGIMES = {y: 'A' for y in range(2001, 2009)}
 REGIMES.update({y: 'B' for y in range(2009, 2020)})
-REGIMES.update({y: 'C' for y in range(2020, 2026)})
+REGIMES.update({y: 'C' for y in range(2020, 2027)})
 
 
 def chemin_pdf(plf: int) -> str:
     return os.path.join(RACINE_LF, SOURCES[plf])
 
 
-def texte(plf: int, cache: str) -> list[str]:
+def texte(plf: int, cache: str, mode: str = 'layout') -> list[str]:
     """Renvoie le tome II du millésime `plf` sous forme de lignes.
 
-    Le texte est extrait une fois par `pdftotext -layout` puis mis en cache ;
-    la source PDF n'est jamais modifiée.
+    `mode='layout'` conserve la géométrie des tableaux : c'est ce qu'il faut pour
+    les fiches, dont les montants sont appariés aux années par colonne.
+
+    `mode='raw'` restitue l'ordre de lecture du PDF. Certains tableaux d'annexe
+    y sont bien mieux reconstruits — au PLF 2026, `-layout` débite la répartition
+    par mission en trois colonnes verticales décalées, où le numéro d'une mesure
+    voisine le libellé d'une autre et le montant d'une troisième.
+
+    Le texte est extrait une fois puis mis en cache ; la source PDF n'est jamais
+    modifiée.
     """
     os.makedirs(cache, exist_ok=True)
-    dest = os.path.join(cache, f'VMT2_{plf}.txt')
+    suffixe = '' if mode == 'layout' else f'_{mode}'
+    dest = os.path.join(cache, f'VMT2_{plf}{suffixe}.txt')
     if not os.path.exists(dest):
-        subprocess.run(['pdftotext', '-layout', '-enc', 'UTF-8', '-q',
+        subprocess.run(['pdftotext', f'-{mode}', '-enc', 'UTF-8', '-q',
                         chemin_pdf(plf), dest], check=True)
     with open(dest, encoding='utf-8', errors='replace') as fh:
         return fh.read().splitlines()
@@ -116,12 +126,21 @@ def colonnes(ligne: str, motif: re.Pattern) -> list[tuple[float, str]]:
 
 def apparie_par_colonne(ancres: list[tuple[float, str]],
                         valeurs: list[tuple[float, str]]) -> list[str | None]:
-    """Associe à chaque ancre (année) la valeur dont la colonne est la plus proche.
+    """Associe à chaque ancre (année) la valeur qui lui revient.
 
-    Chaque valeur est consommée au plus une fois ; une ancre sans valeur reçoit
-    None (cellule vide dans le PDF). Le glouton par distance croissante évite
-    qu'une valeur isolée soit rattachée à la mauvaise année.
+    Quand il y a autant de valeurs que d'années, l'ordre de lecture tranche seul
+    et sans ambiguïté. C'est le cas courant, et il faut le traiter à part : au
+    PLF 2026 les années de la grille sont serrées à gauche tandis que les
+    montants sont étalés sur toute la largeur, si bien que la colonne la plus
+    proche de « 2026 » est celle du montant de 2025.
+
+    Quand il manque des valeurs — cellule vide dans le PDF —, on retombe sur la
+    proximité de colonne, en appariant par distance croissante pour qu'une valeur
+    isolée ne soit pas happée par la mauvaise année. Les ancres non servies
+    reçoivent None.
     """
+    if len(valeurs) == len(ancres):
+        return [t for _, t in valeurs]
     res: list[str | None] = [None] * len(ancres)
     paires = sorted(((abs(ca - cv), i, j) for i, (ca, _) in enumerate(ancres)
                      for j, (cv, _) in enumerate(valeurs)))

@@ -22,6 +22,11 @@ PROGRAMME = re.compile(r'^\s{0,6}P\d{3}\s*[-–—]\s*\S')
 MISSION_FIN = re.compile(r'Correspondance juridique des d[ée]penses fiscales')
 # ligne de mesure : numéro, libellé, puis éventuellement un montant en fin de ligne
 MESURE = re.compile(r'^\s{0,4}(\d{6})\s*(?:[-–—]\s*)?(.*?)\s*$')
+#: mobilier de page de l'annexe, à écarter en lecture `raw` où il se retrouve
+#: mêlé aux données faute de géométrie
+MOBILIER = re.compile(r"(?i)^(\d{1,3}\s+)?Annexe au PLF|^\(en millions|"
+                      r"^Num[ée]ro D[ée]pense fiscale|^Avertissement$|"
+                      r"^Les listes suivantes|^titre principal|^subsidiaire\.?$")
 
 
 def _debut(lignes: list[str]) -> int | None:
@@ -74,6 +79,95 @@ def parse(lignes: list[str], plf: int) -> dict[str, dict]:
         out[numero] = dict(montant=montant, chiffrage=chiffrage,
                            mission=mission, programme=programme)
     return out
+
+
+def parse_raw(lignes: list[str], plf: int) -> dict[str, dict]:
+    """Même annexe, lue dans l'ordre de lecture du PDF (`pdftotext -raw`).
+
+    La mise en page y disparaît : chaque mesure se présente comme un numéro
+    suivi de son libellé sur une ou plusieurs lignes, puis le chiffrage seul sur
+    sa ligne. C'est la seule lecture exploitable des millésimes où `-layout`
+    éclate le tableau en colonnes désynchronisées.
+    """
+    d = _debut(lignes)
+    if d is None:
+        return {}
+    f = _fin(lignes, d)
+
+    # Le mobilier de page — titre courant, unité, en-tête de colonnes et le
+    # millésime seul sur sa ligne — doit disparaître avant toute lecture : ce
+    # dernier ressemble trait pour trait à un chiffrage.
+    utiles = [l.strip() for l in lignes[d:f]
+              if l.strip() and not MOBILIER.search(l) and l.strip() != str(plf)]
+
+    # découpage en blocs : un bloc commence à une ligne de mesure
+    out: dict[str, dict] = {}
+    mission = programme = ''
+    bloc: list[str] = []
+    numero = None
+
+    def clore():
+        if numero is None:
+            return
+        # le chiffrage est soit seul sur une ligne du bloc, soit collé en fin de
+        # la ligne d'ouverture quand le libellé y tenait tout entier
+        seuls = [s for s in bloc[1:] if RE_MONTANT.fullmatch(s)]
+        if seuls:
+            brut = seuls[-1]
+        else:
+            m = re.search(r'\s(' + RE_MONTANT.pattern + r')$', bloc[0])
+            brut = m.group(1) if m else None
+        montant, chiffrage = normalise_montant(brut)
+        if numero not in out or out[numero]['chiffrage'] == 'absent':
+            out[numero] = dict(montant=montant, chiffrage=chiffrage,
+                               mission=mission, programme=programme)
+
+    for s in utiles:
+        m = re.match(r'^(\d{6})\s+(\S.*)$', s)
+        if m:
+            clore()
+            numero, bloc = m.group(1), [m.group(2)]
+            continue
+        if PROGRAMME.match(s):
+            clore()
+            numero, bloc, programme = None, [], s
+            continue
+        if numero is not None:
+            bloc.append(s)
+        elif len(s) > 3 and not RE_MONTANT.fullmatch(s):
+            mission = s
+    clore()
+    return out
+
+
+#: En deçà de cette part de mesures chiffrées, on considère que l'annexe ne
+#: publie pas de montants — c'est le cas au PLF 2021 — plutôt que de croire les
+#: quelques valeurs isolées qu'une lecture opportuniste finit toujours par
+#: trouver. Le recoupement se replie alors sur les seuls identifiants.
+SEUIL_CHIFFRAGE = 0.5
+
+
+def parse_meilleure(lignes_layout: list[str], lignes_raw: list[str], plf: int):
+    """Retient la lecture qui chiffre le plus de mesures, et dit laquelle.
+
+    Les deux extractions se valent sur la plupart des millésimes ; le critère de
+    choix est objectif et vérifiable — la part de mesures dotées d'un chiffrage —
+    plutôt qu'une liste de millésimes codée en dur.
+    """
+    candidats = {'layout': parse(lignes_layout, plf), 'raw': parse_raw(lignes_raw, plf)}
+
+    def chiffrees(t):
+        return sum(1 for v in t.values() if v['chiffrage'] != 'absent')
+
+    mode = max(candidats, key=lambda k: chiffrees(candidats[k]))
+    table = candidats[mode]
+    if not table:
+        return table, mode
+    if chiffrees(table) < SEUIL_CHIFFRAGE * len(table):
+        for v in table.values():
+            v['montant'], v['chiffrage'] = None, 'absent'
+        return table, mode + ' (sans montants)'
+    return table, mode
 
 
 def recoupement(fiches: list[dict], annexe: dict[str, dict], plf: int) -> dict:

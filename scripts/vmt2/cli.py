@@ -39,7 +39,9 @@ def extraire(de: int, a: int):
         attendu = mod.nb_attendu(lignes)
         journal += controles.exhaustivite(fiches, attendu, plf)
         journal += controles.structure(fiches, plf)
-        r = annexe.recoupement(fiches, annexe.parse(lignes, plf), plf)
+        table, mode = annexe.parse_meilleure(lignes, texte(plf, CACHE, 'raw'), plf)
+        r = annexe.recoupement(fiches, table, plf)
+        r['mode'] = mode
         recoup.append(r)
         couts += cout_par_impot.recoupement(fiches, cout_par_impot.parse(lignes, plf), plf)
         n = len({f['numero'] for f in fiches if f.get('numero')})
@@ -49,7 +51,7 @@ def extraire(de: int, a: int):
             journal.append(f"PLF{plf} : {ndf} dépenses fiscales extraites alors que le "
                            f"document annonce en recenser {publie}")
         note = ('annexe absente' if not r['disponible'] else
-                f"annexe {r['accords']}/{r['compares']} concordants")
+                f"annexe [{r['mode']}] {r['accords']}/{r['compares']} concordants")
         if publie is not None:
             note = f"décompte publié {publie} — " + note
         modal = f", {n - ndf:3d} modalités de calcul" if n != ndf else ''
