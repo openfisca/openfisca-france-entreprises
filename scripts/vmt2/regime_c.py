@@ -1,4 +1,4 @@
-"""Régime C : mise en page « fiche » du tome II, PLF 2020 à 2025.
+"""Régime C : mise en page « fiche » du tome II, PLF 2020 à 2026.
 
 Chaque dépense fiscale occupe un encadré de la forme
 

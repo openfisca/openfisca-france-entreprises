@@ -1,7 +1,10 @@
 """Pilote : extrait, contrôle et écrit les tables du Voies et Moyens tome II.
 
-    python -m scripts.vmt2.cli extraire [--de 2009] [--a 2025]
+    python -m scripts.vmt2.cli extraire [--de 2001] [--a 2026]
     python -m scripts.vmt2.cli crosswalk
+
+Sous Windows, préfixer par PYTHONIOENCODING=utf-8 : la console est en cp1252 et
+le seul affichage d'un montant « ε » suffit à faire tomber la commande.
 """
 from __future__ import annotations
 
@@ -91,8 +94,10 @@ def ecrire(fiches: list[dict]) -> tuple[str, str]:
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('commande', choices=['extraire', 'crosswalk'])
-    p.add_argument('--de', type=int, default=2001)
-    p.add_argument('--a', type=int, default=2025)
+    # les bornes par défaut couvrent tout le corpus : les laisser en arrière du
+    # dernier millésime disponible produirait une table amputée sans le dire
+    p.add_argument('--de', type=int, default=min(SOURCES))
+    p.add_argument('--a', type=int, default=max(SOURCES))
     args = p.parse_args(argv)
 
     if args.commande == 'extraire':

@@ -143,6 +143,13 @@ de libellé.** Les entrées et sorties qu'aucune table ne justifie sont écrites
 critique 2020→2021 en énergie, 26 des 28 mouvements sont expliqués ; restent la
 sortie de la 800108 et celle de la 800217.
 
+Le PLF 2026 en ajoute quatre, et ils tombent en plein dans le périmètre modélisé
+par OFF-E : l'entrée de la `820210` est expliquée par une création, mais les
+sorties des `800210`, `800211` et `840202` — les tarifs réduits pour les
+installations grandes consommatrices d'énergie, ETS et fuite de carbone — ne le
+sont par aucune table. À élucider avant de chaîner une série sur ces trois
+mesures.
+
 La couverture dépend entièrement de ce que le document publie :
 
 | Régime | Mouvements expliqués |
@@ -162,13 +169,22 @@ doit donc être vérifiée à la main sur les identifiants.**
 
 ## Utilisation
 
-    .venv/Scripts/python.exe -m scripts.vmt2.cli extraire --de 2001 --a 2026
-    .venv/Scripts/python.exe -m scripts.vmt2.cli crosswalk
+    PYTHONIOENCODING=utf-8 .venv/Scripts/python.exe -m scripts.vmt2.cli extraire
+    PYTHONIOENCODING=utf-8 .venv/Scripts/python.exe -m scripts.vmt2.cli crosswalk
 
-Le texte des PDF est extrait par `pdftotext -layout` et mis en cache dans
-`.cache/vmt2/` (gitignoré), reconstruit seulement s'il manque. `pdftotext`
-(poppler, fourni par MiKTeX sur le poste de travail) est donc requis pour un
-premier passage ; ensuite le cache suffit.
+Sans argument, les deux commandes couvrent tout le corpus ; `--de` et `--a` ne
+servent qu'à le restreindre.
+
+**`PYTHONIOENCODING=utf-8` n'est pas facultatif sous Windows.** La console est en
+`cp1252`, et le seul affichage d'un montant « ε » fait tomber la commande en
+`UnicodeEncodeError` — après tout le travail et avant l'écriture des fichiers. La
+même précaution vaut pour la suite de tests du dépôt, avec `PYTHONUTF8=1`.
+
+Le texte des PDF est extrait par `pdftotext` et mis en cache dans `.cache/vmt2/`
+(gitignoré), reconstruit seulement s'il manque — en deux versions, `-layout` pour
+les fiches et `-raw` pour l'annexe. `pdftotext` (poppler, fourni par MiKTeX sur
+le poste de travail) est donc requis pour un premier passage ; ensuite le cache
+suffit.
 
 ## Pour la suite
 
