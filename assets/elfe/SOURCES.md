@@ -242,6 +242,55 @@ l'a reconstituée mais parce qu'au moins une dimension y est dégénérée dans 
 paire. Sur les 476 autres subsistent 18 598 degrés de liberté. `Secteur économique`
 est le goulot : catégorie unique sur ~35 % des cellules seulement.
 
+### `regime_produit.csv` — 320 lignes — `scripts/elfe/produits.py`
+
+La seule part de la table croisée que les marginales permettent de reconstituer.
+Un régime fiscal porte une énergie et une seule, donc `Type de produit` regroupe des
+régimes : la jointe entre ces deux dimensions est **déterministe**, et leurs
+(R − 1)(S − 1) degrés de liberté tombent à zéro.
+
+Le mapping est **mesuré**, pas deviné : produit unique sur une cellule → tous ses
+régimes portent ce produit ; régime unique → il porte tous les produits de la
+cellule. Les intitulés ne servent que pour les régimes que ces deux vues n'atteignent
+jamais. Répartition des 320 lignes : **272 observées, 45 lues, 3 corrigées**.
+
+La lecture des intitulés retrouve **27/27** des régimes purs observés côté carbone.
+Elle est donc fiable — mais insuffisante, car deux régimes sont mal classés par leur
+nom, et l'écart de reconstruction les identifie sans ambiguïté :
+
+| régime | intitulé suggère | réalité |
+|---|---|---|
+| `Gaz de raffinerie` | Gaz | **Pétrole** — produit de raffinage, pas gaz naturel |
+| `Méthane` | Déchets et biomasse | **Non combustible** — méthane fugitif et agricole |
+
+Après correction, `Gaz` et `Déchets et biomasse` tombent exactement sur leur valeur
+déclarée dans la cellule exonérée.
+
+**L'inclusion n'est pas stricte côté énergie** : treize régimes se partagent entre
+deux produits, et le partage est l'incorporation de renouvelable, mesurée par
+millésime — E85 58,2 %, gaz agricole 21,4 %, gazole routier 7,5 %, E10 6,5 %,
+essence 3,3 %, gaz combustible 0,8 % (biométhane). Côté carbone les 63 régimes sont
+purs, les biocarburants y étant comptés à part.
+
+Vérification par les sommes, tolérance 0,01 :
+
+| | cellules reconstruites | masse |
+|---|---|---|
+| Carbone | **613 / 624** (98,2 %) | 73,5 % |
+| Énergie | **454 / 490** (92,7 %) | 63,6 % |
+
+Ce qui résiste, et pourquoi :
+
+- **Carbone, 11 cellules** — toutes de tarif nul, une par millésime. `Non combustible`
+  est prédit trop haut de 2,06 à 2,49 MtCO2, `Pétrole` trop bas d'autant : un régime
+  rangé en non combustible relève du pétrole. Non identifié ; voir les pistes en tête
+  de `produits.py`.
+- **Énergie, 36 cellules** — résidus d'environ 1 TWh entre `Chaleur et biomasse` et
+  `Gaz`, **de signe alterné**. La part de biométhane est estimée par (régime,
+  millésime) sur les cellules à régime unique, alors qu'elle varie d'un palier
+  tarifaire à l'autre. Les masses annuelles sont justes, leur répartition entre
+  paliers ne l'est pas — et les marginales ne permettent pas de faire mieux.
+
 ### `elfe_sous_cellules.csv` — 1 467 lignes
 
 Les lignes `Instruments` intactes, rangées sous leur clé tarifaire avec un `rang`.
