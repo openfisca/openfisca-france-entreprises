@@ -51,6 +51,40 @@ def tarif_moyen_annuel(period, lire_tarif, defaut_si_absent=_ABSENT):
     return sum(_lire(m) for m in mois) / len(mois)
 
 
+def tarif_avec_repli(lire_principal, lire_repli):
+    """Lecture de tarif avec repli sur un autre paramètre une fois la ligne supprimée.
+
+    ``defaut_si_absent`` de ``tarif_moyen_annuel`` ne sait substituer qu'une constante, ce qui
+    convient à une abrogation sèche : le produit sort du tarif et n'est plus taxé (émulsions
+    eau-gazole, retirées du tableau B au 2020-07-01 — voir §5 des arbitrages).
+
+    Une ligne de tarif *réduit* peut au contraire disparaître sans que le produit cesse d'être
+    taxé : les consommations qu'elle couvrait basculent alors sur le tarif normal. C'est le cas
+    des GPL « sous condition d'emploi » — indices 30 bis (propane), 31 bis (butanes) et 33 bis
+    (autres GPL), à 15,90 €/100 kg — supprimés du tableau B de l'article 265 du code des douanes
+    au 2020-07-01 par l'article 60 I 1° de la loi 2019-1479 (LF 2020). Les versions consolidées
+    le montrent sans ambiguïté : présents dans la version en vigueur du 2020-01-01 au 2020-07-01,
+    absents dès celle du 2020-07-01 au 2020-08-01, sans article successeur. Ces consommations
+    relèvent depuis des indices généraux 30 ter / 31 ter / 34, à 20,71 €/100 kg.
+
+    Replier sur zéro les modéliserait comme non taxées, ce que le tarif ne dit pas. À distinguer
+    du gazole non routier, dont la ligne quitte aussi le tableau B mais dont l'article 265 octies
+    A et B maintient le tarif : là, c'est le paramètre lui-même qu'il fallait prolonger.
+
+    :param lire_principal: lecture du tarif tant que la ligne existe.
+    :param lire_repli: lecture du tarif applicable une fois la ligne supprimée.
+    :return: une fonction ``mois -> tarif``, à passer à ``tarif_moyen_annuel``.
+    """
+
+    def _lire(mois):
+        try:
+            return lire_principal(mois)
+        except ParameterNotFoundError:
+            return lire_repli(mois)
+
+    return _lire
+
+
 def _and(*args):
     """Vectorized logical and over two or more arrays."""
     r = args[0]

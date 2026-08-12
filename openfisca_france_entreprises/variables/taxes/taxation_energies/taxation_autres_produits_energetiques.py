@@ -13,6 +13,7 @@ from openfisca_france_entreprises.variables.taxes.formula_helpers import (
     _dep_in,
     _not,
     _or,
+    tarif_avec_repli,
     tarif_moyen_annuel,
 )
 
@@ -2397,16 +2398,28 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 period,
             ).energies.autres_produits_energetiques.ticpe.carburant_constitue_100_esters_methyliques_acides_gras
             # additions, en plus de 2021
+            #
+            # Les lignes GPL « sous condition d'emploi » (indices 30 bis, 31 bis, 33 bis) sortent
+            # du tableau B au 2020-07-01, art. 60 I 1° LF 2020, sans article successeur : ces
+            # consommations relèvent ensuite du tarif normal (30 ter, 31 ter, 34), et non d'une
+            # exonération. D'où le repli, et non defaut_si_absent=0. Cf. tarif_avec_repli.
             + etablissement(
                 "consommation_propane_carburants_sous_conditions_100kg_nets",
                 period,
             )
             * tarif_moyen_annuel(
                 period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
+                tarif_avec_repli(
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
+                    ),
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
+                    ),
                 ),
             )
             + etablissement(
@@ -2415,10 +2428,17 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * tarif_moyen_annuel(
                 period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
+                tarif_avec_repli(
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
+                    ),
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
+                    ),
                 ),
             )
             + etablissement(
@@ -2427,10 +2447,17 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
             )
             * tarif_moyen_annuel(
                 period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
+                tarif_avec_repli(
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
+                    ),
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
+                    ),
                 ),
             )
             + etablissement(
