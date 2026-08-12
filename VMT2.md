@@ -134,6 +134,22 @@ sortaient faux. Les montants sont désormais appariés **par ordre de lecture**
 quand il y a autant de valeurs que d'années, la proximité de colonne n'étant
 gardée que pour les grilles à cellule vide.
 
+Le revers est que **le régime A n'est couvert par aucun contrôle de valeur** :
+les deux contrôles chiffrés du tableau ne commencent qu'aux PLF 2009 et 2022. Ce
+trou a laissé passer, six millésimes durant, un plafond dur à 999 M€. Le motif de
+jeton exigeait un séparateur de milliers, or les PLF 2003 à 2008 impriment
+« 1490 » là où le PLF 2002 écrit « 1 433 » : borné à trois chiffres, il coupait
+« 1520 » en « 152 » puis « 0 », et l'appariement par colonne servait le « 0 »
+surnuméraire à l'année voisine — d'où, du même défaut, des montants divisés par
+dix **et** des zéros qui n'en étaient pas. Le même motif ignorait le « _ » par
+lequel le régime A écrit le « sans objet » que les régimes B et C notent « - » :
+513 cellules tombaient en `absent`. Corrigé, le régime A rend 41 à 62 montants
+≥ 1 000 M€ par millésime — contre 42 au PLF 2002 et 50 au PLF 2009 — et son taux
+de `sans_objet` (5,0 %) rejoint ceux des régimes B (5,1 %) et C (5,8 %). Les
+millésimes 2009-2026 sont inchangés cellule par cellule. **Tant qu'aucun total
+publié n'est recoupé avant 2009, les montants du régime A restent la partie la
+moins garantie de la table.**
+
 Le suivi des identifiants s'appuie uniquement sur ce que le document publie
 (renumérotations, classements, déclassements, créations, suppressions) plus les
 éclatements de 2021, transcrits en constante sourcée dans

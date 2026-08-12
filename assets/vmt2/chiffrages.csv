@@ -668,8 +668,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;050107;2025;prevision_plf;0;MEUR;0;epsilon;ε
 2026;050107;2025;prevision;0;MEUR;0;epsilon;ε
 2026;050107;2026;prevision_plf;0;MEUR;0;epsilon;ε
-2007;050108;2005;realisation;;MEUR;;absent;
-2007;050108;2006;prevision;;MEUR;;absent;
+2007;050108;2005;realisation;;MEUR;;sans_objet;_
+2007;050108;2006;prevision;;MEUR;;sans_objet;_
 2008;050108;2006;realisation;0;MEUR;0;epsilon;ε
 2007;050108;2007;prevision_plf;;MEUR;;nc;nc
 2008;050108;2007;prevision;0;MEUR;0;epsilon;ε
@@ -1118,7 +1118,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2011;060101;2011;prevision_plf;;MEUR;;sans_objet;-
 2012;060101;2011;prevision;;MEUR;;sans_objet;-
 2012;060101;2012;prevision_plf;;MEUR;;sans_objet;-
-2007;060102;2005;realisation;;MEUR;;absent;
+2007;060102;2005;realisation;;MEUR;;sans_objet;_
 2007;060102;2006;prevision;163;MEUR;163;chiffre;163
 2008;060102;2006;realisation;163;MEUR;163;chiffre;163
 2007;060102;2007;prevision_plf;166;MEUR;166;chiffre;166
@@ -1298,7 +1298,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;060104;2025;prevision_plf;2;MEUR;2;chiffre;2
 2026;060104;2025;prevision;2;MEUR;2;chiffre;2
 2026;060104;2026;prevision_plf;2;MEUR;2;chiffre;2
-2007;060105;2005;realisation;;MEUR;;absent;
+2007;060105;2005;realisation;;MEUR;;sans_objet;_
 2007;060105;2006;prevision;0;MEUR;0;chiffre;0
 2008;060105;2006;realisation;0;MEUR;0;chiffre;0
 2007;060105;2007;prevision_plf;0;MEUR;0;epsilon;ε
@@ -1349,7 +1349,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;060105;2025;prevision_plf;0;MEUR;0;chiffre;0
 2026;060105;2025;prevision;0;MEUR;0;chiffre;0
 2026;060105;2026;prevision_plf;;MEUR;;sans_objet;-
-2007;060106;2005;realisation;;MEUR;;absent;
+2007;060106;2005;realisation;;MEUR;;sans_objet;_
 2007;060106;2006;prevision;1;MEUR;1;chiffre;1
 2008;060106;2006;realisation;0;MEUR;0;epsilon;ε
 2007;060106;2007;prevision_plf;1;MEUR;1;chiffre;1
@@ -1409,11 +1409,11 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;060106;2025;prevision_plf;1;MEUR;1;chiffre;1
 2026;060106;2025;prevision;1;MEUR;1;chiffre;1
 2026;060106;2026;prevision_plf;1;MEUR;1;chiffre;1
-2007;060107;2005;realisation;;MEUR;;absent;
-2007;060107;2006;prevision;;MEUR;;absent;
-2008;060107;2006;realisation;;MEUR;;absent;
+2007;060107;2005;realisation;;MEUR;;sans_objet;_
+2007;060107;2006;prevision;;MEUR;;sans_objet;_
+2008;060107;2006;realisation;;MEUR;;sans_objet;_
 2007;060107;2007;prevision_plf;;MEUR;;nc;nc
-2008;060107;2007;prevision;;MEUR;;absent;
+2008;060107;2007;prevision;;MEUR;;sans_objet;_
 2009;060107;2007;realisation;;MEUR;;sans_objet;-
 2008;060107;2008;prevision_plf;;MEUR;;nc;nc
 2009;060107;2008;prevision;0;MEUR;0;chiffre;0
@@ -1685,13 +1685,13 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;060203;2025;prevision_plf;8;MEUR;8;chiffre;8
 2026;060203;2025;prevision;8;MEUR;8;chiffre;8
 2026;060203;2026;prevision_plf;8;MEUR;8;chiffre;8
-2007;070101;2005;realisation;116;MEUR;116;chiffre;116
-2007;070101;2006;prevision;0;MEUR;0;chiffre;0
-2008;070101;2006;realisation;119;MEUR;119;chiffre;119
-2007;070101;2007;prevision_plf;5;MEUR;5;chiffre;5
-2008;070101;2007;prevision;7;MEUR;7;chiffre;7
+2007;070101;2005;realisation;1165;MEUR;1165;chiffre;1165
+2007;070101;2006;prevision;1190;MEUR;1190;chiffre;1190
+2008;070101;2006;realisation;1190;MEUR;1190;chiffre;1190
+2007;070101;2007;prevision_plf;1235;MEUR;1235;chiffre;1235
+2008;070101;2007;prevision;1207;MEUR;1207;chiffre;1207
 2009;070101;2007;realisation;1207;MEUR;1207;chiffre;1 207
-2008;070101;2008;prevision_plf;7;MEUR;7;chiffre;7
+2008;070101;2008;prevision_plf;1227;MEUR;1227;chiffre;1227
 2009;070101;2008;prevision;1227;MEUR;1227;chiffre;1 227
 2010;070101;2008;realisation;1227;MEUR;1227;chiffre;1 227
 2009;070101;2009;prevision_plf;1259;MEUR;1259;chiffre;1 259
@@ -1941,8 +1941,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2007;080105;2006;prevision;1;MEUR;1;chiffre;1
 2008;080105;2006;realisation;0;MEUR;0;epsilon;ε
 2007;080105;2007;prevision_plf;1;MEUR;1;chiffre;1
-2008;080105;2007;prevision;;MEUR;;absent;
-2008;080105;2008;prevision_plf;;MEUR;;absent;
+2008;080105;2007;prevision;;MEUR;;sans_objet;_
+2008;080105;2008;prevision_plf;;MEUR;;sans_objet;_
 2007;080106;2005;realisation;2;MEUR;2;chiffre;2
 2007;080106;2006;prevision;2;MEUR;2;chiffre;2
 2008;080106;2006;realisation;2;MEUR;2;chiffre;2
@@ -2024,7 +2024,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2011;080110;2011;prevision_plf;;MEUR;;sans_objet;-
 2012;080110;2011;prevision;;MEUR;;sans_objet;-
 2012;080110;2012;prevision_plf;;MEUR;;sans_objet;-
-2008;080111;2006;realisation;;MEUR;;absent;
+2008;080111;2006;realisation;;MEUR;;sans_objet;_
 2008;080111;2007;prevision;6;MEUR;6;chiffre;6
 2009;080111;2007;realisation;6;MEUR;6;chiffre;6
 2008;080111;2008;prevision_plf;6;MEUR;6;chiffre;6
@@ -2114,7 +2114,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2007;080205;2005;realisation;10;MEUR;10;chiffre;10
 2007;080205;2006;prevision;680;MEUR;680;chiffre;680
 2008;080205;2006;realisation;321;MEUR;321;chiffre;321
-2007;080205;2007;prevision_plf;148;MEUR;148;chiffre;148
+2007;080205;2007;prevision_plf;1480;MEUR;1480;chiffre;1480
 2008;080205;2007;prevision;646;MEUR;646;chiffre;646
 2009;080205;2007;realisation;440;MEUR;440;chiffre;440
 2008;080205;2008;prevision_plf;517;MEUR;517;chiffre;517
@@ -2141,11 +2141,11 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2010;080206;2010;prevision_plf;;MEUR;;sans_objet;-
 2011;080206;2010;prevision;;MEUR;;sans_objet;-
 2011;080206;2011;prevision_plf;;MEUR;;sans_objet;-
-2007;080207;2005;realisation;;MEUR;;absent;
-2007;080207;2006;prevision;;MEUR;;absent;
-2008;080207;2006;realisation;;MEUR;;absent;
+2007;080207;2005;realisation;;MEUR;;sans_objet;_
+2007;080207;2006;prevision;;MEUR;;sans_objet;_
+2008;080207;2006;realisation;;MEUR;;sans_objet;_
 2007;080207;2007;prevision_plf;0;MEUR;0;epsilon;ε
-2008;080207;2007;prevision;;MEUR;;absent;
+2008;080207;2007;prevision;;MEUR;;sans_objet;_
 2009;080207;2007;realisation;;MEUR;;sans_objet;-
 2008;080207;2008;prevision_plf;0;MEUR;0;epsilon;ε
 2009;080207;2008;prevision;0;MEUR;0;epsilon;ε
@@ -2952,8 +2952,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2007;100106;2006;prevision;20;MEUR;20;chiffre;20
 2008;100106;2006;realisation;20;MEUR;20;chiffre;20
 2007;100106;2007;prevision_plf;20;MEUR;20;chiffre;20
-2008;100106;2007;prevision;;MEUR;;absent;
-2008;100106;2008;prevision_plf;;MEUR;;absent;
+2008;100106;2007;prevision;;MEUR;;sans_objet;_
+2008;100106;2008;prevision_plf;;MEUR;;sans_objet;_
 2001;100107;1999;realisation;0;MF;0.0;epsilon;ε
 2001;100107;2000;prevision;0;MF;0.0;epsilon;ε
 2001;100107;2001;prevision_plf;0;MF;0.0;epsilon;ε
@@ -2981,7 +2981,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2007;100108;2007;prevision_plf;5;MEUR;5;chiffre;5
 2008;100108;2007;prevision;4;MEUR;4;chiffre;4
 2009;100108;2007;realisation;3;MEUR;3;chiffre;3
-2008;100108;2008;prevision_plf;;MEUR;;absent;
+2008;100108;2008;prevision_plf;;MEUR;;sans_objet;_
 2009;100108;2008;prevision;;MEUR;;sans_objet;-
 2009;100108;2009;prevision_plf;;MEUR;;sans_objet;-
 2001;100110;1999;realisation;0;MF;0.0;chiffre;0
@@ -3029,18 +3029,18 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;100111;2004;prevision_plf;25;MEUR;25;chiffre;25
 2005;100111;2004;prevision;25;MEUR;25;chiffre;25
 2006;100111;2004;realisation;25;MEUR;25;chiffre;25
-2005;100111;2005;prevision_plf;;MEUR;;absent;
+2005;100111;2005;prevision_plf;;MEUR;;sans_objet;_
 2006;100111;2005;prevision;1;MEUR;1;chiffre;1
 2007;100111;2005;realisation;1;MEUR;1;chiffre;1
 2006;100111;2006;prevision_plf;5;MEUR;5;chiffre;5
 2007;100111;2006;prevision;0;MEUR;0;epsilon;ε
 2008;100111;2006;realisation;1;MEUR;1;chiffre;1
-2007;100111;2007;prevision_plf;;MEUR;;absent;
-2008;100111;2007;prevision;;MEUR;;absent;
-2008;100111;2008;prevision_plf;;MEUR;;absent;
-2005;100112;2003;realisation;;MEUR;;absent;
-2005;100112;2004;prevision;;MEUR;;absent;
-2006;100112;2004;realisation;;MEUR;;absent;
+2007;100111;2007;prevision_plf;;MEUR;;sans_objet;_
+2008;100111;2007;prevision;;MEUR;;sans_objet;_
+2008;100111;2008;prevision_plf;;MEUR;;sans_objet;_
+2005;100112;2003;realisation;;MEUR;;sans_objet;_
+2005;100112;2004;prevision;;MEUR;;sans_objet;_
+2006;100112;2004;realisation;;MEUR;;sans_objet;_
 2005;100112;2005;prevision_plf;265;MEUR;265;chiffre;265
 2006;100112;2005;prevision;320;MEUR;320;chiffre;320
 2007;100112;2005;realisation;370;MEUR;370;chiffre;370
@@ -3083,11 +3083,11 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2018;100112;2018;prevision_plf;750;MEUR;750;chiffre;750
 2019;100112;2018;prevision;773;MEUR;773;chiffre;773
 2019;100112;2019;prevision_plf;750;MEUR;750;chiffre;750
-2007;100113;2005;realisation;;MEUR;;absent;
-2007;100113;2006;prevision;;MEUR;;absent;
-2008;100113;2006;realisation;;MEUR;;absent;
+2007;100113;2005;realisation;;MEUR;;sans_objet;_
+2007;100113;2006;prevision;;MEUR;;sans_objet;_
+2008;100113;2006;realisation;;MEUR;;sans_objet;_
 2007;100113;2007;prevision_plf;5;MEUR;5;chiffre;5
-2008;100113;2007;prevision;;MEUR;;absent;
+2008;100113;2007;prevision;;MEUR;;sans_objet;_
 2009;100113;2007;realisation;;MEUR;;sans_objet;-
 2008;100113;2008;prevision_plf;10;MEUR;10;chiffre;10
 2009;100113;2008;prevision;0;MEUR;0;epsilon;ε
@@ -3319,26 +3319,26 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2002;110102;2000;realisation;1433;MEUR;1433;chiffre;1 433
 2001;110102;2001;prevision_plf;9500;MF;1448.3;chiffre;9 500
 2002;110102;2001;prevision;1448;MEUR;1448;chiffre;1 448
-2003;110102;2001;realisation;0;MEUR;0;chiffre;0
+2003;110102;2001;realisation;1490;MEUR;1490;chiffre;1490
 2002;110102;2002;prevision_plf;1448;MEUR;1448;chiffre;1 448
-2003;110102;2002;prevision;152;MEUR;152;chiffre;152
-2004;110102;2002;realisation;0;MEUR;0;chiffre;0
-2003;110102;2003;prevision_plf;161;MEUR;161;chiffre;161
-2004;110102;2003;prevision;154;MEUR;154;chiffre;154
-2005;110102;2003;realisation;5;MEUR;5;chiffre;5
-2004;110102;2004;prevision_plf;0;MEUR;0;chiffre;0
-2005;110102;2004;prevision;0;MEUR;0;chiffre;0
-2006;110102;2004;realisation;0;MEUR;0;chiffre;0
-2005;110102;2005;prevision_plf;163;MEUR;163;chiffre;163
-2006;110102;2005;prevision;0;MEUR;0;chiffre;0
-2007;110102;2005;realisation;150;MEUR;150;chiffre;150
-2006;110102;2006;prevision_plf;0;MEUR;0;chiffre;0
-2007;110102;2006;prevision;0;MEUR;0;chiffre;0
-2008;110102;2006;realisation;156;MEUR;156;chiffre;156
-2007;110102;2007;prevision_plf;156;MEUR;156;chiffre;156
-2008;110102;2007;prevision;0;MEUR;0;chiffre;0
+2003;110102;2002;prevision;1520;MEUR;1520;chiffre;1520
+2004;110102;2002;realisation;1470;MEUR;1470;chiffre;1470
+2003;110102;2003;prevision_plf;1610;MEUR;1610;chiffre;1610
+2004;110102;2003;prevision;1540;MEUR;1540;chiffre;1540
+2005;110102;2003;realisation;1625;MEUR;1625;chiffre;1625
+2004;110102;2004;prevision_plf;1590;MEUR;1590;chiffre;1590
+2005;110102;2004;prevision;1540;MEUR;1540;chiffre;1540
+2006;110102;2004;realisation;1470;MEUR;1470;chiffre;1470
+2005;110102;2005;prevision_plf;1635;MEUR;1635;chiffre;1635
+2006;110102;2005;prevision;1570;MEUR;1570;chiffre;1570
+2007;110102;2005;realisation;1500;MEUR;1500;chiffre;1500
+2006;110102;2006;prevision_plf;1670;MEUR;1670;chiffre;1670
+2007;110102;2006;prevision;1600;MEUR;1600;chiffre;1600
+2008;110102;2006;realisation;1560;MEUR;1560;chiffre;1560
+2007;110102;2007;prevision_plf;1560;MEUR;1560;chiffre;1560
+2008;110102;2007;prevision;1500;MEUR;1500;chiffre;1500
 2009;110102;2007;realisation;1500;MEUR;1500;chiffre;1 500
-2008;110102;2008;prevision_plf;0;MEUR;0;chiffre;0
+2008;110102;2008;prevision_plf;1640;MEUR;1640;chiffre;1640
 2009;110102;2008;prevision;1600;MEUR;1600;chiffre;1 600
 2010;110102;2008;realisation;1580;MEUR;1580;chiffre;1 580
 2009;110102;2009;prevision_plf;1700;MEUR;1700;chiffre;1 700
@@ -3553,16 +3553,16 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2002;110106;2000;realisation;1448;MEUR;1448;chiffre;1 448
 2001;110106;2001;prevision_plf;9400;MF;1433.0;chiffre;9 400
 2002;110106;2001;prevision;1494;MEUR;1494;chiffre;1 494
-2003;110106;2001;realisation;0;MEUR;0;chiffre;0
+2003;110106;2001;realisation;1740;MEUR;1740;chiffre;1740
 2002;110106;2002;prevision_plf;1540;MEUR;1540;chiffre;1 540
-2003;110106;2002;prevision;179;MEUR;179;chiffre;179
-2004;110106;2002;realisation;0;MEUR;0;chiffre;0
-2003;110106;2003;prevision_plf;184;MEUR;184;chiffre;184
-2004;110106;2003;prevision;153;MEUR;153;chiffre;153
-2005;110106;2003;realisation;0;MEUR;0;chiffre;0
-2004;110106;2004;prevision_plf;0;MEUR;0;chiffre;0
-2005;110106;2004;prevision;0;MEUR;0;chiffre;0
-2005;110106;2005;prevision_plf;165;MEUR;165;chiffre;165
+2003;110106;2002;prevision;1790;MEUR;1790;chiffre;1790
+2004;110106;2002;realisation;1480;MEUR;1480;chiffre;1480
+2003;110106;2003;prevision_plf;1840;MEUR;1840;chiffre;1840
+2004;110106;2003;prevision;1535;MEUR;1535;chiffre;1535
+2005;110106;2003;realisation;1590;MEUR;1590;chiffre;1590
+2004;110106;2004;prevision_plf;1590;MEUR;1590;chiffre;1590
+2005;110106;2004;prevision;1600;MEUR;1600;chiffre;1600
+2005;110106;2005;prevision_plf;1655;MEUR;1655;chiffre;1655
 2001;110107;1999;realisation;220;MF;33.5;chiffre;220
 2001;110107;2000;prevision;220;MF;33.5;chiffre;220
 2002;110107;2000;realisation;35;MEUR;35;chiffre;35
@@ -4043,9 +4043,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;110204;2004;prevision_plf;60;MEUR;60;chiffre;60
 2005;110204;2004;prevision;35;MEUR;35;chiffre;35
 2006;110204;2004;realisation;1;MEUR;1;chiffre;1
-2005;110204;2005;prevision_plf;;MEUR;;absent;
-2006;110204;2005;prevision;;MEUR;;absent;
-2006;110204;2006;prevision_plf;;MEUR;;absent;
+2005;110204;2005;prevision_plf;;MEUR;;sans_objet;_
+2006;110204;2005;prevision;;MEUR;;sans_objet;_
+2006;110204;2006;prevision_plf;;MEUR;;sans_objet;_
 2001;110205;1999;realisation;1800;MF;274.4;chiffre;1 800
 2001;110205;2000;prevision;1600;MF;243.9;chiffre;1 600
 2002;110205;2000;realisation;244;MEUR;244;chiffre;244
@@ -4127,18 +4127,18 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2001;110206;1999;realisation;5;MF;0.8;chiffre;5
 2001;110206;2000;prevision;5;MF;0.8;chiffre;5
 2002;110206;2000;realisation;8;MEUR;8;chiffre;8
-2001;110206;2001;prevision_plf;;MF;;absent;
-2002;110206;2001;prevision;0;MEUR;0;chiffre;0
-2002;110206;2002;prevision_plf;;MEUR;;absent;
+2001;110206;2001;prevision_plf;;MF;;sans_objet;_
+2002;110206;2001;prevision;;MEUR;;sans_objet;_
+2002;110206;2002;prevision_plf;;MEUR;;sans_objet;_
 2001;110209;1999;realisation;380;MF;57.9;chiffre;380
 2001;110209;2000;prevision;100;MF;15.2;chiffre;100
 2002;110209;2000;realisation;18;MEUR;18;chiffre;18
 2001;110209;2001;prevision_plf;0;MF;0.0;epsilon;ε
 2002;110209;2001;prevision;6;MEUR;6;chiffre;6
 2003;110209;2001;realisation;6;MEUR;6;chiffre;6
-2002;110209;2002;prevision_plf;1;MEUR;1;chiffre;1
-2003;110209;2002;prevision;;MEUR;;absent;
-2003;110209;2003;prevision_plf;;MEUR;;absent;
+2002;110209;2002;prevision_plf;;MEUR;;sans_objet;_
+2003;110209;2002;prevision;;MEUR;;sans_objet;_
+2003;110209;2003;prevision_plf;;MEUR;;sans_objet;_
 2001;110210;1999;realisation;600;MF;91.5;chiffre;600
 2001;110210;2000;prevision;600;MF;91.5;chiffre;600
 2002;110210;2000;realisation;102;MEUR;102;chiffre;102
@@ -4378,26 +4378,26 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2002;110214;2000;realisation;1311;MEUR;1311;chiffre;1 311
 2001;110214;2001;prevision_plf;9600;MF;1463.5;chiffre;9 600
 2002;110214;2001;prevision;1342;MEUR;1342;chiffre;1 342
-2003;110214;2001;realisation;0;MEUR;0;chiffre;0
+2003;110214;2001;realisation;1350;MEUR;1350;chiffre;1350
 2002;110214;2002;prevision_plf;1357;MEUR;1357;chiffre;1 357
-2003;110214;2002;prevision;0;MEUR;0;chiffre;0
-2004;110214;2002;realisation;0;MEUR;0;chiffre;0
-2003;110214;2003;prevision_plf;0;MEUR;0;chiffre;0
-2004;110214;2003;prevision;146;MEUR;146;chiffre;146
-2005;110214;2003;realisation;0;MEUR;0;chiffre;0
-2004;110214;2004;prevision_plf;0;MEUR;0;chiffre;0
-2005;110214;2004;prevision;5;MEUR;5;chiffre;5
-2006;110214;2004;realisation;0;MEUR;0;chiffre;0
-2005;110214;2005;prevision_plf;178;MEUR;178;chiffre;178
-2006;110214;2005;prevision;0;MEUR;0;chiffre;0
-2007;110214;2005;realisation;186;MEUR;186;chiffre;186
-2006;110214;2006;prevision_plf;182;MEUR;182;chiffre;182
-2007;110214;2006;prevision;0;MEUR;0;chiffre;0
-2008;110214;2006;realisation;206;MEUR;206;chiffre;206
-2007;110214;2007;prevision_plf;200;MEUR;200;chiffre;200
-2008;110214;2007;prevision;0;MEUR;0;chiffre;0
+2003;110214;2002;prevision;1360;MEUR;1360;chiffre;1360
+2004;110214;2002;realisation;1400;MEUR;1400;chiffre;1400
+2003;110214;2003;prevision_plf;1370;MEUR;1370;chiffre;1370
+2004;110214;2003;prevision;1460;MEUR;1460;chiffre;1460
+2005;110214;2003;realisation;1520;MEUR;1520;chiffre;1520
+2004;110214;2004;prevision_plf;1540;MEUR;1540;chiffre;1540
+2005;110214;2004;prevision;1715;MEUR;1715;chiffre;1715
+2006;110214;2004;realisation;1700;MEUR;1700;chiffre;1700
+2005;110214;2005;prevision_plf;1780;MEUR;1780;chiffre;1780
+2006;110214;2005;prevision;1820;MEUR;1820;chiffre;1820
+2007;110214;2005;realisation;1860;MEUR;1860;chiffre;1860
+2006;110214;2006;prevision_plf;1820;MEUR;1820;chiffre;1820
+2007;110214;2006;prevision;1970;MEUR;1970;chiffre;1970
+2008;110214;2006;realisation;2060;MEUR;2060;chiffre;2060
+2007;110214;2007;prevision_plf;2000;MEUR;2000;chiffre;2000
+2008;110214;2007;prevision;2100;MEUR;2100;chiffre;2100
 2009;110214;2007;realisation;2190;MEUR;2190;chiffre;2 190
-2008;110214;2008;prevision_plf;0;MEUR;0;chiffre;0
+2008;110214;2008;prevision_plf;1040;MEUR;1040;chiffre;1040
 2009;110214;2008;prevision;1200;MEUR;1200;chiffre;1 200
 2010;110214;2008;realisation;1110;MEUR;1110;chiffre;1 110
 2009;110214;2009;prevision_plf;1200;MEUR;1200;chiffre;1 200
@@ -4667,19 +4667,19 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2001;110219;1999;realisation;4000;MF;609.8;chiffre;4 000
 2001;110219;2000;prevision;2500;MF;381.1;chiffre;2 500
 2002;110219;2000;realisation;366;MEUR;366;chiffre;366
-2001;110219;2001;prevision_plf;;MF;;absent;
-2002;110219;2001;prevision;;MEUR;;absent;
-2002;110219;2002;prevision_plf;;MEUR;;absent;
+2001;110219;2001;prevision_plf;;MF;;sans_objet;_
+2002;110219;2001;prevision;;MEUR;;sans_objet;_
+2002;110219;2002;prevision_plf;;MEUR;;sans_objet;_
 2001;110220;1999;realisation;900;MF;137.2;chiffre;900
 2001;110220;2000;prevision;1200;MF;182.9;chiffre;1 200
 2002;110220;2000;realisation;206;MEUR;206;chiffre;206
 2001;110220;2001;prevision_plf;400;MF;61.0;chiffre;400
 2002;110220;2001;prevision;76;MEUR;76;chiffre;76
 2003;110220;2001;realisation;82;MEUR;82;chiffre;82
-2002;110220;2002;prevision_plf;;MEUR;;absent;
-2003;110220;2002;prevision;;MEUR;;absent;
-2003;110220;2003;prevision_plf;;MEUR;;absent;
-2001;110221;1999;realisation;;MF;;absent;
+2002;110220;2002;prevision_plf;;MEUR;;sans_objet;_
+2003;110220;2002;prevision;;MEUR;;sans_objet;_
+2003;110220;2003;prevision_plf;;MEUR;;sans_objet;_
+2001;110221;1999;realisation;;MF;;sans_objet;_
 2001;110221;2000;prevision;5;MF;0.8;chiffre;5
 2002;110221;2000;realisation;8;MEUR;8;chiffre;8
 2001;110221;2001;prevision_plf;5;MF;0.8;chiffre;5
@@ -4742,7 +4742,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2020;110221;2020;prevision_plf;;MEUR;;sans_objet;-
 2021;110221;2020;prevision;1;MEUR;1;chiffre;1
 2021;110221;2021;prevision_plf;;MEUR;;sans_objet;-
-2001;110222;1999;realisation;;MF;;absent;
+2001;110222;1999;realisation;;MF;;sans_objet;_
 2001;110222;2000;prevision;170;MF;25.9;chiffre;170
 2002;110222;2000;realisation;29;MEUR;29;chiffre;29
 2001;110222;2001;prevision_plf;800;MF;122.0;chiffre;800
@@ -4763,10 +4763,10 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2006;110222;2006;prevision_plf;420;MEUR;420;chiffre;420
 2007;110222;2006;prevision;900;MEUR;900;chiffre;900
 2008;110222;2006;realisation;990;MEUR;990;chiffre;990
-2007;110222;2007;prevision_plf;100;MEUR;100;chiffre;100
-2008;110222;2007;prevision;0;MEUR;0;chiffre;0
+2007;110222;2007;prevision_plf;1000;MEUR;1000;chiffre;1000
+2008;110222;2007;prevision;1900;MEUR;1900;chiffre;1900
 2009;110222;2007;realisation;1873;MEUR;1873;chiffre;1 873
-2008;110222;2008;prevision_plf;0;MEUR;0;chiffre;0
+2008;110222;2008;prevision_plf;2400;MEUR;2400;chiffre;2400
 2009;110222;2008;prevision;2050;MEUR;2050;chiffre;2 050
 2010;110222;2008;realisation;2100;MEUR;2100;chiffre;2 100
 2009;110222;2009;prevision_plf;1500;MEUR;1500;chiffre;1 500
@@ -4814,9 +4814,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2023;110222;2023;prevision_plf;;MEUR;;sans_objet;-
 2024;110222;2023;prevision;;MEUR;;sans_objet;-
 2024;110222;2024;prevision_plf;;MEUR;;sans_objet;-
-2001;110223;1999;realisation;;MF;;absent;
-2001;110223;2000;prevision;;MF;;absent;
-2002;110223;2000;realisation;9;MEUR;9;chiffre;9
+2001;110223;1999;realisation;;MF;;sans_objet;_
+2001;110223;2000;prevision;;MF;;sans_objet;_
+2002;110223;2000;realisation;;MEUR;;sans_objet;_
 2001;110223;2001;prevision_plf;90;MF;13.7;chiffre;90
 2002;110223;2001;prevision;1;MEUR;1;chiffre;1
 2003;110223;2001;realisation;9;MEUR;9;chiffre;9
@@ -4892,8 +4892,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;110223;2025;prevision_plf;54;MEUR;54;chiffre;54
 2026;110223;2025;prevision;56;MEUR;56;chiffre;56
 2026;110223;2026;prevision_plf;56;MEUR;56;chiffre;56
-2002;110224;2000;realisation;;MEUR;;absent;
-2002;110224;2001;prevision;;MEUR;;absent;
+2002;110224;2000;realisation;;MEUR;;sans_objet;_
+2002;110224;2001;prevision;;MEUR;;sans_objet;_
 2003;110224;2001;realisation;150;MEUR;150;chiffre;150
 2002;110224;2002;prevision_plf;152;MEUR;152;chiffre;152
 2003;110224;2002;prevision;150;MEUR;150;chiffre;150
@@ -4967,9 +4967,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;110224;2025;prevision_plf;831;MEUR;831;chiffre;831
 2026;110224;2025;prevision;825;MEUR;825;chiffre;825
 2026;110224;2026;prevision_plf;831;MEUR;831;chiffre;831
-2002;110225;2000;realisation;;MEUR;;absent;
-2002;110225;2001;prevision;;MEUR;;absent;
-2003;110225;2001;realisation;;MEUR;;absent;
+2002;110225;2000;realisation;;MEUR;;sans_objet;_
+2002;110225;2001;prevision;;MEUR;;sans_objet;_
+2003;110225;2001;realisation;;MEUR;;sans_objet;_
 2002;110225;2002;prevision_plf;15;MEUR;15;chiffre;15
 2003;110225;2002;prevision;22;MEUR;22;chiffre;22
 2004;110225;2002;realisation;10;MEUR;10;chiffre;10
@@ -4994,9 +4994,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2009;110225;2009;prevision_plf;;MEUR;;sans_objet;-
 2010;110225;2009;prevision;;MEUR;;sans_objet;-
 2010;110225;2010;prevision_plf;;MEUR;;sans_objet;-
-2002;110226;2000;realisation;;MEUR;;absent;
-2002;110226;2001;prevision;;MEUR;;absent;
-2003;110226;2001;realisation;;MEUR;;absent;
+2002;110226;2000;realisation;;MEUR;;sans_objet;_
+2002;110226;2001;prevision;;MEUR;;sans_objet;_
+2003;110226;2001;realisation;;MEUR;;sans_objet;_
 2002;110226;2002;prevision_plf;;MEUR;;nc;nc
 2003;110226;2002;prevision;;MEUR;;nc;nc
 2004;110226;2002;realisation;1;MEUR;1;chiffre;1
@@ -5066,28 +5066,28 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2024;110226;2024;prevision_plf;;MEUR;;sans_objet;-
 2025;110226;2024;prevision;;MEUR;;sans_objet;-
 2025;110226;2025;prevision_plf;;MEUR;;sans_objet;-
-2002;110227;2000;realisation;;MEUR;;absent;
+2002;110227;2000;realisation;;MEUR;;sans_objet;_
 2002;110227;2001;prevision;1220;MEUR;1220;chiffre;1 220
-2003;110227;2001;realisation;8;MEUR;8;chiffre;8
+2003;110227;2001;realisation;2518;MEUR;2518;chiffre;2518
 2002;110227;2002;prevision_plf;1220;MEUR;1220;chiffre;1 220
-2003;110227;2002;prevision;5;MEUR;5;chiffre;5
-2004;110227;2002;realisation;214;MEUR;214;chiffre;214
-2003;110227;2003;prevision_plf;5;MEUR;5;chiffre;5
-2004;110227;2003;prevision;238;MEUR;238;chiffre;238
-2005;110227;2003;realisation;221;MEUR;221;chiffre;221
-2004;110227;2004;prevision_plf;0;MEUR;0;chiffre;0
-2005;110227;2004;prevision;5;MEUR;5;chiffre;5
-2006;110227;2004;realisation;0;MEUR;0;chiffre;0
-2005;110227;2005;prevision_plf;245;MEUR;245;chiffre;245
-2006;110227;2005;prevision;0;MEUR;0;chiffre;0
-2007;110227;2005;realisation;270;MEUR;270;chiffre;270
-2006;110227;2006;prevision_plf;273;MEUR;273;chiffre;273
-2007;110227;2006;prevision;0;MEUR;0;chiffre;0
-2008;110227;2006;realisation;324;MEUR;324;chiffre;324
-2007;110227;2007;prevision_plf;0;MEUR;0;chiffre;0
-2008;110227;2007;prevision;0;MEUR;0;chiffre;0
+2003;110227;2002;prevision;2145;MEUR;2145;chiffre;2145
+2004;110227;2002;realisation;2145;MEUR;2145;chiffre;2145
+2003;110227;2003;prevision_plf;2145;MEUR;2145;chiffre;2145
+2004;110227;2003;prevision;2380;MEUR;2380;chiffre;2380
+2005;110227;2003;realisation;2210;MEUR;2210;chiffre;2210
+2004;110227;2004;prevision_plf;2380;MEUR;2380;chiffre;2380
+2005;110227;2004;prevision;2435;MEUR;2435;chiffre;2435
+2006;110227;2004;realisation;2450;MEUR;2450;chiffre;2450
+2005;110227;2005;prevision_plf;2450;MEUR;2450;chiffre;2450
+2006;110227;2005;prevision;2700;MEUR;2700;chiffre;2700
+2007;110227;2005;realisation;2700;MEUR;2700;chiffre;2700
+2006;110227;2006;prevision_plf;2730;MEUR;2730;chiffre;2730
+2007;110227;2006;prevision;3200;MEUR;3200;chiffre;3200
+2008;110227;2006;realisation;3240;MEUR;3240;chiffre;3240
+2007;110227;2007;prevision_plf;3700;MEUR;3700;chiffre;3700
+2008;110227;2007;prevision;4230;MEUR;4230;chiffre;4230
 2009;110227;2007;realisation;4520;MEUR;4520;chiffre;4 520
-2008;110227;2008;prevision_plf;0;MEUR;0;chiffre;0
+2008;110227;2008;prevision_plf;4230;MEUR;4230;chiffre;4230
 2009;110227;2008;prevision;4400;MEUR;4400;chiffre;4 400
 2010;110227;2008;realisation;4480;MEUR;4480;chiffre;4 480
 2009;110227;2009;prevision_plf;3900;MEUR;3900;chiffre;3 900
@@ -5117,9 +5117,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2017;110227;2017;prevision_plf;;MEUR;;sans_objet;-
 2018;110227;2017;prevision;;MEUR;;sans_objet;-
 2018;110227;2018;prevision_plf;;MEUR;;sans_objet;-
-2004;110228;2002;realisation;;MEUR;;absent;
-2004;110228;2003;prevision;;MEUR;;absent;
-2005;110228;2003;realisation;;MEUR;;absent;
+2004;110228;2002;realisation;;MEUR;;sans_objet;_
+2004;110228;2003;prevision;;MEUR;;sans_objet;_
+2005;110228;2003;realisation;;MEUR;;sans_objet;_
 2004;110228;2004;prevision_plf;5;MEUR;5;chiffre;5
 2005;110228;2004;prevision;5;MEUR;5;chiffre;5
 2006;110228;2004;realisation;5;MEUR;5;chiffre;5
@@ -5186,9 +5186,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;110228;2025;prevision_plf;13;MEUR;13;chiffre;13
 2026;110228;2025;prevision;9;MEUR;9;chiffre;9
 2026;110228;2026;prevision_plf;;MEUR;;sans_objet;-
-2004;110229;2002;realisation;;MEUR;;absent;
-2004;110229;2003;prevision;;MEUR;;absent;
-2005;110229;2003;realisation;;MEUR;;absent;
+2004;110229;2002;realisation;;MEUR;;sans_objet;_
+2004;110229;2003;prevision;;MEUR;;sans_objet;_
+2005;110229;2003;realisation;;MEUR;;sans_objet;_
 2004;110229;2004;prevision_plf;5;MEUR;5;chiffre;5
 2005;110229;2004;prevision;5;MEUR;5;chiffre;5
 2006;110229;2004;realisation;;MEUR;;absent;
@@ -5255,9 +5255,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;110229;2025;prevision_plf;0;MEUR;0;epsilon;ε
 2026;110229;2025;prevision;0;MEUR;0;epsilon;ε
 2026;110229;2026;prevision_plf;0;MEUR;0;epsilon;ε
-2005;110230;2003;realisation;;MEUR;;absent;
-2005;110230;2004;prevision;;MEUR;;absent;
-2006;110230;2004;realisation;;MEUR;;absent;
+2005;110230;2003;realisation;;MEUR;;sans_objet;_
+2005;110230;2004;prevision;;MEUR;;sans_objet;_
+2006;110230;2004;realisation;;MEUR;;sans_objet;_
 2005;110230;2005;prevision_plf;15;MEUR;15;chiffre;15
 2006;110230;2005;prevision;50;MEUR;50;chiffre;50
 2007;110230;2005;realisation;50;MEUR;50;chiffre;50
@@ -5267,7 +5267,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2007;110230;2007;prevision_plf;110;MEUR;110;chiffre;110
 2008;110230;2007;prevision;100;MEUR;100;chiffre;100
 2009;110230;2007;realisation;95;MEUR;95;chiffre;95
-2008;110230;2008;prevision_plf;;MEUR;;absent;
+2008;110230;2008;prevision_plf;;MEUR;;sans_objet;_
 2009;110230;2008;prevision;20;MEUR;20;chiffre;20
 2010;110230;2008;realisation;20;MEUR;20;chiffre;20
 2009;110230;2009;prevision_plf;20;MEUR;20;chiffre;20
@@ -5279,21 +5279,21 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2011;110230;2011;prevision_plf;;MEUR;;sans_objet;-
 2012;110230;2011;prevision;;MEUR;;sans_objet;-
 2012;110230;2012;prevision_plf;;MEUR;;sans_objet;-
-2005;110231;2003;realisation;;MEUR;;absent;
-2005;110231;2004;prevision;;MEUR;;absent;
-2006;110231;2004;realisation;;MEUR;;absent;
+2005;110231;2003;realisation;;MEUR;;sans_objet;_
+2005;110231;2004;prevision;;MEUR;;sans_objet;_
+2006;110231;2004;realisation;;MEUR;;sans_objet;_
 2005;110231;2005;prevision_plf;100;MEUR;100;chiffre;100
 2006;110231;2005;prevision;90;MEUR;90;chiffre;90
 2007;110231;2005;realisation;80;MEUR;80;chiffre;80
 2006;110231;2006;prevision_plf;310;MEUR;310;chiffre;310
 2007;110231;2006;prevision;200;MEUR;200;chiffre;200
 2008;110231;2006;realisation;190;MEUR;190;chiffre;190
-2007;110231;2007;prevision_plf;;MEUR;;absent;
-2008;110231;2007;prevision;;MEUR;;absent;
-2008;110231;2008;prevision_plf;;MEUR;;absent;
-2006;110232;2004;realisation;;MEUR;;absent;
-2006;110232;2005;prevision;;MEUR;;absent;
-2007;110232;2005;realisation;;MEUR;;absent;
+2007;110231;2007;prevision_plf;;MEUR;;sans_objet;_
+2008;110231;2007;prevision;;MEUR;;sans_objet;_
+2008;110231;2008;prevision_plf;;MEUR;;sans_objet;_
+2006;110232;2004;realisation;;MEUR;;sans_objet;_
+2006;110232;2005;prevision;;MEUR;;sans_objet;_
+2007;110232;2005;realisation;;MEUR;;sans_objet;_
 2006;110232;2006;prevision_plf;720;MEUR;720;chiffre;720
 2007;110232;2006;prevision;500;MEUR;500;chiffre;500
 2008;110232;2006;realisation;440;MEUR;440;chiffre;440
@@ -5312,12 +5312,12 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2011;110232;2011;prevision_plf;;MEUR;;sans_objet;-
 2012;110232;2011;prevision;;MEUR;;sans_objet;-
 2012;110232;2012;prevision_plf;;MEUR;;sans_objet;-
-2006;110233;2004;realisation;;MEUR;;absent;
-2006;110233;2005;prevision;;MEUR;;absent;
-2007;110233;2005;realisation;;MEUR;;absent;
+2006;110233;2004;realisation;;MEUR;;sans_objet;_
+2006;110233;2005;prevision;;MEUR;;sans_objet;_
+2007;110233;2005;realisation;;MEUR;;sans_objet;_
 2006;110233;2006;prevision_plf;25;MEUR;25;chiffre;25
-2007;110233;2006;prevision;;MEUR;;absent;
-2008;110233;2006;realisation;;MEUR;;absent;
+2007;110233;2006;prevision;;MEUR;;sans_objet;_
+2008;110233;2006;realisation;;MEUR;;sans_objet;_
 2007;110233;2007;prevision_plf;25;MEUR;25;chiffre;25
 2008;110233;2007;prevision;0;MEUR;0;epsilon;ε
 2009;110233;2007;realisation;0;MEUR;0;epsilon;ε
@@ -5348,9 +5348,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2016;110233;2016;prevision_plf;;MEUR;;sans_objet;-
 2017;110233;2016;prevision;;MEUR;;sans_objet;-
 2017;110233;2017;prevision_plf;;MEUR;;sans_objet;-
-2006;110234;2004;realisation;;MEUR;;absent;
-2006;110234;2005;prevision;;MEUR;;absent;
-2007;110234;2005;realisation;;MEUR;;absent;
+2006;110234;2004;realisation;;MEUR;;sans_objet;_
+2006;110234;2005;prevision;;MEUR;;sans_objet;_
+2007;110234;2005;realisation;;MEUR;;sans_objet;_
 2006;110234;2006;prevision_plf;;MEUR;;absent;
 2007;110234;2006;prevision;3;MEUR;3;chiffre;3
 2008;110234;2006;realisation;3;MEUR;3;chiffre;3
@@ -5390,7 +5390,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2018;110234;2018;prevision_plf;;MEUR;;sans_objet;-
 2019;110234;2018;prevision;;MEUR;;sans_objet;-
 2019;110234;2019;prevision_plf;;MEUR;;sans_objet;-
-2007;110235;2005;realisation;;MEUR;;absent;
+2007;110235;2005;realisation;;MEUR;;sans_objet;_
 2007;110235;2006;prevision;20;MEUR;20;chiffre;20
 2008;110235;2006;realisation;15;MEUR;15;chiffre;15
 2007;110235;2007;prevision_plf;100;MEUR;100;chiffre;100
@@ -5405,7 +5405,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2010;110235;2010;prevision_plf;;MEUR;;sans_objet;-
 2011;110235;2010;prevision;;MEUR;;sans_objet;-
 2011;110235;2011;prevision_plf;;MEUR;;sans_objet;-
-2007;110236;2005;realisation;;MEUR;;absent;
+2007;110236;2005;realisation;;MEUR;;sans_objet;_
 2007;110236;2006;prevision;30;MEUR;30;chiffre;30
 2008;110236;2006;realisation;30;MEUR;30;chiffre;30
 2007;110236;2007;prevision_plf;30;MEUR;30;chiffre;30
@@ -5465,7 +5465,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;110236;2025;prevision_plf;24;MEUR;24;chiffre;24
 2026;110236;2025;prevision;15;MEUR;15;chiffre;15
 2026;110236;2026;prevision_plf;16;MEUR;16;chiffre;16
-2007;110237;2005;realisation;;MEUR;;absent;
+2007;110237;2005;realisation;;MEUR;;sans_objet;_
 2007;110237;2006;prevision;50;MEUR;50;chiffre;50
 2008;110237;2006;realisation;60;MEUR;60;chiffre;60
 2007;110237;2007;prevision_plf;100;MEUR;100;chiffre;100
@@ -5480,7 +5480,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2010;110237;2010;prevision_plf;;MEUR;;sans_objet;-
 2011;110237;2010;prevision;;MEUR;;sans_objet;-
 2011;110237;2011;prevision_plf;;MEUR;;sans_objet;-
-2007;110238;2005;realisation;;MEUR;;absent;
+2007;110238;2005;realisation;;MEUR;;sans_objet;_
 2007;110238;2006;prevision;1;MEUR;1;chiffre;1
 2008;110238;2006;realisation;1;MEUR;1;chiffre;1
 2007;110238;2007;prevision_plf;5;MEUR;5;chiffre;5
@@ -5531,7 +5531,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2022;110238;2022;prevision_plf;;MEUR;;sans_objet;-
 2023;110238;2022;prevision;;MEUR;;sans_objet;-
 2023;110238;2023;prevision_plf;;MEUR;;sans_objet;-
-2007;110239;2005;realisation;;MEUR;;absent;
+2007;110239;2005;realisation;;MEUR;;sans_objet;_
 2007;110239;2006;prevision;0;MEUR;0;chiffre;0
 2008;110239;2006;realisation;0;MEUR;0;epsilon;ε
 2007;110239;2007;prevision_plf;2;MEUR;2;chiffre;2
@@ -5588,9 +5588,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2024;110239;2024;prevision_plf;;MEUR;;sans_objet;-
 2025;110239;2024;prevision;;MEUR;;sans_objet;-
 2025;110239;2025;prevision_plf;;MEUR;;sans_objet;-
-2007;110240;2005;realisation;;MEUR;;absent;
-2007;110240;2006;prevision;;MEUR;;absent;
-2008;110240;2006;realisation;;MEUR;;absent;
+2007;110240;2005;realisation;;MEUR;;sans_objet;_
+2007;110240;2006;prevision;;MEUR;;sans_objet;_
+2008;110240;2006;realisation;;MEUR;;sans_objet;_
 2007;110240;2007;prevision_plf;50;MEUR;50;chiffre;50
 2008;110240;2007;prevision;5;MEUR;5;chiffre;5
 2009;110240;2007;realisation;6;MEUR;6;chiffre;6
@@ -5648,9 +5648,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;110240;2025;prevision_plf;26;MEUR;26;chiffre;26
 2026;110240;2025;prevision;36;MEUR;36;chiffre;36
 2026;110240;2026;prevision_plf;36;MEUR;36;chiffre;36
-2007;110241;2005;realisation;;MEUR;;absent;
-2007;110241;2006;prevision;;MEUR;;absent;
-2008;110241;2006;realisation;;MEUR;;absent;
+2007;110241;2005;realisation;;MEUR;;sans_objet;_
+2007;110241;2006;prevision;;MEUR;;sans_objet;_
+2008;110241;2006;realisation;;MEUR;;sans_objet;_
 2007;110241;2007;prevision_plf;1;MEUR;1;chiffre;1
 2008;110241;2007;prevision;0;MEUR;0;epsilon;ε
 2009;110241;2007;realisation;0;MEUR;0;epsilon;ε
@@ -5768,8 +5768,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;110242;2025;prevision_plf;218;MEUR;218;chiffre;218
 2026;110242;2025;prevision;225;MEUR;225;chiffre;225
 2026;110242;2026;prevision_plf;;MEUR;;sans_objet;-
-2008;110243;2006;realisation;;MEUR;;absent;
-2008;110243;2007;prevision;;MEUR;;absent;
+2008;110243;2006;realisation;;MEUR;;sans_objet;_
+2008;110243;2007;prevision;;MEUR;;sans_objet;_
 2009;110243;2007;realisation;;MEUR;;sans_objet;-
 2008;110243;2008;prevision_plf;10;MEUR;10;chiffre;10
 2009;110243;2008;prevision;0;MEUR;0;epsilon;ε
@@ -5801,7 +5801,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2017;110243;2017;prevision_plf;0;MEUR;0;epsilon;ε
 2018;110243;2017;prevision;;MEUR;;sans_objet;-
 2018;110243;2018;prevision_plf;;MEUR;;sans_objet;-
-2008;110244;2006;realisation;;MEUR;;absent;
+2008;110244;2006;realisation;;MEUR;;sans_objet;_
 2008;110244;2007;prevision;30;MEUR;30;chiffre;30
 2009;110244;2007;realisation;30;MEUR;30;chiffre;30
 2008;110244;2008;prevision_plf;30;MEUR;30;chiffre;30
@@ -5858,8 +5858,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;110244;2025;prevision_plf;35;MEUR;35;chiffre;35
 2026;110244;2025;prevision;35;MEUR;35;chiffre;35
 2026;110244;2026;prevision_plf;35;MEUR;35;chiffre;35
-2008;110245;2006;realisation;;MEUR;;absent;
-2008;110245;2007;prevision;;MEUR;;absent;
+2008;110245;2006;realisation;;MEUR;;sans_objet;_
+2008;110245;2007;prevision;;MEUR;;sans_objet;_
 2009;110245;2007;realisation;;MEUR;;sans_objet;-
 2008;110245;2008;prevision_plf;1;MEUR;1;chiffre;1
 2009;110245;2008;prevision;7;MEUR;7;chiffre;7
@@ -5915,10 +5915,10 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;110245;2025;prevision_plf;5;MEUR;5;chiffre;5
 2026;110245;2025;prevision;10;MEUR;10;chiffre;10
 2026;110245;2026;prevision_plf;10;MEUR;10;chiffre;10
-2008;110246;2006;realisation;;MEUR;;absent;
-2008;110246;2007;prevision;126;MEUR;126;chiffre;126
+2008;110246;2006;realisation;;MEUR;;sans_objet;_
+2008;110246;2007;prevision;;MEUR;;sans_objet;_
 2009;110246;2007;realisation;;MEUR;;sans_objet;-
-2008;110246;2008;prevision_plf;0;MEUR;0;chiffre;0
+2008;110246;2008;prevision_plf;1260;MEUR;1260;chiffre;1260
 2009;110246;2008;prevision;1500;MEUR;1500;chiffre;1 500
 2010;110246;2008;realisation;1495;MEUR;1495;chiffre;1 495
 2009;110246;2009;prevision_plf;1500;MEUR;1500;chiffre;1 500
@@ -5972,8 +5972,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;110246;2025;prevision_plf;6856;MEUR;6856;chiffre;6 856
 2026;110246;2025;prevision;7029;MEUR;7029;chiffre;7 029
 2026;110246;2026;prevision_plf;7208;MEUR;7208;chiffre;7 208
-2008;110247;2006;realisation;;MEUR;;absent;
-2008;110247;2007;prevision;;MEUR;;absent;
+2008;110247;2006;realisation;;MEUR;;sans_objet;_
+2008;110247;2007;prevision;;MEUR;;sans_objet;_
 2009;110247;2007;realisation;;MEUR;;sans_objet;-
 2008;110247;2008;prevision_plf;220;MEUR;220;chiffre;220
 2009;110247;2008;prevision;230;MEUR;230;chiffre;230
@@ -6874,16 +6874,16 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2002;110306;2000;realisation;930;MEUR;930;chiffre;930
 2001;110306;2001;prevision_plf;5800;MF;884.2;chiffre;5 800
 2002;110306;2001;prevision;1281;MEUR;1281;chiffre;1 281
-2003;110306;2001;realisation;0;MEUR;0;chiffre;0
+2003;110306;2001;realisation;1350;MEUR;1350;chiffre;1350
 2002;110306;2002;prevision_plf;1326;MEUR;1326;chiffre;1 326
-2003;110306;2002;prevision;140;MEUR;140;chiffre;140
-2004;110306;2002;realisation;137;MEUR;137;chiffre;137
-2003;110306;2003;prevision_plf;140;MEUR;140;chiffre;140
-2004;110306;2003;prevision;150;MEUR;150;chiffre;150
-2005;110306;2003;realisation;160;MEUR;160;chiffre;160
-2004;110306;2004;prevision_plf;0;MEUR;0;chiffre;0
-2005;110306;2004;prevision;0;MEUR;0;chiffre;0
-2005;110306;2005;prevision_plf;169;MEUR;169;chiffre;169
+2003;110306;2002;prevision;1400;MEUR;1400;chiffre;1400
+2004;110306;2002;realisation;1370;MEUR;1370;chiffre;1370
+2003;110306;2003;prevision_plf;1400;MEUR;1400;chiffre;1400
+2004;110306;2003;prevision;1500;MEUR;1500;chiffre;1500
+2005;110306;2003;realisation;1600;MEUR;1600;chiffre;1600
+2004;110306;2004;prevision_plf;1500;MEUR;1500;chiffre;1500
+2005;110306;2004;prevision;1640;MEUR;1640;chiffre;1640
+2005;110306;2005;prevision_plf;1690;MEUR;1690;chiffre;1690
 2001;110307;1999;realisation;;MF;;nc;nc
 2001;110307;2000;prevision;;MF;;nc;nc
 2002;110307;2000;realisation;;MEUR;;nc;nc
@@ -8060,7 +8060,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;120125;2004;prevision_plf;5;MEUR;5;chiffre;5
 2005;120125;2004;prevision;0;MEUR;0;epsilon;ε
 2006;120125;2004;realisation;;MEUR;;absent;
-2005;120125;2005;prevision_plf;;MEUR;;absent;
+2005;120125;2005;prevision_plf;;MEUR;;sans_objet;_
 2006;120125;2005;prevision;0;MEUR;0;chiffre;0
 2006;120125;2006;prevision_plf;0;MEUR;0;chiffre;0
 2001;120126;1999;realisation;1680;MF;256.1;chiffre;1 680
@@ -8363,21 +8363,21 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;120129;2025;prevision_plf;0;MEUR;0;epsilon;ε
 2026;120129;2025;prevision;0;MEUR;0;epsilon;ε
 2026;120129;2026;prevision_plf;;MEUR;;sans_objet;-
-2005;120130;2003;realisation;;MEUR;;absent;
-2005;120130;2004;prevision;;MEUR;;absent;
-2006;120130;2004;realisation;;MEUR;;absent;
+2005;120130;2003;realisation;;MEUR;;sans_objet;_
+2005;120130;2004;prevision;;MEUR;;sans_objet;_
+2006;120130;2004;realisation;;MEUR;;sans_objet;_
 2005;120130;2005;prevision_plf;0;MEUR;0;epsilon;ε
 2006;120130;2005;prevision;;MEUR;;absent;
 2007;120130;2005;realisation;0;MEUR;0;epsilon;ε
 2006;120130;2006;prevision_plf;;MEUR;;absent;
 2007;120130;2006;prevision;0;MEUR;0;epsilon;ε
 2008;120130;2006;realisation;0;MEUR;0;epsilon;ε
-2007;120130;2007;prevision_plf;;MEUR;;absent;
-2008;120130;2007;prevision;;MEUR;;absent;
-2008;120130;2008;prevision_plf;;MEUR;;absent;
-2005;120131;2003;realisation;;MEUR;;absent;
-2005;120131;2004;prevision;;MEUR;;absent;
-2006;120131;2004;realisation;;MEUR;;absent;
+2007;120130;2007;prevision_plf;;MEUR;;sans_objet;_
+2008;120130;2007;prevision;;MEUR;;sans_objet;_
+2008;120130;2008;prevision_plf;;MEUR;;sans_objet;_
+2005;120131;2003;realisation;;MEUR;;sans_objet;_
+2005;120131;2004;prevision;;MEUR;;sans_objet;_
+2006;120131;2004;realisation;;MEUR;;sans_objet;_
 2005;120131;2005;prevision_plf;60;MEUR;60;chiffre;60
 2006;120131;2005;prevision;60;MEUR;60;chiffre;60
 2007;120131;2005;realisation;50;MEUR;50;chiffre;50
@@ -8441,9 +8441,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;120131;2025;prevision_plf;375;MEUR;375;chiffre;375
 2026;120131;2025;prevision;394;MEUR;394;chiffre;394
 2026;120131;2026;prevision_plf;405;MEUR;405;chiffre;405
-2006;120132;2004;realisation;;MEUR;;absent;
-2006;120132;2005;prevision;;MEUR;;absent;
-2007;120132;2005;realisation;;MEUR;;absent;
+2006;120132;2004;realisation;;MEUR;;sans_objet;_
+2006;120132;2005;prevision;;MEUR;;sans_objet;_
+2007;120132;2005;realisation;;MEUR;;sans_objet;_
 2006;120132;2006;prevision_plf;20;MEUR;20;chiffre;20
 2007;120132;2006;prevision;30;MEUR;30;chiffre;30
 2008;120132;2006;realisation;10;MEUR;10;chiffre;10
@@ -8567,7 +8567,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;120133;2025;prevision_plf;9;MEUR;9;chiffre;9
 2026;120133;2025;prevision;9;MEUR;9;chiffre;9
 2026;120133;2026;prevision_plf;9;MEUR;9;chiffre;9
-2007;120134;2005;realisation;;MEUR;;absent;
+2007;120134;2005;realisation;;MEUR;;sans_objet;_
 2007;120134;2006;prevision;0;MEUR;0;epsilon;ε
 2008;120134;2006;realisation;0;MEUR;0;epsilon;ε
 2007;120134;2007;prevision_plf;2;MEUR;2;chiffre;2
@@ -8627,8 +8627,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;120134;2025;prevision_plf;50;MEUR;50;chiffre;50
 2026;120134;2025;prevision;50;MEUR;50;chiffre;50
 2026;120134;2026;prevision_plf;50;MEUR;50;chiffre;50
-2008;120135;2006;realisation;;MEUR;;absent;
-2008;120135;2007;prevision;;MEUR;;absent;
+2008;120135;2006;realisation;;MEUR;;sans_objet;_
+2008;120135;2007;prevision;;MEUR;;sans_objet;_
 2009;120135;2007;realisation;;MEUR;;sans_objet;-
 2008;120135;2008;prevision_plf;5;MEUR;5;chiffre;5
 2009;120135;2008;prevision;0;MEUR;0;epsilon;ε
@@ -8645,8 +8645,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2012;120135;2012;prevision_plf;;MEUR;;sans_objet;-
 2013;120135;2012;prevision;;MEUR;;sans_objet;-
 2013;120135;2013;prevision_plf;;MEUR;;sans_objet;-
-2008;120136;2006;realisation;;MEUR;;absent;
-2008;120136;2007;prevision;;MEUR;;absent;
+2008;120136;2006;realisation;;MEUR;;sans_objet;_
+2008;120136;2007;prevision;;MEUR;;sans_objet;_
 2009;120136;2007;realisation;;MEUR;;sans_objet;-
 2008;120136;2008;prevision_plf;400;MEUR;400;chiffre;400
 2009;120136;2008;prevision;230;MEUR;230;chiffre;230
@@ -9181,26 +9181,26 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2002;120202;2000;realisation;1524;MEUR;1524;chiffre;1 524
 2001;120202;2001;prevision_plf;11000;MF;1676.9;chiffre;11 000
 2002;120202;2001;prevision;1524;MEUR;1524;chiffre;1 524
-2003;120202;2001;realisation;0;MEUR;0;chiffre;0
+2003;120202;2001;realisation;1520;MEUR;1520;chiffre;1520
 2002;120202;2002;prevision_plf;1524;MEUR;1524;chiffre;1 524
-2003;120202;2002;prevision;157;MEUR;157;chiffre;157
-2004;120202;2002;realisation;0;MEUR;0;chiffre;0
-2003;120202;2003;prevision_plf;160;MEUR;160;chiffre;160
-2004;120202;2003;prevision;158;MEUR;158;chiffre;158
-2005;120202;2003;realisation;0;MEUR;0;chiffre;0
-2004;120202;2004;prevision_plf;0;MEUR;0;chiffre;0
-2005;120202;2004;prevision;0;MEUR;0;chiffre;0
-2006;120202;2004;realisation;0;MEUR;0;chiffre;0
-2005;120202;2005;prevision_plf;166;MEUR;166;chiffre;166
-2006;120202;2005;prevision;0;MEUR;0;chiffre;0
-2007;120202;2005;realisation;170;MEUR;170;chiffre;170
-2006;120202;2006;prevision_plf;0;MEUR;0;chiffre;0
-2007;120202;2006;prevision;0;MEUR;0;chiffre;0
-2008;120202;2006;realisation;160;MEUR;160;chiffre;160
-2007;120202;2007;prevision_plf;180;MEUR;180;chiffre;180
-2008;120202;2007;prevision;0;MEUR;0;chiffre;0
+2003;120202;2002;prevision;1570;MEUR;1570;chiffre;1570
+2004;120202;2002;realisation;1570;MEUR;1570;chiffre;1570
+2003;120202;2003;prevision_plf;1600;MEUR;1600;chiffre;1600
+2004;120202;2003;prevision;1580;MEUR;1580;chiffre;1580
+2005;120202;2003;realisation;1620;MEUR;1620;chiffre;1620
+2004;120202;2004;prevision_plf;1600;MEUR;1600;chiffre;1600
+2005;120202;2004;prevision;1640;MEUR;1640;chiffre;1640
+2006;120202;2004;realisation;1650;MEUR;1650;chiffre;1650
+2005;120202;2005;prevision_plf;1660;MEUR;1660;chiffre;1660
+2006;120202;2005;prevision;1700;MEUR;1700;chiffre;1700
+2007;120202;2005;realisation;1700;MEUR;1700;chiffre;1700
+2006;120202;2006;prevision_plf;1700;MEUR;1700;chiffre;1700
+2007;120202;2006;prevision;1750;MEUR;1750;chiffre;1750
+2008;120202;2006;realisation;1600;MEUR;1600;chiffre;1600
+2007;120202;2007;prevision_plf;1800;MEUR;1800;chiffre;1800
+2008;120202;2007;prevision;1600;MEUR;1600;chiffre;1600
 2009;120202;2007;realisation;1600;MEUR;1600;chiffre;1 600
-2008;120202;2008;prevision_plf;0;MEUR;0;chiffre;0
+2008;120202;2008;prevision_plf;1700;MEUR;1700;chiffre;1700
 2009;120202;2008;prevision;1650;MEUR;1650;chiffre;1 650
 2010;120202;2008;realisation;1600;MEUR;1600;chiffre;1 600
 2009;120202;2009;prevision_plf;1700;MEUR;1700;chiffre;1 700
@@ -9410,9 +9410,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;120204;2025;prevision_plf;565;MEUR;565;chiffre;565
 2026;120204;2025;prevision;621;MEUR;621;chiffre;621
 2026;120204;2026;prevision_plf;;MEUR;;sans_objet;-
-2003;120205;2001;realisation;;MEUR;;absent;
-2003;120205;2002;prevision;;MEUR;;absent;
-2004;120205;2002;realisation;;MEUR;;absent;
+2003;120205;2001;realisation;;MEUR;;sans_objet;_
+2003;120205;2002;prevision;;MEUR;;sans_objet;_
+2004;120205;2002;realisation;;MEUR;;sans_objet;_
 2003;120205;2003;prevision_plf;51;MEUR;51;chiffre;51
 2004;120205;2003;prevision;100;MEUR;100;chiffre;100
 2005;120205;2003;realisation;105;MEUR;105;chiffre;105
@@ -9482,11 +9482,11 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;120205;2025;prevision_plf;125;MEUR;125;chiffre;125
 2026;120205;2025;prevision;137;MEUR;137;chiffre;137
 2026;120205;2026;prevision_plf;137;MEUR;137;chiffre;137
-2006;120206;2004;realisation;;MEUR;;absent;
-2006;120206;2005;prevision;;MEUR;;absent;
-2007;120206;2005;realisation;;MEUR;;absent;
+2006;120206;2004;realisation;;MEUR;;sans_objet;_
+2006;120206;2005;prevision;;MEUR;;sans_objet;_
+2007;120206;2005;realisation;;MEUR;;sans_objet;_
 2006;120206;2006;prevision_plf;;MEUR;;nc;nc
-2007;120206;2006;prevision;;MEUR;;absent;
+2007;120206;2006;prevision;;MEUR;;sans_objet;_
 2008;120206;2006;realisation;10;MEUR;10;chiffre;10
 2007;120206;2007;prevision_plf;10;MEUR;10;chiffre;10
 2008;120206;2007;prevision;10;MEUR;10;chiffre;10
@@ -9545,9 +9545,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;120206;2025;prevision_plf;85;MEUR;85;chiffre;85
 2026;120206;2025;prevision;90;MEUR;90;chiffre;90
 2026;120206;2026;prevision_plf;100;MEUR;100;chiffre;100
-2007;120207;2005;realisation;;MEUR;;absent;
-2007;120207;2006;prevision;;MEUR;;absent;
-2008;120207;2006;realisation;;MEUR;;absent;
+2007;120207;2005;realisation;;MEUR;;sans_objet;_
+2007;120207;2006;prevision;;MEUR;;sans_objet;_
+2008;120207;2006;realisation;;MEUR;;sans_objet;_
 2007;120207;2007;prevision_plf;10;MEUR;10;chiffre;10
 2008;120207;2007;prevision;10;MEUR;10;chiffre;10
 2009;120207;2007;realisation;2;MEUR;2;chiffre;2
@@ -9587,8 +9587,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2019;120207;2019;prevision_plf;;MEUR;;sans_objet;-
 2020;120207;2019;prevision;;MEUR;;sans_objet;-
 2020;120207;2020;prevision_plf;;MEUR;;sans_objet;-
-2008;120208;2006;realisation;;MEUR;;absent;
-2008;120208;2007;prevision;;MEUR;;absent;
+2008;120208;2006;realisation;;MEUR;;sans_objet;_
+2008;120208;2007;prevision;;MEUR;;sans_objet;_
 2009;120208;2007;realisation;;MEUR;;sans_objet;-
 2008;120208;2008;prevision_plf;0;MEUR;0;epsilon;ε
 2009;120208;2008;prevision;0;MEUR;0;epsilon;ε
@@ -9728,9 +9728,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2001;120304;2001;prevision_plf;900;MF;137.2;chiffre;900
 2002;120304;2001;prevision;107;MEUR;107;chiffre;107
 2003;120304;2001;realisation;105;MEUR;105;chiffre;105
-2002;120304;2002;prevision_plf;;MEUR;;absent;
-2003;120304;2002;prevision;;MEUR;;absent;
-2003;120304;2003;prevision_plf;;MEUR;;absent;
+2002;120304;2002;prevision_plf;;MEUR;;sans_objet;_
+2003;120304;2002;prevision;;MEUR;;sans_objet;_
+2003;120304;2003;prevision_plf;;MEUR;;sans_objet;_
 2001;120305;1999;realisation;470;MF;71.7;chiffre;470
 2001;120305;2000;prevision;580;MF;88.4;chiffre;580
 2002;120305;2000;realisation;87;MEUR;87;chiffre;87
@@ -9746,9 +9746,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;120305;2004;prevision_plf;80;MEUR;80;chiffre;80
 2005;120305;2004;prevision;85;MEUR;85;chiffre;85
 2006;120305;2004;realisation;90;MEUR;90;chiffre;90
-2005;120305;2005;prevision_plf;;MEUR;;absent;
-2006;120305;2005;prevision;;MEUR;;absent;
-2006;120305;2006;prevision_plf;;MEUR;;absent;
+2005;120305;2005;prevision_plf;;MEUR;;sans_objet;_
+2006;120305;2005;prevision;;MEUR;;sans_objet;_
+2006;120305;2006;prevision_plf;;MEUR;;sans_objet;_
 2001;120306;1999;realisation;50;MF;7.6;chiffre;50
 2001;120306;2000;prevision;50;MF;7.6;chiffre;50
 2002;120306;2000;realisation;6;MEUR;6;chiffre;6
@@ -9901,26 +9901,26 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2002;120401;2000;realisation;1997;MEUR;1997;chiffre;1 997
 2001;120401;2001;prevision_plf;13500;MF;2058.1;chiffre;13 500
 2002;120401;2001;prevision;1951;MEUR;1951;chiffre;1 951
-2003;120401;2001;realisation;197;MEUR;197;chiffre;197
+2003;120401;2001;realisation;1975;MEUR;1975;chiffre;1975
 2002;120401;2002;prevision_plf;1997;MEUR;1997;chiffre;1 997
-2003;120401;2002;prevision;199;MEUR;199;chiffre;199
-2004;120401;2002;realisation;190;MEUR;190;chiffre;190
-2003;120401;2003;prevision_plf;213;MEUR;213;chiffre;213
-2004;120401;2003;prevision;191;MEUR;191;chiffre;191
-2005;120401;2003;realisation;200;MEUR;200;chiffre;200
-2004;120401;2004;prevision_plf;0;MEUR;0;chiffre;0
-2005;120401;2004;prevision;205;MEUR;205;chiffre;205
-2006;120401;2004;realisation;0;MEUR;0;chiffre;0
-2005;120401;2005;prevision_plf;210;MEUR;210;chiffre;210
-2006;120401;2005;prevision;0;MEUR;0;chiffre;0
-2007;120401;2005;realisation;219;MEUR;219;chiffre;219
-2006;120401;2006;prevision_plf;0;MEUR;0;chiffre;0
-2007;120401;2006;prevision;0;MEUR;0;chiffre;0
-2008;120401;2006;realisation;235;MEUR;235;chiffre;235
-2007;120401;2007;prevision_plf;0;MEUR;0;chiffre;0
-2008;120401;2007;prevision;0;MEUR;0;chiffre;0
+2003;120401;2002;prevision;1995;MEUR;1995;chiffre;1995
+2004;120401;2002;realisation;1900;MEUR;1900;chiffre;1900
+2003;120401;2003;prevision_plf;2130;MEUR;2130;chiffre;2130
+2004;120401;2003;prevision;1910;MEUR;1910;chiffre;1910
+2005;120401;2003;realisation;2000;MEUR;2000;chiffre;2000
+2004;120401;2004;prevision_plf;1920;MEUR;1920;chiffre;1920
+2005;120401;2004;prevision;2050;MEUR;2050;chiffre;2050
+2006;120401;2004;realisation;2050;MEUR;2050;chiffre;2050
+2005;120401;2005;prevision_plf;2100;MEUR;2100;chiffre;2100
+2006;120401;2005;prevision;2150;MEUR;2150;chiffre;2150
+2007;120401;2005;realisation;2190;MEUR;2190;chiffre;2190
+2006;120401;2006;prevision_plf;2300;MEUR;2300;chiffre;2300
+2007;120401;2006;prevision;2350;MEUR;2350;chiffre;2350
+2008;120401;2006;realisation;2350;MEUR;2350;chiffre;2350
+2007;120401;2007;prevision_plf;2360;MEUR;2360;chiffre;2360
+2008;120401;2007;prevision;2330;MEUR;2330;chiffre;2330
 2009;120401;2007;realisation;2290;MEUR;2290;chiffre;2 290
-2008;120401;2008;prevision_plf;0;MEUR;0;chiffre;0
+2008;120401;2008;prevision_plf;2550;MEUR;2550;chiffre;2550
 2009;120401;2008;prevision;2490;MEUR;2490;chiffre;2 490
 2010;120401;2008;realisation;2480;MEUR;2480;chiffre;2 480
 2009;120401;2009;prevision_plf;2620;MEUR;2620;chiffre;2 620
@@ -10265,14 +10265,14 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2009;120505;2009;prevision_plf;0;MEUR;0;epsilon;ε
 2010;120505;2009;prevision;0;MEUR;0;epsilon;ε
 2010;120505;2010;prevision_plf;0;MEUR;0;epsilon;ε
-2006;120506;2004;realisation;;MEUR;;absent;
-2006;120506;2005;prevision;;MEUR;;absent;
-2007;120506;2005;realisation;;MEUR;;absent;
+2006;120506;2004;realisation;;MEUR;;sans_objet;_
+2006;120506;2005;prevision;;MEUR;;sans_objet;_
+2007;120506;2005;realisation;;MEUR;;sans_objet;_
 2006;120506;2006;prevision_plf;;MEUR;;nc;nc
-2007;120506;2006;prevision;;MEUR;;absent;
-2008;120506;2006;realisation;;MEUR;;absent;
-2007;120506;2007;prevision_plf;;MEUR;;absent;
-2008;120506;2007;prevision;;MEUR;;absent;
+2007;120506;2006;prevision;;MEUR;;sans_objet;_
+2008;120506;2006;realisation;;MEUR;;sans_objet;_
+2007;120506;2007;prevision_plf;;MEUR;;sans_objet;_
+2008;120506;2007;prevision;;MEUR;;sans_objet;_
 2009;120506;2007;realisation;0;MEUR;0;epsilon;ε
 2008;120506;2008;prevision_plf;;MEUR;;nc;nc
 2009;120506;2008;prevision;0;MEUR;0;epsilon;ε
@@ -10385,7 +10385,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2024;120507;2024;prevision_plf;;MEUR;;sans_objet;-
 2025;120507;2024;prevision;;MEUR;;sans_objet;-
 2025;120507;2025;prevision_plf;;MEUR;;sans_objet;-
-2008;120508;2006;realisation;;MEUR;;absent;
+2008;120508;2006;realisation;;MEUR;;sans_objet;_
 2008;120508;2007;prevision;0;MEUR;0;epsilon;ε
 2009;120508;2007;realisation;0;MEUR;0;epsilon;ε
 2008;120508;2008;prevision_plf;0;MEUR;0;epsilon;ε
@@ -10493,9 +10493,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2005;130101;2005;prevision_plf;0;MEUR;0;epsilon;ε
 2006;130101;2005;prevision;5;MEUR;5;chiffre;5
 2007;130101;2005;realisation;5;MEUR;5;chiffre;5
-2006;130101;2006;prevision_plf;;MEUR;;absent;
-2007;130101;2006;prevision;;MEUR;;absent;
-2007;130101;2007;prevision_plf;;MEUR;;absent;
+2006;130101;2006;prevision_plf;;MEUR;;sans_objet;_
+2007;130101;2006;prevision;;MEUR;;sans_objet;_
+2007;130101;2007;prevision_plf;;MEUR;;sans_objet;_
 2018;130101;2016;realisation;;MEUR;;sans_objet;-
 2018;130101;2017;prevision;0;MEUR;0;epsilon;ε
 2019;130101;2017;realisation;0;MEUR;0;epsilon;ε
@@ -10535,19 +10535,19 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2003;130201;2003;prevision_plf;870;MEUR;870;chiffre;870
 2004;130201;2003;prevision;965;MEUR;965;chiffre;965
 2005;130201;2003;realisation;930;MEUR;930;chiffre;930
-2004;130201;2004;prevision_plf;0;MEUR;0;chiffre;0
+2004;130201;2004;prevision_plf;1020;MEUR;1020;chiffre;1020
 2005;130201;2004;prevision;940;MEUR;940;chiffre;940
 2006;130201;2004;realisation;950;MEUR;950;chiffre;950
 2005;130201;2005;prevision_plf;990;MEUR;990;chiffre;990
-2006;130201;2005;prevision;0;MEUR;0;chiffre;0
-2007;130201;2005;realisation;100;MEUR;100;chiffre;100
-2006;130201;2006;prevision_plf;0;MEUR;0;chiffre;0
-2007;130201;2006;prevision;0;MEUR;0;chiffre;0
-2008;130201;2006;realisation;127;MEUR;127;chiffre;127
-2007;130201;2007;prevision_plf;100;MEUR;100;chiffre;100
-2008;130201;2007;prevision;0;MEUR;0;chiffre;0
+2006;130201;2005;prevision;1020;MEUR;1020;chiffre;1020
+2007;130201;2005;realisation;1000;MEUR;1000;chiffre;1000
+2006;130201;2006;prevision_plf;1070;MEUR;1070;chiffre;1070
+2007;130201;2006;prevision;1000;MEUR;1000;chiffre;1000
+2008;130201;2006;realisation;1270;MEUR;1270;chiffre;1270
+2007;130201;2007;prevision_plf;1000;MEUR;1000;chiffre;1000
+2008;130201;2007;prevision;1100;MEUR;1100;chiffre;1100
 2009;130201;2007;realisation;800;MEUR;800;chiffre;800
-2008;130201;2008;prevision_plf;0;MEUR;0;chiffre;0
+2008;130201;2008;prevision_plf;1100;MEUR;1100;chiffre;1100
 2009;130201;2008;prevision;800;MEUR;800;chiffre;800
 2010;130201;2008;realisation;850;MEUR;850;chiffre;850
 2009;130201;2009;prevision_plf;800;MEUR;800;chiffre;800
@@ -10622,9 +10622,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2006;130202;2006;prevision_plf;5;MEUR;5;chiffre;5
 2007;130202;2006;prevision;5;MEUR;5;chiffre;5
 2008;130202;2006;realisation;10;MEUR;10;chiffre;10
-2007;130202;2007;prevision_plf;;MEUR;;absent;
-2008;130202;2007;prevision;;MEUR;;absent;
-2008;130202;2008;prevision_plf;;MEUR;;absent;
+2007;130202;2007;prevision_plf;;MEUR;;sans_objet;_
+2008;130202;2007;prevision;;MEUR;;sans_objet;_
+2008;130202;2008;prevision_plf;;MEUR;;sans_objet;_
 2001;130203;1999;realisation;310;MF;47.3;chiffre;310
 2001;130203;2000;prevision;250;MF;38.1;chiffre;250
 2002;130203;2000;realisation;43;MEUR;43;chiffre;43
@@ -10799,12 +10799,12 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2006;130205;2006;prevision_plf;1;MEUR;1;chiffre;1
 2007;130205;2006;prevision;1;MEUR;1;chiffre;1
 2008;130205;2006;realisation;1;MEUR;1;chiffre;1
-2007;130205;2007;prevision_plf;;MEUR;;absent;
-2008;130205;2007;prevision;;MEUR;;absent;
-2008;130205;2008;prevision_plf;;MEUR;;absent;
-2003;130206;2001;realisation;;MEUR;;absent;
-2003;130206;2002;prevision;;MEUR;;absent;
-2004;130206;2002;realisation;;MEUR;;absent;
+2007;130205;2007;prevision_plf;;MEUR;;sans_objet;_
+2008;130205;2007;prevision;;MEUR;;sans_objet;_
+2008;130205;2008;prevision_plf;;MEUR;;sans_objet;_
+2003;130206;2001;realisation;;MEUR;;sans_objet;_
+2003;130206;2002;prevision;;MEUR;;sans_objet;_
+2004;130206;2002;realisation;;MEUR;;sans_objet;_
 2003;130206;2003;prevision_plf;15;MEUR;15;chiffre;15
 2004;130206;2003;prevision;20;MEUR;20;chiffre;20
 2005;130206;2003;realisation;20;MEUR;20;chiffre;20
@@ -10874,7 +10874,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2019;130207;2019;prevision_plf;5;MEUR;5;chiffre;5
 2020;130207;2019;prevision;;MEUR;;sans_objet;-
 2020;130207;2020;prevision_plf;;MEUR;;sans_objet;-
-2005;130208;2003;realisation;;MEUR;;absent;
+2005;130208;2003;realisation;;MEUR;;sans_objet;_
 2005;130208;2004;prevision;20;MEUR;20;chiffre;20
 2006;130208;2004;realisation;80;MEUR;80;chiffre;80
 2005;130208;2005;prevision_plf;75;MEUR;75;chiffre;75
@@ -11003,12 +11003,12 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;130209;2025;prevision_plf;1;MEUR;1;chiffre;1
 2026;130209;2025;prevision;1;MEUR;1;chiffre;1
 2026;130209;2026;prevision_plf;1;MEUR;1;chiffre;1
-2006;130210;2004;realisation;;MEUR;;absent;
-2006;130210;2005;prevision;;MEUR;;absent;
-2007;130210;2005;realisation;;MEUR;;absent;
+2006;130210;2004;realisation;;MEUR;;sans_objet;_
+2006;130210;2005;prevision;;MEUR;;sans_objet;_
+2007;130210;2005;realisation;;MEUR;;sans_objet;_
 2006;130210;2006;prevision_plf;2;MEUR;2;chiffre;2
 2007;130210;2006;prevision;0;MEUR;0;epsilon;ε
-2007;130210;2007;prevision_plf;;MEUR;;absent;
+2007;130210;2007;prevision_plf;;MEUR;;sans_objet;_
 2007;130211;2005;realisation;0;MEUR;0;epsilon;ε
 2007;130211;2006;prevision;2;MEUR;2;chiffre;2
 2008;130211;2006;realisation;5;MEUR;5;chiffre;5
@@ -11069,7 +11069,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;130211;2025;prevision_plf;6;MEUR;6;chiffre;6
 2026;130211;2025;prevision;5;MEUR;5;chiffre;5
 2026;130211;2026;prevision_plf;5;MEUR;5;chiffre;5
-2007;130212;2005;realisation;;MEUR;;absent;
+2007;130212;2005;realisation;;MEUR;;sans_objet;_
 2007;130212;2006;prevision;0;MEUR;0;epsilon;ε
 2008;130212;2006;realisation;0;MEUR;0;epsilon;ε
 2007;130212;2007;prevision_plf;5;MEUR;5;chiffre;5
@@ -11090,9 +11090,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2012;130212;2012;prevision_plf;2;MEUR;2;chiffre;2
 2013;130212;2012;prevision;;MEUR;;sans_objet;-
 2013;130212;2013;prevision_plf;;MEUR;;sans_objet;-
-2007;130213;2005;realisation;;MEUR;;absent;
-2007;130213;2006;prevision;;MEUR;;absent;
-2008;130213;2006;realisation;;MEUR;;absent;
+2007;130213;2005;realisation;;MEUR;;sans_objet;_
+2007;130213;2006;prevision;;MEUR;;sans_objet;_
+2008;130213;2006;realisation;;MEUR;;sans_objet;_
 2007;130213;2007;prevision_plf;0;MEUR;0;chiffre;0
 2008;130213;2007;prevision;0;MEUR;0;chiffre;0
 2009;130213;2007;realisation;;MEUR;;nc;nc
@@ -11150,9 +11150,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;130213;2025;prevision_plf;1;MEUR;1;chiffre;1
 2026;130213;2025;prevision;1;MEUR;1;chiffre;1
 2026;130213;2026;prevision_plf;1;MEUR;1;chiffre;1
-2007;130214;2005;realisation;;MEUR;;absent;
-2007;130214;2006;prevision;;MEUR;;absent;
-2008;130214;2006;realisation;;MEUR;;absent;
+2007;130214;2005;realisation;;MEUR;;sans_objet;_
+2007;130214;2006;prevision;;MEUR;;sans_objet;_
+2008;130214;2006;realisation;;MEUR;;sans_objet;_
 2007;130214;2007;prevision_plf;10;MEUR;10;chiffre;10
 2008;130214;2007;prevision;10;MEUR;10;chiffre;10
 2009;130214;2007;realisation;1;MEUR;1;chiffre;1
@@ -11210,9 +11210,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;130214;2025;prevision_plf;20;MEUR;20;chiffre;20
 2026;130214;2025;prevision;16;MEUR;16;chiffre;16
 2026;130214;2026;prevision_plf;16;MEUR;16;chiffre;16
-2007;130215;2005;realisation;;MEUR;;absent;
-2007;130215;2006;prevision;;MEUR;;absent;
-2008;130215;2006;realisation;;MEUR;;absent;
+2007;130215;2005;realisation;;MEUR;;sans_objet;_
+2007;130215;2006;prevision;;MEUR;;sans_objet;_
+2008;130215;2006;realisation;;MEUR;;sans_objet;_
 2007;130215;2007;prevision_plf;0;MEUR;0;epsilon;ε
 2008;130215;2007;prevision;5;MEUR;5;chiffre;5
 2009;130215;2007;realisation;3;MEUR;3;chiffre;3
@@ -11270,9 +11270,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;130215;2025;prevision_plf;39;MEUR;39;chiffre;39
 2026;130215;2025;prevision;43;MEUR;43;chiffre;43
 2026;130215;2026;prevision_plf;41;MEUR;41;chiffre;41
-2007;130216;2005;realisation;;MEUR;;absent;
-2007;130216;2006;prevision;;MEUR;;absent;
-2008;130216;2006;realisation;;MEUR;;absent;
+2007;130216;2005;realisation;;MEUR;;sans_objet;_
+2007;130216;2006;prevision;;MEUR;;sans_objet;_
+2008;130216;2006;realisation;;MEUR;;sans_objet;_
 2007;130216;2007;prevision_plf;5;MEUR;5;chiffre;5
 2008;130216;2007;prevision;0;MEUR;0;epsilon;ε
 2009;130216;2007;realisation;3;MEUR;3;chiffre;3
@@ -11381,8 +11381,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;130301;2004;prevision_plf;130;MEUR;130;chiffre;130
 2005;130301;2004;prevision;130;MEUR;130;chiffre;130
 2005;130301;2005;prevision_plf;140;MEUR;140;chiffre;140
-2008;130301;2006;realisation;;MEUR;;absent;
-2008;130301;2007;prevision;;MEUR;;absent;
+2008;130301;2006;realisation;;MEUR;;sans_objet;_
+2008;130301;2007;prevision;;MEUR;;sans_objet;_
 2009;130301;2007;realisation;;MEUR;;sans_objet;-
 2008;130301;2008;prevision_plf;;MEUR;;nc;nc
 2009;130301;2008;prevision;;MEUR;;sans_objet;-
@@ -11467,24 +11467,24 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2002;140101;2000;realisation;1524;MEUR;1524;chiffre;1 524
 2001;140101;2001;prevision_plf;10900;MF;1661.7;chiffre;10 900
 2002;140101;2001;prevision;1646;MEUR;1646;chiffre;1 646
-2003;140101;2001;realisation;167;MEUR;167;chiffre;167
+2003;140101;2001;realisation;1675;MEUR;1675;chiffre;1675
 2002;140101;2002;prevision_plf;1738;MEUR;1738;chiffre;1 738
-2003;140101;2002;prevision;178;MEUR;178;chiffre;178
-2004;140101;2002;realisation;160;MEUR;160;chiffre;160
-2003;140101;2003;prevision_plf;188;MEUR;188;chiffre;188
-2004;140101;2003;prevision;171;MEUR;171;chiffre;171
-2005;140101;2003;realisation;177;MEUR;177;chiffre;177
-2004;140101;2004;prevision_plf;0;MEUR;0;chiffre;0
-2005;140101;2004;prevision;0;MEUR;0;chiffre;0
-2006;140101;2004;realisation;0;MEUR;0;chiffre;0
-2005;140101;2005;prevision_plf;174;MEUR;174;chiffre;174
-2006;140101;2005;prevision;0;MEUR;0;chiffre;0
-2007;140101;2005;realisation;155;MEUR;155;chiffre;155
-2006;140101;2006;prevision_plf;170;MEUR;170;chiffre;170
-2007;140101;2006;prevision;0;MEUR;0;chiffre;0
-2008;140101;2006;realisation;150;MEUR;150;chiffre;150
+2003;140101;2002;prevision;1780;MEUR;1780;chiffre;1780
+2004;140101;2002;realisation;1600;MEUR;1600;chiffre;1600
+2003;140101;2003;prevision_plf;1880;MEUR;1880;chiffre;1880
+2004;140101;2003;prevision;1715;MEUR;1715;chiffre;1715
+2005;140101;2003;realisation;1770;MEUR;1770;chiffre;1770
+2004;140101;2004;prevision_plf;1860;MEUR;1860;chiffre;1860
+2005;140101;2004;prevision;1740;MEUR;1740;chiffre;1740
+2006;140101;2004;realisation;1900;MEUR;1900;chiffre;1900
+2005;140101;2005;prevision_plf;1740;MEUR;1740;chiffre;1740
+2006;140101;2005;prevision;1720;MEUR;1720;chiffre;1720
+2007;140101;2005;realisation;1550;MEUR;1550;chiffre;1550
+2006;140101;2006;prevision_plf;1700;MEUR;1700;chiffre;1700
+2007;140101;2006;prevision;1500;MEUR;1500;chiffre;1500
+2008;140101;2006;realisation;1500;MEUR;1500;chiffre;1500
 2007;140101;2007;prevision_plf;900;MEUR;900;chiffre;900
-2008;140101;2007;prevision;0;MEUR;0;chiffre;0
+2008;140101;2007;prevision;1000;MEUR;1000;chiffre;1000
 2009;140101;2007;realisation;800;MEUR;800;chiffre;800
 2008;140101;2008;prevision_plf;900;MEUR;900;chiffre;900
 2009;140101;2008;prevision;700;MEUR;700;chiffre;700
@@ -12010,10 +12010,10 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2005;140108;2003;realisation;;MEUR;;nc;nc
 2004;140108;2004;prevision_plf;;MEUR;;nc;nc
 2005;140108;2004;prevision;;MEUR;;nc;nc
-2006;140108;2004;realisation;;MEUR;;absent;
+2006;140108;2004;realisation;;MEUR;;sans_objet;_
 2005;140108;2005;prevision_plf;;MEUR;;nc;nc
-2006;140108;2005;prevision;;MEUR;;absent;
-2006;140108;2006;prevision_plf;;MEUR;;absent;
+2006;140108;2005;prevision;;MEUR;;sans_objet;_
+2006;140108;2006;prevision_plf;;MEUR;;sans_objet;_
 2001;140109;1999;realisation;1200;MF;182.9;chiffre;1 200
 2001;140109;2000;prevision;1300;MF;198.2;chiffre;1 300
 2002;140109;2000;realisation;213;MEUR;213;chiffre;213
@@ -12262,26 +12262,26 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2002;140119;2000;realisation;3430;MEUR;3430;chiffre;3 430
 2001;140119;2001;prevision_plf;25800;MF;3933.2;chiffre;25 800
 2002;140119;2001;prevision;3506;MEUR;3506;chiffre;3 506
-2003;140119;2001;realisation;0;MEUR;0;chiffre;0
+2003;140119;2001;realisation;3450;MEUR;3450;chiffre;3450
 2002;140119;2002;prevision_plf;3506;MEUR;3506;chiffre;3 506
-2003;140119;2002;prevision;368;MEUR;368;chiffre;368
-2004;140119;2002;realisation;0;MEUR;0;chiffre;0
-2003;140119;2003;prevision_plf;395;MEUR;395;chiffre;395
-2004;140119;2003;prevision;318;MEUR;318;chiffre;318
-2005;140119;2003;realisation;0;MEUR;0;chiffre;0
-2004;140119;2004;prevision_plf;0;MEUR;0;chiffre;0
-2005;140119;2004;prevision;0;MEUR;0;chiffre;0
-2006;140119;2004;realisation;0;MEUR;0;chiffre;0
-2005;140119;2005;prevision_plf;325;MEUR;325;chiffre;325
-2006;140119;2005;prevision;0;MEUR;0;chiffre;0
-2007;140119;2005;realisation;330;MEUR;330;chiffre;330
-2006;140119;2006;prevision_plf;351;MEUR;351;chiffre;351
-2007;140119;2006;prevision;0;MEUR;0;chiffre;0
-2008;140119;2006;realisation;360;MEUR;360;chiffre;360
-2007;140119;2007;prevision_plf;0;MEUR;0;chiffre;0
-2008;140119;2007;prevision;0;MEUR;0;chiffre;0
+2003;140119;2002;prevision;3680;MEUR;3680;chiffre;3680
+2004;140119;2002;realisation;3550;MEUR;3550;chiffre;3550
+2003;140119;2003;prevision_plf;3950;MEUR;3950;chiffre;3950
+2004;140119;2003;prevision;3180;MEUR;3180;chiffre;3180
+2005;140119;2003;realisation;3400;MEUR;3400;chiffre;3400
+2004;140119;2004;prevision_plf;3150;MEUR;3150;chiffre;3150
+2005;140119;2004;prevision;3250;MEUR;3250;chiffre;3250
+2006;140119;2004;realisation;3520;MEUR;3520;chiffre;3520
+2005;140119;2005;prevision_plf;3250;MEUR;3250;chiffre;3250
+2006;140119;2005;prevision;3680;MEUR;3680;chiffre;3680
+2007;140119;2005;realisation;3300;MEUR;3300;chiffre;3300
+2006;140119;2006;prevision_plf;3510;MEUR;3510;chiffre;3510
+2007;140119;2006;prevision;3600;MEUR;3600;chiffre;3600
+2008;140119;2006;realisation;3600;MEUR;3600;chiffre;3600
+2007;140119;2007;prevision_plf;2600;MEUR;2600;chiffre;2600
+2008;140119;2007;prevision;2800;MEUR;2800;chiffre;2800
 2009;140119;2007;realisation;2200;MEUR;2200;chiffre;2 200
-2008;140119;2008;prevision_plf;0;MEUR;0;chiffre;0
+2008;140119;2008;prevision_plf;3200;MEUR;3200;chiffre;3200
 2009;140119;2008;prevision;2600;MEUR;2600;chiffre;2 600
 2010;140119;2008;realisation;2500;MEUR;2500;chiffre;2 500
 2009;140119;2009;prevision_plf;2800;MEUR;2800;chiffre;2 800
@@ -12635,9 +12635,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;140123;2025;prevision_plf;73;MEUR;73;chiffre;73
 2026;140123;2025;prevision;147;MEUR;147;chiffre;147
 2026;140123;2026;prevision_plf;121;MEUR;121;chiffre;121
-2005;140124;2003;realisation;;MEUR;;absent;
-2005;140124;2004;prevision;;MEUR;;absent;
-2006;140124;2004;realisation;;MEUR;;absent;
+2005;140124;2003;realisation;;MEUR;;sans_objet;_
+2005;140124;2004;prevision;;MEUR;;sans_objet;_
+2006;140124;2004;realisation;;MEUR;;sans_objet;_
 2005;140124;2005;prevision_plf;0;MEUR;0;chiffre;0
 2006;140124;2005;prevision;;MEUR;;absent;
 2007;140124;2005;realisation;0;MEUR;0;epsilon;ε
@@ -12686,9 +12686,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2020;140124;2020;prevision_plf;0;MEUR;0;epsilon;ε
 2021;140124;2020;prevision;0;MEUR;0;epsilon;ε
 2021;140124;2021;prevision_plf;0;MEUR;0;epsilon;ε
-2007;140125;2005;realisation;;MEUR;;absent;
-2007;140125;2006;prevision;;MEUR;;absent;
-2008;140125;2006;realisation;;MEUR;;absent;
+2007;140125;2005;realisation;;MEUR;;sans_objet;_
+2007;140125;2006;prevision;;MEUR;;sans_objet;_
+2008;140125;2006;realisation;;MEUR;;sans_objet;_
 2007;140125;2007;prevision_plf;3;MEUR;3;chiffre;3
 2008;140125;2007;prevision;3;MEUR;3;chiffre;3
 2009;140125;2007;realisation;3;MEUR;3;chiffre;3
@@ -12893,15 +12893,15 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2009;140202;2009;prevision_plf;60;MEUR;60;chiffre;60
 2010;140202;2009;prevision;110;MEUR;110;chiffre;110
 2010;140202;2010;prevision_plf;110;MEUR;110;chiffre;110
-2006;140203;2004;realisation;;MEUR;;absent;
-2006;140203;2005;prevision;0;MEUR;0;chiffre;0
-2007;140203;2005;realisation;210;MEUR;210;chiffre;210
-2006;140203;2006;prevision_plf;205;MEUR;205;chiffre;205
-2007;140203;2006;prevision;0;MEUR;0;chiffre;0
-2008;140203;2006;realisation;247;MEUR;247;chiffre;247
-2007;140203;2007;prevision_plf;145;MEUR;145;chiffre;145
-2008;140203;2007;prevision;0;MEUR;0;chiffre;0
-2008;140203;2008;prevision_plf;0;MEUR;0;chiffre;0
+2006;140203;2004;realisation;;MEUR;;sans_objet;_
+2006;140203;2005;prevision;;MEUR;;sans_objet;_
+2007;140203;2005;realisation;;MEUR;;sans_objet;_
+2006;140203;2006;prevision_plf;2050;MEUR;2050;chiffre;2050
+2007;140203;2006;prevision;2100;MEUR;2100;chiffre;2100
+2008;140203;2006;realisation;2470;MEUR;2470;chiffre;2470
+2007;140203;2007;prevision_plf;1450;MEUR;1450;chiffre;1450
+2008;140203;2007;prevision;1690;MEUR;1690;chiffre;1690
+2008;140203;2008;prevision_plf;1790;MEUR;1790;chiffre;1790
 2010;140203;2008;realisation;1850;MEUR;1850;chiffre;1 850
 2010;140203;2009;prevision;1050;MEUR;1050;chiffre;1 050
 2011;140203;2009;realisation;1500;MEUR;1500;chiffre;1 500
@@ -12937,16 +12937,16 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2002;140301;2000;realisation;2302;MEUR;2302;chiffre;2 302
 2001;140301;2001;prevision_plf;15000;MF;2286.7;chiffre;15 000
 2002;140301;2001;prevision;2546;MEUR;2546;chiffre;2 546
-2003;140301;2001;realisation;257;MEUR;257;chiffre;257
+2003;140301;2001;realisation;2576;MEUR;2576;chiffre;2576
 2002;140301;2002;prevision_plf;2714;MEUR;2714;chiffre;2 714
-2003;140301;2002;prevision;2;MEUR;2;chiffre;2
-2004;140301;2002;realisation;289;MEUR;289;chiffre;289
-2003;140301;2003;prevision_plf;2;MEUR;2;chiffre;2
-2004;140301;2003;prevision;305;MEUR;305;chiffre;305
-2005;140301;2003;realisation;330;MEUR;330;chiffre;330
-2004;140301;2004;prevision_plf;0;MEUR;0;chiffre;0
-2005;140301;2004;prevision;363;MEUR;363;chiffre;363
-2005;140301;2005;prevision_plf;399;MEUR;399;chiffre;399
+2003;140301;2002;prevision;2942;MEUR;2942;chiffre;2942
+2004;140301;2002;realisation;2890;MEUR;2890;chiffre;2890
+2003;140301;2003;prevision_plf;2942;MEUR;2942;chiffre;2942
+2004;140301;2003;prevision;3050;MEUR;3050;chiffre;3050
+2005;140301;2003;realisation;3300;MEUR;3300;chiffre;3300
+2004;140301;2004;prevision_plf;3050;MEUR;3050;chiffre;3050
+2005;140301;2004;prevision;3630;MEUR;3630;chiffre;3630
+2005;140301;2005;prevision_plf;3990;MEUR;3990;chiffre;3990
 2001;140302;1999;realisation;4600;MF;701.3;chiffre;4 600
 2001;140302;2000;prevision;4300;MF;655.5;chiffre;4 300
 2002;140302;2000;realisation;656;MEUR;656;chiffre;656
@@ -13002,11 +13002,11 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2005;140304;2004;prevision;0;MEUR;0;epsilon;ε
 2006;140304;2004;realisation;;MEUR;;absent;
 2005;140304;2005;prevision_plf;0;MEUR;0;epsilon;ε
-2006;140304;2005;prevision;;MEUR;;absent;
+2006;140304;2005;prevision;;MEUR;;sans_objet;_
 2007;140304;2005;realisation;0;MEUR;0;epsilon;ε
-2006;140304;2006;prevision_plf;;MEUR;;absent;
-2007;140304;2006;prevision;;MEUR;;absent;
-2007;140304;2007;prevision_plf;;MEUR;;absent;
+2006;140304;2006;prevision_plf;;MEUR;;sans_objet;_
+2007;140304;2006;prevision;;MEUR;;sans_objet;_
+2007;140304;2007;prevision_plf;;MEUR;;sans_objet;_
 2001;140305;1999;realisation;;MF;;nc;nc
 2001;140305;2000;prevision;;MF;;nc;nc
 2002;140305;2000;realisation;;MEUR;;nc;nc
@@ -13205,9 +13205,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;150102;2004;prevision_plf;;MEUR;;nc;nc
 2005;150102;2004;prevision;;MEUR;;nc;nc
 2006;150102;2004;realisation;5;MEUR;5;chiffre;5
-2005;150102;2005;prevision_plf;;MEUR;;absent;
-2006;150102;2005;prevision;;MEUR;;absent;
-2006;150102;2006;prevision_plf;;MEUR;;absent;
+2005;150102;2005;prevision_plf;;MEUR;;sans_objet;_
+2006;150102;2005;prevision;;MEUR;;sans_objet;_
+2006;150102;2006;prevision_plf;;MEUR;;sans_objet;_
 2001;150103;1999;realisation;;MF;;nc;nc
 2001;150103;2000;prevision;;MF;;nc;nc
 2002;150103;2000;realisation;;MEUR;;nc;nc
@@ -13223,9 +13223,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;150103;2004;prevision_plf;;MEUR;;nc;nc
 2005;150103;2004;prevision;;MEUR;;nc;nc
 2006;150103;2004;realisation;5;MEUR;5;chiffre;5
-2005;150103;2005;prevision_plf;;MEUR;;absent;
-2006;150103;2005;prevision;;MEUR;;absent;
-2006;150103;2006;prevision_plf;;MEUR;;absent;
+2005;150103;2005;prevision_plf;;MEUR;;sans_objet;_
+2006;150103;2005;prevision;;MEUR;;sans_objet;_
+2006;150103;2006;prevision_plf;;MEUR;;sans_objet;_
 2001;150109;1999;realisation;;MF;;nc;nc
 2001;150109;2000;prevision;;MF;;nc;nc
 2002;150109;2000;realisation;;MEUR;;nc;nc
@@ -13240,7 +13240,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2005;150109;2003;realisation;;MEUR;;nc;nc
 2004;150109;2004;prevision_plf;;MEUR;;nc;nc
 2005;150109;2004;prevision;;MEUR;;nc;nc
-2005;150109;2005;prevision_plf;;MEUR;;absent;
+2005;150109;2005;prevision_plf;;MEUR;;sans_objet;_
 2001;150110;1999;realisation;;MF;;nc;nc
 2001;150110;2000;prevision;;MF;;nc;nc
 2002;150110;2000;realisation;;MEUR;;nc;nc
@@ -13256,9 +13256,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;150110;2004;prevision_plf;;MEUR;;nc;nc
 2005;150110;2004;prevision;;MEUR;;nc;nc
 2006;150110;2004;realisation;;MEUR;;absent;
-2005;150110;2005;prevision_plf;;MEUR;;absent;
-2006;150110;2005;prevision;;MEUR;;absent;
-2006;150110;2006;prevision_plf;;MEUR;;absent;
+2005;150110;2005;prevision_plf;;MEUR;;sans_objet;_
+2006;150110;2005;prevision;;MEUR;;sans_objet;_
+2006;150110;2006;prevision_plf;;MEUR;;sans_objet;_
 2001;150111;1999;realisation;;MF;;nc;nc
 2001;150111;2000;prevision;;MF;;nc;nc
 2002;150111;2000;realisation;;MEUR;;nc;nc
@@ -13273,7 +13273,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2005;150111;2003;realisation;;MEUR;;nc;nc
 2004;150111;2004;prevision_plf;;MEUR;;nc;nc
 2005;150111;2004;prevision;;MEUR;;nc;nc
-2005;150111;2005;prevision_plf;;MEUR;;absent;
+2005;150111;2005;prevision_plf;;MEUR;;sans_objet;_
 2001;150112;1999;realisation;;MF;;nc;nc
 2001;150112;2000;prevision;;MF;;nc;nc
 2002;150112;2000;realisation;;MEUR;;nc;nc
@@ -13288,11 +13288,11 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2005;150112;2003;realisation;;MEUR;;nc;nc
 2004;150112;2004;prevision_plf;;MEUR;;nc;nc
 2005;150112;2004;prevision;;MEUR;;nc;nc
-2005;150112;2005;prevision_plf;;MEUR;;absent;
-2005;150113;2003;realisation;;MEUR;;absent;
+2005;150112;2005;prevision_plf;;MEUR;;sans_objet;_
+2005;150113;2003;realisation;;MEUR;;sans_objet;_
 2005;150113;2004;prevision;;MEUR;;nc;nc
 2005;150113;2005;prevision_plf;;MEUR;;nc;nc
-2005;150114;2003;realisation;;MEUR;;absent;
+2005;150114;2003;realisation;;MEUR;;sans_objet;_
 2005;150114;2004;prevision;;MEUR;;nc;nc
 2006;150114;2004;realisation;;MEUR;;nc;nc
 2005;150114;2005;prevision_plf;;MEUR;;nc;nc
@@ -13358,18 +13358,18 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;150114;2025;prevision_plf;15;MEUR;15;chiffre;15
 2026;150114;2025;prevision;15;MEUR;15;chiffre;15
 2026;150114;2026;prevision_plf;15;MEUR;15;chiffre;15
-2005;150115;2003;realisation;;MEUR;;absent;
+2005;150115;2003;realisation;;MEUR;;sans_objet;_
 2005;150115;2004;prevision;;MEUR;;nc;nc
 2005;150115;2005;prevision_plf;;MEUR;;nc;nc
 2019;150115;2017;realisation;15;MEUR;15;chiffre;15
 2019;150115;2018;prevision;15;MEUR;15;chiffre;15
 2019;150115;2019;prevision_plf;15;MEUR;15;chiffre;15
-2005;150116;2003;realisation;;MEUR;;absent;
+2005;150116;2003;realisation;;MEUR;;sans_objet;_
 2005;150116;2004;prevision;;MEUR;;nc;nc
 2005;150116;2005;prevision_plf;;MEUR;;nc;nc
-2005;150117;2003;realisation;;MEUR;;absent;
+2005;150117;2003;realisation;;MEUR;;sans_objet;_
 2005;150117;2004;prevision;;MEUR;;nc;nc
-2006;150117;2004;realisation;;MEUR;;absent;
+2006;150117;2004;realisation;;MEUR;;sans_objet;_
 2005;150117;2005;prevision_plf;;MEUR;;nc;nc
 2006;150117;2005;prevision;10;MEUR;10;chiffre;10
 2007;150117;2005;realisation;10;MEUR;10;chiffre;10
@@ -13433,7 +13433,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;150117;2025;prevision_plf;15;MEUR;15;chiffre;15
 2026;150117;2025;prevision;10;MEUR;10;chiffre;10
 2026;150117;2026;prevision_plf;15;MEUR;15;chiffre;15
-2006;150118;2004;realisation;;MEUR;;absent;
+2006;150118;2004;realisation;;MEUR;;sans_objet;_
 2006;150118;2005;prevision;5;MEUR;5;chiffre;5
 2007;150118;2005;realisation;5;MEUR;5;chiffre;5
 2006;150118;2006;prevision_plf;10;MEUR;10;chiffre;10
@@ -13499,7 +13499,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2008;150119;2006;realisation;0;MEUR;0;epsilon;ε
 2008;150119;2007;prevision;0;MEUR;0;epsilon;ε
 2009;150119;2007;realisation;0;MEUR;0;epsilon;ε
-2008;150119;2008;prevision_plf;;MEUR;;absent;
+2008;150119;2008;prevision_plf;;MEUR;;sans_objet;_
 2009;150119;2008;prevision;0;MEUR;0;epsilon;ε
 2010;150119;2008;realisation;0;MEUR;0;epsilon;ε
 2009;150119;2009;prevision_plf;0;MEUR;0;epsilon;ε
@@ -13691,9 +13691,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;150203;2004;prevision_plf;;MEUR;;nc;nc
 2005;150203;2004;prevision;;MEUR;;nc;nc
 2006;150203;2004;realisation;;MEUR;;nc;nc
-2005;150203;2005;prevision_plf;;MEUR;;absent;
-2006;150203;2005;prevision;;MEUR;;absent;
-2006;150203;2006;prevision_plf;;MEUR;;absent;
+2005;150203;2005;prevision_plf;;MEUR;;sans_objet;_
+2006;150203;2005;prevision;;MEUR;;sans_objet;_
+2006;150203;2006;prevision_plf;;MEUR;;sans_objet;_
 2016;150203;2014;realisation;;MEUR;;sans_objet;-
 2016;150203;2015;prevision;;MEUR;;sans_objet;-
 2017;150203;2015;realisation;;MEUR;;sans_objet;-
@@ -13723,7 +13723,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2005;150204;2003;realisation;;MEUR;;nc;nc
 2004;150204;2004;prevision_plf;;MEUR;;nc;nc
 2005;150204;2004;prevision;;MEUR;;nc;nc
-2005;150204;2005;prevision_plf;;MEUR;;absent;
+2005;150204;2005;prevision_plf;;MEUR;;sans_objet;_
 2001;150205;1999;realisation;800;MF;122.0;chiffre;800
 2001;150205;2000;prevision;800;MF;122.0;chiffre;800
 2002;150205;2000;realisation;183;MEUR;183;chiffre;183
@@ -13738,14 +13738,14 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2005;150205;2003;realisation;210;MEUR;210;chiffre;210
 2004;150205;2004;prevision_plf;;MEUR;;nc;nc
 2005;150205;2004;prevision;;MEUR;;nc;nc
-2005;150205;2005;prevision_plf;;MEUR;;absent;
-2005;150206;2003;realisation;;MEUR;;absent;
+2005;150205;2005;prevision_plf;;MEUR;;sans_objet;_
+2005;150206;2003;realisation;;MEUR;;sans_objet;_
 2005;150206;2004;prevision;;MEUR;;nc;nc
 2005;150206;2005;prevision_plf;;MEUR;;nc;nc
-2005;150207;2003;realisation;;MEUR;;absent;
+2005;150207;2003;realisation;;MEUR;;sans_objet;_
 2005;150207;2004;prevision;;MEUR;;nc;nc
 2005;150207;2005;prevision_plf;;MEUR;;nc;nc
-2005;150208;2003;realisation;;MEUR;;absent;
+2005;150208;2003;realisation;;MEUR;;sans_objet;_
 2005;150208;2004;prevision;;MEUR;;nc;nc
 2005;150208;2005;prevision_plf;;MEUR;;nc;nc
 2019;150209;2017;realisation;;MEUR;;sans_objet;-
@@ -13802,9 +13802,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;150401;2004;prevision_plf;;MEUR;;nc;nc
 2005;150401;2004;prevision;;MEUR;;nc;nc
 2006;150401;2004;realisation;;MEUR;;nc;nc
-2005;150401;2005;prevision_plf;;MEUR;;absent;
-2006;150401;2005;prevision;;MEUR;;absent;
-2006;150401;2006;prevision_plf;;MEUR;;absent;
+2005;150401;2005;prevision_plf;;MEUR;;sans_objet;_
+2006;150401;2005;prevision;;MEUR;;sans_objet;_
+2006;150401;2006;prevision_plf;;MEUR;;sans_objet;_
 2001;150402;1999;realisation;;MF;;nc;nc
 2001;150402;2000;prevision;;MF;;nc;nc
 2002;150402;2000;realisation;;MEUR;;nc;nc
@@ -13901,10 +13901,10 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;150403;2025;prevision_plf;5;MEUR;5;chiffre;5
 2026;150403;2025;prevision;4;MEUR;4;chiffre;4
 2026;150403;2026;prevision_plf;4;MEUR;4;chiffre;4
-2005;150404;2003;realisation;;MEUR;;absent;
+2005;150404;2003;realisation;;MEUR;;sans_objet;_
 2005;150404;2004;prevision;;MEUR;;nc;nc
 2005;150404;2005;prevision_plf;;MEUR;;nc;nc
-2007;150405;2005;realisation;;MEUR;;absent;
+2007;150405;2005;realisation;;MEUR;;sans_objet;_
 2007;150405;2006;prevision;5;MEUR;5;chiffre;5
 2008;150405;2006;realisation;5;MEUR;5;chiffre;5
 2007;150405;2007;prevision_plf;5;MEUR;5;chiffre;5
@@ -14021,27 +14021,27 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;150501;2004;prevision_plf;;MEUR;;nc;nc
 2005;150501;2004;prevision;;MEUR;;nc;nc
 2006;150501;2004;realisation;5;MEUR;5;chiffre;5
-2005;150501;2005;prevision_plf;;MEUR;;absent;
-2006;150501;2005;prevision;;MEUR;;absent;
-2006;150501;2006;prevision_plf;;MEUR;;absent;
+2005;150501;2005;prevision_plf;;MEUR;;sans_objet;_
+2006;150501;2005;prevision;;MEUR;;sans_objet;_
+2006;150501;2006;prevision_plf;;MEUR;;sans_objet;_
 2001;150503;1999;realisation;;MF;;nc;nc
 2001;150503;2000;prevision;;MF;;nc;nc
 2002;150503;2000;realisation;;MEUR;;nc;nc
-2001;150503;2001;prevision_plf;;MF;;absent;
-2002;150503;2001;prevision;;MEUR;;absent;
-2002;150503;2002;prevision_plf;;MEUR;;absent;
+2001;150503;2001;prevision_plf;;MF;;sans_objet;_
+2002;150503;2001;prevision;;MEUR;;sans_objet;_
+2002;150503;2002;prevision_plf;;MEUR;;sans_objet;_
 2001;150504;1999;realisation;7300;MF;1112.9;chiffre;7 300
 2001;150504;2000;prevision;7500;MF;1143.4;chiffre;7 500
 2002;150504;2000;realisation;1372;MEUR;1372;chiffre;1 372
-2001;150504;2001;prevision_plf;;MF;;absent;
-2002;150504;2001;prevision;;MEUR;;absent;
-2002;150504;2002;prevision_plf;;MEUR;;absent;
+2001;150504;2001;prevision_plf;;MF;;sans_objet;_
+2002;150504;2001;prevision;;MEUR;;sans_objet;_
+2002;150504;2002;prevision_plf;;MEUR;;sans_objet;_
 2001;150505;1999;realisation;280;MF;42.7;chiffre;280
 2001;150505;2000;prevision;300;MF;45.7;chiffre;300
 2002;150505;2000;realisation;20;MEUR;20;chiffre;20
-2001;150505;2001;prevision_plf;;MF;;absent;
-2002;150505;2001;prevision;;MEUR;;absent;
-2002;150505;2002;prevision_plf;;MEUR;;absent;
+2001;150505;2001;prevision_plf;;MF;;sans_objet;_
+2002;150505;2001;prevision;;MEUR;;sans_objet;_
+2002;150505;2002;prevision_plf;;MEUR;;sans_objet;_
 2001;150506;1999;realisation;;MF;;nc;nc
 2001;150506;2000;prevision;;MF;;nc;nc
 2002;150506;2000;realisation;;MEUR;;nc;nc
@@ -14064,8 +14064,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2007;150506;2006;prevision;0;MEUR;0;chiffre;0
 2008;150506;2006;realisation;0;MEUR;0;chiffre;0
 2007;150506;2007;prevision_plf;0;MEUR;0;chiffre;0
-2008;150506;2007;prevision;;MEUR;;absent;
-2008;150506;2008;prevision_plf;;MEUR;;absent;
+2008;150506;2007;prevision;;MEUR;;sans_objet;_
+2008;150506;2008;prevision_plf;;MEUR;;sans_objet;_
 2001;150507;1999;realisation;;MF;;nc;nc
 2001;150507;2000;prevision;;MF;;nc;nc
 2002;150507;2000;realisation;;MEUR;;nc;nc
@@ -14090,33 +14090,33 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2001;150508;1999;realisation;14000;MF;2134.3;chiffre;14 000
 2001;150508;2000;prevision;14600;MF;2225.8;chiffre;14 600
 2002;150508;2000;realisation;3293;MEUR;3293;chiffre;3 293
-2001;150508;2001;prevision_plf;;MF;;absent;
-2002;150508;2001;prevision;;MEUR;;absent;
-2002;150508;2002;prevision_plf;;MEUR;;absent;
+2001;150508;2001;prevision_plf;;MF;;sans_objet;_
+2002;150508;2001;prevision;;MEUR;;sans_objet;_
+2002;150508;2002;prevision_plf;;MEUR;;sans_objet;_
 2001;150509;1999;realisation;;MF;;nc;nc
 2001;150509;2000;prevision;;MF;;nc;nc
 2002;150509;2000;realisation;;MEUR;;nc;nc
-2001;150509;2001;prevision_plf;;MF;;absent;
-2002;150509;2001;prevision;;MEUR;;absent;
-2002;150509;2002;prevision_plf;;MEUR;;absent;
-2001;150510;1999;realisation;;MF;;absent;
-2001;150510;2000;prevision;;MF;;absent;
-2002;150510;2000;realisation;;MEUR;;absent;
+2001;150509;2001;prevision_plf;;MF;;sans_objet;_
+2002;150509;2001;prevision;;MEUR;;sans_objet;_
+2002;150509;2002;prevision_plf;;MEUR;;sans_objet;_
+2001;150510;1999;realisation;;MF;;sans_objet;_
+2001;150510;2000;prevision;;MF;;sans_objet;_
+2002;150510;2000;realisation;;MEUR;;sans_objet;_
 2001;150510;2001;prevision_plf;23200;MF;3536.8;chiffre;23 200
 2002;150510;2001;prevision;;MEUR;;nc;nc
-2003;150510;2001;realisation;0;MEUR;0;chiffre;0
+2003;150510;2001;realisation;4350;MEUR;4350;chiffre;4350
 2002;150510;2002;prevision_plf;;MEUR;;nc;nc
 2003;150510;2002;prevision;;MEUR;;nc;nc
-2004;150510;2002;realisation;0;MEUR;0;chiffre;0
+2004;150510;2002;realisation;2880;MEUR;2880;chiffre;2880
 2003;150510;2003;prevision_plf;;MEUR;;nc;nc
 2004;150510;2003;prevision;;MEUR;;nc;nc
-2005;150510;2003;realisation;253;MEUR;253;chiffre;253
+2005;150510;2003;realisation;2535;MEUR;2535;chiffre;2535
 2004;150510;2004;prevision_plf;;MEUR;;nc;nc
 2005;150510;2004;prevision;;MEUR;;nc;nc
 2005;150510;2005;prevision_plf;;MEUR;;nc;nc
-2001;150511;1999;realisation;;MF;;absent;
-2001;150511;2000;prevision;;MF;;absent;
-2002;150511;2000;realisation;;MEUR;;absent;
+2001;150511;1999;realisation;;MF;;sans_objet;_
+2001;150511;2000;prevision;;MF;;sans_objet;_
+2002;150511;2000;realisation;;MEUR;;sans_objet;_
 2001;150511;2001;prevision_plf;;MF;;nc;nc
 2002;150511;2001;prevision;;MEUR;;nc;nc
 2003;150511;2001;realisation;;MEUR;;nc;nc
@@ -14171,10 +14171,10 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2013;150512;2013;prevision_plf;3;MEUR;3;chiffre;3
 2014;150512;2013;prevision;2;MEUR;2;chiffre;2
 2014;150512;2014;prevision_plf;;MEUR;;sans_objet;-
-2005;150513;2003;realisation;;MEUR;;absent;
+2005;150513;2003;realisation;;MEUR;;sans_objet;_
 2005;150513;2004;prevision;;MEUR;;nc;nc
 2005;150513;2005;prevision_plf;;MEUR;;nc;nc
-2005;150514;2003;realisation;;MEUR;;absent;
+2005;150514;2003;realisation;;MEUR;;sans_objet;_
 2005;150514;2004;prevision;;MEUR;;nc;nc
 2006;150514;2004;realisation;2;MEUR;2;chiffre;2
 2005;150514;2005;prevision_plf;;MEUR;;nc;nc
@@ -14201,9 +14201,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2012;150514;2012;prevision_plf;2;MEUR;2;chiffre;2
 2013;150514;2012;prevision;;MEUR;;sans_objet;-
 2013;150514;2013;prevision_plf;;MEUR;;sans_objet;-
-2007;150515;2005;realisation;;MEUR;;absent;
-2007;150515;2006;prevision;;MEUR;;absent;
-2008;150515;2006;realisation;;MEUR;;absent;
+2007;150515;2005;realisation;;MEUR;;sans_objet;_
+2007;150515;2006;prevision;;MEUR;;sans_objet;_
+2008;150515;2006;realisation;;MEUR;;sans_objet;_
 2007;150515;2007;prevision_plf;5;MEUR;5;chiffre;5
 2008;150515;2007;prevision;10;MEUR;10;chiffre;10
 2009;150515;2007;realisation;240;MEUR;240;chiffre;240
@@ -14261,8 +14261,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;150515;2025;prevision_plf;94;MEUR;94;chiffre;94
 2026;150515;2025;prevision;78;MEUR;78;chiffre;78
 2026;150515;2026;prevision_plf;75;MEUR;75;chiffre;75
-2008;150516;2006;realisation;;MEUR;;absent;
-2008;150516;2007;prevision;;MEUR;;absent;
+2008;150516;2006;realisation;;MEUR;;sans_objet;_
+2008;150516;2007;prevision;;MEUR;;sans_objet;_
 2008;150516;2008;prevision_plf;;MEUR;;nc;nc
 2010;150516;2008;realisation;10;MEUR;10;chiffre;10
 2010;150516;2009;prevision;5;MEUR;5;chiffre;5
@@ -14782,10 +14782,10 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2002;150708;2000;realisation;823;MEUR;823;chiffre;823
 2001;150708;2001;prevision_plf;6000;MF;914.7;chiffre;6 000
 2002;150708;2001;prevision;1159;MEUR;1159;chiffre;1 159
-2003;150708;2001;realisation;0;MEUR;0;chiffre;0
+2003;150708;2001;realisation;1550;MEUR;1550;chiffre;1550
 2002;150708;2002;prevision_plf;;MEUR;;nc;nc
 2003;150708;2002;prevision;;MEUR;;nc;nc
-2004;150708;2002;realisation;109;MEUR;109;chiffre;109
+2004;150708;2002;realisation;1090;MEUR;1090;chiffre;1090
 2003;150708;2003;prevision_plf;;MEUR;;nc;nc
 2004;150708;2003;prevision;;MEUR;;nc;nc
 2005;150708;2003;realisation;870;MEUR;870;chiffre;870
@@ -14796,12 +14796,12 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2006;150708;2005;prevision;820;MEUR;820;chiffre;820
 2007;150708;2005;realisation;500;MEUR;500;chiffre;500
 2006;150708;2006;prevision_plf;820;MEUR;820;chiffre;820
-2007;150708;2006;prevision;0;MEUR;0;chiffre;0
-2008;150708;2006;realisation;100;MEUR;100;chiffre;100
-2007;150708;2007;prevision_plf;0;MEUR;0;chiffre;0
-2008;150708;2007;prevision;0;MEUR;0;chiffre;0
+2007;150708;2006;prevision;1000;MEUR;1000;chiffre;1000
+2008;150708;2006;realisation;1000;MEUR;1000;chiffre;1000
+2007;150708;2007;prevision_plf;1000;MEUR;1000;chiffre;1000
+2008;150708;2007;prevision;1000;MEUR;1000;chiffre;1000
 2009;150708;2007;realisation;500;MEUR;500;chiffre;500
-2008;150708;2008;prevision_plf;0;MEUR;0;chiffre;0
+2008;150708;2008;prevision_plf;1000;MEUR;1000;chiffre;1000
 2009;150708;2008;prevision;500;MEUR;500;chiffre;500
 2010;150708;2008;realisation;500;MEUR;500;chiffre;500
 2009;150708;2009;prevision_plf;200;MEUR;200;chiffre;200
@@ -14897,9 +14897,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2015;150709;2015;prevision_plf;;MEUR;;sans_objet;-
 2016;150709;2015;prevision;;MEUR;;sans_objet;-
 2016;150709;2016;prevision_plf;;MEUR;;sans_objet;-
-2007;150710;2005;realisation;;MEUR;;absent;
-2007;150710;2006;prevision;;MEUR;;absent;
-2008;150710;2006;realisation;;MEUR;;absent;
+2007;150710;2005;realisation;;MEUR;;sans_objet;_
+2007;150710;2006;prevision;;MEUR;;sans_objet;_
+2008;150710;2006;realisation;;MEUR;;sans_objet;_
 2007;150710;2007;prevision_plf;;MEUR;;nc;nc
 2008;150710;2007;prevision;;MEUR;;nc;nc
 2009;150710;2007;realisation;0;MEUR;0;epsilon;ε
@@ -14957,8 +14957,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;150710;2025;prevision_plf;0;MEUR;0;epsilon;ε
 2026;150710;2025;prevision;0;MEUR;0;epsilon;ε
 2026;150710;2026;prevision_plf;0;MEUR;0;epsilon;ε
-2008;150711;2006;realisation;;MEUR;;absent;
-2008;150711;2007;prevision;;MEUR;;absent;
+2008;150711;2006;realisation;;MEUR;;sans_objet;_
+2008;150711;2007;prevision;;MEUR;;sans_objet;_
 2009;150711;2007;realisation;;MEUR;;sans_objet;-
 2008;150711;2008;prevision_plf;0;MEUR;0;epsilon;ε
 2009;150711;2008;prevision;2;MEUR;2;chiffre;2
@@ -15350,9 +15350,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;160202;2004;prevision_plf;;MEUR;;nc;nc
 2005;160202;2004;prevision;;MEUR;;nc;nc
 2006;160202;2004;realisation;;MEUR;;nc;nc
-2005;160202;2005;prevision_plf;;MEUR;;absent;
-2006;160202;2005;prevision;;MEUR;;absent;
-2006;160202;2006;prevision_plf;;MEUR;;absent;
+2005;160202;2005;prevision_plf;;MEUR;;sans_objet;_
+2006;160202;2005;prevision;;MEUR;;sans_objet;_
+2006;160202;2006;prevision_plf;;MEUR;;sans_objet;_
 2001;160203;1999;realisation;;MF;;nc;nc
 2001;160203;2000;prevision;;MF;;nc;nc
 2002;160203;2000;realisation;;MEUR;;nc;nc
@@ -15398,7 +15398,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2014;160203;2014;prevision_plf;;MEUR;;sans_objet;-
 2015;160203;2014;prevision;;MEUR;;sans_objet;-
 2015;160203;2015;prevision_plf;;MEUR;;sans_objet;-
-2007;160204;2005;realisation;;MEUR;;absent;
+2007;160204;2005;realisation;;MEUR;;sans_objet;_
 2007;160204;2006;prevision;2;MEUR;2;chiffre;2
 2008;160204;2006;realisation;2;MEUR;2;chiffre;2
 2007;160204;2007;prevision_plf;2;MEUR;2;chiffre;2
@@ -15458,8 +15458,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;160204;2025;prevision_plf;32;MEUR;32;chiffre;32
 2026;160204;2025;prevision;47;MEUR;47;chiffre;47
 2026;160204;2026;prevision_plf;47;MEUR;47;chiffre;47
-2008;160205;2006;realisation;;MEUR;;absent;
-2008;160205;2007;prevision;;MEUR;;absent;
+2008;160205;2006;realisation;;MEUR;;sans_objet;_
+2008;160205;2007;prevision;;MEUR;;sans_objet;_
 2009;160205;2007;realisation;;MEUR;;sans_objet;-
 2008;160205;2008;prevision_plf;15;MEUR;15;chiffre;15
 2009;160205;2008;prevision;15;MEUR;15;chiffre;15
@@ -15938,9 +15938,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2018;160405;2018;prevision_plf;0;MEUR;0;epsilon;ε
 2019;160405;2018;prevision;0;MEUR;0;epsilon;ε
 2019;160405;2019;prevision_plf;0;MEUR;0;epsilon;ε
-2007;160406;2005;realisation;;MEUR;;absent;
-2007;160406;2006;prevision;;MEUR;;absent;
-2008;160406;2006;realisation;;MEUR;;absent;
+2007;160406;2005;realisation;;MEUR;;sans_objet;_
+2007;160406;2006;prevision;;MEUR;;sans_objet;_
+2008;160406;2006;realisation;;MEUR;;sans_objet;_
 2007;160406;2007;prevision_plf;1;MEUR;1;chiffre;1
 2008;160406;2007;prevision;2;MEUR;2;chiffre;2
 2009;160406;2007;realisation;0;MEUR;0;epsilon;ε
@@ -16085,12 +16085,12 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2006;170104;2006;prevision_plf;35;MEUR;35;chiffre;35
 2007;170104;2006;prevision;35;MEUR;35;chiffre;35
 2008;170104;2006;realisation;35;MEUR;35;chiffre;35
-2007;170104;2007;prevision_plf;;MEUR;;absent;
-2008;170104;2007;prevision;;MEUR;;absent;
-2008;170104;2008;prevision_plf;;MEUR;;absent;
-2003;170105;2001;realisation;;MEUR;;absent;
-2003;170105;2002;prevision;;MEUR;;absent;
-2004;170105;2002;realisation;;MEUR;;absent;
+2007;170104;2007;prevision_plf;;MEUR;;sans_objet;_
+2008;170104;2007;prevision;;MEUR;;sans_objet;_
+2008;170104;2008;prevision_plf;;MEUR;;sans_objet;_
+2003;170105;2001;realisation;;MEUR;;sans_objet;_
+2003;170105;2002;prevision;;MEUR;;sans_objet;_
+2004;170105;2002;realisation;;MEUR;;sans_objet;_
 2003;170105;2003;prevision_plf;27;MEUR;27;chiffre;27
 2004;170105;2003;prevision;25;MEUR;25;chiffre;25
 2005;170105;2003;realisation;25;MEUR;25;chiffre;25
@@ -16301,7 +16301,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;170304;2004;prevision_plf;;MEUR;;nc;nc
 2005;170304;2004;prevision;;MEUR;;nc;nc
 2005;170304;2005;prevision_plf;;MEUR;;nc;nc
-2002;170305;2000;realisation;1;MEUR;1;chiffre;1
+2002;170305;2000;realisation;;MEUR;;sans_objet;_
 2002;170305;2001;prevision;1;MEUR;1;chiffre;1
 2003;170305;2001;realisation;3;MEUR;3;chiffre;3
 2002;170305;2002;prevision_plf;8;MEUR;8;chiffre;8
@@ -16316,9 +16316,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2005;170305;2005;prevision_plf;0;MEUR;0;chiffre;0
 2006;170305;2005;prevision;0;MEUR;0;chiffre;0
 2006;170305;2006;prevision_plf;0;MEUR;0;chiffre;0
-2007;170306;2005;realisation;;MEUR;;absent;
-2007;170306;2006;prevision;;MEUR;;absent;
-2008;170306;2006;realisation;;MEUR;;absent;
+2007;170306;2005;realisation;;MEUR;;sans_objet;_
+2007;170306;2006;prevision;;MEUR;;sans_objet;_
+2008;170306;2006;realisation;;MEUR;;sans_objet;_
 2007;170306;2007;prevision_plf;100;MEUR;100;chiffre;100
 2008;170306;2007;prevision;60;MEUR;60;chiffre;60
 2009;170306;2007;realisation;1;MEUR;1;chiffre;1
@@ -16424,15 +16424,15 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2020;170308;2020;prevision_plf;;MEUR;;nc;nc
 2021;170308;2020;prevision;;MEUR;;sans_objet;-
 2021;170308;2021;prevision_plf;;MEUR;;sans_objet;-
-2007;170401;2005;realisation;;MEUR;;absent;
-2007;170401;2006;prevision;;MEUR;;absent;
+2007;170401;2005;realisation;;MEUR;;sans_objet;_
+2007;170401;2006;prevision;;MEUR;;sans_objet;_
 2008;170401;2006;realisation;;MEUR;;nc;nc
 2007;170401;2007;prevision_plf;;MEUR;;nc;nc
 2008;170401;2007;prevision;;MEUR;;nc;nc
 2008;170401;2008;prevision_plf;;MEUR;;nc;nc
-2007;170501;2005;realisation;;MEUR;;absent;
-2007;170501;2006;prevision;;MEUR;;absent;
-2008;170501;2006;realisation;;MEUR;;absent;
+2007;170501;2005;realisation;;MEUR;;sans_objet;_
+2007;170501;2006;prevision;;MEUR;;sans_objet;_
+2008;170501;2006;realisation;;MEUR;;sans_objet;_
 2007;170501;2007;prevision_plf;1;MEUR;1;chiffre;1
 2008;170501;2007;prevision;1;MEUR;1;chiffre;1
 2009;170501;2007;realisation;1;MEUR;1;chiffre;1
@@ -16628,11 +16628,11 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2006;180103;2006;prevision_plf;;MEUR;;nc;nc
 2007;180103;2006;prevision;;MEUR;;nc;nc
 2007;180103;2007;prevision_plf;;MEUR;;nc;nc
-2007;180104;2005;realisation;;MEUR;;absent;
-2007;180104;2006;prevision;;MEUR;;absent;
-2008;180104;2006;realisation;;MEUR;;absent;
+2007;180104;2005;realisation;;MEUR;;sans_objet;_
+2007;180104;2006;prevision;;MEUR;;sans_objet;_
+2008;180104;2006;realisation;;MEUR;;sans_objet;_
 2007;180104;2007;prevision_plf;10;MEUR;10;chiffre;10
-2008;180104;2007;prevision;;MEUR;;absent;
+2008;180104;2007;prevision;;MEUR;;sans_objet;_
 2009;180104;2007;realisation;;MEUR;;sans_objet;-
 2008;180104;2008;prevision_plf;10;MEUR;10;chiffre;10
 2009;180104;2008;prevision;0;MEUR;0;epsilon;ε
@@ -16793,7 +16793,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2017;180304;2017;prevision_plf;;MEUR;;sans_objet;-
 2018;180304;2017;prevision;;MEUR;;sans_objet;-
 2018;180304;2018;prevision_plf;;MEUR;;sans_objet;-
-2005;180305;2003;realisation;;MEUR;;absent;
+2005;180305;2003;realisation;;MEUR;;sans_objet;_
 2005;180305;2004;prevision;0;MEUR;0;chiffre;0
 2006;180305;2004;realisation;0;MEUR;0;chiffre;0
 2005;180305;2005;prevision_plf;25;MEUR;25;chiffre;25
@@ -16832,9 +16832,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2016;180305;2016;prevision_plf;;MEUR;;sans_objet;-
 2017;180305;2016;prevision;;MEUR;;sans_objet;-
 2017;180305;2017;prevision_plf;;MEUR;;sans_objet;-
-2006;180306;2004;realisation;;MEUR;;absent;
-2006;180306;2005;prevision;;MEUR;;absent;
-2007;180306;2005;realisation;;MEUR;;absent;
+2006;180306;2004;realisation;;MEUR;;sans_objet;_
+2006;180306;2005;prevision;;MEUR;;sans_objet;_
+2007;180306;2005;realisation;;MEUR;;sans_objet;_
 2006;180306;2006;prevision_plf;100;MEUR;100;chiffre;100
 2007;180306;2006;prevision;70;MEUR;70;chiffre;70
 2008;180306;2006;realisation;0;MEUR;0;epsilon;ε
@@ -16865,9 +16865,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2015;180306;2015;prevision_plf;;MEUR;;sans_objet;-
 2016;180306;2015;prevision;;MEUR;;sans_objet;-
 2016;180306;2016;prevision_plf;;MEUR;;sans_objet;-
-2006;180307;2004;realisation;;MEUR;;absent;
-2006;180307;2005;prevision;;MEUR;;absent;
-2007;180307;2005;realisation;;MEUR;;absent;
+2006;180307;2004;realisation;;MEUR;;sans_objet;_
+2006;180307;2005;prevision;;MEUR;;sans_objet;_
+2007;180307;2005;realisation;;MEUR;;sans_objet;_
 2006;180307;2006;prevision_plf;;MEUR;;nc;nc
 2007;180307;2006;prevision;20;MEUR;20;chiffre;20
 2008;180307;2006;realisation;20;MEUR;20;chiffre;20
@@ -16898,8 +16898,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2015;180307;2015;prevision_plf;;MEUR;;sans_objet;-
 2016;180307;2015;prevision;;MEUR;;sans_objet;-
 2016;180307;2016;prevision_plf;;MEUR;;sans_objet;-
-2008;180308;2006;realisation;;MEUR;;absent;
-2008;180308;2007;prevision;;MEUR;;absent;
+2008;180308;2006;realisation;;MEUR;;sans_objet;_
+2008;180308;2007;prevision;;MEUR;;sans_objet;_
 2009;180308;2007;realisation;;MEUR;;sans_objet;-
 2008;180308;2008;prevision_plf;0;MEUR;0;epsilon;ε
 2009;180308;2008;prevision;0;MEUR;0;epsilon;ε
@@ -17086,7 +17086,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2005;190203;2003;realisation;;MEUR;;nc;nc
 2004;190203;2004;prevision_plf;;MEUR;;nc;nc
 2005;190203;2004;prevision;;MEUR;;nc;nc
-2006;190203;2004;realisation;;MEUR;;absent;
+2006;190203;2004;realisation;;MEUR;;sans_objet;_
 2005;190203;2005;prevision_plf;;MEUR;;nc;nc
 2006;190203;2005;prevision;10;MEUR;10;chiffre;10
 2007;190203;2005;realisation;10;MEUR;10;chiffre;10
@@ -17342,7 +17342,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2018;190207;2018;prevision_plf;180;MEUR;180;chiffre;180
 2019;190207;2018;prevision;200;MEUR;200;chiffre;200
 2019;190207;2019;prevision_plf;200;MEUR;200;chiffre;200
-2007;190208;2005;realisation;;MEUR;;absent;
+2007;190208;2005;realisation;;MEUR;;sans_objet;_
 2007;190208;2006;prevision;20;MEUR;20;chiffre;20
 2008;190208;2006;realisation;40;MEUR;40;chiffre;40
 2007;190208;2007;prevision_plf;20;MEUR;20;chiffre;20
@@ -17402,9 +17402,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;190208;2025;prevision_plf;110;MEUR;110;chiffre;110
 2026;190208;2025;prevision;85;MEUR;85;chiffre;85
 2026;190208;2026;prevision_plf;85;MEUR;85;chiffre;85
-2007;190209;2005;realisation;;MEUR;;absent;
+2007;190209;2005;realisation;;MEUR;;sans_objet;_
 2007;190209;2006;prevision;0;MEUR;0;epsilon;ε
-2008;190209;2006;realisation;;MEUR;;absent;
+2008;190209;2006;realisation;;MEUR;;sans_objet;_
 2007;190209;2007;prevision_plf;5;MEUR;5;chiffre;5
 2008;190209;2007;prevision;10;MEUR;10;chiffre;10
 2008;190209;2008;prevision_plf;10;MEUR;10;chiffre;10
@@ -17816,10 +17816,10 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2013;200213;2013;prevision_plf;;MEUR;;sans_objet;-
 2014;200213;2013;prevision;;MEUR;;sans_objet;-
 2014;200213;2014;prevision_plf;;MEUR;;sans_objet;-
-2003;200214;2001;realisation;9;MEUR;9;chiffre;9
-2003;200214;2002;prevision;5;MEUR;5;chiffre;5
+2003;200214;2001;realisation;;MEUR;;sans_objet;_
+2003;200214;2002;prevision;9;MEUR;9;chiffre;9
 2004;200214;2002;realisation;10;MEUR;10;chiffre;10
-2003;200214;2003;prevision_plf;6;MEUR;6;chiffre;6
+2003;200214;2003;prevision_plf;5;MEUR;5;chiffre;5
 2004;200214;2003;prevision;5;MEUR;5;chiffre;5
 2005;200214;2003;realisation;5;MEUR;5;chiffre;5
 2004;200214;2004;prevision_plf;0;MEUR;0;epsilon;ε
@@ -17858,7 +17858,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2019;200214;2019;prevision_plf;0;MEUR;0;epsilon;ε
 2020;200214;2019;prevision;;MEUR;;sans_objet;-
 2020;200214;2020;prevision_plf;;MEUR;;sans_objet;-
-2006;200215;2004;realisation;;MEUR;;absent;
+2006;200215;2004;realisation;;MEUR;;sans_objet;_
 2006;200215;2005;prevision;;MEUR;;nc;nc
 2007;200215;2005;realisation;0;MEUR;0;epsilon;ε
 2006;200215;2006;prevision_plf;;MEUR;;nc;nc
@@ -18027,9 +18027,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2007;200302;2006;prevision;730;MEUR;730;chiffre;730
 2008;200302;2006;realisation;800;MEUR;800;chiffre;800
 2007;200302;2007;prevision_plf;900;MEUR;900;chiffre;900
-2008;200302;2007;prevision;0;MEUR;0;chiffre;0
+2008;200302;2007;prevision;1000;MEUR;1000;chiffre;1000
 2009;200302;2007;realisation;1000;MEUR;1000;chiffre;1 000
-2008;200302;2008;prevision_plf;0;MEUR;0;chiffre;0
+2008;200302;2008;prevision_plf;1390;MEUR;1390;chiffre;1390
 2009;200302;2008;prevision;1390;MEUR;1390;chiffre;1 390
 2010;200302;2008;realisation;1500;MEUR;1500;chiffre;1 500
 2009;200302;2009;prevision_plf;2010;MEUR;2010;chiffre;2 010
@@ -18275,7 +18275,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2018;200306;2018;prevision_plf;;MEUR;;nc;nc
 2019;200306;2018;prevision;;MEUR;;nc;nc
 2019;200306;2019;prevision_plf;;MEUR;;nc;nc
-2001;200307;1999;realisation;;MF;;absent;
+2001;200307;1999;realisation;;MF;;sans_objet;_
 2001;200307;2000;prevision;;MF;;nc;nc
 2002;200307;2000;realisation;;MEUR;;nc;nc
 2001;200307;2001;prevision_plf;;MF;;nc;nc
@@ -18353,7 +18353,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;200307;2025;prevision_plf;;MEUR;;nc;nc
 2026;200307;2025;prevision;;MEUR;;nc;nc
 2026;200307;2026;prevision_plf;;MEUR;;nc;nc
-2006;200308;2004;realisation;;MEUR;;absent;
+2006;200308;2004;realisation;;MEUR;;sans_objet;_
 2006;200308;2005;prevision;0;MEUR;0;chiffre;0
 2007;200308;2005;realisation;0;MEUR;0;chiffre;0
 2006;200308;2006;prevision_plf;50;MEUR;50;chiffre;50
@@ -18374,8 +18374,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2011;200308;2011;prevision_plf;3;MEUR;3;chiffre;3
 2012;200308;2011;prevision;3;MEUR;3;chiffre;3
 2012;200308;2012;prevision_plf;3;MEUR;3;chiffre;3
-2008;200309;2006;realisation;;MEUR;;absent;
-2008;200309;2007;prevision;;MEUR;;absent;
+2008;200309;2006;realisation;;MEUR;;sans_objet;_
+2008;200309;2007;prevision;;MEUR;;sans_objet;_
 2009;200309;2007;realisation;;MEUR;;sans_objet;-
 2008;200309;2008;prevision_plf;0;MEUR;0;epsilon;ε
 2009;200309;2008;prevision;1;MEUR;1;chiffre;1
@@ -18626,16 +18626,16 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2008;210103;2008;prevision_plf;;MEUR;;nc;nc
 2009;210103;2008;prevision;;MEUR;;nc;nc
 2009;210103;2009;prevision_plf;;MEUR;;nc;nc
-2003;210104;2001;realisation;;MEUR;;absent;
+2003;210104;2001;realisation;;MEUR;;sans_objet;_
 2003;210104;2002;prevision;57;MEUR;57;chiffre;57
 2004;210104;2002;realisation;50;MEUR;50;chiffre;50
 2003;210104;2003;prevision_plf;673;MEUR;673;chiffre;673
 2004;210104;2003;prevision;600;MEUR;600;chiffre;600
 2005;210104;2003;realisation;540;MEUR;540;chiffre;540
-2004;210104;2004;prevision_plf;;MEUR;;absent;
-2005;210104;2004;prevision;;MEUR;;absent;
-2005;210104;2005;prevision_plf;;MEUR;;absent;
-2003;210105;2001;realisation;5;MEUR;5;chiffre;5
+2004;210104;2004;prevision_plf;;MEUR;;sans_objet;_
+2005;210104;2004;prevision;;MEUR;;sans_objet;_
+2005;210104;2005;prevision_plf;;MEUR;;sans_objet;_
+2003;210105;2001;realisation;;MEUR;;sans_objet;_
 2003;210105;2002;prevision;2;MEUR;2;chiffre;2
 2004;210105;2002;realisation;5;MEUR;5;chiffre;5
 2003;210105;2003;prevision_plf;4;MEUR;4;chiffre;4
@@ -18647,7 +18647,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2005;210105;2005;prevision_plf;2;MEUR;2;chiffre;2
 2006;210105;2005;prevision;5;MEUR;5;chiffre;5
 2006;210105;2006;prevision_plf;4;MEUR;4;chiffre;4
-2003;210107;2001;realisation;;MEUR;;absent;
+2003;210107;2001;realisation;;MEUR;;sans_objet;_
 2003;210107;2002;prevision;;MEUR;;nc;nc
 2004;210107;2002;realisation;;MEUR;;nc;nc
 2003;210107;2003;prevision_plf;;MEUR;;nc;nc
@@ -18659,7 +18659,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2005;210107;2005;prevision_plf;;MEUR;;nc;nc
 2006;210107;2005;prevision;0;MEUR;0;chiffre;0
 2006;210107;2006;prevision_plf;0;MEUR;0;chiffre;0
-2005;210108;2003;realisation;;MEUR;;absent;
+2005;210108;2003;realisation;;MEUR;;sans_objet;_
 2005;210108;2004;prevision;5;MEUR;5;chiffre;5
 2006;210108;2004;realisation;1;MEUR;1;chiffre;1
 2005;210108;2005;prevision_plf;5;MEUR;5;chiffre;5
@@ -18674,7 +18674,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2008;210108;2008;prevision_plf;0;MEUR;0;chiffre;0
 2009;210108;2008;prevision;0;MEUR;0;chiffre;0
 2009;210108;2009;prevision_plf;0;MEUR;0;chiffre;0
-2005;210109;2003;realisation;;MEUR;;absent;
+2005;210109;2003;realisation;;MEUR;;sans_objet;_
 2005;210109;2004;prevision;;MEUR;;nc;nc
 2006;210109;2004;realisation;;MEUR;;absent;
 2005;210109;2005;prevision_plf;;MEUR;;nc;nc
@@ -18878,9 +18878,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2006;210303;2006;prevision_plf;10;MEUR;10;chiffre;10
 2007;210303;2006;prevision;0;MEUR;0;epsilon;ε
 2008;210303;2006;realisation;3;MEUR;3;chiffre;3
-2007;210303;2007;prevision_plf;;MEUR;;absent;
-2008;210303;2007;prevision;;MEUR;;absent;
-2008;210303;2008;prevision_plf;;MEUR;;absent;
+2007;210303;2007;prevision_plf;;MEUR;;sans_objet;_
+2008;210303;2007;prevision;;MEUR;;sans_objet;_
+2008;210303;2008;prevision_plf;;MEUR;;sans_objet;_
 2001;210304;1999;realisation;;MF;;nc;nc
 2001;210304;2000;prevision;;MF;;nc;nc
 2002;210304;2000;realisation;;MEUR;;nc;nc
@@ -18935,9 +18935,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2018;210304;2018;prevision_plf;;MEUR;;nc;nc
 2019;210304;2018;prevision;;MEUR;;nc;nc
 2019;210304;2019;prevision_plf;;MEUR;;nc;nc
-2003;210305;2001;realisation;;MEUR;;absent;
-2003;210305;2002;prevision;;MEUR;;absent;
-2004;210305;2002;realisation;;MEUR;;absent;
+2003;210305;2001;realisation;;MEUR;;sans_objet;_
+2003;210305;2002;prevision;;MEUR;;sans_objet;_
+2004;210305;2002;realisation;;MEUR;;sans_objet;_
 2003;210305;2003;prevision_plf;32;MEUR;32;chiffre;32
 2004;210305;2003;prevision;25;MEUR;25;chiffre;25
 2005;210305;2003;realisation;25;MEUR;25;chiffre;25
@@ -19007,8 +19007,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;210305;2025;prevision_plf;84;MEUR;84;chiffre;84
 2026;210305;2025;prevision;83;MEUR;83;chiffre;83
 2026;210305;2026;prevision_plf;83;MEUR;83;chiffre;83
-2003;210306;2001;realisation;;MEUR;;absent;
-2003;210306;2002;prevision;;MEUR;;absent;
+2003;210306;2001;realisation;;MEUR;;sans_objet;_
+2003;210306;2002;prevision;;MEUR;;sans_objet;_
 2004;210306;2002;realisation;5;MEUR;5;chiffre;5
 2003;210306;2003;prevision_plf;;MEUR;;nc;nc
 2004;210306;2003;prevision;5;MEUR;5;chiffre;5
@@ -19067,7 +19067,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2021;210306;2021;prevision_plf;;MEUR;;sans_objet;-
 2022;210306;2021;prevision;;MEUR;;sans_objet;-
 2022;210306;2022;prevision_plf;;MEUR;;sans_objet;-
-2004;210307;2002;realisation;;MEUR;;absent;
+2004;210307;2002;realisation;;MEUR;;sans_objet;_
 2004;210307;2003;prevision;;MEUR;;nc;nc
 2005;210307;2003;realisation;;MEUR;;nc;nc
 2004;210307;2004;prevision_plf;;MEUR;;nc;nc
@@ -19136,9 +19136,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;210307;2025;prevision_plf;0;MEUR;0;epsilon;ε
 2026;210307;2025;prevision;0;MEUR;0;epsilon;ε
 2026;210307;2026;prevision_plf;0;MEUR;0;epsilon;ε
-2005;210308;2003;realisation;;MEUR;;absent;
-2005;210308;2004;prevision;;MEUR;;absent;
-2006;210308;2004;realisation;;MEUR;;absent;
+2005;210308;2003;realisation;;MEUR;;sans_objet;_
+2005;210308;2004;prevision;;MEUR;;sans_objet;_
+2006;210308;2004;realisation;;MEUR;;sans_objet;_
 2005;210308;2005;prevision_plf;10;MEUR;10;chiffre;10
 2006;210308;2005;prevision;30;MEUR;30;chiffre;30
 2007;210308;2005;realisation;35;MEUR;35;chiffre;35
@@ -19271,7 +19271,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2006;210310;2004;realisation;0;MEUR;0;chiffre;0
 2006;210310;2005;prevision;0;MEUR;0;chiffre;0
 2006;210310;2006;prevision_plf;;MEUR;;nc;nc
-2006;210311;2004;realisation;;MEUR;;absent;
+2006;210311;2004;realisation;;MEUR;;sans_objet;_
 2006;210311;2005;prevision;100;MEUR;100;chiffre;100
 2007;210311;2005;realisation;130;MEUR;130;chiffre;130
 2006;210311;2006;prevision_plf;450;MEUR;450;chiffre;450
@@ -19319,7 +19319,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2020;210311;2020;prevision_plf;;MEUR;;sans_objet;-
 2021;210311;2020;prevision;;MEUR;;sans_objet;-
 2021;210311;2021;prevision_plf;;MEUR;;sans_objet;-
-2006;210312;2004;realisation;;MEUR;;absent;
+2006;210312;2004;realisation;;MEUR;;sans_objet;_
 2006;210312;2005;prevision;10;MEUR;10;chiffre;10
 2007;210312;2005;realisation;1;MEUR;1;chiffre;1
 2006;210312;2006;prevision_plf;33;MEUR;33;chiffre;33
@@ -19364,8 +19364,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2019;210312;2019;prevision_plf;;MEUR;;sans_objet;-
 2020;210312;2019;prevision;;MEUR;;sans_objet;-
 2020;210312;2020;prevision_plf;;MEUR;;sans_objet;-
-2006;210313;2004;realisation;;MEUR;;absent;
-2006;210313;2005;prevision;;MEUR;;absent;
+2006;210313;2004;realisation;;MEUR;;sans_objet;_
+2006;210313;2005;prevision;;MEUR;;sans_objet;_
 2007;210313;2005;realisation;2;MEUR;2;chiffre;2
 2006;210313;2006;prevision_plf;515;MEUR;515;chiffre;515
 2007;210313;2006;prevision;515;MEUR;515;chiffre;515
@@ -19427,7 +19427,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;210313;2025;prevision_plf;600;MEUR;600;chiffre;600
 2026;210313;2025;prevision;697;MEUR;697;chiffre;697
 2026;210313;2026;prevision_plf;838;MEUR;838;chiffre;838
-2006;210314;2004;realisation;;MEUR;;absent;
+2006;210314;2004;realisation;;MEUR;;sans_objet;_
 2006;210314;2005;prevision;;MEUR;;nc;nc
 2007;210314;2005;realisation;1;MEUR;1;chiffre;1
 2006;210314;2006;prevision_plf;;MEUR;;nc;nc
@@ -19445,9 +19445,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2010;210314;2010;prevision_plf;;MEUR;;sans_objet;-
 2011;210314;2010;prevision;;MEUR;;sans_objet;-
 2011;210314;2011;prevision_plf;;MEUR;;sans_objet;-
-2006;210315;2004;realisation;;MEUR;;absent;
-2006;210315;2005;prevision;;MEUR;;absent;
-2007;210315;2005;realisation;;MEUR;;absent;
+2006;210315;2004;realisation;;MEUR;;sans_objet;_
+2006;210315;2005;prevision;;MEUR;;sans_objet;_
+2007;210315;2005;realisation;;MEUR;;sans_objet;_
 2006;210315;2006;prevision_plf;10;MEUR;10;chiffre;10
 2007;210315;2006;prevision;1;MEUR;1;chiffre;1
 2008;210315;2006;realisation;0;MEUR;0;epsilon;ε
@@ -19508,7 +19508,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;210315;2025;prevision_plf;98;MEUR;98;chiffre;98
 2026;210315;2025;prevision;109;MEUR;109;chiffre;109
 2026;210315;2026;prevision_plf;;MEUR;;sans_objet;-
-2007;210316;2005;realisation;;MEUR;;absent;
+2007;210316;2005;realisation;;MEUR;;sans_objet;_
 2007;210316;2006;prevision;15;MEUR;15;chiffre;15
 2008;210316;2006;realisation;10;MEUR;10;chiffre;10
 2007;210316;2007;prevision_plf;15;MEUR;15;chiffre;15
@@ -19568,9 +19568,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;210316;2025;prevision_plf;142;MEUR;142;chiffre;142
 2026;210316;2025;prevision;168;MEUR;168;chiffre;168
 2026;210316;2026;prevision_plf;168;MEUR;168;chiffre;168
-2007;210317;2005;realisation;;MEUR;;absent;
-2007;210317;2006;prevision;;MEUR;;absent;
-2008;210317;2006;realisation;;MEUR;;absent;
+2007;210317;2005;realisation;;MEUR;;sans_objet;_
+2007;210317;2006;prevision;;MEUR;;sans_objet;_
+2008;210317;2006;realisation;;MEUR;;sans_objet;_
 2007;210317;2007;prevision_plf;2;MEUR;2;chiffre;2
 2008;210317;2007;prevision;0;MEUR;0;epsilon;ε
 2009;210317;2007;realisation;0;MEUR;0;epsilon;ε
@@ -19583,9 +19583,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2010;210317;2010;prevision_plf;;MEUR;;sans_objet;-
 2011;210317;2010;prevision;;MEUR;;sans_objet;-
 2011;210317;2011;prevision_plf;;MEUR;;sans_objet;-
-2007;210318;2005;realisation;;MEUR;;absent;
-2007;210318;2006;prevision;;MEUR;;absent;
-2008;210318;2006;realisation;;MEUR;;absent;
+2007;210318;2005;realisation;;MEUR;;sans_objet;_
+2007;210318;2006;prevision;;MEUR;;sans_objet;_
+2008;210318;2006;realisation;;MEUR;;sans_objet;_
 2007;210318;2007;prevision_plf;10;MEUR;10;chiffre;10
 2008;210318;2007;prevision;5;MEUR;5;chiffre;5
 2009;210318;2007;realisation;4;MEUR;4;chiffre;4
@@ -20273,23 +20273,23 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;220109;2025;prevision_plf;10;MEUR;10;chiffre;10
 2026;220109;2025;prevision;5;MEUR;5;chiffre;5
 2026;220109;2026;prevision_plf;60;MEUR;60;chiffre;60
-2005;220201;2003;realisation;;MEUR;;absent;
-2005;220201;2004;prevision;;MEUR;;absent;
-2006;220201;2004;realisation;;MEUR;;absent;
+2005;220201;2003;realisation;;MEUR;;sans_objet;_
+2005;220201;2004;prevision;;MEUR;;sans_objet;_
+2006;220201;2004;realisation;;MEUR;;sans_objet;_
 2005;220201;2005;prevision_plf;130;MEUR;130;chiffre;130
 2006;220201;2005;prevision;140;MEUR;140;chiffre;140
 2007;220201;2005;realisation;100;MEUR;100;chiffre;100
 2006;220201;2006;prevision_plf;260;MEUR;260;chiffre;260
 2007;220201;2006;prevision;200;MEUR;200;chiffre;200
 2008;220201;2006;realisation;300;MEUR;300;chiffre;300
-2007;220201;2007;prevision_plf;;MEUR;;absent;
-2008;220201;2007;prevision;;MEUR;;absent;
-2008;220201;2008;prevision_plf;;MEUR;;absent;
-2007;220202;2005;realisation;;MEUR;;absent;
+2007;220201;2007;prevision_plf;;MEUR;;sans_objet;_
+2008;220201;2007;prevision;;MEUR;;sans_objet;_
+2008;220201;2008;prevision_plf;;MEUR;;sans_objet;_
+2007;220202;2005;realisation;;MEUR;;sans_objet;_
 2007;220202;2006;prevision;10;MEUR;10;chiffre;10
 2007;220202;2007;prevision_plf;200;MEUR;200;chiffre;200
-2008;220301;2006;realisation;;MEUR;;absent;
-2008;220301;2007;prevision;;MEUR;;absent;
+2008;220301;2006;realisation;;MEUR;;sans_objet;_
+2008;220301;2007;prevision;;MEUR;;sans_objet;_
 2009;220301;2007;realisation;;MEUR;;sans_objet;-
 2008;220301;2008;prevision_plf;5;MEUR;5;chiffre;5
 2009;220301;2008;prevision;0;MEUR;0;epsilon;ε
@@ -20472,8 +20472,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2001;230104;2000;prevision;280;MF;42.7;chiffre;280
 2002;230104;2000;realisation;70;MEUR;70;chiffre;70
 2001;230104;2001;prevision_plf;;MF;;nc;nc
-2002;230104;2001;prevision;;MEUR;;absent;
-2002;230104;2002;prevision_plf;;MEUR;;absent;
+2002;230104;2001;prevision;;MEUR;;sans_objet;_
+2002;230104;2002;prevision_plf;;MEUR;;sans_objet;_
 2021;230104;2019;realisation;;MEUR;;sans_objet;-
 2021;230104;2020;prevision;;MEUR;;nc;nc
 2022;230104;2020;realisation;0;MEUR;0;epsilon;ε
@@ -20591,8 +20591,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2020;230202;2020;prevision_plf;;MEUR;;sans_objet;-
 2021;230202;2020;prevision;;MEUR;;sans_objet;-
 2021;230202;2021;prevision_plf;;MEUR;;sans_objet;-
-2008;230203;2006;realisation;;MEUR;;absent;
-2008;230203;2007;prevision;;MEUR;;absent;
+2008;230203;2006;realisation;;MEUR;;sans_objet;_
+2008;230203;2007;prevision;;MEUR;;sans_objet;_
 2009;230203;2007;realisation;;MEUR;;sans_objet;-
 2008;230203;2008;prevision_plf;10;MEUR;10;chiffre;10
 2009;230203;2008;prevision;0;MEUR;0;epsilon;ε
@@ -20636,8 +20636,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2021;230203;2021;prevision_plf;;MEUR;;sans_objet;-
 2022;230203;2021;prevision;;MEUR;;sans_objet;-
 2022;230203;2022;prevision_plf;;MEUR;;sans_objet;-
-2008;230204;2006;realisation;;MEUR;;absent;
-2008;230204;2007;prevision;;MEUR;;absent;
+2008;230204;2006;realisation;;MEUR;;sans_objet;_
+2008;230204;2007;prevision;;MEUR;;sans_objet;_
 2009;230204;2007;realisation;;MEUR;;sans_objet;-
 2008;230204;2008;prevision_plf;5;MEUR;5;chiffre;5
 2009;230204;2008;prevision;1;MEUR;1;chiffre;1
@@ -20756,7 +20756,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;230303;2025;prevision_plf;1;MEUR;1;chiffre;1
 2026;230303;2025;prevision;1;MEUR;1;chiffre;1
 2026;230303;2026;prevision_plf;1;MEUR;1;chiffre;1
-2008;230304;2006;realisation;;MEUR;;absent;
+2008;230304;2006;realisation;;MEUR;;sans_objet;_
 2008;230304;2007;prevision;0;MEUR;0;epsilon;ε
 2009;230304;2007;realisation;0;MEUR;0;epsilon;ε
 2008;230304;2008;prevision_plf;15;MEUR;15;chiffre;15
@@ -21152,8 +21152,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;230410;2025;prevision_plf;;MEUR;;nc;nc
 2026;230410;2025;prevision;;MEUR;;nc;nc
 2026;230410;2026;prevision_plf;;MEUR;;nc;nc
-2008;230411;2006;realisation;;MEUR;;absent;
-2008;230411;2007;prevision;;MEUR;;absent;
+2008;230411;2006;realisation;;MEUR;;sans_objet;_
+2008;230411;2007;prevision;;MEUR;;sans_objet;_
 2009;230411;2007;realisation;;MEUR;;sans_objet;-
 2008;230411;2008;prevision_plf;0;MEUR;0;epsilon;ε
 2009;230411;2008;prevision;;MEUR;;sans_objet;-
@@ -21815,9 +21815,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2018;230603;2018;prevision_plf;;MEUR;;nc;nc
 2019;230603;2018;prevision;;MEUR;;nc;nc
 2019;230603;2019;prevision_plf;;MEUR;;nc;nc
-2005;230604;2003;realisation;;MEUR;;absent;
-2005;230604;2004;prevision;;MEUR;;absent;
-2006;230604;2004;realisation;;MEUR;;absent;
+2005;230604;2003;realisation;;MEUR;;sans_objet;_
+2005;230604;2004;prevision;;MEUR;;sans_objet;_
+2006;230604;2004;realisation;;MEUR;;sans_objet;_
 2005;230604;2005;prevision_plf;5;MEUR;5;chiffre;5
 2006;230604;2005;prevision;5;MEUR;5;chiffre;5
 2007;230604;2005;realisation;10;MEUR;10;chiffre;10
@@ -22058,9 +22058,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2006;240101;2006;prevision_plf;10;MEUR;10;chiffre;10
 2007;240101;2006;prevision;10;MEUR;10;chiffre;10
 2008;240101;2006;realisation;10;MEUR;10;chiffre;10
-2007;240101;2007;prevision_plf;;MEUR;;absent;
-2008;240101;2007;prevision;;MEUR;;absent;
-2008;240101;2008;prevision_plf;;MEUR;;absent;
+2007;240101;2007;prevision_plf;;MEUR;;sans_objet;_
+2008;240101;2007;prevision;;MEUR;;sans_objet;_
+2008;240101;2008;prevision_plf;;MEUR;;sans_objet;_
 2009;250101;2007;realisation;;MEUR;;nc;nc
 2009;250101;2008;prevision;;MEUR;;nc;nc
 2010;250101;2008;realisation;;MEUR;;nc;nc
@@ -22462,7 +22462,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2005;300107;2003;realisation;45;MEUR;45;chiffre;45
 2004;300107;2004;prevision_plf;40;MEUR;40;chiffre;40
 2005;300107;2004;prevision;;MEUR;;nc;nc
-2005;300107;2005;prevision_plf;;MEUR;;absent;
+2005;300107;2005;prevision_plf;;MEUR;;sans_objet;_
 2001;300108;1999;realisation;200;MF;30.5;chiffre;200
 2001;300108;2000;prevision;200;MF;30.5;chiffre;200
 2002;300108;2000;realisation;30;MEUR;30;chiffre;30
@@ -22484,8 +22484,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2006;300108;2006;prevision_plf;30;MEUR;30;chiffre;30
 2007;300108;2006;prevision;30;MEUR;30;chiffre;30
 2007;300108;2007;prevision_plf;30;MEUR;30;chiffre;30
-2003;300109;2001;realisation;;MEUR;;absent;
-2003;300109;2002;prevision;;MEUR;;absent;
+2003;300109;2001;realisation;;MEUR;;sans_objet;_
+2003;300109;2002;prevision;;MEUR;;sans_objet;_
 2004;300109;2002;realisation;0;MEUR;0;epsilon;ε
 2003;300109;2003;prevision_plf;0;MEUR;0;epsilon;ε
 2004;300109;2003;prevision;0;MEUR;0;epsilon;ε
@@ -22556,7 +22556,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;300109;2025;prevision_plf;0;MEUR;0;epsilon;ε
 2026;300109;2025;prevision;0;MEUR;0;epsilon;ε
 2026;300109;2026;prevision_plf;0;MEUR;0;epsilon;ε
-2006;300110;2004;realisation;;MEUR;;absent;
+2006;300110;2004;realisation;;MEUR;;sans_objet;_
 2006;300110;2005;prevision;;MEUR;;absent;
 2007;300110;2005;realisation;0;MEUR;0;epsilon;ε
 2006;300110;2006;prevision_plf;;MEUR;;absent;
@@ -22952,7 +22952,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;300204;2025;prevision_plf;;MEUR;;sans_objet;-
 2026;300204;2025;prevision;;MEUR;;nc;nc
 2026;300204;2026;prevision_plf;;MEUR;;nc;nc
-2002;300205;2000;realisation;;MEUR;;absent;
+2002;300205;2000;realisation;;MEUR;;sans_objet;_
 2002;300205;2001;prevision;;MEUR;;nc;nc
 2003;300205;2001;realisation;;MEUR;;nc;nc
 2002;300205;2002;prevision_plf;;MEUR;;nc;nc
@@ -23018,7 +23018,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2022;300205;2022;prevision_plf;;MEUR;;sans_objet;-
 2023;300205;2022;prevision;;MEUR;;sans_objet;-
 2023;300205;2023;prevision_plf;;MEUR;;sans_objet;-
-2005;300206;2003;realisation;;MEUR;;absent;
+2005;300206;2003;realisation;;MEUR;;sans_objet;_
 2005;300206;2004;prevision;;MEUR;;nc;nc
 2006;300206;2004;realisation;;MEUR;;nc;nc
 2005;300206;2005;prevision_plf;;MEUR;;nc;nc
@@ -23084,9 +23084,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;300206;2025;prevision_plf;;MEUR;;nc;nc
 2026;300206;2025;prevision;492;MEUR;492;chiffre;492
 2026;300206;2026;prevision_plf;;MEUR;;nc;nc
-2005;300207;2003;realisation;;MEUR;;absent;
-2005;300207;2004;prevision;;MEUR;;absent;
-2006;300207;2004;realisation;;MEUR;;absent;
+2005;300207;2003;realisation;;MEUR;;sans_objet;_
+2005;300207;2004;prevision;;MEUR;;sans_objet;_
+2006;300207;2004;realisation;;MEUR;;sans_objet;_
 2005;300207;2005;prevision_plf;15;MEUR;15;chiffre;15
 2006;300207;2005;prevision;;MEUR;;absent;
 2007;300207;2005;realisation;0;MEUR;0;epsilon;ε
@@ -23135,9 +23135,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2020;300207;2020;prevision_plf;;MEUR;;sans_objet;-
 2021;300207;2020;prevision;;MEUR;;sans_objet;-
 2021;300207;2021;prevision_plf;;MEUR;;sans_objet;-
-2007;300208;2005;realisation;;MEUR;;absent;
-2007;300208;2006;prevision;;MEUR;;absent;
-2008;300208;2006;realisation;;MEUR;;absent;
+2007;300208;2005;realisation;;MEUR;;sans_objet;_
+2007;300208;2006;prevision;;MEUR;;sans_objet;_
+2008;300208;2006;realisation;;MEUR;;sans_objet;_
 2007;300208;2007;prevision_plf;5;MEUR;5;chiffre;5
 2008;300208;2007;prevision;5;MEUR;5;chiffre;5
 2009;300208;2007;realisation;5;MEUR;5;chiffre;5
@@ -23660,9 +23660,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2011;310203;2011;prevision_plf;0;MEUR;0;chiffre;0
 2012;310203;2011;prevision;0;MEUR;0;chiffre;0
 2012;310203;2012;prevision_plf;0;MEUR;0;chiffre;0
-2003;310204;2001;realisation;;MEUR;;absent;
-2003;310204;2002;prevision;;MEUR;;absent;
-2004;310204;2002;realisation;;MEUR;;absent;
+2003;310204;2001;realisation;;MEUR;;sans_objet;_
+2003;310204;2002;prevision;;MEUR;;sans_objet;_
+2004;310204;2002;realisation;;MEUR;;sans_objet;_
 2003;310204;2003;prevision_plf;0;MEUR;0;epsilon;ε
 2004;310204;2003;prevision;0;MEUR;0;chiffre;0
 2005;310204;2003;realisation;0;MEUR;0;chiffre;0
@@ -23720,9 +23720,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2021;310204;2021;prevision_plf;;MEUR;;sans_objet;-
 2022;310204;2021;prevision;;MEUR;;sans_objet;-
 2022;310204;2022;prevision_plf;;MEUR;;sans_objet;-
-2003;310205;2001;realisation;;MEUR;;absent;
-2003;310205;2002;prevision;;MEUR;;absent;
-2004;310205;2002;realisation;;MEUR;;absent;
+2003;310205;2001;realisation;;MEUR;;sans_objet;_
+2003;310205;2002;prevision;;MEUR;;sans_objet;_
+2004;310205;2002;realisation;;MEUR;;sans_objet;_
 2003;310205;2003;prevision_plf;0;MEUR;0;epsilon;ε
 2004;310205;2003;prevision;0;MEUR;0;epsilon;ε
 2005;310205;2003;realisation;0;MEUR;0;epsilon;ε
@@ -23785,7 +23785,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2005;320101;2003;realisation;500;MEUR;500;chiffre;500
 2004;320101;2004;prevision_plf;400;MEUR;400;chiffre;400
 2005;320101;2004;prevision;455;MEUR;455;chiffre;455
-2005;320101;2005;prevision_plf;;MEUR;;absent;
+2005;320101;2005;prevision_plf;;MEUR;;sans_objet;_
 2001;320102;1999;realisation;360;MF;54.9;chiffre;360
 2001;320102;2000;prevision;310;MF;47.3;chiffre;310
 2002;320102;2000;realisation;40;MEUR;40;chiffre;40
@@ -23830,25 +23830,25 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2002;320103;2000;realisation;762;MEUR;762;chiffre;762
 2001;320103;2001;prevision_plf;;MF;;nc;nc
 2002;320103;2001;prevision;;MEUR;;nc;nc
-2003;320103;2001;realisation;0;MEUR;0;chiffre;0
+2003;320103;2001;realisation;1250;MEUR;1250;chiffre;1250
 2002;320103;2002;prevision_plf;;MEUR;;nc;nc
 2003;320103;2002;prevision;;MEUR;;nc;nc
-2004;320103;2002;realisation;0;MEUR;0;chiffre;0
+2004;320103;2002;realisation;3940;MEUR;3940;chiffre;3940
 2003;320103;2003;prevision_plf;;MEUR;;nc;nc
 2004;320103;2003;prevision;;MEUR;;nc;nc
-2005;320103;2003;realisation;0;MEUR;0;chiffre;0
+2005;320103;2003;realisation;1830;MEUR;1830;chiffre;1830
 2004;320103;2004;prevision_plf;;MEUR;;nc;nc
 2005;320103;2004;prevision;;MEUR;;nc;nc
-2006;320103;2004;realisation;0;MEUR;0;chiffre;0
+2006;320103;2004;realisation;1780;MEUR;1780;chiffre;1780
 2005;320103;2005;prevision_plf;;MEUR;;nc;nc
-2006;320103;2005;prevision;0;MEUR;0;chiffre;0
-2007;320103;2005;realisation;160;MEUR;160;chiffre;160
-2006;320103;2006;prevision_plf;221;MEUR;221;chiffre;221
-2007;320103;2006;prevision;0;MEUR;0;chiffre;0
-2008;320103;2006;realisation;260;MEUR;260;chiffre;260
-2007;320103;2007;prevision_plf;230;MEUR;230;chiffre;230
-2008;320103;2007;prevision;0;MEUR;0;chiffre;0
-2008;320103;2008;prevision_plf;0;MEUR;0;chiffre;0
+2006;320103;2005;prevision;1780;MEUR;1780;chiffre;1780
+2007;320103;2005;realisation;1600;MEUR;1600;chiffre;1600
+2006;320103;2006;prevision_plf;2210;MEUR;2210;chiffre;2210
+2007;320103;2006;prevision;2000;MEUR;2000;chiffre;2000
+2008;320103;2006;realisation;2600;MEUR;2600;chiffre;2600
+2007;320103;2007;prevision_plf;2300;MEUR;2300;chiffre;2300
+2008;320103;2007;prevision;3200;MEUR;3200;chiffre;3200
+2008;320103;2008;prevision_plf;4000;MEUR;4000;chiffre;4000
 2010;320103;2008;realisation;12500;MEUR;12500;chiffre;12 500
 2010;320103;2009;prevision;8000;MEUR;8000;chiffre;8 000
 2011;320103;2009;realisation;3400;MEUR;3400;chiffre;3 400
@@ -23888,9 +23888,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2002;320104;2002;prevision_plf;;MEUR;;nc;nc
 2003;320104;2002;prevision;30;MEUR;30;chiffre;30
 2004;320104;2002;realisation;45;MEUR;45;chiffre;45
-2003;320104;2003;prevision_plf;;MEUR;;absent;
-2004;320104;2003;prevision;;MEUR;;absent;
-2004;320104;2004;prevision_plf;;MEUR;;absent;
+2003;320104;2003;prevision_plf;;MEUR;;sans_objet;_
+2004;320104;2003;prevision;;MEUR;;sans_objet;_
+2004;320104;2004;prevision_plf;;MEUR;;sans_objet;_
 2001;320105;1999;realisation;;MF;;nc;nc
 2001;320105;2000;prevision;;MF;;nc;nc
 2002;320105;2000;realisation;;MEUR;;nc;nc
@@ -24158,7 +24158,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2007;320111;2007;prevision_plf;0;MEUR;0;epsilon;ε
 2008;320111;2007;prevision;0;MEUR;0;epsilon;ε
 2009;320111;2007;realisation;0;MEUR;0;epsilon;ε
-2008;320111;2008;prevision_plf;;MEUR;;absent;
+2008;320111;2008;prevision_plf;;MEUR;;sans_objet;_
 2009;320111;2008;prevision;0;MEUR;0;epsilon;ε
 2010;320111;2008;realisation;0;MEUR;0;epsilon;ε
 2009;320111;2009;prevision_plf;;MEUR;;sans_objet;-
@@ -24178,11 +24178,11 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2014;320111;2014;prevision_plf;0;MEUR;0;chiffre;0
 2001;320112;1999;realisation;1260;MF;192.1;chiffre;1 260
 2001;320112;2000;prevision;60;MF;9.1;chiffre;60
-2002;320112;2000;realisation;9;MEUR;9;chiffre;9
+2002;320112;2000;realisation;1;MEUR;1;chiffre;1
 2001;320112;2001;prevision_plf;0;MF;0.0;epsilon;ε
-2002;320112;2001;prevision;1;MEUR;1;chiffre;1
+2002;320112;2001;prevision;0;MEUR;0;epsilon;ε
 2003;320112;2001;realisation;0;MEUR;0;epsilon;ε
-2002;320112;2002;prevision_plf;0;MEUR;0;epsilon;ε
+2002;320112;2002;prevision_plf;;MEUR;;sans_objet;_
 2003;320112;2002;prevision;0;MEUR;0;epsilon;ε
 2004;320112;2002;realisation;0;MEUR;0;epsilon;ε
 2003;320112;2003;prevision_plf;0;MEUR;0;epsilon;ε
@@ -24270,8 +24270,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2026;320113;2025;prevision;12;MEUR;12;chiffre;12
 2026;320113;2026;prevision_plf;12;MEUR;12;chiffre;12
 2001;320114;1999;realisation;700;MF;106.7;chiffre;700
-2001;320114;2000;prevision;;MF;;absent;
-2001;320114;2001;prevision_plf;;MF;;absent;
+2001;320114;2000;prevision;;MF;;sans_objet;_
+2001;320114;2001;prevision_plf;;MF;;sans_objet;_
 2001;320115;1999;realisation;;MF;;nc;nc
 2001;320115;2000;prevision;;MF;;nc;nc
 2002;320115;2000;realisation;;MEUR;;nc;nc
@@ -24350,9 +24350,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;320115;2025;prevision_plf;21;MEUR;21;chiffre;21
 2026;320115;2025;prevision;24;MEUR;24;chiffre;24
 2026;320115;2026;prevision_plf;24;MEUR;24;chiffre;24
-2001;320116;1999;realisation;;MF;;absent;
-2001;320116;2000;prevision;;MF;;absent;
-2002;320116;2000;realisation;;MEUR;;absent;
+2001;320116;1999;realisation;;MF;;sans_objet;_
+2001;320116;2000;prevision;;MF;;sans_objet;_
+2002;320116;2000;realisation;;MEUR;;sans_objet;_
 2001;320116;2001;prevision_plf;;MF;;nc;nc
 2002;320116;2001;prevision;;MEUR;;nc;nc
 2003;320116;2001;realisation;;MEUR;;nc;nc
@@ -24428,21 +24428,21 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;320116;2025;prevision_plf;;MEUR;;nc;nc
 2026;320116;2025;prevision;;MEUR;;nc;nc
 2026;320116;2026;prevision_plf;;MEUR;;nc;nc
-2002;320117;2000;realisation;;MEUR;;absent;
+2002;320117;2000;realisation;;MEUR;;sans_objet;_
 2002;320117;2001;prevision;457;MEUR;457;chiffre;457
 2003;320117;2001;realisation;566;MEUR;566;chiffre;566
 2002;320117;2002;prevision_plf;1067;MEUR;1067;chiffre;1 067
-2003;320117;2002;prevision;127;MEUR;127;chiffre;127
-2004;320117;2002;realisation;121;MEUR;121;chiffre;121
-2003;320117;2003;prevision_plf;130;MEUR;130;chiffre;130
-2004;320117;2003;prevision;122;MEUR;122;chiffre;122
-2005;320117;2003;realisation;0;MEUR;0;chiffre;0
-2004;320117;2004;prevision_plf;0;MEUR;0;chiffre;0
-2005;320117;2004;prevision;0;MEUR;0;chiffre;0
-2005;320117;2005;prevision_plf;140;MEUR;140;chiffre;140
-2003;320118;2001;realisation;;MEUR;;absent;
-2003;320118;2002;prevision;;MEUR;;absent;
-2004;320118;2002;realisation;;MEUR;;absent;
+2003;320117;2002;prevision;1273;MEUR;1273;chiffre;1273
+2004;320117;2002;realisation;1210;MEUR;1210;chiffre;1210
+2003;320117;2003;prevision_plf;1300;MEUR;1300;chiffre;1300
+2004;320117;2003;prevision;1220;MEUR;1220;chiffre;1220
+2005;320117;2003;realisation;1320;MEUR;1320;chiffre;1320
+2004;320117;2004;prevision_plf;1320;MEUR;1320;chiffre;1320
+2005;320117;2004;prevision;1330;MEUR;1330;chiffre;1330
+2005;320117;2005;prevision_plf;1400;MEUR;1400;chiffre;1400
+2003;320118;2001;realisation;;MEUR;;sans_objet;_
+2003;320118;2002;prevision;;MEUR;;sans_objet;_
+2004;320118;2002;realisation;;MEUR;;sans_objet;_
 2003;320118;2003;prevision_plf;20;MEUR;20;chiffre;20
 2004;320118;2003;prevision;5;MEUR;5;chiffre;5
 2005;320118;2003;realisation;5;MEUR;5;chiffre;5
@@ -24512,9 +24512,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;320118;2025;prevision_plf;14;MEUR;14;chiffre;14
 2026;320118;2025;prevision;14;MEUR;14;chiffre;14
 2026;320118;2026;prevision_plf;0;MEUR;0;chiffre;0
-2004;320119;2002;realisation;;MEUR;;absent;
-2004;320119;2003;prevision;;MEUR;;absent;
-2005;320119;2003;realisation;;MEUR;;absent;
+2004;320119;2002;realisation;;MEUR;;sans_objet;_
+2004;320119;2003;prevision;;MEUR;;sans_objet;_
+2005;320119;2003;realisation;;MEUR;;sans_objet;_
 2004;320119;2004;prevision_plf;5;MEUR;5;chiffre;5
 2005;320119;2004;prevision;5;MEUR;5;chiffre;5
 2006;320119;2004;realisation;65;MEUR;65;chiffre;65
@@ -24581,7 +24581,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;320119;2025;prevision_plf;1375;MEUR;1375;chiffre;1 375
 2026;320119;2025;prevision;1435;MEUR;1435;chiffre;1 435
 2026;320119;2026;prevision_plf;620;MEUR;620;chiffre;620
-2005;320120;2003;realisation;;MEUR;;absent;
+2005;320120;2003;realisation;;MEUR;;sans_objet;_
 2005;320120;2004;prevision;;MEUR;;nc;nc
 2006;320120;2004;realisation;5;MEUR;5;chiffre;5
 2005;320120;2005;prevision_plf;;MEUR;;nc;nc
@@ -24605,9 +24605,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2011;320120;2011;prevision_plf;;MEUR;;sans_objet;-
 2012;320120;2011;prevision;;MEUR;;nc;nc
 2012;320120;2012;prevision_plf;;MEUR;;nc;nc
-2005;320121;2003;realisation;;MEUR;;absent;
-2005;320121;2004;prevision;;MEUR;;absent;
-2006;320121;2004;realisation;;MEUR;;absent;
+2005;320121;2003;realisation;;MEUR;;sans_objet;_
+2005;320121;2004;prevision;;MEUR;;sans_objet;_
+2006;320121;2004;realisation;;MEUR;;sans_objet;_
 2005;320121;2005;prevision_plf;25;MEUR;25;chiffre;25
 2006;320121;2005;prevision;25;MEUR;25;chiffre;25
 2007;320121;2005;realisation;30;MEUR;30;chiffre;30
@@ -24734,7 +24734,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;320122;2025;prevision_plf;0;MEUR;0;epsilon;ε
 2026;320122;2025;prevision;0;MEUR;0;epsilon;ε
 2026;320122;2026;prevision_plf;0;MEUR;0;epsilon;ε
-2006;320123;2004;realisation;;MEUR;;absent;
+2006;320123;2004;realisation;;MEUR;;sans_objet;_
 2006;320123;2005;prevision;;MEUR;;nc;nc
 2007;320123;2005;realisation;;MEUR;;nc;nc
 2006;320123;2006;prevision_plf;;MEUR;;nc;nc
@@ -24761,16 +24761,16 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2013;320123;2013;prevision_plf;;MEUR;;sans_objet;-
 2014;320123;2013;prevision;;MEUR;;sans_objet;-
 2014;320123;2014;prevision_plf;;MEUR;;sans_objet;-
-2006;320124;2004;realisation;;MEUR;;absent;
+2006;320124;2004;realisation;;MEUR;;sans_objet;_
 2006;320124;2005;prevision;20;MEUR;20;chiffre;20
 2007;320124;2005;realisation;5;MEUR;5;chiffre;5
 2006;320124;2006;prevision_plf;120;MEUR;120;chiffre;120
 2007;320124;2006;prevision;10;MEUR;10;chiffre;10
 2008;320124;2006;realisation;10;MEUR;10;chiffre;10
-2007;320124;2007;prevision_plf;;MEUR;;absent;
-2008;320124;2007;prevision;;MEUR;;absent;
-2008;320124;2008;prevision_plf;;MEUR;;absent;
-2006;320125;2004;realisation;;MEUR;;absent;
+2007;320124;2007;prevision_plf;;MEUR;;sans_objet;_
+2008;320124;2007;prevision;;MEUR;;sans_objet;_
+2008;320124;2008;prevision_plf;;MEUR;;sans_objet;_
+2006;320125;2004;realisation;;MEUR;;sans_objet;_
 2006;320125;2005;prevision;;MEUR;;absent;
 2007;320125;2005;realisation;0;MEUR;0;epsilon;ε
 2006;320125;2006;prevision_plf;5;MEUR;5;chiffre;5
@@ -24797,7 +24797,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2013;320125;2013;prevision_plf;;MEUR;;sans_objet;-
 2014;320125;2013;prevision;;MEUR;;sans_objet;-
 2014;320125;2014;prevision_plf;;MEUR;;sans_objet;-
-2007;320126;2005;realisation;;MEUR;;absent;
+2007;320126;2005;realisation;;MEUR;;sans_objet;_
 2007;320126;2006;prevision;0;MEUR;0;epsilon;ε
 2008;320126;2006;realisation;0;MEUR;0;epsilon;ε
 2007;320126;2007;prevision_plf;0;MEUR;0;epsilon;ε
@@ -24821,7 +24821,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2013;320126;2013;prevision_plf;;MEUR;;sans_objet;-
 2014;320126;2013;prevision;;MEUR;;sans_objet;-
 2014;320126;2014;prevision_plf;;MEUR;;sans_objet;-
-2007;320127;2005;realisation;;MEUR;;absent;
+2007;320127;2005;realisation;;MEUR;;sans_objet;_
 2007;320127;2006;prevision;0;MEUR;0;epsilon;ε
 2008;320127;2006;realisation;0;MEUR;0;epsilon;ε
 2007;320127;2007;prevision_plf;5;MEUR;5;chiffre;5
@@ -24833,7 +24833,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2009;320127;2009;prevision_plf;;MEUR;;sans_objet;-
 2010;320127;2009;prevision;;MEUR;;sans_objet;-
 2010;320127;2010;prevision_plf;;MEUR;;sans_objet;-
-2007;320128;2005;realisation;;MEUR;;absent;
+2007;320128;2005;realisation;;MEUR;;sans_objet;_
 2007;320128;2006;prevision;0;MEUR;0;epsilon;ε
 2008;320128;2006;realisation;0;MEUR;0;epsilon;ε
 2007;320128;2007;prevision_plf;10;MEUR;10;chiffre;10
@@ -24893,7 +24893,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;320128;2025;prevision_plf;31;MEUR;31;chiffre;31
 2026;320128;2025;prevision;31;MEUR;31;chiffre;31
 2026;320128;2026;prevision_plf;31;MEUR;31;chiffre;31
-2007;320129;2005;realisation;;MEUR;;absent;
+2007;320129;2005;realisation;;MEUR;;sans_objet;_
 2007;320129;2006;prevision;40;MEUR;40;chiffre;40
 2008;320129;2006;realisation;40;MEUR;40;chiffre;40
 2007;320129;2007;prevision_plf;55;MEUR;55;chiffre;55
@@ -24953,7 +24953,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;320129;2025;prevision_plf;221;MEUR;221;chiffre;221
 2026;320129;2025;prevision;223;MEUR;223;chiffre;223
 2026;320129;2026;prevision_plf;263;MEUR;263;chiffre;263
-2008;320130;2006;realisation;;MEUR;;absent;
+2008;320130;2006;realisation;;MEUR;;sans_objet;_
 2008;320130;2007;prevision;25;MEUR;25;chiffre;25
 2009;320130;2007;realisation;40;MEUR;40;chiffre;40
 2008;320130;2008;prevision_plf;30;MEUR;30;chiffre;30
@@ -24968,7 +24968,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2011;320130;2011;prevision_plf;;MEUR;;sans_objet;-
 2012;320130;2011;prevision;;MEUR;;sans_objet;-
 2012;320130;2012;prevision_plf;;MEUR;;sans_objet;-
-2008;320131;2006;realisation;;MEUR;;absent;
+2008;320131;2006;realisation;;MEUR;;sans_objet;_
 2008;320131;2007;prevision;0;MEUR;0;epsilon;ε
 2009;320131;2007;realisation;0;MEUR;0;epsilon;ε
 2008;320131;2008;prevision_plf;10;MEUR;10;chiffre;10
@@ -25010,8 +25010,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;320131;2025;prevision_plf;0;MEUR;0;epsilon;ε
 2026;320131;2025;prevision;0;MEUR;0;epsilon;ε
 2026;320131;2026;prevision_plf;;MEUR;;sans_objet;-
-2008;320132;2006;realisation;;MEUR;;absent;
-2008;320132;2007;prevision;;MEUR;;absent;
+2008;320132;2006;realisation;;MEUR;;sans_objet;_
+2008;320132;2007;prevision;;MEUR;;sans_objet;_
 2009;320132;2007;realisation;;MEUR;;sans_objet;-
 2008;320132;2008;prevision_plf;0;MEUR;0;epsilon;ε
 2009;320132;2008;prevision;;MEUR;;sans_objet;-
@@ -25037,7 +25037,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2015;320132;2015;prevision_plf;;MEUR;;sans_objet;-
 2016;320132;2015;prevision;;MEUR;;sans_objet;-
 2016;320132;2016;prevision_plf;;MEUR;;sans_objet;-
-2008;320133;2006;realisation;;MEUR;;absent;
+2008;320133;2006;realisation;;MEUR;;sans_objet;_
 2008;320133;2007;prevision;1;MEUR;1;chiffre;1
 2009;320133;2007;realisation;0;MEUR;0;epsilon;ε
 2008;320133;2008;prevision_plf;1;MEUR;1;chiffre;1
@@ -25049,7 +25049,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2010;320133;2010;prevision_plf;;MEUR;;sans_objet;-
 2011;320133;2010;prevision;;MEUR;;sans_objet;-
 2011;320133;2011;prevision_plf;;MEUR;;sans_objet;-
-2008;320134;2006;realisation;;MEUR;;absent;
+2008;320134;2006;realisation;;MEUR;;sans_objet;_
 2008;320134;2007;prevision;0;MEUR;0;epsilon;ε
 2009;320134;2007;realisation;0;MEUR;0;epsilon;ε
 2008;320134;2008;prevision_plf;2;MEUR;2;chiffre;2
@@ -25103,7 +25103,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2024;320134;2024;prevision_plf;1;MEUR;1;chiffre;1
 2025;320134;2024;prevision;;MEUR;;sans_objet;-
 2025;320134;2025;prevision_plf;;MEUR;;sans_objet;-
-2008;320135;2006;realisation;;MEUR;;absent;
+2008;320135;2006;realisation;;MEUR;;sans_objet;_
 2008;320135;2007;prevision;0;MEUR;0;epsilon;ε
 2009;320135;2007;realisation;;MEUR;;sans_objet;-
 2008;320135;2008;prevision_plf;15;MEUR;15;chiffre;15
@@ -25540,11 +25540,11 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2003;330101;2001;realisation;;MEUR;;nc;nc
 2002;330101;2002;prevision_plf;;MEUR;;nc;nc
 2003;330101;2002;prevision;;MEUR;;nc;nc
-2004;330101;2002;realisation;710;MEUR;710;chiffre;710
+2004;330101;2002;realisation;7100;MEUR;7100;chiffre;7100
 2003;330101;2003;prevision_plf;;MEUR;;nc;nc
-2004;330101;2003;prevision;780;MEUR;780;chiffre;780
-2005;330101;2003;realisation;115;MEUR;115;chiffre;115
-2004;330101;2004;prevision_plf;0;MEUR;0;chiffre;0
+2004;330101;2003;prevision;7800;MEUR;7800;chiffre;7800
+2005;330101;2003;realisation;11500;MEUR;11500;chiffre;11500
+2004;330101;2004;prevision_plf;7800;MEUR;7800;chiffre;7800
 2005;330101;2004;prevision;;MEUR;;nc;nc
 2005;330101;2005;prevision_plf;;MEUR;;nc;nc
 2001;330102;1999;realisation;;MF;;nc;nc
@@ -25567,7 +25567,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2002;330103;2000;realisation;;MEUR;;nc;nc
 2001;330103;2001;prevision_plf;;MF;;nc;nc
 2002;330103;2001;prevision;;MEUR;;nc;nc
-2003;330103;2001;realisation;150;MEUR;150;chiffre;150
+2003;330103;2001;realisation;1500;MEUR;1500;chiffre;1500
 2002;330103;2002;prevision_plf;;MEUR;;nc;nc
 2003;330103;2002;prevision;;MEUR;;nc;nc
 2004;330103;2002;realisation;847;MEUR;847;chiffre;847
@@ -25712,7 +25712,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2006;340105;2006;prevision_plf;150;MEUR;150;chiffre;150
 2007;340105;2006;prevision;90;MEUR;90;chiffre;90
 2007;340105;2007;prevision_plf;90;MEUR;90;chiffre;90
-2001;340106;1999;realisation;;MF;;absent;
+2001;340106;1999;realisation;;MF;;sans_objet;_
 2001;340106;2000;prevision;300;MF;45.7;chiffre;300
 2002;340106;2000;realisation;46;MEUR;46;chiffre;46
 2001;340106;2001;prevision_plf;300;MF;45.7;chiffre;300
@@ -25739,9 +25739,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2003;350101;2003;prevision_plf;;MEUR;;nc;nc
 2004;350101;2003;prevision;;MEUR;;nc;nc
 2004;350101;2004;prevision_plf;;MEUR;;nc;nc
-2007;350101;2005;realisation;;MEUR;;absent;
-2007;350101;2006;prevision;;MEUR;;absent;
-2008;350101;2006;realisation;;MEUR;;absent;
+2007;350101;2005;realisation;;MEUR;;sans_objet;_
+2007;350101;2006;prevision;;MEUR;;sans_objet;_
+2008;350101;2006;realisation;;MEUR;;sans_objet;_
 2007;350101;2007;prevision_plf;5;MEUR;5;chiffre;5
 2008;350101;2007;prevision;5;MEUR;5;chiffre;5
 2008;350101;2008;prevision_plf;5;MEUR;5;chiffre;5
@@ -26018,9 +26018,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2018;400109;2018;prevision_plf;;MEUR;;sans_objet;-
 2019;400109;2018;prevision;;MEUR;;sans_objet;-
 2019;400109;2019;prevision_plf;;MEUR;;sans_objet;-
-2004;400110;2002;realisation;;MEUR;;absent;
-2004;400110;2003;prevision;;MEUR;;absent;
-2005;400110;2003;realisation;;MEUR;;absent;
+2004;400110;2002;realisation;;MEUR;;sans_objet;_
+2004;400110;2003;prevision;;MEUR;;sans_objet;_
+2005;400110;2003;realisation;;MEUR;;sans_objet;_
 2004;400110;2004;prevision_plf;10;MEUR;10;chiffre;10
 2005;400110;2004;prevision;10;MEUR;10;chiffre;10
 2006;400110;2004;realisation;;MEUR;;absent;
@@ -26066,9 +26066,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2018;400110;2018;prevision_plf;;MEUR;;sans_objet;-
 2019;400110;2018;prevision;;MEUR;;sans_objet;-
 2019;400110;2019;prevision_plf;;MEUR;;sans_objet;-
-2004;400111;2002;realisation;;MEUR;;absent;
-2004;400111;2003;prevision;;MEUR;;absent;
-2005;400111;2003;realisation;;MEUR;;absent;
+2004;400111;2002;realisation;;MEUR;;sans_objet;_
+2004;400111;2003;prevision;;MEUR;;sans_objet;_
+2005;400111;2003;realisation;;MEUR;;sans_objet;_
 2004;400111;2004;prevision_plf;75;MEUR;75;chiffre;75
 2005;400111;2004;prevision;75;MEUR;75;chiffre;75
 2006;400111;2004;realisation;20;MEUR;20;chiffre;20
@@ -26114,7 +26114,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2018;400111;2018;prevision_plf;;MEUR;;sans_objet;-
 2019;400111;2018;prevision;;MEUR;;sans_objet;-
 2019;400111;2019;prevision_plf;;MEUR;;sans_objet;-
-2007;400112;2005;realisation;;MEUR;;absent;
+2007;400112;2005;realisation;;MEUR;;sans_objet;_
 2007;400112;2006;prevision;60;MEUR;60;chiffre;60
 2008;400112;2006;realisation;25;MEUR;25;chiffre;25
 2007;400112;2007;prevision_plf;60;MEUR;60;chiffre;60
@@ -26243,8 +26243,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;400202;2004;prevision_plf;270;MEUR;270;chiffre;270
 2005;400202;2004;prevision;290;MEUR;290;chiffre;290
 2005;400202;2005;prevision_plf;300;MEUR;300;chiffre;300
-2008;400202;2006;realisation;;MEUR;;absent;
-2008;400202;2007;prevision;;MEUR;;absent;
+2008;400202;2006;realisation;;MEUR;;sans_objet;_
+2008;400202;2007;prevision;;MEUR;;sans_objet;_
 2009;400202;2007;realisation;;MEUR;;sans_objet;-
 2008;400202;2008;prevision_plf;380;MEUR;380;chiffre;380
 2009;400202;2008;prevision;620;MEUR;620;chiffre;620
@@ -26279,8 +26279,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2018;400202;2018;prevision_plf;;MEUR;;sans_objet;-
 2019;400202;2018;prevision;;MEUR;;sans_objet;-
 2019;400202;2019;prevision_plf;;MEUR;;sans_objet;-
-2008;400203;2006;realisation;;MEUR;;absent;
-2008;400203;2007;prevision;;MEUR;;absent;
+2008;400203;2006;realisation;;MEUR;;sans_objet;_
+2008;400203;2007;prevision;;MEUR;;sans_objet;_
 2009;400203;2007;realisation;;MEUR;;sans_objet;-
 2008;400203;2008;prevision_plf;160;MEUR;160;chiffre;160
 2009;400203;2008;prevision;40;MEUR;40;chiffre;40
@@ -26615,17 +26615,17 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2007;410112;2007;prevision_plf;;MEUR;;nc;nc
 2008;410112;2007;prevision;;MEUR;;nc;nc
 2008;410112;2008;prevision_plf;;MEUR;;nc;nc
-2006;410113;2004;realisation;;MEUR;;absent;
-2006;410113;2005;prevision;;MEUR;;absent;
-2007;410113;2005;realisation;;MEUR;;absent;
+2006;410113;2004;realisation;;MEUR;;sans_objet;_
+2006;410113;2005;prevision;;MEUR;;sans_objet;_
+2007;410113;2005;realisation;;MEUR;;sans_objet;_
 2006;410113;2006;prevision_plf;75;MEUR;75;chiffre;75
 2007;410113;2006;prevision;5;MEUR;5;chiffre;5
 2008;410113;2006;realisation;3;MEUR;3;chiffre;3
 2007;410113;2007;prevision_plf;5;MEUR;5;chiffre;5
 2008;410113;2007;prevision;3;MEUR;3;chiffre;3
 2008;410113;2008;prevision_plf;3;MEUR;3;chiffre;3
-2008;410114;2006;realisation;;MEUR;;absent;
-2008;410114;2007;prevision;;MEUR;;absent;
+2008;410114;2006;realisation;;MEUR;;sans_objet;_
+2008;410114;2007;prevision;;MEUR;;sans_objet;_
 2008;410114;2008;prevision_plf;1;MEUR;1;chiffre;1
 2001;410201;1999;realisation;560;MF;85.4;chiffre;560
 2001;410201;2000;prevision;580;MF;88.4;chiffre;580
@@ -26702,7 +26702,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;410204;2004;prevision_plf;40;MEUR;40;chiffre;40
 2005;410204;2004;prevision;;MEUR;;nc;nc
 2005;410204;2005;prevision_plf;;MEUR;;nc;nc
-2001;420101;1999;realisation;;MF;;absent;
+2001;420101;1999;realisation;;MF;;sans_objet;_
 2001;420101;2000;prevision;730;MF;111.3;chiffre;730
 2002;420101;2000;realisation;63;MEUR;63;chiffre;63
 2001;420101;2001;prevision_plf;730;MF;111.3;chiffre;730
@@ -26712,11 +26712,11 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2003;420101;2002;prevision;50;MEUR;50;chiffre;50
 2004;420101;2002;realisation;50;MEUR;50;chiffre;50
 2003;420101;2003;prevision_plf;50;MEUR;50;chiffre;50
-2004;420101;2003;prevision;;MEUR;;absent;
-2005;420101;2003;realisation;;MEUR;;absent;
-2004;420101;2004;prevision_plf;;MEUR;;absent;
-2005;420101;2004;prevision;;MEUR;;absent;
-2005;420101;2005;prevision_plf;;MEUR;;absent;
+2004;420101;2003;prevision;;MEUR;;sans_objet;_
+2005;420101;2003;realisation;;MEUR;;sans_objet;_
+2004;420101;2004;prevision_plf;;MEUR;;sans_objet;_
+2005;420101;2004;prevision;;MEUR;;sans_objet;_
+2005;420101;2005;prevision_plf;;MEUR;;sans_objet;_
 2001;420102;1999;realisation;;MF;;nc;nc
 2001;420102;2000;prevision;;MF;;nc;nc
 2002;420102;2000;realisation;;MEUR;;nc;nc
@@ -26741,9 +26741,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;420103;2004;prevision_plf;500;MEUR;500;chiffre;500
 2005;420103;2004;prevision;600;MEUR;600;chiffre;600
 2005;420103;2005;prevision_plf;370;MEUR;370;chiffre;370
-2006;420104;2004;realisation;;MEUR;;absent;
-2006;420104;2005;prevision;;MEUR;;absent;
-2007;420104;2005;realisation;;MEUR;;absent;
+2006;420104;2004;realisation;;MEUR;;sans_objet;_
+2006;420104;2005;prevision;;MEUR;;sans_objet;_
+2007;420104;2005;realisation;;MEUR;;sans_objet;_
 2006;420104;2006;prevision_plf;50;MEUR;50;chiffre;50
 2007;420104;2006;prevision;0;MEUR;0;chiffre;0
 2007;420104;2007;prevision_plf;50;MEUR;50;chiffre;50
@@ -27137,7 +27137,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;500102;2025;prevision_plf;7;MEUR;7;chiffre;7
 2026;500102;2025;prevision;8;MEUR;8;chiffre;8
 2026;500102;2026;prevision_plf;8;MEUR;8;chiffre;8
-2001;500103;1999;realisation;;MF;;absent;
+2001;500103;1999;realisation;;MF;;sans_objet;_
 2001;500103;2000;prevision;;MF;;nc;nc
 2002;500103;2000;realisation;;MEUR;;nc;nc
 2001;500103;2001;prevision_plf;;MF;;nc;nc
@@ -27152,7 +27152,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;500103;2004;prevision_plf;;MEUR;;nc;nc
 2005;500103;2004;prevision;;MEUR;;nc;nc
 2005;500103;2005;prevision_plf;;MEUR;;nc;nc
-2005;500104;2003;realisation;;MEUR;;absent;
+2005;500104;2003;realisation;;MEUR;;sans_objet;_
 2005;500104;2004;prevision;;MEUR;;nc;nc
 2005;500104;2005;prevision_plf;;MEUR;;nc;nc
 2001;510101;1999;realisation;0;MF;0.0;epsilon;ε
@@ -27644,7 +27644,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;520109;2025;prevision_plf;50;MEUR;50;chiffre;50
 2026;520109;2025;prevision;50;MEUR;50;chiffre;50
 2026;520109;2026;prevision_plf;50;MEUR;50;chiffre;50
-2001;520110;1999;realisation;;MF;;absent;
+2001;520110;1999;realisation;;MF;;sans_objet;_
 2001;520110;2000;prevision;;MF;;nc;nc
 2002;520110;2000;realisation;;MEUR;;nc;nc
 2001;520110;2001;prevision_plf;;MF;;nc;nc
@@ -27722,7 +27722,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;520110;2025;prevision_plf;800;MEUR;800;chiffre;800
 2026;520110;2025;prevision;4000;MEUR;4000;chiffre;4 000
 2026;520110;2026;prevision_plf;4000;MEUR;4000;chiffre;4 000
-2001;520111;1999;realisation;;MF;;absent;
+2001;520111;1999;realisation;;MF;;sans_objet;_
 2001;520111;2000;prevision;;MF;;nc;nc
 2002;520111;2000;realisation;;MEUR;;nc;nc
 2001;520111;2001;prevision_plf;;MF;;nc;nc
@@ -27800,9 +27800,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;520111;2025;prevision_plf;1;MEUR;1;chiffre;1
 2026;520111;2025;prevision;1;MEUR;1;chiffre;1
 2026;520111;2026;prevision_plf;1;MEUR;1;chiffre;1
-2003;520112;2001;realisation;;MEUR;;absent;
-2003;520112;2002;prevision;;MEUR;;absent;
-2004;520112;2002;realisation;;MEUR;;absent;
+2003;520112;2001;realisation;;MEUR;;sans_objet;_
+2003;520112;2002;prevision;;MEUR;;sans_objet;_
+2004;520112;2002;realisation;;MEUR;;sans_objet;_
 2003;520112;2003;prevision_plf;;MEUR;;nc;nc
 2004;520112;2003;prevision;;MEUR;;nc;nc
 2005;520112;2003;realisation;;MEUR;;nc;nc
@@ -27872,10 +27872,10 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;520112;2025;prevision_plf;20;MEUR;20;chiffre;20
 2026;520112;2025;prevision;20;MEUR;20;chiffre;20
 2026;520112;2026;prevision_plf;20;MEUR;20;chiffre;20
-2005;520113;2003;realisation;;MEUR;;absent;
+2005;520113;2003;realisation;;MEUR;;sans_objet;_
 2005;520113;2004;prevision;2;MEUR;2;chiffre;2
 2005;520113;2005;prevision_plf;2;MEUR;2;chiffre;2
-2005;520114;2003;realisation;;MEUR;;absent;
+2005;520114;2003;realisation;;MEUR;;sans_objet;_
 2005;520114;2004;prevision;;MEUR;;nc;nc
 2006;520114;2004;realisation;;MEUR;;absent;
 2005;520114;2005;prevision_plf;;MEUR;;nc;nc
@@ -27941,18 +27941,18 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;520114;2025;prevision_plf;1;MEUR;1;chiffre;1
 2026;520114;2025;prevision;1;MEUR;1;chiffre;1
 2026;520114;2026;prevision_plf;1;MEUR;1;chiffre;1
-2005;520115;2003;realisation;;MEUR;;absent;
+2005;520115;2003;realisation;;MEUR;;sans_objet;_
 2005;520115;2004;prevision;;MEUR;;nc;nc
 2006;520115;2004;realisation;70;MEUR;70;chiffre;70
 2005;520115;2005;prevision_plf;;MEUR;;nc;nc
 2006;520115;2005;prevision;120;MEUR;120;chiffre;120
 2007;520115;2005;realisation;350;MEUR;350;chiffre;350
-2006;520115;2006;prevision_plf;;MEUR;;absent;
+2006;520115;2006;prevision_plf;;MEUR;;sans_objet;_
 2007;520115;2006;prevision;50;MEUR;50;chiffre;50
 2008;520115;2006;realisation;50;MEUR;50;chiffre;50
-2007;520115;2007;prevision_plf;;MEUR;;absent;
-2008;520115;2007;prevision;;MEUR;;absent;
-2008;520115;2008;prevision_plf;;MEUR;;absent;
+2007;520115;2007;prevision_plf;;MEUR;;sans_objet;_
+2008;520115;2007;prevision;;MEUR;;sans_objet;_
+2008;520115;2008;prevision_plf;;MEUR;;sans_objet;_
 2006;520116;2004;realisation;;MEUR;;absent;
 2006;520116;2005;prevision;;MEUR;;absent;
 2007;520116;2005;realisation;0;MEUR;0;epsilon;ε
@@ -28016,9 +28016,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;520116;2025;prevision_plf;0;MEUR;0;epsilon;ε
 2026;520116;2025;prevision;0;MEUR;0;epsilon;ε
 2026;520116;2026;prevision_plf;0;MEUR;0;epsilon;ε
-2006;520117;2004;realisation;;MEUR;;absent;
-2006;520117;2005;prevision;;MEUR;;absent;
-2007;520117;2005;realisation;;MEUR;;absent;
+2006;520117;2004;realisation;;MEUR;;sans_objet;_
+2006;520117;2005;prevision;;MEUR;;sans_objet;_
+2007;520117;2005;realisation;;MEUR;;sans_objet;_
 2006;520117;2006;prevision_plf;3;MEUR;3;chiffre;3
 2007;520117;2006;prevision;5;MEUR;5;chiffre;5
 2008;520117;2006;realisation;0;MEUR;0;epsilon;ε
@@ -28037,7 +28037,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2011;520117;2011;prevision_plf;;MEUR;;sans_objet;-
 2012;520117;2011;prevision;;MEUR;;sans_objet;-
 2012;520117;2012;prevision_plf;;MEUR;;sans_objet;-
-2007;520118;2005;realisation;;MEUR;;absent;
+2007;520118;2005;realisation;;MEUR;;sans_objet;_
 2007;520118;2006;prevision;2;MEUR;2;chiffre;2
 2008;520118;2006;realisation;2;MEUR;2;chiffre;2
 2007;520118;2007;prevision_plf;2;MEUR;2;chiffre;2
@@ -28097,7 +28097,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;520118;2025;prevision_plf;12;MEUR;12;chiffre;12
 2026;520118;2025;prevision;12;MEUR;12;chiffre;12
 2026;520118;2026;prevision_plf;12;MEUR;12;chiffre;12
-2008;520119;2006;realisation;;MEUR;;absent;
+2008;520119;2006;realisation;;MEUR;;sans_objet;_
 2008;520119;2007;prevision;3;MEUR;3;chiffre;3
 2008;520119;2008;prevision_plf;10;MEUR;10;chiffre;10
 2010;520119;2008;realisation;190;MEUR;190;chiffre;190
@@ -28130,7 +28130,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2018;520119;2018;prevision_plf;429;MEUR;429;chiffre;429
 2019;520119;2018;prevision;;MEUR;;nc;nc
 2019;520119;2019;prevision_plf;;MEUR;;nc;nc
-2008;520120;2006;realisation;;MEUR;;absent;
+2008;520120;2006;realisation;;MEUR;;sans_objet;_
 2008;520120;2007;prevision;5;MEUR;5;chiffre;5
 2008;520120;2008;prevision_plf;60;MEUR;60;chiffre;60
 2010;520120;2008;realisation;60;MEUR;60;chiffre;60
@@ -28163,7 +28163,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2018;520120;2018;prevision_plf;95;MEUR;95;chiffre;95
 2019;520120;2018;prevision;110;MEUR;110;chiffre;110
 2019;520120;2019;prevision_plf;110;MEUR;110;chiffre;110
-2008;520121;2006;realisation;;MEUR;;absent;
+2008;520121;2006;realisation;;MEUR;;sans_objet;_
 2008;520121;2007;prevision;5;MEUR;5;chiffre;5
 2009;520121;2007;realisation;5;MEUR;5;chiffre;5
 2008;520121;2008;prevision_plf;10;MEUR;10;chiffre;10
@@ -28625,13 +28625,13 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;520204;2004;prevision_plf;;MEUR;;nc;nc
 2005;520204;2004;prevision;;MEUR;;nc;nc
 2005;520204;2005;prevision_plf;;MEUR;;nc;nc
-2006;520205;2004;realisation;;MEUR;;absent;
+2006;520205;2004;realisation;;MEUR;;sans_objet;_
 2006;520205;2005;prevision;;MEUR;;absent;
 2007;520205;2005;realisation;0;MEUR;0;epsilon;ε
 2006;520205;2006;prevision_plf;;MEUR;;absent;
 2007;520205;2006;prevision;0;MEUR;0;epsilon;ε
 2007;520205;2007;prevision_plf;0;MEUR;0;epsilon;ε
-2007;520206;2005;realisation;;MEUR;;absent;
+2007;520206;2005;realisation;;MEUR;;sans_objet;_
 2007;520206;2006;prevision;10;MEUR;10;chiffre;10
 2008;520206;2006;realisation;5;MEUR;5;chiffre;5
 2007;520206;2007;prevision_plf;10;MEUR;10;chiffre;10
@@ -28667,7 +28667,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2018;520206;2018;prevision_plf;29;MEUR;29;chiffre;29
 2019;520206;2018;prevision;;MEUR;;sans_objet;-
 2019;520206;2019;prevision_plf;;MEUR;;sans_objet;-
-2007;520207;2005;realisation;;MEUR;;absent;
+2007;520207;2005;realisation;;MEUR;;sans_objet;_
 2007;520207;2006;prevision;1;MEUR;1;chiffre;1
 2008;520207;2006;realisation;1;MEUR;1;chiffre;1
 2007;520207;2007;prevision_plf;1;MEUR;1;chiffre;1
@@ -29168,7 +29168,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;530101;2025;prevision_plf;;MEUR;;nc;nc
 2026;530101;2025;prevision;;MEUR;;nc;nc
 2026;530101;2026;prevision_plf;;MEUR;;nc;nc
-2002;530102;2000;realisation;;MEUR;;absent;
+2002;530102;2000;realisation;;MEUR;;sans_objet;_
 2002;530102;2001;prevision;;MEUR;;nc;nc
 2003;530102;2001;realisation;;MEUR;;nc;nc
 2002;530102;2002;prevision_plf;;MEUR;;nc;nc
@@ -29630,9 +29630,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;530207;2025;prevision_plf;6;MEUR;6;chiffre;6
 2026;530207;2025;prevision;6;MEUR;6;chiffre;6
 2026;530207;2026;prevision_plf;6;MEUR;6;chiffre;6
-2001;530208;1999;realisation;;MF;;absent;
-2001;530208;2000;prevision;;MF;;absent;
-2002;530208;2000;realisation;;MEUR;;absent;
+2001;530208;1999;realisation;;MF;;sans_objet;_
+2001;530208;2000;prevision;;MF;;sans_objet;_
+2002;530208;2000;realisation;;MEUR;;sans_objet;_
 2001;530208;2001;prevision_plf;;MF;;nc;nc
 2002;530208;2001;prevision;;MEUR;;nc;nc
 2003;530208;2001;realisation;;MEUR;;nc;nc
@@ -29708,7 +29708,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;530208;2025;prevision_plf;2;MEUR;2;chiffre;2
 2026;530208;2025;prevision;2;MEUR;2;chiffre;2
 2026;530208;2026;prevision_plf;2;MEUR;2;chiffre;2
-2002;530209;2000;realisation;;MEUR;;absent;
+2002;530209;2000;realisation;;MEUR;;sans_objet;_
 2002;530209;2001;prevision;;MEUR;;nc;nc
 2003;530209;2001;realisation;;MEUR;;nc;nc
 2002;530209;2002;prevision_plf;;MEUR;;nc;nc
@@ -29753,18 +29753,18 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2015;530209;2015;prevision_plf;0;MEUR;0;epsilon;ε
 2016;530209;2015;prevision;0;MEUR;0;epsilon;ε
 2016;530209;2016;prevision_plf;0;MEUR;0;epsilon;ε
-2005;530210;2003;realisation;;MEUR;;absent;
+2005;530210;2003;realisation;;MEUR;;sans_objet;_
 2005;530210;2004;prevision;60;MEUR;60;chiffre;60
 2006;530210;2004;realisation;70;MEUR;70;chiffre;70
 2005;530210;2005;prevision_plf;120;MEUR;120;chiffre;120
 2006;530210;2005;prevision;130;MEUR;130;chiffre;130
 2007;530210;2005;realisation;130;MEUR;130;chiffre;130
-2006;530210;2006;prevision_plf;;MEUR;;absent;
+2006;530210;2006;prevision_plf;;MEUR;;sans_objet;_
 2007;530210;2006;prevision;10;MEUR;10;chiffre;10
 2008;530210;2006;realisation;10;MEUR;10;chiffre;10
-2007;530210;2007;prevision_plf;;MEUR;;absent;
-2008;530210;2007;prevision;;MEUR;;absent;
-2008;530210;2008;prevision_plf;;MEUR;;absent;
+2007;530210;2007;prevision_plf;;MEUR;;sans_objet;_
+2008;530210;2007;prevision;;MEUR;;sans_objet;_
+2008;530210;2008;prevision_plf;;MEUR;;sans_objet;_
 2009;530211;2007;realisation;0;MEUR;0;epsilon;ε
 2009;530211;2008;prevision;0;MEUR;0;epsilon;ε
 2010;530211;2008;realisation;0;MEUR;0;epsilon;ε
@@ -30110,7 +30110,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;550102;2025;prevision_plf;0;MEUR;0;epsilon;ε
 2026;550102;2025;prevision;0;MEUR;0;epsilon;ε
 2026;550102;2026;prevision_plf;0;MEUR;0;epsilon;ε
-2001;550103;1999;realisation;;MF;;absent;
+2001;550103;1999;realisation;;MF;;sans_objet;_
 2001;550103;2000;prevision;;MF;;nc;nc
 2002;550103;2000;realisation;;MEUR;;nc;nc
 2001;550103;2001;prevision_plf;;MF;;nc;nc
@@ -30125,7 +30125,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;550103;2004;prevision_plf;;MEUR;;nc;nc
 2005;550103;2004;prevision;;MEUR;;nc;nc
 2005;550103;2005;prevision_plf;;MEUR;;nc;nc
-2007;550103;2005;realisation;;MEUR;;absent;
+2007;550103;2005;realisation;;MEUR;;sans_objet;_
 2007;550103;2006;prevision;5;MEUR;5;chiffre;5
 2008;550103;2006;realisation;5;MEUR;5;chiffre;5
 2007;550103;2007;prevision_plf;5;MEUR;5;chiffre;5
@@ -30266,7 +30266,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2011;560103;2011;prevision_plf;;MEUR;;sans_objet;-
 2012;560103;2011;prevision;;MEUR;;nc;nc
 2012;560103;2012;prevision_plf;;MEUR;;nc;nc
-2003;560104;2001;realisation;;MEUR;;absent;
+2003;560104;2001;realisation;;MEUR;;sans_objet;_
 2003;560104;2002;prevision;;MEUR;;nc;nc
 2004;560104;2002;realisation;;MEUR;;nc;nc
 2003;560104;2003;prevision_plf;;MEUR;;nc;nc
@@ -30277,14 +30277,14 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2006;560104;2004;realisation;;MEUR;;nc;nc
 2005;560104;2005;prevision_plf;;MEUR;;nc;nc
 2006;560104;2005;prevision;;MEUR;;nc;nc
-2007;560104;2005;realisation;150;MEUR;150;chiffre;150
+2007;560104;2005;realisation;1500;MEUR;1500;chiffre;1500
 2006;560104;2006;prevision_plf;;MEUR;;nc;nc
-2007;560104;2006;prevision;0;MEUR;0;chiffre;0
-2008;560104;2006;realisation;160;MEUR;160;chiffre;160
-2007;560104;2007;prevision_plf;150;MEUR;150;chiffre;150
-2008;560104;2007;prevision;0;MEUR;0;chiffre;0
+2007;560104;2006;prevision;1500;MEUR;1500;chiffre;1500
+2008;560104;2006;realisation;1600;MEUR;1600;chiffre;1600
+2007;560104;2007;prevision_plf;1500;MEUR;1500;chiffre;1500
+2008;560104;2007;prevision;1700;MEUR;1700;chiffre;1700
 2009;560104;2007;realisation;1800;MEUR;1800;chiffre;1 800
-2008;560104;2008;prevision_plf;0;MEUR;0;chiffre;0
+2008;560104;2008;prevision_plf;1700;MEUR;1700;chiffre;1700
 2009;560104;2008;prevision;1900;MEUR;1900;chiffre;1 900
 2010;560104;2008;realisation;2000;MEUR;2000;chiffre;2 000
 2009;560104;2009;prevision_plf;2000;MEUR;2000;chiffre;2 000
@@ -30434,7 +30434,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2022;570102;2022;prevision_plf;;MEUR;;nc;nc
 2023;570102;2022;prevision;;MEUR;;nc;nc
 2023;570102;2023;prevision_plf;;MEUR;;nc;nc
-2001;570103;1999;realisation;;MF;;absent;
+2001;570103;1999;realisation;;MF;;sans_objet;_
 2001;570103;2000;prevision;200;MF;30.5;chiffre;200
 2002;570103;2000;realisation;23;MEUR;23;chiffre;23
 2001;570103;2001;prevision_plf;200;MF;30.5;chiffre;200
@@ -30635,7 +30635,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;580101;2004;prevision_plf;;MEUR;;nc;nc
 2005;580101;2004;prevision;;MEUR;;nc;nc
 2005;580101;2005;prevision_plf;;MEUR;;nc;nc
-2007;580102;2005;realisation;;MEUR;;absent;
+2007;580102;2005;realisation;;MEUR;;sans_objet;_
 2007;580102;2006;prevision;0;MEUR;0;epsilon;ε
 2008;580102;2006;realisation;0;MEUR;0;epsilon;ε
 2007;580102;2007;prevision_plf;0;MEUR;0;epsilon;ε
@@ -31105,11 +31105,11 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2007;710103;2005;realisation;930;MEUR;930;chiffre;930
 2006;710103;2006;prevision_plf;910;MEUR;910;chiffre;910
 2007;710103;2006;prevision;960;MEUR;960;chiffre;960
-2008;710103;2006;realisation;101;MEUR;101;chiffre;101
+2008;710103;2006;realisation;1010;MEUR;1010;chiffre;1010
 2007;710103;2007;prevision_plf;990;MEUR;990;chiffre;990
-2008;710103;2007;prevision;0;MEUR;0;chiffre;0
+2008;710103;2007;prevision;1040;MEUR;1040;chiffre;1040
 2009;710103;2007;realisation;1100;MEUR;1100;chiffre;1 100
-2008;710103;2008;prevision_plf;0;MEUR;0;chiffre;0
+2008;710103;2008;prevision_plf;1070;MEUR;1070;chiffre;1070
 2009;710103;2008;prevision;1150;MEUR;1150;chiffre;1 150
 2010;710103;2008;realisation;1160;MEUR;1160;chiffre;1 160
 2009;710103;2009;prevision_plf;1180;MEUR;1180;chiffre;1 180
@@ -31604,7 +31604,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;720107;2025;prevision_plf;250;MEUR;250;chiffre;250
 2026;720107;2025;prevision;245;MEUR;245;chiffre;245
 2026;720107;2026;prevision_plf;275;MEUR;275;chiffre;275
-2008;720108;2006;realisation;;MEUR;;absent;
+2008;720108;2006;realisation;;MEUR;;sans_objet;_
 2008;720108;2007;prevision;1;MEUR;1;chiffre;1
 2009;720108;2007;realisation;2;MEUR;2;chiffre;2
 2008;720108;2008;prevision_plf;1;MEUR;1;chiffre;1
@@ -32191,26 +32191,26 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2002;730205;2000;realisation;1281;MEUR;1281;chiffre;1 281
 2001;730205;2001;prevision_plf;8000;MF;1219.6;chiffre;8 000
 2002;730205;2001;prevision;1296;MEUR;1296;chiffre;1 296
-2003;730205;2001;realisation;5;MEUR;5;chiffre;5
+2003;730205;2001;realisation;1325;MEUR;1325;chiffre;1325
 2002;730205;2002;prevision_plf;1372;MEUR;1372;chiffre;1 372
-2003;730205;2002;prevision;5;MEUR;5;chiffre;5
-2004;730205;2002;realisation;0;MEUR;0;chiffre;0
-2003;730205;2003;prevision_plf;0;MEUR;0;chiffre;0
-2004;730205;2003;prevision;139;MEUR;139;chiffre;139
-2005;730205;2003;realisation;0;MEUR;0;chiffre;0
-2004;730205;2004;prevision_plf;5;MEUR;5;chiffre;5
-2005;730205;2004;prevision;5;MEUR;5;chiffre;5
-2006;730205;2004;realisation;5;MEUR;5;chiffre;5
-2005;730205;2005;prevision_plf;146;MEUR;146;chiffre;146
-2006;730205;2005;prevision;0;MEUR;0;chiffre;0
-2007;730205;2005;realisation;150;MEUR;150;chiffre;150
-2006;730205;2006;prevision_plf;5;MEUR;5;chiffre;5
-2007;730205;2006;prevision;0;MEUR;0;chiffre;0
-2008;730205;2006;realisation;165;MEUR;165;chiffre;165
-2007;730205;2007;prevision_plf;0;MEUR;0;chiffre;0
-2008;730205;2007;prevision;0;MEUR;0;chiffre;0
+2003;730205;2002;prevision;1355;MEUR;1355;chiffre;1355
+2004;730205;2002;realisation;1360;MEUR;1360;chiffre;1360
+2003;730205;2003;prevision_plf;1400;MEUR;1400;chiffre;1400
+2004;730205;2003;prevision;1395;MEUR;1395;chiffre;1395
+2005;730205;2003;realisation;1370;MEUR;1370;chiffre;1370
+2004;730205;2004;prevision_plf;1435;MEUR;1435;chiffre;1435
+2005;730205;2004;prevision;1415;MEUR;1415;chiffre;1415
+2006;730205;2004;realisation;1445;MEUR;1445;chiffre;1445
+2005;730205;2005;prevision_plf;1460;MEUR;1460;chiffre;1460
+2006;730205;2005;prevision;1500;MEUR;1500;chiffre;1500
+2007;730205;2005;realisation;1500;MEUR;1500;chiffre;1500
+2006;730205;2006;prevision_plf;1545;MEUR;1545;chiffre;1545
+2007;730205;2006;prevision;1550;MEUR;1550;chiffre;1550
+2008;730205;2006;realisation;1650;MEUR;1650;chiffre;1650
+2007;730205;2007;prevision_plf;1600;MEUR;1600;chiffre;1600
+2008;730205;2007;prevision;1700;MEUR;1700;chiffre;1700
 2009;730205;2007;realisation;1510;MEUR;1510;chiffre;1 510
-2008;730205;2008;prevision_plf;0;MEUR;0;chiffre;0
+2008;730205;2008;prevision_plf;1750;MEUR;1750;chiffre;1750
 2009;730205;2008;prevision;1570;MEUR;1570;chiffre;1 570
 2010;730205;2008;realisation;1540;MEUR;1540;chiffre;1 540
 2009;730205;2009;prevision_plf;1610;MEUR;1610;chiffre;1 610
@@ -32545,7 +32545,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;730210;2002;realisation;870;MEUR;870;chiffre;870
 2003;730210;2003;prevision_plf;633;MEUR;633;chiffre;633
 2004;730210;2003;prevision;870;MEUR;870;chiffre;870
-2005;730210;2003;realisation;105;MEUR;105;chiffre;105
+2005;730210;2003;realisation;1050;MEUR;1050;chiffre;1050
 2004;730210;2004;prevision_plf;880;MEUR;880;chiffre;880
 2005;730210;2004;prevision;720;MEUR;720;chiffre;720
 2006;730210;2004;realisation;675;MEUR;675;chiffre;675
@@ -32558,7 +32558,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2007;730210;2007;prevision_plf;840;MEUR;840;chiffre;840
 2008;730210;2007;prevision;910;MEUR;910;chiffre;910
 2009;730210;2007;realisation;750;MEUR;750;chiffre;750
-2008;730210;2008;prevision_plf;0;MEUR;0;chiffre;0
+2008;730210;2008;prevision_plf;1040;MEUR;1040;chiffre;1040
 2009;730210;2008;prevision;780;MEUR;780;chiffre;780
 2010;730210;2008;realisation;950;MEUR;950;chiffre;950
 2009;730210;2009;prevision_plf;800;MEUR;800;chiffre;800
@@ -32701,26 +32701,26 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2002;730213;2000;realisation;3049;MEUR;3049;chiffre;3 049
 2001;730213;2001;prevision_plf;20200;MF;3079.5;chiffre;20 200
 2002;730213;2001;prevision;3095;MEUR;3095;chiffre;3 095
-2003;730213;2001;realisation;0;MEUR;0;chiffre;0
+2003;730213;2001;realisation;3300;MEUR;3300;chiffre;3300
 2002;730213;2002;prevision_plf;3201;MEUR;3201;chiffre;3 201
-2003;730213;2002;prevision;0;MEUR;0;chiffre;0
-2004;730213;2002;realisation;340;MEUR;340;chiffre;340
-2003;730213;2003;prevision_plf;0;MEUR;0;chiffre;0
-2004;730213;2003;prevision;350;MEUR;350;chiffre;350
-2005;730213;2003;realisation;370;MEUR;370;chiffre;370
-2004;730213;2004;prevision_plf;0;MEUR;0;chiffre;0
-2005;730213;2004;prevision;0;MEUR;0;chiffre;0
-2006;730213;2004;realisation;0;MEUR;0;chiffre;0
-2005;730213;2005;prevision_plf;420;MEUR;420;chiffre;420
-2006;730213;2005;prevision;0;MEUR;0;chiffre;0
-2007;730213;2005;realisation;500;MEUR;500;chiffre;500
-2006;730213;2006;prevision_plf;0;MEUR;0;chiffre;0
-2007;730213;2006;prevision;500;MEUR;500;chiffre;500
-2008;730213;2006;realisation;470;MEUR;470;chiffre;470
-2007;730213;2007;prevision_plf;500;MEUR;500;chiffre;500
-2008;730213;2007;prevision;0;MEUR;0;chiffre;0
+2003;730213;2002;prevision;3400;MEUR;3400;chiffre;3400
+2004;730213;2002;realisation;3400;MEUR;3400;chiffre;3400
+2003;730213;2003;prevision_plf;3500;MEUR;3500;chiffre;3500
+2004;730213;2003;prevision;3500;MEUR;3500;chiffre;3500
+2005;730213;2003;realisation;3700;MEUR;3700;chiffre;3700
+2004;730213;2004;prevision_plf;3600;MEUR;3600;chiffre;3600
+2005;730213;2004;prevision;4100;MEUR;4100;chiffre;4100
+2006;730213;2004;realisation;4100;MEUR;4100;chiffre;4100
+2005;730213;2005;prevision_plf;4200;MEUR;4200;chiffre;4200
+2006;730213;2005;prevision;4200;MEUR;4200;chiffre;4200
+2007;730213;2005;realisation;5000;MEUR;5000;chiffre;5000
+2006;730213;2006;prevision_plf;4350;MEUR;4350;chiffre;4350
+2007;730213;2006;prevision;5000;MEUR;5000;chiffre;5000
+2008;730213;2006;realisation;4700;MEUR;4700;chiffre;4700
+2007;730213;2007;prevision_plf;5000;MEUR;5000;chiffre;5000
+2008;730213;2007;prevision;5050;MEUR;5050;chiffre;5050
 2009;730213;2007;realisation;4800;MEUR;4800;chiffre;4 800
-2008;730213;2008;prevision_plf;0;MEUR;0;chiffre;0
+2008;730213;2008;prevision_plf;5400;MEUR;5400;chiffre;5400
 2009;730213;2008;prevision;5100;MEUR;5100;chiffre;5 100
 2010;730213;2008;realisation;5100;MEUR;5100;chiffre;5 100
 2009;730213;2009;prevision_plf;5400;MEUR;5400;chiffre;5 400
@@ -32774,7 +32774,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;730213;2025;prevision_plf;2280;MEUR;2280;chiffre;2 280
 2026;730213;2025;prevision;2205;MEUR;2205;chiffre;2 205
 2026;730213;2026;prevision_plf;2465;MEUR;2465;chiffre;2 465
-2001;730214;1999;realisation;;MF;;absent;
+2001;730214;1999;realisation;;MF;;sans_objet;_
 2001;730214;2000;prevision;100;MF;15.2;chiffre;100
 2002;730214;2000;realisation;15;MEUR;15;chiffre;15
 2001;730214;2001;prevision_plf;100;MF;15.2;chiffre;100
@@ -32852,7 +32852,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;730214;2025;prevision_plf;84;MEUR;84;chiffre;84
 2026;730214;2025;prevision;84;MEUR;84;chiffre;84
 2026;730214;2026;prevision_plf;94;MEUR;94;chiffre;94
-2001;730215;1999;realisation;;MF;;absent;
+2001;730215;1999;realisation;;MF;;sans_objet;_
 2001;730215;2000;prevision;10;MF;1.5;chiffre;10
 2002;730215;2000;realisation;5;MEUR;5;chiffre;5
 2001;730215;2001;prevision_plf;10;MF;1.5;chiffre;10
@@ -32909,7 +32909,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2018;730215;2018;prevision_plf;;MEUR;;nc;nc
 2019;730215;2018;prevision;;MEUR;;nc;nc
 2019;730215;2019;prevision_plf;;MEUR;;nc;nc
-2007;730216;2005;realisation;;MEUR;;absent;
+2007;730216;2005;realisation;;MEUR;;sans_objet;_
 2007;730216;2006;prevision;100;MEUR;100;chiffre;100
 2008;730216;2006;realisation;50;MEUR;50;chiffre;50
 2007;730216;2007;prevision_plf;300;MEUR;300;chiffre;300
@@ -32969,7 +32969,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2025;730216;2025;prevision_plf;520;MEUR;520;chiffre;520
 2026;730216;2025;prevision;505;MEUR;505;chiffre;505
 2026;730216;2026;prevision_plf;565;MEUR;565;chiffre;565
-2007;730218;2005;realisation;;MEUR;;absent;
+2007;730218;2005;realisation;;MEUR;;sans_objet;_
 2007;730218;2006;prevision;20;MEUR;20;chiffre;20
 2008;730218;2006;realisation;5;MEUR;5;chiffre;5
 2007;730218;2007;prevision_plf;40;MEUR;40;chiffre;40
@@ -33596,16 +33596,16 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;730303;2004;prevision_plf;975;MEUR;975;chiffre;975
 2005;730303;2004;prevision;975;MEUR;975;chiffre;975
 2006;730303;2004;realisation;980;MEUR;980;chiffre;980
-2005;730303;2005;prevision_plf;103;MEUR;103;chiffre;103
-2006;730303;2005;prevision;0;MEUR;0;chiffre;0
-2007;730303;2005;realisation;103;MEUR;103;chiffre;103
-2006;730303;2006;prevision_plf;110;MEUR;110;chiffre;110
-2007;730303;2006;prevision;0;MEUR;0;chiffre;0
-2008;730303;2006;realisation;105;MEUR;105;chiffre;105
-2007;730303;2007;prevision_plf;0;MEUR;0;chiffre;0
-2008;730303;2007;prevision;0;MEUR;0;chiffre;0
+2005;730303;2005;prevision_plf;1035;MEUR;1035;chiffre;1035
+2006;730303;2005;prevision;1040;MEUR;1040;chiffre;1040
+2007;730303;2005;realisation;1030;MEUR;1030;chiffre;1030
+2006;730303;2006;prevision_plf;1100;MEUR;1100;chiffre;1100
+2007;730303;2006;prevision;1080;MEUR;1080;chiffre;1080
+2008;730303;2006;realisation;1050;MEUR;1050;chiffre;1050
+2007;730303;2007;prevision_plf;1130;MEUR;1130;chiffre;1130
+2008;730303;2007;prevision;1070;MEUR;1070;chiffre;1070
 2009;730303;2007;realisation;1070;MEUR;1070;chiffre;1 070
-2008;730303;2008;prevision_plf;0;MEUR;0;chiffre;0
+2008;730303;2008;prevision_plf;1090;MEUR;1090;chiffre;1090
 2009;730303;2008;prevision;1100;MEUR;1100;chiffre;1 100
 2010;730303;2008;realisation;1100;MEUR;1100;chiffre;1 100
 2009;730303;2009;prevision_plf;1140;MEUR;1140;chiffre;1 140
@@ -34019,7 +34019,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2004;740104;2004;prevision_plf;280;MEUR;280;chiffre;280
 2005;740104;2004;prevision;305;MEUR;305;chiffre;305
 2005;740104;2005;prevision_plf;315;MEUR;315;chiffre;315
-2001;740105;1999;realisation;;MF;;absent;
+2001;740105;1999;realisation;;MF;;sans_objet;_
 2001;740105;2000;prevision;;MF;;nc;nc
 2002;740105;2000;realisation;;MEUR;;nc;nc
 2001;740105;2001;prevision_plf;;MF;;nc;nc
@@ -34326,9 +34326,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2007;800104;2006;prevision;5;MEUR;5;chiffre;5
 2008;800104;2006;realisation;4;MEUR;4;chiffre;4
 2007;800104;2007;prevision_plf;5;MEUR;5;chiffre;5
-2008;800104;2007;prevision;;MEUR;;absent;
+2008;800104;2007;prevision;;MEUR;;sans_objet;_
 2009;800104;2007;realisation;4;MEUR;4;chiffre;4
-2008;800104;2008;prevision_plf;;MEUR;;absent;
+2008;800104;2008;prevision_plf;;MEUR;;sans_objet;_
 2009;800104;2008;prevision;0;MEUR;0;epsilon;ε
 2010;800104;2008;realisation;3;MEUR;3;chiffre;3
 2009;800104;2009;prevision_plf;0;MEUR;0;epsilon;ε
@@ -34359,8 +34359,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2006;800105;2005;prevision;20;MEUR;20;chiffre;20
 2007;800105;2005;realisation;20;MEUR;20;chiffre;20
 2006;800105;2006;prevision_plf;20;MEUR;20;chiffre;20
-2007;800105;2006;prevision;;MEUR;;absent;
-2007;800105;2007;prevision_plf;;MEUR;;absent;
+2007;800105;2006;prevision;;MEUR;;sans_objet;_
+2007;800105;2007;prevision_plf;;MEUR;;sans_objet;_
 2001;800106;1999;realisation;240;MF;36.6;chiffre;240
 2001;800106;2000;prevision;245;MF;37.4;chiffre;245
 2002;800106;2000;realisation;41;MEUR;41;chiffre;41
@@ -34380,8 +34380,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2006;800106;2005;prevision;30;MEUR;30;chiffre;30
 2007;800106;2005;realisation;30;MEUR;30;chiffre;30
 2006;800106;2006;prevision_plf;30;MEUR;30;chiffre;30
-2007;800106;2006;prevision;;MEUR;;absent;
-2007;800106;2007;prevision_plf;;MEUR;;absent;
+2007;800106;2006;prevision;;MEUR;;sans_objet;_
+2007;800106;2007;prevision_plf;;MEUR;;sans_objet;_
 2001;800107;1999;realisation;1050;MF;160.1;chiffre;1 050
 2001;800107;2000;prevision;1250;MF;190.6;chiffre;1 250
 2002;800107;2000;realisation;183;MEUR;183;chiffre;183
@@ -34406,7 +34406,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2007;800107;2007;prevision_plf;610;MEUR;610;chiffre;610
 2008;800107;2007;prevision;610;MEUR;610;chiffre;610
 2009;800107;2007;realisation;500;MEUR;500;chiffre;500
-2008;800107;2008;prevision_plf;0;MEUR;0;chiffre;0
+2008;800107;2008;prevision_plf;1090;MEUR;1090;chiffre;1090
 2009;800107;2008;prevision;939;MEUR;939;chiffre;939
 2010;800107;2008;realisation;790;MEUR;790;chiffre;790
 2009;800107;2009;prevision_plf;651;MEUR;651;chiffre;651
@@ -34455,9 +34455,9 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2006;800108;2005;prevision;60;MEUR;60;chiffre;60
 2007;800108;2005;realisation;35;MEUR;35;chiffre;35
 2006;800108;2006;prevision_plf;65;MEUR;65;chiffre;65
-2007;800108;2006;prevision;;MEUR;;absent;
+2007;800108;2006;prevision;;MEUR;;sans_objet;_
 2008;800108;2006;realisation;0;MEUR;0;epsilon;ε
-2007;800108;2007;prevision_plf;;MEUR;;absent;
+2007;800108;2007;prevision_plf;;MEUR;;sans_objet;_
 2008;800108;2007;prevision;0;MEUR;0;epsilon;ε
 2009;800108;2007;realisation;0;MEUR;0;epsilon;ε
 2008;800108;2008;prevision_plf;0;MEUR;0;epsilon;ε
@@ -34501,25 +34501,25 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2002;800109;2000;realisation;1921;MEUR;1921;chiffre;1 921
 2001;800109;2001;prevision_plf;13500;MF;2058.1;chiffre;13 500
 2002;800109;2001;prevision;1951;MEUR;1951;chiffre;1 951
-2003;800109;2001;realisation;5;MEUR;5;chiffre;5
+2003;800109;2001;realisation;2125;MEUR;2125;chiffre;2125
 2002;800109;2002;prevision_plf;2058;MEUR;2058;chiffre;2 058
-2003;800109;2002;prevision;5;MEUR;5;chiffre;5
-2004;800109;2002;realisation;0;MEUR;0;chiffre;0
-2003;800109;2003;prevision_plf;6;MEUR;6;chiffre;6
-2004;800109;2003;prevision;122;MEUR;122;chiffre;122
-2005;800109;2003;realisation;0;MEUR;0;chiffre;0
-2004;800109;2004;prevision_plf;5;MEUR;5;chiffre;5
-2005;800109;2004;prevision;5;MEUR;5;chiffre;5
-2006;800109;2004;realisation;5;MEUR;5;chiffre;5
-2005;800109;2005;prevision_plf;126;MEUR;126;chiffre;126
-2006;800109;2005;prevision;0;MEUR;0;chiffre;0
-2007;800109;2005;realisation;135;MEUR;135;chiffre;135
-2006;800109;2006;prevision_plf;0;MEUR;0;chiffre;0
-2007;800109;2006;prevision;0;MEUR;0;chiffre;0
-2008;800109;2006;realisation;139;MEUR;139;chiffre;139
-2007;800109;2007;prevision_plf;143;MEUR;143;chiffre;143
-2008;800109;2007;prevision;0;MEUR;0;chiffre;0
-2008;800109;2008;prevision_plf;143;MEUR;143;chiffre;143
+2003;800109;2002;prevision;1815;MEUR;1815;chiffre;1815
+2004;800109;2002;realisation;1130;MEUR;1130;chiffre;1130
+2003;800109;2003;prevision_plf;1906;MEUR;1906;chiffre;1906
+2004;800109;2003;prevision;1225;MEUR;1225;chiffre;1225
+2005;800109;2003;realisation;1120;MEUR;1120;chiffre;1120
+2004;800109;2004;prevision_plf;1285;MEUR;1285;chiffre;1285
+2005;800109;2004;prevision;1215;MEUR;1215;chiffre;1215
+2006;800109;2004;realisation;1215;MEUR;1215;chiffre;1215
+2005;800109;2005;prevision_plf;1265;MEUR;1265;chiffre;1265
+2006;800109;2005;prevision;1250;MEUR;1250;chiffre;1250
+2007;800109;2005;realisation;1350;MEUR;1350;chiffre;1350
+2006;800109;2006;prevision_plf;1300;MEUR;1300;chiffre;1300
+2007;800109;2006;prevision;1400;MEUR;1400;chiffre;1400
+2008;800109;2006;realisation;1395;MEUR;1395;chiffre;1395
+2007;800109;2007;prevision_plf;1430;MEUR;1430;chiffre;1430
+2008;800109;2007;prevision;1430;MEUR;1430;chiffre;1430
+2008;800109;2008;prevision_plf;;MEUR;;sans_objet;_
 2010;800109;2008;realisation;3500;MEUR;3500;chiffre;3 500
 2010;800109;2009;prevision;3500;MEUR;3500;chiffre;3 500
 2011;800109;2009;realisation;3500;MEUR;3500;chiffre;3 500
@@ -34568,7 +34568,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2005;800110;2005;prevision_plf;0;MEUR;0;epsilon;ε
 2006;800110;2005;prevision;;MEUR;;absent;
 2006;800110;2006;prevision_plf;;MEUR;;absent;
-2007;800111;2005;realisation;;MEUR;;absent;
+2007;800111;2005;realisation;;MEUR;;sans_objet;_
 2007;800111;2006;prevision;5;MEUR;5;chiffre;5
 2008;800111;2006;realisation;;MEUR;;nc;nc
 2007;800111;2007;prevision_plf;5;MEUR;5;chiffre;5
@@ -34828,26 +34828,26 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2002;800201;2000;realisation;960;MEUR;960;chiffre;960
 2001;800201;2001;prevision_plf;6500;MF;990.9;chiffre;6 500
 2002;800201;2001;prevision;991;MEUR;991;chiffre;991
-2003;800201;2001;realisation;102;MEUR;102;chiffre;102
+2003;800201;2001;realisation;1020;MEUR;1020;chiffre;1020
 2002;800201;2002;prevision_plf;976;MEUR;976;chiffre;976
-2003;800201;2002;prevision;102;MEUR;102;chiffre;102
-2004;800201;2002;realisation;100;MEUR;100;chiffre;100
-2003;800201;2003;prevision_plf;102;MEUR;102;chiffre;102
-2004;800201;2003;prevision;103;MEUR;103;chiffre;103
-2005;800201;2003;realisation;123;MEUR;123;chiffre;123
-2004;800201;2004;prevision_plf;0;MEUR;0;chiffre;0
-2005;800201;2004;prevision;0;MEUR;0;chiffre;0
-2006;800201;2004;realisation;0;MEUR;0;chiffre;0
-2005;800201;2005;prevision_plf;130;MEUR;130;chiffre;130
-2006;800201;2005;prevision;0;MEUR;0;chiffre;0
-2007;800201;2005;realisation;150;MEUR;150;chiffre;150
-2006;800201;2006;prevision_plf;0;MEUR;0;chiffre;0
-2007;800201;2006;prevision;0;MEUR;0;chiffre;0
-2008;800201;2006;realisation;147;MEUR;147;chiffre;147
-2007;800201;2007;prevision_plf;0;MEUR;0;chiffre;0
-2008;800201;2007;prevision;0;MEUR;0;chiffre;0
+2003;800201;2002;prevision;1025;MEUR;1025;chiffre;1025
+2004;800201;2002;realisation;1000;MEUR;1000;chiffre;1000
+2003;800201;2003;prevision_plf;1025;MEUR;1025;chiffre;1025
+2004;800201;2003;prevision;1030;MEUR;1030;chiffre;1030
+2005;800201;2003;realisation;1230;MEUR;1230;chiffre;1230
+2004;800201;2004;prevision_plf;1120;MEUR;1120;chiffre;1120
+2005;800201;2004;prevision;1230;MEUR;1230;chiffre;1230
+2006;800201;2004;realisation;1400;MEUR;1400;chiffre;1400
+2005;800201;2005;prevision_plf;1300;MEUR;1300;chiffre;1300
+2006;800201;2005;prevision;1490;MEUR;1490;chiffre;1490
+2007;800201;2005;realisation;1500;MEUR;1500;chiffre;1500
+2006;800201;2006;prevision_plf;1410;MEUR;1410;chiffre;1410
+2007;800201;2006;prevision;1410;MEUR;1410;chiffre;1410
+2008;800201;2006;realisation;1470;MEUR;1470;chiffre;1470
+2007;800201;2007;prevision_plf;1450;MEUR;1450;chiffre;1450
+2008;800201;2007;prevision;1400;MEUR;1400;chiffre;1400
 2009;800201;2007;realisation;1100;MEUR;1100;chiffre;1 100
-2008;800201;2008;prevision_plf;0;MEUR;0;chiffre;0
+2008;800201;2008;prevision_plf;1470;MEUR;1470;chiffre;1470
 2009;800201;2008;prevision;1000;MEUR;1000;chiffre;1 000
 2010;800201;2008;realisation;1100;MEUR;1100;chiffre;1 100
 2009;800201;2009;prevision_plf;950;MEUR;950;chiffre;950
@@ -35025,8 +35025,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2003;800205;2002;prevision;0;MEUR;0;epsilon;ε
 2004;800205;2002;realisation;0;MEUR;0;epsilon;ε
 2003;800205;2003;prevision_plf;0;MEUR;0;epsilon;ε
-2004;800205;2003;prevision;;MEUR;;absent;
-2004;800205;2004;prevision_plf;;MEUR;;absent;
+2004;800205;2003;prevision;;MEUR;;sans_objet;_
+2004;800205;2004;prevision_plf;;MEUR;;sans_objet;_
 2001;800206;1999;realisation;2;MF;0.3;chiffre;2
 2001;800206;2000;prevision;2;MF;0.3;chiffre;2
 2002;800206;2000;realisation;0;MEUR;0;epsilon;ε
@@ -35726,7 +35726,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2011;800402;2011;prevision_plf;;MEUR;;sans_objet;-
 2012;800402;2011;prevision;;MEUR;;sans_objet;-
 2012;800402;2012;prevision_plf;;MEUR;;sans_objet;-
-2001;800403;1999;realisation;;MF;;absent;
+2001;800403;1999;realisation;;MF;;sans_objet;_
 2001;800403;2000;prevision;230;MF;35.1;chiffre;230
 2002;800403;2000;realisation;127;MEUR;127;chiffre;127
 2001;800403;2001;prevision_plf;280;MF;42.7;chiffre;280
@@ -35786,7 +35786,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2019;800403;2019;prevision_plf;1543;MEUR;1543;chiffre;1 543
 2020;800403;2019;prevision;1553;MEUR;1553;chiffre;1 553
 2020;800403;2020;prevision_plf;;MEUR;;nc;nc
-2002;800404;2000;realisation;;MEUR;;absent;
+2002;800404;2000;realisation;;MEUR;;sans_objet;_
 2002;800404;2001;prevision;15;MEUR;15;chiffre;15
 2003;800404;2001;realisation;25;MEUR;25;chiffre;25
 2002;800404;2002;prevision_plf;15;MEUR;15;chiffre;15
@@ -35858,7 +35858,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2008;800405;2006;realisation;143;MEUR;143;chiffre;143
 2008;800405;2007;prevision;76;MEUR;76;chiffre;76
 2009;800405;2007;realisation;85;MEUR;85;chiffre;85
-2008;800405;2008;prevision_plf;;MEUR;;absent;
+2008;800405;2008;prevision_plf;;MEUR;;sans_objet;_
 2009;800405;2008;prevision;140;MEUR;140;chiffre;140
 2010;800405;2008;realisation;165;MEUR;165;chiffre;165
 2009;800405;2009;prevision_plf;;MEUR;;sans_objet;-
@@ -35894,7 +35894,7 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2019;800405;2019;prevision_plf;;MEUR;;nc;nc
 2020;800405;2019;prevision;1057;MEUR;1057;chiffre;1 057
 2020;800405;2020;prevision_plf;1057;MEUR;1057;chiffre;1 057
-2008;800406;2006;realisation;;MEUR;;absent;
+2008;800406;2006;realisation;;MEUR;;sans_objet;_
 2008;800406;2007;prevision;0;MEUR;0;epsilon;ε
 2009;800406;2007;realisation;0;MEUR;0;epsilon;ε
 2008;800406;2008;prevision_plf;0;MEUR;0;epsilon;ε
@@ -36585,8 +36585,8 @@ plf;numero;annee;statut;montant;unite;montant_meur;chiffrage;montant_brut
 2007;940101;2006;prevision;1;MEUR;1;chiffre;1
 2008;940101;2006;realisation;2;MEUR;2;chiffre;2
 2007;940101;2007;prevision_plf;1;MEUR;1;chiffre;1
-2008;940101;2007;prevision;;MEUR;;absent;
-2008;940101;2008;prevision_plf;;MEUR;;absent;
+2008;940101;2007;prevision;;MEUR;;sans_objet;_
+2008;940101;2008;prevision_plf;;MEUR;;sans_objet;_
 2022;940101;2020;realisation;;MEUR;;sans_objet;-
 2022;940101;2021;prevision;;MEUR;;sans_objet;-
 2023;940101;2021;realisation;;MEUR;;sans_objet;-

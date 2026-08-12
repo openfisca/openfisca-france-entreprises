@@ -83,8 +83,20 @@ _ESP = re.compile('[' + ESPACES + ']')
 #: **un seul** caractère d'espacement suivi d'exactement trois chiffres : c'est
 #: ce qui distingue « 1 238 » (un montant) de « 24  34 » (deux colonnes). Une
 #: tokenisation plus permissive recolle les colonnes voisines en un seul nombre.
-_GROUPE = r'\d{1,3}(?:[' + ESPACES + r']\d{3})*'
-JETON_MONTANT = r'(?:-[' + ESPACES + r']?' + _GROUPE + r'|' + _GROUPE + r'|nc|ε|-)'
+#:
+#: Le premier groupe est en revanche de longueur libre : les PLF 2003 à 2008
+#: impriment les milliers **sans** séparateur (« 1490 » là où le PLF 2002 écrit
+#: « 1 433 »). Borné à trois chiffres, le motif coupait « 1520 » en « 152 » puis
+#: « 0 » — d'où un plafond dur à 999 sur six millésimes, et un jeton « 0 »
+#: surnuméraire que l'appariement par colonne servait à l'année voisine. La
+#: séparation d'avec « 24  34 » reste assurée par les espaces multiples, que le
+#: séparateur de milliers n'emploie jamais.
+_GROUPE = r'\d+(?:[' + ESPACES + r']\d{3})*'
+#: Le « sans objet » s'écrit « - » dans les régimes B et C, mais « _ » dans le
+#: régime A — un caractère que la couche texte du PDF restitue tel quel. Non
+#: reconnu, il ne produisait aucun jeton : la ligne rendait moins de valeurs que
+#: d'années et l'appariement par colonne comblait le vide de travers.
+JETON_MONTANT = r'(?:-[' + ESPACES + r']?' + _GROUPE + r'|' + _GROUPE + r'|nc|ε|-|_)'
 RE_MONTANT = re.compile(JETON_MONTANT)
 
 
@@ -95,6 +107,7 @@ def normalise_montant(brut: str | None):
       - `nc`   : mesure non chiffrable
       - `ε`    : coût inférieur à 0,5 M€ (compté 0, drapeau `epsilon`)
       - `-`    : mesure sans objet cette année-là (créée ou éteinte)
+      - `_`    : le même, tel que l'imprime le régime A (PLF 2001-2008)
       - vide   : cellule non renseignée
     """
     if brut is None:
@@ -106,7 +119,7 @@ def normalise_montant(brut: str | None):
         return None, 'nc'
     if s == 'ε':
         return 0, 'epsilon'
-    if s == '-':
+    if s in ('-', '_'):
         return None, 'sans_objet'
     m = re.fullmatch(r'(-?)(\d+)', s)
     if m:
