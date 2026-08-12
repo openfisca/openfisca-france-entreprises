@@ -198,6 +198,18 @@ def atomes(ventilation, instruments, cellules):
 
     # Une cellule tarifaire dont les atomes multi-dimensions épuisent la masse
     # est réellement partitionnée : ses lignes se somment sans doublon.
+    # Un appariement par la quantité n'apprend quelque chose que s'il ne porte
+    # PAS sur la cellule entière. Quand une dimension est dégénérée, sa ligne
+    # unique vaut la masse totale, et toute autre dimension dégénérée produit la
+    # même valeur : elles se rencontrent parce qu'elles décrivent tout, pas parce
+    # qu'elles décrivent la même chose. Ces appariements-là sont triviaux.
+    masse_cellule = pd.Series(
+        cellules.set_index(CLE)["quantite"].reindex(base.set_index(CLE).index).to_numpy(),
+    )
+    base["appariement_informatif"] = (base["n_dimensions_propres"] >= 2) & (
+        (base["quantite"] - masse_cellule).abs() > 1e-6
+    )
+
     # Sur les libellés PROPRES uniquement : un libellé hérité ne prouve pas que
     # les dimensions découpent la cellule de la même façon.
     part = base[base["n_dimensions_propres"] >= 2].groupby(CLE)["quantite"].sum()
@@ -257,6 +269,8 @@ def rapporter(cellules, base):
             propres = (a["n_dimensions_propres"] >= n).sum()
             print(f"   >= {n} libellé(s) : {len(s):5d} atomes "
                   f"(dont {propres:5d} sans héritage)")
+        print(f"   appariements informatifs : {int(a['appariement_informatif'].sum())} "
+              f"(les autres portent sur la cellule entière et n'apprennent rien)")
         cellules_partitionnees = a.loc[a["partition_verifiee"], CLE].drop_duplicates()
         print(f"   partition vérifiée       : {len(cellules_partitionnees)} cellules sur {len(d)}")
 
@@ -286,7 +300,8 @@ def main():
     cellules = cellules[entete].sort_values(CLE).reset_index(drop=True)
 
     entete_atomes = CLE_ATOME + COMPOSANTES + [
-        "decomposition_exacte", "n_dimensions", "n_dimensions_propres", "partition_verifiee",
+        "decomposition_exacte", "n_dimensions", "n_dimensions_propres",
+        "appariement_informatif", "partition_verifiee",
     ]
     for slug in DIMENSIONS.values():
         if slug in base:

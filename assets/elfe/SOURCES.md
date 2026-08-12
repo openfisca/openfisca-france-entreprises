@@ -182,23 +182,65 @@ Le grain le plus renseigné, et le seul qui recolle des libellés **entre** dime
 | `n_dimensions_propres` | nombre de vues qui reconnaissent l'atome par sa quantité |
 | `<dim>_herite` | le libellé vient de la cellule entière (dimension à catégorie unique) et non de l'atome |
 | `n_dimensions` | libellés propres **et** hérités |
+| `appariement_informatif` | apparié par la quantité **et** ne portant pas sur la cellule entière |
 | `decomposition_exacte` | l'atome existe tel quel dans `Instruments` : composantes non moyennées |
 | `partition_verifiee` | les atomes à `n_dimensions_propres ≥ 2` épuisent la masse de leur cellule — les dimensions y découpent à l'identique |
 
-Rendement mesuré :
+### Injectivité n'est pas couverture
+
+La quantité est quasi injective — **20 collisions sur 9 391 lignes** — donc un
+appariement ne se trompe pas. Mais il se produit rarement, et la plupart de ceux qui
+se produisent n'apprennent rien :
 
 | | Carbone | Énergie |
 |---|---|---|
 | atomes | 3 706 | 2 641 |
-| ≥ 2 libellés (dont propres) | 3 158 (980) | 2 204 (560) |
-| ≥ 3 libellés (dont propres) | 2 735 (613) | 1 272 (280) |
+| appariés par la quantité (`n_dimensions_propres ≥ 2`) | 980 | 560 |
+| — dont **triviaux** (l'atome est la cellule entière) | 602 | 369 |
+| — dont **informatifs** (`appariement_informatif`) | **378** | **191** |
+| n'appariant rien | 2 726 | 2 081 |
+| ≥ 2 libellés, héritage compris | 3 158 | 2 204 |
 | décomposition exacte | 496 atomes, 51,7 % de la masse | 281 atomes, 62,1 % |
-| cellules à partition vérifiée | 378 / 624 | 342 / 490 |
 
-**La table croisée complète n'est pas reconstituée, et ne peut pas l'être** : les
-dimensions sont des marginales, leur jointe n'est pas identifiée. `Secteur
-économique` est le goulot — catégorie unique sur ~35 % des cellules seulement. Les
-colonnes `*_n` et `n_dimensions` disent exactement ce qui est su.
+Un appariement trivial met en regard deux dimensions dégénérées : leurs lignes
+uniques valent toutes deux la masse de la cellule. Elles se rencontrent parce
+qu'elles décrivent *tout*, pas parce qu'elles décrivent *la même chose*. Et
+l'héritage, exact, ne crée aucune information jointe : il propage un fait déjà connu
+au niveau de la cellule.
+
+Deux dimensions ne s'apparient réellement que si elles coupent la cellule au même
+endroit — or elles découpent selon des critères sans rapport.
+
+### Pourquoi la table croisée ne peut pas être reconstituée
+
+Pour une cellule à *R* catégories dans une dimension et *S* dans une autre, la
+croisée compte **R × S inconnues** et les marginales fournissent **R + S − 1**
+équations indépendantes : il reste (R − 1)(S − 1) degrés de liberté. La jointe n'est
+déterminée que si **R = 1 ou S = 1** — le cas que l'héritage exploite.
+
+Exemple, `Energie / 2017 / 5,88 €/MWh` :
+
+    Agents            Entreprises et administrations     94,984814
+                      Ménages                           142,710068
+    Type de produit   Chaleur et biomasse                 1,403022
+                      Gaz                               236,291860
+
+Quatre valeurs distinctes, donc aucun appariement ; quatre inconnues, trois
+équations. La case « Entreprises × Chaleur et biomasse » peut valoir **n'importe
+quoi dans [0 ; 1,403022]** sans contredire une marginale. L'information n'a pas été
+publiée ; aucun traitement ne la fera apparaître.
+
+Bilan sur l'ensemble :
+
+| | cellules à jointe identifiée | part de la masse | degrés de liberté résiduels |
+|---|---|---|---|
+| Carbone | 366 / 624 | 32,3 % | 14 713 |
+| Énergie | 272 / 490 | 28,5 % | 3 885 |
+
+**638 cellules sur 1 114 ont leur croisée entièrement déterminée**, non parce qu'on
+l'a reconstituée mais parce qu'au moins une dimension y est dégénérée dans chaque
+paire. Sur les 476 autres subsistent 18 598 degrés de liberté. `Secteur économique`
+est le goulot : catégorie unique sur ~35 % des cellules seulement.
 
 ### `elfe_sous_cellules.csv` — 1 467 lignes
 
