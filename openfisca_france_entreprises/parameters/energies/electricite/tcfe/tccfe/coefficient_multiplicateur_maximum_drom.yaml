@@ -12,7 +12,7 @@ metadata:
   short_label: Coefficient maximal TCCFE pour syndicats intercommunaux hors métropole
   last_value_still_valid_on: "2025-02-21"
   label_en: Maximal coefficient for communal tax on final electricity consumption (TCCFE), for intercommunal unions outside metropolitan France
-  ipp_csv_id: tccfe_coef_max
+  ipp_csv_id: tccfe_coef_max_drom
   unit: /1
   reference:
     2011-01-01:

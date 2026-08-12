@@ -1,4 +1,6 @@
-description:
+description: Tarif réduit de l'accise applicable aux gaz de pétrole liquéfiés combustibles utilisés pour les travaux agricoles
 values:
   2023-01-01:
     value: 0.712
+metadata:
+  unit: currency_per_mwh

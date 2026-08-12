@@ -11,7 +11,7 @@ values:
   2023-01-01:
     value: null
 metadata:
-  short_label: Coefficient minimal TCCFE pour syndicats intercommunaux hors métropole
+  short_label: Coefficient minimal TCCFE
   last_value_still_valid_on: "2025-02-21"
   label_en: Minimal coefficient for communal tax on final electricity consumption (TCCFE)
   ipp_csv_id: tccfe_coef_min
