@@ -4,25 +4,17 @@ metadata:
   short_label: TICPE
   label_en: TICPE - Energy products
   order:
+  - huiles_legeres
+  - huiles_moyennes
+  - huiles_lourdes
   - goudrons_utilises_comme_combustibles
-  - white_spirit_utilise_comme_combustible
-  - essences_speciales_utilisees_comme_carburants_combustibles
-  - super
-  - essence_normale
-  - carbureacteurs
-  - huiles
-  - petrole_lampant
-  - gazole
-  - fioul
-  - propane_carburants
-  - butanes_liquefies
-  - melanges_propane_butane
-  - autres_gaz_petrole_liquefies_utilises_comme_carburants
-  - gaz_naturel_etat_gazeux_utilises_comme_carburants
-  - gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
+  - propanes_butanes_etc
   - emulsion_eau_gazole
+  - gaz_naturels_etat_gazeux_utilises_comme_carburants
+  - gaz_naturels_etat_gazeux_utilises_sous_conditions_aux_moteurs_stationnaires
   - carburant_constitue_minimum_90_alcool_ethylique_agricole
-  - carburant_constitue_100_estars_methyliques_acides_gras
+  - carburant_constitue_100_esters_methyliques_acides_gras
+  - super_e85
 documentation: |-
   Références législatives générales :
 

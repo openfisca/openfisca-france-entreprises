@@ -1,6 +1,5 @@
-description: Tarifs réduits de l'accise sur les autres produits énergétiques (exonérations sectorielles)
+description: Tarifs réduits de l'accise sur les énergies (exonérations sectorielles) définis « à plat »
 metadata:
-  label_en: Reduced rates of excise duty on other energy products (sector exemptions)
   order:
   - navigation_interieure
   - navigation_maritime
@@ -10,20 +9,18 @@ metadata:
   - aeronautique_naval
   - intervention_vehicules_incendie_secours
 documentation: |-
-  Tarifs à zéro correspondant aux exonérations sectorielles prévues par le Code des impositions
-  sur les biens et services. Le modèle les codait auparavant en dur dans les formules (return 0) ;
-  ils sont désormais portés par des paramètres, de sorte qu'un changement de tarif relève de la
-  donnée et non du code.
+  Exonérations (tarifs réduits à zéro) que le code des impositions sur les biens et services définit
+  sans distinction de grade : les articles L. 312-54 à L. 312-58 et L. 312-66 à L. 312-69 les portent
+  dans un tableau CONSOMMATION × CATÉGORIE FISCALE où la catégorie vaut « Toutes » ou « Toutes sauf
+  électricité », précisée dans la documentation de chaque paramètre. Ces six exonérations sont donc décrites par
+  un seul paramètre chacune, à l'image d'OpenFisca-France-Entreprises, plutôt qu'éclatées en un fichier
+  par grade (huiles légères / moyennes / lourdes / hydrocarbures gazeux liquéfiés × carburant /
+  combustible). Valeurs toutes nulles : l'agrégat est numériquement identique à l'ancien découpage.
 
-  Ces paramètres sont agnostiques au grade de produit, **conformément au texte de loi** : les
-  articles L. 312-48 et L. 312-64 du CIBS définissent ces exonérations par un tableau
-  consommation × catégorie fiscale, la catégorie valant « Toutes » ou « Toutes sauf électricité ».
-  La loi ne distingue donc pas le grade — c'est le
-  barème IPP qui, lui, éclate chaque exonération en un fichier par grade. Le modèle applique
-  l'exonération à l'échelle de l'établissement (classé par code NAF), ce qui est fidèle à la loi.
-
-  Chaque paramètre porte l'identifiant à plat proposé au barème (`accise_navig_maritime`,
-  `accise_doubles_usages`…) : voir la proposition de convergence côté barème
-  (`_propositions_exonerations_a_plat/`, branche `energies-propositions-openfisca`), qui remplace les
-  ~36 identifiants par grade par ces 6 identifiants. La jonction sera effective dès la fusion de cette
-  proposition ; d'ici là ces identifiants n'existent que côté OpenFisca.
+  Restent différenciés par grade, sous accise/{carburants,combustibles}/<grade>/tarifs_reduits/, les
+  tarifs réellement distincts selon le carburant (taxi, transports guidé/collectif/routier, usages
+  agricoles/forestiers, extraction et manutention, montagnes, travaux statiques). L'exonération
+  d'intervention des véhicules d'incendie et de secours (art. 50 de la loi n° 2023-580) y reste
+  également : la loi ne la place pas dans le tableau ci-dessus et le barème ne la code que pour les
+  essences et gazoles ; sa mise à plat suppose de confirmer d'abord qu'elle vaut pour toutes les
+  catégories fiscales et non pour les seuls carburants routiers.

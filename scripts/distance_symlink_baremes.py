@@ -32,15 +32,26 @@ def git(repo, *args):
 
 
 def lister(repo, ref, racine):
-    out = git(repo, "ls-tree", "-r", "--name-only", ref, "--", racine.rstrip("/"))
+    """Chemins relatifs à `racine` -> SHA du blob, pour `ref`.
+
+    Les SHA sont retenus dès le listage parce que `git show <ref>:<chemin>` est inutilisable
+    ici : git résout d'abord l'argument comme un chemin du système de fichiers, et échoue en
+    « Filename too long » sur Windows dès que le préfixe de la copie de travail s'allonge — un
+    worktree suffit. `git cat-file blob <sha>` ne touche pas au système de fichiers.
+    """
+    out = git(repo, "ls-tree", "-r", ref, "--", racine.rstrip("/"))
     if out is None:
         return None
-    noms = out.decode("utf-8").splitlines()
-    return sorted(n[len(racine) :] for n in noms if n.startswith(racine))
+    arbre = {}
+    for ligne in out.decode("utf-8").splitlines():
+        meta, chemin = ligne.split("\t", 1)
+        if chemin.startswith(racine):
+            arbre[chemin[len(racine) :]] = meta.split()[2]
+    return arbre
 
 
-def charger(repo, ref, chemin):
-    b = git(repo, "show", f"{ref}:{chemin}")
+def charger(repo, sha):
+    b = git(repo, "cat-file", "blob", sha)
     return None if b is None else b.decode("utf-8")
 
 
@@ -82,8 +93,12 @@ def main():
 
     identiques, classes = [], {"valeurs": [], "forme": [], "index": [], "illisible": []}
     for rel in communs:
-        ta = charger(off_repo, a.ref_off, OFF_ROOT + rel)
-        tb = charger(bar_repo, a.ref_bar, BAR_ROOT + rel)
+        # Même blob des deux côtés : identiques sans avoir à les lire.
+        if off[rel] == bar[rel]:
+            identiques.append(rel)
+            continue
+        ta = charger(off_repo, off[rel])
+        tb = charger(bar_repo, bar[rel])
         if ta == tb:
             identiques.append(rel)
             continue
