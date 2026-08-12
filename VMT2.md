@@ -172,8 +172,25 @@ premier passage ; ensuite le cache suffit.
 
 ## Pour la suite
 
-Le PLF 2000 reste absent du fonds documentaire : si la série 1998 en vaut la
-peine, il faudra le récupérer sur performance-publique.budget.gouv.fr.
+Le tome II du PLF 2000 reste introuvable, et le trou est probablement à la
+source. L'ancien fonds performance-publique survit sur budget.gouv.fr sous
+`/sites/performance_publique/files/farandole/ressources/archives/<année>/index-d.htm`,
+remontant à 1996 — mais ces pages ne portent pas les Voies et moyens, qui sont un
+« bleu budgétaire » et ne s'atteignent que par un lien vers un hôte aujourd'hui
+mort (`www4.minefi.gouv.fr/budget/plf2001/sommaire.htm` pour 2001,
+`www.minefi.gouv.fr/budget/Bleus/` pour 2000). C'est cette page qui listait les
+`vm12001.pdf` / `vm22001.pdf` dont le fonds IPP porte la copie.
+
+Un indice concordant : les onze fichiers `vm*` du fonds ont tous été récupérés
+dans le même lot, le 1er décembre 2024 à 12:10:55, et `vm22000.pdf` est le seul
+manquant alors que `vm12000.pdf` est là. Le téléchargement d'alors a buté sur le
+même mur.
+
+Pour trancher, il faut interroger la Wayback Machine sur
+`minefi.gouv.fr/budget/Bleus/` autour de 1999-2001, ou lancer une requête CDX sur
+`minefi.gouv.fr*` filtrée sur `vm2*.pdf`. À défaut, l'Assemblée nationale
+(PLF 2000 = document n° 1805 et ses annexes) et le dossier législatif
+`senat.fr/dossier-legislatif/pjlf2000.html` sont les deux autres pistes.
 
 Reste à trancher la forme des tests OFF-E. Une dépense fiscale est un
 **contrefactuel** — la recette perdue par rapport à la norme fiscale de
