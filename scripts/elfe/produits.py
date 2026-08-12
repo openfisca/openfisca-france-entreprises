@@ -1,4 +1,28 @@
-"""Résout la relation `Régime fiscal` -> `Type de produit`, et la vérifie par les sommes.
+"""Résout ce que `Régime fiscal` détermine des autres dimensions, et le vérifie par les sommes.
+
+Trois dimensions sur cinq se **déduisent** des deux autres, et ce script établit
+lesquelles, en confrontant les sommes cellule tarifaire par cellule tarifaire.
+
+  Agents            = regroupement EXACT de `Secteur économique` —
+                      Ménages = Transports ménages + Résidentiel ménages,
+                      vérifié sur 624/624 et 490/490 cellules, écart max 10⁻¹³.
+                      Cette dimension ne porte donc aucune information propre.
+  Type de produit   = regroupement de `Régime fiscal`, à l'incorporation de
+                      renouvelable près (voir plus bas).
+  Gaz à effet de serre = regroupement de `Régime fiscal` : 27/27 régimes observés
+                      sont purs.
+
+Ne restent réellement indépendants que **`Régime fiscal` et `Secteur économique`**.
+C'est sur ce seul couple que porte l'incertitude résiduelle.
+
+`Régime fiscal` -> `Agents` est en revanche **une relation partielle**, et c'est une
+différence de nature : le partage produit/renouvelable est physique et à peu près
+constant dans l'année, alors que le partage ménages/entreprises est structurel et
+varie d'un palier tarifaire à l'autre — un tarif réduit attire mécaniquement plus
+d'entreprises. Environ 72 % des régimes sont purs (et presque tous côté
+entreprises) ; les régimes partagés portent l'essentiel de la masse ménages.
+
+Résout la relation `Régime fiscal` -> `Type de produit`, et la vérifie par les sommes.
 
 L'hypothèse de départ — un régime fiscal porte une énergie et une seule, donc
 `Type de produit` regroupe des régimes — est **presque** vraie. Elle se vérifie
@@ -92,7 +116,7 @@ def lire_intitule(regime):
 def charger():
     v = pd.read_csv(os.path.join(ASSETS, "elfe.csv"))
     v["tarif"] = v["tarif"].round(PRECISION_CLE)
-    return v[v.dimension == "Régime fiscal"], v[v.dimension == "Type de produit"]
+    return v
 
 
 def observer(reg, prod):
@@ -125,40 +149,39 @@ def parts_observees(reg, prod):
     return (t / t.groupby(["regime", "millesime"]).sum()).rename("part").reset_index()
 
 
-def construire(perimetre, reg, prod):
-    """Mapping final : observé > intitulé > correction, plus les parts de partage."""
+def construire(perimetre, cible, reg, prod):
+    """Mapping final : observé > intitulé > correction, plus les parts de partage.
+
+    Le repli sur l'intitulé n'a de sens que pour `Type de produit` : un libellé de
+    régime nomme son énergie, jamais son agent. « Gazole - transport routier » ne
+    dit pas si le gazole est brûlé par un ménage ou par une entreprise. Pour
+    `Agents`, un régime jamais observé reste donc sans valeur, et ses cellules
+    sont comptées incalculables plutôt que devinées.
+    """
+    lisible = cible == "Type de produit"
     vus = observer(reg, prod)
     purs = {k: next(iter(w)) for k, w in vus.items() if len(w) == 1}
     partages = {k for k, w in vus.items() if len(w) > 1}
 
     lignes, mapping = [], {}
     for regime in sorted(reg.categorie.unique()):
-        if regime in CORRECTIONS:
+        if lisible and regime in CORRECTIONS:
             mapping[regime], source = CORRECTIONS[regime], "correction"
         elif regime in purs:
             mapping[regime], source = purs[regime], "observe"
-        else:
+        elif lisible:
             mapping[regime], source = lire_intitule(regime), "intitule"
+        else:
+            mapping[regime], source = None, "inconnu"
         if regime not in partages:
-            lignes.append((perimetre, regime, mapping[regime], "", 1.0, source))
+            lignes.append((perimetre, cible, regime, mapping[regime], "", 1.0, source))
 
     table = parts_observees(reg, prod)
     parts = {}
     for regime, millesime, produit, valeur in table.itertuples(index=False):
         if regime in partages:
             parts[(regime, millesime, produit)] = valeur
-            lignes.append((perimetre, regime, produit, millesime, valeur, "observe"))
-
-    for regime, (produit, valeur) in PART_NON_ENERGETIQUE.get(perimetre, {}).items():
-        if regime in mapping:
-            partages.add(regime)
-            principal = mapping[regime]
-            for millesime in sorted(reg.millesime.unique()):
-                parts[(regime, millesime, produit)] = valeur
-                parts[(regime, millesime, principal)] = 1 - valeur
-            lignes = [x for x in lignes if x[1] != regime]
-            lignes += [(perimetre, regime, produit, "", valeur, "residu"),
-                       (perimetre, regime, principal, "", 1 - valeur, "residu")]
+            lignes.append((perimetre, cible, regime, produit, millesime, valeur, "observe"))
 
     return mapping, partages, parts, lignes
 
@@ -171,51 +194,85 @@ def reconstruire(reg, prod, mapping, partages, parts):
         if cle not in r.index:
             continue
         attendu = p.loc[[cle]].set_index("categorie")["quantite"]
-        predit = {}
+        predit, connu = {}, True
         for regime, q in r.loc[[cle]][["categorie", "quantite"]].itertuples(index=False):
             eclate = {c: parts.get((regime, cle[1], c)) for c in attendu.index}
             eclate = {c: x for c, x in eclate.items() if x}
-            applicable = regime not in TARIF_NUL_SEULEMENT or cle[2] == 0
-            if regime in partages and applicable and abs(sum(eclate.values(), 0.0) - 1) < 1e-6:
+            if regime in partages and abs(sum(eclate.values(), 0.0) - 1) < 1e-6:
                 for c, x in eclate.items():
                     predit[c] = predit.get(c, 0.0) + q * x
-            else:
+            elif mapping.get(regime) is not None:
                 predit[mapping[regime]] = predit.get(mapping[regime], 0.0) + q
+            else:
+                connu = False
+        if not connu:
+            resultats.append((cle, None, float(attendu.sum())))
+            continue
         ecart = max(abs(predit.get(c, 0.0) - attendu.get(c, 0.0))
                     for c in set(predit) | set(attendu.index))
         resultats.append((cle, ecart, float(attendu.sum())))
     return resultats
 
 
-def main():
-    reg_tout, prod_tout = charger()
-    lignes = []
-    for perimetre in ["Carbone", "Energie"]:
-        reg = reg_tout[reg_tout.perimetre == perimetre]
-        prod = prod_tout[prod_tout.perimetre == perimetre]
-        mapping, partages, parts, bloc = construire(perimetre, reg, prod)
-        lignes += bloc
+def controler_agents(v):
+    """`Agents` est-il un regroupement exact de `Secteur économique` ?"""
+    menages = {"Transports ménages", "Résidentiel ménages"}
+    ag = v[v.dimension == "Agents"].set_index(K)
+    se = v[v.dimension == "Secteur économique"].set_index(K)
+    pire, n = 0.0, 0
+    for cle in ag.index.unique():
+        if cle not in se.index:
+            continue
+        n += 1
+        declare = ag.loc[[cle]].set_index("categorie")["quantite"]
+        secteurs = se.loc[[cle]].set_index("categorie")["quantite"]
+        pire = max(
+            pire,
+            abs(secteurs[secteurs.index.isin(menages)].sum() - declare.get("Ménages", 0.0)),
+            abs(secteurs[~secteurs.index.isin(menages)].sum()
+                - declare.get("Entreprises et administrations", 0.0)),
+        )
+    print(f"Agents = Transports ménages + Résidentiel ménages : {n}/{n} cellules, "
+          f"écart max {pire:.2e}")
+    assert pire < 1e-9, "Agents n'est pas un regroupement exact de Secteur économique"
 
-        manquants = [k for k, w in mapping.items() if w is None]
-        resultats = reconstruire(reg, prod, mapping, partages, parts)
-        ok = [x for x in resultats if x[1] <= TOLERANCE]
-        masse = sum(x[2] for x in resultats)
-        print(f"##### {perimetre} : {len(reg.categorie.unique())} régimes, "
-              f"{len(partages)} partagés, {len(manquants)} sans produit #####")
-        print(f"   reconstruction sous {TOLERANCE} : {len(ok)}/{len(resultats)} cellules "
-              f"({100 * len(ok) / len(resultats):.1f} %), "
-              f"{100 * sum(x[2] for x in ok) / masse:.1f} % de la masse")
-        for cle, ecart, _ in sorted(resultats, key=lambda x: -x[1])[:3]:
-            if ecart > TOLERANCE:
-                print(f"      reste  {ecart:8.4f}  {cle[1]:>6s}  tarif {cle[2]:.6f}")
+
+def main():
+    v = charger()
+    controler_agents(v)
+    reg_tout = v[v.dimension == "Régime fiscal"]
+
+    lignes = []
+    for cible in ["Type de produit", "Agents"]:
+        cib_tout = v[v.dimension == cible]
+        print(f"\n=========== Régime fiscal -> {cible} ===========")
+        for perimetre in ["Carbone", "Energie"]:
+            reg = reg_tout[reg_tout.perimetre == perimetre]
+            cib = cib_tout[cib_tout.perimetre == perimetre]
+            mapping, partages, parts, bloc = construire(perimetre, cible, reg, cib)
+            lignes += bloc
+
+            inconnus = [k for k, w in mapping.items() if w is None and k not in partages]
+            resultats = reconstruire(reg, cib, mapping, partages, parts)
+            calculables = [x for x in resultats if x[1] is not None]
+            ok = [x for x in calculables if x[1] <= TOLERANCE]
+            masse = sum(x[2] for x in calculables) or 1.0
+            print(f"  {perimetre} : {reg.categorie.nunique()} régimes, "
+                  f"{len(partages)} partagés, {len(inconnus)} jamais observés")
+            print(f"     reconstruction sous {TOLERANCE} : {len(ok)}/{len(calculables)} "
+                  f"({100 * len(ok) / max(len(calculables), 1):.1f} %), "
+                  f"{100 * sum(x[2] for x in ok) / masse:.1f} % de la masse ; "
+                  f"{len(resultats) - len(calculables)} incalculables")
+            for cle, ecart, _ in sorted(calculables, key=lambda x: -x[1])[:3]:
+                if ecart > TOLERANCE:
+                    print(f"        reste {ecart:9.4f}  {cle[1]:>6s}  tarif {cle[2]:.6f}")
 
     sortie = pd.DataFrame(lignes, columns=[
-        "perimetre", "regime", "produit", "millesime", "part", "source"])
-    sortie = sortie.sort_values(["perimetre", "regime", "millesime", "produit"])
-    chemin = os.path.join(ASSETS, "regime_produit.csv")
-    sortie.to_csv(chemin, index=False, encoding="utf-8")
-    print(f"\nregime_produit.csv : {sortie.shape}")
-    print(sortie.groupby(["perimetre", "source"]).size().to_string())
+        "perimetre", "dimension", "regime", "categorie", "millesime", "part", "source"])
+    sortie = sortie.sort_values(["perimetre", "dimension", "regime", "millesime", "categorie"])
+    sortie.to_csv(os.path.join(ASSETS, "regime_mapping.csv"), index=False, encoding="utf-8")
+    print(f"\nregime_mapping.csv : {sortie.shape}")
+    print(sortie.groupby(["dimension", "perimetre", "source"]).size().to_string())
 
 
 if __name__ == "__main__":

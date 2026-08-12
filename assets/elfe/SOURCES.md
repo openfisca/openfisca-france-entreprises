@@ -242,9 +242,28 @@ l'a reconstituée mais parce qu'au moins une dimension y est dégénérée dans 
 paire. Sur les 476 autres subsistent 18 598 degrés de liberté. `Secteur économique`
 est le goulot : catégorie unique sur ~35 % des cellules seulement.
 
-### `regime_produit.csv` — 320 lignes — `scripts/elfe/produits.py`
+### `regime_mapping.csv` — 772 lignes — `scripts/elfe/produits.py`
 
-La seule part de la table croisée que les marginales permettent de reconstituer.
+Ce que les autres dimensions doivent à `Régime fiscal` et à `Secteur économique`.
+**Trois dimensions sur cinq se déduisent des deux autres.**
+
+#### `Agents` est un regroupement exact de `Secteur économique`
+
+    Ménages                        = Transports ménages + Résidentiel ménages
+    Entreprises et administrations = Agriculture + Energie + Industrie
+                                     + Tertiaire + Transports entreprises
+
+Vérifié sur **1 114 / 1 114 cellules, écart maximal 1,1 · 10⁻¹³** — bit-exact aux
+arrondis flottants près, sans une seule exception. `Agents` ne porte donc **aucune
+information propre**, et le contrôle est porté en `assert` dans le script.
+
+`Gaz à effet de serre` se déduit de même de `Régime fiscal` : 27/27 régimes observés
+sont purs. Ne restent réellement indépendants que **`Régime fiscal` et `Secteur
+économique`** — c'est sur ce seul couple que porte l'incertitude résiduelle, soit
+2 794 degrés de liberté côté carbone et 1 283 côté énergie.
+
+#### `Type de produit` est un regroupement de `Régime fiscal`
+
 Un régime fiscal porte une énergie et une seule, donc `Type de produit` regroupe des
 régimes : la jointe entre ces deux dimensions est **déterministe**, et leurs
 (R − 1)(S − 1) degrés de liberté tombent à zéro.
@@ -290,6 +309,54 @@ Ce qui résiste, et pourquoi :
   millésime) sur les cellules à régime unique, alors qu'elle varie d'un palier
   tarifaire à l'autre. Les masses annuelles sont justes, leur répartition entre
   paliers ne l'est pas — et les marginales ne permettent pas de faire mieux.
+
+#### `Régime fiscal` -> `Agents` : une relation seulement partielle
+
+Environ **72 % des régimes sont purs** — 44/63 côté carbone, 45/62 côté énergie — et
+presque tous du côté entreprises. Seuls `Electricité - ménages` et
+`Kerosene combustible` sont purement ménages. Les régimes partagés sont exactement
+les énergies accessibles aux ménages, et portent l'essentiel de la masse ménages :
+
+| régime | part Ménages (énergie) |
+|---|---|
+| Essence - transport routier | 85,9 % |
+| E10 / E85 - transport routier | 85,2 % / 84,9 % |
+| GPL - Carburant | 70,2 % |
+| Gazole - transport routier | 68,4 % |
+| GPL - Combustible | 57,4 % |
+| Fioul domestique combustible | 56,7 % |
+| Gaz - Combustible | 52,2 % |
+| Gaz - Carburant | 49,8 % |
+
+**C'est une différence de nature avec le cas des produits**, et elle limite ce qu'on
+peut en tirer. Le partage vers `Chaleur et biomasse` est *physique* — un taux
+d'incorporation, à peu près constant dans l'année. Le partage ménages/entreprises est
+*structurel* et varie d'un palier tarifaire à l'autre : un tarif réduit attire
+mécaniquement plus d'entreprises. Estimer la part par (régime, millésime) suffit donc
+à retrouver les masses annuelles, pas leur répartition entre paliers.
+
+Reconstruction, tolérance 0,01 :
+
+| | cellules | masse | incalculables |
+|---|---|---|---|
+| Carbone | 418 / 524 (79,8 %) | 89,6 % | 100 |
+| Énergie | 431 / 450 (95,8 %) | 85,6 % | 40 |
+
+Les cellules incalculables contiennent un régime que les deux vues dégénérées
+n'atteignent jamais (9 côté carbone, 8 côté énergie). Contrairement au cas des
+produits, **il n'y a pas de repli sur les intitulés** : un libellé de régime nomme son
+énergie, jamais son agent — « Gazole - transport routier » ne dit pas qui le brûle.
+Ces régimes restent sans valeur plutôt que devinés.
+
+Gain d'identification apporté par cette contrainte, sur la jointe `Régime × Secteur` :
+
+| | degrés de liberté | après contrainte |
+|---|---|---|
+| Carbone | 2 794 | **2 236** (−20,0 %) |
+| Énergie | 1 283 | **983** (−23,4 %) |
+
+Aucune cellule supplémentaire ne devient identifiée (601 et 450 inchangées) : la
+contrainte rétrécit l'espace des solutions sans le réduire à un point.
 
 ### `elfe_sous_cellules.csv` — 1 467 lignes
 

@@ -1,0 +1,773 @@
+perimetre,dimension,regime,categorie,millesime,part,source
+Carbone,Agents,Autres gaz fluorés,,,1.0,inconnu
+Carbone,Agents,Autres produits pétroliers,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Autres produits pétroliers - Double usage,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Autres produits pétroliers - Prod. min. non métalliques,Entreprises et administrations,,1.0,observe
+Carbone,Agents,CO2 non énergétique,,,1.0,inconnu
+Carbone,Agents,CO2 non énergétique incinération déchets,Entreprises et administrations,,1.0,observe
+Carbone,Agents,CO2 non énergétique procédés industriels,Entreprises et administrations,,1.0,observe
+Carbone,Agents,CO2 énergétique incinération déchets,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Charbon - Double usage,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Charbon - Grande consommation et quotas ETS,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Charbon - Prod. min. non métalliques,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Charbon - Prod. Électricité,Entreprises et administrations,,1.0,observe
+Carbone,Agents,E10 - transport routier,Entreprises et administrations,2014,0.1120812040651878,observe
+Carbone,Agents,E10 - transport routier,Ménages,2014,0.8879187959348122,observe
+Carbone,Agents,E10 - transport routier,Entreprises et administrations,2015,0.12111664609318556,observe
+Carbone,Agents,E10 - transport routier,Ménages,2015,0.8788833539068144,observe
+Carbone,Agents,E10 - transport routier,Entreprises et administrations,2016,0.11823189934282212,observe
+Carbone,Agents,E10 - transport routier,Ménages,2016,0.8817681006571779,observe
+Carbone,Agents,E10 - transport routier,Entreprises et administrations,2017,0.1261469885218516,observe
+Carbone,Agents,E10 - transport routier,Ménages,2017,0.8738530114781485,observe
+Carbone,Agents,E10 - transport routier,Entreprises et administrations,2018,0.1358399039458281,observe
+Carbone,Agents,E10 - transport routier,Ménages,2018,0.8641600960541718,observe
+Carbone,Agents,E10 - transport routier,Entreprises et administrations,2019,0.14240223626264925,observe
+Carbone,Agents,E10 - transport routier,Ménages,2019,0.8575977637373509,observe
+Carbone,Agents,E10 - transport routier,Entreprises et administrations,2020,0.14460917389921205,observe
+Carbone,Agents,E10 - transport routier,Ménages,2020,0.8553908261007879,observe
+Carbone,Agents,E10 - transport routier,Entreprises et administrations,2021,0.1681218547468964,observe
+Carbone,Agents,E10 - transport routier,Ménages,2021,0.8318781452531037,observe
+Carbone,Agents,E10 - transport routier,Entreprises et administrations,2022,0.16561211073592066,observe
+Carbone,Agents,E10 - transport routier,Ménages,2022,0.8343878892640793,observe
+Carbone,Agents,E10 - transport routier,Entreprises et administrations,2023,0.16813972371376765,observe
+Carbone,Agents,E10 - transport routier,Ménages,2023,0.8318602762862325,observe
+Carbone,Agents,E10 - transport routier,Entreprises et administrations,2024*,0.16813972371376765,observe
+Carbone,Agents,E10 - transport routier,Ménages,2024*,0.8318602762862325,observe
+Carbone,Agents,E85 - transport routier,Entreprises et administrations,2017,0.10453387493033056,observe
+Carbone,Agents,E85 - transport routier,Ménages,2017,0.8954661250696695,observe
+Carbone,Agents,E85 - transport routier,Entreprises et administrations,2018,0.11767584636923314,observe
+Carbone,Agents,E85 - transport routier,Ménages,2018,0.8823241536307669,observe
+Carbone,Agents,E85 - transport routier,Entreprises et administrations,2019,0.1343870891294748,observe
+Carbone,Agents,E85 - transport routier,Ménages,2019,0.8656129108705253,observe
+Carbone,Agents,E85 - transport routier,Entreprises et administrations,2020,0.1246547569690045,observe
+Carbone,Agents,E85 - transport routier,Ménages,2020,0.8753452430309955,observe
+Carbone,Agents,E85 - transport routier,Entreprises et administrations,2021,0.15619748023780775,observe
+Carbone,Agents,E85 - transport routier,Ménages,2021,0.8438025197621923,observe
+Carbone,Agents,E85 - transport routier,Entreprises et administrations,2022,0.15498751050345083,observe
+Carbone,Agents,E85 - transport routier,Ménages,2022,0.8450124894965492,observe
+Carbone,Agents,E85 - transport routier,Entreprises et administrations,2023,0.1577534750941474,observe
+Carbone,Agents,E85 - transport routier,Ménages,2023,0.8422465249058527,observe
+Carbone,Agents,E85 - transport routier,Entreprises et administrations,2024*,0.1577534750941474,observe
+Carbone,Agents,E85 - transport routier,Ménages,2024*,0.8422465249058527,observe
+Carbone,Agents,Essence - Bateaux,,,1.0,inconnu
+Carbone,Agents,Essence - Taxis,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Essence - transport routier,Entreprises et administrations,2014,0.10172269786235384,observe
+Carbone,Agents,Essence - transport routier,Ménages,2014,0.8982773021376461,observe
+Carbone,Agents,Essence - transport routier,Entreprises et administrations,2015,0.11022079311632882,observe
+Carbone,Agents,Essence - transport routier,Ménages,2015,0.8897792068836712,observe
+Carbone,Agents,Essence - transport routier,Entreprises et administrations,2016,0.10810685693950309,observe
+Carbone,Agents,Essence - transport routier,Ménages,2016,0.8918931430604969,observe
+Carbone,Agents,Essence - transport routier,Entreprises et administrations,2017,0.11880994355223991,observe
+Carbone,Agents,Essence - transport routier,Ménages,2017,0.8811900564477602,observe
+Carbone,Agents,Essence - transport routier,Entreprises et administrations,2018,0.1296663235308227,observe
+Carbone,Agents,Essence - transport routier,Ménages,2018,0.8703336764691774,observe
+Carbone,Agents,Essence - transport routier,Entreprises et administrations,2019,0.1396458083869007,observe
+Carbone,Agents,Essence - transport routier,Ménages,2019,0.8603541916130992,observe
+Carbone,Agents,Essence - transport routier,Entreprises et administrations,2020,0.13782572213998412,observe
+Carbone,Agents,Essence - transport routier,Ménages,2020,0.8621742778600159,observe
+Carbone,Agents,Essence - transport routier,Entreprises et administrations,2021,0.1640398885842297,observe
+Carbone,Agents,Essence - transport routier,Ménages,2021,0.8359601114157704,observe
+Carbone,Agents,Essence - transport routier,Entreprises et administrations,2022,0.16195690418211822,observe
+Carbone,Agents,Essence - transport routier,Ménages,2022,0.8380430958178818,observe
+Carbone,Agents,Essence - transport routier,Entreprises et administrations,2023,0.16455937020555486,observe
+Carbone,Agents,Essence - transport routier,Ménages,2023,0.8354406297944451,observe
+Carbone,Agents,Essence - transport routier,Entreprises et administrations,2024*,0.16455937020555486,observe
+Carbone,Agents,Essence - transport routier,Ménages,2024*,0.8354406297944451,observe
+Carbone,Agents,Fioul domestique - Combustible,Entreprises et administrations,2014,0.3493781042878835,observe
+Carbone,Agents,Fioul domestique - Combustible,Ménages,2014,0.6506218957121165,observe
+Carbone,Agents,Fioul domestique - Combustible,Entreprises et administrations,2015,0.3747189511915504,observe
+Carbone,Agents,Fioul domestique - Combustible,Ménages,2015,0.6252810488084495,observe
+Carbone,Agents,Fioul domestique - Combustible,Entreprises et administrations,2016,0.37383637789145946,observe
+Carbone,Agents,Fioul domestique - Combustible,Ménages,2016,0.6261636221085406,observe
+Carbone,Agents,Fioul domestique - Combustible,Entreprises et administrations,2017,0.3641489676927454,observe
+Carbone,Agents,Fioul domestique - Combustible,Ménages,2017,0.6358510323072546,observe
+Carbone,Agents,Fioul domestique - Combustible,Entreprises et administrations,2018,0.39455832797086476,observe
+Carbone,Agents,Fioul domestique - Combustible,Ménages,2018,0.6054416720291352,observe
+Carbone,Agents,Fioul domestique - Combustible,Entreprises et administrations,2019,0.39723818418944856,observe
+Carbone,Agents,Fioul domestique - Combustible,Ménages,2019,0.6027618158105515,observe
+Carbone,Agents,Fioul domestique - Combustible,Entreprises et administrations,2020,0.4138753847017838,observe
+Carbone,Agents,Fioul domestique - Combustible,Ménages,2020,0.5861246152982161,observe
+Carbone,Agents,Fioul domestique - Combustible,Entreprises et administrations,2021,0.4289942341047456,observe
+Carbone,Agents,Fioul domestique - Combustible,Ménages,2021,0.5710057658952543,observe
+Carbone,Agents,Fioul domestique - Combustible,Entreprises et administrations,2022,0.4086063138109869,observe
+Carbone,Agents,Fioul domestique - Combustible,Ménages,2022,0.591393686189013,observe
+Carbone,Agents,Fioul domestique - Combustible,Entreprises et administrations,2023,0.43746071411755916,observe
+Carbone,Agents,Fioul domestique - Combustible,Ménages,2023,0.5625392858824408,observe
+Carbone,Agents,Fioul domestique - Combustible,Entreprises et administrations,2024*,0.43746071411755916,observe
+Carbone,Agents,Fioul domestique - Combustible,Ménages,2024*,0.5625392858824408,observe
+Carbone,Agents,Fioul domestique - Double usage,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Fioul domestique - Prod. min. non métalliques,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Fioul domestique - Prod. Électricité,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Fioul lourd - Agriculture,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Fioul lourd - Bateaux,,,1.0,inconnu
+Carbone,Agents,Fioul lourd - Combustible,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Fioul lourd - Double usage,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Fioul lourd - Prod. min. non métalliques,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Fioul lourd - Prod. Électricité,Entreprises et administrations,,1.0,observe
+Carbone,Agents,GPL - Agriculture,Entreprises et administrations,,1.0,observe
+Carbone,Agents,GPL - Carburant,Entreprises et administrations,2014,0.3093296180503027,observe
+Carbone,Agents,GPL - Carburant,Ménages,2014,0.6906703819496973,observe
+Carbone,Agents,GPL - Carburant,Entreprises et administrations,2015,0.35528855111318103,observe
+Carbone,Agents,GPL - Carburant,Ménages,2015,0.6447114488868191,observe
+Carbone,Agents,GPL - Carburant,Entreprises et administrations,2016,0.3683239194162035,observe
+Carbone,Agents,GPL - Carburant,Ménages,2016,0.6316760805837964,observe
+Carbone,Agents,GPL - Carburant,Entreprises et administrations,2017,0.37188929859517705,observe
+Carbone,Agents,GPL - Carburant,Ménages,2017,0.628110701404823,observe
+Carbone,Agents,GPL - Carburant,Entreprises et administrations,2018,0.3409539410708892,observe
+Carbone,Agents,GPL - Carburant,Ménages,2018,0.6590460589291107,observe
+Carbone,Agents,GPL - Carburant,Entreprises et administrations,2019,0.3832914997514439,observe
+Carbone,Agents,GPL - Carburant,Ménages,2019,0.6167085002485561,observe
+Carbone,Agents,GPL - Carburant,Entreprises et administrations,2020,0.4507327210429896,observe
+Carbone,Agents,GPL - Carburant,Ménages,2020,0.5492672789570104,observe
+Carbone,Agents,GPL - Carburant,Entreprises et administrations,2021,0.3795224811034838,observe
+Carbone,Agents,GPL - Carburant,Ménages,2021,0.6204775188965163,observe
+Carbone,Agents,GPL - Carburant,Entreprises et administrations,2022,0.18666057593427318,observe
+Carbone,Agents,GPL - Carburant,Ménages,2022,0.8133394240657268,observe
+Carbone,Agents,GPL - Carburant,Entreprises et administrations,2023,0.18666057593427343,observe
+Carbone,Agents,GPL - Carburant,Ménages,2023,0.8133394240657266,observe
+Carbone,Agents,GPL - Carburant,Entreprises et administrations,2024*,0.18666057593427343,observe
+Carbone,Agents,GPL - Carburant,Ménages,2024*,0.8133394240657266,observe
+Carbone,Agents,GPL - Combustible,Entreprises et administrations,2019,0.45964101603142365,observe
+Carbone,Agents,GPL - Combustible,Ménages,2019,0.5403589839685763,observe
+Carbone,Agents,GPL - Combustible,Entreprises et administrations,2020,0.4362626594348854,observe
+Carbone,Agents,GPL - Combustible,Ménages,2020,0.5637373405651146,observe
+Carbone,Agents,GPL - Combustible,Entreprises et administrations,2021,0.39483198734803304,observe
+Carbone,Agents,GPL - Combustible,Ménages,2021,0.605168012651967,observe
+Carbone,Agents,GPL - Combustible,Entreprises et administrations,2022,0.401016277660965,observe
+Carbone,Agents,GPL - Combustible,Ménages,2022,0.5989837223390351,observe
+Carbone,Agents,GPL - Combustible,Entreprises et administrations,2023,0.4299395478506665,observe
+Carbone,Agents,GPL - Combustible,Ménages,2023,0.5700604521493334,observe
+Carbone,Agents,GPL - Combustible,Entreprises et administrations,2024*,0.4299395478506665,observe
+Carbone,Agents,GPL - Combustible,Ménages,2024*,0.5700604521493334,observe
+Carbone,Agents,GPL - Double usage,Entreprises et administrations,,1.0,observe
+Carbone,Agents,GPL - Prod. Electricité,Entreprises et administrations,,1.0,observe
+Carbone,Agents,GPL - Prod. min. non métalliques,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Gaz - Agriculture,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Gaz - Carburant,Entreprises et administrations,2014,0.7020326125225382,observe
+Carbone,Agents,Gaz - Carburant,Ménages,2014,0.2979673874774618,observe
+Carbone,Agents,Gaz - Carburant,Entreprises et administrations,2015,0.7120673254212605,observe
+Carbone,Agents,Gaz - Carburant,Ménages,2015,0.2879326745787396,observe
+Carbone,Agents,Gaz - Carburant,Entreprises et administrations,2016,0.7058598846398946,observe
+Carbone,Agents,Gaz - Carburant,Ménages,2016,0.2941401153601055,observe
+Carbone,Agents,Gaz - Carburant,Entreprises et administrations,2017,0.7003724297588315,observe
+Carbone,Agents,Gaz - Carburant,Ménages,2017,0.29962757024116854,observe
+Carbone,Agents,Gaz - Carburant,Entreprises et administrations,2018,0.6663306460990118,observe
+Carbone,Agents,Gaz - Carburant,Ménages,2018,0.3336693539009882,observe
+Carbone,Agents,Gaz - Carburant,Entreprises et administrations,2019,0.5770247380391511,observe
+Carbone,Agents,Gaz - Carburant,Ménages,2019,0.42297526196084895,observe
+Carbone,Agents,Gaz - Carburant,Entreprises et administrations,2020,0.4896325679476978,observe
+Carbone,Agents,Gaz - Carburant,Ménages,2020,0.5103674320523021,observe
+Carbone,Agents,Gaz - Carburant,Entreprises et administrations,2021,0.46519928695289364,observe
+Carbone,Agents,Gaz - Carburant,Ménages,2021,0.5348007130471064,observe
+Carbone,Agents,Gaz - Carburant,Entreprises et administrations,2022,0.3882465162524047,observe
+Carbone,Agents,Gaz - Carburant,Ménages,2022,0.6117534837475952,observe
+Carbone,Agents,Gaz - Carburant,Entreprises et administrations,2023,0.3882465162524047,observe
+Carbone,Agents,Gaz - Carburant,Ménages,2023,0.6117534837475952,observe
+Carbone,Agents,Gaz - Carburant,Entreprises et administrations,2024*,0.3882465162524047,observe
+Carbone,Agents,Gaz - Carburant,Ménages,2024*,0.6117534837475952,observe
+Carbone,Agents,Gaz - Combustible,Entreprises et administrations,2014,0.06886099138692356,observe
+Carbone,Agents,Gaz - Combustible,Ménages,2014,0.9311390086130764,observe
+Carbone,Agents,Gaz - Combustible,Entreprises et administrations,2015,0.36915059380039017,observe
+Carbone,Agents,Gaz - Combustible,Ménages,2015,0.6308494061996098,observe
+Carbone,Agents,Gaz - Combustible,Entreprises et administrations,2016,0.3598586667658736,observe
+Carbone,Agents,Gaz - Combustible,Ménages,2016,0.6401413332341265,observe
+Carbone,Agents,Gaz - Combustible,Entreprises et administrations,2017,0.36960796475639945,observe
+Carbone,Agents,Gaz - Combustible,Ménages,2017,0.6303920352436004,observe
+Carbone,Agents,Gaz - Combustible,Entreprises et administrations,2018,0.38389568417591835,observe
+Carbone,Agents,Gaz - Combustible,Ménages,2018,0.6161043158240816,observe
+Carbone,Agents,Gaz - Combustible,Entreprises et administrations,2019,0.3820934183100012,observe
+Carbone,Agents,Gaz - Combustible,Ménages,2019,0.6179065816899988,observe
+Carbone,Agents,Gaz - Combustible,Entreprises et administrations,2020,0.369292216588028,observe
+Carbone,Agents,Gaz - Combustible,Ménages,2020,0.630707783411972,observe
+Carbone,Agents,Gaz - Combustible,Entreprises et administrations,2021,0.38078691533214293,observe
+Carbone,Agents,Gaz - Combustible,Ménages,2021,0.6192130846678572,observe
+Carbone,Agents,Gaz - Combustible,Entreprises et administrations,2022,0.39842447723037255,observe
+Carbone,Agents,Gaz - Combustible,Ménages,2022,0.6015755227696273,observe
+Carbone,Agents,Gaz - Combustible,Entreprises et administrations,2023,0.4028552912753842,observe
+Carbone,Agents,Gaz - Combustible,Ménages,2023,0.5971447087246158,observe
+Carbone,Agents,Gaz - Combustible,Entreprises et administrations,2024*,0.4028552912753842,observe
+Carbone,Agents,Gaz - Combustible,Ménages,2024*,0.5971447087246158,observe
+Carbone,Agents,Gaz - Double usage,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Gaz - Grande consommation et fuite carbone,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Gaz - Grande consommation et quotas ETS,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Gaz - Prod. Electricité,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Gaz - Prod. min. non métalliques,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Gaz - Prod. produits énergétiques,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Gaz - Usage autre que carburant ou combustible,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Gaz de raffinerie,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Gazole - Taxis,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Gazole - Transport marchandises,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Gazole - Transport public,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Gazole - transport routier,Entreprises et administrations,2014,0.3286462626165997,observe
+Carbone,Agents,Gazole - transport routier,Ménages,2014,0.6713537373834003,observe
+Carbone,Agents,Gazole - transport routier,Entreprises et administrations,2015,0.3288465091795948,observe
+Carbone,Agents,Gazole - transport routier,Ménages,2015,0.6711534908204053,observe
+Carbone,Agents,Gazole - transport routier,Entreprises et administrations,2016,0.3161335370078989,observe
+Carbone,Agents,Gazole - transport routier,Ménages,2016,0.6838664629921012,observe
+Carbone,Agents,Gazole - transport routier,Entreprises et administrations,2017,0.31999134497772247,observe
+Carbone,Agents,Gazole - transport routier,Ménages,2017,0.6800086550222776,observe
+Carbone,Agents,Gazole - transport routier,Entreprises et administrations,2018,0.31315975395199613,observe
+Carbone,Agents,Gazole - transport routier,Ménages,2018,0.686840246048004,observe
+Carbone,Agents,Gazole - transport routier,Entreprises et administrations,2019,0.3183953550384373,observe
+Carbone,Agents,Gazole - transport routier,Ménages,2019,0.6816046449615628,observe
+Carbone,Agents,Gazole - transport routier,Entreprises et administrations,2020,0.3042445412427596,observe
+Carbone,Agents,Gazole - transport routier,Ménages,2020,0.6957554587572403,observe
+Carbone,Agents,Gazole - transport routier,Entreprises et administrations,2021,0.3207984487231214,observe
+Carbone,Agents,Gazole - transport routier,Ménages,2021,0.6792015512768785,observe
+Carbone,Agents,Gazole - transport routier,Entreprises et administrations,2022,0.31827355059034196,observe
+Carbone,Agents,Gazole - transport routier,Ménages,2022,0.681726449409658,observe
+Carbone,Agents,Gazole - transport routier,Entreprises et administrations,2023,0.3093284514746848,observe
+Carbone,Agents,Gazole - transport routier,Ménages,2023,0.6906715485253152,observe
+Carbone,Agents,Gazole - transport routier,Entreprises et administrations,2024*,0.3093284514746848,observe
+Carbone,Agents,Gazole - transport routier,Ménages,2024*,0.6906715485253152,observe
+Carbone,Agents,Gazole Non Routier,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Gazole Non Routier - Agriculture,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Gazole Non Routier - Double usage,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Gazole Non Routier - Prod. min. non métalliques,Entreprises et administrations,,1.0,observe
+Carbone,Agents,HFC,,,1.0,inconnu
+Carbone,Agents,HFC règlement F-Gaz,Entreprises et administrations,2014,0.7635195380088774,observe
+Carbone,Agents,HFC règlement F-Gaz,Ménages,2014,0.23648046199112252,observe
+Carbone,Agents,HFC règlement F-Gaz,Entreprises et administrations,2015,0.762413346985425,observe
+Carbone,Agents,HFC règlement F-Gaz,Ménages,2015,0.23758665301457502,observe
+Carbone,Agents,HFC règlement F-Gaz,Entreprises et administrations,2016,0.7537187353697515,observe
+Carbone,Agents,HFC règlement F-Gaz,Ménages,2016,0.24628126463024852,observe
+Carbone,Agents,HFC règlement F-Gaz,Entreprises et administrations,2017,0.7515080145209152,observe
+Carbone,Agents,HFC règlement F-Gaz,Ménages,2017,0.24849198547908485,observe
+Carbone,Agents,HFC règlement F-Gaz,Entreprises et administrations,2018,0.7533600347949064,observe
+Carbone,Agents,HFC règlement F-Gaz,Ménages,2018,0.24663996520509351,observe
+Carbone,Agents,HFC règlement F-Gaz,Entreprises et administrations,2019,0.7520003689421493,observe
+Carbone,Agents,HFC règlement F-Gaz,Ménages,2019,0.2479996310578507,observe
+Carbone,Agents,HFC règlement F-Gaz,Entreprises et administrations,2020,0.739836187999651,observe
+Carbone,Agents,HFC règlement F-Gaz,Ménages,2020,0.26016381200034905,observe
+Carbone,Agents,HFC règlement F-Gaz,Entreprises et administrations,2021,0.7227992161925292,observe
+Carbone,Agents,HFC règlement F-Gaz,Ménages,2021,0.27720078380747076,observe
+Carbone,Agents,HFC règlement F-Gaz,Entreprises et administrations,2022,0.7232003074432941,observe
+Carbone,Agents,HFC règlement F-Gaz,Ménages,2022,0.27679969255670583,observe
+Carbone,Agents,HFC règlement F-Gaz,Entreprises et administrations,2023,0.7253234026713641,observe
+Carbone,Agents,HFC règlement F-Gaz,Ménages,2023,0.27467659732863603,observe
+Carbone,Agents,HFC règlement F-Gaz,Entreprises et administrations,2024*,0.7253234026713641,observe
+Carbone,Agents,HFC règlement F-Gaz,Ménages,2024*,0.27467659732863603,observe
+Carbone,Agents,Kerosene - Aéronefs,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Kerosene - Carburant armée,Entreprises et administrations,,1.0,observe
+Carbone,Agents,Kerosene combustible,Ménages,,1.0,observe
+Carbone,Agents,Méthane,,,1.0,inconnu
+Carbone,Agents,Méthane - production gaz,,,1.0,inconnu
+Carbone,Agents,Méthane - résidentiel biomasse,,,1.0,inconnu
+Carbone,Agents,Méthane stockage déchets,Entreprises et administrations,,1.0,observe
+Carbone,Agents,N2O,,,1.0,inconnu
+Carbone,Agents,N2O procédés industriels,Entreprises et administrations,,1.0,observe
+Carbone,Type de produit,Autres gaz fluorés,Non combustible,,1.0,intitule
+Carbone,Type de produit,Autres produits pétroliers,Pétrole,,1.0,intitule
+Carbone,Type de produit,Autres produits pétroliers - Double usage,Pétrole,,1.0,intitule
+Carbone,Type de produit,Autres produits pétroliers - Prod. min. non métalliques,Pétrole,,1.0,intitule
+Carbone,Type de produit,CO2 non énergétique,Non combustible,,1.0,intitule
+Carbone,Type de produit,CO2 non énergétique incinération déchets,Non combustible,,1.0,intitule
+Carbone,Type de produit,CO2 non énergétique procédés industriels,Non combustible,,1.0,intitule
+Carbone,Type de produit,CO2 énergétique incinération déchets,Déchets et biomasse,,1.0,observe
+Carbone,Type de produit,Charbon - Double usage,Charbon,,1.0,intitule
+Carbone,Type de produit,Charbon - Grande consommation et quotas ETS,Charbon,,1.0,observe
+Carbone,Type de produit,Charbon - Prod. min. non métalliques,Charbon,,1.0,intitule
+Carbone,Type de produit,Charbon - Prod. Électricité,Charbon,,1.0,intitule
+Carbone,Type de produit,E10 - transport routier,Pétrole,,1.0,observe
+Carbone,Type de produit,E85 - transport routier,Pétrole,,1.0,observe
+Carbone,Type de produit,Essence - Bateaux,Pétrole,,1.0,intitule
+Carbone,Type de produit,Essence - Taxis,Pétrole,,1.0,observe
+Carbone,Type de produit,Essence - transport routier,Pétrole,,1.0,observe
+Carbone,Type de produit,Fioul domestique - Combustible,Pétrole,,1.0,observe
+Carbone,Type de produit,Fioul domestique - Double usage,Pétrole,,1.0,intitule
+Carbone,Type de produit,Fioul domestique - Prod. min. non métalliques,Pétrole,,1.0,intitule
+Carbone,Type de produit,Fioul domestique - Prod. Électricité,Pétrole,,1.0,intitule
+Carbone,Type de produit,Fioul lourd - Agriculture,Pétrole,,1.0,observe
+Carbone,Type de produit,Fioul lourd - Bateaux,Pétrole,,1.0,intitule
+Carbone,Type de produit,Fioul lourd - Combustible,Pétrole,,1.0,observe
+Carbone,Type de produit,Fioul lourd - Double usage,Pétrole,,1.0,intitule
+Carbone,Type de produit,Fioul lourd - Prod. min. non métalliques,Pétrole,,1.0,intitule
+Carbone,Type de produit,Fioul lourd - Prod. Électricité,Pétrole,,1.0,intitule
+Carbone,Type de produit,GPL - Agriculture,Pétrole,,1.0,observe
+Carbone,Type de produit,GPL - Carburant,Pétrole,,1.0,observe
+Carbone,Type de produit,GPL - Combustible,Pétrole,,1.0,observe
+Carbone,Type de produit,GPL - Double usage,Pétrole,,1.0,intitule
+Carbone,Type de produit,GPL - Prod. Electricité,Pétrole,,1.0,intitule
+Carbone,Type de produit,GPL - Prod. min. non métalliques,Pétrole,,1.0,intitule
+Carbone,Type de produit,Gaz - Agriculture,Gaz,,1.0,observe
+Carbone,Type de produit,Gaz - Carburant,Gaz,,1.0,observe
+Carbone,Type de produit,Gaz - Combustible,Gaz,,1.0,observe
+Carbone,Type de produit,Gaz - Double usage,Gaz,,1.0,intitule
+Carbone,Type de produit,Gaz - Grande consommation et fuite carbone,Gaz,,1.0,observe
+Carbone,Type de produit,Gaz - Grande consommation et quotas ETS,Gaz,,1.0,observe
+Carbone,Type de produit,Gaz - Prod. Electricité,Gaz,,1.0,intitule
+Carbone,Type de produit,Gaz - Prod. min. non métalliques,Gaz,,1.0,intitule
+Carbone,Type de produit,Gaz - Prod. produits énergétiques,Gaz,,1.0,intitule
+Carbone,Type de produit,Gaz - Usage autre que carburant ou combustible,Gaz,,1.0,intitule
+Carbone,Type de produit,Gaz de raffinerie,Pétrole,,1.0,correction
+Carbone,Type de produit,Gazole - Taxis,Pétrole,,1.0,observe
+Carbone,Type de produit,Gazole - Transport marchandises,Pétrole,,1.0,observe
+Carbone,Type de produit,Gazole - Transport public,Pétrole,,1.0,observe
+Carbone,Type de produit,Gazole - transport routier,Pétrole,,1.0,observe
+Carbone,Type de produit,Gazole Non Routier,Pétrole,,1.0,observe
+Carbone,Type de produit,Gazole Non Routier - Agriculture,Pétrole,,1.0,observe
+Carbone,Type de produit,Gazole Non Routier - Double usage,Pétrole,,1.0,intitule
+Carbone,Type de produit,Gazole Non Routier - Prod. min. non métalliques,Pétrole,,1.0,intitule
+Carbone,Type de produit,HFC,Non combustible,,1.0,intitule
+Carbone,Type de produit,HFC règlement F-Gaz,Non combustible,,1.0,observe
+Carbone,Type de produit,Kerosene - Aéronefs,Pétrole,,1.0,intitule
+Carbone,Type de produit,Kerosene - Carburant armée,Pétrole,,1.0,observe
+Carbone,Type de produit,Kerosene combustible,Pétrole,,1.0,observe
+Carbone,Type de produit,Méthane,Non combustible,,1.0,correction
+Carbone,Type de produit,Méthane - production gaz,Gaz,,1.0,intitule
+Carbone,Type de produit,Méthane - résidentiel biomasse,Déchets et biomasse,,1.0,intitule
+Carbone,Type de produit,Méthane stockage déchets,Déchets et biomasse,,1.0,observe
+Carbone,Type de produit,N2O,Non combustible,,1.0,intitule
+Carbone,Type de produit,N2O procédés industriels,Non combustible,,1.0,intitule
+Energie,Agents,Autres produits pétroliers,Entreprises et administrations,,1.0,observe
+Energie,Agents,Autres produits pétroliers - Double usage,Entreprises et administrations,,1.0,observe
+Energie,Agents,Autres produits pétroliers - Prod. min. non métalliques,Entreprises et administrations,,1.0,observe
+Energie,Agents,Aéroports,Entreprises et administrations,,1.0,observe
+Energie,Agents,"Bois de chauffage, résidus de bois et autre biomasse solide, charbon de bois",,,1.0,inconnu
+Energie,Agents,Chaleur,,,1.0,inconnu
+Energie,Agents,Charbon - Double usage,Entreprises et administrations,,1.0,observe
+Energie,Agents,Charbon - Grande consommation et quotas ETS,Entreprises et administrations,,1.0,observe
+Energie,Agents,Charbon - Prod. min. non métalliques,Entreprises et administrations,,1.0,observe
+Energie,Agents,"Consommations < 1,5kWh/€ de VA",Entreprises et administrations,,1.0,observe
+Energie,Agents,"Consommations < 1,5kWh/€ de VA (fuite carbone)",Entreprises et administrations,,1.0,observe
+Energie,Agents,Consommations >3kWh/€ de VA,Entreprises et administrations,,1.0,observe
+Energie,Agents,Consommations >3kWh/€ de VA (fuite carbone),Entreprises et administrations,,1.0,observe
+Energie,Agents,"Consommations entre 1,5 et 3kWh/€ de VA",Entreprises et administrations,,1.0,observe
+Energie,Agents,"Consommations entre 1,5 et 3kWh/€ de VA (fuite carbone)",Entreprises et administrations,,1.0,observe
+Energie,Agents,Datacenters,Entreprises et administrations,,1.0,observe
+Energie,Agents,E10 - transport routier,Entreprises et administrations,2017,0.11152492182690193,observe
+Energie,Agents,E10 - transport routier,Ménages,2017,0.8884750781730981,observe
+Energie,Agents,E10 - transport routier,Entreprises et administrations,2018,0.12234999513892617,observe
+Energie,Agents,E10 - transport routier,Ménages,2018,0.8776500048610738,observe
+Energie,Agents,E10 - transport routier,Entreprises et administrations,2019,0.1384096918526454,observe
+Energie,Agents,E10 - transport routier,Ménages,2019,0.8615903081473547,observe
+Energie,Agents,E10 - transport routier,Entreprises et administrations,2020,0.1299124026534916,observe
+Energie,Agents,E10 - transport routier,Ménages,2020,0.8700875973465083,observe
+Energie,Agents,E10 - transport routier,Entreprises et administrations,2021,0.1587789937240753,observe
+Energie,Agents,E10 - transport routier,Ménages,2021,0.8412210062759247,observe
+Energie,Agents,E10 - transport routier,Entreprises et administrations,2022,0.15934130533034238,observe
+Energie,Agents,E10 - transport routier,Ménages,2022,0.8406586946696576,observe
+Energie,Agents,E10 - transport routier,Entreprises et administrations,2023,0.16152089453177573,observe
+Energie,Agents,E10 - transport routier,Ménages,2023,0.8384791054682242,observe
+Energie,Agents,E10 - transport routier,Entreprises et administrations,2024*,0.16689310138042726,observe
+Energie,Agents,E10 - transport routier,Ménages,2024*,0.8331068986195728,observe
+Energie,Agents,E85 - transport routier,Entreprises et administrations,2017,0.11256135589811732,observe
+Energie,Agents,E85 - transport routier,Ménages,2017,0.8874386441018827,observe
+Energie,Agents,E85 - transport routier,Entreprises et administrations,2018,0.1121300409246156,observe
+Energie,Agents,E85 - transport routier,Ménages,2018,0.8878699590753845,observe
+Energie,Agents,E85 - transport routier,Entreprises et administrations,2019,0.1300852241445927,observe
+Energie,Agents,E85 - transport routier,Ménages,2019,0.8699147758554074,observe
+Energie,Agents,E85 - transport routier,Entreprises et administrations,2020,0.11895617566871193,observe
+Energie,Agents,E85 - transport routier,Ménages,2020,0.881043824331288,observe
+Energie,Agents,E85 - transport routier,Entreprises et administrations,2021,0.1462365941111177,observe
+Energie,Agents,E85 - transport routier,Ménages,2021,0.8537634058888822,observe
+Energie,Agents,E85 - transport routier,Entreprises et administrations,2022,0.16342836766156457,observe
+Energie,Agents,E85 - transport routier,Ménages,2022,0.8365716323384355,observe
+Energie,Agents,E85 - transport routier,Entreprises et administrations,2023,0.16451223290820113,observe
+Energie,Agents,E85 - transport routier,Ménages,2023,0.8354877670917988,observe
+Energie,Agents,E85 - transport routier,Entreprises et administrations,2024*,0.16451223290820113,observe
+Energie,Agents,E85 - transport routier,Ménages,2024*,0.8354877670917988,observe
+Energie,Agents,Electricité - entreprises,Entreprises et administrations,,1.0,observe
+Energie,Agents,Electricité - ménages,Ménages,,1.0,observe
+Energie,Agents,Essence - Bateaux,,,1.0,inconnu
+Energie,Agents,Essence - Taxis,Entreprises et administrations,,1.0,observe
+Energie,Agents,Essence - transport routier,Entreprises et administrations,2017,0.10912494067550957,observe
+Energie,Agents,Essence - transport routier,Ménages,2017,0.8908750593244905,observe
+Energie,Agents,Essence - transport routier,Entreprises et administrations,2018,0.12097658274472177,observe
+Energie,Agents,Essence - transport routier,Ménages,2018,0.8790234172552782,observe
+Energie,Agents,Essence - transport routier,Entreprises et administrations,2019,0.13720826428071517,observe
+Energie,Agents,Essence - transport routier,Ménages,2019,0.8627917357192848,observe
+Energie,Agents,Essence - transport routier,Entreprises et administrations,2020,0.1283410988034043,observe
+Energie,Agents,Essence - transport routier,Ménages,2020,0.8716589011965956,observe
+Energie,Agents,Essence - transport routier,Entreprises et administrations,2021,0.15814690766617584,observe
+Energie,Agents,Essence - transport routier,Ménages,2021,0.8418530923338242,observe
+Energie,Agents,Essence - transport routier,Entreprises et administrations,2022,0.15776236401518068,observe
+Energie,Agents,Essence - transport routier,Ménages,2022,0.8422376359848193,observe
+Energie,Agents,Essence - transport routier,Entreprises et administrations,2023,0.16016236190173813,observe
+Energie,Agents,Essence - transport routier,Ménages,2023,0.839837638098262,observe
+Energie,Agents,Essence - transport routier,Entreprises et administrations,2024*,0.16379600588396387,observe
+Energie,Agents,Essence - transport routier,Ménages,2024*,0.8362039941160361,observe
+Energie,Agents,Exemption fabrication de minéraux non-métalliques,,,1.0,inconnu
+Energie,Agents,"Exemption procédés métallurgiques, réduction chimique, électrolyse",,,1.0,inconnu
+Energie,Agents,Exonération pour la production d'électricité,,,1.0,inconnu
+Energie,Agents,Fioul domestique - Double usage,Entreprises et administrations,,1.0,observe
+Energie,Agents,Fioul domestique - Prod. min. non métalliques,Entreprises et administrations,,1.0,observe
+Energie,Agents,Fioul domestique combustible,Entreprises et administrations,2017,0.4988934393642928,observe
+Energie,Agents,Fioul domestique combustible,Ménages,2017,0.5011065606357071,observe
+Energie,Agents,Fioul domestique combustible,Entreprises et administrations,2018,0.39709852183599154,observe
+Energie,Agents,Fioul domestique combustible,Ménages,2018,0.6029014781640084,observe
+Energie,Agents,Fioul domestique combustible,Entreprises et administrations,2019,0.3998685532254665,observe
+Energie,Agents,Fioul domestique combustible,Ménages,2019,0.6001314467745335,observe
+Energie,Agents,Fioul domestique combustible,Entreprises et administrations,2020,0.41667999793344956,observe
+Energie,Agents,Fioul domestique combustible,Ménages,2020,0.5833200020665504,observe
+Energie,Agents,Fioul domestique combustible,Entreprises et administrations,2021,0.43165855932367986,observe
+Energie,Agents,Fioul domestique combustible,Ménages,2021,0.5683414406763202,observe
+Energie,Agents,Fioul domestique combustible,Entreprises et administrations,2022,0.4118233475398895,observe
+Energie,Agents,Fioul domestique combustible,Ménages,2022,0.5881766524601104,observe
+Energie,Agents,Fioul domestique combustible,Entreprises et administrations,2023,0.44108381067591634,observe
+Energie,Agents,Fioul domestique combustible,Ménages,2023,0.5589161893240836,observe
+Energie,Agents,Fioul domestique combustible,Entreprises et administrations,2024*,0.44108381067591634,observe
+Energie,Agents,Fioul domestique combustible,Ménages,2024*,0.5589161893240836,observe
+Energie,Agents,Fioul lourd - Agriculture,Entreprises et administrations,,1.0,observe
+Energie,Agents,Fioul lourd - Bateaux,,,1.0,inconnu
+Energie,Agents,Fioul lourd - Combustible,Entreprises et administrations,,1.0,observe
+Energie,Agents,Fioul lourd - Double usage,Entreprises et administrations,,1.0,observe
+Energie,Agents,Fioul lourd - Prod. min. non métalliques,Entreprises et administrations,,1.0,observe
+Energie,Agents,GPL - Agriculture,Entreprises et administrations,,1.0,observe
+Energie,Agents,GPL - Carburant,Entreprises et administrations,2017,0.37188929859517744,observe
+Energie,Agents,GPL - Carburant,Ménages,2017,0.6281107014048226,observe
+Energie,Agents,GPL - Carburant,Entreprises et administrations,2018,0.3409539410708896,observe
+Energie,Agents,GPL - Carburant,Ménages,2018,0.6590460589291105,observe
+Energie,Agents,GPL - Carburant,Entreprises et administrations,2019,0.3832914997514437,observe
+Energie,Agents,GPL - Carburant,Ménages,2019,0.6167085002485562,observe
+Energie,Agents,GPL - Carburant,Entreprises et administrations,2020,0.45073272104298934,observe
+Energie,Agents,GPL - Carburant,Ménages,2020,0.5492672789570107,observe
+Energie,Agents,GPL - Carburant,Entreprises et administrations,2021,0.37952248110348397,observe
+Energie,Agents,GPL - Carburant,Ménages,2021,0.6204775188965159,observe
+Energie,Agents,GPL - Carburant,Entreprises et administrations,2022,0.18666057593427335,observe
+Energie,Agents,GPL - Carburant,Ménages,2022,0.8133394240657267,observe
+Energie,Agents,GPL - Carburant,Entreprises et administrations,2023,0.18666057593427335,observe
+Energie,Agents,GPL - Carburant,Ménages,2023,0.8133394240657267,observe
+Energie,Agents,GPL - Carburant,Entreprises et administrations,2024*,0.18666057593427335,observe
+Energie,Agents,GPL - Carburant,Ménages,2024*,0.8133394240657267,observe
+Energie,Agents,GPL - Combustible,Entreprises et administrations,2018,0.4124007329690282,observe
+Energie,Agents,GPL - Combustible,Ménages,2018,0.5875992670309717,observe
+Energie,Agents,GPL - Combustible,Entreprises et administrations,2019,0.46238442909571686,observe
+Energie,Agents,GPL - Combustible,Ménages,2019,0.5376155709042831,observe
+Energie,Agents,GPL - Combustible,Entreprises et administrations,2020,0.43912047551706185,observe
+Energie,Agents,GPL - Combustible,Ménages,2020,0.5608795244829382,observe
+Energie,Agents,GPL - Combustible,Entreprises et administrations,2021,0.39744169280396585,observe
+Energie,Agents,GPL - Combustible,Ménages,2021,0.6025583071960342,observe
+Energie,Agents,GPL - Combustible,Entreprises et administrations,2022,0.40423432133022635,observe
+Energie,Agents,GPL - Combustible,Ménages,2022,0.5957656786697737,observe
+Energie,Agents,GPL - Combustible,Entreprises et administrations,2023,0.4335676527306562,observe
+Energie,Agents,GPL - Combustible,Ménages,2023,0.5664323472693439,observe
+Energie,Agents,GPL - Combustible,Entreprises et administrations,2024*,0.4335676527306562,observe
+Energie,Agents,GPL - Combustible,Ménages,2024*,0.5664323472693439,observe
+Energie,Agents,GPL - Double usage,Entreprises et administrations,,1.0,observe
+Energie,Agents,GPL - Prod. min. non métalliques,Entreprises et administrations,,1.0,observe
+Energie,Agents,Gaz - Agriculture,Entreprises et administrations,,1.0,observe
+Energie,Agents,Gaz - Carburant,Entreprises et administrations,2017,0.7057415205714815,observe
+Energie,Agents,Gaz - Carburant,Ménages,2017,0.2942584794285184,observe
+Energie,Agents,Gaz - Carburant,Entreprises et administrations,2018,0.6724482642004701,observe
+Energie,Agents,Gaz - Carburant,Ménages,2018,0.3275517357995298,observe
+Energie,Agents,Gaz - Carburant,Entreprises et administrations,2019,0.5853105759747108,observe
+Energie,Agents,Gaz - Carburant,Ménages,2019,0.4146894240252891,observe
+Energie,Agents,Gaz - Carburant,Entreprises et administrations,2020,0.5005942443278782,observe
+Energie,Agents,Gaz - Carburant,Ménages,2020,0.49940575567212175,observe
+Energie,Agents,Gaz - Carburant,Entreprises et administrations,2021,0.47398058756311295,observe
+Energie,Agents,Gaz - Carburant,Ménages,2021,0.526019412436887,observe
+Energie,Agents,Gaz - Carburant,Entreprises et administrations,2022,0.3978020101803739,observe
+Energie,Agents,Gaz - Carburant,Ménages,2022,0.6021979898196261,observe
+Energie,Agents,Gaz - Carburant,Entreprises et administrations,2023,0.3978020101803739,observe
+Energie,Agents,Gaz - Carburant,Ménages,2023,0.6021979898196261,observe
+Energie,Agents,Gaz - Carburant,Entreprises et administrations,2024*,0.3978020101803739,observe
+Energie,Agents,Gaz - Carburant,Ménages,2024*,0.6021979898196261,observe
+Energie,Agents,Gaz - Combustible,Entreprises et administrations,2017,0.4658478974436637,observe
+Energie,Agents,Gaz - Combustible,Ménages,2017,0.5341521025563364,observe
+Energie,Agents,Gaz - Combustible,Entreprises et administrations,2018,0.49276306782181617,observe
+Energie,Agents,Gaz - Combustible,Ménages,2018,0.5072369321781837,observe
+Energie,Agents,Gaz - Combustible,Entreprises et administrations,2019,0.46097731274982334,observe
+Energie,Agents,Gaz - Combustible,Ménages,2019,0.5390226872501767,observe
+Energie,Agents,Gaz - Combustible,Entreprises et administrations,2020,0.4638851398505548,observe
+Energie,Agents,Gaz - Combustible,Ménages,2020,0.5361148601494452,observe
+Energie,Agents,Gaz - Combustible,Entreprises et administrations,2021,0.46105071882927456,observe
+Energie,Agents,Gaz - Combustible,Ménages,2021,0.5389492811707255,observe
+Energie,Agents,Gaz - Combustible,Entreprises et administrations,2022,0.4940523905873956,observe
+Energie,Agents,Gaz - Combustible,Ménages,2022,0.5059476094126043,observe
+Energie,Agents,Gaz - Combustible,Entreprises et administrations,2023,0.4953524875221044,observe
+Energie,Agents,Gaz - Combustible,Ménages,2023,0.5046475124778955,observe
+Energie,Agents,Gaz - Combustible,Entreprises et administrations,2024*,0.4953524875221044,observe
+Energie,Agents,Gaz - Combustible,Ménages,2024*,0.5046475124778955,observe
+Energie,Agents,Gaz - Double usage,Entreprises et administrations,,1.0,observe
+Energie,Agents,Gaz - Grande consommation et fuite carbone,Entreprises et administrations,,1.0,observe
+Energie,Agents,Gaz - Grande consommation et quotas ETS,Entreprises et administrations,,1.0,observe
+Energie,Agents,Gaz - Prod. min. non métalliques,Entreprises et administrations,,1.0,observe
+Energie,Agents,Gaz - Usage autre que carburant ou combustible,Entreprises et administrations,,1.0,observe
+Energie,Agents,Gaz de raffinerie,Entreprises et administrations,,1.0,observe
+Energie,Agents,Gazole - Taxis,Entreprises et administrations,,1.0,observe
+Energie,Agents,Gazole - Transport marchandises,Entreprises et administrations,,1.0,observe
+Energie,Agents,Gazole - Transport public,Entreprises et administrations,,1.0,observe
+Energie,Agents,Gazole - transport routier,Entreprises et administrations,2017,0.31996509243979165,observe
+Energie,Agents,Gazole - transport routier,Ménages,2017,0.6800349075602085,observe
+Energie,Agents,Gazole - transport routier,Entreprises et administrations,2018,0.3148055143789367,observe
+Energie,Agents,Gazole - transport routier,Ménages,2018,0.6851944856210631,observe
+Energie,Agents,Gazole - transport routier,Entreprises et administrations,2019,0.32114339132994757,observe
+Energie,Agents,Gazole - transport routier,Ménages,2019,0.6788566086700524,observe
+Energie,Agents,Gazole - transport routier,Entreprises et administrations,2020,0.3054163759662743,observe
+Energie,Agents,Gazole - transport routier,Ménages,2020,0.6945836240337256,observe
+Energie,Agents,Gazole - transport routier,Entreprises et administrations,2021,0.32119003208921354,observe
+Energie,Agents,Gazole - transport routier,Ménages,2021,0.6788099679107864,observe
+Energie,Agents,Gazole - transport routier,Entreprises et administrations,2022,0.31877399590343386,observe
+Energie,Agents,Gazole - transport routier,Ménages,2022,0.6812260040965662,observe
+Energie,Agents,Gazole - transport routier,Entreprises et administrations,2023,0.3101765938321153,observe
+Energie,Agents,Gazole - transport routier,Ménages,2023,0.6898234061678846,observe
+Energie,Agents,Gazole - transport routier,Entreprises et administrations,2024*,0.3101765938321153,observe
+Energie,Agents,Gazole - transport routier,Ménages,2024*,0.6898234061678846,observe
+Energie,Agents,Gazole Non Routier,Entreprises et administrations,,1.0,observe
+Energie,Agents,Gazole Non Routier - Agriculture,Entreprises et administrations,,1.0,observe
+Energie,Agents,Gazole Non Routier - Double usage,Entreprises et administrations,,1.0,observe
+Energie,Agents,Gazole Non Routier - Prod. min. non métalliques,Entreprises et administrations,,1.0,observe
+Energie,Agents,Installations hyper-électro-intensives,Entreprises et administrations,,1.0,observe
+Energie,Agents,Kerosene - Aéronefs,Entreprises et administrations,,1.0,observe
+Energie,Agents,Kerosene - Carburant avions,Entreprises et administrations,,1.0,observe
+Energie,Agents,Kerosene combustible,Ménages,,1.0,observe
+Energie,Agents,Pertes réseau,,,1.0,inconnu
+Energie,Agents,"Transport de personnes et de marchandises par train, métro, tramway, câble et trolleybus",Entreprises et administrations,,1.0,observe
+Energie,Type de produit,Autres produits pétroliers,Pétrole,,1.0,observe
+Energie,Type de produit,Autres produits pétroliers - Double usage,Pétrole,,1.0,observe
+Energie,Type de produit,Autres produits pétroliers - Prod. min. non métalliques,Pétrole,,1.0,observe
+Energie,Type de produit,Aéroports,Électricité,,1.0,observe
+Energie,Type de produit,"Bois de chauffage, résidus de bois et autre biomasse solide, charbon de bois",Chaleur et biomasse,,1.0,intitule
+Energie,Type de produit,Chaleur,Chaleur et biomasse,,1.0,intitule
+Energie,Type de produit,Charbon - Double usage,Charbon,,1.0,observe
+Energie,Type de produit,Charbon - Grande consommation et quotas ETS,Charbon,,1.0,observe
+Energie,Type de produit,Charbon - Prod. min. non métalliques,Charbon,,1.0,observe
+Energie,Type de produit,"Consommations < 1,5kWh/€ de VA",Électricité,,1.0,observe
+Energie,Type de produit,"Consommations < 1,5kWh/€ de VA (fuite carbone)",Électricité,,1.0,observe
+Energie,Type de produit,Consommations >3kWh/€ de VA,Électricité,,1.0,observe
+Energie,Type de produit,Consommations >3kWh/€ de VA (fuite carbone),Électricité,,1.0,observe
+Energie,Type de produit,"Consommations entre 1,5 et 3kWh/€ de VA",Électricité,,1.0,observe
+Energie,Type de produit,"Consommations entre 1,5 et 3kWh/€ de VA (fuite carbone)",Électricité,,1.0,observe
+Energie,Type de produit,Datacenters,Électricité,,1.0,observe
+Energie,Type de produit,E10 - transport routier,Chaleur et biomasse,2017,0.07256300087182427,observe
+Energie,Type de produit,E10 - transport routier,Pétrole,2017,0.9274369991281757,observe
+Energie,Type de produit,E10 - transport routier,Chaleur et biomasse,2018,0.07147811209358498,observe
+Energie,Type de produit,E10 - transport routier,Pétrole,2018,0.928521887906415,observe
+Energie,Type de produit,E10 - transport routier,Chaleur et biomasse,2019,0.06990850795885718,observe
+Energie,Type de produit,E10 - transport routier,Pétrole,2019,0.9300914920411428,observe
+Energie,Type de produit,E10 - transport routier,Chaleur et biomasse,2020,0.06703201476585893,observe
+Energie,Type de produit,E10 - transport routier,Pétrole,2020,0.9329679852341412,observe
+Energie,Type de produit,E10 - transport routier,Chaleur et biomasse,2021,0.06559463059609577,observe
+Energie,Type de produit,E10 - transport routier,Pétrole,2021,0.9344053694039042,observe
+Energie,Type de produit,E10 - transport routier,Chaleur et biomasse,2022,0.06400412690927576,observe
+Energie,Type de produit,E10 - transport routier,Pétrole,2022,0.9359958730907243,observe
+Energie,Type de produit,E10 - transport routier,Chaleur et biomasse,2023,0.06065876615237668,observe
+Energie,Type de produit,E10 - transport routier,Pétrole,2023,0.9393412338476234,observe
+Energie,Type de produit,E10 - transport routier,Chaleur et biomasse,2024*,0.06027012028531887,observe
+Energie,Type de produit,E10 - transport routier,Pétrole,2024*,0.9397298797146811,observe
+Energie,Type de produit,E85 - transport routier,Chaleur et biomasse,2017,0.6165108484617597,observe
+Energie,Type de produit,E85 - transport routier,Pétrole,2017,0.3834891515382402,observe
+Energie,Type de produit,E85 - transport routier,Chaleur et biomasse,2018,0.6130173229542057,observe
+Energie,Type de produit,E85 - transport routier,Pétrole,2018,0.38698267704579425,observe
+Energie,Type de produit,E85 - transport routier,Chaleur et biomasse,2019,0.6060120291605027,observe
+Energie,Type de produit,E85 - transport routier,Pétrole,2019,0.3939879708394974,observe
+Energie,Type de produit,E85 - transport routier,Chaleur et biomasse,2020,0.5961342319500531,observe
+Energie,Type de produit,E85 - transport routier,Pétrole,2020,0.4038657680499468,observe
+Energie,Type de produit,E85 - transport routier,Chaleur et biomasse,2021,0.5899021713200716,observe
+Energie,Type de produit,E85 - transport routier,Pétrole,2021,0.41009782867992844,observe
+Energie,Type de produit,E85 - transport routier,Chaleur et biomasse,2022,0.5820342651942684,observe
+Energie,Type de produit,E85 - transport routier,Pétrole,2022,0.4179657348057316,observe
+Energie,Type de produit,E85 - transport routier,Chaleur et biomasse,2023,0.567255443033853,observe
+Energie,Type de produit,E85 - transport routier,Pétrole,2023,0.43274455696614705,observe
+Energie,Type de produit,E85 - transport routier,Chaleur et biomasse,2024*,0.567255443033853,observe
+Energie,Type de produit,E85 - transport routier,Pétrole,2024*,0.43274455696614705,observe
+Energie,Type de produit,Electricité - entreprises,Électricité,,1.0,observe
+Energie,Type de produit,Electricité - ménages,Électricité,,1.0,observe
+Energie,Type de produit,Essence - Bateaux,Pétrole,,1.0,intitule
+Energie,Type de produit,Essence - Taxis,Chaleur et biomasse,2017,0.05329093186855503,observe
+Energie,Type de produit,Essence - Taxis,Pétrole,2017,0.946709068131445,observe
+Energie,Type de produit,Essence - Taxis,Chaleur et biomasse,2018,0.05398457583547529,observe
+Energie,Type de produit,Essence - Taxis,Pétrole,2018,0.9460154241645248,observe
+Energie,Type de produit,Essence - Taxis,Chaleur et biomasse,2019,0.05398457583547525,observe
+Energie,Type de produit,Essence - Taxis,Pétrole,2019,0.9460154241645248,observe
+Energie,Type de produit,Essence - Taxis,Chaleur et biomasse,2020,0.05676406229887967,observe
+Energie,Type de produit,Essence - Taxis,Pétrole,2020,0.9432359377011202,observe
+Energie,Type de produit,Essence - Taxis,Chaleur et biomasse,2021,0.05676406229887967,observe
+Energie,Type de produit,Essence - Taxis,Pétrole,2021,0.9432359377011202,observe
+Energie,Type de produit,Essence - Taxis,Chaleur et biomasse,2022,0.05676406229887967,observe
+Energie,Type de produit,Essence - Taxis,Pétrole,2022,0.9432359377011202,observe
+Energie,Type de produit,Essence - Taxis,Chaleur et biomasse,2023,0.05676406229887967,observe
+Energie,Type de produit,Essence - Taxis,Pétrole,2023,0.9432359377011202,observe
+Energie,Type de produit,Essence - Taxis,Chaleur et biomasse,2024*,0.05676406229887967,observe
+Energie,Type de produit,Essence - Taxis,Pétrole,2024*,0.9432359377011202,observe
+Energie,Type de produit,Essence - transport routier,Chaleur et biomasse,2017,0.03625173339684915,observe
+Energie,Type de produit,Essence - transport routier,Pétrole,2017,0.9637482666031508,observe
+Energie,Type de produit,Essence - transport routier,Chaleur et biomasse,2018,0.035698446806404265,observe
+Energie,Type de produit,Essence - transport routier,Pétrole,2018,0.9643015531935958,observe
+Energie,Type de produit,Essence - transport routier,Chaleur et biomasse,2019,0.03480943739494979,observe
+Energie,Type de produit,Essence - transport routier,Pétrole,2019,0.9651905626050502,observe
+Energie,Type de produit,Essence - transport routier,Chaleur et biomasse,2020,0.03338089366006105,observe
+Energie,Type de produit,Essence - transport routier,Pétrole,2020,0.966619106339939,observe
+Energie,Type de produit,Essence - transport routier,Chaleur et biomasse,2021,0.032595352647276775,observe
+Energie,Type de produit,Essence - transport routier,Pétrole,2021,0.9674046473527232,observe
+Energie,Type de produit,Essence - transport routier,Chaleur et biomasse,2022,0.0317177022662044,observe
+Energie,Type de produit,Essence - transport routier,Pétrole,2022,0.9682822977337957,observe
+Energie,Type de produit,Essence - transport routier,Chaleur et biomasse,2023,0.029975962643674494,observe
+Energie,Type de produit,Essence - transport routier,Pétrole,2023,0.9700240373563256,observe
+Energie,Type de produit,Essence - transport routier,Chaleur et biomasse,2024*,0.029846268555995526,observe
+Energie,Type de produit,Essence - transport routier,Pétrole,2024*,0.9701537314440045,observe
+Energie,Type de produit,Exemption fabrication de minéraux non-métalliques,Électricité,,1.0,intitule
+Energie,Type de produit,"Exemption procédés métallurgiques, réduction chimique, électrolyse",Électricité,,1.0,intitule
+Energie,Type de produit,Exonération pour la production d'électricité,Électricité,,1.0,intitule
+Energie,Type de produit,Fioul domestique - Double usage,Pétrole,,1.0,observe
+Energie,Type de produit,Fioul domestique - Prod. min. non métalliques,Pétrole,,1.0,observe
+Energie,Type de produit,Fioul domestique combustible,Pétrole,,1.0,observe
+Energie,Type de produit,Fioul lourd - Agriculture,Pétrole,,1.0,observe
+Energie,Type de produit,Fioul lourd - Bateaux,Pétrole,,1.0,intitule
+Energie,Type de produit,Fioul lourd - Combustible,Pétrole,,1.0,observe
+Energie,Type de produit,Fioul lourd - Double usage,Pétrole,,1.0,observe
+Energie,Type de produit,Fioul lourd - Prod. min. non métalliques,Pétrole,,1.0,observe
+Energie,Type de produit,GPL - Agriculture,Pétrole,,1.0,observe
+Energie,Type de produit,GPL - Carburant,Pétrole,,1.0,observe
+Energie,Type de produit,GPL - Combustible,Pétrole,,1.0,observe
+Energie,Type de produit,GPL - Double usage,Pétrole,,1.0,observe
+Energie,Type de produit,GPL - Prod. min. non métalliques,Pétrole,,1.0,observe
+Energie,Type de produit,Gaz - Agriculture,Chaleur et biomasse,2017,0.13306936314314488,observe
+Energie,Type de produit,Gaz - Agriculture,Gaz,2017,0.8669306368568551,observe
+Energie,Type de produit,Gaz - Agriculture,Chaleur et biomasse,2018,0.1444773357008442,observe
+Energie,Type de produit,Gaz - Agriculture,Gaz,2018,0.8555226642991558,observe
+Energie,Type de produit,Gaz - Agriculture,Chaleur et biomasse,2019,0.16593444705773983,observe
+Energie,Type de produit,Gaz - Agriculture,Gaz,2019,0.8340655529422601,observe
+Energie,Type de produit,Gaz - Agriculture,Chaleur et biomasse,2020,0.18301912649663235,observe
+Energie,Type de produit,Gaz - Agriculture,Gaz,2020,0.8169808735033677,observe
+Energie,Type de produit,Gaz - Agriculture,Chaleur et biomasse,2021,0.1975328360424457,observe
+Energie,Type de produit,Gaz - Agriculture,Gaz,2021,0.8024671639575544,observe
+Energie,Type de produit,Gaz - Agriculture,Chaleur et biomasse,2022,0.28918454532081467,observe
+Energie,Type de produit,Gaz - Agriculture,Gaz,2022,0.7108154546791853,observe
+Energie,Type de produit,Gaz - Agriculture,Chaleur et biomasse,2023,0.28918454532081467,observe
+Energie,Type de produit,Gaz - Agriculture,Gaz,2023,0.7108154546791853,observe
+Energie,Type de produit,Gaz - Agriculture,Chaleur et biomasse,2024*,0.28918454532081467,observe
+Energie,Type de produit,Gaz - Agriculture,Gaz,2024*,0.7108154546791853,observe
+Energie,Type de produit,Gaz - Carburant,Chaleur et biomasse,2017,0.017919214871744072,observe
+Energie,Type de produit,Gaz - Carburant,Gaz,2017,0.9820807851282559,observe
+Energie,Type de produit,Gaz - Carburant,Chaleur et biomasse,2018,0.018334372125986903,observe
+Energie,Type de produit,Gaz - Carburant,Gaz,2018,0.9816656278740131,observe
+Energie,Type de produit,Gaz - Carburant,Chaleur et biomasse,2019,0.019589414986465083,observe
+Energie,Type de produit,Gaz - Carburant,Gaz,2019,0.9804105850135348,observe
+Energie,Type de produit,Gaz - Carburant,Chaleur et biomasse,2020,0.021478009159206835,observe
+Energie,Type de produit,Gaz - Carburant,Gaz,2020,0.9785219908407933,observe
+Energie,Type de produit,Gaz - Carburant,Chaleur et biomasse,2021,0.016419762345092147,observe
+Energie,Type de produit,Gaz - Carburant,Gaz,2021,0.9835802376549079,observe
+Energie,Type de produit,Gaz - Carburant,Chaleur et biomasse,2022,0.015619843910707882,observe
+Energie,Type de produit,Gaz - Carburant,Gaz,2022,0.9843801560892921,observe
+Energie,Type de produit,Gaz - Carburant,Chaleur et biomasse,2023,0.015619843910707882,observe
+Energie,Type de produit,Gaz - Carburant,Gaz,2023,0.9843801560892921,observe
+Energie,Type de produit,Gaz - Carburant,Chaleur et biomasse,2024*,0.015619843910707882,observe
+Energie,Type de produit,Gaz - Carburant,Gaz,2024*,0.9843801560892921,observe
+Energie,Type de produit,Gaz - Combustible,Chaleur et biomasse,2017,0.00584601090655309,observe
+Energie,Type de produit,Gaz - Combustible,Gaz,2017,0.994153989093447,observe
+Energie,Type de produit,Gaz - Combustible,Chaleur et biomasse,2018,0.006183802831528958,observe
+Energie,Type de produit,Gaz - Combustible,Gaz,2018,0.993816197168471,observe
+Energie,Type de produit,Gaz - Combustible,Chaleur et biomasse,2019,0.0067515959947156284,observe
+Energie,Type de produit,Gaz - Combustible,Gaz,2019,0.9932484040052844,observe
+Energie,Type de produit,Gaz - Combustible,Chaleur et biomasse,2020,0.0076491366240847266,observe
+Energie,Type de produit,Gaz - Combustible,Gaz,2020,0.9923508633759153,observe
+Energie,Type de produit,Gaz - Combustible,Chaleur et biomasse,2021,0.007188254709865617,observe
+Energie,Type de produit,Gaz - Combustible,Gaz,2021,0.9928117452901344,observe
+Energie,Type de produit,Gaz - Combustible,Chaleur et biomasse,2022,0.008927376782878159,observe
+Energie,Type de produit,Gaz - Combustible,Gaz,2022,0.9910726232171219,observe
+Energie,Type de produit,Gaz - Combustible,Chaleur et biomasse,2023,0.008999870721383004,observe
+Energie,Type de produit,Gaz - Combustible,Gaz,2023,0.9910001292786169,observe
+Energie,Type de produit,Gaz - Combustible,Chaleur et biomasse,2024*,0.008999870721383004,observe
+Energie,Type de produit,Gaz - Combustible,Gaz,2024*,0.9910001292786169,observe
+Energie,Type de produit,Gaz - Double usage,Gaz,,1.0,intitule
+Energie,Type de produit,Gaz - Grande consommation et fuite carbone,Chaleur et biomasse,2017,0.002448481201544997,observe
+Energie,Type de produit,Gaz - Grande consommation et fuite carbone,Gaz,2017,0.997551518798455,observe
+Energie,Type de produit,Gaz - Grande consommation et fuite carbone,Chaleur et biomasse,2018,0.0022381882879022063,observe
+Energie,Type de produit,Gaz - Grande consommation et fuite carbone,Gaz,2018,0.9977618117120978,observe
+Energie,Type de produit,Gaz - Grande consommation et fuite carbone,Chaleur et biomasse,2019,0.003068620311328607,observe
+Energie,Type de produit,Gaz - Grande consommation et fuite carbone,Gaz,2019,0.9969313796886715,observe
+Energie,Type de produit,Gaz - Grande consommation et fuite carbone,Chaleur et biomasse,2020,0.003434352151935819,observe
+Energie,Type de produit,Gaz - Grande consommation et fuite carbone,Gaz,2020,0.9965656478480641,observe
+Energie,Type de produit,Gaz - Grande consommation et fuite carbone,Chaleur et biomasse,2021,0.0038654891166433197,observe
+Energie,Type de produit,Gaz - Grande consommation et fuite carbone,Gaz,2021,0.9961345108833566,observe
+Energie,Type de produit,Gaz - Grande consommation et fuite carbone,Chaleur et biomasse,2022,0.006664399979405476,observe
+Energie,Type de produit,Gaz - Grande consommation et fuite carbone,Gaz,2022,0.9933356000205945,observe
+Energie,Type de produit,Gaz - Grande consommation et fuite carbone,Chaleur et biomasse,2023,0.006624241617462526,observe
+Energie,Type de produit,Gaz - Grande consommation et fuite carbone,Gaz,2023,0.9933757583825374,observe
+Energie,Type de produit,Gaz - Grande consommation et fuite carbone,Chaleur et biomasse,2024*,0.006624241617462526,observe
+Energie,Type de produit,Gaz - Grande consommation et fuite carbone,Gaz,2024*,0.9933757583825374,observe
+Energie,Type de produit,Gaz - Grande consommation et quotas ETS,Chaleur et biomasse,2017,0.002901263253393583,observe
+Energie,Type de produit,Gaz - Grande consommation et quotas ETS,Gaz,2017,0.9970987367466064,observe
+Energie,Type de produit,Gaz - Grande consommation et quotas ETS,Chaleur et biomasse,2018,0.0023953927038752936,observe
+Energie,Type de produit,Gaz - Grande consommation et quotas ETS,Gaz,2018,0.9976046072961247,observe
+Energie,Type de produit,Gaz - Grande consommation et quotas ETS,Chaleur et biomasse,2019,0.003191364659139075,observe
+Energie,Type de produit,Gaz - Grande consommation et quotas ETS,Gaz,2019,0.996808635340861,observe
+Energie,Type de produit,Gaz - Grande consommation et quotas ETS,Chaleur et biomasse,2020,0.0034524123641164832,observe
+Energie,Type de produit,Gaz - Grande consommation et quotas ETS,Gaz,2020,0.9965475876358836,observe
+Energie,Type de produit,Gaz - Grande consommation et quotas ETS,Chaleur et biomasse,2021,0.003480230904190335,observe
+Energie,Type de produit,Gaz - Grande consommation et quotas ETS,Gaz,2021,0.9965197690958096,observe
+Energie,Type de produit,Gaz - Grande consommation et quotas ETS,Chaleur et biomasse,2022,0.005226026044394415,observe
+Energie,Type de produit,Gaz - Grande consommation et quotas ETS,Gaz,2022,0.9947739739556055,observe
+Energie,Type de produit,Gaz - Grande consommation et quotas ETS,Chaleur et biomasse,2023,0.00538101834023564,observe
+Energie,Type de produit,Gaz - Grande consommation et quotas ETS,Gaz,2023,0.9946189816597643,observe
+Energie,Type de produit,Gaz - Grande consommation et quotas ETS,Chaleur et biomasse,2024*,0.00538101834023564,observe
+Energie,Type de produit,Gaz - Grande consommation et quotas ETS,Gaz,2024*,0.9946189816597643,observe
+Energie,Type de produit,Gaz - Prod. min. non métalliques,Gaz,,1.0,intitule
+Energie,Type de produit,Gaz - Usage autre que carburant ou combustible,Gaz,,1.0,intitule
+Energie,Type de produit,Gaz de raffinerie,Pétrole,,1.0,correction
+Energie,Type de produit,Gazole - Taxis,Chaleur et biomasse,2017,0.07289656907977518,observe
+Energie,Type de produit,Gazole - Taxis,Pétrole,2017,0.9271034309202247,observe
+Energie,Type de produit,Gazole - Taxis,Chaleur et biomasse,2018,0.07382550335570467,observe
+Energie,Type de produit,Gazole - Taxis,Pétrole,2018,0.9261744966442953,observe
+Energie,Type de produit,Gazole - Taxis,Chaleur et biomasse,2019,0.07382550335570469,observe
+Energie,Type de produit,Gazole - Taxis,Pétrole,2019,0.9261744966442953,observe
+Energie,Type de produit,Gazole - Taxis,Chaleur et biomasse,2020,0.07754279959718027,observe
+Energie,Type de produit,Gazole - Taxis,Pétrole,2020,0.9224572004028198,observe
+Energie,Type de produit,Gazole - Taxis,Chaleur et biomasse,2021,0.07754279959718027,observe
+Energie,Type de produit,Gazole - Taxis,Pétrole,2021,0.9224572004028198,observe
+Energie,Type de produit,Gazole - Taxis,Chaleur et biomasse,2022,0.07754279959718027,observe
+Energie,Type de produit,Gazole - Taxis,Pétrole,2022,0.9224572004028198,observe
+Energie,Type de produit,Gazole - Taxis,Chaleur et biomasse,2023,0.07754279959718027,observe
+Energie,Type de produit,Gazole - Taxis,Pétrole,2023,0.9224572004028198,observe
+Energie,Type de produit,Gazole - Taxis,Chaleur et biomasse,2024*,0.07754279959718027,observe
+Energie,Type de produit,Gazole - Taxis,Pétrole,2024*,0.9224572004028198,observe
+Energie,Type de produit,Gazole - Transport marchandises,Chaleur et biomasse,2017,0.07222803959746373,observe
+Energie,Type de produit,Gazole - Transport marchandises,Pétrole,2017,0.9277719604025363,observe
+Energie,Type de produit,Gazole - Transport marchandises,Chaleur et biomasse,2018,0.07373779357179364,observe
+Energie,Type de produit,Gazole - Transport marchandises,Pétrole,2018,0.9262622064282063,observe
+Energie,Type de produit,Gazole - Transport marchandises,Chaleur et biomasse,2019,0.07302442756496337,observe
+Energie,Type de produit,Gazole - Transport marchandises,Pétrole,2019,0.9269755724350366,observe
+Energie,Type de produit,Gazole - Transport marchandises,Chaleur et biomasse,2020,0.07677018626663362,observe
+Energie,Type de produit,Gazole - Transport marchandises,Pétrole,2020,0.9232298137333663,observe
+Energie,Type de produit,Gazole - Transport marchandises,Chaleur et biomasse,2021,0.07703028031587478,observe
+Energie,Type de produit,Gazole - Transport marchandises,Pétrole,2021,0.9229697196841252,observe
+Energie,Type de produit,Gazole - Transport marchandises,Chaleur et biomasse,2022,0.07662577661664002,observe
+Energie,Type de produit,Gazole - Transport marchandises,Pétrole,2022,0.92337422338336,observe
+Energie,Type de produit,Gazole - Transport marchandises,Chaleur et biomasse,2023,0.07662577661664002,observe
+Energie,Type de produit,Gazole - Transport marchandises,Pétrole,2023,0.92337422338336,observe
+Energie,Type de produit,Gazole - Transport marchandises,Chaleur et biomasse,2024*,0.07662577661664002,observe
+Energie,Type de produit,Gazole - Transport marchandises,Pétrole,2024*,0.92337422338336,observe
+Energie,Type de produit,Gazole - Transport public,Chaleur et biomasse,2017,0.07289656907977518,observe
+Energie,Type de produit,Gazole - Transport public,Pétrole,2017,0.9271034309202248,observe
+Energie,Type de produit,Gazole - Transport public,Chaleur et biomasse,2018,0.0738255033557047,observe
+Energie,Type de produit,Gazole - Transport public,Pétrole,2018,0.9261744966442953,observe
+Energie,Type de produit,Gazole - Transport public,Chaleur et biomasse,2019,0.0738255033557047,observe
+Energie,Type de produit,Gazole - Transport public,Pétrole,2019,0.9261744966442953,observe
+Energie,Type de produit,Gazole - Transport public,Chaleur et biomasse,2020,0.07754279959718026,observe
+Energie,Type de produit,Gazole - Transport public,Pétrole,2020,0.9224572004028199,observe
+Energie,Type de produit,Gazole - Transport public,Chaleur et biomasse,2021,0.07754279959718026,observe
+Energie,Type de produit,Gazole - Transport public,Pétrole,2021,0.9224572004028199,observe
+Energie,Type de produit,Gazole - Transport public,Chaleur et biomasse,2022,0.07754279959718026,observe
+Energie,Type de produit,Gazole - Transport public,Pétrole,2022,0.9224572004028199,observe
+Energie,Type de produit,Gazole - Transport public,Chaleur et biomasse,2023,0.07754279959718026,observe
+Energie,Type de produit,Gazole - Transport public,Pétrole,2023,0.9224572004028199,observe
+Energie,Type de produit,Gazole - Transport public,Chaleur et biomasse,2024*,0.07754279959718026,observe
+Energie,Type de produit,Gazole - Transport public,Pétrole,2024*,0.9224572004028199,observe
+Energie,Type de produit,Gazole - transport routier,Chaleur et biomasse,2017,0.07918353411820862,observe
+Energie,Type de produit,Gazole - transport routier,Pétrole,2017,0.9208164658817913,observe
+Energie,Type de produit,Gazole - transport routier,Chaleur et biomasse,2018,0.0785355855059524,observe
+Energie,Type de produit,Gazole - transport routier,Pétrole,2018,0.9214644144940476,observe
+Energie,Type de produit,Gazole - transport routier,Chaleur et biomasse,2019,0.0803902469544363,observe
+Energie,Type de produit,Gazole - transport routier,Pétrole,2019,0.9196097530455636,observe
+Energie,Type de produit,Gazole - transport routier,Chaleur et biomasse,2020,0.07420333760027024,observe
+Energie,Type de produit,Gazole - transport routier,Pétrole,2020,0.9257966623997298,observe
+Energie,Type de produit,Gazole - transport routier,Chaleur et biomasse,2021,0.07217648407462125,observe
+Energie,Type de produit,Gazole - transport routier,Pétrole,2021,0.9278235159253787,observe
+Energie,Type de produit,Gazole - transport routier,Chaleur et biomasse,2022,0.07267899998456738,observe
+Energie,Type de produit,Gazole - transport routier,Pétrole,2022,0.9273210000154325,observe
+Energie,Type de produit,Gazole - transport routier,Chaleur et biomasse,2023,0.0707164626897288,observe
+Energie,Type de produit,Gazole - transport routier,Pétrole,2023,0.9292835373102712,observe
+Energie,Type de produit,Gazole - transport routier,Chaleur et biomasse,2024*,0.0707164626897288,observe
+Energie,Type de produit,Gazole - transport routier,Pétrole,2024*,0.9292835373102712,observe
+Energie,Type de produit,Gazole Non Routier,Pétrole,,1.0,observe
+Energie,Type de produit,Gazole Non Routier - Agriculture,Pétrole,,1.0,observe
+Energie,Type de produit,Gazole Non Routier - Double usage,Pétrole,,1.0,observe
+Energie,Type de produit,Gazole Non Routier - Prod. min. non métalliques,Pétrole,,1.0,observe
+Energie,Type de produit,Installations hyper-électro-intensives,Électricité,,1.0,observe
+Energie,Type de produit,Kerosene - Aéronefs,Pétrole,,1.0,observe
+Energie,Type de produit,Kerosene - Carburant avions,Pétrole,,1.0,observe
+Energie,Type de produit,Kerosene combustible,Pétrole,,1.0,observe
+Energie,Type de produit,Pertes réseau,Électricité,,1.0,intitule
+Energie,Type de produit,"Transport de personnes et de marchandises par train, métro, tramway, câble et trolleybus",Électricité,,1.0,observe
