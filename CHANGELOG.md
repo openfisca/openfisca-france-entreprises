@@ -1,3 +1,37 @@
+## 1.1.7 - [#XX](https://github.com/openfisca/openfisca-france-entreprises/pull/XX)
+
+* Tax and benefit system evolution.
+* Impacted periods: from 01/01/1993.
+* Impacted areas:
+  - `variables/taxes/formula_helpers`
+  - `variables/taxes/taxation_energies/taxation_autres_produits_energetiques`
+  - `variables/taxes/taxation_energies/taxation_charbon`
+  - `variables/taxes/taxation_energies/taxation_electricite`
+  - `variables/taxes/taxation_energies/taxation_gaz_naturel`
+  - `parameters/energies`
+* Details:
+  - Moyenne mensuelle des tarifs : de nombreux tarifs entrent en vigueur en cours d'annee alors que
+    le modele raisonne en periodes annuelles. Les lire au 1er janvier appliquait l'ancien tarif, ou
+    le nouveau, a toute l'annee. Les 230 lectures concernees passent par `tarif_moyen_annuel`.
+  - Nouveau comportement quand une ligne de tarif reduit disparait en cours d'annee : le repli est
+    le tarif normal, et non zero. Une abrogation seche sans article successeur reste repliee sur
+    zero.
+  - GPL sous condition d'emploi : indices 30 bis, 31 bis et 33 bis retires du tableau B de l'article
+    265 du code des douanes au 01/07/2020 (article 60 I 1 de la LF 2020), sans successeur. Ces
+    consommations relevent des indices generaux a 20,71 EUR/100 kg.
+  - Gazole non routier : la cloture du 01/07/2021 etait erronee, l'article 265 octies A et B
+    maintenant le tarif de 18,82 EUR/hL. Elle passe au 01/01/2022, avec le reste du tableau B.
+  - TICGN des entreprises grandes consommatrices : le tarif reduit naissant au 01/04/2014, la
+    lecture se replie avant cette date sur le tarif normal, qui vaut aussi 1,19 EUR/MWh.
+  - TICC : taxe creee au 01/07/2007 par le III de l'article 36 de la LFR 2006, et non au
+    01/01/2007. Janvier a juin 2007 ne portent pas de taxe.
+  - Manutention portuaire : la formule lisait le tarif reduit TICFE au-dela du 01/01/2022, alors que
+    la TICFE disparait avec la bascule CIBS et que le tarif reduit d'accise n'entre en vigueur qu'au
+    01/01/2023. Tarif normal sur 2022, tarif reduit d'accise a partir de 2023.
+  - CSPE : le changement de tarif de 2011 est date du 01/07/2011 et non du 31/07/2011.
+  - Les parametres `parameters/energies` sont desormais identiques octet pour octet a ceux du bareme
+    IPP sur les 321 chemins communs.
+
 ## 1.1.6 - [#19](https://github.com/openfisca/openfisca-france-entreprises/pull/19)
 
 * Technical improvement: TDCFE coefficient as vectorized parameter (same approach as TCCFE in #18).
