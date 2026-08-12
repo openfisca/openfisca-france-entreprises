@@ -36,10 +36,12 @@
     departement : 78
     commune : 29
   output:
-    taxe_electricite: 18090
+    taxe_electricite: 18840
     # taxe_contribution_service_public_electricite + taxe_interieure_sur_consommation_finale_electricite + taxe_communale_consommation_finale_electricite + taxe_departementale_consommation_finale_electricite
-    # 1000 * 9 + 0 + 6090 + 3000
-    # 18090
+    # 1000 * 9,75 + 0 + 6090 + 3000
+    # 18840
+    # CSPE 2012 : 9 EUR/MWh du 1er janvier au 30 juin, 10,5 a partir du 1er juillet.
+    # La moyenne mensuelle vaut (6 * 9 + 6 * 10,5) / 12 = 9,75, contre 9 lue au 1er janvier.
 
 
 - name: test 2012  taxe_contribution_service_public_electricite
@@ -54,7 +56,8 @@
     commune : 29
     #8.12
   output:
-    taxe_contribution_service_public_electricite: 9000
+    taxe_contribution_service_public_electricite: 9750
+    # 1000 * 9,75 : moyenne mensuelle de la CSPE 2012 (9 jusqu'au 30 juin, 10,5 ensuite).
 
 
 - name: test 2012  taxe_interieure_sur_consommation_finale_electricite

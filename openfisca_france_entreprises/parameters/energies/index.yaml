@@ -1,10 +1,10 @@
 description: Taxation des énergies
 metadata:
+  label_en: Taxes on energy
   order:
-  - seuils_seqe
   - electricite
   - autres_produits_energetiques
-  - bouclier_tarifaire
   - gaz_naturel
   - charbon
   - majoration_zni
+  - coefficients_conversion

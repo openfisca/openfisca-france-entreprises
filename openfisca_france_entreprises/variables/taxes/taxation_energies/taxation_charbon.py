@@ -12,6 +12,7 @@ from openfisca_france_entreprises.variables.taxes.formula_helpers import (
     _and,
     _not,
     _or,
+    tarif_moyen_annuel,
 )
 
 
@@ -23,9 +24,18 @@ class taxe_interieure_consommation_charbon(Variable):
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615177/2007-07-01/"
 
     def formula_2007_01_01(etablissement, period, parameters):
-        """Taxe sur la consommation de houilles, lignites, et cokes."""
+        """Taxe sur la consommation de houilles, lignites, et cokes.
+
+        La TICC est créée au 1er juillet 2007 par le III de l'article 36 de la LFR 2006
+        (arbitrage §1) : sur janvier-juin 2007 elle n'existe pas, d'où le repli à zéro. La
+        moyenne mensuelle donne donc la moitié du tarif sur 2007, puis le tarif plein.
+        """
         assiette_ticc = etablissement("assiette_ticc", period)
-        return assiette_ticc * parameters(period).energies.charbon.ticc
+        return assiette_ticc * tarif_moyen_annuel(
+            period,
+            lambda mois: parameters(mois).energies.charbon.ticc,
+            defaut_si_absent=0,
+        )
 
     def formula_2008_01_01(etablissement, period, parameters):
         # (2008) Par rapport à precedement: ajout conso_combustible_biomasse, seqe
@@ -318,7 +328,10 @@ class taxe_interieure_taxation_consommation_charbon_taux_normal(Variable):
 
     def formula_2007_01_01(etablissement, period, parameters):
         assiette_ticc = etablissement("assiette_ticc", period)
-        return assiette_ticc * parameters(period).energies.charbon.ticc
+        return assiette_ticc * tarif_moyen_annuel(
+            period,
+            lambda mois: parameters(mois).energies.charbon.ticc,
+        )
 
     def formula_2022_01_01(etablissement, period, parameters):
         """La TICC devient la fraction charbons de l'accise sur les énergies (CIBS).
@@ -327,7 +340,10 @@ class taxe_interieure_taxation_consommation_charbon_taux_normal(Variable):
         la série ticc étant clôturée au 1er janvier 2022.
         """
         assiette_ticc = etablissement("assiette_ticc", period)
-        return assiette_ticc * parameters(period).energies.charbon.accise.combustibles.tarif_normal
+        return assiette_ticc * tarif_moyen_annuel(
+            period,
+            lambda mois: parameters(mois).energies.charbon.accise.combustibles.tarif_normal,
+        )
 
 
 class assiette_ticc(Variable):

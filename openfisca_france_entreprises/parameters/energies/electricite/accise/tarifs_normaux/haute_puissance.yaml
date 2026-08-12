@@ -1,24 +1,25 @@
-description: Tarif normal de l'accise sur l'électricité pour les consommations de haute
-  puissance (puissance souscrite supérieure à 250 kVA)
+description: Taxe intérieure sur la consommation finale d'électricité (taux standard) pour les ménages et entreprises dont la puissance souscrite est >250 kVA
 values:
   2022-01-01:
     value: 22.5
+  2025-08-01:
+    value: 20.90
 metadata:
-  short_label: Tarif normal de l'accise sur l'électricité haute puissance
-  label_en: Standard rate of excise duty on electricity for high-power consumption
+  short_label: Tarif normal de l'accise sur l'électricité pour haute puissance
+  last_value_still_valid_on: "2026-07-24"
+  label_en: Standard rate of excise duty on electricity for high-power companies
   ipp_csv_id: accise_normale_electricite_haute_puissance
   unit: currency_per_mwh
-  last_value_still_valid_on: "2025-03-06"
   reference:
     2022-01-01:
-      title: Ordonnance n° 2021-1843 du 22 décembre 2021 portant partie législative du code des impositions sur les biens et services et transposant diverses normes du droit de l'Union européenne, article L312-37
+      title: Ordonnance n° 2021-1843 du 22 décembre 2021 portant partie législative du code des impositions sur les biens et services et transposant diverses normes du droit de l'Union européenne
       href: https://www.legifrance.gouv.fr/eli/ordonnance/2021/12/22/ECOE2120672R/jo/texte
+    2025-08-01:
+      title: Article 20 de la loi n° 2025-127 du 14 février 2025 de finances pour 2025
+      href: https://www.legifrance.gouv.fr/eli/loi/2025/2/14/2025-127/jo/texte
   official_journal_date:
     2022-01-01: "2021-12-29"
-documentation: |-
-  Succède, à compter de la réforme CIBS du 1er janvier 2022, à la TICFE
-  (ticfe/taux_normal.yaml), clôturée à cette date. La valeur du tarif est inchangée (22.5).
-  C'est ce tarif que l'article L312-44 retient au numérateur du niveau d'intensité
-  énergétique en valeur ajoutée : « pour l'électricité, le tarif normal pour les
-  consommations haute puissance (supérieure à 250 kVA) est retenu ».
-  Contrairement aux tarifs ménages et PME, il n'a pas fait l'objet d'indexation à ce jour.
+    2025-08-01: "2025-02-15"
+  notes:
+    2025-08-01:
+      - title: "Nouvelle table de l'article L. 312-37 du CIBS issue de l'article 20 de la loi de finances pour 2025. Le A du XI de cet article fixe l'entrée en vigueur au 1er août 2025 (date d'application du tarif, verifiee sur le nota de la version consolidee)."

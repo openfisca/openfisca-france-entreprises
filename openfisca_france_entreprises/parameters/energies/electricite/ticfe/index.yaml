@@ -1,30 +1,11 @@
-description: Taxe intérieure sur la consommation finale d'électricité (TICFE)
+description: Taxe intérieure sur la consommation finale d'électricité
 metadata:
+  label_en: National electricity taxes
   order:
   - taux_normal
-  - risque_de_fuite_de_carbone
-  - seuil_consommation_par_va_52_23z
-  - plafond_assiette_mwh
-  - electro_intensive
-  - categorie_fiscale_menage
-  - categorie_fiscale_petite_et_moyenne_entreprise
-  - categorie_fiscale_haut_puissance
-  - electricite_fournie_aux_navires
-  - manutention_portuaire
-  - aerodromes
-  - aerodromes_electro_intensite
-  - data_center
-  - transport_guide
+  - taux_reduits
 documentation: |-
-  Paramètres de la TICFE antérieurs à la réforme CIBS du 1er janvier 2022, clôturés à cette date.
-  Les tarifs applicables au-delà se trouvent sous electricite/accise/.
-
-  Ce nœud conserve en revanche les seuils et catégories, qui ne sont pas des tarifs mais des
-  critères d'éligibilité ou de classement propres à la modélisation, sans équivalent dans le
-  barème IPP et applicables de part et d'autre de la réforme : seuil_consommation_par_va_52_23z,
-  plafond_assiette_mwh, electro_intensive/seuils et les trois categorie_fiscale_*.
-
-  manutention_portuaire n'est volontairement pas clôturé : le barème place le tarif d'accise au
-  2023-01-01 alors que ce paramètre porte 0.5 au 2024-01-01, et le barème est lui-même incohérent
-  sur ce point (date de journal officiel antérieure de deux ans à la valeur, référence orpheline
-  en 2024). Arbitrage juridique requis, cf. SYNC_ENERGIES_REPORT.md.
+  La TICFE est créée en 2011.
+  En 2016, CSPE et TICFE fusionnent sous une appellation hybride.
+  En 2022/2023, les TCFE disparaissent et sont intégrées à l'accise sur l'électricité, qui accepte alors des taux normaux différenciés selon les types de consommateurs (professionnels, petits professionnels et non-professionnels).
+  En 2022, la TICFE est également renommée et réorganisée sous le nom de fraction de l'accise sur l'énergie, et re-codifiée au sein du nouvellement créé Code des impositions des biens et services.

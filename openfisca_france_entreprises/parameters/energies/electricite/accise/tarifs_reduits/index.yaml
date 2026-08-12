@@ -1,22 +1,15 @@
-description: Tarifs réduits de l'accise sur l'électricité
+description: Accise sur l'électricité, tarifs réduits
 metadata:
-  label_en: Reduced rates of excise duty on electricity
+  label_en: Taxes on electricity
   order:
-  - electrointensives_industrie
-  - electrointensives_concurrence
   - aerodromes
-  - data_center
-  - transport_personnes_marchandises
-  - transport_collectif_routier_personnes
   - alimentation_engins_flottants
-  - alimentation_aeronefs_activites_economiques
-  - alimentation_aeronefs_activites_non_economiques
+  - data_center
   - doubles_usages
   - fabrication_mineraux
+  - manutention_portuaire
   - production_biens_intensive
   - production_navires
-  - manutention_portuaire
-documentation: |-
-  Les tarifs à zéro correspondent aux exonérations prévues par le Code des impositions sur les
-  biens et services. Le modèle les codait auparavant en dur dans les formules ; ils sont désormais
-  portés par des paramètres, de sorte qu'un changement de tarif relève de la donnée et non du code.
+  - transport_collectif_routier_personnes
+  - transport_personnes_marchandises
+  - electrointensives

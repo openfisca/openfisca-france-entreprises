@@ -1,4 +1,6 @@
-description:
+description: Tarif réduit de l'accise applicable aux pétroles lampants consommés par les installations soumises au SEQE
 values:
   2022-01-01:
     value: 5.822
+metadata:
+  unit: currency_per_mwh
