@@ -66,15 +66,44 @@ PYTEST_ADDOPTS="--maxfail=300" .venv/bin/openfisca test \
 `addopts` du dépôt contient `--exitfirst` : sans `PYTEST_ADDOPTS`, le lancement
 s'arrête au premier échec.
 
-**94 tests générés, tous verts** sous
-`openfisca_france_entreprises/tests/taxes/taxes_energies/agregats/` (64 cellules
+**108 tests générés, dont 91 verts et 17 rouges assumés** sous
+`openfisca_france_entreprises/tests/taxes/taxes_energies/agregats/` (78 cellules
 tarifaires, 30 exonérations). Les fichiers sont générés : ne pas les éditer à la
 main.
 
-Les cellules dont le tarif déclaré ne concorde pas avec le barème, ou que le
-modèle ne restitue pas, **ne sont pas émises en tests**. Les figer en attendus
-rendrait le désaccord invisible ; les laisser en échec casserait la CI. Elles sont
-consignées ci-dessous et remontées par `audit.py`.
+> ## La suite est rouge, et il ne faut pas la « réparer »
+>
+> **Toute cellule que le modèle sait calculer est émise**, y compris — surtout —
+> quand son résultat contredit la déclaration. Ces cas portent une annotation
+> `DÉSACCORD` dans le YAML généré, qui en dit la nature et renvoie au constat
+> correspondant.
+>
+> Le principe du chantier est que **la déclaration fiscale a raison, et que le
+> calculateur comme le barème peuvent avoir tort**. Un désaccord rangé hors du
+> chemin est un désaccord tu : c'est précisément ce que ces données servent à
+> éviter.
+>
+> **Ne pas recalculer ces attendus sur ce que rend le modèle.** Ce sont des
+> montants réellement déclarés par les redevables ; ils vérifient le droit. Les
+> aligner sur le calcul ferait disparaître le désaccord au lieu de le résoudre, et
+> le test cesserait de tester quoi que ce soit de légal.
+
+Répartition des 17 rouges :
+
+| cas | cellules | constat |
+|---|---|---|
+| 4 | `_911237` (2022-2025) | n° 2 — tarif gaz 8,43 absent du barème |
+| 2 | `_911243` (2024-2025) | n° 3 — tarif SEQE clos trop tôt au barème |
+| 4 | `_911371` (2022-2025) | n° 5 — le bouclier ne lit jamais le tarif ménages |
+| 2 | `_913035` (2024-2025) | n° 5 — idem |
+| 2 | `_914195`, `_914197` (2025) | n° 6 — pas du 1er février lu au 1er janvier |
+| 3 | `_911293`, `_911319`, `_914201` (2025) | n° 8 — tarif infra-annuel moyenné |
+
+Six d'entre eux mettent en cause le **barème** (n° 2 et n° 3), onze le **modèle**.
+
+Seules restent écartées les **9 cellules pour lesquelles le modèle n'a ni variable
+ni entrée** : il n'y a alors rien à confronter. Ce sont des lacunes de couverture,
+recensées plus bas et remontées par `audit.py`.
 
 ---
 
@@ -122,12 +151,16 @@ que 8,45 puis 16,37 puis 17,16.
 L'écart de 0,02 entre 8,43 et 8,45 est trop régulier pour être du bruit : il porte
 sur 58 552 445 MWh en 2022.
 
+`_911237` est **testée et rouge sur les quatre millésimes**. Les deux autres cases
+n'ont pas de variable au modèle : `_911264` (acomptes N+1) relève d'une notion
+absente, `_911272` d'une lacune de couverture.
+
 ### 3. Gaz : le tarif « risque de fuite de carbone » est clos trop tôt
 
 `gaz_naturel.accise.combustibles.tarifs_reduits.intensive_energie_indirect_SEQE`
 s'arrête au **2024-01-01**. Or la case `_911243` déclare toujours 1,60 €/MWh en
 2024 (6 881 031 MWh) et en 2025 (5 761 764 MWh). Le paramètre doit être prolongé,
-ou la fermeture justifiée.
+ou la fermeture justifiée. **Testée et rouge sur 2024 et 2025.**
 
 ### 4. Majoration ZNI : absente pour 2025
 
@@ -164,7 +197,8 @@ Les déclarations distinguent nettement les deux :
 | 2024 | 20,50 (`_913037`) | 21,00 (`_913035`) |
 
 En 2022, `_911371` porte 136 133 610 MWh : le modèle rend la moitié du montant
-déclaré. Six cellules sont écartées des tests pour ce motif.
+déclaré. **Six cas sont rouges pour ce motif** — `_911371` sur les quatre
+millésimes et `_913035` sur 2024-2025.
 
 ### 6. Le pas tarifaire du 1er février est lu au 1er janvier
 
@@ -175,6 +209,12 @@ appliquent 33,70 (`_914195`) et 26,23 (`_914197`).
 
 Le contournement existe déjà dans le dépôt — les formules du bouclier forcent
 `Instant((AAAA, 2, 1))` — mais il n'est pas appliqué aux tarifs normaux.
+**`_914195` et `_914197` sont testées et rouges sur 2025.**
+
+Depuis la fusion de `feat/periodes-mensuelles`, ces tarifs passent par
+`tarif_moyen_annuel` : le modèle ne rend plus la valeur du 1er janvier mais la
+moyenne des douze mois. Le désaccord change de forme, pas de nature — voir le
+constat n° 8, qui le généralise et donne la seule sortie durable.
 
 ### 7. Bornes des tranches d'électro-intensité : à arbitrer
 
@@ -196,9 +236,77 @@ situation manquante dans
 — **en échec volontaire**, hors CI, à lancer à la demande. À arbitrer contre
 l'article L312-65 du code des impositions sur les biens et services.
 
+### 8. L'hypothèse de consommation uniforme, contredite par les déclarations
+
+État au 2026-08-12, après fusion de `feat/periodes-mensuelles` (merge `e18a6b7`).
+Constat apparu avec cette fusion — trois cellules qui passaient échouent désormais :
+
+| case | énergie | an | déclaré | moyenne mensuelle | écart |
+|---|---|---|---|---|---|
+| `_914201` | gaz naturel combustible | 2025 | 17,1600 | 14,4017 | **−16,07 %** |
+| `_911293` | charbon, tarif plein | 2025 | 14,6200 | 12,9200 | **−11,63 %** |
+| `_911319` | électricité > 250 kVA | 2025 | 22,5000 | 21,8333 | **−2,96 %** |
+
+Le rapport résultat/attendu vaut **exactement** moyenne ÷ tarif déclaré.
+`tarif_moyen_annuel` fonctionne donc comme spécifié : c'est sa spécification qui
+est en cause. Son docstring la pose sans détour — « La consommation étant répartie
+uniformément sur l'année ».
+
+**La déclaration falsifie cette hypothèse.** Elle ne moyenne jamais : elle ségrège
+les tarifs en cases distinctes, et une case porte la quantité taxée à *son* tarif.
+`_914201` s'intitule littéralement « Usage combustible : **tarif à 17,16 €/MWh** » —
+elle nomme son propre tarif. La 2040-TIC publie donc la répartition infra-annuelle
+réelle, c'est-à-dire précisément l'information que l'hypothèse d'uniformité
+suppose absente.
+
+**Le barème n'est pas en cause, et c'est vérifié.**
+`gaz_naturel/accise/combustibles/tarif_normal.yaml` porte 17,16 au `2025-01-01`
+puis 10,54 au `2025-08-01`, sur l'article 20 de la loi 2025-127 du 14 février 2025.
+Deux corroborations indépendantes :
+
+- la déclaration 2025 ne comporte **aucune** case métropole à 10,54 — cohérent,
+  le millésime est l'année de dépôt et la période post-août se déclarera en 2026 ;
+- la case ZNI `_914387` / `_914388` / `_914389` décompose 15,43 = **10,54** + 4,89,
+  ce qui confirme la valeur post-août par une autre voie.
+
+**Une quatrième cellule échappe au problème, pour une mauvaise raison.**
+`_913037` (bouclier, 2024) voit aussi son tarif varier dans l'année — 0,50 en
+janvier, 20,50 ensuite, moyenne 18,8333 — mais ses formules forcent
+`Instant((AAAA, 2, 1))` et lisent donc 20,50. Le test passe par contournement
+ponctuel, pas par correction : il casserait si le pas se déplaçait. C'est le même
+contournement que celui relevé au constat n° 6.
+
+**Ce qu'il ne faut pas faire.** Recalculer les attendus sur la moyenne mensuelle.
+Ce sont des montants déclarés : ils vérifient le droit. Les aligner sur la
+convention d'annualisation du modèle graverait cette convention dans des valeurs
+censées la contrôler, et le test cesserait de tester quoi que ce soit de légal.
+
+**La vraie réponse** est `definition_period = MONTH` sur les variables énergies.
+La branche `origin/refactor/energies-periodes-mensuelles` (9 commits d'avance sur
+`main`) porte déjà le terrain : `formula_helpers.py`,
+`taxation_autres_produits_energetiques.py`, `taxation_charbon.py`,
+`taxation_electricite.py`, `taxation_gaz_naturel.py`. Une fois la bascule faite, la
+2040-TIC devient testable au mois — chaque case sur les mois où son tarif
+s'applique — et ce constat se referme, avec le n° 6 et le contournement du
+bouclier.
+
+*À noter pour la suite* : les agrégats Elfe (`ELFE.md`) demandent l'inverse. Elfe
+publie des tarifs **déjà moyennés sur l'année**, donc `tarif_moyen_annuel` lui
+convient. Une variable annuelle ne peut pas servir les deux sources ; la bascule
+mensuelle est ce qui les réconcilie, puisqu'elle permet de moyenner à la demande
+sans figer la convention dans les formules.
+
 ---
 
 ## Lacunes de couverture
+
+Les **9 cellules non testées** — le modèle n'ayant ni variable ni entrée pour
+elles, il n'y a rien à confronter. À distinguer des 17 rouges, qui sont des
+désaccords chiffrés : ici le calculateur ne répond pas du tout.
+
+`_911264` (acomptes N+1), `_911272` (tarif gaz 8,37), `_911321` et `_911323`
+(indexation TCFE, constat n° 1), `_912995` (manutention portuaire), `_914374`,
+`_914377`, `_914387` et `_914396` (majoration ZNI 2025, constat n° 4).
 
 - **`electricite_manutention_portuaire`** existe comme variable d'entrée et le
   tarif est au barème (0,5 €/MWh depuis 2023), mais la variable n'est branchée dans
@@ -237,9 +345,21 @@ incomplète dans l'extraction, pas dans le modèle.
 
 ## Suites
 
+Chaque suite ci-dessous se mesure au nombre de rouges qu'elle éteint. La suite
+n'est verte que lorsque le calculateur et le barème rejoignent la déclaration.
+
 1. Arbitrer les points 1 à 4 (barème) contre les textes, puis porter les
    corrections sur une branche dédiée — cette branche ne modifie ni `variables/`
-   ni `parameters/`.
-2. Arbitrer les points 5 à 7 (modèle), de même.
-3. Cartographier les majorations TCCFE de janvier 2023.
-4. Élucider les deux écarts de ventilation avec le producteur du fichier micro.
+   ni `parameters/`. Les points **2 et 3 valent 6 rouges** (`_911237` ×4,
+   `_911243` ×2) et se corrigent dans `baremes-ipp-yaml` avant d'être repris ici.
+2. Arbitrer les points 5 à 7 (modèle), de même. Le point **5 vaut 6 rouges**
+   (`_911371` ×4, `_913035` ×2) : `boulier_tarifaire.py` doit lire
+   `bouclier_tarifaire.menages` selon la catégorie fiscale.
+3. **Basculer les variables énergies en `definition_period = MONTH`** (point 8).
+   **Vaut 5 rouges** (`_914195`, `_914197`, `_911293`, `_911319`, `_914201`) :
+   c'est ce qui referme les points 6 et 8 d'un coup, supprime le contournement
+   `Instant((AAAA, 2, 1))` du bouclier, et réconcilie cette source avec les
+   agrégats Elfe. Terrain déjà défriché sur
+   `origin/refactor/energies-periodes-mensuelles`.
+4. Cartographier les majorations TCCFE de janvier 2023.
+5. Élucider les deux écarts de ventilation avec le producteur du fichier micro.

@@ -7,6 +7,18 @@
 # Chaque cas reprend la quantité et le montant réellement déclarés pour une case
 # et un millésime. Le millésime est l'année de dépôt ; la période du test est
 # l'année du tarif porté par la case.
+#
+# CERTAINS CAS ÉCHOUENT, ET C'EST VOULU — c'est même la raison d'être du fichier.
+# Toute cellule que le modèle sait calculer est émise, y compris quand son résultat
+# contredit la déclaration. Ces cas portent une annotation « DÉSACCORD » qui en dit
+# la nature et renvoie au constat correspondant d'AGREGATS_TIC.md.
+#
+# Le principe : la déclaration fiscale a raison ; le calculateur — et le barème —
+# peuvent avoir tort. Un désaccord rangé hors du chemin est un désaccord tu.
+#
+# Ne pas « réparer » la suite en recalculant ces attendus sur ce que rend le modèle :
+# ce sont des montants réellement déclarés, ils vérifient le droit. Les aligner sur
+# le calcul ferait disparaître le désaccord au lieu de le résoudre.
 
 - name: "_911235 — Gaz naturel carburant — tarif plein (millésime 2022)"
   period: 2022
@@ -44,6 +56,54 @@
     # 4,900,549 MWh × 5.2300 €/MWh
     taxe_accise_gaz_naturel_carburant: 25629871.27
 
+# DÉSACCORD — le tarif déclaré ne concorde pas avec le barème.
+# La déclaration applique 8.4300 €/MWh ; le barème porte 8.4500.
+# La déclaration fait foi : c'est le barème qu'il faut instruire.
+- name: "_911237 — Gaz naturel combustible — tarif plein, au titre de l'année N (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 493.597
+  input:
+    consommation_gaz_combustible: 58552445
+  output:
+    # 58,552,445 MWh × 8.4300 €/MWh
+    taxe_accise_gaz_naturel_combustible: 493597111.35
+
+# DÉSACCORD — le tarif déclaré ne concorde pas avec le barème.
+# La déclaration applique 8.4300 €/MWh ; le barème porte 8.4500.
+# La déclaration fait foi : c'est le barème qu'il faut instruire.
+- name: "_911237 — Gaz naturel combustible — tarif plein, au titre de l'année N (millésime 2023)"
+  period: 2022
+  absolute_error_margin: 13.6225
+  input:
+    consommation_gaz_combustible: 1615957
+  output:
+    # 1,615,957 MWh × 8.4300 €/MWh
+    taxe_accise_gaz_naturel_combustible: 13622517.51
+
+# DÉSACCORD — le tarif déclaré ne concorde pas avec le barème.
+# La déclaration applique 8.4300 €/MWh ; le barème porte 8.4500.
+# La déclaration fait foi : c'est le barème qu'il faut instruire.
+- name: "_911237 — Gaz naturel combustible — tarif plein, au titre de l'année N (millésime 2024)"
+  period: 2022
+  absolute_error_margin: 124.629
+  input:
+    consommation_gaz_combustible: 14784040
+  output:
+    # 14,784,040 MWh × 8.4300 €/MWh
+    taxe_accise_gaz_naturel_combustible: 124629457.20
+
+# DÉSACCORD — le tarif déclaré ne concorde pas avec le barème.
+# La déclaration applique 8.4300 €/MWh ; le barème porte 8.4500.
+# La déclaration fait foi : c'est le barème qu'il faut instruire.
+- name: "_911237 — Gaz naturel combustible — tarif plein, au titre de l'année N (millésime 2025)"
+  period: 2022
+  absolute_error_margin: 4.46213
+  input:
+    consommation_gaz_combustible: 529315
+  output:
+    # 529,315 MWh × 8.4300 €/MWh
+    taxe_accise_gaz_naturel_combustible: 4462125.45
+
 - name: "_912998 — Gaz naturel combustible — tarif à 16,37 €/MWh (millésime 2024)"
   period: 2024
   absolute_error_margin: 2646.94
@@ -62,6 +122,12 @@
     # 41,213,842 MWh × 16.3700 €/MWh
     taxe_accise_gaz_naturel_combustible: 674670593.54
 
+# DÉSACCORD — tarif infra-annuel, voir AGREGATS_TIC.md constat n° 8.
+# La case déclare 17.1600 €/MWh, constant sur la période qu'elle
+# couvre ; le tarif du barème, lui, varie dans l'année — moyenne mensuelle
+# 14.4017 €/MWh, soit -16.07 %.
+# Le cas ÉCHOUE si la formule lit par tarif_moyen_annuel, et passe si elle
+# force un instant, comme le fait le bouclier avec Instant((AAAA, 2, 1)).
 - name: "_914201 — Gaz naturel combustible — tarif à 17,16 €/MWh (millésime 2025)"
   period: 2025
   absolute_error_margin: 1922.86
@@ -139,6 +205,36 @@
     # 6,548,906 MWh × 1.6000 €/MWh
     taxe_accise_gaz_naturel_combustible: 10478249.60
 
+# DÉSACCORD — le tarif déclaré ne concorde pas avec le barème.
+# La déclaration applique 1.6000 €/MWh ; le barème porte absent du barème.
+# La déclaration fait foi : c'est le barème qu'il faut instruire.
+- name: "_911243 — Gaz naturel combustible — risque de fuite de carbone (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 11.0096
+  input:
+    consommation_gaz_combustible: 6881031
+    installation_seqe: false
+    risque_de_fuite_carbone_eta: true
+    intensite_energetique_valeur_ajoutee: 0.01
+  output:
+    # 6,881,031 MWh × 1.6000 €/MWh
+    taxe_accise_gaz_naturel_combustible: 11009649.60
+
+# DÉSACCORD — le tarif déclaré ne concorde pas avec le barème.
+# La déclaration applique 1.6000 €/MWh ; le barème porte absent du barème.
+# La déclaration fait foi : c'est le barème qu'il faut instruire.
+- name: "_911243 — Gaz naturel combustible — risque de fuite de carbone (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 9.21882
+  input:
+    consommation_gaz_combustible: 5761764
+    installation_seqe: false
+    risque_de_fuite_carbone_eta: true
+    intensite_energetique_valeur_ajoutee: 0.01
+  output:
+    # 5,761,764 MWh × 1.6000 €/MWh
+    taxe_accise_gaz_naturel_combustible: 9218822.40
+
 - name: "_911245 — Gaz naturel combustible — déshydratation de légumes et plantes aromatiques (millésime 2022)"
   period: 2022
   absolute_error_margin: 1
@@ -210,6 +306,12 @@
     # 115,778 MWh × 14.6200 €/MWh
     taxe_interieure_consommation_charbon: 1692674.36
 
+# DÉSACCORD — tarif infra-annuel, voir AGREGATS_TIC.md constat n° 8.
+# La case déclare 14.6200 €/MWh, constant sur la période qu'elle
+# couvre ; le tarif du barème, lui, varie dans l'année — moyenne mensuelle
+# 12.9200 €/MWh, soit -11.63 %.
+# Le cas ÉCHOUE si la formule lit par tarif_moyen_annuel, et passe si elle
+# force un instant, comme le fait le bouclier avec Instant((AAAA, 2, 1)).
 - name: "_911293 — Charbon combustible — tarif plein (millésime 2025)"
   period: 2025
   absolute_error_margin: 1
@@ -304,6 +406,12 @@
     # 4,126,650 MWh × 22.5000 €/MWh
     taxe_accise_electricite: 92849626.08
 
+# DÉSACCORD — tarif infra-annuel, voir AGREGATS_TIC.md constat n° 8.
+# La case déclare 22.5000 €/MWh, constant sur la période qu'elle
+# couvre ; le tarif du barème, lui, varie dans l'année — moyenne mensuelle
+# 21.8333 €/MWh, soit -2.96 %.
+# Le cas ÉCHOUE si la formule lit par tarif_moyen_annuel, et passe si elle
+# force un instant, comme le fait le bouclier avec Instant((AAAA, 2, 1)).
 - name: "_911319 — Électricité — puissance de raccordement > 250 kVA (millésime 2025)"
   period: 2025
   absolute_error_margin: 652.677
@@ -619,6 +727,54 @@
     # 28,810 MWh × 0.5000 €/MWh
     taxe_accise_electricite: 14405.08
 
+# DÉSACCORD — le modèle ne restitue pas cette cellule.
+# Le bouclier ne lit que le tarif « entreprises » : boulier_tarifaire.py
+# applique bouclier_tarifaire.entreprises dans ses trois formules, sans jamais
+# regarder la catégorie fiscale. Le paramètre bouclier_tarifaire.menages n'est
+# lu nulle part.
+# DÉSACCORD — tarif infra-annuel, voir AGREGATS_TIC.md constat n° 8.
+# La case déclare 21.0000 €/MWh, constant sur la période qu'elle
+# couvre ; le tarif du barème, lui, varie dans l'année — moyenne mensuelle
+# 19.3333 €/MWh, soit -7.94 %.
+# Le cas ÉCHOUE si la formule lit par tarif_moyen_annuel, et passe si elle
+# force un instant, comme le fait le bouclier avec Instant((AAAA, 2, 1)).
+- name: "_913035 — Électricité — tarif à 21,00 €/MWh (bouclier, ménages et assimilés) (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 2959.35
+  input:
+    assiette_taxe_electricite: 140921212.693
+    amperage: 20
+  output:
+    # 140,921,213 MWh × 21.0000 €/MWh
+    taxe_electricite_bouclier_tarifaire: 2959345466.81
+
+# DÉSACCORD — le modèle ne restitue pas cette cellule.
+# Le bouclier ne lit que le tarif « entreprises » : boulier_tarifaire.py
+# applique bouclier_tarifaire.entreprises dans ses trois formules, sans jamais
+# regarder la catégorie fiscale. Le paramètre bouclier_tarifaire.menages n'est
+# lu nulle part.
+# DÉSACCORD — tarif infra-annuel, voir AGREGATS_TIC.md constat n° 8.
+# La case déclare 21.0000 €/MWh, constant sur la période qu'elle
+# couvre ; le tarif du barème, lui, varie dans l'année — moyenne mensuelle
+# 19.3333 €/MWh, soit -7.94 %.
+# Le cas ÉCHOUE si la formule lit par tarif_moyen_annuel, et passe si elle
+# force un instant, comme le fait le bouclier avec Instant((AAAA, 2, 1)).
+- name: "_913035 — Électricité — tarif à 21,00 €/MWh (bouclier, ménages et assimilés) (millésime 2025)"
+  period: 2024
+  absolute_error_margin: 1471.71
+  input:
+    assiette_taxe_electricite: 70081475.356
+    amperage: 20
+  output:
+    # 70,081,475 MWh × 21.0000 €/MWh
+    taxe_electricite_bouclier_tarifaire: 1471710982.65
+
+# DÉSACCORD — tarif infra-annuel, voir AGREGATS_TIC.md constat n° 8.
+# La case déclare 20.5000 €/MWh, constant sur la période qu'elle
+# couvre ; le tarif du barème, lui, varie dans l'année — moyenne mensuelle
+# 18.8333 €/MWh, soit -8.13 %.
+# Le cas ÉCHOUE si la formule lit par tarif_moyen_annuel, et passe si elle
+# force un instant, comme le fait le bouclier avec Instant((AAAA, 2, 1)).
 - name: "_913037 — Électricité — tarif à 20,50 €/MWh (bouclier, entreprises) (millésime 2024)"
   period: 2024
   absolute_error_margin: 1708.55
@@ -629,6 +785,12 @@
     # 83,344,064 MWh × 20.5000 €/MWh
     taxe_electricite_bouclier_tarifaire: 1708553303.52
 
+# DÉSACCORD — tarif infra-annuel, voir AGREGATS_TIC.md constat n° 8.
+# La case déclare 20.5000 €/MWh, constant sur la période qu'elle
+# couvre ; le tarif du barème, lui, varie dans l'année — moyenne mensuelle
+# 18.8333 €/MWh, soit -8.13 %.
+# Le cas ÉCHOUE si la formule lit par tarif_moyen_annuel, et passe si elle
+# force un instant, comme le fait le bouclier avec Instant((AAAA, 2, 1)).
 - name: "_913037 — Électricité — tarif à 20,50 €/MWh (bouclier, entreprises) (millésime 2025)"
   period: 2024
   absolute_error_margin: 383.175
@@ -638,6 +800,48 @@
   output:
     # 18,691,451 MWh × 20.5000 €/MWh
     taxe_electricite_bouclier_tarifaire: 383174746.32
+
+# DÉSACCORD — le modèle ne restitue pas cette cellule.
+# Le tarif change au 1er février ; les variables étant en definition_period =
+# YEAR, parameters(period) rend la valeur du 1er janvier. Le contournement
+# existe déjà pour le bouclier, qui force Instant((AAAA, 2, 1)), mais pas pour
+# les tarifs normaux.
+# DÉSACCORD — tarif infra-annuel, voir AGREGATS_TIC.md constat n° 8.
+# La case déclare 33.7000 €/MWh, constant sur la période qu'elle
+# couvre ; le tarif du barème, lui, varie dans l'année — moyenne mensuelle
+# 29.9760 €/MWh, soit -11.05 %.
+# Le cas ÉCHOUE si la formule lit par tarif_moyen_annuel, et passe si elle
+# force un instant, comme le fait le bouclier avec Instant((AAAA, 2, 1)).
+- name: "_914195 — Électricité — tarif à 33,70 €/MWh (ménages et assimilés) (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 2974.84
+  input:
+    assiette_taxe_electricite: 88274133.308
+    amperage: 20
+  output:
+    # 88,274,133 MWh × 33.7000 €/MWh
+    taxe_accise_electricite: 2974838292.50
+
+# DÉSACCORD — le modèle ne restitue pas cette cellule.
+# Le tarif change au 1er février ; les variables étant en definition_period =
+# YEAR, parameters(period) rend la valeur du 1er janvier. Le contournement
+# existe déjà pour le bouclier, qui force Instant((AAAA, 2, 1)), mais pas pour
+# les tarifs normaux.
+# DÉSACCORD — tarif infra-annuel, voir AGREGATS_TIC.md constat n° 8.
+# La case déclare 26.2300 €/MWh, constant sur la période qu'elle
+# couvre ; le tarif du barème, lui, varie dans l'année — moyenne mensuelle
+# 23.9640 €/MWh, soit -8.64 %.
+# Le cas ÉCHOUE si la formule lit par tarif_moyen_annuel, et passe si elle
+# force un instant, comme le fait le bouclier avec Instant((AAAA, 2, 1)).
+- name: "_914197 — Électricité — tarif à 26,23 €/MWh (PME et activités économiques) (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 581.561
+  input:
+    assiette_taxe_electricite: 22171603.884
+    amperage: 100
+  output:
+    # 22,171,604 MWh × 26.2300 €/MWh
+    taxe_accise_electricite: 581561169.95
 
 - name: "_911369 — Électricité — bouclier tarifaire, entreprises (tarif de référence 22,50) (millésime 2022)"
   period: 2022
@@ -678,3 +882,63 @@
   output:
     # 17,983,424 MWh × 0.5000 €/MWh
     taxe_electricite_bouclier_tarifaire: 8991712.28
+
+# DÉSACCORD — le modèle ne restitue pas cette cellule.
+# Le bouclier ne lit que le tarif « entreprises » : boulier_tarifaire.py
+# applique bouclier_tarifaire.entreprises dans ses trois formules, sans jamais
+# regarder la catégorie fiscale. Le paramètre bouclier_tarifaire.menages n'est
+# lu nulle part.
+- name: "_911371 — Électricité — bouclier tarifaire, ménages (tarif de référence 25,8291) (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 136.134
+  input:
+    assiette_taxe_electricite: 136133609.757
+    amperage: 20
+  output:
+    # 136,133,610 MWh × 1.0000 €/MWh
+    taxe_electricite_bouclier_tarifaire: 136133609.92
+
+# DÉSACCORD — le modèle ne restitue pas cette cellule.
+# Le bouclier ne lit que le tarif « entreprises » : boulier_tarifaire.py
+# applique bouclier_tarifaire.entreprises dans ses trois formules, sans jamais
+# regarder la catégorie fiscale. Le paramètre bouclier_tarifaire.menages n'est
+# lu nulle part.
+- name: "_911371 — Électricité — bouclier tarifaire, ménages (tarif de référence 25,8291) (millésime 2023)"
+  period: 2022
+  absolute_error_margin: 187.6
+  input:
+    assiette_taxe_electricite: 187599508.279
+    amperage: 20
+  output:
+    # 187,599,508 MWh × 1.0000 €/MWh
+    taxe_electricite_bouclier_tarifaire: 187599508.45
+
+# DÉSACCORD — le modèle ne restitue pas cette cellule.
+# Le bouclier ne lit que le tarif « entreprises » : boulier_tarifaire.py
+# applique bouclier_tarifaire.entreprises dans ses trois formules, sans jamais
+# regarder la catégorie fiscale. Le paramètre bouclier_tarifaire.menages n'est
+# lu nulle part.
+- name: "_911371 — Électricité — bouclier tarifaire, ménages (tarif de référence 25,8291) (millésime 2024)"
+  period: 2022
+  absolute_error_margin: 93.8253
+  input:
+    assiette_taxe_electricite: 93825347.215
+    amperage: 20
+  output:
+    # 93,825,347 MWh × 1.0000 €/MWh
+    taxe_electricite_bouclier_tarifaire: 93825347.38
+
+# DÉSACCORD — le modèle ne restitue pas cette cellule.
+# Le bouclier ne lit que le tarif « entreprises » : boulier_tarifaire.py
+# applique bouclier_tarifaire.entreprises dans ses trois formules, sans jamais
+# regarder la catégorie fiscale. Le paramètre bouclier_tarifaire.menages n'est
+# lu nulle part.
+- name: "_911371 — Électricité — bouclier tarifaire, ménages (tarif de référence 25,8291) (millésime 2025)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    assiette_taxe_electricite: 331825.697
+    amperage: 20
+  output:
+    # 331,826 MWh × 1.0000 €/MWh
+    taxe_electricite_bouclier_tarifaire: 331825.76
