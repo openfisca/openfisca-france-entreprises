@@ -412,6 +412,82 @@ en attendu le rendrait invisible ; le laisser en échec casserait la CI.
 
 ---
 
+## 5 bis. Structure des dimensions — établi les 2026-08-11 et 12
+
+Ce qui suit ne relève plus du plan : c'est mesuré, outillé et versionné. Le détail des
+chiffres et des colonnes est dans [`assets/elfe/SOURCES.md`](assets/elfe/SOURCES.md) ;
+on ne garde ici que les conséquences pour la suite du chantier.
+
+### Trois dimensions sur cinq se déduisent des deux autres
+
+| relation | statut | vérification |
+|---|---|---|
+| `Agents` ← `Secteur économique` | **exacte** | 1 114 / 1 114 cellules, écart max 1,1 · 10⁻¹³ |
+| `Gaz à effet de serre` ← `Régime fiscal` | exacte sur l'observable | 27 / 27 régimes purs |
+| `Type de produit` ← `Régime fiscal` | quasi | 613 / 624 carbone, 454 / 490 énergie |
+| `Agents` ← `Régime fiscal` | **partielle** | 72 % des régimes purs ; 418/524 et 431/450 |
+
+`Ménages = Transports ménages + Résidentiel ménages`, sans une seule exception sur les
+deux périmètres et les onze millésimes. `Agents` ne porte donc **aucune information
+propre** ; le contrôle est en `assert` dans `scripts/elfe/produits.py`.
+
+Ne restent réellement indépendants que **`Régime fiscal` et `Secteur économique`** :
+toute l'incertitude tient sur ce couple, soit 2 794 degrés de liberté côté carbone et
+1 283 côté énergie — et non les 18 598 qu'un comptage naïf sur toutes les paires
+suggère. La contrainte d'agent en retire encore 20,0 % et 23,4 %.
+
+### Deux livrables inattendus
+
+Les partages mesurés valent pour eux-mêmes, indépendamment des tests :
+
+- **Taux d'incorporation de renouvelable, par régime et par millésime** — E85 58,2 %,
+  gaz agricole 21,4 %, gazole routier 7,5 %, E10 6,5 %, essence 3,3 %, gaz combustible
+  0,8 % (biométhane). C'est la mesure directe de l'effet identifié au Tier 3 b comme
+  cause de dérive des facteurs d'émission.
+- **Part ménages par régime** — essence 85,9 %, E10 85,2 %, GPL carburant 70,2 %,
+  gazole routier 68,4 %, fioul domestique 56,7 %, gaz combustible 52,2 %.
+
+Les deux partages ne sont pas de même nature, et cela limite le second : l'incorporation
+est *physique* et à peu près constante dans l'année ; le partage ménages/entreprises est
+*structurel* et varie d'un palier tarifaire à l'autre — un tarif réduit attire plus
+d'entreprises. D'où des masses annuelles justes mais une répartition entre paliers qui
+ne l'est pas.
+
+### Ce qui manque, et ne viendra pas de cette source
+
+À citer plutôt qu'à retenter :
+
+1. **La jointe `Régime × Secteur`.** Cellule extrême : `Carbone / 2017 / tarif 0`,
+   36 régimes × 7 secteurs = 210 degrés de liberté pour 124,1 MtCO2.
+2. **L'agent de 17 régimes**, qu'aucune vue dégénérée n'atteint. Le plus lourd :
+   `Bois de chauffage et biomasse solide`, 746,6 TWh cumulés, dont on ne peut pas dire
+   s'ils sont brûlés par des ménages ou des entreprises ; puis `Chaleur` 736,8 et
+   `Pertes réseau` 312,6. Aucun intitulé ne permet de deviner — c'est pourquoi il n'y a
+   pas de repli sur les libellés pour `Agents`.
+3. **Un résidu carbone irréconciliable** : sur les onze cellules de tarif nul,
+   `Non combustible` est prédit trop haut de 2,06 à 2,49 MtCO2, de signe constant, sans
+   combinaison de régimes qui somme à l'écart dans la tolérance.
+4. **La désagrégation du biométhane entre paliers** : jusqu'à 19,0 TWh d'écart sur le
+   gaz à 8,45 €/MWh, de signe alterné. Définitif.
+5. **Le rattachement des 685 sous-cellules instrument.** La distinction quotas gratuits
+   / achetés est publiée, mais ne se rattache ni à un régime ni à un secteur.
+6. **Les limites de la source** : `2024*` inutilisable en quantités, périmètre énergie
+   absent avant 2017, `Energie × GES` inexistant, aucun facteur d'émission publié, code
+   d'Elfe non publié.
+
+### Conséquence pour les quatre Tiers
+
+- **Tier 1 et 2 : indifférents.** Ils portent sur le tarif à assiette unitaire, donc ni
+  la jointe ni les partages ne les concernent. Rien de ce qui précède ne les bloque.
+- **Tier 4 : enrichi.** Deux identités exactes s'ajoutent aux contrôles d'intégrité —
+  `Agents` comme regroupement de `Secteur économique`, et la reconstruction
+  `Régime → Type de produit`. Toutes deux sont déjà en `assert`.
+- **Analyses pondérées : bloquées** sur la jointe. Le point 2 mord directement sur la
+  répartition ménages/entreprises de la biomasse et de la chaleur, deux postes lourds
+  de la tarification effective.
+
+---
+
 ## 6. Séquencement — ce qu'il faut fusionner d'abord
 
 Tu l'as dit, le calculateur n'est pas prêt. Dans l'ordre :
@@ -459,6 +535,26 @@ entièrement dépendant de l'arbre de paramètres final.
   implicite, composantes en colonnes, libellés recollés entre dimensions par la clé
   `(tarif, quantité)`. Voir `SOURCES.md` pour les rendements mesurés.
 - **Question d'unité tranchée** (2026-08-11) : pas de PCI depuis 2022.
+- **Structure des dimensions établie** (2026-08-12) : trois dimensions sur cinq se
+  déduisent des deux autres, `regime_mapping.csv` porte les relations et les parts,
+  et le §5 bis recense ce qui manque définitivement. Deux identités exactes entrent
+  dans les contrôles.
 
 Reste à faire : `correspondance.py` — la table des ~100 régimes Elfe vers les
 variables. C'est le gros du travail, et il dépend de l'arbre de paramètres final.
+
+### Outillage versionné
+
+    scripts/elfe/harvest.py      moissonnage Shiny (réseau)
+    scripts/elfe/consolidate.py  .xlsx -> elfe.csv, elfe_instruments.csv
+    scripts/elfe/facteurs.py     -> facteurs_emission_cgdd.csv
+    scripts/elfe/cellules.py     -> elfe_cellules.csv, elfe_atomes.csv,
+                                    elfe_sous_cellules.csv
+    scripts/elfe/produits.py     -> regime_mapping.csv  (+ assert des identités)
+
+`cellules.py` et `produits.py` s'arrêtent sur `assert` si un contrôle d'intégrité
+tombe : ils sont le garde-fou permanent de la donnée appelé au Tier 4.
+
+> Sous Windows, le `.venv/` du dépôt est inutilisable (ni pip ni pandas) et les
+> commandes en `.venv/bin/python` de ce document visent l'autre machine. Lancer avec
+> le python système : `python -m scripts.elfe.cellules`.
