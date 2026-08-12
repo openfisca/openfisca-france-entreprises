@@ -16,6 +16,23 @@ Trois familles, du plus mécanique au plus substantiel :
 from __future__ import annotations
 
 import collections
+import re
+
+
+#: Les tomes II de 2001 à 2005 annoncent leur propre décompte en introduction
+#: (« Le présent fascicule recense 452 dépenses fiscales »). C'est un contrôle
+#: extérieur au parseur, à ne pas confondre avec le comptage d'ancres : il vient
+#: de la prose du document, pas de sa mise en page. Les millésimes suivants ont
+#: laissé tomber le chiffre.
+COMPTE_PUBLIE = re.compile(r'recense\s+(\d+)\s+d[ée]penses fiscales', re.I)
+
+
+def compte_publie(lignes: list[str]) -> int | None:
+    for l in lignes[:250]:
+        m = COMPTE_PUBLIE.search(l)
+        if m:
+            return int(m.group(1))
+    return None
 
 
 def exhaustivite(fiches: list[dict], attendu: int, plf: int) -> list[str]:

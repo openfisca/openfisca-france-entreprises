@@ -22,7 +22,7 @@ import re
 import unicodedata
 
 from .commun import (DEPENSE_FISCALE, RE_MONTANT, apparie_par_colonne, colonnes,
-                     impot, normalise_montant, statut_annee)
+                     impot, normalise_montant, statut_annee, unite_du_millesime)
 
 ANCRE = re.compile(r"Impact budg[ée]taire")
 L_ANNEES = re.compile(r"Fin du fait g[ée]n[ée]rateur")
@@ -115,6 +115,7 @@ def _entete(lignes: list[str], a: int) -> tuple[str | None, str, str]:
 
 def parse(lignes: list[str], plf: int) -> list[dict]:
     n = len(lignes)
+    unite = unite_du_millesime(plf)
     fiches: list[dict] = []
     page = None
     for a in range(n):
@@ -175,6 +176,7 @@ def parse(lignes: list[str], plf: int) -> list[dict]:
                 plf=plf, numero=numero, annee=int(annee),
                 statut=statut_annee(int(annee), plf),
                 montant=montant, chiffrage=chiffrage, montant_brut=(brut or ''),
+                unite=unite, montant_meur=montant,
                 impot=impot(numero), perimetre=DEPENSE_FISCALE,
                 libelle=libelle[:500], finalite=finalite[:300],
                 creation=meta.get('creation', ''), modification=meta.get('modification', ''),

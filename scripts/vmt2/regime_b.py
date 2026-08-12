@@ -24,7 +24,7 @@ import unicodedata
 
 from .commun import (DEPENSE_FISCALE, MODALITE_DE_CALCUL, RE_MONTANT,
                      apparie_par_colonne, colonnes, impot, normalise_montant,
-                     statut_annee)
+                     statut_annee, unite_du_millesime)
 
 ANCRE = re.compile(r'Cr[ée]ation\s*/\s*modification\s*:')
 #: en-tête de colonne : la ligne se termine par trois millésimes consécutifs.
@@ -99,6 +99,7 @@ def parse(lignes: list[str], plf: int) -> list[dict]:
     if not entetes:
         return [{'plf': plf, 'anomalie': "aucun en-tête d'années trouvé", 'ligne': 0}]
     positions = [e[0] for e in entetes]
+    unite = unite_du_millesime(plf)
 
     def entete_de(i: int):
         """En-tête de colonne en vigueur à la ligne i (le dernier au-dessus)."""
@@ -195,6 +196,7 @@ def parse(lignes: list[str], plf: int) -> list[dict]:
             fiches.append(dict(
                 plf=plf, numero=numero, annee=annee, statut=statut_annee(annee, plf),
                 montant=montant, chiffrage=chiffrage, montant_brut=(brut or ''),
+                unite=unite, montant_meur=montant,
                 impot=impot(numero),
                 perimetre=DEPENSE_FISCALE if debut < bascule else MODALITE_DE_CALCUL,
                 libelle=libelle[:500],

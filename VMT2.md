@@ -1,4 +1,4 @@
-# Voies et moyens tome II : les dépenses fiscales, PLF 2009 à 2025
+# Voies et moyens tome II : les dépenses fiscales, PLF 2001 à 2025
 
 État au 2026-08-12. Branche `assets/vmt2-depenses-fiscales`, partant de `main`.
 
@@ -6,7 +6,7 @@ Troisième jeu de données réelles adossé au modèle, après les agrégats 204
 (`assets/agregats-tic`) et la comparaison au modèle Elfe (`assets/elfe-cgdd`).
 Il apporte ce que les deux autres ne donnent pas : le **coût budgétaire officiel
 de chaque régime dérogatoire**, exonération par exonération et tarif réduit par
-tarif réduit, sur dix-sept millésimes.
+tarif réduit, sur vingt-cinq millésimes — soit les années fiscales 1999 à 2025.
 
 ## La source
 
@@ -20,12 +20,12 @@ Il n'existe pas de version en données ouvertes exploitable : le seul jeu publi�
 ([PLF 2023 sur data.economie.gouv.fr](https://data.economie.gouv.fr/explore/dataset/plf2023_voies_et_moyens_t2_liste_des_depenses_fiscales/))
 renvoie `total_count: 0` et sa ressource CSV pèse 109 octets. Le PDF est la source.
 
-Le fonds contient aussi les millésimes 2001 à 2008. Ils ne sont pas traités ici :
-leur mise en page est différente (numéros espacés « 80 01 01 », colonnes
-« Résultat estimé / Evaluation ») et aucune table de renumérotation n'y figure,
-ce qui rendrait tout suivi d'identifiant empirique. À décider séparément.
+Le corpus couvre le PLF 2001 au PLF 2025 sans trou, **sauf le PLF 2000**, dont
+seul le tome 1 figure au fonds. Trois mises en page se succèdent, une par
+parseur : régime A (2001-2008, numéros espacés « 80 01 01 »), régime B
+(2009-2019, lignes de tableau) et régime C (2020-2025, fiches encadrées).
 
-## Trois pièges, à connaître avant d'utiliser la table
+## Quatre pièges, à connaître avant d'utiliser la table
 
 **1. Chaque document porte trois années, et les révise.** Un tome II donne la
 réalisation N-2, la prévision N-1 et la prévision N. La même année fiscale est
@@ -46,7 +46,15 @@ n'est pas une révision, c'est le gaz et les charbons qui en sont sortis.
 `assets/vmt2/crosswalk.csv` porte ces mouvements ; ne pas chaîner une série
 énergie à travers 2021 sans le consulter.
 
-**3. Toutes les fiches ne sont pas des dépenses fiscales.** De 2010 à 2019, le
+**3. Le PLF 2001 chiffre en millions de francs.** Tous les millésimes suivants
+sont en millions d'euros. La colonne `unite` le dit pour chaque ligne, `montant`
+reprend la valeur telle qu'imprimée, et `montant_meur` porte la conversion à la
+parité irrévocable de 6,55957 F pour 1 €. La conversion est exacte au sens
+juridique mais transforme un entier en décimal : les 1 400 MF de la 800101 en
+1999 valent 213,4 M€. **Toujours agréger sur `montant_meur`, jamais sur
+`montant`.**
+
+**4. Toutes les fiches ne sont pas des dépenses fiscales.** De 2010 à 2019, le
 document imprime après les chapitres une annexe « mesures considérées comme des
 modalités de calcul de l'impôt » : mêmes fiches, mêmes chiffrages, mais mesures
 déclassées, hors périmètre et hors totaux publiés. Les confondre gonfle l'impôt
@@ -58,8 +66,8 @@ celles-là.
 
 ## Ce que produit l'extraction
 
-    assets/vmt2/chiffrages.csv               25 206 lignes : (plf, numero, annee)
-    assets/vmt2/fiches.csv                    8 402 lignes : (plf, numero)
+    assets/vmt2/chiffrages.csv               35 787 lignes : (plf, numero, annee)
+    assets/vmt2/fiches.csv                   11 929 lignes : (plf, numero)
     assets/vmt2/crosswalk.csv                mouvements d'identifiants déclarés
     assets/vmt2/mouvements.csv               entrées/sorties, expliquées ou non
     assets/vmt2/controle_cout_par_impot.csv  somme extraite vs total publié
@@ -77,10 +85,13 @@ brute telle qu'imprimée (`montant_brut`). `fiches.csv` porte les métadonnées 
 `libelle`, `finalite`, `mission`, `beneficiaires`, `methode` (méthode de
 chiffrage), **`fiabilite`** (qualité du chiffrage déclarée par la DLF),
 `norme` (norme fiscale de référence), `reference` (fondement juridique),
-`creation`, `modification`, `fin_fait_generateur`, `fin_incidence`.
+`creation`, `modification`, `fin_fait_generateur`, `fin_incidence`,
+`observations` et `nombre_beneficiaires` (ces deux-là propres au régime A).
 
-La `fiabilite` est renseignée sur 6 931 des 7 996 couples (millésime, dépense) :
-2 940 « Ordre de grandeur », 2 157 « Très bonne », 1 834 « Bonne ». Sur l'accise
+La `fiabilite` est renseignée sur 8 043 des 11 523 couples (millésime, dépense
+fiscale) : 3 484 « Ordre de grandeur », 2 157 « Très bonne », 1 834 « Bonne »,
+plus 568 fiches du régime A qui écrivent « bon » et « très bon » au masculin.
+Le vocabulaire n'est pas harmonisé ici : c'est celui du document. Sur l'accise
 sur les énergies au PLF 2025, 28 des 39 dépenses sont « Bonne » ou « Très bonne ».
 `changement_methode` signale les fiches où le document prévient d'un changement
 de méthode de chiffrage — donc les ruptures de série imputables à la mesure du
@@ -93,12 +104,16 @@ puis les valeurs sont confrontées à une seconde source.
 
 | Contrôle | Portée | Résultat |
 |---|---|---|
-| Nombre de fiches = nombre d'ancres du document | 2009-2025 | 17/17 millésimes, 0 anomalie de structure |
+| Nombre de fiches = nombre d'ancres du document | 2001-2025 | 25/25 millésimes, 0 anomalie de structure |
+| Nombre de dépenses = décompte annoncé en introduction | 2001-2005 | **5/5** millésimes exacts |
 | Montant de la fiche = montant de l'annexe mission-programme | 2022-2025 | 1 877/1 877 concordants |
 | Somme par impôt = total publié en sous-partie II | 2009-2025 | **75/78** postes-années exacts à l'euro sur l'année de réalisation |
 
-Le décompte des dépenses fiscales du PLF 2015 ressort à 453, chiffre publié par
-la DLF pour ce millésime.
+Le deuxième contrôle est extérieur au parseur : les tomes de 2001 à 2005 écrivent
+en toutes lettres « Le présent fascicule recense 452 dépenses fiscales », et les
+cinq comptes tombent juste (408, 414, 418, 422, 452). Les millésimes suivants ont
+cessé de publier le chiffre. Le décompte du PLF 2015 ressort quant à lui à 453,
+chiffre publié par la DLF pour ce millésime.
 
 Le troisième contrôle **n'est pas exact et ne doit jamais être présenté comme
 tel** hors de l'année de réalisation : les mesures `nc` entrent dans le total
@@ -114,13 +129,30 @@ Le suivi des identifiants s'appuie uniquement sur ce que le document publie
 éclatements de 2021, transcrits en constante sourcée dans
 `scripts/vmt2/crosswalk.py`. **Aucun appariement n'est déduit d'une ressemblance
 de libellé.** Les entrées et sorties qu'aucune table ne justifie sont écrites
-`inexplique` dans `mouvements.csv` pour arbitrage humain : 307 mouvements
-expliqués sur 617. Sur la transition critique 2020→2021 en énergie, 26 des 28
-mouvements sont expliqués ; restent la sortie de la 800108 et celle de la 800217.
+`inexplique` dans `mouvements.csv` pour arbitrage humain. Sur la transition
+critique 2020→2021 en énergie, 26 des 28 mouvements sont expliqués ; restent la
+sortie de la 800108 et celle de la 800217.
+
+La couverture dépend entièrement de ce que le document publie :
+
+| Régime | Mouvements expliqués |
+|---|---|
+| A, 2002-2008 | **0 / 391** |
+| B, 2009-2019 | 228 / 457 |
+| C, 2020-2025 | 118 / 258 |
+
+Le zéro du régime A n'est pas un défaut d'extraction : la sous-partie
+« Évolution depuis le précédent PLF » n'apparaît qu'au PLF 2009, et avant elle
+aucune table ne décrit les entrées et sorties. Le piège est que le mot
+« Création » figure bien dans ces documents — comme **catégorie d'objectifs**
+(« Encourager la création »), suivie de dépenses qui n'ont rien de nouvelles.
+Les lire comme des créations fabriquerait des liens que le document n'affirme
+pas ; le parseur s'en abstient explicitement. **Une série qui traverse 2001-2008
+doit donc être vérifiée à la main sur les identifiants.**
 
 ## Utilisation
 
-    .venv/Scripts/python.exe -m scripts.vmt2.cli extraire --de 2009 --a 2025
+    .venv/Scripts/python.exe -m scripts.vmt2.cli extraire --de 2001 --a 2025
     .venv/Scripts/python.exe -m scripts.vmt2.cli crosswalk
 
 Le texte des PDF est extrait par `pdftotext -layout` et mis en cache dans
@@ -129,6 +161,9 @@ Le texte des PDF est extrait par `pdftotext -layout` et mis en cache dans
 premier passage ; ensuite le cache suffit.
 
 ## Pour la suite
+
+Le PLF 2000 reste absent du fonds documentaire : si la série 1998 en vaut la
+peine, il faudra le récupérer sur performance-publique.budget.gouv.fr.
 
 Reste à trancher la forme des tests OFF-E. Une dépense fiscale est un
 **contrefactuel** — la recette perdue par rapport à la norme fiscale de

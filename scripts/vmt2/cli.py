@@ -10,7 +10,8 @@ import csv
 import os
 import sys
 
-from . import annexe, controles, cout_par_impot, crosswalk, regime_b, regime_c
+from . import (annexe, controles, cout_par_impot, crosswalk, regime_a,
+               regime_b, regime_c)
 from .commun import (CHAMPS_CHIFFRAGE, CHAMPS_FICHE, DEPENSE_FISCALE,
                      REGIMES, SOURCES, texte)
 
@@ -20,8 +21,7 @@ RACINE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file_
 CACHE = os.path.join(RACINE, '.cache', 'vmt2')
 SORTIE = os.path.join(RACINE, 'assets', 'vmt2')
 
-#: le régime A (PLF 2001-2008) n'est pas implémenté : cf. VMT2.md
-PARSEURS = {'B': regime_b, 'C': regime_c}
+PARSEURS = {'A': regime_a, 'B': regime_b, 'C': regime_c}
 
 
 def extraire(de: int, a: int):
@@ -44,8 +44,14 @@ def extraire(de: int, a: int):
         couts += cout_par_impot.recoupement(fiches, cout_par_impot.parse(lignes, plf), plf)
         n = len({f['numero'] for f in fiches if f.get('numero')})
         ndf = len({f['numero'] for f in fiches if f.get('perimetre') == DEPENSE_FISCALE})
+        publie = controles.compte_publie(lignes)
+        if publie is not None and publie != ndf:
+            journal.append(f"PLF{plf} : {ndf} dépenses fiscales extraites alors que le "
+                           f"document annonce en recenser {publie}")
         note = ('annexe absente' if not r['disponible'] else
                 f"annexe {r['accords']}/{r['compares']} concordants")
+        if publie is not None:
+            note = f"décompte publié {publie} — " + note
         modal = f", {n - ndf:3d} modalités de calcul" if n != ndf else ''
         print(f"  PLF{plf} [{REGIMES[plf]}] {ndf:4d} dépenses fiscales{modal} "
               f"({n:4d} fiches / {attendu:4d} attendues) — {note}")
@@ -83,7 +89,7 @@ def ecrire(fiches: list[dict]) -> tuple[str, str]:
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('commande', choices=['extraire', 'crosswalk'])
-    p.add_argument('--de', type=int, default=2009)
+    p.add_argument('--de', type=int, default=2001)
     p.add_argument('--a', type=int, default=2025)
     args = p.parse_args(argv)
 

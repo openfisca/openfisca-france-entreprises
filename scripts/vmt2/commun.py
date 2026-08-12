@@ -140,15 +140,40 @@ def statut_annee(annee: int, plf: int) -> str:
     return {plf - 2: 'realisation', plf - 1: 'prevision', plf: 'prevision_plf'}.get(annee, 'autre')
 
 
+#: Parité irrévocable franc / euro, fixée par le règlement (CE) n° 2866/98.
+#: Le PLF 2001 est le seul millésime du corpus chiffré en millions de francs ;
+#: tous les suivants sont en millions d'euros.
+FRANCS_PAR_EURO = 6.55957
+DERNIER_MILLESIME_EN_FRANCS = 2001
+
+
+def unite_du_millesime(plf: int) -> str:
+    return 'MF' if plf <= DERNIER_MILLESIME_EN_FRANCS else 'MEUR'
+
+
+def en_millions_euros(montant, unite: str):
+    """Convertit un montant vers les millions d'euros.
+
+    La conversion est exacte au sens juridique — la parité est irrévocable — mais
+    elle transforme un entier imprimé en francs en un décimal : 1 400 MF valent
+    213,4 M€. La valeur d'origine reste lisible dans `montant` et `montant_brut`,
+    et `unite` dit toujours dans quelle monnaie le document a publié.
+    """
+    if montant is None:
+        return None
+    return round(montant / FRANCS_PAR_EURO, 1) if unite == 'MF' else montant
+
+
 #: La table est normalisée en deux fichiers, joints sur (plf, numero) : une
 #: fiche porte trois chiffrages, et répéter son libellé et ses métadonnées sur
 #: chacun quintuplerait le volume pour la même information.
-CHAMPS_CHIFFRAGE = ['plf', 'numero', 'annee', 'statut', 'montant', 'chiffrage',
-                    'montant_brut']
+CHAMPS_CHIFFRAGE = ['plf', 'numero', 'annee', 'statut', 'montant', 'unite',
+                    'montant_meur', 'chiffrage', 'montant_brut']
 CHAMPS_FICHE = ['plf', 'numero', 'impot', 'perimetre', 'libelle', 'finalite',
                 'creation', 'modification', 'fin_fait_generateur', 'fin_incidence',
-                'beneficiaires', 'fiabilite', 'norme', 'methode', 'reference',
-                'mission', 'changement_methode', 'regime', 'page_source']
+                'beneficiaires', 'nombre_beneficiaires', 'fiabilite', 'norme',
+                'methode', 'reference', 'mission', 'observations',
+                'changement_methode', 'regime', 'page_source']
 
 #: premier chiffre du numéro -> catégorie d'impôt, d'après la sous-partie
 #: « Principes de numérotation des dépenses fiscales ». Stable sur tout le corpus,

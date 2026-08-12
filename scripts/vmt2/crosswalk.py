@@ -130,8 +130,19 @@ def _numeros_section(lignes: list[str], titre: re.Pattern, aucun: re.Pattern,
     return vus
 
 
+#: La sous-partie « Évolution depuis le précédent PLF », qui porte les tables de
+#: mouvement, apparaît au PLF 2009. Avant, le document ne dit rien des entrées et
+#: sorties d'identifiants — et le mot « Création » y désigne une *catégorie
+#: d'objectifs* (« Encourager la création »), sous laquelle sont listées des
+#: dépenses qui n'ont rien de nouvelles. Y chercher des mouvements produit des
+#: liens que le document n'affirme pas : on s'abstient.
+PREMIER_MILLESIME_AVEC_TABLES = 2009
+
+
 def mouvements_declares(lignes: list[str], plf: int) -> list[dict]:
     """Renumérotations, éclatements, classements et déclassements d'un millésime."""
+    if plf < PREMIER_MILLESIME_AVEC_TABLES:
+        return []
     out = renumerotations(lignes, plf)
     for ancien, nouveaux in ECLATEMENTS.get(plf, {}).items():
         for nouveau in nouveaux:
@@ -193,9 +204,9 @@ def diff_identifiants(presence: dict[int, set[str]], cw: list[dict]) -> list[dic
     return out
 
 
-def construire(cache: str, sortie: str, de: int = 2009, a: int = 2025) -> int:
-    from . import regime_b, regime_c
-    parseurs = {'B': regime_b, 'C': regime_c}
+def construire(cache: str, sortie: str, de: int = 2001, a: int = 2025) -> int:
+    from . import regime_a, regime_b, regime_c
+    parseurs = {'A': regime_a, 'B': regime_b, 'C': regime_c}
 
     cw, presence = [], {}
     for plf in range(de, a + 1):
