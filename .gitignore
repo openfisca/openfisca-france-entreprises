@@ -24,3 +24,6 @@ dist
 # Cursor (project-specific rules can be committed elsewhere if needed)
 .cursor/
 .claude/
+
+# Cache local du texte extrait des PDF budgetaires (voir VMT2.md)
+.cache/
