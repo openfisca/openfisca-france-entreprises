@@ -14,6 +14,7 @@ from openfisca_france_entreprises.variables.taxes.formula_helpers import (
     _and,
     _not,
     _or,
+    tarif_avec_repli,
     tarif_moyen_annuel,
 )
 
@@ -629,9 +630,24 @@ class taxe_interieure_consommation_gaz_naturel_grande_consommatrice(Variable):
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/"
 
     def formula_2014_01_01(etablissement, period, parameters):
-        """[à noter : plus de seuil ni d'abattement]."""
+        """[à noter : plus de seuil ni d'abattement].
+
+        Le tarif réduit « grande consommatrice » naît au 2014-04-01 (arbitrage §2) : il gèle à
+        1,19 €/MWh le tarif normal d'avant la réforme, quand celui-ci passe à 1,41. Sur
+        janvier-mars 2014, ce tarif réduit n'existe pas et une grande consommatrice relève du
+        tarif normal — l'article 266 quinquies dans sa version en vigueur du 2014-01-01 au
+        2014-04-01 ne prévoit ni exonération ni tarif réduit pour ces installations, et fixe le
+        tarif à 1,19. Le repli laisse donc l'année 2014 plate à 1,19 ; replier sur zéro donnerait
+        0,8925, soit 25 % de moins.
+        """
         assiette = etablissement("assiette_ticgn", period)
-        taux = parameters(period).energies.gaz_naturel.ticgn.taux_reduits.grandes_consommatrices
+        taux = tarif_moyen_annuel(
+            period,
+            tarif_avec_repli(
+                lambda mois: parameters(mois).energies.gaz_naturel.ticgn.taux_reduits.grandes_consommatrices,
+                lambda mois: parameters(mois).energies.gaz_naturel.ticgn.taux_normal,
+            ),
+        )
         return assiette * taux
 
     def formula_2022_01_01(etablissement, period, parameters):
