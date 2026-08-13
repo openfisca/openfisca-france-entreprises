@@ -80,12 +80,21 @@
     `electro_intensite` valant deja un rapport (0,225 dans les tests, soit 22,5 %), elle etait
     comparee a des seuils cent fois trop grands et tous les etablissements tombaient dans la
     tranche la plus favorable. Voir l'article L. 312-65 du CIBS.
-  - Consequence assumee : 11 tests passent au rouge, dont `_911329` et `_911331` sur quatre
-    millesimes. Ce n'est pas une regression mais le constat 7 d'`AGREGATS_TIC.md` qui se chiffre :
-    les cases de la declaration sont libellees en kWh par euro de VA, vocabulaire de la TICFE
-    d'avant 2022, quand le modele applique les tranches en pourcentage du CIBS. A arbitrer.
-  - Bilan : 296 verts et 17 rouges. Six tiennent au bareme (`_911237` x4, `_911243` x2), onze a
-    l'arbitrage des paliers d'electro-intensite.
+  - Constat 7 d'`AGREGATS_TIC.md` arbitre : les bornes « 1,5 et 3 kWh par euro de VA » du libelle
+    de la declaration sont celles de la TICFE d'avant 2022 (article 266 quinquies C du code des
+    douanes). Le Cerfa a garde ce vocabulaire alors que les tarifs qu'il porte sont ceux du CIBS.
+    Il n'y avait pas de divergence de droit, mais un libelle qui n'a pas suivi la recodification.
+  - **Correction de fond** : `taxe_accise_electricite_electro_intensive_activite_industrielle`
+    lisait `niveau_0_5` comme un plafond et non comme un minimum. Ses trois bandes etaient
+    decalees d'un cran, `niveau_6_75` n'etait jamais lu, et une electro-intensite nulle ouvrait
+    le tarif le plus favorable. Les bandes suivent desormais L312-65 : 7,5 EUR/MWh des 0,5 %,
+    5 des 3,375 %, 2 des 6,75 %.
+  - Sous 0,5 %, la condition du 1° des articles L312-71 a L312-73 n'est pas remplie : les deux
+    formules d'electro-intensite replient sur le tarif normal, la ou elles rendaient zero.
+  - Les entrees `electro_intensite` des tests etaient exprimees dans l'ancienne unite ; elles
+    sont ramenees a des proportions, a attendu inchange. Aucun montant declare n'est modifie.
+  - Bilan : 307 verts et 6 rouges. Tous les six tiennent au bareme (`_911237` x4, `_911243` x2) ;
+    aucun n'est un defaut de modelisation.
 
 ## 1.1.7 - [#31](https://github.com/openfisca/openfisca-france-entreprises/pull/31)
 

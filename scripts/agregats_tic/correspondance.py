@@ -273,7 +273,10 @@ ELECTRICITE = [
         entrees={
             "assiette_taxe_electricite": ASSIETTE,
             "electro_intensive_activite_industrielle": True,
-            "electro_intensite": 4.0,
+            # 10 %, soit au-delà du niveau minimal de 6,75 % qui ouvre le tarif de 2 €/MWh
+            # (L312-65). L'électro-intensité est un rapport sans dimension, pas des kWh par
+            # euro : le libellé de la case reprend le vocabulaire de la TICFE d'avant 2022.
+            "electro_intensite": 0.10,
         },
     ),
     Cellule(
@@ -285,7 +288,8 @@ ELECTRICITE = [
         entrees={
             "assiette_taxe_electricite": ASSIETTE,
             "electro_intensive_activite_industrielle": True,
-            "electro_intensite": 2.0,
+            # 5 %, dans la bande [3,375 % ; 6,75 %) qui ouvre le tarif de 5 €/MWh (L312-65).
+            "electro_intensite": 0.05,
         },
         remarque=(
             "Le modèle borne cette tranche à [0,5 ; 3,375[ alors que la déclaration la borne "
@@ -301,7 +305,8 @@ ELECTRICITE = [
         entrees={
             "assiette_taxe_electricite": ASSIETTE,
             "electro_intensive_activite_industrielle": True,
-            "electro_intensite": 0.2,
+            # 1 %, dans la bande [0,5 % ; 3,375 %) qui ouvre le tarif de 7,5 €/MWh (L312-65).
+            "electro_intensite": 0.01,
         },
         remarque="Même réserve de bornes que la tranche 1,5–3.",
     ),

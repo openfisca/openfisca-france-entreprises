@@ -1069,32 +1069,38 @@ class taxe_accise_electricite_electro_intensive_activite_industrielle(Variable):
                 lambda mois: choisir(parameters(mois).energies.electricite.accise.tarifs_reduits.electro_intensives),
             )
 
-        condition_05 = _and(
+        # L312-65 pose des niveaux *minimaux* d'électro-intensité : plus le niveau est élevé,
+        # plus le tarif est bas. Le paramètre `industrie_X` porte le tarif dû à partir du
+        # niveau X — 7,5 €/MWh dès 0,5 %, 5 dès 3,375 %, 2 dès 6,75 %. Les conditions se lisent
+        # donc du haut vers le bas, `select` retenant la première vraie.
+        #
+        # L'électro-intensité est un rapport sans dimension : le montant d'accise au tarif
+        # normal haute puissance rapporté à la valeur ajoutée (L312-44 2° et L312-45, dernier
+        # alinéa). Les seuils du barème sont exprimés dans la même unité — 0,005 pour 0,5 %.
+        condition_675 = _and(
             electro_intensive_activite_industrielle,
-            electro_intensite != 0,
-            electro_intensite < seuils.niveau_0_5,
+            electro_intensite >= seuils.niveau_6_75,
         )
         condition_3375 = _and(
             electro_intensive_activite_industrielle,
-            electro_intensite != 0,
+            electro_intensite >= seuils.niveau_3_375,
+            electro_intensite < seuils.niveau_6_75,
+        )
+        condition_05 = _and(
+            electro_intensive_activite_industrielle,
             electro_intensite >= seuils.niveau_0_5,
             electro_intensite < seuils.niveau_3_375,
         )
-        condition_675 = _and(
-            electro_intensive_activite_industrielle,
-            _or(
-                electro_intensite == 0,
-                electro_intensite >= seuils.niveau_3_375,
-            ),
-        )
         return select(
-            [condition_05, condition_3375, condition_675],
+            [condition_675, condition_3375, condition_05],
             [
-                accise_electrointensive(lambda t: t.industrie_0_5),
-                accise_electrointensive(lambda t: t.industrie_3_375),
                 accise_electrointensive(lambda t: t.industrie_6_75),
+                accise_electrointensive(lambda t: t.industrie_3_375),
+                accise_electrointensive(lambda t: t.industrie_0_5),
             ],
-            default=0,
+            # Sous 0,5 %, la condition du 1° de l'article L312-71 n'est pas remplie : aucun
+            # tarif réduit ne s'applique, et l'électricité relève du tarif normal.
+            default=etablissement("taxe_accise_electricite_taux_normal", period),
         )
 
 
@@ -1132,25 +1138,28 @@ class taxe_accise_electricite_electro_intensive_concurrence_internationale(Varia
         seuils = parameters(period).energies.electricite.accise.tarifs_reduits.electro_intensives.seuils
         seuils_ticfe = parameters(period).energies.electricite.ticfe.electro_intensives.seuils
 
+        # Mêmes niveaux minimaux qu'à l'activité industrielle, avec un quatrième palier à
+        # 13,5 % réservé par l'article L312-73 aux installations exposées à un risque de fuite
+        # de carbone dont l'intensité des échanges avec les pays tiers atteint 25 %.
         condition_13_5 = _and(
             electro_intensive_concurrence_internationale,
-            electro_intensite > seuils.niveau_13_5,
+            electro_intensite >= seuils.niveau_13_5,
             risque_de_fuite_carbone_eta,
-            intensite_echanges_avec_pays_tiers > seuils_ticfe.intensite_echanges_pays_tiers_min,
+            intensite_echanges_avec_pays_tiers >= seuils_ticfe.intensite_echanges_pays_tiers_min,
         )
         condition_6_75 = _and(
             electro_intensive_concurrence_internationale,
-            electro_intensite > seuils.niveau_6_75,
-            electro_intensite <= seuils.niveau_13_5,
+            electro_intensite >= seuils.niveau_6_75,
         )
         condition_3_375 = _and(
             electro_intensive_concurrence_internationale,
-            electro_intensite > seuils.niveau_3_375,
-            electro_intensite <= seuils.niveau_6_75,
+            electro_intensite >= seuils.niveau_3_375,
+            electro_intensite < seuils.niveau_6_75,
         )
         condition_0_5 = _and(
             electro_intensive_concurrence_internationale,
-            electro_intensite <= seuils.niveau_3_375,
+            electro_intensite >= seuils.niveau_0_5,
+            electro_intensite < seuils.niveau_3_375,
         )
         return select(
             [condition_13_5, condition_6_75, condition_3_375, condition_0_5],
@@ -1160,7 +1169,8 @@ class taxe_accise_electricite_electro_intensive_concurrence_internationale(Varia
                 accise_electrointensive(lambda t: t.industrie_concurrence_3_375),
                 accise_electrointensive(lambda t: t.industrie_concurrence_0_5),
             ],
-            default=0,
+            # Sous 0,5 %, la condition du 1° des articles L312-72 et L312-73 n'est pas remplie.
+            default=etablissement("taxe_accise_electricite_taux_normal", period),
         )
 
 

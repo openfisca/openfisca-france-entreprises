@@ -244,7 +244,7 @@ contournement `Instant((AAAA, 2, 1))` subsiste dans le seul bouclier tarifaire, 
 tient lieu de tout autre chose — voir le constat n° 5 et le point 11
 d'`ACTIONS_EN_ATTENTE.md`.
 
-### 7. Bornes des tranches d'électro-intensité : à arbitrer
+### 7. Bornes des tranches d'électro-intensité — ✅ arbitré le 2026-08-13
 
 Les taux concordent (7,5 / 5 / 2 €/MWh, cases `_911331` / `_911329` / `_911327`).
 Les **bornes** divergent :
@@ -257,12 +257,36 @@ Les paramètres aux bornes de la déclaration existent au barème
 (`electricite/ticfe/electro_intensive/seuil_1_5_kwh_par_va` et `seuil_3_kwh_par_va`)
 mais ne servent que les formules TICFE antérieures à 2022.
 
-Aucune cellule déclarée ne tombe dans les bandes litigieuses `[0,5 ; 1,5[` ou
-`[3 ; 3,375[` : les agrégats ne tranchent pas seuls. Deux cas construisent la
-situation manquante dans
-[`scripts/agregats_tic/arbitrages/test_tranches_electro_intensite.yaml`](scripts/agregats_tic/arbitrages/test_tranches_electro_intensite.yaml)
-— **en échec volontaire**, hors CI, à lancer à la demande. À arbitrer contre
-l'article L312-65 du code des impositions sur les biens et services.
+**Arbitré : les deux grilles ne sont pas commensurables, et le libellé de la
+déclaration est périmé.**
+
+L'article L312-65 du CIBS fixe des **niveaux minimaux d'électro-intensité exprimés en
+pourcentage** — 0,5 %, 3,375 %, 6,75 % pour l'activité industrielle, plus 13,5 % pour la
+concurrence internationale. Et l'électro-intensité n'est pas une consommation par euro :
+le dernier alinéa de L312-45 la définit comme le niveau d'intensité énergétique en valeur
+ajoutée du 2° de L312-44, apprécié sur la seule électricité, soit le quotient entre le
+**montant d'accise au tarif normal haute puissance** et la valeur ajoutée. C'est un
+rapport euros sur euros, sans dimension.
+
+Les bornes « 1,5 et 3 kWh par € de VA » du libellé sont celles de la **TICFE d'avant
+2022** (article 266 quinquies C du code des douanes). Le Cerfa a gardé le vocabulaire
+alors que les tarifs qu'il porte — 7,5 / 5 / 2 — sont ceux du CIBS. Il n'y a donc pas de
+divergence de droit à trancher : il y a un libellé qui n'a pas suivi la recodification.
+
+Conséquences portées le 2026-08-13 :
+
+- le barème exprime les paliers en proportion (0,005 / 0,03375 / 0,0675 / 0,135) et les
+  place sous `electricite/accise/tarifs_reduits/electro_intensives/seuils/niveau_*` ;
+- `taxe_accise_electricite_electro_intensive_activite_industrielle` lisait `niveau_0_5`
+  comme un **plafond** et non comme un minimum : ses trois bandes étaient décalées d'un
+  cran, `niveau_6_75` n'était jamais lu, et une électro-intensité nulle ouvrait le tarif
+  le plus favorable. Corrigé ;
+- sous 0,5 %, la condition du 1° des articles L312-71 à L312-73 n'est pas remplie : les
+  deux formules replient désormais sur le tarif normal, là où elles rendaient zéro ;
+- les entrées `electro_intensite` de `correspondance.py` et des tests écrits à la main
+  étaient exprimées dans l'ancienne unité ; elles sont ramenées à des proportions.
+
+Les huit cellules `_911327` / `_911329` / `_911331` sont vertes.
 
 ### 8. L'hypothèse de consommation uniforme, contredite par les déclarations — ✅ clos le 2026-08-13
 

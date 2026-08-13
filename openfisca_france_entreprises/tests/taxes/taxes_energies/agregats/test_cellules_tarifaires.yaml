@@ -540,7 +540,7 @@
     assiette_taxe_electricite:
       "2022-01": 1891727.034
     electro_intensive_activite_industrielle: true
-    electro_intensite: 4
+    electro_intensite: 0.1
   output:
     # 1,891,727 MWh × 2.0000 €/MWh
     taxe_accise_electricite: 3783454.05
@@ -554,7 +554,7 @@
     assiette_taxe_electricite:
       "2023-01": 64134.285
     electro_intensive_activite_industrielle: true
-    electro_intensite: 4
+    electro_intensite: 0.1
   output:
     # 64,134 MWh × 2.0000 €/MWh
     taxe_accise_electricite: 128268.57
@@ -568,7 +568,7 @@
     assiette_taxe_electricite:
       "2024-01": 108324.497
     electro_intensive_activite_industrielle: true
-    electro_intensite: 4
+    electro_intensite: 0.1
   output:
     # 108,324 MWh × 2.0000 €/MWh
     taxe_accise_electricite: 216648.99
@@ -582,7 +582,7 @@
     assiette_taxe_electricite:
       "2025-01": 80646.327
     electro_intensive_activite_industrielle: true
-    electro_intensite: 4
+    electro_intensite: 0.1
   output:
     # 80,646 MWh × 2.0000 €/MWh
     taxe_accise_electricite: 161292.64
@@ -596,7 +596,7 @@
     assiette_taxe_electricite:
       "2022-01": 1774962.346
     electro_intensive_activite_industrielle: true
-    electro_intensite: 2
+    electro_intensite: 0.05
   output:
     # 1,774,962 MWh × 5.0000 €/MWh
     taxe_accise_electricite: 8874811.93
@@ -610,7 +610,7 @@
     assiette_taxe_electricite:
       "2023-01": 19322.134
     electro_intensive_activite_industrielle: true
-    electro_intensite: 2
+    electro_intensite: 0.05
   output:
     # 19,322 MWh × 5.0000 €/MWh
     taxe_accise_electricite: 96610.69
@@ -624,7 +624,7 @@
     assiette_taxe_electricite:
       "2024-01": 81726.703
     electro_intensive_activite_industrielle: true
-    electro_intensite: 2
+    electro_intensite: 0.05
   output:
     # 81,727 MWh × 5.0000 €/MWh
     taxe_accise_electricite: 408633.53
@@ -638,7 +638,7 @@
     assiette_taxe_electricite:
       "2025-01": 13487.734
     electro_intensive_activite_industrielle: true
-    electro_intensite: 2
+    electro_intensite: 0.05
   output:
     # 13,488 MWh × 5.0000 €/MWh
     taxe_accise_electricite: 67438.70
@@ -652,7 +652,7 @@
     assiette_taxe_electricite:
       "2022-01": 5087935.853
     electro_intensive_activite_industrielle: true
-    electro_intensite: 0.2
+    electro_intensite: 0.01
   output:
     # 5,087,936 MWh × 7.5000 €/MWh
     taxe_accise_electricite: 38159519.05
@@ -666,7 +666,7 @@
     assiette_taxe_electricite:
       "2023-01": 57560.77
     electro_intensive_activite_industrielle: true
-    electro_intensite: 0.2
+    electro_intensite: 0.01
   output:
     # 57,561 MWh × 7.5000 €/MWh
     taxe_accise_electricite: 431705.82
@@ -680,7 +680,7 @@
     assiette_taxe_electricite:
       "2024-01": 156011.407
     electro_intensive_activite_industrielle: true
-    electro_intensite: 0.2
+    electro_intensite: 0.01
   output:
     # 156,011 MWh × 7.5000 €/MWh
     taxe_accise_electricite: 1170085.63
@@ -694,7 +694,7 @@
     assiette_taxe_electricite:
       "2025-01": 118613.804
     electro_intensive_activite_industrielle: true
-    electro_intensite: 0.2
+    electro_intensite: 0.01
   output:
     # 118,614 MWh × 7.5000 €/MWh
     taxe_accise_electricite: 889603.58
