@@ -279,9 +279,14 @@ ELECTRICITE = [
         cases_montant=("_911322",),
         intitule="Électricité — puissance de raccordement < 250 kVA",
         parametre="energies.electricite.accise.tarifs_normaux.menages_et_assimiles",
-        variable=None,
+        variable="taxe_accise_electricite",
         entrees={"assiette_taxe_electricite": ASSIETTE, "amperage": 20},
-        remarque="Tarif implicite 25,8291 €/MWh, contre 25,6875 au barème (voir le rapport).",
+        remarque=(
+            "Constat n° 1 clos : le barème portait 25,6875, valeur que l'article L312-37 du CIBS "
+            "date « en 2015 », sans l'indexation de la fraction supérieure à 22,50 qu'il prévoit. "
+            "Le tarif appliqué en janvier 2022, avant la prise d'effet du bouclier au 1er février, "
+            "vaut 22,50 + 3,1875 x 1,044424 = 25,8291."
+        ),
     ),
     Cellule(
         case_quantite="_911323",
@@ -289,9 +294,12 @@ ELECTRICITE = [
         cases_montant=("_911324",),
         intitule="Électricité — activités économiques, puissance > 36 kVA",
         parametre="energies.electricite.accise.tarifs_normaux.pme_activites_economiques",
-        variable=None,
+        variable="taxe_accise_electricite",
         entrees={"assiette_taxe_electricite": ASSIETTE, "amperage": 100},
-        remarque="Tarif implicite 23,6097 €/MWh, contre 23,5625 au barème (voir le rapport).",
+        remarque=(
+            "Constat n° 1 clos : même indexation manquante que sur _911321. "
+            "22,50 + 1,0625 x 1,044424 = 23,6097."
+        ),
     ),
     Cellule(
         case_quantite="_911327",

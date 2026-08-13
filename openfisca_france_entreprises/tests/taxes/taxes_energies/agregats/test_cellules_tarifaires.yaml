@@ -597,6 +597,110 @@
     # 29,007,848 MWh × 22.5000 €/MWh
     taxe_accise_electricite: 652676575.09
 
+- name: "_911321 — Électricité — puissance de raccordement < 250 kVA (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 719.168
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 25.8291 €/MWh.
+    assiette_taxe_electricite:
+      "2022-01": 27843313.909
+    amperage: 20
+  output:
+    # 27,843,314 MWh × 25.8291 €/MWh
+    taxe_accise_electricite: 719167739.37
+
+- name: "_911321 — Électricité — puissance de raccordement < 250 kVA (millésime 2023)"
+  period: 2022
+  absolute_error_margin: 5.5634
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 25.8291 €/MWh.
+    assiette_taxe_electricite:
+      "2022-01": 215392.773
+    amperage: 20
+  output:
+    # 215,393 MWh × 25.8291 €/MWh
+    taxe_accise_electricite: 5563401.44
+
+- name: "_911321 — Électricité — puissance de raccordement < 250 kVA (millésime 2024)"
+  period: 2022
+  absolute_error_margin: 1.13443
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 25.8291 €/MWh.
+    assiette_taxe_electricite:
+      "2022-01": 43920.475
+    amperage: 20
+  output:
+    # 43,920 MWh × 25.8291 €/MWh
+    taxe_accise_electricite: 1134426.34
+
+- name: "_911321 — Électricité — puissance de raccordement < 250 kVA (millésime 2025)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 25.8291 €/MWh.
+    assiette_taxe_electricite:
+      "2022-01": 852.21
+    amperage: 20
+  output:
+    # 852 MWh × 25.8291 €/MWh
+    taxe_accise_electricite: 22011.82
+
+- name: "_911323 — Électricité — activités économiques, puissance > 36 kVA (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 114.811
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 23.6097 €/MWh.
+    assiette_taxe_electricite:
+      "2022-01": 4862884.596
+    amperage: 100
+  output:
+    # 4,862,885 MWh × 23.6097 €/MWh
+    taxe_accise_electricite: 114811246.48
+
+- name: "_911323 — Électricité — activités économiques, puissance > 36 kVA (millésime 2023)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 23.6097 €/MWh.
+    assiette_taxe_electricite:
+      "2022-01": 15489.364
+    amperage: 100
+  output:
+    # 15,489 MWh × 23.6097 €/MWh
+    taxe_accise_electricite: 365699.24
+
+- name: "_911323 — Électricité — activités économiques, puissance > 36 kVA (millésime 2024)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 23.6097 €/MWh.
+    assiette_taxe_electricite:
+      "2022-01": 3839.468
+    amperage: 100
+  output:
+    # 3,839 MWh × 23.6097 €/MWh
+    taxe_accise_electricite: 90648.70
+
+- name: "_911323 — Électricité — activités économiques, puissance > 36 kVA (millésime 2025)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 23.6097 €/MWh.
+    assiette_taxe_electricite:
+      "2022-01": 1524.376
+    amperage: 100
+  output:
+    # 1,524 MWh × 23.6097 €/MWh
+    taxe_accise_electricite: 35990.07
+
 - name: "_911327 — Électricité — IEI, consommation > 3 kWh/€ de VA (millésime 2022)"
   period: 2022
   absolute_error_margin: 3.78345

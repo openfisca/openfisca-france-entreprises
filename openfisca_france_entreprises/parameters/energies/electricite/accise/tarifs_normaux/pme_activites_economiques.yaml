@@ -1,7 +1,7 @@
 description: Taxe intérieure sur la consommation finale d'électricité pour les entreprises dont la puissance souscrite est entre 36 et 250 kVA
 values:
   2022-01-01:
-    value: 23.5625
+    value: 23.6097
   2023-01-01:
     value: 25.6875
   2025-02-01:
@@ -39,6 +39,8 @@ metadata:
     2025-08-01: "2025-02-15"
     2026-02-01: "2025-12-31"
   notes:
+    2022-01-01:
+      - title: "Valeur deduite des agregats 2040-TIC, faute d'arrete localise. L'article L. 312-37 du CIBS date lui-meme son tableau : les tarifs y sont donnes « en 2015 » — 23,5625 pour les petites et moyennes entreprises —, et « la fraction du tarif superieure a 22,5 EUR par megawattheure est indexee sur l'inflation ». La case _911323 declare 23,6097 EUR/MWh, soit 22,50 + 1,1097, et la case _911321 (menages) 25,8291, soit 22,50 + 3,3291 : les deux fractions indexees sont dans le rapport 1,044424 avec celles de 2015, a six decimales. Voir la note detaillee sur menages_et_assimiles. ATTENTION : l'arrete constatant ces montants pour 2022 n'a pas ete localise ; la valeur est validee sur la seule foi de la declaration fiscale."
     2025-08-01:
       - title: "Nouvelle table de l'article L. 312-37 du CIBS issue de l'article 20 de la loi de finances pour 2025. Le A du XI de cet article fixe l'entrée en vigueur au 1er août 2025 (date d'application du tarif, verifiee sur le nota de la version consolidee)."
       - title: "Ce tarif est celui d'avant majoration. Depuis le 1er août 2025, l'article L. 312-37-1 du CIBS y ajoute la majoration au titre des zones non interconnectées (voir energies/majoration_zni), due par tous les redevables du tarif normal. Le tarif effectivement dû est de 25,79 €/MWh du 1er août 2025 au 31 janvier 2026, puis de 26,58 €/MWh, montants publiés à l'article 1-2 de l'arrêté."

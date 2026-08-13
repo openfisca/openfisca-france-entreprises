@@ -138,9 +138,23 @@
     conserve « Gaz naturels combustible | L. 312-77 | 1,6 », et la version 2025 aussi.
     `taxe_accise_gaz_naturel_combustible.formula_2024_01_01`, qui ne differait de celle de 2022
     que par le retrait de cette branche, est supprimee.
-  - Bilan : **323 verts, aucun rouge**. Les neuf constats d'`AGREGATS_TIC.md` sont clos — quatre
+  - **Indexation des tarifs normaux d'electricite pour 2022.** L'article L. 312-37 du CIBS date
+    lui-meme son tableau : les tarifs y sont donnes « en 2015 », et « la fraction du tarif
+    superieure a 22,5 EUR par megawattheure est indexee sur l'inflation ». Le bareme portait donc
+    une valeur de 2015 comme tarif 2022. Les valeurs applicables sont 25,8291 pour les menages et
+    23,6097 pour les PME, deduites de la declaration : les cases `_911321` et `_911323` donnent
+    des fractions indexees dans le rapport 1,044424 avec celles de 2015, a six decimales et sur
+    deux regimes distincts. Le tarif haute puissance, egal a 22,50 soit exactement le plancher
+    d'indexation, est inchange — ce qui corrobore la lecture. Cela clot le constat 1.
+  - Reserve consignee en note au bareme : **l'arrete constatant ces montants pour 2022 n'a pas ete
+    localise**, ni par Paul ni par recherche sur l'API PISTE. Les valeurs sont validees sur la
+    seule foi de la declaration fiscale. Restent ouvertes les valeurs 2023 et 2024, elles aussi
+    des montants de reference recalcules, que les agregats ne permettent pas de deduire, le
+    bouclier tarifaire s'etant substitue aux tarifs normaux du 01/02/2022 au 31/01/2025.
+  - Bilan : **331 verts, aucun rouge**. Les neuf constats d'`AGREGATS_TIC.md` sont clos — cinq
     mettaient en cause le bareme, cinq le modele. Les lacunes de couverture passent de 9
-    cellules a 3 : les deux de l'indexation des TCFE et la manutention portuaire.
+    cellules a 1 : la manutention portuaire, dont la variable d'entree n'est branchee dans aucun
+    select de l'accise 2022+.
 
 ## 1.1.7 - [#31](https://github.com/openfisca/openfisca-france-entreprises/pull/31)
 

@@ -66,8 +66,8 @@ PYTEST_ADDOPTS="--maxfail=300" .venv/bin/openfisca test \
 `addopts` du dépôt contient `--exitfirst` : sans `PYTEST_ADDOPTS`, le lancement
 s'arrête au premier échec.
 
-**118 tests générés, tous verts depuis le 2026-08-13** sous
-`openfisca_france_entreprises/tests/taxes/taxes_energies/agregats/` (78 cellules
+**126 tests générés, tous verts depuis le 2026-08-13** sous
+`openfisca_france_entreprises/tests/taxes/taxes_energies/agregats/` (96 cellules
 tarifaires, 30 exonérations). Les fichiers sont générés : ne pas les éditer à la
 main.
 
@@ -110,7 +110,7 @@ annotation `DÉSACCORD` : son décompte et celui de la suite valent tous deux z�
 
 | constat | objet | résolu par |
 |---|---|---|
-| n° 1 | indexation des TCFE non appliquée | les deux cellules restent des lacunes de couverture |
+| n° 1 | indexation des tarifs normaux d'électricité | valeurs 2022 déduites des agrégats et portées au barème |
 | n° 2 | trois tarifs gaz « absents du barème » | 8,41 et 8,37 portés au barème, `_911237` repointée sur la TICGN |
 | n° 3 | tarif SEQE gaz clos trop tôt | clôture infondée, retirée du barème |
 | n° 4 | majoration ZNI absente | valeur 2025 portée, majoration appliquée au tarif normal |
@@ -124,15 +124,15 @@ Sur les neuf, **quatre mettaient en cause le barème** (n° 2, 3, 4 et, pour par
 **cinq le modèle**. Le principe du chantier — la déclaration fait foi, et le barème comme
 le calculateur peuvent avoir tort — s'est vérifié dans les deux sens.
 
-Seules restent écartées les **9 cellules pour lesquelles le modèle n'a ni variable
-ni entrée** : il n'y a alors rien à confronter. Ce sont des lacunes de couverture,
-recensées plus bas et remontées par `audit.py`.
+Seule reste écartée **une cellule pour laquelle le modèle n'a ni variable ni
+entrée** : il n'y a alors rien à confronter. C'est une lacune de couverture,
+recensée plus bas et remontée par `audit.py`.
 
 ---
 
 ## Écarts entre tarif déclaré et barème
 
-### 1. Électricité : l'indexation des TCFE n'est pas appliquée
+### 1. Électricité : l'indexation des tarifs normaux — ✅ clos le 2026-08-13
 
 Le constat le plus net, et le seul qui touche des masses importantes.
 
@@ -155,8 +155,26 @@ barème n'applique pas** aux tarifs normaux d'électricité. Les valeurs
 `tarifs_normaux.menages_et_assimiles` et `tarifs_normaux.pme_activites_economiques`
 figent la part TCFE à sa valeur non indexée.
 
-*À faire* : retrouver le coefficient réglementaire de revalorisation 2022 et
-décider s'il se porte en paramètre distinct ou s'intègre aux tarifs normaux.
+**Élucidé.** L'article L312-37 du CIBS date lui-même son tableau : les tarifs y sont donnés
+« **en 2015** », et « la fraction du tarif supérieure à 22,5 € par mégawattheure est indexée
+sur l'inflation ». Le barème portait donc une valeur de 2015 comme si c'était le tarif 2022.
+
+Le facteur 1,044424 est l'indexation cumulée de 2015 à 2022 de cette seule fraction. Le
+tarif haute puissance, égal à 22,50 soit exactement le plancher, est inchangé — ce qui
+corrobore la lecture.
+
+Les valeurs 2022 sont portées au barème : **25,8291** et **23,6097**. Les deux cellules
+sont vertes.
+
+**Réserve, consignée en note au barème** : l'arrêté constatant ces montants pour 2022 n'a
+été localisé ni par Paul ni par recherche sur l'API PISTE. Le CIBS n'entrant en vigueur
+qu'au 1er janvier 2022, l'indexation est peut-être automatique et sans arrêté ; sinon le
+texte reste à trouver. Les valeurs sont validées sur la seule foi de la déclaration.
+
+Reste également ouvert : les valeurs 2023 et 2024 (32,0625) sont elles aussi des montants
+de référence recalculés — `22,5 + 4,25 × 0,75 + 8,5 × 0,75` — et non des tarifs indexés.
+Les agrégats ne permettent pas de les déduire, le bouclier tarifaire s'étant substitué aux
+tarifs normaux du 1er février 2022 au 31 janvier 2025.
 
 ### 2. Gaz naturel combustible : trois tarifs — ✅ élucidés le 2026-08-13
 
@@ -467,15 +485,13 @@ l'origine.
 
 ## Lacunes de couverture
 
-Les **3 cellules non testées** — le modèle n'ayant ni variable ni entrée pour
-elles, il n'y a rien à confronter. À distinguer des 6 rouges, qui sont des
-désaccords chiffrés : ici le calculateur ne répond pas du tout.
+**Une seule cellule non testée** — le modèle n'ayant ni variable ni entrée pour elle, il
+n'y a rien à confronter : `_912995` (manutention portuaire).
 
-`_911321` et `_911323` (indexation TCFE, constat n° 1), `_912995` (manutention portuaire).
-
-Six cellules en sont sorties le 2026-08-13 : les quatre ZNI (constat n° 4 — trois testées
-et vertes, la quatrième sans donnée) et `_911264` / `_911272`, une fois la série de
-l'accise gaz corrigée au barème (constat n° 2).
+Huit cellules en sont sorties le 2026-08-13 : les quatre ZNI (constat n° 4 — trois testées
+et vertes, la quatrième sans donnée), `_911264` et `_911272` une fois la série de l'accise
+gaz corrigée au barème (constat n° 2), puis `_911321` et `_911323` une fois l'indexation
+des tarifs normaux d'électricité portée (constat n° 1).
 
 - **`electricite_manutention_portuaire`** existe comme variable d'entrée et le
   tarif est au barème (0,5 €/MWh depuis 2023), mais la variable n'est branchée dans
