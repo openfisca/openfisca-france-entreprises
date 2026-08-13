@@ -13,6 +13,41 @@ from openfisca_core.periods import Instant
 from openfisca_france_entreprises.entities import Etablissement
 
 
+def _tarif_bouclier(etablissement, period, parameters, instant):
+    """Tarif du bouclier selon la catégorie fiscale de l'électricité.
+
+    Le bouclier minore le tarif d'accise à deux niveaux distincts, et le barème porte les
+    deux : `bouclier_tarifaire.menages` et `bouclier_tarifaire.entreprises` — 1,00 contre
+    0,50 en 2022, 21,00 contre 20,50 en 2024. La formule ne lisait que le second, sans
+    jamais regarder la catégorie fiscale, et rendait donc la moitié du montant dû aux
+    ménages en 2022. Voir le constat n° 5 d'`AGREGATS_TIC.md`.
+
+    La déclaration 2040-TIC sépare nettement les deux régimes en cases distinctes —
+    `_911371` « ménages » contre `_911369` « entreprises » en 2022, `_913035` contre
+    `_913037` en 2024 —, et les tarifs qu'elle applique sont exactement ceux du barème.
+
+    Le partage suit la catégorie fiscale de l'accise (L312-24 du code des impositions sur
+    les biens et services) : les ménages et assimilés sont les puissances de raccordement
+    inférieures à 36 kVA, seuil déjà porté par
+    `ticfe.categorie_fiscale_petite_et_moyenne_entreprise` et utilisé par
+    `taxe_accise_electricite_taux_normal`.
+
+    Ampérage non renseigné (zéro) : le tarif « entreprises » s'applique. Le modèle décrit
+    des établissements, pas des ménages ; à défaut de puissance déclarée, c'est le régime
+    de droit commun de ses redevables.
+
+    :param instant: l'instant auquel lire le barème. Le bouclier prend effet au 1er février
+        et la variable est annuelle : l'instant reste forcé, comme avant. Le traitement
+        mensuel du dispositif est un chantier distinct — il encode un basculement de régime,
+        pas un changement de tarif.
+    """
+    bouclier = parameters(instant).energies.electricite.accise.bouclier_tarifaire
+    seuil = parameters(period).energies.electricite.ticfe.categorie_fiscale_petite_et_moyenne_entreprise
+    amperage = etablissement("amperage", period)
+    menages_et_assimiles = (amperage != 0) & (amperage < seuil)
+    return where(menages_et_assimiles, bouclier.menages, bouclier.entreprises)
+
+
 class taxe_electricite_bouclier_tarifaire(Variable):
     value_type = float
     entity = Etablissement
@@ -26,9 +61,8 @@ class taxe_electricite_bouclier_tarifaire(Variable):
         # taxe_electricite — parce qu'il encode un basculement de régime et non un changement de
         # tarif : le passer au mois est un changement de droit, à instruire à part.
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period, options=[ADD])
-        taux = parameters(
-            Instant((2022, 2, 1)),
-        ).energies.electricite.accise.bouclier_tarifaire.entreprises  # 0.5 en 2022
+        # 1,00 pour les ménages et assimilés, 0,50 pour les entreprises.
+        taux = _tarif_bouclier(etablissement, period, parameters, Instant((2022, 2, 1)))
         taxe = assiette_taxe_electricite * taux
         taxe_accise_electricite = etablissement("taxe_accise_electricite", period)
         return where(taxe > taxe_accise_electricite, taxe_accise_electricite, taxe)
@@ -39,9 +73,8 @@ class taxe_electricite_bouclier_tarifaire(Variable):
         # taxe_electricite — parce qu'il encode un basculement de régime et non un changement de
         # tarif : le passer au mois est un changement de droit, à instruire à part.
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period, options=[ADD])
-        taux = parameters(
-            Instant((2023, 2, 1)),
-        ).energies.electricite.accise.bouclier_tarifaire.entreprises  # 0.5 en 2023
+        # 1,00 pour les ménages et assimilés, 0,50 pour les entreprises.
+        taux = _tarif_bouclier(etablissement, period, parameters, Instant((2023, 2, 1)))
         taxe = assiette_taxe_electricite * taux
         taxe_accise_electricite = etablissement("taxe_accise_electricite", period)
         return where(taxe > taxe_accise_electricite, taxe_accise_electricite, taxe)
@@ -53,9 +86,8 @@ class taxe_electricite_bouclier_tarifaire(Variable):
         # tarif : le passer au mois est un changement de droit, à instruire à part.
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period, options=[ADD])
         taxe_accise_electricite = etablissement("taxe_accise_electricite", period)
-        taux = parameters(
-            Instant((2024, 2, 1)),
-        ).energies.electricite.accise.bouclier_tarifaire.entreprises  # 20.5 en 2024
+        # 21,00 pour les ménages et assimilés, 20,50 pour les entreprises.
+        taux = _tarif_bouclier(etablissement, period, parameters, Instant((2024, 2, 1)))
         taxe = assiette_taxe_electricite * taux
         return where(taxe > taxe_accise_electricite, taxe_accise_electricite, taxe)
 

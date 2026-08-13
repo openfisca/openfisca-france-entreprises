@@ -58,10 +58,18 @@
   - Quand aucun mois de l'annee ne porte le tarif declare, la quantite est posee sur janvier : le
     desaccord avec le bareme apparait alors seul. `_911243` 2025 cumulait le constat 3 et
     l'annualisation ; son rapport passe de 9,00 a 10,72, soit exactement 17,16 / 1,60.
-  - Bilan : 301 verts et 12 rouges, contre 296 et 17 avant la bascule. Aucun attendu n'a ete
-    recalcule : ce sont des montants reellement declares. Les 12 rouges restants sont six
-    desaccords de bareme (`_911237`, `_911243`) et six du bouclier tarifaire (`_911371`,
-    `_913035`).
+  - Bouclier tarifaire : les trois formules n'appliquaient que `bouclier_tarifaire.entreprises`,
+    sans jamais regarder la categorie fiscale, et rendaient donc la moitie du montant du aux
+    menages en 2022 (1,00 contre 0,50) et 21/20,5 en 2024. Elles passent par `_tarif_bouclier`,
+    qui choisit entre les deux parametres selon la puissance de raccordement : les menages et
+    assimiles sont les puissances inferieures a 36 kVA (L312-24 CIBS), seuil deja porte par
+    `ticfe.categorie_fiscale_petite_et_moyenne_entreprise`. A defaut d'amperage renseigne, le
+    tarif « entreprises » s'applique. Cela eteint 6 rouges (`_911371` x4, `_913035` x2) et clot
+    le constat 5 d'`AGREGATS_TIC.md`.
+  - Bilan : 307 verts et 6 rouges, contre 296 et 17 avant la bascule. Aucun attendu n'a ete
+    recalcule : ce sont des montants reellement declares. Les 6 rouges restants mettent tous en
+    cause le **bareme**, aucun le modele : `_911237` x4 (tarif gaz 8,43 absent) et `_911243` x2
+    (tarif SEQE clos trop tot). Ils se corrigent dans `baremes-ipp-yaml`.
 
 ## 1.1.7 - [#31](https://github.com/openfisca/openfisca-france-entreprises/pull/31)
 

@@ -389,9 +389,9 @@ ELECTRICITE = [
     ),
     Cellule(
         case_quantite="_913035",
-        constat=(
-            "Le bouclier ne lit que le tarif « entreprises » : boulier_tarifaire.py applique bouclier_tarifaire.entreprises dans ses trois formules, sans jamais regarder la catégorie fiscale. Le paramètre bouclier_tarifaire.menages n'est lu nulle part."
-        ),
+        # Constat n° 5 clos : boulier_tarifaire.py n'appliquait que bouclier_tarifaire.entreprises,
+        # sans regarder la catégorie fiscale. Il lit désormais bouclier_tarifaire.menages sous
+        # 36 kVA, seuil de la catégorie « ménages et assimilés » de l'accise.
         annee_tarif=2024,
         cases_montant=("_913036",),
         intitule="Électricité — tarif à 21,00 €/MWh (bouclier, ménages et assimilés)",
@@ -445,9 +445,9 @@ ELECTRICITE = [
     ),
     Cellule(
         case_quantite="_911371",
-        constat=(
-            "Le bouclier ne lit que le tarif « entreprises » : boulier_tarifaire.py applique bouclier_tarifaire.entreprises dans ses trois formules, sans jamais regarder la catégorie fiscale. Le paramètre bouclier_tarifaire.menages n'est lu nulle part."
-        ),
+        # Constat n° 5 clos : boulier_tarifaire.py n'appliquait que bouclier_tarifaire.entreprises,
+        # sans regarder la catégorie fiscale. Il lit désormais bouclier_tarifaire.menages sous
+        # 36 kVA, seuil de la catégorie « ménages et assimilés » de l'accise.
         annee_tarif=2022,
         cases_montant=("_911372",),
         intitule="Électricité — bouclier tarifaire, ménages (tarif de référence 25,8291)",

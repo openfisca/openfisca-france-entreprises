@@ -920,11 +920,6 @@
     # 28,810 MWh × 0.5000 €/MWh
     taxe_accise_electricite: 14405.08
 
-# DÉSACCORD — le modèle ne restitue pas cette cellule.
-# Le bouclier ne lit que le tarif « entreprises » : boulier_tarifaire.py
-# applique bouclier_tarifaire.entreprises dans ses trois formules, sans jamais
-# regarder la catégorie fiscale. Le paramètre bouclier_tarifaire.menages n'est
-# lu nulle part.
 - name: "_913035 — Électricité — tarif à 21,00 €/MWh (bouclier, ménages et assimilés) (millésime 2024)"
   period: 2024
   absolute_error_margin: 2959.35
@@ -938,11 +933,6 @@
     # 140,921,213 MWh × 21.0000 €/MWh
     taxe_electricite_bouclier_tarifaire: 2959345466.81
 
-# DÉSACCORD — le modèle ne restitue pas cette cellule.
-# Le bouclier ne lit que le tarif « entreprises » : boulier_tarifaire.py
-# applique bouclier_tarifaire.entreprises dans ses trois formules, sans jamais
-# regarder la catégorie fiscale. Le paramètre bouclier_tarifaire.menages n'est
-# lu nulle part.
 - name: "_913035 — Électricité — tarif à 21,00 €/MWh (bouclier, ménages et assimilés) (millésime 2025)"
   period: 2024
   absolute_error_margin: 1471.71
@@ -1060,11 +1050,6 @@
     # 17,983,424 MWh × 0.5000 €/MWh
     taxe_electricite_bouclier_tarifaire: 8991712.28
 
-# DÉSACCORD — le modèle ne restitue pas cette cellule.
-# Le bouclier ne lit que le tarif « entreprises » : boulier_tarifaire.py
-# applique bouclier_tarifaire.entreprises dans ses trois formules, sans jamais
-# regarder la catégorie fiscale. Le paramètre bouclier_tarifaire.menages n'est
-# lu nulle part.
 - name: "_911371 — Électricité — bouclier tarifaire, ménages (tarif de référence 25,8291) (millésime 2022)"
   period: 2022
   absolute_error_margin: 136.134
@@ -1078,11 +1063,6 @@
     # 136,133,610 MWh × 1.0000 €/MWh
     taxe_electricite_bouclier_tarifaire: 136133609.92
 
-# DÉSACCORD — le modèle ne restitue pas cette cellule.
-# Le bouclier ne lit que le tarif « entreprises » : boulier_tarifaire.py
-# applique bouclier_tarifaire.entreprises dans ses trois formules, sans jamais
-# regarder la catégorie fiscale. Le paramètre bouclier_tarifaire.menages n'est
-# lu nulle part.
 - name: "_911371 — Électricité — bouclier tarifaire, ménages (tarif de référence 25,8291) (millésime 2023)"
   period: 2022
   absolute_error_margin: 187.6
@@ -1096,11 +1076,6 @@
     # 187,599,508 MWh × 1.0000 €/MWh
     taxe_electricite_bouclier_tarifaire: 187599508.45
 
-# DÉSACCORD — le modèle ne restitue pas cette cellule.
-# Le bouclier ne lit que le tarif « entreprises » : boulier_tarifaire.py
-# applique bouclier_tarifaire.entreprises dans ses trois formules, sans jamais
-# regarder la catégorie fiscale. Le paramètre bouclier_tarifaire.menages n'est
-# lu nulle part.
 - name: "_911371 — Électricité — bouclier tarifaire, ménages (tarif de référence 25,8291) (millésime 2024)"
   period: 2022
   absolute_error_margin: 93.8253
@@ -1114,11 +1089,6 @@
     # 93,825,347 MWh × 1.0000 €/MWh
     taxe_electricite_bouclier_tarifaire: 93825347.38
 
-# DÉSACCORD — le modèle ne restitue pas cette cellule.
-# Le bouclier ne lit que le tarif « entreprises » : boulier_tarifaire.py
-# applique bouclier_tarifaire.entreprises dans ses trois formules, sans jamais
-# regarder la catégorie fiscale. Le paramètre bouclier_tarifaire.menages n'est
-# lu nulle part.
 - name: "_911371 — Électricité — bouclier tarifaire, ménages (tarif de référence 25,8291) (millésime 2025)"
   period: 2022
   absolute_error_margin: 1

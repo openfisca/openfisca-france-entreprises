@@ -66,7 +66,7 @@ PYTEST_ADDOPTS="--maxfail=300" .venv/bin/openfisca test \
 `addopts` du dépôt contient `--exitfirst` : sans `PYTEST_ADDOPTS`, le lancement
 s'arrête au premier échec.
 
-**108 tests générés, dont 96 verts et 12 rouges assumés** sous
+**108 tests générés, dont 102 verts et 6 rouges assumés** sous
 `openfisca_france_entreprises/tests/taxes/taxes_energies/agregats/` (78 cellules
 tarifaires, 30 exonérations). Les fichiers sont générés : ne pas les éditer à la
 main.
@@ -102,17 +102,17 @@ main.
 > aligner sur le calcul ferait disparaître le désaccord au lieu de le résoudre, et
 > le test cesserait de tester quoi que ce soit de légal.
 
-Répartition des 12 rouges :
+Répartition des 6 rouges :
 
 | cas | cellules | constat |
 |---|---|---|
 | 4 | `_911237` (2022-2025) | n° 2 — tarif gaz 8,43 absent du barème |
 | 2 | `_911243` (2024-2025) | n° 3 — tarif SEQE clos trop tôt au barème |
-| 4 | `_911371` (2022-2025) | n° 5 — le bouclier ne lit jamais le tarif ménages |
-| 2 | `_913035` (2024-2025) | n° 5 — idem |
 
-Six d'entre eux mettent en cause le **barème** (n° 2 et n° 3), six le **modèle** (n° 5).
-Les cinq rouges des constats n° 6 et n° 8 sont éteints par la bascule mensuelle.
+**Les six restants mettent tous en cause le barème**, aucun le modèle. Ils se corrigent
+dans `baremes-ipp-yaml` avant d'être repris ici. Les onze rouges de modélisation —
+constats n° 5, n° 6 et n° 8 — sont éteints : la bascule mensuelle en a fermé cinq, la
+lecture du tarif ménages du bouclier les six autres.
 
 Seules restent écartées les **9 cellules pour lesquelles le modèle n'a ni variable
 ni entrée** : il n'y a alors rien à confronter. Ce sont des lacunes de couverture,
@@ -195,7 +195,7 @@ déclare en deux montants distincts pour une même quantité.
 
 ## Constats de modélisation
 
-### 5. Le bouclier tarifaire n'applique jamais le tarif « ménages »
+### 5. Le bouclier tarifaire n'applique jamais le tarif « ménages » — ✅ clos le 2026-08-13
 
 [`variables/boulier_tarifaire.py`](openfisca_france_entreprises/variables/boulier_tarifaire.py)
 lit `bouclier_tarifaire.entreprises` dans ses trois formules (2022, 2023, 2024),
@@ -209,9 +209,23 @@ Les déclarations distinguent nettement les deux :
 | 2022 | 0,50 (`_911369`) | 1,00 (`_911371`) |
 | 2024 | 20,50 (`_913037`) | 21,00 (`_913035`) |
 
-En 2022, `_911371` porte 136 133 610 MWh : le modèle rend la moitié du montant
-déclaré. **Six cas sont rouges pour ce motif** — `_911371` sur les quatre
-millésimes et `_913035` sur 2024-2025.
+En 2022, `_911371` porte 136 133 610 MWh : le modèle rendait la moitié du montant
+déclaré. Six cas étaient rouges pour ce motif — `_911371` sur les quatre millésimes et
+`_913035` sur 2024-2025.
+
+**Corrigé le 2026-08-13.** Les trois formules passent par `_tarif_bouclier`, qui choisit
+entre les deux paramètres selon la catégorie fiscale de l'accise : les ménages et
+assimilés sont les puissances de raccordement inférieures à 36 kVA, seuil déjà porté par
+`ticfe.categorie_fiscale_petite_et_moyenne_entreprise`. Les six cas sont verts.
+
+Ampérage non renseigné : le tarif « entreprises » s'applique. Le modèle décrit des
+établissements, pas des ménages ; à défaut de puissance déclarée, c'est le régime de
+droit commun de ses redevables — et c'est ce que suppose le test annuel du dépôt, qui
+n'indique pas d'ampérage et attend 20,50.
+
+Le contournement `Instant((AAAA, 2, 1))` est conservé : la variable reste annuelle, le
+bouclier prenant effet au 1er février. Son traitement mensuel est un chantier distinct,
+recensé au point 11 d'`ACTIONS_EN_ATTENTE.md`.
 
 ### 6. Le pas tarifaire du 1er février est lu au 1er janvier — ✅ clos le 2026-08-13
 
@@ -287,8 +301,9 @@ Deux corroborations indépendantes :
 `_913037` (bouclier, 2024) voit aussi son tarif varier dans l'année — 0,50 en
 janvier, 20,50 ensuite, moyenne 18,8333 — mais ses formules forcent
 `Instant((AAAA, 2, 1))` et lisent donc 20,50. Le test passe par contournement
-ponctuel, pas par correction : il casserait si le pas se déplaçait. C'est le même
-contournement que celui relevé au constat n° 6.
+ponctuel, pas par correction : il casserait si le pas se déplaçait. **Cela reste vrai
+après la bascule** — le bouclier est le seul dispositif à conserver ce contournement,
+faute d'un traitement mensuel de son basculement de régime.
 
 **Ce qu'il ne faut pas faire.** Recalculer les attendus sur la moyenne mensuelle.
 Ce sont des montants déclarés : ils vérifient le droit. Les aligner sur la
@@ -374,9 +389,11 @@ n'est verte que lorsque le calculateur et le barème rejoignent la déclaration.
    corrections sur une branche dédiée — cette branche ne modifie ni `variables/`
    ni `parameters/`. Les points **2 et 3 valent 6 rouges** (`_911237` ×4,
    `_911243` ×2) et se corrigent dans `baremes-ipp-yaml` avant d'être repris ici.
-2. Arbitrer les points 5 à 7 (modèle), de même. Le point **5 vaut 6 rouges**
-   (`_911371` ×4, `_913035` ×2) : `boulier_tarifaire.py` doit lire
-   `bouclier_tarifaire.menages` selon la catégorie fiscale.
+2. ~~Arbitrer les points 5 à 7 (modèle), de même. Le point **5 vaut 6 rouges**~~
+   Point 5 **fait le 2026-08-13** : `boulier_tarifaire.py` lit `bouclier_tarifaire.menages`
+   sous 36 kVA, ce qui éteint `_911371` ×4 et `_913035` ×2. Restent les points 6 et 7,
+   qui ne valent aucun rouge — le 7 (bornes des tranches d'électro-intensité) demande un
+   arbitrage contre l'article L312-65, les agrégats ne le tranchant pas seuls.
 3. ~~**Basculer les variables énergies en `definition_period = MONTH`** (point 8).~~
    **Fait le 2026-08-13** : 5 rouges éteints (`_914195`, `_914197`, `_911293`,
    `_911319`, `_914201`), points 6 et 8 clos, et la source réconciliée avec les agrégats
