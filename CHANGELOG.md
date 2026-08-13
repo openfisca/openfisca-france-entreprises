@@ -1,3 +1,58 @@
+## 2.0.0 - [#32](https://github.com/openfisca/openfisca-france-entreprises/pull/32)
+
+* Breaking change.
+* Impacted periods: from 01/01/1986.
+* Impacted areas:
+  - `variables/consommation_energie/autres_produits`
+  - `variables/consommation_energie/charbon`
+  - `variables/consommation_energie/electricite`
+  - `variables/consommation_energie/energies`
+  - `variables/consommation_energie/gaz_naturel`
+  - `variables/taxes/formula_helpers`
+  - `variables/taxes/taxation_energies/taxation_autres_produits_energetiques`
+  - `variables/taxes/taxation_energies/taxation_charbon`
+  - `variables/taxes/taxation_energies/taxation_electricite`
+  - `variables/taxes/taxation_energies/taxation_gaz_naturel`
+  - `variables/taxes/taxation_energies/taxation_tiruert`
+  - `variables/taxes/taxation_energies/tccfe/tccfe`
+  - `variables/taxes/taxation_energies/tdcfe/tdcfe`
+  - `variables/boulier_tarifaire`
+  - `variables/variables_economiques`
+* Details:
+  - Les 106 variables de quantite d'energie -- consommations et assiettes -- passent de
+    `definition_period = YEAR` a `MONTH`, avec `set_input = set_input_divide_by_period`. La taxe
+    de l'annee devient la somme des taxes mensuelles : chaque mois porte sa quantite et son tarif.
+  - **Rupture d'API** : lire `assiette_ticc`, `assiette_ticgn`, `assiette_taxe_electricite` ou
+    l'une des consommations sur une periode annuelle leve desormais une exception. Utiliser
+    `options=[ADD]`, ou interroger un mois.
+  - Le comportement anterieur est preserve pour qui fournit des quantites annuelles :
+    `set_input_divide_by_period` les repartit sur les douze mois, et la somme redonne
+    `quantite * moyenne des tarifs`, soit exactement la valeur d'avant la bascule. C'est ce dont
+    les agregats Elfe ont besoin, eux qui publient des tarifs deja moyennes.
+  - Motif abandonne : l'hypothese de consommation uniforme sur l'annee, que portait
+    `tarif_moyen_annuel`. Les declarations 2040-TIC la contredisent -- elles ne moyennent jamais,
+    elles segregent les tarifs en cases distinctes, chaque case portant la quantite taxee a son
+    propre tarif. Voir le constat 8 d'`AGREGATS_TIC.md`.
+  - Trois regimes restent volontairement annuels, leurs bornes mordant sur le cumul de l'annee et
+    non sur chaque mois : le seuil d'exoneration et l'abattement de la TICGN d'avant 2008, le
+    plafond de 1 GWh du tarif reduit des centres de stockage de donnees, et le bouclier tarifaire,
+    qui encode un basculement de regime et non un changement de tarif.
+  - TCCFE et TDCFE restent annuelles : leur coefficient communal ou departemental n'est pas
+    mensualise. La TCCFE est de toute facon incorporee a l'accise au 01/01/2023.
+  - Correction de fond : neuf formules de la TICPE renvoyaient une liste d'un seul element, ce qui
+    faisait stocker a OpenFisca un tableau de forme (1, n) au lieu de (n,). Invisible avec un seul
+    etablissement, faux avec plusieurs.
+  - `tarif_moyen_annuel` cede la place a `accise_annuelle` et `tarif_du_mois`. Il ne subsiste que
+    pour le regime a seuil de la TICGN d'avant 2008, ou il calcule vraiment une moyenne annuelle.
+  - 29 cas de test recoivent une `relative_error_margin` de 1e-6. Une quantite annuelle est stockee
+    au douzieme en float32 par `set_input_divide_by_period`, et la somme des douze mois ne restitue
+    pas la quantite annuelle au bit pres : l'ecart observe est d'au plus 3,1e-7 en relatif, soit six
+    ordres de grandeur sous le plus petit pas tarifaire du bareme (0,01 EUR/MWh).
+  - 18 assertions portant sur une assiette passent en periode mensuelle, sans qu'aucun nombre ne
+    change : la composition d'une assiette est lineaire.
+  - Aucun test ne change de verdict : 296 verts et 17 rouges avant comme apres. Les 17 rouges sont
+    les desaccords assumes des agregats 2040-TIC, inchanges.
+
 ## 1.1.7 - [#31](https://github.com/openfisca/openfisca-france-entreprises/pull/31)
 
 * Tax and benefit system evolution.
