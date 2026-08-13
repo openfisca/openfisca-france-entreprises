@@ -50,8 +50,18 @@
     ordres de grandeur sous le plus petit pas tarifaire du bareme (0,01 EUR/MWh).
   - 18 assertions portant sur une assiette passent en periode mensuelle, sans qu'aucun nombre ne
     change : la composition d'une assiette est lineaire.
-  - Aucun test ne change de verdict : 296 verts et 17 rouges avant comme apres. Les 17 rouges sont
-    les desaccords assumes des agregats 2040-TIC, inchanges.
+  - Tests 2040-TIC regeneres : la quantite de chaque case est desormais posee sur un mois ou le
+    bareme porte le tarif que la case declare, au lieu d'etre repartie sur l'annee. Une case de la
+    2040-TIC est une cellule tarifaire homogene -- elle porte la quantite taxee a son propre tarif,
+    qu'elle nomme souvent dans son libelle. Cela eteint 5 rouges (`_914195`, `_914197`, `_911293`,
+    `_911319`, `_914201`) et clot les constats 6 et 8 d'`AGREGATS_TIC.md`.
+  - Quand aucun mois de l'annee ne porte le tarif declare, la quantite est posee sur janvier : le
+    desaccord avec le bareme apparait alors seul. `_911243` 2025 cumulait le constat 3 et
+    l'annualisation ; son rapport passe de 9,00 a 10,72, soit exactement 17,16 / 1,60.
+  - Bilan : 301 verts et 12 rouges, contre 296 et 17 avant la bascule. Aucun attendu n'a ete
+    recalcule : ce sont des montants reellement declares. Les 12 rouges restants sont six
+    desaccords de bareme (`_911237`, `_911243`) et six du bouclier tarifaire (`_911371`,
+    `_913035`).
 
 ## 1.1.7 - [#31](https://github.com/openfisca/openfisca-france-entreprises/pull/31)
 

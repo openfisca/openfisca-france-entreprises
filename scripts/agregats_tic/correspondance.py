@@ -412,9 +412,10 @@ ELECTRICITE = [
     ),
     Cellule(
         case_quantite="_914195",
-        constat=(
-            "Le tarif change au 1er février ; les variables étant en definition_period = YEAR, parameters(period) rend la valeur du 1er janvier. Le contournement existe déjà pour le bouclier, qui force Instant((AAAA, 2, 1)), mais pas pour les tarifs normaux."
-        ),
+        # Constat n° 6 clos : le tarif change au 1er février, et le modèle lisait la valeur du
+        # 1er janvier faute de variables mensuelles. Les consommations étant désormais en
+        # definition_period = MONTH, la quantité se pose sur un mois où s'applique le tarif
+        # déclaré, et le modèle le restitue.
         cases_montant=("_914196",),
         intitule="Électricité — tarif à 33,70 €/MWh (ménages et assimilés)",
         millesimes=(2025,),
@@ -424,9 +425,7 @@ ELECTRICITE = [
     ),
     Cellule(
         case_quantite="_914197",
-        constat=(
-            "Le tarif change au 1er février ; les variables étant en definition_period = YEAR, parameters(period) rend la valeur du 1er janvier. Le contournement existe déjà pour le bouclier, qui force Instant((AAAA, 2, 1)), mais pas pour les tarifs normaux."
-        ),
+        # Constat n° 6 clos : voir _914195.
         cases_montant=("_914198",),
         intitule="Électricité — tarif à 26,23 €/MWh (PME et activités économiques)",
         millesimes=(2025,),

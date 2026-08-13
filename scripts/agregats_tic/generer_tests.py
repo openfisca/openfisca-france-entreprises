@@ -61,6 +61,13 @@ def _entete(titre: str, avertissement: str = "") -> str:
         "# Chaque cas reprend la quantité et le montant réellement déclarés pour une case\n"
         "# et un millésime. Le millésime est l'année de dépôt ; la période du test est\n"
         "# l'année du tarif porté par la case.\n"
+        "#\n"
+        "# Les variables de consommation étant mensuelles, la quantité n'est pas répartie\n"
+        "# sur l'année mais posée sur un mois où s'applique le tarif que la case déclare.\n"
+        "# Une case de la 2040-TIC est en effet une cellule tarifaire homogène : elle porte\n"
+        "# la quantité taxée à *son* tarif, qu'elle nomme souvent dans son propre libellé.\n"
+        "# La répartir sur douze mois ferait calculer au modèle une moyenne annuelle que la\n"
+        "# déclaration ne pratique jamais.\n"
         f"{avertissement}"
         "\n"
     )
@@ -91,60 +98,55 @@ def _cas(
     marge: float,
     commentaire: str,
     alerte: str = "",
+    note_entree: str = "",
 ) -> str:
     lignes = [f"# {ligne}" for ligne in alerte.splitlines()]
     lignes += [f'- name: "{nom}"', f"  period: {periode}", f"  absolute_error_margin: {marge:.6g}", "  input:"]
-    lignes.extend(f"    {cle}: {_litteral(valeur)}" for cle, valeur in entrees.items())
+    if note_entree:
+        lignes.extend(f"    # {ligne}" for ligne in note_entree.splitlines())
+    for cle, valeur in entrees.items():
+        if isinstance(valeur, dict):
+            lignes.append(f"    {cle}:")
+            lignes.extend(f'      "{sous_periode}": {_litteral(v)}' for sous_periode, v in valeur.items())
+        else:
+            lignes.append(f"    {cle}: {_litteral(valeur)}")
     lignes.append("  output:")
     lignes.append(f"    # {commentaire}")
     lignes.append(f"    {variable}: {attendu:.2f}")
     return "\n".join(lignes) + "\n\n"
 
 
-def _concordante(cellule: correspondance.Cellule, implicite: float, millesime: int) -> bool:
-    if cellule.parametre is None:
-        return False
-    annee = cellule.annee_tarif or millesime
-    for mois in (2, 1):
-        barometre = donnees.valeur_parametre(cellule.parametre, annee, mois=mois)
-        if barometre is not None:
-            return abs(implicite - barometre) <= 1e-4 * max(abs(barometre), 1.0)
-    return False
+def _mois_du_tarif(cellule: correspondance.Cellule, annee: int, implicite: float) -> int | None:
+    """Premier mois de l'année où le barème porte le tarif que la case déclare.
 
+    Une case de la 2040-TIC est une cellule tarifaire homogène : elle porte la quantité
+    taxée à *son* tarif, souvent nommé dans son propre libellé. Depuis que les variables
+    de consommation sont mensuelles, la quantité peut donc être posée sur un mois où ce
+    tarif s'applique, plutôt que répartie sur l'année — ce qui faisait autrefois calculer
+    au modèle une moyenne annuelle que la déclaration ne pratique jamais.
 
-def _moyenne_mensuelle(cellule: correspondance.Cellule, annee: int) -> float | None:
-    """Moyenne mensuelle du tarif, si et seulement s'il change au cours de l'année.
-
-    Le modèle lit ses tarifs par `tarif_moyen_annuel`, qui suppose la consommation
-    répartie uniformément sur l'année. La déclaration, elle, ségrège les tarifs en
-    cases distinctes : une case porte la quantité taxée à *son* tarif, et le nomme
-    souvent dans son propre libellé. Les deux conventions ne coïncident que si le
-    tarif est constant sur l'année.
-
-    Renvoie la moyenne mensuelle quand le tarif varie — c'est-à-dire la valeur que
-    le modèle rendra, à opposer au tarif déclaré — et None quand il est constant,
-    auquel cas les deux conventions se rejoignent et le test passe.
+    Renvoie None quand aucun mois de l'année ne porte le tarif déclaré : c'est alors un
+    désaccord de fond entre la déclaration et le barème, pas un artefact d'annualisation.
     """
     if cellule.parametre is None:
         return None
-    valeurs = [donnees.valeur_parametre(cellule.parametre, annee, mois=mois) for mois in range(1, 13)]
-    valeurs = [valeur for valeur in valeurs if valeur is not None]
-    if len(valeurs) < 12 or len({round(valeur, 6) for valeur in valeurs}) == 1:
-        return None
-    return sum(valeurs) / len(valeurs)
+    for mois in range(1, 13):
+        barometre = donnees.valeur_parametre(cellule.parametre, annee, mois=mois)
+        if barometre is not None and abs(implicite - barometre) <= 1e-4 * max(abs(barometre), 1.0):
+            return mois
+    return None
 
 
 def _desaccords(
     cellule: correspondance.Cellule,
     implicite: float,
-    millesime: int,
     periode: int,
+    mois: int | None,
 ) -> list[tuple[str, str]]:
     """Les désaccords chiffrables entre la cellule déclarée et le calculateur.
 
     Renvoie une liste de couples (résumé d'une ligne, texte long pour le YAML). Une
-    cellule peut en cumuler plusieurs — un constat de modélisation et un tarif
-    infra-annuel, par exemple.
+    cellule peut en cumuler plusieurs.
     """
     trouves = []
 
@@ -155,35 +157,34 @@ def _desaccords(
             + "\n".join(textwrap.wrap(cellule.constat, 76)),
         ))
 
-    if not _concordante(cellule, implicite, millesime):
-        annee = cellule.annee_tarif or millesime
-        barometre = next(
-            (
-                valeur
-                for valeur in (donnees.valeur_parametre(cellule.parametre, annee, mois=mois) for mois in (2, 1))
-                if valeur is not None
-            ),
-            None,
-        ) if cellule.parametre else None
+    if mois is None:
+        barometre = (
+            next(
+                (
+                    valeur
+                    for valeur in (
+                        donnees.valeur_parametre(cellule.parametre, periode, mois=m) for m in range(1, 13)
+                    )
+                    if valeur is not None
+                ),
+                None,
+            )
+            if cellule.parametre
+            else None
+        )
         au_bareme = f"{barometre:.4f}" if barometre is not None else "absent du barème"
+        resume = (
+            f"tarif déclaré {implicite:.4f}, absent du barème"
+            if barometre is None
+            else f"tarif déclaré {implicite:.4f} contre {au_bareme} au barème"
+        )
         trouves.append((
-            f"tarif déclaré {implicite:.4f} contre {au_bareme} au barème",
-            "DÉSACCORD — le tarif déclaré ne concorde pas avec le barème.\n"
+            resume,
+            "DÉSACCORD — le tarif déclaré ne concorde avec aucun mois du barème.\n"
             f"La déclaration applique {implicite:.4f} €/MWh ; le barème porte {au_bareme}.\n"
+            "Aucun des douze mois de l'année ne porte le tarif déclaré : ce n'est donc\n"
+            "pas un artefact d'annualisation, mais un désaccord de fond.\n"
             "La déclaration fait foi : c'est le barème qu'il faut instruire.",
-        ))
-
-    moyenne = _moyenne_mensuelle(cellule, periode)
-    if moyenne is not None:
-        ecart = 100 * (moyenne - implicite) / implicite
-        trouves.append((
-            f"tarif infra-annuel, moyenne mensuelle {moyenne:.4f} ({ecart:+.2f} %)",
-            "DÉSACCORD — tarif infra-annuel, voir AGREGATS_TIC.md constat n° 8.\n"
-            f"La case déclare {implicite:.4f} €/MWh, constant sur la période qu'elle\n"
-            f"couvre ; le tarif du barème, lui, varie dans l'année — moyenne mensuelle\n"
-            f"{moyenne:.4f} €/MWh, soit {ecart:+.2f} %.\n"
-            "Le cas ÉCHOUE si la formule lit par tarif_moyen_annuel, et passe si elle\n"
-            "force un instant, comme le fait le bouclier avec Instant((AAAA, 2, 1)).",
         ))
 
     return trouves
@@ -213,13 +214,29 @@ def generer_cellules(valeurs, libelles) -> tuple[str, int, list[str], list[str]]
                 valeurs[millesime].get(case, 0.0) for case in cellule.cases_montant
             )
             implicite = montant / quantite
-            entrees = {
-                cle: (quantite if valeur == correspondance.ASSIETTE else valeur)
-                for cle, valeur in cellule.entrees.items()
-            }
             periode = cellule.annee_tarif or millesime
 
-            trouves = _desaccords(cellule, implicite, millesime, periode)
+            # La quantité se pose sur un mois où s'applique le tarif que la case déclare.
+            # À défaut — aucun mois ne porte ce tarif —, elle se pose sur janvier, et le
+            # désaccord avec le barème apparaît sans être mêlé d'annualisation.
+            mois = _mois_du_tarif(cellule, periode, implicite)
+            sous_periode = f"{periode}-{(mois or 1):02d}"
+            if mois is not None:
+                note_entree = (
+                    f"Quantité posée sur {sous_periode}, mois où le barème porte le tarif\n"
+                    f"déclaré de {implicite:.4f} €/MWh."
+                )
+            else:
+                note_entree = (
+                    f"Aucun mois de {periode} ne porte le tarif déclaré : la quantité est posée\n"
+                    f"sur {sous_periode}, ce qui isole le désaccord de barème."
+                )
+            entrees = {
+                cle: ({sous_periode: quantite} if valeur == correspondance.ASSIETTE else valeur)
+                for cle, valeur in cellule.entrees.items()
+            }
+
+            trouves = _desaccords(cellule, implicite, periode, mois)
             for resume, _ in trouves:
                 desaccords.append(f"{cellule.case_quantite} {periode} — {cellule.intitule} : {resume}")
 
@@ -232,6 +249,7 @@ def generer_cellules(valeurs, libelles) -> tuple[str, int, list[str], list[str]]
                 marge=max(1.0, TOLERANCE_RELATIVE * abs(montant)),
                 commentaire=f"{quantite:,.0f} MWh × {implicite:.4f} €/MWh",
                 alerte="\n".join(texte for _, texte in trouves),
+                note_entree=note_entree,
             )
             nombre += 1
     return contenu, nombre, ecartees, desaccords

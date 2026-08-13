@@ -7,6 +7,13 @@
 # Chaque cas reprend la quantité et le montant réellement déclarés pour une case
 # et un millésime. Le millésime est l'année de dépôt ; la période du test est
 # l'année du tarif porté par la case.
+#
+# Les variables de consommation étant mensuelles, la quantité n'est pas répartie
+# sur l'année mais posée sur un mois où s'applique le tarif que la case déclare.
+# Une case de la 2040-TIC est en effet une cellule tarifaire homogène : elle porte
+# la quantité taxée à *son* tarif, qu'elle nomme souvent dans son propre libellé.
+# La répartir sur douze mois ferait calculer au modèle une moyenne annuelle que la
+# déclaration ne pratique jamais.
 
 - name: "_911252 — Gaz naturel — double usage (millésime 2022)"
   period: 2022

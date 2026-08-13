@@ -66,10 +66,24 @@ PYTEST_ADDOPTS="--maxfail=300" .venv/bin/openfisca test \
 `addopts` du dépôt contient `--exitfirst` : sans `PYTEST_ADDOPTS`, le lancement
 s'arrête au premier échec.
 
-**108 tests générés, dont 91 verts et 17 rouges assumés** sous
+**108 tests générés, dont 96 verts et 12 rouges assumés** sous
 `openfisca_france_entreprises/tests/taxes/taxes_energies/agregats/` (78 cellules
 tarifaires, 30 exonérations). Les fichiers sont générés : ne pas les éditer à la
 main.
+
+> ## Depuis la bascule mensuelle, la quantité se pose sur son mois
+>
+> État au 2026-08-13. Les variables de consommation sont passées en
+> `definition_period = MONTH` : le générateur ne répartit donc plus la quantité sur
+> l'année, il la pose sur **un mois où le barème porte le tarif que la case déclare**.
+> Une case de la 2040-TIC est une cellule tarifaire homogène — elle porte la quantité
+> taxée à *son* tarif, qu'elle nomme souvent dans son propre libellé —, et la répartir
+> sur douze mois faisait calculer au modèle une moyenne annuelle que la déclaration ne
+> pratique jamais.
+>
+> Cela éteint **cinq rouges** et referme les constats n° 6 et n° 8. Quand aucun mois de
+> l'année ne porte le tarif déclaré, la quantité est posée sur janvier : le désaccord
+> avec le barème apparaît alors seul, sans être mêlé d'annualisation.
 
 > ## La suite est rouge, et il ne faut pas la « réparer »
 >
@@ -88,7 +102,7 @@ main.
 > aligner sur le calcul ferait disparaître le désaccord au lieu de le résoudre, et
 > le test cesserait de tester quoi que ce soit de légal.
 
-Répartition des 17 rouges :
+Répartition des 12 rouges :
 
 | cas | cellules | constat |
 |---|---|---|
@@ -96,10 +110,9 @@ Répartition des 17 rouges :
 | 2 | `_911243` (2024-2025) | n° 3 — tarif SEQE clos trop tôt au barème |
 | 4 | `_911371` (2022-2025) | n° 5 — le bouclier ne lit jamais le tarif ménages |
 | 2 | `_913035` (2024-2025) | n° 5 — idem |
-| 2 | `_914195`, `_914197` (2025) | n° 6 — pas du 1er février lu au 1er janvier |
-| 3 | `_911293`, `_911319`, `_914201` (2025) | n° 8 — tarif infra-annuel moyenné |
 
-Six d'entre eux mettent en cause le **barème** (n° 2 et n° 3), onze le **modèle**.
+Six d'entre eux mettent en cause le **barème** (n° 2 et n° 3), six le **modèle** (n° 5).
+Les cinq rouges des constats n° 6 et n° 8 sont éteints par la bascule mensuelle.
 
 Seules restent écartées les **9 cellules pour lesquelles le modèle n'a ni variable
 ni entrée** : il n'y a alors rien à confronter. Ce sont des lacunes de couverture,
@@ -200,21 +213,22 @@ En 2022, `_911371` porte 136 133 610 MWh : le modèle rend la moitié du montant
 déclaré. **Six cas sont rouges pour ce motif** — `_911371` sur les quatre
 millésimes et `_913035` sur 2024-2025.
 
-### 6. Le pas tarifaire du 1er février est lu au 1er janvier
+### 6. Le pas tarifaire du 1er février est lu au 1er janvier — ✅ clos le 2026-08-13
 
 Les tarifs normaux d'électricité changent au 1er février (32,0625 → 33,70 en 2025).
 Les variables étant en `definition_period = YEAR`, `parameters(period)` rend la
 valeur du 1er janvier. Le modèle applique donc 32,0625 là où les déclarations
 appliquent 33,70 (`_914195`) et 26,23 (`_914197`).
 
-Le contournement existe déjà dans le dépôt — les formules du bouclier forcent
-`Instant((AAAA, 2, 1))` — mais il n'est pas appliqué aux tarifs normaux.
-**`_914195` et `_914197` sont testées et rouges sur 2025.**
+Le contournement existait dans le dépôt — les formules du bouclier forçaient
+`Instant((AAAA, 2, 1))` — mais il n'était pas appliqué aux tarifs normaux.
 
-Depuis la fusion de `feat/periodes-mensuelles`, ces tarifs passent par
-`tarif_moyen_annuel` : le modèle ne rend plus la valeur du 1er janvier mais la
-moyenne des douze mois. Le désaccord change de forme, pas de nature — voir le
-constat n° 8, qui le généralise et donne la seule sortie durable.
+**Clos par la bascule mensuelle.** Les variables de consommation étant en
+`definition_period = MONTH`, la quantité de `_914195` et `_914197` se pose sur un mois
+où s'applique le tarif déclaré, et le modèle le restitue. Les deux cas sont verts. Le
+contournement `Instant((AAAA, 2, 1))` subsiste dans le seul bouclier tarifaire, où il
+tient lieu de tout autre chose — voir le constat n° 5 et le point 11
+d'`ACTIONS_EN_ATTENTE.md`.
 
 ### 7. Bornes des tranches d'électro-intensité : à arbitrer
 
@@ -236,10 +250,10 @@ situation manquante dans
 — **en échec volontaire**, hors CI, à lancer à la demande. À arbitrer contre
 l'article L312-65 du code des impositions sur les biens et services.
 
-### 8. L'hypothèse de consommation uniforme, contredite par les déclarations
+### 8. L'hypothèse de consommation uniforme, contredite par les déclarations — ✅ clos le 2026-08-13
 
 État au 2026-08-12, après fusion de `feat/periodes-mensuelles` (merge `e18a6b7`).
-Constat apparu avec cette fusion — trois cellules qui passaient échouent désormais :
+Constat apparu avec cette fusion — trois cellules qui passaient échouaient alors :
 
 | case | énergie | an | déclaré | moyenne mensuelle | écart |
 |---|---|---|---|---|---|
@@ -281,14 +295,22 @@ Ce sont des montants déclarés : ils vérifient le droit. Les aligner sur la
 convention d'annualisation du modèle graverait cette convention dans des valeurs
 censées la contrôler, et le test cesserait de tester quoi que ce soit de légal.
 
-**La vraie réponse** est `definition_period = MONTH` sur les variables énergies.
-La branche `origin/refactor/energies-periodes-mensuelles` (9 commits d'avance sur
-`main`) porte déjà le terrain : `formula_helpers.py`,
-`taxation_autres_produits_energetiques.py`, `taxation_charbon.py`,
-`taxation_electricite.py`, `taxation_gaz_naturel.py`. Une fois la bascule faite, la
-2040-TIC devient testable au mois — chaque case sur les mois où son tarif
-s'applique — et ce constat se referme, avec le n° 6 et le contournement du
-bouclier.
+**La vraie réponse était** `definition_period = MONTH` sur les variables énergies.
+**Elle est appliquée depuis le 2026-08-13** : les 106 variables de quantité —
+consommations et assiettes — sont mensuelles, avec `set_input_divide_by_period`, et la
+taxe de l'année est la somme des taxes mensuelles. `tarif_moyen_annuel` a cédé la place
+à `accise_annuelle` et `tarif_du_mois`.
+
+Le générateur pose désormais la quantité de chaque case sur un mois où s'applique le
+tarif qu'elle déclare. Les trois cellules ci-dessus sont vertes, ainsi que `_914195` et
+`_914197` du constat n° 6. `_911243` 2025, qui cumulait ce constat et celui du barème,
+ne porte plus que le second : son rapport passe de 9,00 à 10,72, soit exactement
+16,37 / 1,60 puis 17,16 / 1,60.
+
+Trois régimes restent volontairement annuels, leurs bornes mordant sur le cumul de
+l'année et non sur chaque mois — le seuil d'exonération et l'abattement de la TICGN
+d'avant 2008, le plafond de 1 GWh des centres de stockage de données, et le bouclier
+tarifaire, qui encode un basculement de régime et non un changement de tarif.
 
 *À noter pour la suite* : les agrégats Elfe (`ELFE.md`) demandent l'inverse. Elfe
 publie des tarifs **déjà moyennés sur l'année**, donc `tarif_moyen_annuel` lui
@@ -355,11 +377,12 @@ n'est verte que lorsque le calculateur et le barème rejoignent la déclaration.
 2. Arbitrer les points 5 à 7 (modèle), de même. Le point **5 vaut 6 rouges**
    (`_911371` ×4, `_913035` ×2) : `boulier_tarifaire.py` doit lire
    `bouclier_tarifaire.menages` selon la catégorie fiscale.
-3. **Basculer les variables énergies en `definition_period = MONTH`** (point 8).
-   **Vaut 5 rouges** (`_914195`, `_914197`, `_911293`, `_911319`, `_914201`) :
-   c'est ce qui referme les points 6 et 8 d'un coup, supprime le contournement
-   `Instant((AAAA, 2, 1))` du bouclier, et réconcilie cette source avec les
-   agrégats Elfe. Terrain déjà défriché sur
-   `origin/refactor/energies-periodes-mensuelles`.
+3. ~~**Basculer les variables énergies en `definition_period = MONTH`** (point 8).~~
+   **Fait le 2026-08-13** : 5 rouges éteints (`_914195`, `_914197`, `_911293`,
+   `_911319`, `_914201`), points 6 et 8 clos, et la source réconciliée avec les agrégats
+   Elfe — une quantité fournie à l'année reste répartie sur douze mois, ce qui redonne
+   la moyenne dont Elfe a besoin. Le contournement `Instant((AAAA, 2, 1))` subsiste
+   dans le seul bouclier tarifaire : il y encode un basculement de régime, dont le
+   traitement mensuel est un chantier distinct.
 4. Cartographier les majorations TCCFE de janvier 2023.
 5. Élucider les deux écarts de ventilation avec le producteur du fichier micro.
