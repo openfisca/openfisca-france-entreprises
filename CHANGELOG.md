@@ -66,10 +66,26 @@
     `ticfe.categorie_fiscale_petite_et_moyenne_entreprise`. A defaut d'amperage renseigne, le
     tarif « entreprises » s'applique. Cela eteint 6 rouges (`_911371` x4, `_913035` x2) et clot
     le constat 5 d'`AGREGATS_TIC.md`.
-  - Bilan : 307 verts et 6 rouges, contre 296 et 17 avant la bascule. Aucun attendu n'a ete
-    recalcule : ce sont des montants reellement declares. Les 6 rouges restants mettent tous en
-    cause le **bareme**, aucun le modele : `_911237` x4 (tarif gaz 8,43 absent) et `_911243` x2
-    (tarif SEQE clos trop tot). Ils se corrigent dans `baremes-ipp-yaml`.
+  - Bilan intermediaire : 307 verts et 6 rouges, contre 296 et 17 avant la bascule. Aucun attendu
+    n'a ete recalcule : ce sont des montants reellement declares.
+  - Sous-arbre `parameters/energies` remis a l'identique du bareme IPP (359 fichiers communs,
+    identiques octet pour octet). Les tables de coefficients communaux et departementaux des TCFE
+    sont propres au modele et preservees.
+  - **Rupture d'API** : les paliers d'electro-intensite du CIBS passent de
+    `electricite/ticfe/electro_intensive/seuils/electro_intensite_*` a
+    `electricite/accise/tarifs_reduits/electro_intensives/seuils/niveau_*`, et les sous-arbres
+    `electrointensives` sont renommes `electro_intensives`. Les formules sont recablees.
+  - Les paliers sont desormais des **pourcentages** et non des kWh par euro de valeur ajoutee :
+    0,005 / 0,03375 / 0,0675 / 0,135 au lieu de 0,5 / 3,375 / 6,75 / 13,5. La variable
+    `electro_intensite` valant deja un rapport (0,225 dans les tests, soit 22,5 %), elle etait
+    comparee a des seuils cent fois trop grands et tous les etablissements tombaient dans la
+    tranche la plus favorable. Voir l'article L. 312-65 du CIBS.
+  - Consequence assumee : 11 tests passent au rouge, dont `_911329` et `_911331` sur quatre
+    millesimes. Ce n'est pas une regression mais le constat 7 d'`AGREGATS_TIC.md` qui se chiffre :
+    les cases de la declaration sont libellees en kWh par euro de VA, vocabulaire de la TICFE
+    d'avant 2022, quand le modele applique les tranches en pourcentage du CIBS. A arbitrer.
+  - Bilan : 296 verts et 17 rouges. Six tiennent au bareme (`_911237` x4, `_911243` x2), onze a
+    l'arbitrage des paliers d'electro-intensite.
 
 ## 1.1.7 - [#31](https://github.com/openfisca/openfisca-france-entreprises/pull/31)
 

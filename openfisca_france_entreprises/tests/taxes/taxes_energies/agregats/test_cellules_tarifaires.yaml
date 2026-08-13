@@ -76,7 +76,7 @@
     taxe_accise_gaz_naturel_carburant: 25629871.27
 
 # DÉSACCORD — le tarif déclaré ne concorde avec aucun mois du barème.
-# La déclaration applique 8.4300 €/MWh ; le barème porte 8.4500.
+# La déclaration applique 8.4300 €/MWh ; le barème porte 8.4100.
 # Aucun des douze mois de l'année ne porte le tarif déclaré : ce n'est donc
 # pas un artefact d'annualisation, mais un désaccord de fond.
 # La déclaration fait foi : c'est le barème qu'il faut instruire.
@@ -93,7 +93,7 @@
     taxe_accise_gaz_naturel_combustible: 493597111.35
 
 # DÉSACCORD — le tarif déclaré ne concorde avec aucun mois du barème.
-# La déclaration applique 8.4300 €/MWh ; le barème porte 8.4500.
+# La déclaration applique 8.4300 €/MWh ; le barème porte 8.4100.
 # Aucun des douze mois de l'année ne porte le tarif déclaré : ce n'est donc
 # pas un artefact d'annualisation, mais un désaccord de fond.
 # La déclaration fait foi : c'est le barème qu'il faut instruire.
@@ -110,7 +110,7 @@
     taxe_accise_gaz_naturel_combustible: 13622517.51
 
 # DÉSACCORD — le tarif déclaré ne concorde avec aucun mois du barème.
-# La déclaration applique 8.4300 €/MWh ; le barème porte 8.4500.
+# La déclaration applique 8.4300 €/MWh ; le barème porte 8.4100.
 # Aucun des douze mois de l'année ne porte le tarif déclaré : ce n'est donc
 # pas un artefact d'annualisation, mais un désaccord de fond.
 # La déclaration fait foi : c'est le barème qu'il faut instruire.
@@ -127,7 +127,7 @@
     taxe_accise_gaz_naturel_combustible: 124629457.20
 
 # DÉSACCORD — le tarif déclaré ne concorde avec aucun mois du barème.
-# La déclaration applique 8.4300 €/MWh ; le barème porte 8.4500.
+# La déclaration applique 8.4300 €/MWh ; le barème porte 8.4100.
 # Aucun des douze mois de l'année ne porte le tarif déclaré : ce n'est donc
 # pas un artefact d'annualisation, mais un désaccord de fond.
 # La déclaration fait foi : c'est le barème qu'il faut instruire.

@@ -1,0 +1,8 @@
+description: TICPE - produits énergétiques, carburéacteurs type essence
+metadata:
+  label_en: TICPE - Energy products, gasoline-type jet fuels
+  order:
+  - essence_autres_avant_2008
+  - essence_autres_post_2008
+  - essence_carburants_moteur_avion
+  - essence_sous_conditions

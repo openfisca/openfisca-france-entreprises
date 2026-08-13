@@ -268,7 +268,7 @@ ELECTRICITE = [
         case_quantite="_911327",
         cases_montant=("_911328",),
         intitule="Électricité — IEI, consommation > 3 kWh/€ de VA",
-        parametre="energies.electricite.accise.tarifs_reduits.electrointensives.industrie_6_75",
+        parametre="energies.electricite.accise.tarifs_reduits.electro_intensives.industrie_6_75",
         variable="taxe_accise_electricite",
         entrees={
             "assiette_taxe_electricite": ASSIETTE,
@@ -280,7 +280,7 @@ ELECTRICITE = [
         case_quantite="_911329",
         cases_montant=("_911330",),
         intitule="Électricité — IEI, consommation comprise entre 1,5 et 3 kWh/€ de VA",
-        parametre="energies.electricite.accise.tarifs_reduits.electrointensives.industrie_3_375",
+        parametre="energies.electricite.accise.tarifs_reduits.electro_intensives.industrie_3_375",
         variable="taxe_accise_electricite",
         entrees={
             "assiette_taxe_electricite": ASSIETTE,
@@ -296,7 +296,7 @@ ELECTRICITE = [
         case_quantite="_911331",
         cases_montant=("_911332",),
         intitule="Électricité — IEI, consommation < 1,5 kWh/€ de VA",
-        parametre="energies.electricite.accise.tarifs_reduits.electrointensives.industrie_0_5",
+        parametre="energies.electricite.accise.tarifs_reduits.electro_intensives.industrie_0_5",
         variable="taxe_accise_electricite",
         entrees={
             "assiette_taxe_electricite": ASSIETTE,
@@ -309,7 +309,7 @@ ELECTRICITE = [
         case_quantite="_911339",
         cases_montant=("_911340",),
         intitule="Électricité — installation hyper-électro-intensive",
-        parametre="energies.electricite.accise.tarifs_reduits.electrointensives.industrie_concurrence_13_5",
+        parametre="energies.electricite.accise.tarifs_reduits.electro_intensives.industrie_concurrence_13_5",
         variable="taxe_accise_electricite",
         entrees={
             "assiette_taxe_electricite": ASSIETTE,

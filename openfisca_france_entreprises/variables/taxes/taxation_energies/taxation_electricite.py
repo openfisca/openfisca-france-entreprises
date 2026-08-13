@@ -806,7 +806,7 @@ class taxe_electricite_installations_industrielles_hyper_electro_intensives(Vari
             etablissement,
             period,
             lambda mois: (
-                parameters(mois).energies.electricite.ticfe.taux_reduits.electrointensives.hyperelectrointensive
+                parameters(mois).energies.electricite.ticfe.taux_reduits.electro_intensives.hyper_electro_intensive
             ),
         )
 
@@ -826,13 +826,13 @@ class taxe_electricite_installations_industrielles_electro_intensives(Variable):
             return _accise(
                 etablissement,
                 period,
-                lambda mois: choisir(parameters(mois).energies.electricite.ticfe.taux_reduits.electrointensives),
+                lambda mois: choisir(parameters(mois).energies.electricite.ticfe.taux_reduits.electro_intensives),
             )
 
-        ei = parameters(period).energies.electricite.ticfe.electro_intensive
-        taxe_plus_3 = accise_electrointensive(lambda t: t.electrointensive_3kwh_euro_et_plus)
-        taxe_1_5_3 = accise_electrointensive(lambda t: t.electrointensive_1_5_a_3kwh_euro)
-        taxe_moins_1_5 = accise_electrointensive(lambda t: t.electrointensive_1_5_kwh_euro_et_moins)
+        ei = parameters(period).energies.electricite.ticfe.electro_intensives
+        taxe_plus_3 = accise_electrointensive(lambda t: t.electro_intensive_3kwh_euro_et_plus)
+        taxe_1_5_3 = accise_electrointensive(lambda t: t.electro_intensive_1_5_a_3kwh_euro)
+        taxe_moins_1_5 = accise_electrointensive(lambda t: t.electro_intensive_1_5_kwh_euro_et_moins)
         return select(
             [
                 consommation_par_valeur_ajoutee >= ei.seuil_3_kwh_par_va,
@@ -1060,31 +1060,31 @@ class taxe_accise_electricite_electro_intensive_activite_industrielle(Variable):
             "electro_intensive_activite_industrielle",
             period,
         )
-        seuils = parameters(period).energies.electricite.ticfe.electro_intensive.seuils
+        seuils = parameters(period).energies.electricite.accise.tarifs_reduits.electro_intensives.seuils
 
         def accise_electrointensive(choisir):
             return _accise(
                 etablissement,
                 period,
-                lambda mois: choisir(parameters(mois).energies.electricite.accise.tarifs_reduits.electrointensives),
+                lambda mois: choisir(parameters(mois).energies.electricite.accise.tarifs_reduits.electro_intensives),
             )
 
         condition_05 = _and(
             electro_intensive_activite_industrielle,
             electro_intensite != 0,
-            electro_intensite < seuils.electro_intensite_activite_industrielle_seuil_05,
+            electro_intensite < seuils.niveau_0_5,
         )
         condition_3375 = _and(
             electro_intensive_activite_industrielle,
             electro_intensite != 0,
-            electro_intensite >= seuils.electro_intensite_activite_industrielle_seuil_05,
-            electro_intensite < seuils.electro_intensite_tranche_1_max,
+            electro_intensite >= seuils.niveau_0_5,
+            electro_intensite < seuils.niveau_3_375,
         )
         condition_675 = _and(
             electro_intensive_activite_industrielle,
             _or(
                 electro_intensite == 0,
-                electro_intensite >= seuils.electro_intensite_tranche_1_max,
+                electro_intensite >= seuils.niveau_3_375,
             ),
         )
         return select(
@@ -1112,7 +1112,7 @@ class taxe_accise_electricite_electro_intensive_concurrence_internationale(Varia
             return _accise(
                 etablissement,
                 period,
-                lambda mois: choisir(parameters(mois).energies.electricite.accise.tarifs_reduits.electrointensives),
+                lambda mois: choisir(parameters(mois).energies.electricite.accise.tarifs_reduits.electro_intensives),
             )
 
         risque_de_fuite_carbone_eta = etablissement(
@@ -1127,27 +1127,30 @@ class taxe_accise_electricite_electro_intensive_concurrence_internationale(Varia
             "electro_intensive_concurrence_internationale",
             period,
         )
-        seuils = parameters(period).energies.electricite.ticfe.electro_intensive.seuils
+        # Les paliers d'électro-intensité relèvent de l'accise (CIBS) ; le seuil d'intensité
+        # des échanges avec les pays tiers est resté sous la TICFE, dont il est issu.
+        seuils = parameters(period).energies.electricite.accise.tarifs_reduits.electro_intensives.seuils
+        seuils_ticfe = parameters(period).energies.electricite.ticfe.electro_intensives.seuils
 
         condition_13_5 = _and(
             electro_intensive_concurrence_internationale,
-            electro_intensite > seuils.electro_intensite_tranche_3_max,
+            electro_intensite > seuils.niveau_13_5,
             risque_de_fuite_carbone_eta,
-            intensite_echanges_avec_pays_tiers > seuils.intensite_echanges_pays_tiers_min,
+            intensite_echanges_avec_pays_tiers > seuils_ticfe.intensite_echanges_pays_tiers_min,
         )
         condition_6_75 = _and(
             electro_intensive_concurrence_internationale,
-            electro_intensite > seuils.electro_intensite_tranche_2_max,
-            electro_intensite <= seuils.electro_intensite_tranche_3_max,
+            electro_intensite > seuils.niveau_6_75,
+            electro_intensite <= seuils.niveau_13_5,
         )
         condition_3_375 = _and(
             electro_intensive_concurrence_internationale,
-            electro_intensite > seuils.electro_intensite_tranche_1_max,
-            electro_intensite <= seuils.electro_intensite_tranche_2_max,
+            electro_intensite > seuils.niveau_3_375,
+            electro_intensite <= seuils.niveau_6_75,
         )
         condition_0_5 = _and(
             electro_intensive_concurrence_internationale,
-            electro_intensite <= seuils.electro_intensite_tranche_1_max,
+            electro_intensite <= seuils.niveau_3_375,
         )
         return select(
             [condition_13_5, condition_6_75, condition_3_375, condition_0_5],

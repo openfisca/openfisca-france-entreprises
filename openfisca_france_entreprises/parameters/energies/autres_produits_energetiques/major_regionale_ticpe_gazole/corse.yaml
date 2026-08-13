@@ -11,6 +11,6 @@ values:
   2022-01-01:
     value: 1.15
 metadata:
-  short_label: Basse Normandie
+  short_label: Corse
   ipp_csv_id: maj_ticpe_die_cor
   unit: currency

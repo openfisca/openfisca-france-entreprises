@@ -1,0 +1,5 @@
+description: Accise sur les produits énergétiques autres que les gaz naturels et les charbons, tarifs applicables aux gaz de pétrole et autres hydrocarbures gazeux liquéfiés (à l’exception du gaz naturel) utilisés comme combustibles
+metadata:
+  label_en: Excise duty rates on liquefied petroleum gases and other liquefied gaseous hydrocarbons, excluding natural gas, used as heating fuels
+  order:
+  - gaz_petrole_liquefies

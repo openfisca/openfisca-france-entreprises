@@ -1,4 +1,4 @@
-description: Taxe départementale sur la consommation finale d'électricité
+description: Taxe départementale sur la consommation finale d'électricité (TDCFE), coefficient multiplicateur maximal
 values:
   2011-01-01:
     value: 4

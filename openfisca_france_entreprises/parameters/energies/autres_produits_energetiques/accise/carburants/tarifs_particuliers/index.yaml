@@ -1,0 +1,9 @@
+description: Accise sur les produits énergétiques autres que les gaz naturels et les charbons en outre-mer, tarifs particuliers pour certains carburants
+metadata:
+  label_en: Special excise duty rates on certain motor fuels in overseas departments and regions
+  order:
+  - essence_aviation
+  - essence_sp95_e10
+  - ethanol_diesel_ed95
+  - gazole_b100
+  - superethanol_e85

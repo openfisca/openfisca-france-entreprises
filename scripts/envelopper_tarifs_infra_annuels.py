@@ -22,7 +22,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from audit_tarifs_infra_annuels import (  # noqa: E402
+from audit_tarifs_infra_annuels import (
     FORMULES,
     Visiteur,
     infra_annuels,
