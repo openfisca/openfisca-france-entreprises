@@ -5,7 +5,7 @@ A variable is a property of an Entity such as a Etablissement, a UniteLegale…
 See https://openfisca.org/doc/key-concepts/variables.html
 """
 
-from openfisca_core.model_api import YEAR, Variable, select
+from openfisca_core.model_api import MONTH, YEAR, Variable, select
 
 from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.taxes.formula_helpers import (
@@ -14,7 +14,7 @@ from openfisca_france_entreprises.variables.taxes.formula_helpers import (
     _not,
     _or,
     tarif_avec_repli,
-    tarif_moyen_annuel,
+    tarif_du_mois,
 )
 
 
@@ -55,3036 +55,3483 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
     # consommation_supercarburant_e85
     # ^exempté
     def formula_2000_01_01(etablissement, period, parameters):
-        return [
-            # chaque objet dans la liste est positioné selon sa position dans le code législatif
-            etablissement("consommation_goudrons_utilises_comme_combustibles", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.goudrons_utilises_comme_combustibles
-                ),
-            )
-            + etablissement(
-                "consommation_white_spirit_utilise_comme_combustible",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
-            + etablissement(
-                "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
-                ),
-            )
-            + etablissement(
-                "consommation_huiles_legeres_preparation_essence_aviation",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
-                ),
-            )
-            + etablissement("consommation_supercarburant_e5", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5,
-            )
-            + etablissement("consommation_super_ars", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
-                ),
-            )
-            # + etablissement('consommation_supercarburant_e10', period) *
-            #     parameters(period).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
-            + etablissement(
-                "consommation_carbureacteurs_essence_carburants_avion_hL",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
-                ),
-            )
-            # + etablissement('consommation_carbureacteurs_essence_autres_hL', period) *
-            #     ...ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
-            #     (combiner en une variable de consommation)
-            + etablissement(
-                "consommation_huiles_legeres_combustible_carburant_ou_autres",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
-                ),
-            )
-            + etablissement(
-                "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
-                ),
-            )
-            + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
-                ),
-            )
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_autres_hL",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_avant_2008
-                ),
-            )
-            + etablissement("consommation_huiles_moyennes_autres", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
-            + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
-            + etablissement("consommation_gazoles", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
-                ),
-            )
-            + etablissement("consommation_fioul_lourd_100kg_net", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
-                ),
-            )
-            + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
-            # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) *
-            # parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
-            + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
-            # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) *
-            # parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
-            + etablissement(
-                "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
-            # + etablissement('consommation_supercarburant_e85', period) *
-            #     parameters(period).energies.autres_produits_energetiques.ticpe.super_e85
-            # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
-            # parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     carburant_constitue_minimum_90_alcool_ethylique_agricole
-            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
-            # parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     carburant_constitue_100_estars_methyliques_acides_gras
-            + etablissement(
-                "consommation_gazoles_carburants_sous_conditions_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_propane_carburants_sous_conditions_100kg_nets",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_butanes_liquefies_sous_condition_100kg_nets",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
-                ),
-            )
-            + etablissement(
-                "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
-                ),
-                defaut_si_absent=0,
-            )
-            + etablissement(
-                "consommation_emulsion_eau_gazoles_autres_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres,
-                defaut_si_absent=0,
-            )
-            + etablissement(
-                "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
-                ),
-            )
-            # + etablissement(
-            #     'consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires',
-            #     period
-            # ) * (
-            #     parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
-            # )
-            + etablissement(
-                "consommation_carbureacteurs_essence_sous_conditions_hL",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_sous_conditions_hL",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_sous_conditions
-                ),
-            ),
-        ]
-
-    # 2007
-    # (par rapport à précédement) majoration régionale pour consommation_gazole
-    # et consommation_supercarburant_e5, en plus de la réfaction
-    # NB : quelquels changements dans les indices
-    # par rapport aux années suivantes; ces changements s'appliquent aux années précédents :
-    # 1° Huiles légères, indice 4 bis, hectolitre, taxe intérieure applicable
-    # au fioul domestique visé à l'indice 20.
-    # parameters(period).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
-    #
-    # exempté :
-    # parameters(period).energies.autres_produits_energetiques.ticpe.
-    #     gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
-    #
-    # remarques peu importantes :
-    # ---huiles lubrifiantes et autres, exemption
-    # Ex 2715-00, Bitumes fluxés ("cut-backs"), émulsions de bitume de pétrole
-    # et similaires : indice 47, exemption.
-    # 3403-11, Préparations pour le traitement des matières textiles, du cuir,
-    # des pelleteries ou d'autres matières, contenant moins de 70 % en poids
-    # d'huiles de pétrole ou de minéraux bitumineux : indice 48, exemption.
-    # Ex 3403-19, Préparations lubrifiantes contenant moins de 70 % en poids
-    # d'huiles de pétrole ou de minéraux bitumineux : indice 49, exemption.
-    # 3811 21-00, Additifs pour huiles lubrifiantes, contenant des huiles de
-    # pétrole ou de minéraux bitumineux : indice 51, exemption.
-    #
-    # il a pas de tariff explicite après 2008, non plus
-    #
-    #
-    def formula_2007_01_01(etablissement, period, parameters):
-        return [
-            # chaque objet dans la liste est positioné selon sa position dans le code législatif
-            etablissement("consommation_goudrons_utilises_comme_combustibles", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.goudrons_utilises_comme_combustibles
-                ),
-            )
-            + etablissement(
-                "consommation_white_spirit_utilise_comme_combustible",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
-            + etablissement(
-                "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
-                ),
-            )
-            + etablissement(
-                "consommation_huiles_legeres_preparation_essence_aviation",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
-                ),
-            )
-            + etablissement("consommation_supercarburant_e5", period)
-            * (
-                tarif_moyen_annuel(
+        def accise_du_mois(period):
+            """Accise due au titre du mois : quantités du mois, tarifs du mois."""
+            return (
+                # chaque objet dans la liste est positioné selon sa position dans le code législatif
+                etablissement("consommation_goudrons_utilises_comme_combustibles", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.goudrons_utilises_comme_combustibles
+                    ),
+                )
+                + etablissement(
+                    "consommation_white_spirit_utilise_comme_combustible",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
+                + etablissement(
+                    "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
+                    ),
+                )
+                + etablissement(
+                    "consommation_huiles_legeres_preparation_essence_aviation",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
+                    ),
+                )
+                + etablissement("consommation_supercarburant_e5", period)
+                * tarif_du_mois(
                     period,
                     lambda mois: (
                         parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
                     ),
                 )
+                + etablissement("consommation_super_ars", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
+                    ),
+                )
+                # + etablissement('consommation_supercarburant_e10', period) *
+                #     parameters(period).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
                 + etablissement(
-                    "ticpe_majoration_regionale_supercarburant_95_98",
+                    "consommation_carbureacteurs_essence_carburants_avion_hL",
                     period,
                 )
-            )
-            + etablissement("consommation_super_ars", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
-                ),
-            )
-            # + etablissement('consommation_supercarburant_e10', period) *
-            #     parameters(period).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
-            + etablissement(
-                "consommation_carbureacteurs_essence_carburants_avion_hL",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
-                ),
-            )
-            + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_avant_2008
-                ),
-            )
-            + etablissement(
-                "consommation_huiles_legeres_combustible_carburant_ou_autres",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
-                ),
-            )
-            + etablissement(
-                "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
-                ),
-            )
-            + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
-                ),
-            )
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_autres_hL",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_avant_2008
-                ),
-            )
-            + etablissement("consommation_huiles_moyennes_autres", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
-            + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
-            + etablissement("consommation_gazoles", period)
-            * (
-                tarif_moyen_annuel(
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
+                    ),
+                )
+                # + etablissement('consommation_carbureacteurs_essence_autres_hL', period) *
+                #     ...ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
+                #     (combiner en une variable de consommation)
+                + etablissement(
+                    "consommation_huiles_legeres_combustible_carburant_ou_autres",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
+                    ),
+                )
+                + etablissement(
+                    "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
+                    ),
+                )
+                + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
+                    ),
+                )
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_autres_hL",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_avant_2008
+                    ),
+                )
+                + etablissement("consommation_huiles_moyennes_autres", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
+                + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
+                + etablissement("consommation_gazoles", period)
+                * tarif_du_mois(
                     period,
                     lambda mois: (
                         parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
                     ),
                 )
-                + etablissement("ticpe_majoration_regionale_gazole", period)
-            )
-            + etablissement("consommation_fioul_lourd_100kg_net", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
-                ),
-            )
-            + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
-            # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) *
-            # parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
-            + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
-            # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) *
-            # parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
-            + etablissement(
-                "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
-            + etablissement("consommation_supercarburant_e85", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.super_e85,
-            )
-            # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
-            #     parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     carburant_constitue_minimum_90_alcool_ethylique_agricole
-            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
-            #     parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     carburant_constitue_100_estars_methyliques_acides_gras
-            + etablissement(
-                "consommation_gazoles_carburants_sous_conditions_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_propane_carburants_sous_conditions_100kg_nets",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_butanes_liquefies_sous_condition_100kg_nets",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
-                ),
-            )
-            + etablissement(
-                "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
-                ),
-                defaut_si_absent=0,
-            )
-            + etablissement(
-                "consommation_emulsion_eau_gazoles_autres_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres,
-                defaut_si_absent=0,
-            )
-            + etablissement(
-                "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
-                ),
-            )
-            # + etablissement(
-            #     'consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires',
-            #     period
-            # ) * (
-            #     parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
-            # )
-            + etablissement(
-                "consommation_carbureacteurs_essence_sous_conditions_hL",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_sous_conditions_hL",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_sous_conditions
-                ),
-            ),
-        ]
-
-    # 2008
-    # par rapport aux années suivantes; ces changements s'appliquent aux années précédents :
-    #  consommation_supercarburant_e10 exempté
-    def formula_2008_01_01(etablissement, period, parameters):
-        return [
-            # chaque objet dans la liste est positioné selon sa position dans le code législatif
-            etablissement("consommation_goudrons_utilises_comme_combustibles", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.goudrons_utilises_comme_combustibles
-                ),
-            )
-            + etablissement(
-                "consommation_white_spirit_utilise_comme_combustible",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
-            + etablissement(
-                "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
-                ),
-            )
-            + etablissement(
-                "consommation_huiles_legeres_preparation_essence_aviation",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
-                ),
-            )
-            + etablissement("consommation_supercarburant_e5", period)
-            * (
-                tarif_moyen_annuel(
+                + etablissement("consommation_fioul_lourd_100kg_net", period)
+                * tarif_du_mois(
                     period,
                     lambda mois: (
-                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
+                    ),
+                )
+                + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
+                # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets',
+                #     period) * parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
+                + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
+                # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets',
+                #     period) * parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
+                + etablissement(
+                    "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
+                # + etablissement('consommation_supercarburant_e85', period) *
+                #     parameters(period).energies.autres_produits_energetiques.ticpe.super_e85
+                # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
+                # parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     carburant_constitue_minimum_90_alcool_ethylique_agricole
+                # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
+                # parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     carburant_constitue_100_estars_methyliques_acides_gras
+                + etablissement(
+                    "consommation_gazoles_carburants_sous_conditions_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
                     ),
                 )
                 + etablissement(
-                    "ticpe_majoration_regionale_supercarburant_95_98",
+                    "consommation_propane_carburants_sous_conditions_100kg_nets",
                     period,
                 )
-            )
-            + etablissement("consommation_super_ars", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
-                ),
-            )
-            + etablissement("consommation_supercarburant_e10", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
-                ),
-            )
-            + etablissement("ticpe_majoration_regionale_supercarburant_e10", period)
-            + etablissement(
-                "consommation_carbureacteurs_essence_carburants_avion_hL",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
-                ),
-            )
-            + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
-            + etablissement(
-                "consommation_huiles_legeres_combustible_carburant_ou_autres",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
-                ),
-            )
-            + etablissement(
-                "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
-                ),
-            )
-            + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
-                ),
-            )
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_autres_hL",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
-            + etablissement("consommation_huiles_moyennes_autres", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
-            + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
-            + etablissement("consommation_gazoles", period)
-            * (
-                tarif_moyen_annuel(
+                * tarif_du_mois(
                     period,
-                    lambda mois: (
-                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
-                    ),
-                )
-                + etablissement("ticpe_majoration_regionale_gazole", period)
-            )
-            + etablissement("consommation_fioul_lourd_100kg_net", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
-                ),
-            )
-            + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
-            # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) *
-            # parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
-            + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
-            # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) *
-            # parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
-            + etablissement(
-                "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
-            + etablissement("consommation_supercarburant_e85", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.super_e85,
-            )
-            # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
-            #     parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     carburant_constitue_minimum_90_alcool_ethylique_agricole
-            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
-            #     parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     carburant_constitue_100_estars_methyliques_acides_gras
-            + etablissement(
-                "consommation_gazoles_carburants_sous_conditions_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_propane_carburants_sous_conditions_100kg_nets",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_butanes_liquefies_sous_condition_100kg_nets",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
-                ),
-            )
-            + etablissement(
-                "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
-                ),
-                defaut_si_absent=0,
-            )
-            + etablissement(
-                "consommation_emulsion_eau_gazoles_autres_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres,
-                defaut_si_absent=0,
-            )
-            + etablissement(
-                "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
-                ),
-            )
-            + etablissement(
-                "consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_sous_conditions_aux_moteurs_stationnaires
-                ),
-            )
-            + etablissement(
-                "consommation_carbureacteurs_essence_sous_conditions_hL",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_sous_conditions_hL",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_sous_conditions
-                ),
-            ),
-        ]
-
-    # *** TODO : vérifie quand e10 s'est apparu 2011 pas 2012 ?
-    # 2012
-    # par rapport à précédement,
-    # la majoration régionale inclus désormais 11 ter, consommation_supercarburant_e10
-    # par rapport aux années suivantes; ces changements s'appliquent aux années précédents :
-    # ajouté
-    # ...ticpe.huiles_legeres.carbureacteurs_essence.essence_sous_conditions
-    # ...ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_sous_conditions
-    def formula_2012_01_01(etablissement, period, parameters):
-        return [
-            # chaque objet dans la liste est positioné selon sa position dans le code législatif
-            etablissement("consommation_goudrons_utilises_comme_combustibles", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.goudrons_utilises_comme_combustibles
-                ),
-            )
-            + etablissement(
-                "consommation_white_spirit_utilise_comme_combustible",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
-            + etablissement(
-                "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
-                ),
-            )
-            + etablissement(
-                "consommation_huiles_legeres_preparation_essence_aviation",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
-                ),
-            )
-            + etablissement("consommation_supercarburant_e5", period)
-            * (
-                tarif_moyen_annuel(
-                    period,
-                    lambda mois: (
-                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
-                    ),
-                )
-                + etablissement(
-                    "ticpe_majoration_regionale_supercarburant_95_98",
-                    period,
-                )
-            )
-            + etablissement("consommation_super_ars", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
-                ),
-            )
-            + etablissement("consommation_supercarburant_e10", period)
-            * (
-                tarif_moyen_annuel(
-                    period,
-                    lambda mois: (
-                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
-                    ),
-                )
-                + etablissement("ticpe_majoration_regionale_supercarburant_e10", period)
-            )
-            + etablissement(
-                "consommation_carbureacteurs_essence_carburants_avion_hL",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
-                ),
-            )
-            + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
-            + etablissement(
-                "consommation_huiles_legeres_combustible_carburant_ou_autres",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
-                ),
-            )
-            + etablissement(
-                "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
-                ),
-            )
-            + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
-                ),
-            )
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_autres_hL",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
-            + etablissement("consommation_huiles_moyennes_autres", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
-            + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
-            + etablissement("consommation_gazoles", period)
-            * (
-                tarif_moyen_annuel(
-                    period,
-                    lambda mois: (
-                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
-                    ),
-                )
-                + etablissement("ticpe_majoration_regionale_gazole", period)
-            )
-            + etablissement("consommation_fioul_lourd_100kg_net", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
-                ),
-            )
-            + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
-            # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) *
-            # parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
-            + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
-            # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) *
-            # parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
-            + etablissement(
-                "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
-            + etablissement("consommation_supercarburant_e85", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.super_e85,
-            )
-            # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
-            #     parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     carburant_constitue_minimum_90_alcool_ethylique_agricole
-            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
-            #     parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     carburant_constitue_100_estars_methyliques_acides_gras
-            + etablissement(
-                "consommation_gazoles_carburants_sous_conditions_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_propane_carburants_sous_conditions_100kg_nets",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_butanes_liquefies_sous_condition_100kg_nets",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
-                ),
-            )
-            + etablissement(
-                "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
-                ),
-                defaut_si_absent=0,
-            )
-            + etablissement(
-                "consommation_emulsion_eau_gazoles_autres_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres,
-                defaut_si_absent=0,
-            )
-            + etablissement(
-                "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
-                ),
-            )
-            + etablissement(
-                "consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_sous_conditions_aux_moteurs_stationnaires
-                ),
-            )
-            + etablissement(
-                "consommation_carbureacteurs_essence_sous_conditions_hL",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_sous_conditions_hL",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_sous_conditions
-                ),
-            ),
-        ]
-
-    # 2014
-    # pas de changement par rapport à 2015
-    # 2015:
-    # pas de changement par rapport à 2016
-    # 2016:
-    # consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole
-    # ^exempté en 2016 et celles d'avant
-    def formula_2014_01_01(etablissement, period, parameters):
-        return [
-            # chaque objet dans la liste est positioné selon sa position dans le code législatif
-            etablissement("consommation_goudrons_utilises_comme_combustibles", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.goudrons_utilises_comme_combustibles
-                ),
-            )
-            + etablissement(
-                "consommation_white_spirit_utilise_comme_combustible",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
-            + etablissement(
-                "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
-                ),
-            )
-            + etablissement(
-                "consommation_huiles_legeres_preparation_essence_aviation",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
-                ),
-            )
-            + etablissement("consommation_supercarburant_e5", period)
-            * (
-                tarif_moyen_annuel(
-                    period,
-                    lambda mois: (
-                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
-                    ),
-                )
-                + etablissement(
-                    "ticpe_majoration_regionale_supercarburant_95_98",
-                    period,
-                )
-            )
-            + etablissement("consommation_super_ars", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
-                ),
-            )
-            + etablissement("consommation_supercarburant_e10", period)
-            * (
-                tarif_moyen_annuel(
-                    period,
-                    lambda mois: (
-                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
-                    ),
-                )
-                + etablissement("ticpe_majoration_regionale_supercarburant_e10", period)
-            )
-            + etablissement(
-                "consommation_carbureacteurs_essence_carburants_avion_hL",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
-                ),
-            )
-            + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
-            + etablissement(
-                "consommation_huiles_legeres_combustible_carburant_ou_autres",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
-                ),
-            )
-            + etablissement(
-                "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
-                ),
-            )
-            + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
-                ),
-            )
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_autres_hL",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
-            + etablissement("consommation_huiles_moyennes_autres", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
-            + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
-            + etablissement("consommation_gazoles", period)
-            * (
-                tarif_moyen_annuel(
-                    period,
-                    lambda mois: (
-                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
-                    ),
-                )
-                + etablissement("ticpe_majoration_regionale_gazole", period)
-            )
-            + etablissement("consommation_fioul_lourd_100kg_net", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
-                ),
-            )
-            + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
-            # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) *
-            # parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
-            + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
-            # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) *
-            # parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
-            + etablissement(
-                "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
-            + etablissement("consommation_supercarburant_e85", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.super_e85,
-            )
-            # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
-            #     parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     carburant_constitue_minimum_90_alcool_ethylique_agricole
-            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
-            #     parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     carburant_constitue_100_estars_methyliques_acides_gras
-            + etablissement(
-                "consommation_gazoles_carburants_sous_conditions_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_propane_carburants_sous_conditions_100kg_nets",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_butanes_liquefies_sous_condition_100kg_nets",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
-                ),
-            )
-            + etablissement(
-                "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
-                ),
-                defaut_si_absent=0,
-            )
-            + etablissement(
-                "consommation_emulsion_eau_gazoles_autres_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres,
-                defaut_si_absent=0,
-            )
-            + etablissement(
-                "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
-                ),
-            )
-            + etablissement(
-                "consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_sous_conditions_aux_moteurs_stationnaires
-                ),
-            ),
-            # etablissement('', period) * parameters(period).
-            # etablissement('', period) * parameters(period).
-        ]
-
-    # 2017:
-    # parameters(period).energies.autres_produits_energetiques.ticpe.
-    #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
-    # ^est exempté, également pendant les années précédantes
-    # parameters(period).energies.autres_produits_energetiques.ticpe.
-    #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
-    # ^également pour ça
-    # consommation_carburant_constitue_100_estars_methyliques_acides_gras
-    # parameters\energies\autres_produits_energetiques\ticpe\gazole\gazole_b_10_hectolitre.yaml
-    # ^également
-    def formula_2017_01_01(etablissement, period, parameters):
-        return [
-            # chaque objet dans la liste est positioné selon sa position dans le code législatif
-            etablissement("consommation_goudrons_utilises_comme_combustibles", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.goudrons_utilises_comme_combustibles
-                ),
-            )
-            + etablissement(
-                "consommation_white_spirit_utilise_comme_combustible",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
-            + etablissement(
-                "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
-                ),
-            )
-            + etablissement(
-                "consommation_huiles_legeres_preparation_essence_aviation",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
-                ),
-            )
-            + etablissement("consommation_supercarburant_e5", period)
-            * (
-                tarif_moyen_annuel(
-                    period,
-                    lambda mois: (
-                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
-                    ),
-                )
-                + etablissement(
-                    "ticpe_majoration_regionale_supercarburant_95_98",
-                    period,
-                )
-            )
-            + etablissement("consommation_super_ars", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
-                ),
-            )
-            + etablissement("consommation_supercarburant_e10", period)
-            * (
-                tarif_moyen_annuel(
-                    period,
-                    lambda mois: (
-                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
-                    ),
-                )
-                + etablissement("ticpe_majoration_regionale_supercarburant_e10", period)
-            )
-            + etablissement(
-                "consommation_carbureacteurs_essence_carburants_avion_hL",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
-                ),
-            )
-            + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
-            + etablissement(
-                "consommation_huiles_legeres_combustible_carburant_ou_autres",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
-                ),
-            )
-            + etablissement(
-                "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
-                ),
-            )
-            + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
-                ),
-            )
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_autres_hL",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
-            + etablissement("consommation_huiles_moyennes_autres", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
-            + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
-            + etablissement("consommation_gazoles", period)
-            * (
-                tarif_moyen_annuel(
-                    period,
-                    lambda mois: (
-                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
-                    ),
-                )
-                + etablissement("ticpe_majoration_regionale_gazole", period)
-            )
-            + etablissement("consommation_fioul_lourd_100kg_net", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
-                ),
-            )
-            + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
-            # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets', period) *
-            # parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
-            + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
-            # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets', period) *
-            # parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
-            + etablissement(
-                "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
-            + etablissement("consommation_supercarburant_e85", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.super_e85,
-            )
-            + etablissement(
-                "consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.carburant_constitue_minimum_90_alcool_ethylique_agricole
-            # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
-            #     parameters(period).energies.autres_produits_energetiques.ticpe.
-            #     carburant_constitue_100_estars_methyliques_acides_gras
-            + etablissement(
-                "consommation_gazoles_carburants_sous_conditions_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_propane_carburants_sous_conditions_100kg_nets",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_butanes_liquefies_sous_condition_100kg_nets",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
-                ),
-            )
-            + etablissement(
-                "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
-                ),
-                defaut_si_absent=0,
-            )
-            + etablissement(
-                "consommation_emulsion_eau_gazoles_autres_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres,
-                defaut_si_absent=0,
-            )
-            + etablissement("consommation_gazole_b_10_hectolitre", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_b_10
-            + etablissement(
-                "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
-                ),
-            )
-            + etablissement(
-                "consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_sous_conditions_aux_moteurs_stationnaires
-                ),
-            ),
-            # etablissement('', period) * parameters(period).
-            # etablissement('', period) * parameters(period).
-        ]
-
-    # 2018: pareil que 2019
-    # 2019 : par rapport à 2020,
-    # parameters(period).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_b_10
-    # parameters(period).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
-    # parameters(period).energies.autres_produits_energetiques.ticpe.
-    #     gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
-    def formula_2018_01_01(etablissement, period, parameters):
-        return [
-            # chaque objet dans la liste est positioné selon sa position dans le code législatif
-            etablissement("consommation_goudrons_utilises_comme_combustibles", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.goudrons_utilises_comme_combustibles
-                ),
-            )
-            + etablissement(
-                "consommation_white_spirit_utilise_comme_combustible",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
-            + etablissement(
-                "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
-                ),
-            )
-            + etablissement(
-                "consommation_huiles_legeres_preparation_essence_aviation",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
-                ),
-            )
-            + etablissement("consommation_supercarburant_e5", period)
-            * (
-                tarif_moyen_annuel(
-                    period,
-                    lambda mois: (
-                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
-                    ),
-                )
-                + etablissement(
-                    "ticpe_majoration_regionale_supercarburant_95_98",
-                    period,
-                )
-            )
-            + etablissement("consommation_super_ars", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
-                ),
-            )
-            + etablissement("consommation_supercarburant_e10", period)
-            * (
-                tarif_moyen_annuel(
-                    period,
-                    lambda mois: (
-                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
-                    ),
-                )
-                + etablissement("ticpe_majoration_regionale_supercarburant_e10", period)
-            )
-            + etablissement(
-                "consommation_carbureacteurs_essence_carburants_avion_hL",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
-                ),
-            )
-            + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
-            + etablissement(
-                "consommation_huiles_legeres_combustible_carburant_ou_autres",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
-                ),
-            )
-            + etablissement(
-                "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
-                ),
-            )
-            + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
-                ),
-            )
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_autres_hL",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
-            + etablissement("consommation_huiles_moyennes_autres", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
-            + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
-            + etablissement("consommation_gazoles", period)
-            * (
-                tarif_moyen_annuel(
-                    period,
-                    lambda mois: (
-                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
-                    ),
-                )
-                + etablissement("ticpe_majoration_regionale_gazole", period)
-            )
-            + etablissement("consommation_fioul_lourd_100kg_net", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
-                ),
-            )
-            + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
-            + etablissement(
-                "consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.usages_autres_que_comme_carburant
-            + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
-            + etablissement(
-                "consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.usages_autres_que_comme_carburant
-            + etablissement(
-                "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
-            + etablissement("consommation_supercarburant_e85", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.super_e85,
-            )
-            + etablissement(
-                "consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.carburant_constitue_minimum_90_alcool_ethylique_agricole
-            + etablissement(
-                "consommation_carburant_constitue_100_estars_methyliques_acides_gras",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.carburant_constitue_100_esters_methyliques_acides_gras
-            + etablissement(
-                "consommation_gazoles_carburants_sous_conditions_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_propane_carburants_sous_conditions_100kg_nets",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_butanes_liquefies_sous_condition_100kg_nets",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
-                ),
-            )
-            + etablissement(
-                "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
-                ),
-            )
-            + etablissement(
-                "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
-                ),
-                defaut_si_absent=0,
-            )
-            + etablissement(
-                "consommation_emulsion_eau_gazoles_autres_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres,
-                defaut_si_absent=0,
-            )
-            + etablissement("consommation_gazole_b_10_hectolitre", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_b_10
-            + etablissement(
-                "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
-                ),
-            )
-            + etablissement(
-                "consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_sous_conditions_aux_moteurs_stationnaires
-                ),
-            ),
-            # etablissement('', period) * parameters(period).
-            # etablissement('', period) * parameters(period).
-        ]
-
-    # 2020 : par rapport à 2021,
-    # carburants_sous_conditions_hectolitre,
-    # sous_conditions_100kg_nets (propane)
-    # ...ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
-    #
-    # ...ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
-    #
-    # parameters(period).energies.autres_produits_energetiques.ticpe.
-    #     autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions_100kg
-    # (en dessous est un nouveau catagorie)
-    # parameters(period).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
-    #
-    # parameters(period).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres
-    def formula_2020_01_01(etablissement, period, parameters):
-        return [
-            # chaque objet dans la liste est positioné selon sa position dans le code législatif
-            etablissement("consommation_goudrons_utilises_comme_combustibles", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.goudrons_utilises_comme_combustibles
-                ),
-            )
-            + etablissement(
-                "consommation_white_spirit_utilise_comme_combustible",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
-            + etablissement(
-                "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
-                ),
-            )
-            + etablissement(
-                "consommation_huiles_legeres_preparation_essence_aviation",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
-                ),
-            )
-            + etablissement("consommation_supercarburant_e5", period)
-            * (
-                tarif_moyen_annuel(
-                    period,
-                    lambda mois: (
-                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
-                    ),
-                )
-                + etablissement(
-                    "ticpe_majoration_regionale_supercarburant_95_98",
-                    period,
-                )
-            )
-            + etablissement("consommation_super_ars", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
-                ),
-            )
-            + etablissement("consommation_supercarburant_e10", period)
-            * (
-                tarif_moyen_annuel(
-                    period,
-                    lambda mois: (
-                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
-                    ),
-                )
-                + etablissement("ticpe_majoration_regionale_supercarburant_e10", period)
-            )
-            + etablissement(
-                "consommation_carbureacteurs_essence_carburants_avion_hL",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
-                ),
-            )
-            + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
-            + etablissement(
-                "consommation_huiles_legeres_combustible_carburant_ou_autres",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
-                ),
-            )
-            + etablissement(
-                "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
-                ),
-            )
-            + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
-                ),
-            )
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_autres_hL",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
-            + etablissement("consommation_huiles_moyennes_autres", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
-            + etablissement(
-                "consommation_gazoles_carburants_sous_conditions_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
-                ),
-            )
-            + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
-            + etablissement("consommation_gazoles", period)
-            * (
-                tarif_moyen_annuel(
-                    period,
-                    lambda mois: (
-                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
-                    ),
-                )
-                + etablissement("ticpe_majoration_regionale_gazole", period)
-            )
-            + etablissement("consommation_fioul_lourd_100kg_net", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
-                ),
-            )
-            + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
-            + etablissement(
-                "consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.usages_autres_que_comme_carburant
-            + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
-            + etablissement(
-                "consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.usages_autres_que_comme_carburant
-            + etablissement(
-                "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
-            + etablissement("consommation_supercarburant_e85", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.super_e85,
-            )
-            + etablissement(
-                "consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.carburant_constitue_minimum_90_alcool_ethylique_agricole
-            + etablissement(
-                "consommation_carburant_constitue_100_estars_methyliques_acides_gras",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.carburant_constitue_100_esters_methyliques_acides_gras
-            # additions, en plus de 2021
-            #
-            # Les lignes GPL « sous condition d'emploi » (indices 30 bis, 31 bis, 33 bis) sortent
-            # du tableau B au 2020-07-01, art. 60 I 1° LF 2020, sans article successeur : ces
-            # consommations relèvent ensuite du tarif normal (30 ter, 31 ter, 34), et non d'une
-            # exonération. D'où le repli, et non defaut_si_absent=0. Cf. tarif_avec_repli.
-            + etablissement(
-                "consommation_propane_carburants_sous_conditions_100kg_nets",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                tarif_avec_repli(
                     lambda mois: (
                         parameters(
                             mois
                         ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
                     ),
-                    lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
-                    ),
-                ),
-            )
-            + etablissement(
-                "consommation_butanes_liquefies_sous_condition_100kg_nets",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                tarif_avec_repli(
+                )
+                + etablissement(
+                    "consommation_butanes_liquefies_sous_condition_100kg_nets",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
                     lambda mois: (
                         parameters(
                             mois
                         ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
                     ),
-                    lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
-                    ),
-                ),
-            )
-            + etablissement(
-                "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                tarif_avec_repli(
+                )
+                + etablissement(
+                    "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
                     lambda mois: (
                         parameters(
                             mois
                         ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
                     ),
+                )
+                + etablissement(
+                    "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
+                    ),
+                    defaut_si_absent=0,
+                )
+                + etablissement(
+                    "consommation_emulsion_eau_gazoles_autres_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres
+                    ),
+                    defaut_si_absent=0,
+                )
+                + etablissement(
+                    "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
                     lambda mois: (
                         parameters(
                             mois
-                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
+                        ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
                     ),
-                ),
-            )
-            + etablissement(
-                "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
-                ),
-                defaut_si_absent=0,
-            )
-            + etablissement(
-                "consommation_emulsion_eau_gazoles_autres_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres,
-                defaut_si_absent=0,
-            ),
-        ]
-
-    def formula_2021_01_01(etablissement, period, parameters):
-        return [
-            # chaque objet dans la liste est positioné selon sa position dans le code législatif
-            etablissement("consommation_goudrons_utilises_comme_combustibles", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.goudrons_utilises_comme_combustibles
-                ),
-            )
-            + etablissement(
-                "consommation_white_spirit_utilise_comme_combustible",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
-            + etablissement(
-                "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
-                ),
-            )
-            + etablissement(
-                "consommation_huiles_legeres_preparation_essence_aviation",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
-                ),
-            )
-            + etablissement("consommation_supercarburant_e5", period)
-            * (
-                tarif_moyen_annuel(
+                )
+                # + etablissement(
+                #     'consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires',
+                #     period
+                # ) * (
+                #     parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
+                # )
+                + etablissement(
+                    "consommation_carbureacteurs_essence_sous_conditions_hL",
+                    period,
+                )
+                * tarif_du_mois(
                     period,
                     lambda mois: (
-                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_sous_conditions
                     ),
                 )
                 + etablissement(
-                    "ticpe_majoration_regionale_supercarburant_95_98",
+                    "consommation_carbureacteurs_petrole_lampant_sous_conditions_hL",
                     period,
                 )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_sous_conditions
+                    ),
+                )
             )
-            + etablissement("consommation_super_ars", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
-                ),
+
+        # 2007
+        # (par rapport à précédement) majoration régionale pour consommation_gazole
+        # et consommation_supercarburant_e5, en plus de la réfaction
+        # NB : quelquels changements dans les indices
+        # par rapport aux années suivantes; ces changements s'appliquent aux années précédents :
+        # 1° Huiles légères, indice 4 bis, hectolitre, taxe intérieure applicable
+        # au fioul domestique visé à l'indice 20.
+        # parameters(period).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
+        #
+        # exempté :
+        # parameters(period).energies.autres_produits_energetiques.ticpe.
+        #     gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
+        #
+        # remarques peu importantes :
+        # ---huiles lubrifiantes et autres, exemption
+        # Ex 2715-00, Bitumes fluxés ("cut-backs"), émulsions de bitume de pétrole
+        # et similaires : indice 47, exemption.
+        # 3403-11, Préparations pour le traitement des matières textiles, du cuir,
+        # des pelleteries ou d'autres matières, contenant moins de 70 % en poids
+        # d'huiles de pétrole ou de minéraux bitumineux : indice 48, exemption.
+        # Ex 3403-19, Préparations lubrifiantes contenant moins de 70 % en poids
+        # d'huiles de pétrole ou de minéraux bitumineux : indice 49, exemption.
+        # 3811 21-00, Additifs pour huiles lubrifiantes, contenant des huiles de
+        # pétrole ou de minéraux bitumineux : indice 51, exemption.
+        #
+        # il a pas de tariff explicite après 2008, non plus
+        #
+        #
+
+        return sum(accise_du_mois(mois) for mois in period.get_subperiods(MONTH))
+
+    def formula_2007_01_01(etablissement, period, parameters):
+        def accise_du_mois(period):
+            """Accise due au titre du mois : quantités du mois, tarifs du mois."""
+            return (
+                # chaque objet dans la liste est positioné selon sa position dans le code législatif
+                etablissement("consommation_goudrons_utilises_comme_combustibles", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.goudrons_utilises_comme_combustibles
+                    ),
+                )
+                + etablissement(
+                    "consommation_white_spirit_utilise_comme_combustible",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
+                + etablissement(
+                    "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
+                    ),
+                )
+                + etablissement(
+                    "consommation_huiles_legeres_preparation_essence_aviation",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
+                    ),
+                )
+                + etablissement("consommation_supercarburant_e5", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
+                        ),
+                    )
+                    + etablissement(
+                        "ticpe_majoration_regionale_supercarburant_95_98",
+                        period.this_year,
+                    )
+                )
+                + etablissement("consommation_super_ars", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
+                    ),
+                )
+                # + etablissement('consommation_supercarburant_e10', period) *
+                #     parameters(period).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
+                + etablissement(
+                    "consommation_carbureacteurs_essence_carburants_avion_hL",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
+                    ),
+                )
+                + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_avant_2008
+                    ),
+                )
+                + etablissement(
+                    "consommation_huiles_legeres_combustible_carburant_ou_autres",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
+                    ),
+                )
+                + etablissement(
+                    "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
+                    ),
+                )
+                + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
+                    ),
+                )
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_autres_hL",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_avant_2008
+                    ),
+                )
+                + etablissement("consommation_huiles_moyennes_autres", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
+                + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
+                + etablissement("consommation_gazoles", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
+                        ),
+                    )
+                    + etablissement("ticpe_majoration_regionale_gazole", period.this_year)
+                )
+                + etablissement("consommation_fioul_lourd_100kg_net", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
+                    ),
+                )
+                + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
+                # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets',
+                #     period) * parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
+                + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
+                # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets',
+                #     period) * parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
+                + etablissement(
+                    "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
+                + etablissement("consommation_supercarburant_e85", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.super_e85,
+                )
+                # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
+                #     parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     carburant_constitue_minimum_90_alcool_ethylique_agricole
+                # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
+                #     parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     carburant_constitue_100_estars_methyliques_acides_gras
+                + etablissement(
+                    "consommation_gazoles_carburants_sous_conditions_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_propane_carburants_sous_conditions_100kg_nets",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_butanes_liquefies_sous_condition_100kg_nets",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
+                    ),
+                )
+                + etablissement(
+                    "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
+                    ),
+                    defaut_si_absent=0,
+                )
+                + etablissement(
+                    "consommation_emulsion_eau_gazoles_autres_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres
+                    ),
+                    defaut_si_absent=0,
+                )
+                + etablissement(
+                    "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
+                    ),
+                )
+                # + etablissement(
+                #     'consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires',
+                #     period
+                # ) * (
+                #     parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
+                # )
+                + etablissement(
+                    "consommation_carbureacteurs_essence_sous_conditions_hL",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_sous_conditions_hL",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_sous_conditions
+                    ),
+                )
             )
-            + etablissement("consommation_supercarburant_e10", period)
-            * (
-                tarif_moyen_annuel(
+
+        # 2008
+        # par rapport aux années suivantes; ces changements s'appliquent aux années précédents :
+        #  consommation_supercarburant_e10 exempté
+
+        return sum(accise_du_mois(mois) for mois in period.get_subperiods(MONTH))
+
+    def formula_2008_01_01(etablissement, period, parameters):
+        def accise_du_mois(period):
+            """Accise due au titre du mois : quantités du mois, tarifs du mois."""
+            return (
+                # chaque objet dans la liste est positioné selon sa position dans le code législatif
+                etablissement("consommation_goudrons_utilises_comme_combustibles", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.goudrons_utilises_comme_combustibles
+                    ),
+                )
+                + etablissement(
+                    "consommation_white_spirit_utilise_comme_combustible",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
+                + etablissement(
+                    "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
+                    ),
+                )
+                + etablissement(
+                    "consommation_huiles_legeres_preparation_essence_aviation",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
+                    ),
+                )
+                + etablissement("consommation_supercarburant_e5", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
+                        ),
+                    )
+                    + etablissement(
+                        "ticpe_majoration_regionale_supercarburant_95_98",
+                        period.this_year,
+                    )
+                )
+                + etablissement("consommation_super_ars", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
+                    ),
+                )
+                + etablissement("consommation_supercarburant_e10", period)
+                * tarif_du_mois(
                     period,
                     lambda mois: (
                         parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
                     ),
                 )
-                + etablissement("ticpe_majoration_regionale_supercarburant_e10", period)
-            )
-            + etablissement(
-                "consommation_carbureacteurs_essence_carburants_avion_hL",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
-                ),
-            )
-            + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
-            + etablissement(
-                "consommation_huiles_legeres_combustible_carburant_ou_autres",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
-                ),
-            )
-            + etablissement(
-                "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
-                ),
-            )
-            + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
-                ),
-            )
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
-            + etablissement(
-                "consommation_carbureacteurs_petrole_lampant_autres_hL",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
-            + etablissement("consommation_huiles_moyennes_autres", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
-            + etablissement(
-                "consommation_gazoles_carburants_sous_conditions_hectolitre",
-                period,
-            )
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
-                ),
-            )
-            + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
-            + etablissement("consommation_gazoles", period)
-            * (
-                tarif_moyen_annuel(
+                + etablissement("ticpe_majoration_regionale_supercarburant_e10", period.this_year)
+                + etablissement(
+                    "consommation_carbureacteurs_essence_carburants_avion_hL",
+                    period,
+                )
+                * tarif_du_mois(
                     period,
                     lambda mois: (
-                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
                     ),
                 )
-                + etablissement("ticpe_majoration_regionale_gazole", period)
+                + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
+                + etablissement(
+                    "consommation_huiles_legeres_combustible_carburant_ou_autres",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
+                    ),
+                )
+                + etablissement(
+                    "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
+                    ),
+                )
+                + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
+                    ),
+                )
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_autres_hL",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
+                + etablissement("consommation_huiles_moyennes_autres", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
+                + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
+                + etablissement("consommation_gazoles", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
+                        ),
+                    )
+                    + etablissement("ticpe_majoration_regionale_gazole", period.this_year)
+                )
+                + etablissement("consommation_fioul_lourd_100kg_net", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
+                    ),
+                )
+                + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
+                # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets',
+                #     period) * parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
+                + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
+                # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets',
+                #     period) * parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
+                + etablissement(
+                    "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
+                + etablissement("consommation_supercarburant_e85", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.super_e85,
+                )
+                # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
+                #     parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     carburant_constitue_minimum_90_alcool_ethylique_agricole
+                # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
+                #     parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     carburant_constitue_100_estars_methyliques_acides_gras
+                + etablissement(
+                    "consommation_gazoles_carburants_sous_conditions_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_propane_carburants_sous_conditions_100kg_nets",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_butanes_liquefies_sous_condition_100kg_nets",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
+                    ),
+                )
+                + etablissement(
+                    "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
+                    ),
+                    defaut_si_absent=0,
+                )
+                + etablissement(
+                    "consommation_emulsion_eau_gazoles_autres_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres
+                    ),
+                    defaut_si_absent=0,
+                )
+                + etablissement(
+                    "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
+                    ),
+                )
+                + etablissement(
+                    "consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_sous_conditions_aux_moteurs_stationnaires
+                    ),
+                )
+                + etablissement(
+                    "consommation_carbureacteurs_essence_sous_conditions_hL",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_sous_conditions_hL",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_sous_conditions
+                    ),
+                )
             )
-            + etablissement("consommation_fioul_lourd_100kg_net", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
-                ),
+
+        # *** TODO : vérifie quand e10 s'est apparu 2011 pas 2012 ?
+        # 2012
+        # par rapport à précédement,
+        # la majoration régionale inclus désormais 11 ter, consommation_supercarburant_e10
+        # par rapport aux années suivantes; ces changements s'appliquent aux années précédents :
+        # ajouté
+        # ...ticpe.huiles_legeres.carbureacteurs_essence.essence_sous_conditions
+        # ...ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_sous_conditions
+
+        return sum(accise_du_mois(mois) for mois in period.get_subperiods(MONTH))
+
+    def formula_2012_01_01(etablissement, period, parameters):
+        def accise_du_mois(period):
+            """Accise due au titre du mois : quantités du mois, tarifs du mois."""
+            return (
+                # chaque objet dans la liste est positioné selon sa position dans le code législatif
+                etablissement("consommation_goudrons_utilises_comme_combustibles", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.goudrons_utilises_comme_combustibles
+                    ),
+                )
+                + etablissement(
+                    "consommation_white_spirit_utilise_comme_combustible",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
+                + etablissement(
+                    "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
+                    ),
+                )
+                + etablissement(
+                    "consommation_huiles_legeres_preparation_essence_aviation",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
+                    ),
+                )
+                + etablissement("consommation_supercarburant_e5", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
+                        ),
+                    )
+                    + etablissement(
+                        "ticpe_majoration_regionale_supercarburant_95_98",
+                        period.this_year,
+                    )
+                )
+                + etablissement("consommation_super_ars", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
+                    ),
+                )
+                + etablissement("consommation_supercarburant_e10", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
+                        ),
+                    )
+                    + etablissement("ticpe_majoration_regionale_supercarburant_e10", period.this_year)
+                )
+                + etablissement(
+                    "consommation_carbureacteurs_essence_carburants_avion_hL",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
+                    ),
+                )
+                + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
+                + etablissement(
+                    "consommation_huiles_legeres_combustible_carburant_ou_autres",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
+                    ),
+                )
+                + etablissement(
+                    "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
+                    ),
+                )
+                + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
+                    ),
+                )
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_autres_hL",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
+                + etablissement("consommation_huiles_moyennes_autres", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
+                + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
+                + etablissement("consommation_gazoles", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
+                        ),
+                    )
+                    + etablissement("ticpe_majoration_regionale_gazole", period.this_year)
+                )
+                + etablissement("consommation_fioul_lourd_100kg_net", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
+                    ),
+                )
+                + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
+                # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets',
+                #     period) * parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
+                + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
+                # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets',
+                #     period) * parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
+                + etablissement(
+                    "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
+                + etablissement("consommation_supercarburant_e85", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.super_e85,
+                )
+                # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
+                #     parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     carburant_constitue_minimum_90_alcool_ethylique_agricole
+                # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
+                #     parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     carburant_constitue_100_estars_methyliques_acides_gras
+                + etablissement(
+                    "consommation_gazoles_carburants_sous_conditions_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_propane_carburants_sous_conditions_100kg_nets",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_butanes_liquefies_sous_condition_100kg_nets",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
+                    ),
+                )
+                + etablissement(
+                    "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
+                    ),
+                    defaut_si_absent=0,
+                )
+                + etablissement(
+                    "consommation_emulsion_eau_gazoles_autres_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres
+                    ),
+                    defaut_si_absent=0,
+                )
+                + etablissement(
+                    "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
+                    ),
+                )
+                + etablissement(
+                    "consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_sous_conditions_aux_moteurs_stationnaires
+                    ),
+                )
+                + etablissement(
+                    "consommation_carbureacteurs_essence_sous_conditions_hL",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_sous_conditions_hL",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_sous_conditions
+                    ),
+                )
             )
-            + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
-            + etablissement(
-                "consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets",
-                period,
+
+        # 2014
+        # pas de changement par rapport à 2015
+        # 2015:
+        # pas de changement par rapport à 2016
+        # 2016:
+        # consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole
+        # ^exempté en 2016 et celles d'avant
+
+        return sum(accise_du_mois(mois) for mois in period.get_subperiods(MONTH))
+
+    def formula_2014_01_01(etablissement, period, parameters):
+        def accise_du_mois(period):
+            """Accise due au titre du mois : quantités du mois, tarifs du mois."""
+            return (
+                # chaque objet dans la liste est positioné selon sa position dans le code législatif
+                etablissement("consommation_goudrons_utilises_comme_combustibles", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.goudrons_utilises_comme_combustibles
+                    ),
+                )
+                + etablissement(
+                    "consommation_white_spirit_utilise_comme_combustible",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
+                + etablissement(
+                    "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
+                    ),
+                )
+                + etablissement(
+                    "consommation_huiles_legeres_preparation_essence_aviation",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
+                    ),
+                )
+                + etablissement("consommation_supercarburant_e5", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
+                        ),
+                    )
+                    + etablissement(
+                        "ticpe_majoration_regionale_supercarburant_95_98",
+                        period.this_year,
+                    )
+                )
+                + etablissement("consommation_super_ars", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
+                    ),
+                )
+                + etablissement("consommation_supercarburant_e10", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
+                        ),
+                    )
+                    + etablissement("ticpe_majoration_regionale_supercarburant_e10", period.this_year)
+                )
+                + etablissement(
+                    "consommation_carbureacteurs_essence_carburants_avion_hL",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
+                    ),
+                )
+                + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
+                + etablissement(
+                    "consommation_huiles_legeres_combustible_carburant_ou_autres",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
+                    ),
+                )
+                + etablissement(
+                    "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
+                    ),
+                )
+                + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
+                    ),
+                )
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_autres_hL",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
+                + etablissement("consommation_huiles_moyennes_autres", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
+                + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
+                + etablissement("consommation_gazoles", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
+                        ),
+                    )
+                    + etablissement("ticpe_majoration_regionale_gazole", period.this_year)
+                )
+                + etablissement("consommation_fioul_lourd_100kg_net", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
+                    ),
+                )
+                + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
+                # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets',
+                #     period) * parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
+                + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
+                # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets',
+                #     period) * parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
+                + etablissement(
+                    "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
+                + etablissement("consommation_supercarburant_e85", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.super_e85,
+                )
+                # + etablissement('consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole', period) *
+                #     parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     carburant_constitue_minimum_90_alcool_ethylique_agricole
+                # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
+                #     parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     carburant_constitue_100_estars_methyliques_acides_gras
+                + etablissement(
+                    "consommation_gazoles_carburants_sous_conditions_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_propane_carburants_sous_conditions_100kg_nets",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_butanes_liquefies_sous_condition_100kg_nets",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
+                    ),
+                )
+                + etablissement(
+                    "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
+                    ),
+                    defaut_si_absent=0,
+                )
+                + etablissement(
+                    "consommation_emulsion_eau_gazoles_autres_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres
+                    ),
+                    defaut_si_absent=0,
+                )
+                + etablissement(
+                    "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
+                    ),
+                )
+                + etablissement(
+                    "consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_sous_conditions_aux_moteurs_stationnaires
+                    ),
+                )
+                # etablissement('', period) * parameters(period).
+                # etablissement('', period) * parameters(period).
             )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.usages_autres_que_comme_carburant
-            + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
-            + etablissement(
-                "consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets",
-                period,
+
+        # 2017:
+        # parameters(period).energies.autres_produits_energetiques.ticpe.
+        #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
+        # ^est exempté, également pendant les années précédantes
+        # parameters(period).energies.autres_produits_energetiques.ticpe.
+        #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
+        # ^également pour ça
+        # consommation_carburant_constitue_100_estars_methyliques_acides_gras
+        # parameters\energies\autres_produits_energetiques\ticpe\gazole\gazole_b_10_hectolitre.yaml
+        # ^également
+
+        return sum(accise_du_mois(mois) for mois in period.get_subperiods(MONTH))
+
+    def formula_2017_01_01(etablissement, period, parameters):
+        def accise_du_mois(period):
+            """Accise due au titre du mois : quantités du mois, tarifs du mois."""
+            return (
+                # chaque objet dans la liste est positioné selon sa position dans le code législatif
+                etablissement("consommation_goudrons_utilises_comme_combustibles", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.goudrons_utilises_comme_combustibles
+                    ),
+                )
+                + etablissement(
+                    "consommation_white_spirit_utilise_comme_combustible",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
+                + etablissement(
+                    "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
+                    ),
+                )
+                + etablissement(
+                    "consommation_huiles_legeres_preparation_essence_aviation",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
+                    ),
+                )
+                + etablissement("consommation_supercarburant_e5", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
+                        ),
+                    )
+                    + etablissement(
+                        "ticpe_majoration_regionale_supercarburant_95_98",
+                        period.this_year,
+                    )
+                )
+                + etablissement("consommation_super_ars", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
+                    ),
+                )
+                + etablissement("consommation_supercarburant_e10", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
+                        ),
+                    )
+                    + etablissement("ticpe_majoration_regionale_supercarburant_e10", period.this_year)
+                )
+                + etablissement(
+                    "consommation_carbureacteurs_essence_carburants_avion_hL",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
+                    ),
+                )
+                + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
+                + etablissement(
+                    "consommation_huiles_legeres_combustible_carburant_ou_autres",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
+                    ),
+                )
+                + etablissement(
+                    "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
+                    ),
+                )
+                + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
+                    ),
+                )
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_autres_hL",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
+                + etablissement("consommation_huiles_moyennes_autres", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
+                + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
+                + etablissement("consommation_gazoles", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
+                        ),
+                    )
+                    + etablissement("ticpe_majoration_regionale_gazole", period.this_year)
+                )
+                + etablissement("consommation_fioul_lourd_100kg_net", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
+                    ),
+                )
+                + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
+                # + etablissement('consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets',
+                #     period) * parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     propane_carburants.usages_autres_que_comme_carburant_100kg_nets
+                + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
+                # + etablissement('consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets',
+                #     period) * parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     butanes_liquefies.usages_autres_que_comme_carburant_100kg_nets
+                + etablissement(
+                    "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
+                + etablissement("consommation_supercarburant_e85", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.super_e85,
+                )
+                + etablissement(
+                    "consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.carburant_constitue_minimum_90_alcool_ethylique_agricole
+                # + etablissement('consommation_carburant_constitue_100_estars_methyliques_acides_gras', period) *
+                #     parameters(period).energies.autres_produits_energetiques.ticpe.
+                #     carburant_constitue_100_estars_methyliques_acides_gras
+                + etablissement(
+                    "consommation_gazoles_carburants_sous_conditions_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_propane_carburants_sous_conditions_100kg_nets",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_butanes_liquefies_sous_condition_100kg_nets",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
+                    ),
+                )
+                + etablissement(
+                    "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
+                    ),
+                    defaut_si_absent=0,
+                )
+                + etablissement(
+                    "consommation_emulsion_eau_gazoles_autres_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres
+                    ),
+                    defaut_si_absent=0,
+                )
+                + etablissement("consommation_gazole_b_10_hectolitre", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_b_10
+                + etablissement(
+                    "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
+                    ),
+                )
+                + etablissement(
+                    "consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_sous_conditions_aux_moteurs_stationnaires
+                    ),
+                )
+                # etablissement('', period) * parameters(period).
+                # etablissement('', period) * parameters(period).
             )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.usages_autres_que_comme_carburant
-            + etablissement(
-                "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
-                period,
+
+        # 2018: pareil que 2019
+        # 2019 : par rapport à 2020,
+        # parameters(period).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_b_10
+        # parameters(period).energies.autres_produits_energetiques.ticpe.
+        #     gaz_naturels_etat_gazeux_utilises_comme_carburants
+        # parameters(period).energies.autres_produits_energetiques.ticpe.
+        #     gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
+
+        return sum(accise_du_mois(mois) for mois in period.get_subperiods(MONTH))
+
+    def formula_2018_01_01(etablissement, period, parameters):
+        def accise_du_mois(period):
+            """Accise due au titre du mois : quantités du mois, tarifs du mois."""
+            return (
+                # chaque objet dans la liste est positioné selon sa position dans le code législatif
+                etablissement("consommation_goudrons_utilises_comme_combustibles", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.goudrons_utilises_comme_combustibles
+                    ),
+                )
+                + etablissement(
+                    "consommation_white_spirit_utilise_comme_combustible",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
+                + etablissement(
+                    "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
+                    ),
+                )
+                + etablissement(
+                    "consommation_huiles_legeres_preparation_essence_aviation",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
+                    ),
+                )
+                + etablissement("consommation_supercarburant_e5", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
+                        ),
+                    )
+                    + etablissement(
+                        "ticpe_majoration_regionale_supercarburant_95_98",
+                        period.this_year,
+                    )
+                )
+                + etablissement("consommation_super_ars", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
+                    ),
+                )
+                + etablissement("consommation_supercarburant_e10", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
+                        ),
+                    )
+                    + etablissement("ticpe_majoration_regionale_supercarburant_e10", period.this_year)
+                )
+                + etablissement(
+                    "consommation_carbureacteurs_essence_carburants_avion_hL",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
+                    ),
+                )
+                + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
+                + etablissement(
+                    "consommation_huiles_legeres_combustible_carburant_ou_autres",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
+                    ),
+                )
+                + etablissement(
+                    "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
+                    ),
+                )
+                + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
+                    ),
+                )
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_autres_hL",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
+                + etablissement("consommation_huiles_moyennes_autres", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
+                + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
+                + etablissement("consommation_gazoles", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
+                        ),
+                    )
+                    + etablissement("ticpe_majoration_regionale_gazole", period.this_year)
+                )
+                + etablissement("consommation_fioul_lourd_100kg_net", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
+                    ),
+                )
+                + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
+                + etablissement(
+                    "consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.usages_autres_que_comme_carburant
+                + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
+                + etablissement(
+                    "consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.usages_autres_que_comme_carburant
+                + etablissement(
+                    "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
+                + etablissement("consommation_supercarburant_e85", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.super_e85,
+                )
+                + etablissement(
+                    "consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.carburant_constitue_minimum_90_alcool_ethylique_agricole
+                + etablissement(
+                    "consommation_carburant_constitue_100_estars_methyliques_acides_gras",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.carburant_constitue_100_esters_methyliques_acides_gras
+                + etablissement(
+                    "consommation_gazoles_carburants_sous_conditions_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_propane_carburants_sous_conditions_100kg_nets",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_butanes_liquefies_sous_condition_100kg_nets",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
+                    ),
+                )
+                + etablissement(
+                    "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
+                    ),
+                )
+                + etablissement(
+                    "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
+                    ),
+                    defaut_si_absent=0,
+                )
+                + etablissement(
+                    "consommation_emulsion_eau_gazoles_autres_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres
+                    ),
+                    defaut_si_absent=0,
+                )
+                + etablissement("consommation_gazole_b_10_hectolitre", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_b_10
+                + etablissement(
+                    "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_comme_carburants
+                    ),
+                )
+                + etablissement(
+                    "consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_utilises_sous_conditions_aux_moteurs_stationnaires
+                    ),
+                )
+                # etablissement('', period) * parameters(period).
+                # etablissement('', period) * parameters(period).
             )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
-            + etablissement("consommation_supercarburant_e85", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.super_e85,
+
+        # 2020 : par rapport à 2021,
+        # carburants_sous_conditions_hectolitre,
+        # sous_conditions_100kg_nets (propane)
+        # ...ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
+        #
+        # ...ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
+        #
+        # parameters(period).energies.autres_produits_energetiques.ticpe.
+        #     autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions_100kg
+        # (en dessous est un nouveau catagorie)
+        # parameters(period).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
+        #
+        # parameters(period).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres
+
+        return sum(accise_du_mois(mois) for mois in period.get_subperiods(MONTH))
+
+    def formula_2020_01_01(etablissement, period, parameters):
+        def accise_du_mois(period):
+            """Accise due au titre du mois : quantités du mois, tarifs du mois."""
+            return (
+                # chaque objet dans la liste est positioné selon sa position dans le code législatif
+                etablissement("consommation_goudrons_utilises_comme_combustibles", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.goudrons_utilises_comme_combustibles
+                    ),
+                )
+                + etablissement(
+                    "consommation_white_spirit_utilise_comme_combustible",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
+                + etablissement(
+                    "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
+                    ),
+                )
+                + etablissement(
+                    "consommation_huiles_legeres_preparation_essence_aviation",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
+                    ),
+                )
+                + etablissement("consommation_supercarburant_e5", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
+                        ),
+                    )
+                    + etablissement(
+                        "ticpe_majoration_regionale_supercarburant_95_98",
+                        period.this_year,
+                    )
+                )
+                + etablissement("consommation_super_ars", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
+                    ),
+                )
+                + etablissement("consommation_supercarburant_e10", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
+                        ),
+                    )
+                    + etablissement("ticpe_majoration_regionale_supercarburant_e10", period.this_year)
+                )
+                + etablissement(
+                    "consommation_carbureacteurs_essence_carburants_avion_hL",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
+                    ),
+                )
+                + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
+                + etablissement(
+                    "consommation_huiles_legeres_combustible_carburant_ou_autres",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
+                    ),
+                )
+                + etablissement(
+                    "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
+                    ),
+                )
+                + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
+                    ),
+                )
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_autres_hL",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
+                + etablissement("consommation_huiles_moyennes_autres", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
+                + etablissement(
+                    "consommation_gazoles_carburants_sous_conditions_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
+                    ),
+                )
+                + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
+                + etablissement("consommation_gazoles", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
+                        ),
+                    )
+                    + etablissement("ticpe_majoration_regionale_gazole", period.this_year)
+                )
+                + etablissement("consommation_fioul_lourd_100kg_net", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
+                    ),
+                )
+                + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
+                + etablissement(
+                    "consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.usages_autres_que_comme_carburant
+                + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
+                + etablissement(
+                    "consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.usages_autres_que_comme_carburant
+                + etablissement(
+                    "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
+                + etablissement("consommation_supercarburant_e85", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.super_e85,
+                )
+                + etablissement(
+                    "consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.carburant_constitue_minimum_90_alcool_ethylique_agricole
+                + etablissement(
+                    "consommation_carburant_constitue_100_estars_methyliques_acides_gras",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.carburant_constitue_100_esters_methyliques_acides_gras
+                # additions, en plus de 2021
+                #
+                # Les lignes GPL « sous condition d'emploi » (indices 30 bis, 31 bis, 33 bis) sortent
+                # du tableau B au 2020-07-01, art. 60 I 1° LF 2020, sans article successeur : ces
+                # consommations relèvent ensuite du tarif normal (30 ter, 31 ter, 34), et non d'une
+                # exonération. D'où le repli, et non defaut_si_absent=0. Cf. tarif_avec_repli.
+                + etablissement(
+                    "consommation_propane_carburants_sous_conditions_100kg_nets",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    tarif_avec_repli(
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.sous_conditions
+                        ),
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
+                        ),
+                    ),
+                )
+                + etablissement(
+                    "consommation_butanes_liquefies_sous_condition_100kg_nets",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    tarif_avec_repli(
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.sous_condition
+                        ),
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
+                        ),
+                    ),
+                )
+                + etablissement(
+                    "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    tarif_avec_repli(
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.sous_conditions
+                        ),
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
+                        ),
+                    ),
+                )
+                + etablissement(
+                    "consommation_emulsion_eau_gazoles_sous_conditions_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.sous_conditions
+                    ),
+                    defaut_si_absent=0,
+                )
+                + etablissement(
+                    "consommation_emulsion_eau_gazoles_autres_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.emulsion_eau_gazole.autres
+                    ),
+                    defaut_si_absent=0,
+                )
             )
-            + etablissement(
-                "consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole",
-                period,
+
+        return sum(accise_du_mois(mois) for mois in period.get_subperiods(MONTH))
+
+    def formula_2021_01_01(etablissement, period, parameters):
+        def accise_du_mois(period):
+            """Accise due au titre du mois : quantités du mois, tarifs du mois."""
+            return (
+                # chaque objet dans la liste est positioné selon sa position dans le code législatif
+                etablissement("consommation_goudrons_utilises_comme_combustibles", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.goudrons_utilises_comme_combustibles
+                    ),
+                )
+                + etablissement(
+                    "consommation_white_spirit_utilise_comme_combustible",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.white_spirit_utilise_comme_combustible
+                + etablissement(
+                    "consommation_essences_speciales_utilisees_comme_carburants_combustibles",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales_utilisees_comme_carburants_combustibles
+                    ),
+                )
+                + etablissement(
+                    "consommation_huiles_legeres_preparation_essence_aviation",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essence_aviation
+                    ),
+                )
+                + etablissement("consommation_supercarburant_e5", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
+                        ),
+                    )
+                    + etablissement(
+                        "ticpe_majoration_regionale_supercarburant_95_98",
+                        period.this_year,
+                    )
+                )
+                + etablissement("consommation_super_ars", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_plombe
+                    ),
+                )
+                + etablissement("consommation_supercarburant_e10", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
+                        ),
+                    )
+                    + etablissement("ticpe_majoration_regionale_supercarburant_e10", period.this_year)
+                )
+                + etablissement(
+                    "consommation_carbureacteurs_essence_carburants_avion_hL",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_carburants_moteur_avion
+                    ),
+                )
+                + etablissement("consommation_carbureacteurs_essence_autres_hL", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_legeres.carbureacteurs_essence.essence_autres_post_2008
+                + etablissement(
+                    "consommation_huiles_legeres_combustible_carburant_ou_autres",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.autres_huiles_legeres
+                    ),
+                )
+                + etablissement(
+                    "consommation_petrole_lampant_utilise_comme_combustible_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.utilise_comme_combustible
+                    ),
+                )
+                + etablissement("consommation_petrole_lampant_autre_hectolitre", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.petrole_lampant.autres
+                    ),
+                )
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.carburant_moteurs_avion
+                + etablissement(
+                    "consommation_carbureacteurs_petrole_lampant_autres_hL",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.carbureacteurs_petrole_lampant.lampant_autres_post_2008
+                + etablissement("consommation_huiles_moyennes_autres", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
+                + etablissement(
+                    "consommation_gazoles_carburants_sous_conditions_hectolitre",
+                    period,
+                )
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
+                    ),
+                )
+                + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
+                + etablissement("consommation_gazoles", period)
+                * (
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
+                        ),
+                    )
+                    + etablissement("ticpe_majoration_regionale_gazole", period.this_year)
+                )
+                + etablissement("consommation_fioul_lourd_100kg_net", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_lourdes.fioul.fioul_lourd
+                    ),
+                )
+                + etablissement("consommation_propane_carburants_autres_100kg_nets", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.autres
+                + etablissement(
+                    "consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.propane_carburants.usages_autres_que_comme_carburant
+                + etablissement("consommation_butanes_liquefies_autres_100kg_nets", period)
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.autres
+                + etablissement(
+                    "consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.butanes_liquefies.usages_autres_que_comme_carburant
+                + etablissement(
+                    "consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.propanes_butanes_etc.autres_gaz_petrole_liquefies_utilises_comme_carburants.autres
+                + etablissement("consommation_supercarburant_e85", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.super_e85,
+                )
+                + etablissement(
+                    "consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.carburant_constitue_minimum_90_alcool_ethylique_agricole
+                + etablissement(
+                    "consommation_carburant_constitue_100_estars_methyliques_acides_gras",
+                    period,
+                )
+                * parameters(
+                    period,
+                ).energies.autres_produits_energetiques.ticpe.carburant_constitue_100_esters_methyliques_acides_gras
+                # etablissement('', period) * parameters(period).
+                # etablissement('', period) * parameters(period).
+                # etablissement('', period) * parameters(period).
+                # etablissement('', period) * parameters(period).
+                # etablissement('', period) * parameters(period).
             )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.carburant_constitue_minimum_90_alcool_ethylique_agricole
-            + etablissement(
-                "consommation_carburant_constitue_100_estars_methyliques_acides_gras",
-                period,
-            )
-            * parameters(
-                period,
-            ).energies.autres_produits_energetiques.ticpe.carburant_constitue_100_esters_methyliques_acides_gras,
-            # etablissement('', period) * parameters(period).
-            # etablissement('', period) * parameters(period).
-            # etablissement('', period) * parameters(period).
-            # etablissement('', period) * parameters(period).
-            # etablissement('', period) * parameters(period).
-        ]
+
+        return sum(accise_du_mois(mois) for mois in period.get_subperiods(MONTH))
 
     def formula_2022_01_01(etablissement, period, parameters):
-        # à noter que l'accise est mise en effet dès cette année. beaucoup des categories sont éliminées
-        # les majorations régionales sont manquants.
-        # manutention portuaire : paramètre absent en 2022 (existe à partir de 2023)
-        p = parameters(period).energies.autres_produits_energetiques.accise
-        t2 = p.tarifs_reduits
+        def accise_du_mois(period):
+            """Accise due au titre du mois : quantités du mois, tarifs du mois."""
+            # à noter que l'accise est mise en effet dès cette année. beaucoup des categories sont éliminées
+            # les majorations régionales sont manquants.
+            # manutention portuaire : paramètre absent en 2022 (existe à partir de 2023)
+            p = parameters(period).energies.autres_produits_energetiques.accise
+            t2 = p.tarifs_reduits
 
-        # Variables utilisées comme conditions (booléen pour select)
-        gazoles_transport_guide = etablissement("gazoles_transport_guide", period) != 0
-        gazoles_engins_travaux_statiques = etablissement("gazoles_engins_travaux_statiques", period) != 0
-        gazoles_transport_collective_personnes = etablissement("gazoles_transport_collective_personnes", period) != 0
-        gazoles_transport_taxi = etablissement("gazoles_transport_taxi", period) != 0
-        gazoles_transport_routier_marchandises = etablissement("gazoles_transport_routier_marchandises", period) != 0
-        autres_produits_travaux_agricoles = (
-            etablissement("autres_produits_travaux_agricoles_et_forestiers", period) != 0
-        )
-        # gazoles_extraction_mineraux_industriels : l'indicateur n'existe qu'à partir de 2023
-        # (formula_2023_01_01) et le tarif réduit correspondant ne commence qu'au 2023-01-01 au
-        # barème. La branche est donc inerte en 2022 ; elle est portée par formula_2023 et suivantes.
-        gazoles_amenagement_pistes = (
-            etablissement(
-                "gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux",
-                period,
+            # Variables utilisées comme conditions (booléen pour select)
+            gazoles_transport_guide = etablissement("gazoles_transport_guide", period.this_year) != 0
+            gazoles_engins_travaux_statiques = etablissement("gazoles_engins_travaux_statiques", period) != 0
+            gazoles_transport_collective_personnes = (
+                etablissement("gazoles_transport_collective_personnes", period.this_year) != 0
             )
-            != 0
-        )
-        intervention_incendie_secours = (
-            etablissement(
-                "autres_produits_intervention_vehicules_services_incendie_secours",
-                period,
+            gazoles_transport_taxi = etablissement("gazoles_transport_taxi", period.this_year) != 0
+            gazoles_transport_routier_marchandises = (
+                etablissement("gazoles_transport_routier_marchandises", period.this_year) != 0
             )
-            != 0
-        )
-        essence_transport_taxi = etablissement("essence_transport_taxi", period) != 0
+            autres_produits_travaux_agricoles = (
+                etablissement("autres_produits_travaux_agricoles_et_forestiers", period.this_year) != 0
+            )
+            # gazoles_extraction_mineraux_industriels : l'indicateur n'existe qu'à partir de 2023
+            # (formula_2023_01_01) et le tarif réduit correspondant ne commence qu'au 2023-01-01 au
+            # barème. La branche est donc inerte en 2022 ; elle est portée par formula_2023 et suivantes.
+            gazoles_amenagement_pistes = (
+                etablissement(
+                    "gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux",
+                    period.this_year,
+                )
+                != 0
+            )
+            intervention_incendie_secours = (
+                etablissement(
+                    "autres_produits_intervention_vehicules_services_incendie_secours",
+                    period.this_year,
+                )
+                != 0
+            )
+            essence_transport_taxi = etablissement("essence_transport_taxi", period.this_year) != 0
 
-        taux_gazoles = select(
-            [
-                gazoles_transport_guide,
-                gazoles_engins_travaux_statiques,
-                gazoles_transport_collective_personnes,
-                gazoles_transport_taxi,
-                gazoles_transport_routier_marchandises,
-                autres_produits_travaux_agricoles,
-                gazoles_amenagement_pistes,
-                intervention_incendie_secours,
-            ],
-            [
-                p.carburants.huiles_lourdes.tarifs_reduits.transport_guide_personnes_marchandises,
-                p.carburants.huiles_lourdes.tarifs_reduits.travaux_statiques_et_hors_circulation,
-                p.carburants.huiles_lourdes.tarifs_reduits.transport_collectif_routier_personnes,
-                p.carburants.huiles_lourdes.tarifs_reduits.taxi,
-                p.carburants.huiles_lourdes.tarifs_reduits.transport_routier_marchandises,
-                tarif_moyen_annuel(
+            taux_gazoles = select(
+                [
+                    gazoles_transport_guide,
+                    gazoles_engins_travaux_statiques,
+                    gazoles_transport_collective_personnes,
+                    gazoles_transport_taxi,
+                    gazoles_transport_routier_marchandises,
+                    autres_produits_travaux_agricoles,
+                    gazoles_amenagement_pistes,
+                    intervention_incendie_secours,
+                ],
+                [
+                    p.carburants.huiles_lourdes.tarifs_reduits.transport_guide_personnes_marchandises,
+                    p.carburants.huiles_lourdes.tarifs_reduits.travaux_statiques_et_hors_circulation,
+                    p.carburants.huiles_lourdes.tarifs_reduits.transport_collectif_routier_personnes,
+                    p.carburants.huiles_lourdes.tarifs_reduits.taxi,
+                    p.carburants.huiles_lourdes.tarifs_reduits.transport_routier_marchandises,
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.accise.carburants.huiles_lourdes.tarifs_reduits.agricoles_forestiers
+                        ),
+                    ),
+                    p.carburants.huiles_lourdes.tarifs_reduits.montagnes,
+                    t2.intervention_vehicules_incendie_secours,
+                ],
+                default=tarif_du_mois(
                     period,
                     lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.accise.carburants.huiles_lourdes.tarifs_reduits.agricoles_forestiers
+                        parameters(mois).energies.autres_produits_energetiques.accise.carburants.huiles_lourdes.gazoles
                     ),
                 ),
-                p.carburants.huiles_lourdes.tarifs_reduits.montagnes,
-                t2.intervention_vehicules_incendie_secours,
-            ],
-            default=tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.accise.carburants.huiles_lourdes.gazoles
-                ),
-            ),
-        )
+            )
 
-        taux_essence = select(
-            [
-                intervention_incendie_secours,
-                essence_transport_taxi,
-            ],
-            [
-                t2.intervention_vehicules_incendie_secours,
-                p.carburants.huiles_legeres.tarifs_reduits.taxi,
-            ],
-            default=tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.accise.carburants.huiles_legeres.essences
+            taux_essence = select(
+                [
+                    intervention_incendie_secours,
+                    essence_transport_taxi,
+                ],
+                [
+                    t2.intervention_vehicules_incendie_secours,
+                    p.carburants.huiles_legeres.tarifs_reduits.taxi,
+                ],
+                default=tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.accise.carburants.huiles_legeres.essences
+                    ),
                 ),
-            ),
-        )
+            )
 
-        # gaz_de_petrole_liquefies_combustible_travaux_agricoles n'existe qu'à partir de 2023
-        accise = parameters(period).energies.autres_produits_energetiques.accise
-        if period.start.year >= accise.annee_gaz_petrole_liquefies_travaux_agricoles:
-            taux_gaz_de_petrole_liquefies_combustible = select(
-                [autres_produits_travaux_agricoles],
-                [p.taux_selon_activite.gaz_de_petrole_liquefies_combustible_travaux_agricoles],
-                default=tarif_moyen_annuel(
+            # gaz_de_petrole_liquefies_combustible_travaux_agricoles n'existe qu'à partir de 2023
+            accise = parameters(period).energies.autres_produits_energetiques.accise
+            if period.start.year >= accise.annee_gaz_petrole_liquefies_travaux_agricoles:
+                taux_gaz_de_petrole_liquefies_combustible = select(
+                    [autres_produits_travaux_agricoles],
+                    [p.taux_selon_activite.gaz_de_petrole_liquefies_combustible_travaux_agricoles],
+                    default=tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.accise.combustibles.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
+                        ),
+                    ),
+                )
+            else:
+                taux_gaz_de_petrole_liquefies_combustible = tarif_du_mois(
                     period,
                     lambda mois: (
                         parameters(
                             mois
                         ).energies.autres_produits_energetiques.accise.combustibles.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
                     ),
+                )
+
+            installation_seqe = etablissement("installation_seqe", period.this_year) != 0
+            risque_de_fuite_carbone_eta = etablissement("risque_de_fuite_carbone_eta", period.this_year) != 0
+            intensite_energetique_valeur_production = etablissement(
+                "intensite_energetique_valeur_production",
+                period.this_year,
+            )
+            intensite_energetique_valeur_ajoutee = etablissement(
+                "intensite_energetique_valeur_ajoutee",
+                period.this_year,
+            )
+
+            seuils = parameters(period).energies.seuils_seqe
+            cond_seqe = _or(
+                _and(
+                    installation_seqe,
+                    intensite_energetique_valeur_production >= seuils.intensite_production_min,
+                ),
+                _and(
+                    installation_seqe,
+                    intensite_energetique_valeur_ajoutee >= seuils.intensite_valeur_ajoutee_min,
                 ),
             )
-        else:
-            taux_gaz_de_petrole_liquefies_combustible = tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.accise.combustibles.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
+            cond_concurrence = _or(
+                _and(
+                    _not(installation_seqe),
+                    risque_de_fuite_carbone_eta,
+                    intensite_energetique_valeur_production >= seuils.intensite_production_min,
+                ),
+                _and(
+                    _not(installation_seqe),
+                    risque_de_fuite_carbone_eta,
+                    intensite_energetique_valeur_ajoutee >= seuils.intensite_valeur_ajoutee_min,
                 ),
             )
 
-        installation_seqe = etablissement("installation_seqe", period) != 0
-        risque_de_fuite_carbone_eta = etablissement("risque_de_fuite_carbone_eta", period) != 0
-        intensite_energetique_valeur_production = etablissement(
-            "intensite_energetique_valeur_production",
-            period,
-        )
-        intensite_energetique_valeur_ajoutee = etablissement(
-            "intensite_energetique_valeur_ajoutee",
-            period,
-        )
-
-        seuils = parameters(period).energies.seuils_seqe
-        cond_seqe = _or(
-            _and(
-                installation_seqe,
-                intensite_energetique_valeur_production >= seuils.intensite_production_min,
-            ),
-            _and(
-                installation_seqe,
-                intensite_energetique_valeur_ajoutee >= seuils.intensite_valeur_ajoutee_min,
-            ),
-        )
-        cond_concurrence = _or(
-            _and(
-                _not(installation_seqe),
-                risque_de_fuite_carbone_eta,
-                intensite_energetique_valeur_production >= seuils.intensite_production_min,
-            ),
-            _and(
-                _not(installation_seqe),
-                risque_de_fuite_carbone_eta,
-                intensite_energetique_valeur_ajoutee >= seuils.intensite_valeur_ajoutee_min,
-            ),
-        )
-
-        taux_fiouls_lourds = select(
-            [
-                autres_produits_travaux_agricoles,
-                cond_seqe,
-                cond_concurrence,
-            ],
-            [
-                p.combustibles.huiles_lourdes.tarifs_reduits.agricoles_forestiers,
-                p.taux_selon_activite.fiouls_lourds_seqe,
-                p.taux_selon_activite.fiouls_lourds_concurrence_internationale,
-            ],
-            default=tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.accise.combustibles.huiles_lourdes.fiouls_lourds
-                ),
-            ),
-        )
-
-        taux_fiouls_domestiques = select(
-            [
-                cond_seqe,
-                cond_concurrence,
-            ],
-            [
-                p.taux_selon_activite.fiouls_domestiques_seqe,
-                p.taux_selon_activite.fiouls_domestiques_concurrence_internationale,
-            ],
-            default=tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.accise.combustibles.huiles_lourdes.fiouls_domestiques
-                ),
-            ),
-        )
-
-        taux_petrole_lampant = select(
-            [
-                cond_seqe,
-                cond_concurrence,
-            ],
-            [
-                p.taux_selon_activite.petroles_lampants_seqe,
-                p.taux_selon_activite.petroles_lampants_concurrence_internationale,
-            ],
-            default=tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.accise.combustibles.huiles_moyennes.petroles_lampants
-                ),
-            ),
-        )
-
-        # Exonérations sectorielles de l'accise (tarifs réduits à zéro). L'établissement est classé
-        # par code NAF ; s'il relève d'un secteur exonéré, l'ensemble de sa consommation de produits
-        # énergétiques est taxé au tarif réduit correspondant (nul à ce jour, mais lu au barème).
-        conso_totale = etablissement("consommation_autres_produits_energetiques_totale_mwh", period)
-        cond_navigation_interieure = etablissement("autres_produits_navigation_interieure", period) != 0
-        cond_navigation_maritime = etablissement("autres_produits_navigation_maritime", period) != 0
-        cond_navigation_aerienne = etablissement("autres_produits_navigation_aerienne", period) != 0
-        cond_double_usage = etablissement("autres_produits_double_usage", period) != 0
-        cond_fabrication_mineraux = (
-            etablissement("autre_produits_fabrication_produits_mineraux_non_metalliques", period) != 0
-        )
-        cond_aeronautique_naval = etablissement("autres_produits_secteurs_aeronautique_et_naval", period) != 0
-
-        total_calcule = (
-            etablissement("consommation_gazoles_mwh", period)
-            * (taux_gazoles + etablissement("ticpe_majoration_regionale_gazole", period))
-            + etablissement("consommation_carbureactuers_mwh", period) * p.carburants.huiles_moyennes.carbureacteurs
-            + etablissement("consommation_essences_mwh", period)
-            * (taux_essence + etablissement("ticpe_majoration_regionale_supercarburant_e10", period))
-            + etablissement(
-                "consommation_gaz_de_petrole_liquefies_carburant_mwh",
-                period,
-            )
-            * p.carburants.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
-            + etablissement("consommation_fiouls_lourds_mwh", period) * taux_fiouls_lourds
-            + etablissement("consommation_fiouls_domestiques_mwh", period) * taux_fiouls_domestiques
-            + etablissement("consommation_petroles_lampants_mwh", period) * taux_petrole_lampant
-            + etablissement(
-                "consommation_gaz_de_petrole_liquefies_combustible_mwh",
-                period,
-            )
-            * taux_gaz_de_petrole_liquefies_combustible
-            + etablissement("consommation_ethanol_diesel_ed95_mwh", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.accise.carburants.tarifs_particuliers.ethanol_diesel_ed95
+            taux_fiouls_lourds = select(
+                [
+                    autres_produits_travaux_agricoles,
+                    cond_seqe,
+                    cond_concurrence,
+                ],
+                [
+                    p.combustibles.huiles_lourdes.tarifs_reduits.agricoles_forestiers,
+                    p.taux_selon_activite.fiouls_lourds_seqe,
+                    p.taux_selon_activite.fiouls_lourds_concurrence_internationale,
+                ],
+                default=tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.accise.combustibles.huiles_lourdes.fiouls_lourds
+                    ),
                 ),
             )
-            + etablissement("consommation_gazole_b100_mwh", period) * p.carburants.tarifs_particuliers.gazole_b100
-            + etablissement("consommation_essence_aviation_mwh", period)
-            * p.carburants.tarifs_particuliers.essence_aviation
-            + etablissement("consommation_essence_sp95_e10_mwh", period)
-            * p.carburants.tarifs_particuliers.essence_sp95_e10
-            + etablissement("consommation_superethanol_e85_mwh", period)
-            * p.carburants.tarifs_particuliers.superethanol_e85
-            + etablissement(
-                "consommation_grisou_et_gaz_assimiles_combustible_mwh",
-                period,
-            )
-            * p.combustibles.tarifs_particuliers.grisou_et_assimiles
-            + etablissement(
-                "consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh",
-                period,
-            )
-            * p.combustibles.tarifs_particuliers.biogaz_non_injecte_reseau
-        )
 
-        return select(
-            [
-                cond_navigation_interieure,
-                cond_navigation_maritime,
-                cond_navigation_aerienne,
-                cond_double_usage,
-                cond_fabrication_mineraux,
-                cond_aeronautique_naval,
-            ],
-            [
-                conso_totale * t2.navigation_interieure,
-                conso_totale * t2.navigation_maritime,
-                conso_totale * t2.navigation_aerienne,
-                conso_totale * t2.doubles_usages,
-                conso_totale * t2.fabrication_mineraux,
-                conso_totale * t2.aeronautique_naval,
-            ],
-            default=total_calcule,
-        )
+            taux_fiouls_domestiques = select(
+                [
+                    cond_seqe,
+                    cond_concurrence,
+                ],
+                [
+                    p.taux_selon_activite.fiouls_domestiques_seqe,
+                    p.taux_selon_activite.fiouls_domestiques_concurrence_internationale,
+                ],
+                default=tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.accise.combustibles.huiles_lourdes.fiouls_domestiques
+                    ),
+                ),
+            )
+
+            taux_petrole_lampant = select(
+                [
+                    cond_seqe,
+                    cond_concurrence,
+                ],
+                [
+                    p.taux_selon_activite.petroles_lampants_seqe,
+                    p.taux_selon_activite.petroles_lampants_concurrence_internationale,
+                ],
+                default=tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.accise.combustibles.huiles_moyennes.petroles_lampants
+                    ),
+                ),
+            )
+
+            # Exonérations sectorielles de l'accise (tarifs réduits à zéro). L'établissement est classé
+            # par code NAF ; s'il relève d'un secteur exonéré, l'ensemble de sa consommation de produits
+            # énergétiques est taxé au tarif réduit correspondant (nul à ce jour, mais lu au barème).
+            conso_totale = etablissement("consommation_autres_produits_energetiques_totale_mwh", period)
+            cond_navigation_interieure = etablissement("autres_produits_navigation_interieure", period.this_year) != 0
+            cond_navigation_maritime = etablissement("autres_produits_navigation_maritime", period.this_year) != 0
+            cond_navigation_aerienne = etablissement("autres_produits_navigation_aerienne", period.this_year) != 0
+            cond_double_usage = etablissement("autres_produits_double_usage", period.this_year) != 0
+            cond_fabrication_mineraux = (
+                etablissement("autre_produits_fabrication_produits_mineraux_non_metalliques", period.this_year) != 0
+            )
+            cond_aeronautique_naval = (
+                etablissement("autres_produits_secteurs_aeronautique_et_naval", period.this_year) != 0
+            )
+
+            total_calcule = (
+                etablissement("consommation_gazoles_mwh", period)
+                * (taux_gazoles + etablissement("ticpe_majoration_regionale_gazole", period.this_year))
+                + etablissement("consommation_carbureactuers_mwh", period) * p.carburants.huiles_moyennes.carbureacteurs
+                + etablissement("consommation_essences_mwh", period)
+                * (taux_essence + etablissement("ticpe_majoration_regionale_supercarburant_e10", period.this_year))
+                + etablissement(
+                    "consommation_gaz_de_petrole_liquefies_carburant_mwh",
+                    period,
+                )
+                * p.carburants.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
+                + etablissement("consommation_fiouls_lourds_mwh", period) * taux_fiouls_lourds
+                + etablissement("consommation_fiouls_domestiques_mwh", period) * taux_fiouls_domestiques
+                + etablissement("consommation_petroles_lampants_mwh", period) * taux_petrole_lampant
+                + etablissement(
+                    "consommation_gaz_de_petrole_liquefies_combustible_mwh",
+                    period,
+                )
+                * taux_gaz_de_petrole_liquefies_combustible
+                + etablissement("consommation_ethanol_diesel_ed95_mwh", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.accise.carburants.tarifs_particuliers.ethanol_diesel_ed95
+                    ),
+                )
+                + etablissement("consommation_gazole_b100_mwh", period) * p.carburants.tarifs_particuliers.gazole_b100
+                + etablissement("consommation_essence_aviation_mwh", period)
+                * p.carburants.tarifs_particuliers.essence_aviation
+                + etablissement("consommation_essence_sp95_e10_mwh", period)
+                * p.carburants.tarifs_particuliers.essence_sp95_e10
+                + etablissement("consommation_superethanol_e85_mwh", period)
+                * p.carburants.tarifs_particuliers.superethanol_e85
+                + etablissement(
+                    "consommation_grisou_et_gaz_assimiles_combustible_mwh",
+                    period,
+                )
+                * p.combustibles.tarifs_particuliers.grisou_et_assimiles
+                + etablissement(
+                    "consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh",
+                    period,
+                )
+                * p.combustibles.tarifs_particuliers.biogaz_non_injecte_reseau
+            )
+
+            return select(
+                [
+                    cond_navigation_interieure,
+                    cond_navigation_maritime,
+                    cond_navigation_aerienne,
+                    cond_double_usage,
+                    cond_fabrication_mineraux,
+                    cond_aeronautique_naval,
+                ],
+                [
+                    conso_totale * t2.navigation_interieure,
+                    conso_totale * t2.navigation_maritime,
+                    conso_totale * t2.navigation_aerienne,
+                    conso_totale * t2.doubles_usages,
+                    conso_totale * t2.fabrication_mineraux,
+                    conso_totale * t2.aeronautique_naval,
+                ],
+                default=total_calcule,
+            )
+
+        return sum(accise_du_mois(mois) for mois in period.get_subperiods(MONTH))
 
     def formula_2023_01_01(etablissement, period, parameters):
-        # Par rapport à 2022 : le tarif réduit d'extraction de minéraux industriels entre en
-        # vigueur au 1er janvier 2023 (c/e du 3° de l'art. 37 de l'ordonnance 2021-1843).
-        # les majorations régionales sont manquants.
-        # manutention portuaire : paramètre absent en 2022 (existe à partir de 2023)
-        p = parameters(period).energies.autres_produits_energetiques.accise
-        t2 = p.tarifs_reduits
+        def accise_du_mois(period):
+            """Accise due au titre du mois : quantités du mois, tarifs du mois."""
+            # Par rapport à 2022 : le tarif réduit d'extraction de minéraux industriels entre en
+            # vigueur au 1er janvier 2023 (c/e du 3° de l'art. 37 de l'ordonnance 2021-1843).
+            # les majorations régionales sont manquants.
+            # manutention portuaire : paramètre absent en 2022 (existe à partir de 2023)
+            p = parameters(period).energies.autres_produits_energetiques.accise
+            t2 = p.tarifs_reduits
 
-        # Variables utilisées comme conditions (booléen pour select)
-        gazoles_transport_guide = etablissement("gazoles_transport_guide", period) != 0
-        gazoles_engins_travaux_statiques = etablissement("gazoles_engins_travaux_statiques", period) != 0
-        gazoles_transport_collective_personnes = etablissement("gazoles_transport_collective_personnes", period) != 0
-        gazoles_transport_taxi = etablissement("gazoles_transport_taxi", period) != 0
-        gazoles_transport_routier_marchandises = etablissement("gazoles_transport_routier_marchandises", period) != 0
-        autres_produits_travaux_agricoles = (
-            etablissement("autres_produits_travaux_agricoles_et_forestiers", period) != 0
-        )
-        gazoles_extraction_mineraux = etablissement("gazoles_extraction_mineraux_industriels", period) != 0
-        gazoles_amenagement_pistes = (
-            etablissement(
-                "gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux",
-                period,
+            # Variables utilisées comme conditions (booléen pour select)
+            gazoles_transport_guide = etablissement("gazoles_transport_guide", period.this_year) != 0
+            gazoles_engins_travaux_statiques = etablissement("gazoles_engins_travaux_statiques", period) != 0
+            gazoles_transport_collective_personnes = (
+                etablissement("gazoles_transport_collective_personnes", period.this_year) != 0
             )
-            != 0
-        )
-        intervention_incendie_secours = (
-            etablissement(
-                "autres_produits_intervention_vehicules_services_incendie_secours",
-                period,
+            gazoles_transport_taxi = etablissement("gazoles_transport_taxi", period.this_year) != 0
+            gazoles_transport_routier_marchandises = (
+                etablissement("gazoles_transport_routier_marchandises", period.this_year) != 0
             )
-            != 0
-        )
-        essence_transport_taxi = etablissement("essence_transport_taxi", period) != 0
+            autres_produits_travaux_agricoles = (
+                etablissement("autres_produits_travaux_agricoles_et_forestiers", period.this_year) != 0
+            )
+            gazoles_extraction_mineraux = (
+                etablissement("gazoles_extraction_mineraux_industriels", period.this_year) != 0
+            )
+            gazoles_amenagement_pistes = (
+                etablissement(
+                    "gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux",
+                    period.this_year,
+                )
+                != 0
+            )
+            intervention_incendie_secours = (
+                etablissement(
+                    "autres_produits_intervention_vehicules_services_incendie_secours",
+                    period.this_year,
+                )
+                != 0
+            )
+            essence_transport_taxi = etablissement("essence_transport_taxi", period.this_year) != 0
 
-        taux_gazoles = select(
-            [
-                gazoles_transport_guide,
-                gazoles_engins_travaux_statiques,
-                gazoles_transport_collective_personnes,
-                gazoles_transport_taxi,
-                gazoles_transport_routier_marchandises,
-                autres_produits_travaux_agricoles,
-                gazoles_extraction_mineraux,
-                gazoles_amenagement_pistes,
-                intervention_incendie_secours,
-            ],
-            [
-                p.carburants.huiles_lourdes.tarifs_reduits.transport_guide_personnes_marchandises,
-                p.carburants.huiles_lourdes.tarifs_reduits.travaux_statiques_et_hors_circulation,
-                p.carburants.huiles_lourdes.tarifs_reduits.transport_collectif_routier_personnes,
-                p.carburants.huiles_lourdes.tarifs_reduits.taxi,
-                p.carburants.huiles_lourdes.tarifs_reduits.transport_routier_marchandises,
-                tarif_moyen_annuel(
+            taux_gazoles = select(
+                [
+                    gazoles_transport_guide,
+                    gazoles_engins_travaux_statiques,
+                    gazoles_transport_collective_personnes,
+                    gazoles_transport_taxi,
+                    gazoles_transport_routier_marchandises,
+                    autres_produits_travaux_agricoles,
+                    gazoles_extraction_mineraux,
+                    gazoles_amenagement_pistes,
+                    intervention_incendie_secours,
+                ],
+                [
+                    p.carburants.huiles_lourdes.tarifs_reduits.transport_guide_personnes_marchandises,
+                    p.carburants.huiles_lourdes.tarifs_reduits.travaux_statiques_et_hors_circulation,
+                    p.carburants.huiles_lourdes.tarifs_reduits.transport_collectif_routier_personnes,
+                    p.carburants.huiles_lourdes.tarifs_reduits.taxi,
+                    p.carburants.huiles_lourdes.tarifs_reduits.transport_routier_marchandises,
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.accise.carburants.huiles_lourdes.tarifs_reduits.agricoles_forestiers
+                        ),
+                    ),
+                    p.carburants.huiles_lourdes.tarifs_reduits.extraction_mineraux,
+                    p.carburants.huiles_lourdes.tarifs_reduits.montagnes,
+                    t2.intervention_vehicules_incendie_secours,
+                ],
+                default=tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.accise.carburants.huiles_lourdes.gazoles
+                    ),
+                ),
+            )
+
+            taux_essence = select(
+                [
+                    intervention_incendie_secours,
+                    essence_transport_taxi,
+                ],
+                [
+                    t2.intervention_vehicules_incendie_secours,
+                    p.carburants.huiles_legeres.tarifs_reduits.taxi,
+                ],
+                default=tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.accise.carburants.huiles_legeres.essences
+                    ),
+                ),
+            )
+
+            # gaz_de_petrole_liquefies_combustible_travaux_agricoles n'existe qu'à partir de 2023
+            accise = parameters(period).energies.autres_produits_energetiques.accise
+            if period.start.year >= accise.annee_gaz_petrole_liquefies_travaux_agricoles:
+                taux_gaz_de_petrole_liquefies_combustible = select(
+                    [autres_produits_travaux_agricoles],
+                    [p.taux_selon_activite.gaz_de_petrole_liquefies_combustible_travaux_agricoles],
+                    default=tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.accise.combustibles.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
+                        ),
+                    ),
+                )
+            else:
+                taux_gaz_de_petrole_liquefies_combustible = tarif_du_mois(
                     period,
                     lambda mois: (
                         parameters(
                             mois
-                        ).energies.autres_produits_energetiques.accise.carburants.huiles_lourdes.tarifs_reduits.agricoles_forestiers
+                        ).energies.autres_produits_energetiques.accise.combustibles.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
+                    ),
+                )
+
+            installation_seqe = etablissement("installation_seqe", period.this_year) != 0
+            risque_de_fuite_carbone_eta = etablissement("risque_de_fuite_carbone_eta", period.this_year) != 0
+            intensite_energetique_valeur_production = etablissement(
+                "intensite_energetique_valeur_production",
+                period.this_year,
+            )
+            intensite_energetique_valeur_ajoutee = etablissement(
+                "intensite_energetique_valeur_ajoutee",
+                period.this_year,
+            )
+
+            seuils = parameters(period).energies.seuils_seqe
+            cond_seqe = _or(
+                _and(
+                    installation_seqe,
+                    intensite_energetique_valeur_production >= seuils.intensite_production_min,
+                ),
+                _and(
+                    installation_seqe,
+                    intensite_energetique_valeur_ajoutee >= seuils.intensite_valeur_ajoutee_min,
+                ),
+            )
+            cond_concurrence = _or(
+                _and(
+                    _not(installation_seqe),
+                    risque_de_fuite_carbone_eta,
+                    intensite_energetique_valeur_production >= seuils.intensite_production_min,
+                ),
+                _and(
+                    _not(installation_seqe),
+                    risque_de_fuite_carbone_eta,
+                    intensite_energetique_valeur_ajoutee >= seuils.intensite_valeur_ajoutee_min,
+                ),
+            )
+
+            taux_fiouls_lourds = select(
+                [
+                    autres_produits_travaux_agricoles,
+                    cond_seqe,
+                    cond_concurrence,
+                ],
+                [
+                    p.combustibles.huiles_lourdes.tarifs_reduits.agricoles_forestiers,
+                    p.taux_selon_activite.fiouls_lourds_seqe,
+                    p.taux_selon_activite.fiouls_lourds_concurrence_internationale,
+                ],
+                default=tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.accise.combustibles.huiles_lourdes.fiouls_lourds
                     ),
                 ),
-                p.carburants.huiles_lourdes.tarifs_reduits.extraction_mineraux,
-                p.carburants.huiles_lourdes.tarifs_reduits.montagnes,
-                t2.intervention_vehicules_incendie_secours,
-            ],
-            default=tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.accise.carburants.huiles_lourdes.gazoles
-                ),
-            ),
-        )
+            )
 
-        taux_essence = select(
-            [
-                intervention_incendie_secours,
-                essence_transport_taxi,
-            ],
-            [
-                t2.intervention_vehicules_incendie_secours,
-                p.carburants.huiles_legeres.tarifs_reduits.taxi,
-            ],
-            default=tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.accise.carburants.huiles_legeres.essences
+            taux_fiouls_domestiques = select(
+                [
+                    cond_seqe,
+                    cond_concurrence,
+                ],
+                [
+                    p.taux_selon_activite.fiouls_domestiques_seqe,
+                    p.taux_selon_activite.fiouls_domestiques_concurrence_internationale,
+                ],
+                default=tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.accise.combustibles.huiles_lourdes.fiouls_domestiques
+                    ),
                 ),
-            ),
-        )
+            )
 
-        # gaz_de_petrole_liquefies_combustible_travaux_agricoles n'existe qu'à partir de 2023
-        accise = parameters(period).energies.autres_produits_energetiques.accise
-        if period.start.year >= accise.annee_gaz_petrole_liquefies_travaux_agricoles:
+            taux_petrole_lampant = select(
+                [
+                    cond_seqe,
+                    cond_concurrence,
+                ],
+                [
+                    p.taux_selon_activite.petroles_lampants_seqe,
+                    p.taux_selon_activite.petroles_lampants_concurrence_internationale,
+                ],
+                default=tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.accise.combustibles.huiles_moyennes.petroles_lampants
+                    ),
+                ),
+            )
+
+            # Exonérations sectorielles de l'accise (tarifs réduits à zéro). L'établissement est classé
+            # par code NAF ; s'il relève d'un secteur exonéré, l'ensemble de sa consommation de produits
+            # énergétiques est taxé au tarif réduit correspondant (nul à ce jour, mais lu au barème).
+            conso_totale = etablissement("consommation_autres_produits_energetiques_totale_mwh", period)
+            cond_navigation_interieure = etablissement("autres_produits_navigation_interieure", period.this_year) != 0
+            cond_navigation_maritime = etablissement("autres_produits_navigation_maritime", period.this_year) != 0
+            cond_navigation_aerienne = etablissement("autres_produits_navigation_aerienne", period.this_year) != 0
+            cond_double_usage = etablissement("autres_produits_double_usage", period.this_year) != 0
+            cond_fabrication_mineraux = (
+                etablissement("autre_produits_fabrication_produits_mineraux_non_metalliques", period.this_year) != 0
+            )
+            cond_aeronautique_naval = (
+                etablissement("autres_produits_secteurs_aeronautique_et_naval", period.this_year) != 0
+            )
+
+            total_calcule = (
+                etablissement("consommation_gazoles_mwh", period)
+                * (taux_gazoles + etablissement("ticpe_majoration_regionale_gazole", period.this_year))
+                + etablissement("consommation_carbureactuers_mwh", period) * p.carburants.huiles_moyennes.carbureacteurs
+                + etablissement("consommation_essences_mwh", period)
+                * (taux_essence + etablissement("ticpe_majoration_regionale_supercarburant_e10", period.this_year))
+                + etablissement(
+                    "consommation_gaz_de_petrole_liquefies_carburant_mwh",
+                    period,
+                )
+                * p.carburants.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
+                + etablissement("consommation_fiouls_lourds_mwh", period) * taux_fiouls_lourds
+                + etablissement("consommation_fiouls_domestiques_mwh", period) * taux_fiouls_domestiques
+                + etablissement("consommation_petroles_lampants_mwh", period) * taux_petrole_lampant
+                + etablissement(
+                    "consommation_gaz_de_petrole_liquefies_combustible_mwh",
+                    period,
+                )
+                * taux_gaz_de_petrole_liquefies_combustible
+                + etablissement("consommation_ethanol_diesel_ed95_mwh", period)
+                * tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.accise.carburants.tarifs_particuliers.ethanol_diesel_ed95
+                    ),
+                )
+                + etablissement("consommation_gazole_b100_mwh", period) * p.carburants.tarifs_particuliers.gazole_b100
+                + etablissement("consommation_essence_aviation_mwh", period)
+                * p.carburants.tarifs_particuliers.essence_aviation
+                + etablissement("consommation_essence_sp95_e10_mwh", period)
+                * p.carburants.tarifs_particuliers.essence_sp95_e10
+                + etablissement("consommation_superethanol_e85_mwh", period)
+                * p.carburants.tarifs_particuliers.superethanol_e85
+                + etablissement(
+                    "consommation_grisou_et_gaz_assimiles_combustible_mwh",
+                    period,
+                )
+                * p.combustibles.tarifs_particuliers.grisou_et_assimiles
+                + etablissement(
+                    "consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh",
+                    period,
+                )
+                * p.combustibles.tarifs_particuliers.biogaz_non_injecte_reseau
+            )
+
+            return select(
+                [
+                    cond_navigation_interieure,
+                    cond_navigation_maritime,
+                    cond_navigation_aerienne,
+                    cond_double_usage,
+                    cond_fabrication_mineraux,
+                    cond_aeronautique_naval,
+                ],
+                [
+                    conso_totale * t2.navigation_interieure,
+                    conso_totale * t2.navigation_maritime,
+                    conso_totale * t2.navigation_aerienne,
+                    conso_totale * t2.doubles_usages,
+                    conso_totale * t2.fabrication_mineraux,
+                    conso_totale * t2.aeronautique_naval,
+                ],
+                default=total_calcule,
+            )
+
+        return sum(accise_du_mois(mois) for mois in period.get_subperiods(MONTH))
+
+    def formula_2024_01_01(etablissement, period, parameters):
+        def accise_du_mois(period):
+            """Accise due au titre du mois : quantités du mois, tarifs du mois."""
+            # par rapport à précédement, supprimé consommation_essence_aviation_mwh et quelques
+            # tarifs visés seqe et concurrence internationale
+            p = parameters(period).energies.autres_produits_energetiques.accise
+            t2 = p.tarifs_reduits
+
+            gazoles_transport_guide = etablissement("gazoles_transport_guide", period.this_year) != 0
+            gazoles_engins_travaux_statiques = etablissement("gazoles_engins_travaux_statiques", period) != 0
+            gazoles_transport_collective_personnes = (
+                etablissement("gazoles_transport_collective_personnes", period.this_year) != 0
+            )
+            gazoles_transport_taxi = etablissement("gazoles_transport_taxi", period.this_year) != 0
+            gazoles_transport_routier_marchandises = (
+                etablissement("gazoles_transport_routier_marchandises", period.this_year) != 0
+            )
+            gazoles_manutention_portuaire = etablissement("gazoles_manutention_portuaire", period.this_year) != 0
+            autres_produits_travaux_agricoles = (
+                etablissement("autres_produits_travaux_agricoles_et_forestiers", period.this_year) != 0
+            )
+            gazoles_extraction_mineraux = (
+                etablissement("gazoles_extraction_mineraux_industriels", period.this_year) != 0
+            )
+            gazoles_amenagement_pistes = (
+                etablissement(
+                    "gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux",
+                    period.this_year,
+                )
+                != 0
+            )
+            intervention_incendie_secours = (
+                etablissement(
+                    "autres_produits_intervention_vehicules_services_incendie_secours",
+                    period.this_year,
+                )
+                != 0
+            )
+            essence_transport_taxi = etablissement("essence_transport_taxi", period.this_year) != 0
+
+            taux_gazoles = select(
+                [
+                    gazoles_transport_guide,
+                    gazoles_engins_travaux_statiques,
+                    gazoles_transport_collective_personnes,
+                    gazoles_transport_taxi,
+                    gazoles_transport_routier_marchandises,
+                    gazoles_manutention_portuaire,
+                    autres_produits_travaux_agricoles,
+                    gazoles_extraction_mineraux,
+                    gazoles_amenagement_pistes,
+                    intervention_incendie_secours,
+                ],
+                [
+                    p.carburants.huiles_lourdes.tarifs_reduits.transport_guide_personnes_marchandises,
+                    p.carburants.huiles_lourdes.tarifs_reduits.travaux_statiques_et_hors_circulation,
+                    p.carburants.huiles_lourdes.tarifs_reduits.transport_collectif_routier_personnes,
+                    p.carburants.huiles_lourdes.tarifs_reduits.taxi,
+                    p.carburants.huiles_lourdes.tarifs_reduits.transport_routier_marchandises,
+                    p.carburants.huiles_lourdes.tarifs_reduits.manutention_portuaire,
+                    tarif_du_mois(
+                        period,
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.accise.carburants.huiles_lourdes.tarifs_reduits.agricoles_forestiers
+                        ),
+                    ),
+                    p.carburants.huiles_lourdes.tarifs_reduits.extraction_mineraux,
+                    p.carburants.huiles_lourdes.tarifs_reduits.montagnes,
+                    t2.intervention_vehicules_incendie_secours,
+                ],
+                default=tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.accise.carburants.huiles_lourdes.gazoles
+                    ),
+                ),
+            )
+
+            taux_essence = select(
+                [
+                    intervention_incendie_secours,
+                    essence_transport_taxi,
+                ],
+                [
+                    t2.intervention_vehicules_incendie_secours,
+                    p.carburants.huiles_legeres.tarifs_reduits.taxi,
+                ],
+                default=tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(mois).energies.autres_produits_energetiques.accise.carburants.huiles_legeres.essences
+                    ),
+                ),
+            )
+
             taux_gaz_de_petrole_liquefies_combustible = select(
                 [autres_produits_travaux_agricoles],
                 [p.taux_selon_activite.gaz_de_petrole_liquefies_combustible_travaux_agricoles],
-                default=tarif_moyen_annuel(
+                default=tarif_du_mois(
                     period,
                     lambda mois: (
                         parameters(
@@ -3093,404 +3540,122 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                     ),
                 ),
             )
-        else:
-            taux_gaz_de_petrole_liquefies_combustible = tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.accise.combustibles.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
+
+            taux_fiouls_lourds = select(
+                [autres_produits_travaux_agricoles],
+                [p.combustibles.huiles_lourdes.tarifs_reduits.agricoles_forestiers],
+                default=tarif_du_mois(
+                    period,
+                    lambda mois: (
+                        parameters(
+                            mois
+                        ).energies.autres_produits_energetiques.accise.combustibles.huiles_lourdes.fiouls_lourds
+                    ),
                 ),
             )
 
-        installation_seqe = etablissement("installation_seqe", period) != 0
-        risque_de_fuite_carbone_eta = etablissement("risque_de_fuite_carbone_eta", period) != 0
-        intensite_energetique_valeur_production = etablissement(
-            "intensite_energetique_valeur_production",
-            period,
-        )
-        intensite_energetique_valeur_ajoutee = etablissement(
-            "intensite_energetique_valeur_ajoutee",
-            period,
-        )
-
-        seuils = parameters(period).energies.seuils_seqe
-        cond_seqe = _or(
-            _and(
-                installation_seqe,
-                intensite_energetique_valeur_production >= seuils.intensite_production_min,
-            ),
-            _and(
-                installation_seqe,
-                intensite_energetique_valeur_ajoutee >= seuils.intensite_valeur_ajoutee_min,
-            ),
-        )
-        cond_concurrence = _or(
-            _and(
-                _not(installation_seqe),
-                risque_de_fuite_carbone_eta,
-                intensite_energetique_valeur_production >= seuils.intensite_production_min,
-            ),
-            _and(
-                _not(installation_seqe),
-                risque_de_fuite_carbone_eta,
-                intensite_energetique_valeur_ajoutee >= seuils.intensite_valeur_ajoutee_min,
-            ),
-        )
-
-        taux_fiouls_lourds = select(
-            [
-                autres_produits_travaux_agricoles,
-                cond_seqe,
-                cond_concurrence,
-            ],
-            [
-                p.combustibles.huiles_lourdes.tarifs_reduits.agricoles_forestiers,
-                p.taux_selon_activite.fiouls_lourds_seqe,
-                p.taux_selon_activite.fiouls_lourds_concurrence_internationale,
-            ],
-            default=tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.accise.combustibles.huiles_lourdes.fiouls_lourds
-                ),
-            ),
-        )
-
-        taux_fiouls_domestiques = select(
-            [
-                cond_seqe,
-                cond_concurrence,
-            ],
-            [
-                p.taux_selon_activite.fiouls_domestiques_seqe,
-                p.taux_selon_activite.fiouls_domestiques_concurrence_internationale,
-            ],
-            default=tarif_moyen_annuel(
+            taux_fiouls_domestiques = tarif_du_mois(
                 period,
                 lambda mois: (
                     parameters(
                         mois
                     ).energies.autres_produits_energetiques.accise.combustibles.huiles_lourdes.fiouls_domestiques
                 ),
-            ),
-        )
-
-        taux_petrole_lampant = select(
-            [
-                cond_seqe,
-                cond_concurrence,
-            ],
-            [
-                p.taux_selon_activite.petroles_lampants_seqe,
-                p.taux_selon_activite.petroles_lampants_concurrence_internationale,
-            ],
-            default=tarif_moyen_annuel(
+            )
+            taux_petrole_lampant = tarif_du_mois(
                 period,
                 lambda mois: (
                     parameters(
                         mois
                     ).energies.autres_produits_energetiques.accise.combustibles.huiles_moyennes.petroles_lampants
                 ),
-            ),
-        )
+            )
 
-        # Exonérations sectorielles de l'accise (tarifs réduits à zéro). L'établissement est classé
-        # par code NAF ; s'il relève d'un secteur exonéré, l'ensemble de sa consommation de produits
-        # énergétiques est taxé au tarif réduit correspondant (nul à ce jour, mais lu au barème).
-        conso_totale = etablissement("consommation_autres_produits_energetiques_totale_mwh", period)
-        cond_navigation_interieure = etablissement("autres_produits_navigation_interieure", period) != 0
-        cond_navigation_maritime = etablissement("autres_produits_navigation_maritime", period) != 0
-        cond_navigation_aerienne = etablissement("autres_produits_navigation_aerienne", period) != 0
-        cond_double_usage = etablissement("autres_produits_double_usage", period) != 0
-        cond_fabrication_mineraux = (
-            etablissement("autre_produits_fabrication_produits_mineraux_non_metalliques", period) != 0
-        )
-        cond_aeronautique_naval = etablissement("autres_produits_secteurs_aeronautique_et_naval", period) != 0
+            # Exonérations sectorielles de l'accise (tarifs réduits à zéro). L'établissement est classé
+            # par code NAF ; s'il relève d'un secteur exonéré, l'ensemble de sa consommation de produits
+            # énergétiques est taxé au tarif réduit correspondant (nul à ce jour, mais lu au barème).
+            conso_totale = etablissement("consommation_autres_produits_energetiques_totale_mwh", period)
+            cond_navigation_interieure = etablissement("autres_produits_navigation_interieure", period.this_year) != 0
+            cond_navigation_maritime = etablissement("autres_produits_navigation_maritime", period.this_year) != 0
+            cond_navigation_aerienne = etablissement("autres_produits_navigation_aerienne", period.this_year) != 0
+            cond_double_usage = etablissement("autres_produits_double_usage", period.this_year) != 0
+            cond_fabrication_mineraux = (
+                etablissement("autre_produits_fabrication_produits_mineraux_non_metalliques", period.this_year) != 0
+            )
+            cond_aeronautique_naval = (
+                etablissement("autres_produits_secteurs_aeronautique_et_naval", period.this_year) != 0
+            )
 
-        total_calcule = (
-            etablissement("consommation_gazoles_mwh", period)
-            * (taux_gazoles + etablissement("ticpe_majoration_regionale_gazole", period))
-            + etablissement("consommation_carbureactuers_mwh", period) * p.carburants.huiles_moyennes.carbureacteurs
-            + etablissement("consommation_essences_mwh", period)
-            * (taux_essence + etablissement("ticpe_majoration_regionale_supercarburant_e10", period))
-            + etablissement(
-                "consommation_gaz_de_petrole_liquefies_carburant_mwh",
-                period,
-            )
-            * p.carburants.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
-            + etablissement("consommation_fiouls_lourds_mwh", period) * taux_fiouls_lourds
-            + etablissement("consommation_fiouls_domestiques_mwh", period) * taux_fiouls_domestiques
-            + etablissement("consommation_petroles_lampants_mwh", period) * taux_petrole_lampant
-            + etablissement(
-                "consommation_gaz_de_petrole_liquefies_combustible_mwh",
-                period,
-            )
-            * taux_gaz_de_petrole_liquefies_combustible
-            + etablissement("consommation_ethanol_diesel_ed95_mwh", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.accise.carburants.tarifs_particuliers.ethanol_diesel_ed95
-                ),
-            )
-            + etablissement("consommation_gazole_b100_mwh", period) * p.carburants.tarifs_particuliers.gazole_b100
-            + etablissement("consommation_essence_aviation_mwh", period)
-            * p.carburants.tarifs_particuliers.essence_aviation
-            + etablissement("consommation_essence_sp95_e10_mwh", period)
-            * p.carburants.tarifs_particuliers.essence_sp95_e10
-            + etablissement("consommation_superethanol_e85_mwh", period)
-            * p.carburants.tarifs_particuliers.superethanol_e85
-            + etablissement(
-                "consommation_grisou_et_gaz_assimiles_combustible_mwh",
-                period,
-            )
-            * p.combustibles.tarifs_particuliers.grisou_et_assimiles
-            + etablissement(
-                "consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh",
-                period,
-            )
-            * p.combustibles.tarifs_particuliers.biogaz_non_injecte_reseau
-        )
-
-        return select(
-            [
-                cond_navigation_interieure,
-                cond_navigation_maritime,
-                cond_navigation_aerienne,
-                cond_double_usage,
-                cond_fabrication_mineraux,
-                cond_aeronautique_naval,
-            ],
-            [
-                conso_totale * t2.navigation_interieure,
-                conso_totale * t2.navigation_maritime,
-                conso_totale * t2.navigation_aerienne,
-                conso_totale * t2.doubles_usages,
-                conso_totale * t2.fabrication_mineraux,
-                conso_totale * t2.aeronautique_naval,
-            ],
-            default=total_calcule,
-        )
-
-    def formula_2024_01_01(etablissement, period, parameters):
-        # par rapport à précédement, supprimé consommation_essence_aviation_mwh et quelques
-        # tarifs visés seqe et concurrence internationale
-        p = parameters(period).energies.autres_produits_energetiques.accise
-        t2 = p.tarifs_reduits
-
-        gazoles_transport_guide = etablissement("gazoles_transport_guide", period) != 0
-        gazoles_engins_travaux_statiques = etablissement("gazoles_engins_travaux_statiques", period) != 0
-        gazoles_transport_collective_personnes = etablissement("gazoles_transport_collective_personnes", period) != 0
-        gazoles_transport_taxi = etablissement("gazoles_transport_taxi", period) != 0
-        gazoles_transport_routier_marchandises = etablissement("gazoles_transport_routier_marchandises", period) != 0
-        gazoles_manutention_portuaire = etablissement("gazoles_manutention_portuaire", period) != 0
-        autres_produits_travaux_agricoles = (
-            etablissement("autres_produits_travaux_agricoles_et_forestiers", period) != 0
-        )
-        gazoles_extraction_mineraux = etablissement("gazoles_extraction_mineraux_industriels", period) != 0
-        gazoles_amenagement_pistes = (
-            etablissement(
-                "gazoles_amenagement_et_entretien_pistes_routes_massifs_montagneux",
-                period,
-            )
-            != 0
-        )
-        intervention_incendie_secours = (
-            etablissement(
-                "autres_produits_intervention_vehicules_services_incendie_secours",
-                period,
-            )
-            != 0
-        )
-        essence_transport_taxi = etablissement("essence_transport_taxi", period) != 0
-
-        taux_gazoles = select(
-            [
-                gazoles_transport_guide,
-                gazoles_engins_travaux_statiques,
-                gazoles_transport_collective_personnes,
-                gazoles_transport_taxi,
-                gazoles_transport_routier_marchandises,
-                gazoles_manutention_portuaire,
-                autres_produits_travaux_agricoles,
-                gazoles_extraction_mineraux,
-                gazoles_amenagement_pistes,
-                intervention_incendie_secours,
-            ],
-            [
-                p.carburants.huiles_lourdes.tarifs_reduits.transport_guide_personnes_marchandises,
-                p.carburants.huiles_lourdes.tarifs_reduits.travaux_statiques_et_hors_circulation,
-                p.carburants.huiles_lourdes.tarifs_reduits.transport_collectif_routier_personnes,
-                p.carburants.huiles_lourdes.tarifs_reduits.taxi,
-                p.carburants.huiles_lourdes.tarifs_reduits.transport_routier_marchandises,
-                p.carburants.huiles_lourdes.tarifs_reduits.manutention_portuaire,
-                tarif_moyen_annuel(
+            total_calcule = (
+                etablissement("consommation_gazoles_mwh", period)
+                * (taux_gazoles + etablissement("ticpe_majoration_regionale_gazole", period.this_year))
+                + etablissement("consommation_carbureactuers_mwh", period) * p.carburants.huiles_moyennes.carbureacteurs
+                + etablissement("consommation_essences_mwh", period)
+                * (taux_essence + etablissement("ticpe_majoration_regionale_supercarburant_e10", period.this_year))
+                + etablissement(
+                    "consommation_gaz_de_petrole_liquefies_carburant_mwh",
+                    period,
+                )
+                * p.carburants.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
+                + etablissement("consommation_fiouls_lourds_mwh", period) * taux_fiouls_lourds
+                + etablissement("consommation_fiouls_domestiques_mwh", period) * taux_fiouls_domestiques
+                + etablissement("consommation_petroles_lampants_mwh", period) * taux_petrole_lampant
+                + etablissement(
+                    "consommation_gaz_de_petrole_liquefies_combustible_mwh",
+                    period,
+                )
+                * taux_gaz_de_petrole_liquefies_combustible
+                + etablissement("consommation_ethanol_diesel_ed95_mwh", period)
+                * tarif_du_mois(
                     period,
                     lambda mois: (
                         parameters(
                             mois
-                        ).energies.autres_produits_energetiques.accise.carburants.huiles_lourdes.tarifs_reduits.agricoles_forestiers
+                        ).energies.autres_produits_energetiques.accise.carburants.tarifs_particuliers.ethanol_diesel_ed95
                     ),
-                ),
-                p.carburants.huiles_lourdes.tarifs_reduits.extraction_mineraux,
-                p.carburants.huiles_lourdes.tarifs_reduits.montagnes,
-                t2.intervention_vehicules_incendie_secours,
-            ],
-            default=tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.accise.carburants.huiles_lourdes.gazoles
-                ),
-            ),
-        )
-
-        taux_essence = select(
-            [
-                intervention_incendie_secours,
-                essence_transport_taxi,
-            ],
-            [
-                t2.intervention_vehicules_incendie_secours,
-                p.carburants.huiles_legeres.tarifs_reduits.taxi,
-            ],
-            default=tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.accise.carburants.huiles_legeres.essences
-                ),
-            ),
-        )
-
-        taux_gaz_de_petrole_liquefies_combustible = select(
-            [autres_produits_travaux_agricoles],
-            [p.taux_selon_activite.gaz_de_petrole_liquefies_combustible_travaux_agricoles],
-            default=tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.accise.combustibles.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
-                ),
-            ),
-        )
-
-        taux_fiouls_lourds = select(
-            [autres_produits_travaux_agricoles],
-            [p.combustibles.huiles_lourdes.tarifs_reduits.agricoles_forestiers],
-            default=tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.accise.combustibles.huiles_lourdes.fiouls_lourds
-                ),
-            ),
-        )
-
-        taux_fiouls_domestiques = tarif_moyen_annuel(
-            period,
-            lambda mois: (
-                parameters(
-                    mois
-                ).energies.autres_produits_energetiques.accise.combustibles.huiles_lourdes.fiouls_domestiques
-            ),
-        )
-        taux_petrole_lampant = tarif_moyen_annuel(
-            period,
-            lambda mois: (
-                parameters(
-                    mois
-                ).energies.autres_produits_energetiques.accise.combustibles.huiles_moyennes.petroles_lampants
-            ),
-        )
-
-        # Exonérations sectorielles de l'accise (tarifs réduits à zéro). L'établissement est classé
-        # par code NAF ; s'il relève d'un secteur exonéré, l'ensemble de sa consommation de produits
-        # énergétiques est taxé au tarif réduit correspondant (nul à ce jour, mais lu au barème).
-        conso_totale = etablissement("consommation_autres_produits_energetiques_totale_mwh", period)
-        cond_navigation_interieure = etablissement("autres_produits_navigation_interieure", period) != 0
-        cond_navigation_maritime = etablissement("autres_produits_navigation_maritime", period) != 0
-        cond_navigation_aerienne = etablissement("autres_produits_navigation_aerienne", period) != 0
-        cond_double_usage = etablissement("autres_produits_double_usage", period) != 0
-        cond_fabrication_mineraux = (
-            etablissement("autre_produits_fabrication_produits_mineraux_non_metalliques", period) != 0
-        )
-        cond_aeronautique_naval = etablissement("autres_produits_secteurs_aeronautique_et_naval", period) != 0
-
-        total_calcule = (
-            etablissement("consommation_gazoles_mwh", period)
-            * (taux_gazoles + etablissement("ticpe_majoration_regionale_gazole", period))
-            + etablissement("consommation_carbureactuers_mwh", period) * p.carburants.huiles_moyennes.carbureacteurs
-            + etablissement("consommation_essences_mwh", period)
-            * (taux_essence + etablissement("ticpe_majoration_regionale_supercarburant_e10", period))
-            + etablissement(
-                "consommation_gaz_de_petrole_liquefies_carburant_mwh",
-                period,
+                )
+                + etablissement("consommation_gazole_b100_mwh", period) * p.carburants.tarifs_particuliers.gazole_b100
+                + etablissement("consommation_essence_sp95_e10_mwh", period)
+                * p.carburants.tarifs_particuliers.essence_sp95_e10
+                + etablissement("consommation_superethanol_e85_mwh", period)
+                * p.carburants.tarifs_particuliers.superethanol_e85
+                + etablissement(
+                    "consommation_grisou_et_gaz_assimiles_combustible_mwh",
+                    period,
+                )
+                * p.combustibles.tarifs_particuliers.grisou_et_assimiles
+                + etablissement(
+                    "consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh",
+                    period,
+                )
+                * p.combustibles.tarifs_particuliers.biogaz_non_injecte_reseau
             )
-            * p.carburants.hydrocarbures_gazeux_liquefies.gaz_petrole_liquefies
-            + etablissement("consommation_fiouls_lourds_mwh", period) * taux_fiouls_lourds
-            + etablissement("consommation_fiouls_domestiques_mwh", period) * taux_fiouls_domestiques
-            + etablissement("consommation_petroles_lampants_mwh", period) * taux_petrole_lampant
-            + etablissement(
-                "consommation_gaz_de_petrole_liquefies_combustible_mwh",
-                period,
-            )
-            * taux_gaz_de_petrole_liquefies_combustible
-            + etablissement("consommation_ethanol_diesel_ed95_mwh", period)
-            * tarif_moyen_annuel(
-                period,
-                lambda mois: (
-                    parameters(
-                        mois
-                    ).energies.autres_produits_energetiques.accise.carburants.tarifs_particuliers.ethanol_diesel_ed95
-                ),
-            )
-            + etablissement("consommation_gazole_b100_mwh", period) * p.carburants.tarifs_particuliers.gazole_b100
-            + etablissement("consommation_essence_sp95_e10_mwh", period)
-            * p.carburants.tarifs_particuliers.essence_sp95_e10
-            + etablissement("consommation_superethanol_e85_mwh", period)
-            * p.carburants.tarifs_particuliers.superethanol_e85
-            + etablissement(
-                "consommation_grisou_et_gaz_assimiles_combustible_mwh",
-                period,
-            )
-            * p.combustibles.tarifs_particuliers.grisou_et_assimiles
-            + etablissement(
-                "consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh",
-                period,
-            )
-            * p.combustibles.tarifs_particuliers.biogaz_non_injecte_reseau
-        )
 
-        return select(
-            [
-                cond_navigation_interieure,
-                cond_navigation_maritime,
-                cond_navigation_aerienne,
-                cond_double_usage,
-                cond_fabrication_mineraux,
-                cond_aeronautique_naval,
-            ],
-            [
-                conso_totale * t2.navigation_interieure,
-                conso_totale * t2.navigation_maritime,
-                conso_totale * t2.navigation_aerienne,
-                conso_totale * t2.doubles_usages,
-                conso_totale * t2.fabrication_mineraux,
-                conso_totale * t2.aeronautique_naval,
-            ],
-            default=total_calcule,
-        )
+            return select(
+                [
+                    cond_navigation_interieure,
+                    cond_navigation_maritime,
+                    cond_navigation_aerienne,
+                    cond_double_usage,
+                    cond_fabrication_mineraux,
+                    cond_aeronautique_naval,
+                ],
+                [
+                    conso_totale * t2.navigation_interieure,
+                    conso_totale * t2.navigation_maritime,
+                    conso_totale * t2.navigation_aerienne,
+                    conso_totale * t2.doubles_usages,
+                    conso_totale * t2.fabrication_mineraux,
+                    conso_totale * t2.aeronautique_naval,
+                ],
+                default=total_calcule,
+            )
 
+        # 2007 e5, gazole
 
-# 2007 e5, gazole
+        # 2012 e10
 
-# 2012 e10
+        return sum(accise_du_mois(mois) for mois in period.get_subperiods(MONTH))
 
 
 class ticpe_majoration_regionale_gazole(Variable):
@@ -3550,7 +3715,7 @@ class ticpe_majoration_regionale_gazole(Variable):
             p.paca,
             p.pays_loire,
             p.picardie,
-            tarif_moyen_annuel(
+            tarif_du_mois(
                 period,
                 lambda mois: (
                     parameters(mois).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.poitou_charentes
@@ -3712,7 +3877,7 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
             p.paca,
             p.pays_loire,
             p.picardie,
-            tarif_moyen_annuel(
+            tarif_du_mois(
                 period,
                 lambda mois: (
                     parameters(mois).energies.autres_produits_energetiques.major_regionale_ticpe_super.poitou_charentes
@@ -3874,7 +4039,7 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
             p.paca,
             p.pays_loire,
             p.picardie,
-            tarif_moyen_annuel(
+            tarif_du_mois(
                 period,
                 lambda mois: (
                     parameters(mois).energies.autres_produits_energetiques.major_regionale_ticpe_super.poitou_charentes

@@ -1,3 +1,9 @@
+# relative_error_margin sur cinq cas : depuis la bascule mensuelle, la TICPE de l'année est la
+# somme des accises mensuelles. Une consommation fournie à l'année est stockée au douzième en
+# float32 par set_input_divide_by_period, et la somme des douze mois ne restitue pas la quantité
+# annuelle au bit près. L'écart observé est d'au plus 2,6e-7 en relatif ; la marge de 1e-6 le
+# couvre sans masquer le moindre écart de tarif — le plus petit pas tarifaire du barème est de
+# 0,01 €/MWh, soit six ordres de grandeur au-dessus.
 #
 - name: "test 2022"
   period: 2022
@@ -91,6 +97,7 @@
 
 - name : "test 2021"
   period : 2021
+  relative_error_margin: 0.000001
   input:
     departement: "1"
 
@@ -133,6 +140,7 @@
 
 - name : "test 2020"
   period : 2020
+  relative_error_margin: 0.000001
   input:
     departement: "1"
 
@@ -193,6 +201,7 @@
 
 - name : "test 2018"
   period : 2018
+  relative_error_margin: 0.000001
   input:
     departement: "1"
 
@@ -240,6 +249,7 @@
 
 - name : "test 2017"
   period : 2017
+  relative_error_margin: 0.000001
   input:
     departement: "1"
 
@@ -290,6 +300,7 @@
 
 - name : "test 2012"
   period : 2012
+  relative_error_margin: 0.000001
   input:
     departement: "1"
 

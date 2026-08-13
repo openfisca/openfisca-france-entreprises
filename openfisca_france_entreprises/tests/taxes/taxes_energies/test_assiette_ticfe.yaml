@@ -1,5 +1,10 @@
+# L'assiette de l'accise sur l'électricité est mensuelle depuis la bascule en
+# definition_period = MONTH. Les trois cas qui vérifient sa composition — quelles consommations
+# s'ajoutent, lesquelles se retranchent — sont purement linéaires : les énoncer au mois plutôt
+# qu'à l'année laisse les quantités et les attendus inchangés. Seule la maille change.
+
 - name: test 2022 assiette_taxe_electricite
-  period: 2022
+  period: 2022-01
   input:
     consommation_electricite: 10000
     consommation_electricite_energie_ou_gaz_renouvelable: 1000
@@ -10,7 +15,7 @@
 
 
 - name: test assiette 2011
-  period: 2011
+  period: 2011-01
   input:
     consommation_electricite : 1000
     consommation_electricite_petite_producteur_electricite : 200
@@ -19,7 +24,7 @@
     assiette_taxe_electricite: 600
 
 - name: test assiette 2017
-  period: 2017
+  period: 2017-01
   input:
     consommation_electricite : 1000
     consommation_electricite_petite_producteur_electricite : 200
@@ -64,6 +69,7 @@
 
 - name: test formule electro_intensite
   period: 2025
+  relative_error_margin: 0.000001
   input: #22500/100000
     consommation_electricite : 1000
     #*22.5
@@ -71,8 +77,12 @@
   output:
     electro_intensite: 0.225
 
+# relative_error_margin : le numérateur somme des consommations devenues mensuelles, stockées
+# au douzième en float32 par set_input_divide_by_period. Leur recomposition sur douze mois ne
+# restitue pas la quantité annuelle au bit près : l'écart observé est de 1,1e-7 en relatif.
 - name: test formule intensite_energetique_valeur_ajoutee
   period: 2025
+  relative_error_margin: 0.000001
   input:
     valeur_ajoutee_eta: 100000 #(22500 + 14620 + 19047.6)/100000
     consommation_electricite : 1000

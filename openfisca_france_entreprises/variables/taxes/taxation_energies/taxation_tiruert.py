@@ -27,7 +27,7 @@ défaut d'être renseignées, valent le pourcentage cible — de sorte que la ta
 défaut**, et ne devient positive que si l'utilisateur déclare une proportion inférieure à la cible.
 """
 
-from openfisca_core.model_api import YEAR, Variable, where
+from openfisca_core.model_api import MONTH, YEAR, Variable, where
 
 from openfisca_france_entreprises.entities import Etablissement
 
@@ -79,10 +79,18 @@ def _composante(etablissement, period, parameters, conso, tarif, taux, proportio
     """Une composante de la taxe : assiette * tarif * (cible - proportion), plancher à zéro.
 
     Le dépassement de la cible n'ouvre pas droit à restitution : l'écart est borné à zéro.
+
+    Les consommations étant mensuelles depuis la bascule, la composante de l'année est la somme
+    des composantes mensuelles : chaque mois porte sa quantité et son tarif. La proportion
+    d'énergie renouvelable du redevable reste une caractéristique annuelle.
     """
-    tic = parameters(period).energies.autres_produits_energetiques.taxes_incitatives_carburants
-    ecart = getattr(tic, taux) - etablissement(proportion, period)
-    return etablissement(conso, period) * getattr(tic, tarif) * where(ecart > 0, ecart, 0)
+
+    def composante_du_mois(mois):
+        tic = parameters(mois).energies.autres_produits_energetiques.taxes_incitatives_carburants
+        ecart = getattr(tic, taux) - etablissement(proportion, mois.this_year)
+        return etablissement(conso, mois) * getattr(tic, tarif) * where(ecart > 0, ecart, 0)
+
+    return sum(composante_du_mois(mois) for mois in period.get_subperiods(MONTH))
 
 
 class taxe_incitative_energie_renouvelable_transports(Variable):

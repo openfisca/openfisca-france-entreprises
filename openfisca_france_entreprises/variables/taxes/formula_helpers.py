@@ -10,6 +10,71 @@ from openfisca_core.model_api import MONTH, not_
 _ABSENT = object()
 
 
+def _tarif_du_mois(lire_tarif, mois, defaut_si_absent):
+    """Tarif applicable au mois, en substituant une valeur aux mois où il n'existe pas."""
+    if defaut_si_absent is _ABSENT:
+        return lire_tarif(mois)
+    try:
+        return lire_tarif(mois)
+    except ParameterNotFoundError:
+        return defaut_si_absent
+
+
+def tarif_du_mois(mois, lire_tarif, defaut_si_absent=_ABSENT):
+    """Tarif applicable au mois, avec substitution aux mois où le paramètre n'existe pas.
+
+    À utiliser dans une formule dont le corps s'évalue mois par mois. ``defaut_si_absent``
+    a le même rôle que dans ``accise_annuelle`` : il fait compter une valeur donnée — zéro,
+    typiquement — pour les mois où le tarif est absent ou clôturé, au lieu de lever
+    ``ParameterNotFoundError``.
+
+    :param mois: la période mensuelle courante.
+    :param lire_tarif: fonction ``mois -> tarif``, typiquement
+        ``lambda mois: parameters(mois).energies...``.
+    :param defaut_si_absent: valeur substituée aux mois où le paramètre est absent ou clôturé.
+    """
+    return _tarif_du_mois(lire_tarif, mois, defaut_si_absent)
+
+
+def accise_annuelle(period, lire_assiette, lire_tarif, defaut_si_absent=_ABSENT):
+    """Accise due au titre de l'année : somme des accises mensuelles.
+
+    ``somme sur les mois (assiette du mois * tarif du mois)``.
+
+    Remplace ``assiette annuelle * tarif_moyen_annuel(...)``, qui suppose la consommation
+    répartie uniformément sur l'année. Cette hypothèse est fausse, et les déclarations
+    2040-TIC le montrent : elles ne moyennent jamais, elles ségrègent les tarifs en cases
+    distinctes, chaque case portant la quantité taxée à *son* tarif. Une case s'intitule
+    littéralement « Usage combustible : tarif à 17,16 €/MWh » — elle nomme son propre tarif.
+    Voir le constat n° 8 d'``AGREGATS_TIC.md``.
+
+    Les variables de consommation étant désormais mensuelles (``definition_period = MONTH``)
+    et portant ``set_input = set_input_divide_by_period``, les deux usages coexistent sans
+    que le modèle ait à trancher :
+
+    - une quantité fournie à l'année est répartie sur les douze mois, et la somme redonne
+      ``quantité * moyenne des tarifs`` — exactement la valeur d'avant la bascule. C'est ce
+      dont les agrégats Elfe ont besoin, eux qui publient des tarifs déjà moyennés ;
+    - une quantité fournie au mois est taxée au tarif de ce mois. C'est ce que la 2040-TIC
+      permet, elle qui publie la répartition infra-annuelle réelle.
+
+    La convention d'annualisation cesse ainsi d'être gravée dans les formules.
+
+    :param period: la période annuelle de la formule appelante.
+    :param lire_assiette: fonction ``mois -> assiette``, typiquement
+        ``lambda mois: etablissement("assiette_ticc", mois)``.
+    :param lire_tarif: fonction ``mois -> tarif``, typiquement
+        ``lambda mois: parameters(mois).energies...``.
+    :param defaut_si_absent: valeur substituée aux mois où le paramètre est absent ou
+        clôturé ; par défaut l'absence propage ``ParameterNotFoundError``, ce qui reste
+        voulu pour détecter une lecture de tarif avant son existence.
+    """
+    return sum(
+        lire_assiette(mois) * _tarif_du_mois(lire_tarif, mois, defaut_si_absent)
+        for mois in period.get_subperiods(MONTH)
+    )
+
+
 def tarif_moyen_annuel(period, lire_tarif, defaut_si_absent=_ABSENT):
     """Moyenne mensuelle d'un tarif sur l'année.
 
@@ -39,16 +104,7 @@ def tarif_moyen_annuel(period, lire_tarif, defaut_si_absent=_ABSENT):
         par défaut l'absence propage l'erreur.
     """
     mois = list(period.get_subperiods(MONTH))
-
-    def _lire(m):
-        if defaut_si_absent is _ABSENT:
-            return lire_tarif(m)
-        try:
-            return lire_tarif(m)
-        except ParameterNotFoundError:
-            return defaut_si_absent
-
-    return sum(_lire(m) for m in mois) / len(mois)
+    return sum(_tarif_du_mois(lire_tarif, m, defaut_si_absent) for m in mois) / len(mois)
 
 
 def tarif_avec_repli(lire_principal, lire_repli):

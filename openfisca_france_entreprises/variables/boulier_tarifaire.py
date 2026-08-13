@@ -7,7 +7,7 @@ See https://openfisca.org/doc/key-concepts/variables.html
 
 # Import from numpy the operations you need to apply on OpenFisca's population vectors
 
-from openfisca_core.model_api import YEAR, Variable, where
+from openfisca_core.model_api import ADD, YEAR, Variable, where
 from openfisca_core.periods import Instant
 
 from openfisca_france_entreprises.entities import Etablissement
@@ -21,7 +21,11 @@ class taxe_electricite_bouclier_tarifaire(Variable):
     reference = ""
 
     def formula_2022_01_01(etablissement, period, parameters):
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
+        # L'assiette est mensuelle depuis la bascule. Le bouclier conserve pour l'instant son
+        # traitement annuel — tarif forcé au 1er février, proratisation à la main dans
+        # taxe_electricite — parce qu'il encode un basculement de régime et non un changement de
+        # tarif : le passer au mois est un changement de droit, à instruire à part.
+        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period, options=[ADD])
         taux = parameters(
             Instant((2022, 2, 1)),
         ).energies.electricite.accise.bouclier_tarifaire.entreprises  # 0.5 en 2022
@@ -30,7 +34,11 @@ class taxe_electricite_bouclier_tarifaire(Variable):
         return where(taxe > taxe_accise_electricite, taxe_accise_electricite, taxe)
 
     def formula_2023_01_01(etablissement, period, parameters):
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
+        # L'assiette est mensuelle depuis la bascule. Le bouclier conserve pour l'instant son
+        # traitement annuel — tarif forcé au 1er février, proratisation à la main dans
+        # taxe_electricite — parce qu'il encode un basculement de régime et non un changement de
+        # tarif : le passer au mois est un changement de droit, à instruire à part.
+        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period, options=[ADD])
         taux = parameters(
             Instant((2023, 2, 1)),
         ).energies.electricite.accise.bouclier_tarifaire.entreprises  # 0.5 en 2023
@@ -39,7 +47,11 @@ class taxe_electricite_bouclier_tarifaire(Variable):
         return where(taxe > taxe_accise_electricite, taxe_accise_electricite, taxe)
 
     def formula_2024_01_01(etablissement, period, parameters):
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
+        # L'assiette est mensuelle depuis la bascule. Le bouclier conserve pour l'instant son
+        # traitement annuel — tarif forcé au 1er février, proratisation à la main dans
+        # taxe_electricite — parce qu'il encode un basculement de régime et non un changement de
+        # tarif : le passer au mois est un changement de droit, à instruire à part.
+        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period, options=[ADD])
         taxe_accise_electricite = etablissement("taxe_accise_electricite", period)
         taux = parameters(
             Instant((2024, 2, 1)),

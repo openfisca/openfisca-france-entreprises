@@ -1,6 +1,13 @@
+# relative_error_margin : depuis la bascule mensuelle, l'assiette est stockée au douzième en
+# float32 par set_input_divide_by_period, et sa recomposition sur douze mois ne restitue pas la
+# quantité annuelle au bit près. L'écart observé est d'au plus 3,1e-7 en relatif. La marge de
+# 1e-6 couvre ce bruit d'arithmétique sans masquer le moindre écart de tarif — le plus petit pas
+# tarifaire du barème est de 0,01 €/MWh, soit six ordres de grandeur au-dessus.
+# Elle remplace ici l'ancienne marge absolue de 1, devenue trop serrée pour la même raison.
+
 - name: "Test 1986"
   period: 1986
-  absolute_error_margin: 1
+  relative_error_margin: 0.000001
   input:
     assiette_ticgn : 6500000
   output:
@@ -62,6 +69,7 @@
 
 - name: "Test 2014 grande consommatrice"
   period: 2014
+  relative_error_margin: 0.000001
   input:
     assiette_ticgn : 1000
     installation_seqe: True
@@ -83,6 +91,7 @@
 
 - name: "Test 2019 déhydration des légumes"
   period: 2019
+  relative_error_margin: 0.000001
   input:
     assiette_ticgn : 1000
     gaz_dehydration_legumes_et_plantes_aromatiques: True
@@ -97,6 +106,7 @@
 
 - name: "Test 2020 déhydration des légumes"
   period: 2019
+  relative_error_margin: 0.000001
   input:
     assiette_ticgn : 1000
     gaz_dehydration_legumes_et_plantes_aromatiques: True
@@ -126,6 +136,7 @@
 - name: test 2022 taxe_interieure_taxation_consommation_gaz_naturel_concurrence_internationale
 #formula_
   period: 2022
+  relative_error_margin: 0.000001
   input:
     assiette_ticgn: 1000
     installation_seqe : False
@@ -144,6 +155,7 @@
 # et non soumis au SEQE était taxé à 1.6 au lieu du tarif normal, soit un dixième du dû.
 - name: "test 2023 tarif concurrence internationale encore applicable"
   period: 2023
+  relative_error_margin: 0.000001
   input:
     consommation_gaz_combustible: 10000
     valeur_ajoutee_eta: 100000

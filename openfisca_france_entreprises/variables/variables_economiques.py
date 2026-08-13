@@ -2,7 +2,7 @@
 # les valeurs qui varient avec l'ativité
 # valeur_ajouté
 
-from openfisca_core.model_api import YEAR, Variable, where
+from openfisca_core.model_api import ADD, YEAR, Variable, where
 
 from openfisca_france_entreprises.entities import Etablissement, UniteLegale
 
@@ -40,7 +40,9 @@ class consommation_par_valeur_ajoutee(Variable):
 
     def formula_1960_01_01(etablissement, period, parameters):
         valeur_ajoutee_eta = etablissement("valeur_ajoutee_eta", period)
-        assiette_ticgn = etablissement("assiette_ticgn", period)
+        # L'assiette TICGN est mensuelle depuis la bascule ; le critère légal des 800 Wh par
+        # euro de valeur ajoutée est un ratio annuel, on somme donc les douze mois.
+        assiette_ticgn = etablissement("assiette_ticgn", period, options=[ADD])
 
         consommation__divisee_par_valeur_ajoutee = 0
         if valeur_ajoutee_eta:
@@ -109,7 +111,7 @@ class electro_intensite(Variable):
     def formula(etablissement, period, parameters):
         valeur_ajoutee_eta = etablissement("valeur_ajoutee_eta", period)
 
-        consommation_electricite = etablissement("consommation_electricite", period)
+        consommation_electricite = etablissement("consommation_electricite", period, options=[ADD])
 
         partie_electricite = consommation_electricite * parameters(period).energies.electricite.ticfe.taux_normal
 
@@ -129,7 +131,7 @@ class electro_intensite(Variable):
         """
         valeur_ajoutee_eta = etablissement("valeur_ajoutee_eta", period)
 
-        consommation_electricite = etablissement("consommation_electricite", period)
+        consommation_electricite = etablissement("consommation_electricite", period, options=[ADD])
         partie_electricite = (
             consommation_electricite * parameters(period).energies.electricite.accise.tarifs_normaux.haute_puissance
         )
@@ -152,14 +154,16 @@ class intensite_energetique_valeur_ajoutee(Variable):
     def formula(etablissement, period, parameters):
         valeur_ajoutee_eta = etablissement("valeur_ajoutee_eta", period)
 
-        consommation_electricite = etablissement("consommation_electricite", period)
+        consommation_electricite = etablissement("consommation_electricite", period, options=[ADD])
 
         partie_electricite = consommation_electricite * parameters(period).energies.electricite.ticfe.taux_normal
 
-        consommation_charbon = etablissement("consommation_charbon", period)
+        # Consommation mensuelle depuis la bascule : l'intensité énergétique est un ratio
+        # annuel, on somme donc les douze mois.
+        consommation_charbon = etablissement("consommation_charbon", period, options=[ADD])
         partie_charbon = consommation_charbon * parameters(period).energies.charbon.ticc
 
-        consommation_gaz_naturel = etablissement("consommation_gaz_naturel", period)
+        consommation_gaz_naturel = etablissement("consommation_gaz_naturel", period, options=[ADD])
         partie_gaz_naturel = (
             consommation_gaz_naturel
             * parameters(period).energies.gaz_naturel.ticgn.taux_normal
@@ -193,15 +197,17 @@ class intensite_energetique_valeur_ajoutee(Variable):
         """
         valeur_ajoutee_eta = etablissement("valeur_ajoutee_eta", period)
 
-        consommation_electricite = etablissement("consommation_electricite", period)
+        consommation_electricite = etablissement("consommation_electricite", period, options=[ADD])
         partie_electricite = (
             consommation_electricite * parameters(period).energies.electricite.accise.tarifs_normaux.haute_puissance
         )
 
-        consommation_charbon = etablissement("consommation_charbon", period)
+        # Consommation mensuelle depuis la bascule : l'intensité énergétique est un ratio
+        # annuel, on somme donc les douze mois.
+        consommation_charbon = etablissement("consommation_charbon", period, options=[ADD])
         partie_charbon = consommation_charbon * parameters(period).energies.charbon.accise.combustibles.tarif_normal
 
-        consommation_gaz_naturel = etablissement("consommation_gaz_naturel", period)
+        consommation_gaz_naturel = etablissement("consommation_gaz_naturel", period, options=[ADD])
         partie_gaz_naturel = (
             consommation_gaz_naturel
             * parameters(period).energies.gaz_naturel.accise.combustibles.tarif_normal

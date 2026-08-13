@@ -7,13 +7,14 @@ See https://openfisca.org/doc/key-concepts/variables.html
 Les commentaires avec *** indiquent qu'il y a des problèmes
 """
 
-from openfisca_core.model_api import YEAR, Variable, select
+from openfisca_core.model_api import ADD, MONTH, YEAR, Variable, select, set_input_divide_by_period
 
 from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.taxes.formula_helpers import (
     _and,
     _not,
     _or,
+    accise_annuelle,
     tarif_avec_repli,
     tarif_moyen_annuel,
 )
@@ -290,13 +291,16 @@ class taxe_accise_gaz_naturel_combustible(Variable):
         # ajoutée (LF 2019, art. 67), soit 0.0008 MWh/€.
         consommation_par_valeur_ajoutee = etablissement("consommation_par_valeur_ajoutee", period)
 
-        conso_gaz_combustible = etablissement("consommation_gaz_combustible", period)
-        tarifs_reduits_comb = parameters(period).energies.gaz_naturel.accise.combustibles.tarifs_reduits
+        def accise_combustible(choisir):
+            """Accise de l'année sur le gaz combustible au tarif désigné, mois par mois."""
+            return accise_annuelle(
+                period,
+                lambda mois: etablissement("consommation_gaz_combustible", mois),
+                lambda mois: choisir(parameters(mois).energies.gaz_naturel.accise.combustibles),
+            )
+
         condition_double_usage = gaz_double_usage
-        taxe_travaux_agricoles = (
-            etablissement("consommation_gaz_combustible", period)
-            * parameters(period).energies.gaz_naturel.accise.combustibles.tarifs_reduits.travaux_agricoles_forestiers
-        )
+        taxe_travaux_agricoles = accise_combustible(lambda c: c.tarifs_reduits.travaux_agricoles_forestiers)
         condition_travaux_agricoles = gaz_travaux_agricoles_et_forestiers
         # La fabrication de produits minéraux relève d'un tarif réduit propre, porté par un
         # paramètre. Les deux autres cas ne sont pas des tarifs réduits mais des exclusions
@@ -334,10 +338,7 @@ class taxe_accise_gaz_naturel_combustible(Variable):
             ),
         )
         condition_grande_consommatrice = _and(seqe, grande_consommatrice)
-        taxe_normal_combustible = etablissement("consommation_gaz_combustible", period) * tarif_moyen_annuel(
-            period,
-            lambda mois: parameters(mois).energies.gaz_naturel.accise.combustibles.tarif_normal,
-        )
+        taxe_normal_combustible = accise_combustible(lambda c: c.tarif_normal)
 
         return select(
             [
@@ -351,9 +352,9 @@ class taxe_accise_gaz_naturel_combustible(Variable):
                 condition_grande_consommatrice,
             ],
             [
-                conso_gaz_combustible * tarifs_reduits_comb.doubles_usages,
+                accise_combustible(lambda c: c.tarifs_reduits.doubles_usages),
                 taxe_travaux_agricoles,
-                conso_gaz_combustible * tarifs_reduits_comb.fabrication_mineraux,
+                accise_combustible(lambda c: c.tarifs_reduits.fabrication_mineraux),
                 0,
                 etablissement("taxe_interieure_consommation_gaz_naturel_legumes", period),
                 etablissement(
@@ -399,13 +400,16 @@ class taxe_accise_gaz_naturel_combustible(Variable):
         )
         consommation_par_valeur_ajoutee = etablissement("consommation_par_valeur_ajoutee", period)
 
-        conso_gaz_combustible = etablissement("consommation_gaz_combustible", period)
-        tarifs_reduits_comb = parameters(period).energies.gaz_naturel.accise.combustibles.tarifs_reduits
+        def accise_combustible(choisir):
+            """Accise de l'année sur le gaz combustible au tarif désigné, mois par mois."""
+            return accise_annuelle(
+                period,
+                lambda mois: etablissement("consommation_gaz_combustible", mois),
+                lambda mois: choisir(parameters(mois).energies.gaz_naturel.accise.combustibles),
+            )
+
         condition_double_usage = gaz_double_usage
-        taxe_travaux_agricoles = (
-            etablissement("consommation_gaz_combustible", period)
-            * parameters(period).energies.gaz_naturel.accise.combustibles.tarifs_reduits.travaux_agricoles_forestiers
-        )
+        taxe_travaux_agricoles = accise_combustible(lambda c: c.tarifs_reduits.travaux_agricoles_forestiers)
         condition_travaux_agricoles = gaz_travaux_agricoles_et_forestiers
         # La fabrication de produits minéraux relève d'un tarif réduit propre, porté par un
         # paramètre. Les deux autres cas ne sont pas des tarifs réduits mais des exclusions
@@ -431,10 +435,7 @@ class taxe_accise_gaz_naturel_combustible(Variable):
             ),
         )
         condition_grande_consommatrice = _and(seqe, grande_consommatrice)
-        taxe_normal_combustible = etablissement("consommation_gaz_combustible", period) * tarif_moyen_annuel(
-            period,
-            lambda mois: parameters(mois).energies.gaz_naturel.accise.combustibles.tarif_normal,
-        )
+        taxe_normal_combustible = accise_combustible(lambda c: c.tarif_normal)
 
         return select(
             [
@@ -447,9 +448,9 @@ class taxe_accise_gaz_naturel_combustible(Variable):
                 condition_grande_consommatrice,
             ],
             [
-                conso_gaz_combustible * tarifs_reduits_comb.doubles_usages,
+                accise_combustible(lambda c: c.tarifs_reduits.doubles_usages),
                 taxe_travaux_agricoles,
-                conso_gaz_combustible * tarifs_reduits_comb.fabrication_mineraux,
+                accise_combustible(lambda c: c.tarifs_reduits.fabrication_mineraux),
                 0,
                 etablissement("taxe_interieure_consommation_gaz_naturel_legumes", period),
                 etablissement(
@@ -480,21 +481,24 @@ class taxe_accise_gaz_naturel_carburant(Variable):
 
         ticgn_grande_conso = etablissement("taxe_interieure_consommation_gaz_naturel_grande_consommatrice", period)
 
-        conso_gaz_carburant = etablissement("consommation_gaz_carburant", period)
-        tarifs_reduits_carb = parameters(period).energies.gaz_naturel.accise.carburants.tarifs_reduits
+        def accise_carburant(choisir):
+            """Accise de l'année sur le gaz carburant au tarif désigné, mois par mois."""
+            return accise_annuelle(
+                period,
+                lambda mois: etablissement("consommation_gaz_carburant", mois),
+                lambda mois: choisir(parameters(mois).energies.gaz_naturel.accise.carburants),
+            )
 
         condition_double_usage = gaz_double_usage
         condition_travaux_agricoles = gaz_travaux_agricoles_et_forestiers
-        taxe_travaux_agricoles = conso_gaz_carburant * tarifs_reduits_carb.travaux_agricoles_forestiers
+        taxe_travaux_agricoles = accise_carburant(lambda c: c.tarifs_reduits.travaux_agricoles_forestiers)
         # La fabrication de produits minéraux relève d'un tarif réduit propre, porté par un
         # paramètre. L'extraction et la production de gaz sont en revanche exclues du champ de
         # l'accise : elles restent à zéro, sans paramètre au barème.
         condition_fabrication_mineraux = gaz_production_mineraux_non_metalliques
         condition_exoneration = gaz_extraction_production
         condition_grande_consommatrice = _and(seqe, grande_consommatrice)
-        taxe_normal_carburant = (
-            conso_gaz_carburant * parameters(period).energies.gaz_naturel.accise.carburants.tarif_normal
-        )
+        taxe_normal_carburant = accise_carburant(lambda c: c.tarif_normal)
 
         return select(
             [
@@ -505,9 +509,9 @@ class taxe_accise_gaz_naturel_carburant(Variable):
                 condition_grande_consommatrice,
             ],
             [
-                conso_gaz_carburant * tarifs_reduits_carb.doubles_usages,
+                accise_carburant(lambda c: c.tarifs_reduits.doubles_usages),
                 taxe_travaux_agricoles,
-                conso_gaz_carburant * tarifs_reduits_carb.fabrication_mineraux,
+                accise_carburant(lambda c: c.tarifs_reduits.fabrication_mineraux),
                 0,
                 ticgn_grande_conso,
             ],
@@ -524,9 +528,13 @@ class taxe_interieure_taxation_consommation_gaz_naturel_concurrence_internationa
 
     def formula_2007_01_01(etablissement, period, parameters):
         # faut changer la date après
-        assiette_ticgn = etablissement("assiette_ticgn", period)
-        tarifs_reduits = parameters(period).energies.gaz_naturel.accise.combustibles.tarifs_reduits
-        return assiette_ticgn * tarifs_reduits.intensive_energie_indirect_SEQE
+        return accise_annuelle(
+            period,
+            lambda mois: etablissement("assiette_ticgn", mois),
+            lambda mois: (
+                parameters(mois).energies.gaz_naturel.accise.combustibles.tarifs_reduits.intensive_energie_indirect_SEQE
+            ),
+        )
 
 
 class taxe_interieure_taxation_consommation_gaz_naturel_seqe(Variable):
@@ -538,9 +546,13 @@ class taxe_interieure_taxation_consommation_gaz_naturel_seqe(Variable):
 
     def formula_2007_01_01(etablissement, period, parameters):
         # faut changer la date après
-        assiette_ticgn = etablissement("assiette_ticgn", period)
-        tarifs_reduits = parameters(period).energies.gaz_naturel.accise.combustibles.tarifs_reduits
-        return assiette_ticgn * tarifs_reduits.intensive_energie_SEQE
+        return accise_annuelle(
+            period,
+            lambda mois: etablissement("assiette_ticgn", mois),
+            lambda mois: (
+                parameters(mois).energies.gaz_naturel.accise.combustibles.tarifs_reduits.intensive_energie_SEQE
+            ),
+        )
 
 
 class taxe_interieure_consommation_gaz_naturel_legumes(Variable):
@@ -551,20 +563,24 @@ class taxe_interieure_consommation_gaz_naturel_legumes(Variable):
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037988864/2019-01-01/"
 
     def formula_2019_01_01(etablissement, period, parameters):
-        assiette = etablissement("assiette_ticgn", period)
         # taux_reduit_legumes faisait doublon avec taux_reduit_deshydratation
         # (même valeur, même date, même disposition : LF 2019, art. 67).
-        taux = parameters(period).energies.gaz_naturel.ticgn.taux_reduits.deshydratation
-        return assiette * taux
+        return accise_annuelle(
+            period,
+            lambda mois: etablissement("assiette_ticgn", mois),
+            lambda mois: parameters(mois).energies.gaz_naturel.ticgn.taux_reduits.deshydratation,
+        )
 
     def formula_2022_01_01(etablissement, period, parameters):
         """Le tarif réduit déshydratation passe sous l'accise (CIBS) au 1er janvier 2022.
 
         Valeur inchangée (1.6) ; la série TICGN est clôturée à cette date.
         """
-        assiette = etablissement("assiette_ticgn", period)
-        taux = parameters(period).energies.gaz_naturel.accise.combustibles.tarifs_reduits.deshydratation
-        return assiette * taux
+        return accise_annuelle(
+            period,
+            lambda mois: etablissement("assiette_ticgn", mois),
+            lambda mois: parameters(mois).energies.gaz_naturel.accise.combustibles.tarifs_reduits.deshydratation,
+        )
 
 
 class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
@@ -575,6 +591,18 @@ class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/"
 
     def formula_1986_01_01(etablissement, period, parameters):
+        """Régime à seuil et abattement — délibérément laissé annuel.
+
+        Cette formule n'est pas de la forme ``assiette * tarif`` : elle compare l'assiette à un
+        seuil d'exonération (5 000 000) et lui retranche un abattement mensuel porté à l'année
+        (400 000 * 12). Le seuil et l'abattement mordent sur le cumul de l'année, pas sur chaque
+        mois pris isolément : les décomposer mois par mois durcirait le seuil d'un facteur douze
+        et changerait le droit appliqué. L'assiette est donc sommée sur l'année avant comparaison.
+
+        Le tarif reste une moyenne mensuelle, ce qui est exact tant que la consommation qui
+        franchit le seuil n'a pas de profil infra-annuel connu — et le régime disparaît au
+        1er janvier 2008, avant toute donnée 2040-TIC.
+        """
         seuil = tarif_moyen_annuel(
             period,
             lambda mois: parameters(mois).energies.gaz_naturel.ticgn.seuil_exoneration,
@@ -588,7 +616,7 @@ class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
             * 12
         )
         # 400000
-        assiette = etablissement("assiette_ticgn", period)
+        assiette = etablissement("assiette_ticgn", period, options=[ADD])
         taux = tarif_moyen_annuel(
             period,
             lambda mois: parameters(mois).energies.gaz_naturel.ticgn.taux_normal,
@@ -597,12 +625,11 @@ class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
 
     def formula_2008_01_01(etablissement, period, parameters):
         """[à noter : plus de seuil ni d'abattement]."""
-        assiette = etablissement("assiette_ticgn", period)
-        taux = tarif_moyen_annuel(
+        return accise_annuelle(
             period,
+            lambda mois: etablissement("assiette_ticgn", mois),
             lambda mois: parameters(mois).energies.gaz_naturel.ticgn.taux_normal,
         )
-        return assiette * taux
 
     def formula_2014_01_01(etablissement, period, parameters):
         """[à noter : plus de seuil ni d'abattement].
@@ -610,16 +637,15 @@ class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
         [à noter : le 1.11 serve à convertir le taux en pci au taux en pcs. On assume
         que pcs est au courant tout le temps].
         """
-        assiette = etablissement("assiette_ticgn", period)
-        taux_pci = tarif_moyen_annuel(
-            period,
-            lambda mois: parameters(mois).energies.gaz_naturel.ticgn.taux_normal,
-        )
-        taux = taux_pci * parameters(period).energies.gaz_naturel.ticgn.conversion_pcs_pci
-        #
-        # naturel
         # ***faut vérrifier si cette calculation est valide. Paul a dit que l'assumption est que le PCS est tjrs valide
-        return assiette * taux
+        return accise_annuelle(
+            period,
+            lambda mois: etablissement("assiette_ticgn", mois),
+            lambda mois: (
+                parameters(mois).energies.gaz_naturel.ticgn.taux_normal
+                * parameters(mois).energies.gaz_naturel.ticgn.conversion_pcs_pci
+            ),
+        )
 
 
 class taxe_interieure_consommation_gaz_naturel_grande_consommatrice(Variable):
@@ -640,15 +666,14 @@ class taxe_interieure_consommation_gaz_naturel_grande_consommatrice(Variable):
         tarif à 1,19. Le repli laisse donc l'année 2014 plate à 1,19 ; replier sur zéro donnerait
         0,8925, soit 25 % de moins.
         """
-        assiette = etablissement("assiette_ticgn", period)
-        taux = tarif_moyen_annuel(
+        return accise_annuelle(
             period,
+            lambda mois: etablissement("assiette_ticgn", mois),
             tarif_avec_repli(
                 lambda mois: parameters(mois).energies.gaz_naturel.ticgn.taux_reduits.grandes_consommatrices,
                 lambda mois: parameters(mois).energies.gaz_naturel.ticgn.taux_normal,
             ),
         )
-        return assiette * taux
 
     def formula_2022_01_01(etablissement, period, parameters):
         """Sous le CIBS, le tarif « grande consommatrice » devient le tarif réduit SEQE.
@@ -659,9 +684,13 @@ class taxe_interieure_consommation_gaz_naturel_grande_consommatrice(Variable):
         reprend exactement la valeur que portait le tarif réduit grandes consommatrices depuis
         2016 (1.52) : le résultat est donc inchangé, seule la source du paramètre l'est.
         """
-        assiette = etablissement("assiette_ticgn", period)
-        taux = parameters(period).energies.gaz_naturel.accise.combustibles.tarifs_reduits.intensive_energie_SEQE
-        return assiette * taux
+        return accise_annuelle(
+            period,
+            lambda mois: etablissement("assiette_ticgn", mois),
+            lambda mois: (
+                parameters(mois).energies.gaz_naturel.accise.combustibles.tarifs_reduits.intensive_energie_SEQE
+            ),
+        )
 
 
 class assiette_ticgn(Variable):
@@ -669,7 +698,8 @@ class assiette_ticgn(Variable):
     # dès 2020, les usages comme carbrant y sont somis aussi.
     value_type = float
     entity = Etablissement
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     label = "Tax on gas consumption - TICGN"
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/"
 
@@ -700,7 +730,8 @@ class assiette_ticgn(Variable):
         """
         conso = etablissement("consommation_gaz_combustible", period)
 
-        date_installation_cogeneration = etablissement("date_installation_cogeneration", period)
+        # Caractéristique annuelle de l'établissement, lue à l'année depuis une formule mensuelle.
+        date_installation_cogeneration = etablissement("date_installation_cogeneration", period.this_year)
         ticgn = parameters(period).energies.gaz_naturel.ticgn
         cogeneration_exoneree = False
 
@@ -719,7 +750,8 @@ class assiette_ticgn(Variable):
         """ajouté consommation_gaz_production_electricite."""
         conso = etablissement("consommation_gaz_combustible", period)
 
-        date_installation_cogeneration = etablissement("date_installation_cogeneration", period)
+        # Caractéristique annuelle de l'établissement, lue à l'année depuis une formule mensuelle.
+        date_installation_cogeneration = etablissement("date_installation_cogeneration", period.this_year)
         ticgn = parameters(period).energies.gaz_naturel.ticgn
         cogeneration_exoneree = False
 
@@ -743,7 +775,8 @@ class assiette_ticgn(Variable):
             period,
         )
 
-        date_installation_cogeneration = etablissement("date_installation_cogeneration", period)
+        # Caractéristique annuelle de l'établissement, lue à l'année depuis une formule mensuelle.
+        date_installation_cogeneration = etablissement("date_installation_cogeneration", period.this_year)
         ticgn = parameters(period).energies.gaz_naturel.ticgn
         cogeneration_exoneree = False
 
@@ -782,7 +815,8 @@ class assiette_ticgn(Variable):
             period,
         )
 
-        date_installation_cogeneration = etablissement("date_installation_cogeneration", period)
+        # Caractéristique annuelle de l'établissement, lue à l'année depuis une formule mensuelle.
+        date_installation_cogeneration = etablissement("date_installation_cogeneration", period.this_year)
         ticgn = parameters(period).energies.gaz_naturel.ticgn
         cogeneration_exoneree = False
 
@@ -813,7 +847,8 @@ class assiette_ticgn(Variable):
             n'est plus exonérée à partir du 1er janvier 2011. Cette condition est
             intégrée comme une exception de consommation_gaz_production_electricite.
         """
-        date_installation_cogeneration = etablissement("date_installation_cogeneration", period)
+        # Caractéristique annuelle de l'établissement, lue à l'année depuis une formule mensuelle.
+        date_installation_cogeneration = etablissement("date_installation_cogeneration", period.this_year)
         ticgn = parameters(period).energies.gaz_naturel.ticgn
         cogeneration_exoneree = False
 
