@@ -66,7 +66,7 @@ PYTEST_ADDOPTS="--maxfail=300" .venv/bin/openfisca test \
 `addopts` du dépôt contient `--exitfirst` : sans `PYTEST_ADDOPTS`, le lancement
 s'arrête au premier échec.
 
-**118 tests générés, dont 112 verts et 6 rouges assumés** sous
+**118 tests générés, dont 116 verts et 2 rouges assumés** sous
 `openfisca_france_entreprises/tests/taxes/taxes_energies/agregats/` (78 cellules
 tarifaires, 30 exonérations). Les fichiers sont générés : ne pas les éditer à la
 main.
@@ -102,17 +102,19 @@ main.
 > aligner sur le calcul ferait disparaître le désaccord au lieu de le résoudre, et
 > le test cesserait de tester quoi que ce soit de légal.
 
-Répartition des 6 rouges :
+Répartition des 2 rouges :
 
 | cas | cellules | constat |
 |---|---|---|
-| 4 | `_911237` (2022-2025) | n° 9 — facteur PCS/PCI de 1,11, à arbitrer |
 | 2 | `_911243` (2024-2025) | n° 3 — tarif SEQE clos trop tôt au barème |
 
-Quatre relèvent d'un **arbitrage de modélisation** désormais chiffré, deux du **barème**.
-Les constats n° 4, 5, 6, 7 et 8 sont clos : majoration ZNI appliquée au tarif normal,
-bouclier lisant le tarif ménages, bascule mensuelle, paliers d'électro-intensité et
-hypothèse de consommation uniforme.
+**Les deux derniers tiennent au barème**, et à lui seul : le tarif réduit
+`intensive_energie_indirect_SEQE` s'arrête au 2024-01-01 alors que la case le déclare
+encore en 2024 et 2025. Il se corrige dans `baremes-ipp-yaml`.
+
+Les constats n° 2, 4, 5, 6, 7, 8 et 9 sont clos : tarifs gaz élucidés, majoration ZNI
+appliquée au tarif normal, bouclier lisant le tarif ménages, bascule mensuelle, paliers
+d'électro-intensité, hypothèse de consommation uniforme et conversion PCS/PCI.
 
 Seules restent écartées les **9 cellules pour lesquelles le modèle n'a ni variable
 ni entrée** : il n'y a alors rien à confronter. Ce sont des lacunes de couverture,
@@ -388,9 +390,9 @@ convient. Une variable annuelle ne peut pas servir les deux sources ; la bascule
 mensuelle est ce qui les réconcilie, puisqu'elle permet de moyenner à la demande
 sans figer la convention dans les formules.
 
-### 9. Le facteur PCS/PCI de 1,11, mesuré par la déclaration
+### 9. Le facteur PCS/PCI de 1,11 — ✅ arbitré le 2026-08-13
 
-Établi le 2026-08-13, en remappant `_911237` sur la TICGN.
+Mesuré en remappant `_911237` sur la TICGN, puis tranché.
 
 `taxe_interieure_consommation_gaz_naturel_taux_normal.formula_2014_01_01` multiplie le
 taux normal par `energies.gaz_naturel.ticgn.conversion_pcs_pci`, soit **1,11**, pour
@@ -412,11 +414,26 @@ Le modèle, lui, rend `8,43 × 1,11 = 9,3573`. Le rapport modèle/déclaration v
 547 892 803` contre `547 892 800` calculés. Il n'y a donc pas d'autre écart caché derrière
 celui-ci.
 
-**Ce que ça n'établit pas.** Conclure que le 1,11 est en trop suppose de savoir si la
-quantité déclarée est en MWh PCS ou PCI, ce que le fichier ne dit pas. Si les fournisseurs
-déclarent en PCS et que le tarif légal est en PCS depuis 2014 — ce que suggère la note du
-barème sur `ticgn/taux_normal` au 2014-04-01 —, alors la conversion n'a plus lieu d'être.
-C'est la première pièce chiffrée versée à cet arbitrage, sur 58 552 445 MWh en 2022.
+**Arbitrage : la conversion n'a pas lieu d'être.** La question « les données sont-elles en
+PCS ou en PCI ? » est mal posée, parce qu'elle suppose une unité fixe. Les données
+déclarées **changent de nature en même temps que la loi** : quand le texte exprime le tarif
+en PCS, l'assiette déclarée est en PCS ; quand il l'exprime en PCI, elle est en PCI. Il n'y
+a donc jamais deux unités à réconcilier, et chaque millésime se lit dans l'unité de son
+propre droit.
+
+Le facteur est retiré des trois sites qui l'appliquaient — la formule 2014 de la TICGN et
+les deux formules d'intensité énergétique en valeur ajoutée. Le paramètre
+`conversion_pcs_pci` reste au barème : le coefficient physique existe, il n'a simplement
+pas à intervenir dans la liquidation.
+
+Les quatre cellules `_911237` sont vertes. L'attendu du test d'intensité énergétique, qui
+incorporait le 1,11, passe de 0,561676 à **0,5428** — `(22 500 + 14 620 + 17 160) / 100 000`.
+C'est le seul attendu recalculé de tout le chantier, et c'en est un écrit à la main, pas un
+montant déclaré.
+
+Ferme du même coup la décision humaine n° 4 d'`ACTIONS_EN_ATTENTE.md` et l'arbitrage §7
+d'`ARBITRAGES_JURIDIQUES_ENERGIES.md`, qui traînaient un `***faut vérrifier` depuis
+l'origine.
 
 ---
 

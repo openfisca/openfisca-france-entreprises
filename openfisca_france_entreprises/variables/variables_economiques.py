@@ -164,11 +164,9 @@ class intensite_energetique_valeur_ajoutee(Variable):
         partie_charbon = consommation_charbon * parameters(period).energies.charbon.ticc
 
         consommation_gaz_naturel = etablissement("consommation_gaz_naturel", period, options=[ADD])
-        partie_gaz_naturel = (
-            consommation_gaz_naturel
-            * parameters(period).energies.gaz_naturel.ticgn.taux_normal
-            * parameters(period).energies.gaz_naturel.ticgn.conversion_pcs_pci
-        )
+        # Pas de conversion PCS/PCI : la quantité déclarée suit l'unité dans laquelle la loi
+        # exprime le tarif du millésime. Voir taxe_interieure_consommation_gaz_naturel_taux_normal.
+        partie_gaz_naturel = consommation_gaz_naturel * parameters(period).energies.gaz_naturel.ticgn.taux_normal
 
         # *** TO DO : ajout les autres formes d'énergie, i.g. gazoles
 
@@ -208,10 +206,9 @@ class intensite_energetique_valeur_ajoutee(Variable):
         partie_charbon = consommation_charbon * parameters(period).energies.charbon.accise.combustibles.tarif_normal
 
         consommation_gaz_naturel = etablissement("consommation_gaz_naturel", period, options=[ADD])
+        # Pas de conversion PCS/PCI : voir taxe_interieure_consommation_gaz_naturel_taux_normal.
         partie_gaz_naturel = (
-            consommation_gaz_naturel
-            * parameters(period).energies.gaz_naturel.accise.combustibles.tarif_normal
-            * parameters(period).energies.gaz_naturel.ticgn.conversion_pcs_pci
+            consommation_gaz_naturel * parameters(period).energies.gaz_naturel.accise.combustibles.tarif_normal
         )
 
         numerateur = partie_electricite + partie_charbon + partie_gaz_naturel

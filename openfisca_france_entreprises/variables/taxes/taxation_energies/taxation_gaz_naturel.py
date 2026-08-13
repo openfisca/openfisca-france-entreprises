@@ -653,19 +653,28 @@ class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
         )
 
     def formula_2014_01_01(etablissement, period, parameters):
-        """[à noter : plus de seuil ni d'abattement].
+        """Plus de seuil ni d'abattement — et pas de conversion PCS/PCI.
 
-        [à noter : le 1.11 serve à convertir le taux en pci au taux en pcs. On assume
-        que pcs est au courant tout le temps].
+        La formule multipliait le taux par ``conversion_pcs_pci`` (1,11), au motif que le tarif
+        est exprimé en €/MWh PCI depuis le 1er avril 2014 alors que l'assiette serait en MWh PCS.
+
+        **Cette conversion n'a pas lieu d'être** : la quantité déclarée suit l'unité dans
+        laquelle la loi exprime le tarif. Quand le texte porte sur du PCS, les données d'entrée
+        sont en PCS ; quand il porte sur du PCI, elles sont en PCI. Il n'y a donc jamais deux
+        unités à réconcilier, et un millésime se lit toujours dans l'unité de son droit.
+
+        Les agrégats 2040-TIC le confirment : la case `_911237` déclare 8,4300 €/MWh tout rond,
+        soit exactement le taux normal de la TICGN au 1er janvier 2021, sans facteur. Le rapport
+        entre ce que rendait le modèle et le montant déclaré valait 1,11 exactement, sur les
+        quatre millésimes et sans résidu. Voir le constat n° 9 d'``AGREGATS_TIC.md``.
+
+        Le paramètre ``conversion_pcs_pci`` reste au barème : le coefficient physique existe, il
+        n'a simplement pas à intervenir dans la liquidation.
         """
-        # ***faut vérrifier si cette calculation est valide. Paul a dit que l'assumption est que le PCS est tjrs valide
         return accise_annuelle(
             period,
             lambda mois: etablissement("assiette_ticgn", mois),
-            lambda mois: (
-                parameters(mois).energies.gaz_naturel.ticgn.taux_normal
-                * parameters(mois).energies.gaz_naturel.ticgn.conversion_pcs_pci
-            ),
+            lambda mois: parameters(mois).energies.gaz_naturel.ticgn.taux_normal,
         )
 
 

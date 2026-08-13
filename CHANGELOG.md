@@ -116,8 +116,22 @@
     sur les quatre millesimes**, sans residu — il n'y a pas d'autre ecart cache derriere celui-ci.
     Nouveau constat n° 9 d'`AGREGATS_TIC.md`. Non tranche : conclure suppose de savoir si la
     quantite declaree est en MWh PCS ou PCI, ce que le fichier ne dit pas.
-  - Bilan : 317 verts et 6 rouges. Quatre relevent de l'arbitrage PCS/PCI, deux du bareme
-    (`_911243`, tarif SEQE clos trop tot). Les lacunes de couverture passent de 9 cellules a 3.
+  - **Conversion PCS/PCI supprimee.** Le modele multipliait le taux de TICGN par
+    `conversion_pcs_pci` (1,11) en trois endroits : la formula_2014 du taux normal et les deux
+    formules d'intensite energetique en valeur ajoutee. La question « les donnees sont-elles en
+    PCS ou en PCI ? » etait mal posee : les donnees declarees changent de nature en meme temps
+    que la loi. Quand le texte exprime le tarif en PCS l'assiette est en PCS, quand il l'exprime
+    en PCI elle est en PCI. Il n'y a jamais deux unites a reconcilier, et chaque millesime se lit
+    dans l'unite de son propre droit. Le parametre reste au bareme : le coefficient physique
+    existe, il n'a pas a intervenir dans la liquidation.
+  - Clot la decision humaine n° 4 d'`ACTIONS_EN_ATTENTE.md` et l'arbitrage §7
+    d'`ARBITRAGES_JURIDIQUES_ENERGIES.md`, qui portaient un « faut verrifier » depuis l'origine.
+    La discontinuite supposee de 2022 disparait : il n'y en avait pas, le facteur etait en trop.
+  - Seul attendu recalcule de tout le chantier : `intensite_energetique_valeur_ajoutee` passe de
+    0,561676 a 0,5428, soit (22500 + 14620 + 17160) / 100000. C'est un cas ecrit a la main, pas
+    un montant declare.
+  - Bilan : **321 verts et 2 rouges**. Les deux tiennent au bareme (`_911243`, tarif SEQE clos
+    trop tot). Les lacunes de couverture passent de 9 cellules a 3.
 
 ## 1.1.7 - [#31](https://github.com/openfisca/openfisca-france-entreprises/pull/31)
 
