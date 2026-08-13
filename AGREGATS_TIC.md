@@ -66,7 +66,7 @@ PYTEST_ADDOPTS="--maxfail=300" .venv/bin/openfisca test \
 `addopts` du dépôt contient `--exitfirst` : sans `PYTEST_ADDOPTS`, le lancement
 s'arrête au premier échec.
 
-**111 tests générés, dont 105 verts et 6 rouges assumés** sous
+**118 tests générés, dont 112 verts et 6 rouges assumés** sous
 `openfisca_france_entreprises/tests/taxes/taxes_energies/agregats/` (78 cellules
 tarifaires, 30 exonérations). Les fichiers sont générés : ne pas les éditer à la
 main.
@@ -106,13 +106,13 @@ Répartition des 6 rouges :
 
 | cas | cellules | constat |
 |---|---|---|
-| 4 | `_911237` (2022-2025) | n° 2 — tarif gaz 8,43 absent du barème |
+| 4 | `_911237` (2022-2025) | n° 9 — facteur PCS/PCI de 1,11, à arbitrer |
 | 2 | `_911243` (2024-2025) | n° 3 — tarif SEQE clos trop tôt au barème |
 
-**Les six restants mettent tous en cause le barème**, aucun le modèle. Ils se corrigent
-dans `baremes-ipp-yaml` avant d'être repris ici. Les onze rouges de modélisation —
-constats n° 5, n° 6 et n° 8 — sont éteints : la bascule mensuelle en a fermé cinq, la
-lecture du tarif ménages du bouclier les six autres.
+Quatre relèvent d'un **arbitrage de modélisation** désormais chiffré, deux du **barème**.
+Les constats n° 4, 5, 6, 7 et 8 sont clos : majoration ZNI appliquée au tarif normal,
+bouclier lisant le tarif ménages, bascule mensuelle, paliers d'électro-intensité et
+hypothèse de consommation uniforme.
 
 Seules restent écartées les **9 cellules pour lesquelles le modèle n'a ni variable
 ni entrée** : il n'y a alors rien à confronter. Ce sont des lacunes de couverture,
@@ -148,25 +148,33 @@ figent la part TCFE à sa valeur non indexée.
 *À faire* : retrouver le coefficient réglementaire de revalorisation 2022 et
 décider s'il se porte en paramètre distinct ou s'intègre aux tarifs normaux.
 
-### 2. Gaz naturel combustible : trois tarifs absents du barème
+### 2. Gaz naturel combustible : trois tarifs — ✅ élucidés le 2026-08-13
 
-| case | libellé | déclaré | barème |
+| case | libellé | déclaré | ce que c'est |
 |---|---|---|---|
-| `_911237` | tarif plein, au titre de l'année N | 8,43 | 8,45 |
-| `_911264` | tarif plein, au titre de l'année N+1 | 8,41 | 8,45 |
-| `_911272` | usage combustible, tarif à 8,37 €/MWh | 8,37 | 8,45 |
+| `_911237` | **TICGN** — tarif plein, au titre de l'année N | 8,43 | taux normal de la TICGN au 1er janvier 2021 (art. 61 LF 2021) |
+| `_911264` | tarif plein, au titre de l'année N+1 | 8,41 | tarif normal de l'accise en 2022 (arrêté du 8 septembre 2021) |
+| `_911272` | usage combustible, tarif à 8,37 €/MWh | 8,37 | tarif normal de l'accise en 2023 (arrêté du 13 décembre 2022, art. 2) |
 
-Les trois sont stables sur les quatre millésimes. `_911272` annonce son tarif dans
-son propre libellé, ce qui confirme que 8,37 est bien un tarif de droit et non un
-artefact d'agrégation. Aucune des trois valeurs n'existe au barème, qui ne porte
-que 8,45 puis 16,37 puis 17,16.
+Aucun des trois n'était « absent du barème ». Deux causes se cumulaient.
 
-L'écart de 0,02 entre 8,43 et 8,45 est trop régulier pour être du bruit : il porte
-sur 58 552 445 MWh en 2022.
+**Le barème confondait une valeur de tableau avec le tarif applicable.** L'article
+L312-36 du CIBS porte 8,45 €/MWh, mais son dernier alinéa, dans sa version en vigueur du
+1er janvier 2022 au 1er janvier 2024, prévoit que le tarif normal des gaz naturels est ce
+montant **minoré de la part de biométhane injectée dans les réseaux**, constatée chaque
+année par arrêté. D'où 8,41 en 2022 et 8,37 en 2023. L'arrêté publie même les données du
+calcul : 4,3 TWh injectés en 2021 pour 480 TWh consommés, soit `8,45 × (1 − 0,008958) =
+8,3743`, arrondi à 8,37. Corrigé au barème.
 
-`_911237` est **testée et rouge sur les quatre millésimes**. Les deux autres cases
-n'ont pas de variable au modèle : `_911264` (acomptes N+1) relève d'une notion
-absente, `_911272` d'une lacune de couverture.
+**Et la 2040-TIC tient deux blocs distincts.** `_911237` est libellée « **TICGN** — Taux
+plein », pas « Accise gaz naturels » : c'est une case de régularisation au dernier taux de
+la TICGN, celui de 2021, figé sur les quatre millésimes. Elle pointait le paramètre de
+l'accise avec `annee_tarif=2022`. Repointée sur `ticgn.taux_normal` en 2021.
+
+`_911264` et `_911272` quittent les lacunes de couverture et sont **vertes** sur tous
+leurs millésimes.
+
+`_911237` reste rouge, mais pour une tout autre raison — voir le constat n° 9.
 
 ### 3. Gaz : le tarif « risque de fuite de carbone » est clos trop tôt
 
@@ -380,19 +388,49 @@ convient. Une variable annuelle ne peut pas servir les deux sources ; la bascule
 mensuelle est ce qui les réconcilie, puisqu'elle permet de moyenner à la demande
 sans figer la convention dans les formules.
 
+### 9. Le facteur PCS/PCI de 1,11, mesuré par la déclaration
+
+Établi le 2026-08-13, en remappant `_911237` sur la TICGN.
+
+`taxe_interieure_consommation_gaz_naturel_taux_normal.formula_2014_01_01` multiplie le
+taux normal par `energies.gaz_naturel.ticgn.conversion_pcs_pci`, soit **1,11**, pour
+convertir un tarif exprimé en €/MWh PCI vers une assiette en MWh PCS. Le commentaire qui
+l'accompagne porte depuis toujours un « ***faut vérrifier », et `ACTIONS_EN_ATTENTE.md` le
+liste en décision humaine n° 4.
+
+La déclaration tranche. Sur `_911237`, elle applique **8,4300 tout rond** :
+
+| millésime | quantité (MWh) | montant (€) | rapport |
+|---|---|---|---|
+| 2022 | 58 552 445 | 493 597 111,35 | 8,4300 |
+| 2023 | 1 615 957 | 13 622 518 | 8,4300 |
+| 2024 | 14 784 040 | 124 629 457 | 8,4300 |
+| 2025 | 529 315 | 4 462 125 | 8,4300 |
+
+Le modèle, lui, rend `8,43 × 1,11 = 9,3573`. Le rapport modèle/déclaration vaut
+**exactement 1,11 sur les quatre millésimes**, sans résidu : `493 597 120 × 1,11 =
+547 892 803` contre `547 892 800` calculés. Il n'y a donc pas d'autre écart caché derrière
+celui-ci.
+
+**Ce que ça n'établit pas.** Conclure que le 1,11 est en trop suppose de savoir si la
+quantité déclarée est en MWh PCS ou PCI, ce que le fichier ne dit pas. Si les fournisseurs
+déclarent en PCS et que le tarif légal est en PCS depuis 2014 — ce que suggère la note du
+barème sur `ticgn/taux_normal` au 2014-04-01 —, alors la conversion n'a plus lieu d'être.
+C'est la première pièce chiffrée versée à cet arbitrage, sur 58 552 445 MWh en 2022.
+
 ---
 
 ## Lacunes de couverture
 
-Les **5 cellules non testées** — le modèle n'ayant ni variable ni entrée pour
+Les **3 cellules non testées** — le modèle n'ayant ni variable ni entrée pour
 elles, il n'y a rien à confronter. À distinguer des 6 rouges, qui sont des
 désaccords chiffrés : ici le calculateur ne répond pas du tout.
 
-`_911264` (acomptes N+1), `_911272` (tarif gaz 8,37), `_911321` et `_911323`
-(indexation TCFE, constat n° 1), `_912995` (manutention portuaire).
+`_911321` et `_911323` (indexation TCFE, constat n° 1), `_912995` (manutention portuaire).
 
-Les quatre cellules ZNI en sont sorties le 2026-08-13 — trois sont testées et vertes, la
-quatrième n'a pas de donnée. Voir le constat n° 4.
+Six cellules en sont sorties le 2026-08-13 : les quatre ZNI (constat n° 4 — trois testées
+et vertes, la quatrième sans donnée) et `_911264` / `_911272`, une fois la série de
+l'accise gaz corrigée au barème (constat n° 2).
 
 - **`electricite_manutention_portuaire`** existe comme variable d'entrée et le
   tarif est au barème (0,5 €/MWh depuis 2023), mais la variable n'est branchée dans

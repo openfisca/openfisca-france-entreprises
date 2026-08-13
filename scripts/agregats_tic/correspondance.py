@@ -78,25 +78,39 @@ GAZ_NATUREL = [
     ),
     Cellule(
         case_quantite="_911237",
-        annee_tarif=2022,
+        annee_tarif=2021,
         cases_montant=("_911238",),
-        intitule="Gaz naturel combustible — tarif plein, au titre de l'année N",
-        parametre="energies.gaz_naturel.accise.combustibles.tarif_normal",
-        variable="taxe_accise_gaz_naturel_combustible",
+        intitule="Gaz naturel combustible — TICGN, tarif plein au titre de l'année N",
+        parametre="energies.gaz_naturel.ticgn.taux_normal",
+        variable="taxe_interieure_consommation_gaz_naturel",
         entrees={"consommation_gaz_combustible": ASSIETTE},
-        remarque="Tarif implicite 8,43 €/MWh, contre 8,45 au barème (voir le rapport).",
+        constat=(
+            "Le modèle applique le facteur de conversion PCS/PCI de 1,11, la formula_2014 de "
+            "taxe_interieure_consommation_gaz_naturel_taux_normal multipliant le taux par "
+            "energies.gaz_naturel.ticgn.conversion_pcs_pci. La déclaration applique 8,43 tout "
+            "rond, sans conversion : 58 552 445 MWh x 8,43 = 493 597 111,35 EUR, au centime. Le "
+            "rapport modèle/déclaration vaut donc exactement 1,11. C'est l'arbitrage §7, listé "
+            "en décision humaine n° 4 d'ACTIONS_EN_ATTENTE.md avec son « faut vérrifier »."
+        ),
+        remarque=(
+            "Case du bloc TICGN, pas du bloc accise : son libellé porte « TICGN - Taux plein » "
+            "et son tarif de 8,43 EUR/MWh est le taux normal de la TICGN au 1er janvier 2021 "
+            "(article 61 de la LF 2021), figé par les régularisations sur les quatre millésimes."
+        ),
     ),
     Cellule(
         case_quantite="_911264",
         annee_tarif=2022,
         cases_montant=("_911265",),
-        intitule="Gaz naturel combustible — tarif plein, au titre de l'année N+1",
+        intitule="Gaz naturel combustible — accise, tarif plein au titre de l'année N+1",
         parametre="energies.gaz_naturel.accise.combustibles.tarif_normal",
-        variable=None,
+        variable="taxe_accise_gaz_naturel_combustible",
         entrees={"consommation_gaz_combustible": ASSIETTE},
         remarque=(
-            "Quantités rattachées à l'exercice suivant : tarif implicite 8,41 €/MWh. "
-            "Le modèle n'a pas de notion d'acompte au titre de N+1."
+            "Quantités rattachées à l'exercice suivant : tarif implicite 8,41 EUR/MWh, soit le "
+            "tarif normal de l'accise en 2022 (arrêté du 8 septembre 2021). Le modèle n'a pas de "
+            "notion d'acompte au titre de N+1, mais la cellule reste une cellule tarifaire "
+            "homogène : c'est son tarif qu'on vérifie, pas le mécanisme de l'acompte."
         ),
     ),
     Cellule(
@@ -106,8 +120,12 @@ GAZ_NATUREL = [
         intitule="Gaz naturel combustible — tarif à 8,37 €/MWh",
         millesimes=(2023, 2024, 2025),
         parametre="energies.gaz_naturel.accise.combustibles.tarif_normal",
-        variable=None,
-        remarque="Tarif 8,37 absent du barème (qui porte 8,45 puis 16,37).",
+        variable="taxe_accise_gaz_naturel_combustible",
+        entrees={"consommation_gaz_combustible": ASSIETTE},
+        remarque=(
+            "8,37 EUR/MWh est le tarif normal de l'accise en 2023, constaté à l'article 2 de "
+            "l'arrêté du 13 décembre 2022 : 8,45 minoré de la part de biométhane injectée."
+        ),
     ),
     Cellule(
         case_quantite="_912998",

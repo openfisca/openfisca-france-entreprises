@@ -105,8 +105,19 @@
     vert. `correspondance.py` recoit un champ `parametre_majoration` : la declaration separe la
     fraction de droit commun et la majoration en deux cases de montant, mais le tarif de la
     cellule est leur somme. La quatrieme, `_914396` (charbon), n'a aucune donnee au millesime 2025.
-  - Bilan : 310 verts et 6 rouges. Tous les six tiennent au bareme (`_911237` x4, `_911243` x2) ;
-    aucun n'est un defaut de modelisation.
+  - Constat 2 elucide : les trois tarifs gaz reputes « absents du bareme » ne l'etaient pas.
+    8,41 et 8,37 sont les tarifs normaux de l'accise en 2022 et 2023, desormais au bareme ; 8,43
+    est le taux normal de la **TICGN** en 2021, que la case `_911237` porte en regularisation.
+    Cette case est repointee sur `ticgn.taux_normal` en 2021, `_911264` et `_911272` quittent les
+    lacunes de couverture et sont vertes sur tous leurs millesimes.
+  - Le remappage de `_911237` chiffre l'arbitrage PCS/PCI (decision humaine n° 4
+    d'`ACTIONS_EN_ATTENTE.md`) : le modele applique le facteur `conversion_pcs_pci` de 1,11 la ou
+    la declaration applique 8,43 tout rond. Le rapport modele/declaration vaut **exactement 1,11
+    sur les quatre millesimes**, sans residu — il n'y a pas d'autre ecart cache derriere celui-ci.
+    Nouveau constat n° 9 d'`AGREGATS_TIC.md`. Non tranche : conclure suppose de savoir si la
+    quantite declaree est en MWh PCS ou PCI, ce que le fichier ne dit pas.
+  - Bilan : 317 verts et 6 rouges. Quatre relevent de l'arbitrage PCS/PCI, deux du bareme
+    (`_911243`, tarif SEQE clos trop tot). Les lacunes de couverture passent de 9 cellules a 3.
 
 ## 1.1.7 - [#31](https://github.com/openfisca/openfisca-france-entreprises/pull/31)
 

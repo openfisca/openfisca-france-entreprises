@@ -75,73 +75,169 @@
     # 4,900,549 MWh × 5.2300 €/MWh
     taxe_accise_gaz_naturel_carburant: 25629871.27
 
-# DÉSACCORD — le tarif déclaré ne concorde avec aucun mois du barème.
-# La déclaration applique 8.4300 €/MWh ; le barème porte 8.4100.
-# Aucun des douze mois de l'année ne porte le tarif déclaré : ce n'est donc
-# pas un artefact d'annualisation, mais un désaccord de fond.
-# La déclaration fait foi : c'est le barème qu'il faut instruire.
-- name: "_911237 — Gaz naturel combustible — tarif plein, au titre de l'année N (millésime 2022)"
-  period: 2022
+# DÉSACCORD — le modèle ne restitue pas cette cellule.
+# Le modèle applique le facteur de conversion PCS/PCI de 1,11, la formula_2014
+# de taxe_interieure_consommation_gaz_naturel_taux_normal multipliant le taux
+# par energies.gaz_naturel.ticgn.conversion_pcs_pci. La déclaration applique
+# 8,43 tout rond, sans conversion : 58 552 445 MWh x 8,43 = 493 597 111,35
+# EUR, au centime. Le rapport modèle/déclaration vaut donc exactement 1,11.
+# C'est l'arbitrage §7, listé en décision humaine n° 4 d'ACTIONS_EN_ATTENTE.md
+# avec son « faut vérrifier ».
+- name: "_911237 — Gaz naturel combustible — TICGN, tarif plein au titre de l'année N (millésime 2022)"
+  period: 2021
   absolute_error_margin: 493.597
   input:
-    # Aucun mois de 2022 ne porte le tarif déclaré : la quantité est posée
-    # sur 2022-01, ce qui isole le désaccord de barème.
+    # Quantité posée sur 2021-01, mois où le barème porte le tarif
+    # déclaré de 8.4300 €/MWh.
     consommation_gaz_combustible:
-      "2022-01": 58552445
+      "2021-01": 58552445
   output:
     # 58,552,445 MWh × 8.4300 €/MWh
-    taxe_accise_gaz_naturel_combustible: 493597111.35
+    taxe_interieure_consommation_gaz_naturel: 493597111.35
 
-# DÉSACCORD — le tarif déclaré ne concorde avec aucun mois du barème.
-# La déclaration applique 8.4300 €/MWh ; le barème porte 8.4100.
-# Aucun des douze mois de l'année ne porte le tarif déclaré : ce n'est donc
-# pas un artefact d'annualisation, mais un désaccord de fond.
-# La déclaration fait foi : c'est le barème qu'il faut instruire.
-- name: "_911237 — Gaz naturel combustible — tarif plein, au titre de l'année N (millésime 2023)"
-  period: 2022
+# DÉSACCORD — le modèle ne restitue pas cette cellule.
+# Le modèle applique le facteur de conversion PCS/PCI de 1,11, la formula_2014
+# de taxe_interieure_consommation_gaz_naturel_taux_normal multipliant le taux
+# par energies.gaz_naturel.ticgn.conversion_pcs_pci. La déclaration applique
+# 8,43 tout rond, sans conversion : 58 552 445 MWh x 8,43 = 493 597 111,35
+# EUR, au centime. Le rapport modèle/déclaration vaut donc exactement 1,11.
+# C'est l'arbitrage §7, listé en décision humaine n° 4 d'ACTIONS_EN_ATTENTE.md
+# avec son « faut vérrifier ».
+- name: "_911237 — Gaz naturel combustible — TICGN, tarif plein au titre de l'année N (millésime 2023)"
+  period: 2021
   absolute_error_margin: 13.6225
   input:
-    # Aucun mois de 2022 ne porte le tarif déclaré : la quantité est posée
-    # sur 2022-01, ce qui isole le désaccord de barème.
+    # Quantité posée sur 2021-01, mois où le barème porte le tarif
+    # déclaré de 8.4300 €/MWh.
     consommation_gaz_combustible:
-      "2022-01": 1615957
+      "2021-01": 1615957
   output:
     # 1,615,957 MWh × 8.4300 €/MWh
-    taxe_accise_gaz_naturel_combustible: 13622517.51
+    taxe_interieure_consommation_gaz_naturel: 13622517.51
 
-# DÉSACCORD — le tarif déclaré ne concorde avec aucun mois du barème.
-# La déclaration applique 8.4300 €/MWh ; le barème porte 8.4100.
-# Aucun des douze mois de l'année ne porte le tarif déclaré : ce n'est donc
-# pas un artefact d'annualisation, mais un désaccord de fond.
-# La déclaration fait foi : c'est le barème qu'il faut instruire.
-- name: "_911237 — Gaz naturel combustible — tarif plein, au titre de l'année N (millésime 2024)"
-  period: 2022
+# DÉSACCORD — le modèle ne restitue pas cette cellule.
+# Le modèle applique le facteur de conversion PCS/PCI de 1,11, la formula_2014
+# de taxe_interieure_consommation_gaz_naturel_taux_normal multipliant le taux
+# par energies.gaz_naturel.ticgn.conversion_pcs_pci. La déclaration applique
+# 8,43 tout rond, sans conversion : 58 552 445 MWh x 8,43 = 493 597 111,35
+# EUR, au centime. Le rapport modèle/déclaration vaut donc exactement 1,11.
+# C'est l'arbitrage §7, listé en décision humaine n° 4 d'ACTIONS_EN_ATTENTE.md
+# avec son « faut vérrifier ».
+- name: "_911237 — Gaz naturel combustible — TICGN, tarif plein au titre de l'année N (millésime 2024)"
+  period: 2021
   absolute_error_margin: 124.629
   input:
-    # Aucun mois de 2022 ne porte le tarif déclaré : la quantité est posée
-    # sur 2022-01, ce qui isole le désaccord de barème.
+    # Quantité posée sur 2021-01, mois où le barème porte le tarif
+    # déclaré de 8.4300 €/MWh.
     consommation_gaz_combustible:
-      "2022-01": 14784040
+      "2021-01": 14784040
   output:
     # 14,784,040 MWh × 8.4300 €/MWh
-    taxe_accise_gaz_naturel_combustible: 124629457.20
+    taxe_interieure_consommation_gaz_naturel: 124629457.20
 
-# DÉSACCORD — le tarif déclaré ne concorde avec aucun mois du barème.
-# La déclaration applique 8.4300 €/MWh ; le barème porte 8.4100.
-# Aucun des douze mois de l'année ne porte le tarif déclaré : ce n'est donc
-# pas un artefact d'annualisation, mais un désaccord de fond.
-# La déclaration fait foi : c'est le barème qu'il faut instruire.
-- name: "_911237 — Gaz naturel combustible — tarif plein, au titre de l'année N (millésime 2025)"
-  period: 2022
+# DÉSACCORD — le modèle ne restitue pas cette cellule.
+# Le modèle applique le facteur de conversion PCS/PCI de 1,11, la formula_2014
+# de taxe_interieure_consommation_gaz_naturel_taux_normal multipliant le taux
+# par energies.gaz_naturel.ticgn.conversion_pcs_pci. La déclaration applique
+# 8,43 tout rond, sans conversion : 58 552 445 MWh x 8,43 = 493 597 111,35
+# EUR, au centime. Le rapport modèle/déclaration vaut donc exactement 1,11.
+# C'est l'arbitrage §7, listé en décision humaine n° 4 d'ACTIONS_EN_ATTENTE.md
+# avec son « faut vérrifier ».
+- name: "_911237 — Gaz naturel combustible — TICGN, tarif plein au titre de l'année N (millésime 2025)"
+  period: 2021
   absolute_error_margin: 4.46213
   input:
-    # Aucun mois de 2022 ne porte le tarif déclaré : la quantité est posée
-    # sur 2022-01, ce qui isole le désaccord de barème.
+    # Quantité posée sur 2021-01, mois où le barème porte le tarif
+    # déclaré de 8.4300 €/MWh.
     consommation_gaz_combustible:
-      "2022-01": 529315
+      "2021-01": 529315
   output:
     # 529,315 MWh × 8.4300 €/MWh
-    taxe_accise_gaz_naturel_combustible: 4462125.45
+    taxe_interieure_consommation_gaz_naturel: 4462125.45
+
+- name: "_911264 — Gaz naturel combustible — accise, tarif plein au titre de l'année N+1 (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 1523.05
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 8.4100 €/MWh.
+    consommation_gaz_combustible:
+      "2022-01": 181099310
+  output:
+    # 181,099,310 MWh × 8.4100 €/MWh
+    taxe_accise_gaz_naturel_combustible: 1523045197.10
+
+- name: "_911264 — Gaz naturel combustible — accise, tarif plein au titre de l'année N+1 (millésime 2023)"
+  period: 2022
+  absolute_error_margin: 382.117
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 8.4100 €/MWh.
+    consommation_gaz_combustible:
+      "2022-01": 45435987
+  output:
+    # 45,435,987 MWh × 8.4100 €/MWh
+    taxe_accise_gaz_naturel_combustible: 382116650.67
+
+- name: "_911264 — Gaz naturel combustible — accise, tarif plein au titre de l'année N+1 (millésime 2024)"
+  period: 2022
+  absolute_error_margin: 2.10622
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 8.4100 €/MWh.
+    consommation_gaz_combustible:
+      "2022-01": 250442
+  output:
+    # 250,442 MWh × 8.4100 €/MWh
+    taxe_accise_gaz_naturel_combustible: 2106217.22
+
+- name: "_911264 — Gaz naturel combustible — accise, tarif plein au titre de l'année N+1 (millésime 2025)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 8.4100 €/MWh.
+    consommation_gaz_combustible:
+      "2022-01": 30614
+  output:
+    # 30,614 MWh × 8.4100 €/MWh
+    taxe_accise_gaz_naturel_combustible: 257463.74
+
+- name: "_911272 — Gaz naturel combustible — tarif à 8,37 €/MWh (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 1380.49
+  input:
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
+    # déclaré de 8.3700 €/MWh.
+    consommation_gaz_combustible:
+      "2023-01": 164933333
+  output:
+    # 164,933,333 MWh × 8.3700 €/MWh
+    taxe_accise_gaz_naturel_combustible: 1380491997.21
+
+- name: "_911272 — Gaz naturel combustible — tarif à 8,37 €/MWh (millésime 2024)"
+  period: 2023
+  absolute_error_margin: 358.856
+  input:
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
+    # déclaré de 8.3700 €/MWh.
+    consommation_gaz_combustible:
+      "2023-01": 42874067
+  output:
+    # 42,874,067 MWh × 8.3700 €/MWh
+    taxe_accise_gaz_naturel_combustible: 358855940.79
+
+- name: "_911272 — Gaz naturel combustible — tarif à 8,37 €/MWh (millésime 2025)"
+  period: 2023
+  absolute_error_margin: 1.18435
+  input:
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
+    # déclaré de 8.3700 €/MWh.
+    consommation_gaz_combustible:
+      "2023-01": 141499
+  output:
+    # 141,499 MWh × 8.3700 €/MWh
+    taxe_accise_gaz_naturel_combustible: 1184346.63
 
 - name: "_912998 — Gaz naturel combustible — tarif à 16,37 €/MWh (millésime 2024)"
   period: 2024
