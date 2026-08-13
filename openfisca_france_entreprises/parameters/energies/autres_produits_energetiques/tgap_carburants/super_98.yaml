@@ -1,4 +1,4 @@
-description: TGAP carburants pour le Super 98
+description: Super 98
 values:
   2005-01-01:
     value: 0.012
@@ -41,6 +41,7 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006322425&cidTexte=JORFTEXT000000634802
     2017-01-01:
       title: Loi 2016-1618 du 29/12/2016 (LFR pour 2016) - art. 60
+      href: https://www.legifrance.gouv.fr/eli/loi/2016/12/29/ECFX1629304L/jo/texte
     2019-01-01:
       title: Loi 2018-1317 du 28/12/2018 (LF pour 2019) - art. 192
       href: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037993315&cidTexte=LEGITEXT000006071570&categorieLien=id&dateTexte=
@@ -53,3 +54,8 @@ metadata:
     2010-01-01: "2005-12-31"
     2017-01-01: "2016-12-30"
     2019-01-01: "2018-12-30"
+documentation: |-
+  Au 1er janvier 2019, la TGAP sur les carburants est remplacée par la TIRIB (taxe incitative relative à l’incorporation de biocarburants), qui devient TIRUERT au 1er janvier 2022.
+  Jusqu'au 31 décembre 2018, le taux de TGAP est diminué à proportion de la quantité de biocarburants incorporée aux carburants, dans la limite de 7% à partir du 1er janvier 2014.
+  A partir du 1er janvier 2019, le taux devient un montant auquel est appliqué un coefficient égal à la différence entre un pourcentage national cible d'incorporation d'énergies propres dans les transports (fixé chaque année),
+  et celle effectivement contenue dans les produits de l'assiette (cette différence ne pouvant être rendue inférieure à 0). Ce taux ainsi que le montant initial de la taxe font l'objet d'un barème consacré aux taxes incitatives à l'utilisation d'énergies propres dans les transports.

@@ -1,18 +1,27 @@
 # Actions en attente — synchronisation énergies
 
-> État arrêté au **2026-07-24**. Ce fichier liste ce qui **ne peut pas être fait depuis l'agent** :
-> actions nécessitant un outil absent, un autre dépôt, ou une décision humaine. Le suivi technique
-> reste dans `SYNC_ENERGIES_REPORT.md` (bloc de reprise) et `ARBITRAGES_JURIDIQUES_ENERGIES.md`.
+> État arrêté au **2026-07-24**, **table des branches remise à jour le 2026-07-31**. Ce fichier liste
+> ce qui **ne peut pas être fait depuis l'agent** : actions nécessitant un outil absent, un autre
+> dépôt, ou une décision humaine. Le suivi technique reste dans `SYNC_ENERGIES_REPORT.md` (bloc de
+> reprise) et `ARBITRAGES_JURIDIQUES_ENERGIES.md`.
 
-## Branches (dépôt OpenFisca-France-Entreprises)
+## Branches (dépôt OpenFisca-France-Entreprises) — au 2026-07-31
 
-| branche | tête | contenu |
+`main` (`5be7c9c`, PR #26) est le tronc : il absorbe `sync/energies-no-regret`,
+`fix/regions-post-2016` et `convergence/energies` — **les trois ont été supprimées d'`origin`** — ainsi
+que le contenu d'`align/energies-tree`. 205 tests passent.
+
+| branche | état | action |
 |---|---|---|
-| `sync/energies-no-regret` | `fca4534` | synchronisation des paramètres — items 1, 2, 3, 5 faits, item 4 partiel |
-| `refactor/energies-periodes-mensuelles` | `3a9dcb6` | tarifs à entrée en vigueur infra-annuelle (moyenne mensuelle) |
-| `update_dependencies` | — | épinglage `numpy<2.5` |
+| `align/energies-tree` | superseded (rien d'unique vs `main`) | **à supprimer** |
+| `fix/regions-post-2016` | ⊂ `main` | **à supprimer** |
+| `add_parameters` | ⊂ `main` | **à supprimer** |
+| `refactor/energies-periodes-mensuelles` | 9 commits uniques | rapatriement non mécanique — cf. §3 du rapport |
+| `Implementation-SEQE` | 8 commits uniques | chantier distinct |
+| `assets/agregats-tic` | 3 commits uniques | chantier distinct |
 
-Toutes poussées. 205 tests passent sur `sync`, 198 sur `refactor`.
+⚠️ Les branches locales périmées à nettoyer aussi : `sync/energies-no-regret`, `convergence/energies`,
+`stage_chieh` (supprimée d'`origin`).
 
 ---
 

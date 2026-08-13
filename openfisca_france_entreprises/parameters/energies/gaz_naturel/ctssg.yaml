@@ -1,4 +1,4 @@
-description: Contribution au tarif spécial de solidarité gaz (CTSSG) - prix par MWh
+description: Contribution au tarif spécial de solidarité gaz (CTSSG)
 values:
   2008-01-01:
     value: 0.026
@@ -13,9 +13,11 @@ values:
   2016-01-01:
     value: null
 metadata:
+  short_label: CTSSG
+  last_value_still_valid_on: "2025-02-21"
+  label_en: Contribution to the Special Solidarity Gas Tariff (CTSSG)
   ipp_csv_id: ctssg
-  unit: currency
-  last_value_still_valid_on: "2024-08-01"
+  unit: currency_per_mwh
   reference:
     2008-01-01:
       title: Arrêté du 17 décembre 2008 fixant les montants des charges imputables à l'obligation de service public de fourniture de gaz naturel au tarif spécial de solidarité et les taux de la contribution unitaire pour les années 2008 et 2009

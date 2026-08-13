@@ -1,4 +1,81 @@
-> 📌 **Jalon du 2026-07-29 — mise à plat des exonérations intégrée au barème** : les 3 propositions
+# ⏸️ REPRISE AU 2026-07-31 — à lire en premier
+
+Deux consolidations ont eu lieu le même jour, une de chaque côté. **Tous les jalons ci-dessous leur
+sont antérieurs : leurs SHA et leurs noms de branche ne sont plus résolvables.**
+
+## 1. Côté barème — le travail énergies est passé sur `master`
+
+La branche `energies` **n'existe plus sur `origin`** du dépôt barème : tout le sous-arbre
+`taxation_indirecte/energies` est sur **`master`** (tip `765d15625` au 2026-07-31), et la chaîne de
+branches datées `energies_accise_2025_08 … 2030_01` porte les millésimes à venir. L'historique a été
+**réécrit** : les SHA cités plus bas (`818ef584d`, `7ef3a631b`, `eae753da2`…) ne se résolvent plus.
+Correspondance sur `master` : `05e4b8843` mise à plat des exonérations, `3ae05aae4` réfaction corse,
+`fc7fffc9e` régions post-2016 (finalement **ajoutées** en couche fusionnée, contrairement à ce
+qu'annonce le jalon du 2026-07-29), `d4bda2ad2` coefficients de conversion, `cb1aa319f` retrait de
+`categorie_fiscale`, `f9a31ee5e` parité de contenu avec OF-E, `b4a5c0fd3` convergence de valeurs,
+`765d15625` correction des dates TICPE. **Comparer désormais à `master`, plus à `energies`.**
+Le worktree `../baremes-ipp-yaml-energies` (détaché sur `db7688d2f`) est sur l'ancienne histoire :
+obsolète, à recréer depuis `origin/master`.
+
+## 2. Côté OF-E — la convergence est mergée dans `main` (PR #26)
+
+`main` est à `5be7c9c` et **contient tout** : `sync/energies-no-regret`, `fix/regions-post-2016`,
+`convergence/energies` (les trois supprimées d'`origin`), ainsi que le contenu d'`align/energies-tree`.
+205 tests passent.
+
+| branche | état vs `main` | verdict |
+|---|---|---|
+| `fix/regions-post-2016` | ⊂ `main` | **supprimable** |
+| `add_parameters` | ⊂ `main` | **supprimable** |
+| `align/energies-tree` | 9 commits, mais **rien d'unique** — sa seule différence est le sous-nœud `depuis_2017/` des majorations régionales, que `main` a délibérément unifié (`9be3f61`) ; 0 fichier align-only ailleurs | **supprimable** (superseded, pas mergée) |
+| `refactor/energies-periodes-mensuelles` | 9 commits uniques, **vrai travail** | à rapatrier — voir §3 |
+| `Implementation-SEQE` | 8 commits uniques | chantier distinct |
+| `assets/agregats-tic` | 3 commits uniques | chantier distinct ([[agregats-tic-project]]) |
+
+## 3. ⚠️ `refactor/energies-periodes-mensuelles` : le rebase n'est pas mécanique
+
+Le rebase sur `main` a été **tenté puis abandonné**. Cause : `refactor` réécrit
+`taxation_autres_produits_energetiques.py` (2 274 lignes, **290 appels** à `tarif_moyen_annuel`)
+contre l'arborescence de paramètres **d'avant** l'alignement, tandis que `main` a restructuré
+exactement les mêmes nœuds (`accise.taux_selon_activite.*` → `carburants.huiles_lourdes.tarifs_reduits.*`,
+`ticfe.X` → `ticfe.taux_reduits.X`, etc.). Chaque conflit mêle un renommage de nœud et un
+enveloppement en moyenne mensuelle : git ne peut pas les démêler.
+
+Deux conflits ont été résolus pour sonder la difficulté (`taxation_electricite.py`, puis 6 conflits
+d'un coup dans `taxation_autres_produits_energetiques.py`) — la résolution est à chaque fois la
+**composition** des deux (moyenne mensuelle appliquée au **nouveau** chemin de nœud), mais il y a
+~290 sites d'appel à re-exprimer. **Décision à prendre avant de continuer** : rebase conflit par
+conflit, ou ré-application de l'intention de `refactor` sur l'arbre de `main` (reprendre le helper
+`tarif_moyen_annuel` tel quel, puis ré-envelopper les mêmes tarifs aux nouveaux chemins). La seconde
+voie produit un diff relisible ; la première conserve l'historique.
+
+Contenu de `refactor` à ne pas perdre : le helper `tarif_moyen_annuel` (`formula_helpers.py`), les
+5 commits de moyenne mensuelle (TICC pilote, TICGN, électricité/CSPE, gazole agricole + ED95, TICPE
+pré-2022), et **2 commits d'arbitrages** (§2 TICGN 2014-04-01, §4 intervention 2023-07-12, §5
+abrogations TICPE, §7 PCS/PCI) établis via `legisdata`.
+
+## 4. Prochaines actions
+
+1. **Trancher la voie de rapatriement de `refactor`** (§3) — c'est le seul travail énergies qui ne
+   vit nulle part ailleurs.
+2. **Supprimer les 3 branches superseded** sur `origin` : `align/energies-tree`,
+   `fix/regions-post-2016`, `add_parameters`.
+3. **Rejouer l'appariement des ids OF ↔ barème `master`** : le décompte « 229 appariés / OF-only 1 »
+   ci-dessous date du 2026-07-29 et a été établi contre l'ancienne branche `energies` ; il est
+   périmé des deux côtés.
+4. **`gaz_naturel/ticgn/taux_normal.yaml`** porte l'artefact de dates `01-11` sur 1994-2000 **des
+   deux côtés** — la correction du barème (`765d15625`) ne couvrait que la TICPE. Suppose la même
+   vérification Légifrance sur l'**art. 266 quinquies**, puis correction dans les deux dépôts.
+5. `ACTIONS_EN_ATTENTE.md` pour le reste (issue OFF-E, arbitrages §5 et §7).
+
+> ⚠️ **Environnement Windows** : `openfisca test` échoue en `UnicodeDecodeError` (cp1252) sur les
+> YAML accentués — lancer avec `PYTHONUTF8=1`. Et tout script qui réécrit du YAML doit écrire en
+> **LF** explicitement : le défaut Python sur Windows produit des CRLF que `yamllint` rejette.
+
+---
+
+> 📌 **Jalon du 2026-07-29 — mise à plat des exonérations intégrée au barème** *(SHA et noms de
+> branche obsolètes, cf. bloc ci-dessus)* : les 3 propositions
 > ont été mergées (fast-forward, additif) sur la branche `energies` du dépôt barème ; la **mise à plat
 > des 6 exonérations d'accise** est **intégrée et poussée** (`origin/energies` → `818ef584d`, MR IPP
 > #498). **Réfaction corse intégrée** au barème (`7ef3a631b`) ; **proposition régions post-2016 abandonnée**

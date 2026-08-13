@@ -17,16 +17,35 @@
 | § | Sujet | Décision | Application |
 |---|---|---|---|
 | 1 | Date TICC | ✅ 1er juillet 2007, réf. LFR 2006 art. 36 III | ✅ référence corrigée (date au 1er janvier par convention annuelle, cf. §2) |
-| 2 | TICGN 2014 | ❓ question ouverte : passer les conso en `MONTH` ? | ⏸️ en attente — chantier d'architecture à part |
+| 2 | TICGN 2014 | ✅ tranché : moyenne mensuelle des tarifs, sans bascule des variables en `MONTH` | ✅ date posée au 2014-04-01 ; 2014 mélangé (1,355 au lieu de 1,41) |
 | 3 | Manutention portuaire | ✅ 1er janvier 2023 | ✅ tarif ramené à 2023-01-01 (0,5 €/MWh) |
-| 4 | Intervention incendie/secours | ✅ 12 juillet 2023 | ⏸️ infra-annuel : dépend de §2 |
-| 5 | Abrogations TICPE | ⏸️ à remplir | ⏸️ infra-annuel : dépend de §2 |
+| 4 | Intervention incendie/secours | ✅ 12 juillet 2023 | ✅ tarif posé au 2023-07-12 ; avant, tarif normal (defaut_si_absent) |
+| 5 | Abrogations TICPE | ✅ tranché (recherche PISTE/fiche) | ✅ émulsion close au 2020-07-01 ; GNR non abrogé ; art. 265 abrogé en bloc au 2022 |
 | 5 bis | Extraction de minéraux | ✅ 1er janvier 2023 | ✅ indicateur en 2023 + `formula_2023` scindée |
 | 6 | Réfaction corse | ✅ paramètres oui, formules non | ✅ paramètres OF + fichiers barème proposés |
-| 7 | PCS/PCI (facteur 1,11) | ⏸️ à remplir | ⏸️ |
+| 7 | PCS/PCI (facteur 1,11) | ✅ tranché : facteur erroné, retiré | ✅ facteur supprimé, gaz 2014-2021 ramené au tarif légal |
 
-Les points 4 et 5 sont purement **infra-annuels** : leur application exacte dépend de l'arbitrage du
-point 2 (rester en convention annuelle, ou passer le modèle en périodes mensuelles).
+### Le verrou infra-annuel est levé
+
+Les points 2, 4 et 5 butaient tous sur le même obstacle : le modèle raisonne en périodes annuelles
+et lisait chaque tarif au 1er janvier, de sorte qu'une entrée en vigueur en cours d'année basculait
+toute l'année sur un seul tarif. Poser la date exacte revenait donc à introduire une erreur.
+
+Cet obstacle est levé par la branche `refactor/energies-periodes-mensuelles` : plutôt que de basculer
+les 153 variables de consommation et les 101 formules en périodes mensuelles — ce qu'interdisaient en
+pratique les variables annuelles comme `apet`, `installation_seqe` ou le chiffre d'affaires, illisibles
+depuis une formule mensuelle — l'utilitaire `tarif_moyen_annuel` intègre le tarif mois par mois à
+l'intérieur des formules annuelles. La consommation étant réputée uniformément répartie, la taxe vaut
+`conso * moyenne mensuelle des tarifs`, résultat identique à une bascule mensuelle complète.
+
+**Conséquence pour ces arbitrages** : les dates exactes peuvent désormais être posées telles quelles.
+La TICGN au 2014-04-01 donnera 3 mois à l'ancien tarif et 9 au nouveau, au lieu de basculer toute
+l'année 2014 ; il en va de même pour l'intervention incendie au 2023-07-12 (§4) et pour les
+abrogations TICPE en cours d'année (§5). Ces trois points ne sont plus bloqués que par la décision
+juridique elle-même.
+
+⚠️ Ces implémentations supposent la branche `refactor/energies-periodes-mensuelles` fusionnée
+(ou d'être réalisées sur cette branche) : le mécanisme n'existe pas sur `sync/energies-no-regret`.
 
 ---
 
@@ -64,11 +83,11 @@ C'est bien le 1er juillet 2007 la bonne date. La référence législative est er
 - `2014-04-01` (barème, juridiquement exact) : mais le modèle étant annuel, l'adopter **basculerait
   toute l'année 2014 sur le tarif antérieur** (1.19 €/MWh au lieu de 1.41), silencieusement.
 
-**Impact.** `taux_normal` : 1.19 vs 1.41 sur 2014. Pour `taux_reduit_grandes_consommatrices`, 2014-04-01
+**Impact.** `taux_normal` : 1.19 vs 1.41 sur 2014. Pour `taux_reduits/grandes_consommatrices`, 2014-04-01
 serait la **première valeur** → `ParameterNotFoundError` si lue avant avril. Décision de modélisation
 autant que juridique : faut-il une convention (prorata, ou date de bascule annuelle conventionnelle) ?
 
-**Fichiers concernés.** OF : `gaz_naturel/ticgn/taux_normal.yaml`, `gaz_naturel/ticgn/taux_reduit_grandes_consommatrices.yaml` (notes déjà posées dans les deux).
+**Fichiers concernés.** OF : `gaz_naturel/ticgn/taux_normal.yaml`, `gaz_naturel/ticgn/taux_reduits/grandes_consommatrices.yaml` (notes déjà posées dans les deux).
 
 **Décision.** Ne peut-on pas adapter les variables de consommation de telle sorte à ce qu'elles soient mensuelles ? Dans openfisca-france (un autre paquet qui s'occupe des ménages, que tu peux inspecter à /home/pzuldp/Documents/projets/openfisca-france/), on utilise je crois set_input = set_input_divide_by_period
     definition_period = MONTH 
@@ -134,7 +153,29 @@ Ces clôtures ont été **volontairement NON faites** dans les passes précéden
 annuelle) ou à la date exacte (avec bascule d'année). Concerne surtout les produits marginaux, mais deux
 (gazole B10, émulsions) sont réels.
 
-**Décision.** _(à remplir, produit par produit)_
+**Décision (tranchée le 2026-07-27, recherche legisdata/PISTE sur l'article 265 du code des douanes).**
+
+La prémisse du rapport était en grande partie inexacte :
+
+- **`carburants_sous_conditions` = le gazole non routier (GNR, indice 20/22) : NON abrogé.** La fiche
+  de fiscalité énergétique montre une trajectoire de convergence vers le tarif routier (24,81 en
+  2024, 30,8 en 2025, 36,79 en 2026, … suppression seulement en 2030), et le produit bascule sur
+  l'accise CIBS au 2022. La date « 2021-07-01 » du rapport est fausse. → rien à clôturer.
+- **Article 265 (tout le tableau B des TICPE) abrogé en bloc au 2022-01-01** (bascule CIBS,
+  ordonnance 2021-1843). Tous les produits pré-2022 cessent alors ensemble ; les formules
+  postérieures lisent l'accise. Aucune surtaxation à la charnière 2022.
+- **`emulsion_eau_gazole` : abrogée, retirée du tableau B au 2020-07-01.** Présente dans la version
+  de l'article valable en 2000, absente dès la version 2021-01-01 (versions consultées via PISTE,
+  en cache dans `legisdata/sources/legifrance/265_*.md`). Elle n'est lue que jusqu'à `formula_2020`
+  (abandonnée dès `formula_2021`), donc surappliquée sur le seul second semestre 2020. Les deux
+  paramètres (`sous_conditions_hectolitre`, `autres_hectolitre`) sont **clôturés au 2020-07-01
+  (`value: null`)** ; les lectures dans `formula_2020` passent `defaut_si_absent=0`, si bien que la
+  moyenne mensuelle mélange correctement le semestre taxé (36,94 / 10,33) et le semestre abrogé (0).
+  Vérifié : 2019 plein tarif, 2020 à la moitié, 2021 nul.
+- **`gazole_b_10` : pas d'indice propre au tableau B** (seul le B100, esters méthyliques, y figure) ;
+  le B10 est taxé comme le gazole. Pas d'abrogation distincte à porter. Laissé tel quel.
+- **`essence_normale` et les trois `fioul_lourd_*` : déjà clôturés** (null au 2000-01-01 et
+  2003-01-01) et lus par aucune formule. Rien à faire.
 
 ---
 
@@ -151,7 +192,7 @@ d'extraction). À trancher : l'indicateur doit-il activer en 2023 (conformément
 ou 2024 reflète-t-il une entrée en vigueur réelle propre à la classification NAF retenue ?
 
 **Fichiers concernés.** OF : indicateur `consommation_energie/autres_produits.py::gazoles_extraction_mineraux_industriels`
-(formula_2024) ; paramètre `taux_selon_activite/gazoles_extraction_de_mineraux_industriels.yaml` (désormais 2023-01-01).
+(formula_2024) ; paramètre `accise/carburants/huiles_lourdes/tarifs_reduits/extraction_mineraux.yaml` (désormais 2023-01-01).
 
 **Décision.** De la même manière que pour la manutention portuaire, le e) du 3° de l'article 37 de l'Ordonnance n° 2021-1843 du 22 décembre 2021 portant partie législative du code des impositions sur les biens et services et transposant diverses normes du droit de l'Union européenne spécifie que la date d'entrée en vigueur est bien le 1er janvier 2023.
 
@@ -195,7 +236,20 @@ et les assiettes légales.
 
 **Fichiers concernés.** OF : `gaz_naturel/…/conversion_pcs_pci`, formules de `taxation_gaz_naturel.py`.
 
-**Décision.** _(à remplir)_
+**Décision (tranchée le 2026-07-27, fiche legisdata `fiscalite_energies_accise_tic.md`).**
+
+**Le facteur 1,11 est une erreur ; il est retiré.** La fiche établit que le tarif normal publié par
+le barème est déjà exprimé en €/MWh au bon pouvoir calorifique, et les valeurs brutes du modèle
+coïncident **exactement** avec la série légale (1,19 en 2003 ; 1,41 en 2014 ; 2,93 en 2015 ; 4,34 ;
+5,88 ; 8,45 ; 8,43 en 2021). Appliquer ×1,11 de 2014 à 2021 surtaxait donc le gaz de 11 % — et ce
+facteur n'était pas appliqué au tarif réduit des grandes consommatrices, incohérence confirmant
+l'erreur. `formula_2014_01_01` de `taxe_interieure_consommation_gaz_naturel_taux_normal` ne fait plus
+que `assiette × tarif`. Le gaz normal 2014-2021 revient au tarif légal (ex. 2015 : 2 930 € au lieu de
+3 252 € pour 1 000 MWh).
+
+⚠️ **À vérifier séparément (hors §7)** : `conversion_pcs_pci` est encore lu par `variables_economiques.py`
+(lignes 167 et 210, calcul de facture d'énergie). Si le même facteur y est indûment appliqué, c'est un
+défaut distinct à traiter dans la passe « facture énergie » — non touché ici.
 
 ---
 

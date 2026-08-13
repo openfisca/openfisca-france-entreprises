@@ -1,4 +1,4 @@
-description: TGAP carburants pour le gazole routier
+description: Gazole routier
 values:
   2005-01-01:
     value: 0.012
@@ -54,3 +54,8 @@ metadata:
     2010-01-01: "2005-12-31"
     2014-01-01: "2013-12-30"
     2019-01-01: "2018-12-30"
+documentation: |-
+  Au 1er janvier 2019, la TGAP sur les carburants est remplacée par la TIRIB (taxe incitative relative à l’incorporation de biocarburants), qui devient TIRUERT au 1er janvier 2022.
+  Jusqu'au 31 décembre 2018, le taux de TGAP est diminué à proportion de la quantité de biocarburants incorporée aux carburants, dans la limite de 7% à partir du 1er janvier 2014.
+  A partir du 1er janvier 2019, le taux devient un montant auquel est appliqué un coefficient égal à la différence entre un pourcentage national cible d'incorporation d'énergies propres dans les transports (fixé chaque année),
+  et celle effectivement contenue dans les produits de l'assiette (cette différence ne pouvant être rendue inférieure à 0). Ce taux ainsi que le montant initial de la taxe font l'objet d'un barème consacré aux taxes incitatives à l'utilisation d'énergies propres dans les transports.

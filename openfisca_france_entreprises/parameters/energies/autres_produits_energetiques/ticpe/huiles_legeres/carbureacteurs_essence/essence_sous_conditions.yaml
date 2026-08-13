@@ -1,4 +1,4 @@
-description: carburéacteurs type essence, sous conditions (hectolitre)
+description: Carburéacteurs type essence, sous conditions d'emploi
 values:
   1993-01-01:
     value: 11.97
@@ -25,8 +25,11 @@ values:
   2014-04-01:
     value: null
 metadata:
+  short_label: Carburéacteurs essence sous conditions
+  last_value_still_valid_on: "2025-03-01"
+  label_en: Gasoline-type jet fuels under conditions
   ipp_csv_id: ticpe_carbureacteurs_essence_conditions
-  unit: currency
+  unit: currency_per_hectoliter
   reference:
     1993-01-01:
       title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
@@ -56,8 +59,8 @@ metadata:
       title: Loi 99-1172 du 30/12/1999 (LF pour 2000)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000762233
     2002-01-01:
-      title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000592233
+      title: Ordonnance n° 2000-916 du 19 septembre 2000 portant adaptation de la valeur en euros de certains montants exprimés en francs dans les textes législatifs
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000219672
     2003-01-01:
       title: Loi 2002-1575 du 30/12/2002 (LF pour 2003)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000234121
@@ -74,6 +77,6 @@ metadata:
     1998-01-01: "1997-12-31"
     1999-01-01: "1998-12-31"
     2000-01-01: "1999-12-31"
-    2002-01-01: "2001-12-29"
+    2002-01-01: "2000-09-22"
     2003-01-01: "2002-12-31"
     2014-04-01: "2013-12-30"

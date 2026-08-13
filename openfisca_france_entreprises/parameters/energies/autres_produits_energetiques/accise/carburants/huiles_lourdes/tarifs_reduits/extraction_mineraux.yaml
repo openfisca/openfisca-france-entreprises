@@ -4,10 +4,10 @@ values:
     value: 3.86
 metadata:
   short_label: Accise gazoles pour extraction de minéraux
+  last_value_still_valid_on: "2025-03-04"
   label_en: Excise duty on diesel for mineral extraction
   ipp_csv_id: accise_gazoles_extraction_mineraux
   unit: currency_per_mwh
-  last_value_still_valid_on: "2025-03-04"
   reference:
     2023-01-01:
       title: 3° e) de l'article 37 de l'ordonnance n° 2021-1843 du 22 décembre 2021 portant partie législative du code des impositions sur les biens et services et transposant diverses normes du droit de l'Union européenne
