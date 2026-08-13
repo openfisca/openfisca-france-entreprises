@@ -149,11 +149,18 @@
 
 
 
-# Abrogation au 1er janvier 2024 du tarif réduit « concurrence internationale », par
-# l'article 94 II K 2° de la loi n° 2023-1322 de finances pour 2024. Jusqu'ici la formule
-# de 2022 continuait de l'appliquer : un établissement exposé au risque de fuite de carbone
-# et non soumis au SEQE était taxé à 1.6 au lieu du tarif normal, soit un dixième du dû.
-- name: "test 2023 tarif concurrence internationale encore applicable"
+# Le tarif réduit « concurrence internationale » du gaz N'EST PAS abrogé.
+#
+# 2026-08 : ces deux cas affirmaient une abrogation au 1er janvier 2024, rapportée à
+# l'article 94 II K 2° de la loi de finances pour 2024. Cet article vise le charbon, non le
+# gaz : la version de l'article L. 312-75 du CIBS en vigueur à compter de 2024 retire les
+# charbons, fiouls, pétroles lampants et GPL de la ligne « installations intensives en
+# énergie exposées à la concurrence internationale non soumises au SEQE-IF », mais y
+# conserve « Gaz naturels combustible | L. 312-77 | 1,6 ». La version 2025 aussi.
+#
+# La déclaration 2040-TIC le corrobore : la case _911243 déclare 1,60 €/MWh sur
+# 6 881 031 MWh en 2024 et 5 761 764 MWh en 2025.
+- name: "test 2023 tarif concurrence internationale applicable"
   period: 2023
   relative_error_margin: 0.000001
   input:
@@ -165,9 +172,9 @@
   output:
     taxe_gaz_naturel: 16000  # 10000 x 1.6
 
-- name: "test 2024 tarif concurrence internationale abroge, retour au tarif normal"
+- name: "test 2024 tarif concurrence internationale toujours applicable au gaz"
   period: 2024
-  absolute_error_margin: 1
+  relative_error_margin: 0.000001
   input:
     consommation_gaz_combustible: 10000
     valeur_ajoutee_eta: 100000
@@ -175,4 +182,4 @@
     risque_de_fuite_carbone_eta: true
     intensite_energetique_valeur_ajoutee: 0.5
   output:
-    taxe_gaz_naturel: 163700  # 10000 x 16.37
+    taxe_gaz_naturel: 16000  # 10000 x 1.6

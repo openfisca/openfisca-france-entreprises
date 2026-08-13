@@ -84,14 +84,9 @@ GAZ_NATUREL = [
         parametre="energies.gaz_naturel.ticgn.taux_normal",
         variable="taxe_interieure_consommation_gaz_naturel",
         entrees={"consommation_gaz_combustible": ASSIETTE},
-        constat=(
-            "Le modèle applique le facteur de conversion PCS/PCI de 1,11, la formula_2014 de "
-            "taxe_interieure_consommation_gaz_naturel_taux_normal multipliant le taux par "
-            "energies.gaz_naturel.ticgn.conversion_pcs_pci. La déclaration applique 8,43 tout "
-            "rond, sans conversion : 58 552 445 MWh x 8,43 = 493 597 111,35 EUR, au centime. Le "
-            "rapport modèle/déclaration vaut donc exactement 1,11. C'est l'arbitrage §7, listé "
-            "en décision humaine n° 4 d'ACTIONS_EN_ATTENTE.md avec son « faut vérrifier »."
-        ),
+        # Constat n° 9 clos : le modèle appliquait le facteur de conversion PCS/PCI de 1,11, et
+        # le rapport modèle/déclaration valait exactement 1,11 sans résidu. La conversion est
+        # retirée — la quantité déclarée suit l'unité dans laquelle la loi exprime le tarif.
         remarque=(
             "Case du bloc TICGN, pas du bloc accise : son libellé porte « TICGN - Taux plein » "
             "et son tarif de 8,43 EUR/MWh est le taux normal de la TICGN au 1er janvier 2021 "
@@ -170,7 +165,11 @@ GAZ_NATUREL = [
             "risque_de_fuite_carbone_eta": True,
             "intensite_energetique_valeur_ajoutee": 0.01,
         },
-        remarque="Le paramètre est clos au 2024-01-01 alors que le tarif 1,60 est déclaré en 2024 et 2025.",
+        remarque=(
+            "Constat n° 3 clos : le paramètre était clos au 2024-01-01, clôture rapportée à "
+            "l'article 94 II K 2° de la LF 2024 qui vise le charbon et non le gaz. L. 312-75 "
+            "conserve « Gaz naturels combustible | L. 312-77 | 1,6 » en 2024 comme en 2025."
+        ),
     ),
     Cellule(
         case_quantite="_911245",

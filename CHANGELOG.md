@@ -130,8 +130,17 @@
   - Seul attendu recalcule de tout le chantier : `intensite_energetique_valeur_ajoutee` passe de
     0,561676 a 0,5428, soit (22500 + 14620 + 17160) / 100000. C'est un cas ecrit a la main, pas
     un montant declare.
-  - Bilan : **321 verts et 2 rouges**. Les deux tiennent au bareme (`_911243`, tarif SEQE clos
-    trop tot). Les lacunes de couverture passent de 9 cellules a 3.
+  - **Tarif reduit « concurrence internationale » du gaz : cloture infondee, retiree.** Le bareme
+    fermait `gaz_naturel/accise/combustibles/tarifs_reduits/intensive_energie_indirect_SEQE` au
+    01/01/2024, cloture rapportee a l'article 94 II K 2 de la loi de finances pour 2024. Cet
+    article vise le charbon, non le gaz : la version de l'article L. 312-75 du CIBS en vigueur a
+    compter de 2024 retire les charbons, fiouls, petroles lampants et GPL de cette ligne mais y
+    conserve « Gaz naturels combustible | L. 312-77 | 1,6 », et la version 2025 aussi.
+    `taxe_accise_gaz_naturel_combustible.formula_2024_01_01`, qui ne differait de celle de 2022
+    que par le retrait de cette branche, est supprimee.
+  - Bilan : **323 verts, aucun rouge**. Les neuf constats d'`AGREGATS_TIC.md` sont clos — quatre
+    mettaient en cause le bareme, cinq le modele. Les lacunes de couverture passent de 9
+    cellules a 3 : les deux de l'indexation des TCFE et la manutention portuaire.
 
 ## 1.1.7 - [#31](https://github.com/openfisca/openfisca-france-entreprises/pull/31)
 

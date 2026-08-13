@@ -66,7 +66,7 @@ PYTEST_ADDOPTS="--maxfail=300" .venv/bin/openfisca test \
 `addopts` du dépôt contient `--exitfirst` : sans `PYTEST_ADDOPTS`, le lancement
 s'arrête au premier échec.
 
-**118 tests générés, dont 116 verts et 2 rouges assumés** sous
+**118 tests générés, tous verts depuis le 2026-08-13** sous
 `openfisca_france_entreprises/tests/taxes/taxes_energies/agregats/` (78 cellules
 tarifaires, 30 exonérations). Les fichiers sont générés : ne pas les éditer à la
 main.
@@ -85,7 +85,10 @@ main.
 > l'année ne porte le tarif déclaré, la quantité est posée sur janvier : le désaccord
 > avec le barème apparaît alors seul, sans être mêlé d'annualisation.
 
-> ## La suite est rouge, et il ne faut pas la « réparer »
+> ## Si la suite redevient rouge, il ne faut pas la « réparer »
+>
+> Elle est verte depuis le 2026-08-13, mais la règle qui suit reste la raison d'être du
+> fichier, et vaudra à chaque nouveau millésime d'agrégats.
 >
 > **Toute cellule que le modèle sait calculer est émise**, y compris — surtout —
 > quand son résultat contredit la déclaration. Ces cas portent une annotation
@@ -102,19 +105,24 @@ main.
 > aligner sur le calcul ferait disparaître le désaccord au lieu de le résoudre, et
 > le test cesserait de tester quoi que ce soit de légal.
 
-Répartition des 2 rouges :
+**Aucun rouge.** Les neuf constats sont clos, et le générateur n'émet plus aucune
+annotation `DÉSACCORD` : son décompte et celui de la suite valent tous deux zéro.
 
-| cas | cellules | constat |
+| constat | objet | résolu par |
 |---|---|---|
-| 2 | `_911243` (2024-2025) | n° 3 — tarif SEQE clos trop tôt au barème |
+| n° 1 | indexation des TCFE non appliquée | les deux cellules restent des lacunes de couverture |
+| n° 2 | trois tarifs gaz « absents du barème » | 8,41 et 8,37 portés au barème, `_911237` repointée sur la TICGN |
+| n° 3 | tarif SEQE gaz clos trop tôt | clôture infondée, retirée du barème |
+| n° 4 | majoration ZNI absente | valeur 2025 portée, majoration appliquée au tarif normal |
+| n° 5 | bouclier ignorant le tarif ménages | lecture selon la catégorie fiscale |
+| n° 6 | pas du 1er février lu au 1er janvier | bascule mensuelle |
+| n° 7 | bornes des tranches d'électro-intensité | libellé périmé du Cerfa, et bandes décalées d'un cran dans le modèle |
+| n° 8 | hypothèse de consommation uniforme | bascule mensuelle |
+| n° 9 | facteur PCS/PCI de 1,11 | conversion retirée, l'assiette suivant l'unité du tarif |
 
-**Les deux derniers tiennent au barème**, et à lui seul : le tarif réduit
-`intensive_energie_indirect_SEQE` s'arrête au 2024-01-01 alors que la case le déclare
-encore en 2024 et 2025. Il se corrige dans `baremes-ipp-yaml`.
-
-Les constats n° 2, 4, 5, 6, 7, 8 et 9 sont clos : tarifs gaz élucidés, majoration ZNI
-appliquée au tarif normal, bouclier lisant le tarif ménages, bascule mensuelle, paliers
-d'électro-intensité, hypothèse de consommation uniforme et conversion PCS/PCI.
+Sur les neuf, **quatre mettaient en cause le barème** (n° 2, 3, 4 et, pour partie, 7) et
+**cinq le modèle**. Le principe du chantier — la déclaration fait foi, et le barème comme
+le calculateur peuvent avoir tort — s'est vérifié dans les deux sens.
 
 Seules restent écartées les **9 cellules pour lesquelles le modèle n'a ni variable
 ni entrée** : il n'y a alors rien à confronter. Ce sont des lacunes de couverture,
@@ -178,12 +186,32 @@ leurs millésimes.
 
 `_911237` reste rouge, mais pour une tout autre raison — voir le constat n° 9.
 
-### 3. Gaz : le tarif « risque de fuite de carbone » est clos trop tôt
+### 3. Gaz : le tarif « risque de fuite de carbone » — ✅ clos le 2026-08-13
 
 `gaz_naturel.accise.combustibles.tarifs_reduits.intensive_energie_indirect_SEQE`
-s'arrête au **2024-01-01**. Or la case `_911243` déclare toujours 1,60 €/MWh en
-2024 (6 881 031 MWh) et en 2025 (5 761 764 MWh). Le paramètre doit être prolongé,
-ou la fermeture justifiée. **Testée et rouge sur 2024 et 2025.**
+s'arrêtait au **2024-01-01**. Or la case `_911243` déclare 1,60 €/MWh en 2024
+(6 881 031 MWh) et en 2025 (5 761 764 MWh).
+
+**La clôture était infondée — et la déclaration avait raison.** Elle était rapportée à
+l'article 94 II K 2° de la loi de finances pour 2024, qui vise **le charbon et non le gaz**.
+La version de l'article L312-75 du CIBS en vigueur à compter de 2024 retire bien les
+charbons, les fiouls, les pétroles lampants et les gaz de pétrole liquéfiés de la ligne
+« installations intensives en énergie exposées à la concurrence internationale non soumises
+au SEQE-IF », mais elle y conserve :
+
+> Gaz naturels combustible | L. 312-77 | **1,6**
+
+La version en vigueur à compter de 2025 le conserve également, et l'article L312-77, qui en
+fixe les conditions, n'a pas été abrogé. Vérifié sur `LEGIARTI000048833593` (2024) et
+`LEGIARTI000046902673` (2025).
+
+Le barème avait donc appliqué au gaz une clôture qui ne visait que le charbon — pour lequel
+elle est correcte : `charbon.accise.combustibles.tarifs_reduits.intensive_energie_indirect_SEQE`
+s'arrête bien au 2024-01-01. La clôture est retirée côté gaz, et
+`taxe_accise_gaz_naturel_combustible.formula_2024_01_01`, qui ne différait de celle de 2022
+que par le retrait de cette branche, est supprimée.
+
+Les deux cellules sont vertes.
 
 ### 4. Majoration ZNI — ✅ clos le 2026-08-13
 
