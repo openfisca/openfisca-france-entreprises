@@ -20,6 +20,36 @@ def _tarif_du_mois(lire_tarif, mois, defaut_si_absent):
         return defaut_si_absent
 
 
+def majoration_zni(parameters, mois):
+    """Majoration du tarif normal au titre des zones non interconnectées, pour un mois donné.
+
+    L'article L312-37-1 du code des impositions sur les biens et services, en vigueur depuis
+    le 1er août 2025, majore les tarifs normaux d'accise des catégories fiscales des
+    combustibles et de l'électricité — ceux qui résultent des articles L312-36 et L312-37 —
+    d'un montant affecté au financement des zones non interconnectées.
+
+    Ce n'est pas un régime propre aux ZNI : la majoration est due par **tous** les redevables
+    du tarif normal, son dénominateur étant la consommation d'énergie totale du pays. C'est
+    pourquoi l'arrêté du 13 décembre 2022 publie le « tarif normal majoré » comme chiffre de
+    tête — 15,43 €/MWh pour le gaz du 1er août 2025 au 31 janvier 2026, puis 16,39 —, et c'est
+    ce montant que citent la plupart des sources.
+
+    Elle ne s'applique **qu'aux tarifs normaux** : un redevable relevant d'un tarif réduit
+    acquitte ce tarif réduit, sans majoration.
+
+    Le montant court du 1er février d'une année civile au 31 janvier de la suivante, sauf la
+    première période qui démarre au 1er août 2025 avec l'entrée en vigueur de l'article. Les
+    formules s'évaluant mois par mois depuis la bascule mensuelle, il suffit de lire le
+    paramètre au mois pour que le découpage soit exact.
+
+    Avant le 1er août 2025 le paramètre n'existe pas, et la majoration vaut zéro.
+
+    :param parameters: l'accesseur de paramètres de la formule appelante.
+    :param mois: la période mensuelle courante.
+    """
+    return _tarif_du_mois(lambda m: parameters(m).energies.majoration_zni, mois, 0)
+
+
 def tarif_du_mois(mois, lire_tarif, defaut_si_absent=_ABSENT):
     """Tarif applicable au mois, avec substitution aux mois où le paramètre n'existe pas.
 

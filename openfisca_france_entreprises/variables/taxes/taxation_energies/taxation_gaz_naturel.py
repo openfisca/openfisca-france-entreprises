@@ -15,6 +15,7 @@ from openfisca_france_entreprises.variables.taxes.formula_helpers import (
     _not,
     _or,
     accise_annuelle,
+    majoration_zni,
     tarif_avec_repli,
     tarif_moyen_annuel,
 )
@@ -338,7 +339,17 @@ class taxe_accise_gaz_naturel_combustible(Variable):
             ),
         )
         condition_grande_consommatrice = _and(seqe, grande_consommatrice)
-        taxe_normal_combustible = accise_combustible(lambda c: c.tarif_normal)
+        # Le tarif normal supporte la majoration au titre des zones non interconnectées
+        # (L312-37-1), depuis le 1er août 2025 et nulle avant. Les tarifs réduits ne sont pas
+        # majorés, et le gaz carburant ne relève pas des catégories fiscales des combustibles.
+        taxe_normal_combustible = accise_annuelle(
+            period,
+            lambda mois: etablissement("consommation_gaz_combustible", mois),
+            lambda mois: (
+                parameters(mois).energies.gaz_naturel.accise.combustibles.tarif_normal
+                + majoration_zni(parameters, mois)
+            ),
+        )
 
         return select(
             [
@@ -435,7 +446,17 @@ class taxe_accise_gaz_naturel_combustible(Variable):
             ),
         )
         condition_grande_consommatrice = _and(seqe, grande_consommatrice)
-        taxe_normal_combustible = accise_combustible(lambda c: c.tarif_normal)
+        # Le tarif normal supporte la majoration au titre des zones non interconnectées
+        # (L312-37-1), depuis le 1er août 2025 et nulle avant. Les tarifs réduits ne sont pas
+        # majorés, et le gaz carburant ne relève pas des catégories fiscales des combustibles.
+        taxe_normal_combustible = accise_annuelle(
+            period,
+            lambda mois: etablissement("consommation_gaz_combustible", mois),
+            lambda mois: (
+                parameters(mois).energies.gaz_naturel.accise.combustibles.tarif_normal
+                + majoration_zni(parameters, mois)
+            ),
+        )
 
         return select(
             [

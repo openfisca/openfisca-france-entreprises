@@ -13,6 +13,7 @@ from openfisca_france_entreprises.variables.taxes.formula_helpers import (
     _not,
     _or,
     accise_annuelle,
+    majoration_zni,
 )
 
 
@@ -353,11 +354,17 @@ class taxe_interieure_taxation_consommation_charbon_taux_normal(Variable):
 
         La valeur du tarif est inchangée (14.62) ; seule la source du paramètre change,
         la série ticc étant clôturée au 1er janvier 2022.
+
+        Le tarif normal supporte la majoration au titre des zones non interconnectées
+        (L312-37-1), depuis le 1er août 2025 et nulle avant : le charbon relève de l'article
+        L312-36, que cette majoration vise expressément. Les tarifs réduits ne sont pas majorés.
         """
         return accise_annuelle(
             period,
             lambda mois: etablissement("assiette_ticc", mois),
-            lambda mois: parameters(mois).energies.charbon.accise.combustibles.tarif_normal,
+            lambda mois: (
+                parameters(mois).energies.charbon.accise.combustibles.tarif_normal + majoration_zni(parameters, mois)
+            ),
         )
 
 

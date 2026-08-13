@@ -7,6 +7,7 @@ from openfisca_france_entreprises.variables.taxes.formula_helpers import (
     _and,
     _or,
     accise_annuelle,
+    majoration_zni,
 )
 
 
@@ -1035,10 +1036,16 @@ class taxe_accise_electricite_taux_normal(Variable):
         )
 
         def accise_tarif_normal(choisir):
+            # Le tarif normal supporte la majoration au titre des zones non interconnectées
+            # (L312-37-1), depuis le 1er août 2025 et nulle avant. Les tarifs réduits, eux,
+            # ne sont pas majorés.
             return _accise(
                 etablissement,
                 period,
-                lambda mois: choisir(parameters(mois).energies.electricite.accise.tarifs_normaux),
+                lambda mois: (
+                    choisir(parameters(mois).energies.electricite.accise.tarifs_normaux)
+                    + majoration_zni(parameters, mois)
+                ),
             )
 
         taxe_36 = accise_tarif_normal(lambda t: t.menages_et_assimiles)

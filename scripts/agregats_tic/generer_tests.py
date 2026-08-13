@@ -132,7 +132,13 @@ def _mois_du_tarif(cellule: correspondance.Cellule, annee: int, implicite: float
         return None
     for mois in range(1, 13):
         barometre = donnees.valeur_parametre(cellule.parametre, annee, mois=mois)
-        if barometre is not None and abs(implicite - barometre) <= 1e-4 * max(abs(barometre), 1.0):
+        if barometre is None:
+            continue
+        if cellule.parametre_majoration:
+            # Majoration ZNI : la declaration separe la fraction de droit commun et la
+            # majoration en deux cases de montant, mais le tarif de la cellule est leur somme.
+            barometre += donnees.valeur_parametre(cellule.parametre_majoration, annee, mois=mois) or 0
+        if abs(implicite - barometre) <= 1e-4 * max(abs(barometre), 1.0):
             return mois
     return None
 

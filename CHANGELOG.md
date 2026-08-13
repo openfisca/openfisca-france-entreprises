@@ -93,7 +93,19 @@
     formules d'electro-intensite replient sur le tarif normal, la ou elles rendaient zero.
   - Les entrees `electro_intensite` des tests etaient exprimees dans l'ancienne unite ; elles
     sont ramenees a des proportions, a attendu inchange. Aucun montant declare n'est modifie.
-  - Bilan : 307 verts et 6 rouges. Tous les six tiennent au bareme (`_911237` x4, `_911243` x2) ;
+  - Majoration au titre des zones non interconnectees (L312-37-1, en vigueur depuis le
+    01/08/2025) appliquee au tarif normal de l'electricite, du charbon et des gaz naturels
+    combustibles, par le helper `majoration_zni` de `formula_helpers`. Elle ne s'applique ni aux
+    tarifs reduits, que l'article ne vise pas, ni aux gaz carburants, qui ne relevent pas des
+    categories fiscales des combustibles. Nulle avant le 01/08/2025.
+  - Ce n'est pas un regime propre aux ZNI : la majoration est due par tous les redevables du
+    tarif normal. Sans elle, toute accise calculee depuis le 01/08/2025 etait sous-estimee de
+    4,89 EUR/MWh, puis de 5,66 — soit 46 % sur le gaz.
+  - Trois des quatre cellules ZNI de la 2040-TIC quittent les lacunes de couverture et passent au
+    vert. `correspondance.py` recoit un champ `parametre_majoration` : la declaration separe la
+    fraction de droit commun et la majoration en deux cases de montant, mais le tarif de la
+    cellule est leur somme. La quatrieme, `_914396` (charbon), n'a aucune donnee au millesime 2025.
+  - Bilan : 310 verts et 6 rouges. Tous les six tiennent au bareme (`_911237` x4, `_911243` x2) ;
     aucun n'est un defaut de modelisation.
 
 ## 1.1.7 - [#31](https://github.com/openfisca/openfisca-france-entreprises/pull/31)

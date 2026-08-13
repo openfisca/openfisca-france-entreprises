@@ -42,6 +42,16 @@ class Cellule:
     AGREGATS_TIC.md et remonté par `audit.py`.
     """
 
+    parametre_majoration: str | None = None
+    """Paramètre s'ajoutant à `parametre` pour former le tarif effectivement dû.
+
+    Sert la majoration au titre des zones non interconnectées de l'article L312-37-1 du
+    CIBS : depuis le 1er août 2025, les tarifs normaux des combustibles et de l'électricité
+    sont majorés d'un montant affecté au financement des ZNI, dû par tous les redevables du
+    tarif normal. La déclaration sépare les deux en cases de montant distinctes, mais le
+    tarif implicite de la cellule est bien leur somme.
+    """
+
     annee_tarif: int | None = None
     """Millésime du tarif porté par la case, quand il diffère du millésime de dépôt.
 
@@ -161,9 +171,10 @@ GAZ_NATUREL = [
         cases_montant=("_914388", "_914389"),
         intitule="Gaz naturel combustible — tarif ZNI 15,43 €/MWh (10,54 + majoration 4,89)",
         millesimes=(2025,),
-        parametre="energies.majoration_zni",
-        variable=None,
-        remarque="La majoration ZNI n'est renseignée au barème qu'à compter du 2026-02-01 (5,66).",
+        parametre="energies.gaz_naturel.accise.combustibles.tarif_normal",
+        parametre_majoration="energies.majoration_zni",
+        variable="taxe_accise_gaz_naturel_combustible",
+        entrees={"consommation_gaz_combustible": ASSIETTE},
     ),
 ]
 
@@ -225,9 +236,10 @@ CHARBON = [
         cases_montant=("_914397", "_914398"),
         intitule="Charbon — tarif ZNI 15,43 €/MWh (10,54 + majoration 4,89)",
         millesimes=(2025,),
-        parametre="energies.majoration_zni",
-        variable=None,
-        remarque="La majoration ZNI n'est renseignée au barème qu'à compter du 2026-02-01 (5,66).",
+        parametre="energies.charbon.accise.combustibles.tarif_normal",
+        parametre_majoration="energies.majoration_zni",
+        variable="taxe_interieure_consommation_charbon",
+        entrees={"assiette_ticc": ASSIETTE},
     ),
 ]
 
@@ -466,18 +478,20 @@ ELECTRICITE = [
         cases_montant=("_914375", "_914376"),
         intitule="Électricité — tarif ZNI 29,98 €/MWh (25,09 + majoration 4,89)",
         millesimes=(2025,),
-        parametre="energies.majoration_zni",
-        variable=None,
-        remarque="La majoration ZNI n'est renseignée au barème qu'à compter du 2026-02-01 (5,66).",
+        parametre="energies.electricite.accise.tarifs_normaux.menages_et_assimiles",
+        parametre_majoration="energies.majoration_zni",
+        variable="taxe_accise_electricite",
+        entrees={"assiette_taxe_electricite": ASSIETTE, "amperage": 20},
     ),
     Cellule(
         case_quantite="_914377",
         cases_montant=("_914378", "_914379"),
         intitule="Électricité — tarif ZNI 25,79 €/MWh (20,90 + majoration 4,89)",
         millesimes=(2025,),
-        parametre="energies.majoration_zni",
-        variable=None,
-        remarque="La majoration ZNI n'est renseignée au barème qu'à compter du 2026-02-01 (5,66).",
+        parametre="energies.electricite.accise.tarifs_normaux.haute_puissance",
+        parametre_majoration="energies.majoration_zni",
+        variable="taxe_accise_electricite",
+        entrees={"assiette_taxe_electricite": ASSIETTE, "amperage": 400},
     ),
 ]
 

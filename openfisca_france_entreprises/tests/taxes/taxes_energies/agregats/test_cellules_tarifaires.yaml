@@ -361,6 +361,18 @@
     # 113,058 MWh × 1.6000 €/MWh
     taxe_accise_gaz_naturel_combustible: 180892.80
 
+- name: "_914387 — Gaz naturel combustible — tarif ZNI 15,43 €/MWh (10,54 + majoration 4,89) (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 82.292
+  input:
+    # Quantité posée sur 2025-08, mois où le barème porte le tarif
+    # déclaré de 15.4300 €/MWh.
+    consommation_gaz_combustible:
+      "2025-08": 5333244
+  output:
+    # 5,333,244 MWh × 15.4300 €/MWh
+    taxe_accise_gaz_naturel_combustible: 82291954.92
+
 - name: "_911293 — Charbon combustible — tarif plein (millésime 2022)"
   period: 2022
   absolute_error_margin: 3.06051
@@ -1101,3 +1113,29 @@
   output:
     # 331,826 MWh × 1.0000 €/MWh
     taxe_electricite_bouclier_tarifaire: 331825.76
+
+- name: "_914374 — Électricité — tarif ZNI 29,98 €/MWh (25,09 + majoration 4,89) (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 441.416
+  input:
+    # Quantité posée sur 2025-08, mois où le barème porte le tarif
+    # déclaré de 29.9800 €/MWh.
+    assiette_taxe_electricite:
+      "2025-08": 14723689.29
+    amperage: 20
+  output:
+    # 14,723,689 MWh × 29.9800 €/MWh
+    taxe_accise_electricite: 441416204.94
+
+- name: "_914377 — Électricité — tarif ZNI 25,79 €/MWh (20,90 + majoration 4,89) (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 357.212
+  input:
+    # Quantité posée sur 2025-08, mois où le barème porte le tarif
+    # déclaré de 25.7900 €/MWh.
+    assiette_taxe_electricite:
+      "2025-08": 13850783.326
+    amperage: 400
+  output:
+    # 13,850,783 MWh × 25.7900 €/MWh
+    taxe_accise_electricite: 357211702.02

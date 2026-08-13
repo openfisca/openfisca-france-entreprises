@@ -66,7 +66,7 @@ PYTEST_ADDOPTS="--maxfail=300" .venv/bin/openfisca test \
 `addopts` du dépôt contient `--exitfirst` : sans `PYTEST_ADDOPTS`, le lancement
 s'arrête au premier échec.
 
-**108 tests générés, dont 102 verts et 6 rouges assumés** sous
+**111 tests générés, dont 105 verts et 6 rouges assumés** sous
 `openfisca_france_entreprises/tests/taxes/taxes_energies/agregats/` (78 cellules
 tarifaires, 30 exonérations). Les fichiers sont générés : ne pas les éditer à la
 main.
@@ -175,9 +175,9 @@ s'arrête au **2024-01-01**. Or la case `_911243` déclare toujours 1,60 €/MWh
 2024 (6 881 031 MWh) et en 2025 (5 761 764 MWh). Le paramètre doit être prolongé,
 ou la fermeture justifiée. **Testée et rouge sur 2024 et 2025.**
 
-### 4. Majoration ZNI : absente pour 2025
+### 4. Majoration ZNI — ✅ clos le 2026-08-13
 
-`energies.majoration_zni` ne porte qu'une valeur, `2026-02-01 = 5,66`. Les
+`energies.majoration_zni` ne portait qu'une valeur, `2026-02-01 = 5,66`. Les
 déclarations 2025 appliquent une majoration de **4,89 €/MWh**, isolée dans une case
 de montant dédiée, sur les trois énergies :
 
@@ -190,6 +190,29 @@ de montant dédiée, sur les trois énergies :
 
 Ces cases sont la seule source du dépôt sur la structure ZNI 2025 : le tarif s'y
 déclare en deux montants distincts pour une même quantité.
+
+**Ce n'est pas un régime propre aux zones non interconnectées.** L'article L312-37-1 du
+CIBS, en vigueur depuis le 1er août 2025, majore les tarifs normaux des combustibles et de
+l'électricité d'un montant affecté au financement des ZNI — dû par **tous** les redevables
+du tarif normal, son dénominateur étant la consommation d'énergie totale du pays. C'est
+pourquoi l'arrêté du 13 décembre 2022 publie le « tarif normal majoré » comme chiffre de
+tête, et pourquoi la plupart des sources annoncent une accise gaz autour de 16 €/MWh quand
+le barème n'en porte que la fraction, 10,54.
+
+Porté le 2026-08-13 :
+
+- le barème reçoit la valeur manquante, `2025-08-01 = 4,89`, et les cinq séries de tarifs
+  normaux portent une note renvoyant vers `majoration_zni` ;
+- le helper `majoration_zni` de `formula_helpers.py` l'ajoute au tarif normal de
+  l'électricité, du charbon et du gaz combustible — jamais aux tarifs réduits, que
+  L312-37-1 ne vise pas, ni au gaz carburant, qui n'est pas une catégorie combustible ;
+- trois des quatre cases quittent les lacunes de couverture et sont **vertes**. Le
+  générateur pose leur quantité sur **2025-08**, mois qu'il identifie seul comme celui où
+  le barème porte 15,43 / 29,98 / 25,79.
+
+La quatrième, `_914396` (charbon), reste sans test : elle n'a **aucune ligne au millésime
+2025** dans le fichier, et vaut zéro sur 2022-2024. Elle existe au Cerfa mais n'a jamais
+été servie.
 
 ---
 
@@ -361,13 +384,15 @@ sans figer la convention dans les formules.
 
 ## Lacunes de couverture
 
-Les **9 cellules non testées** — le modèle n'ayant ni variable ni entrée pour
-elles, il n'y a rien à confronter. À distinguer des 17 rouges, qui sont des
+Les **5 cellules non testées** — le modèle n'ayant ni variable ni entrée pour
+elles, il n'y a rien à confronter. À distinguer des 6 rouges, qui sont des
 désaccords chiffrés : ici le calculateur ne répond pas du tout.
 
 `_911264` (acomptes N+1), `_911272` (tarif gaz 8,37), `_911321` et `_911323`
-(indexation TCFE, constat n° 1), `_912995` (manutention portuaire), `_914374`,
-`_914377`, `_914387` et `_914396` (majoration ZNI 2025, constat n° 4).
+(indexation TCFE, constat n° 1), `_912995` (manutention portuaire).
+
+Les quatre cellules ZNI en sont sorties le 2026-08-13 — trois sont testées et vertes, la
+quatrième n'a pas de donnée. Voir le constat n° 4.
 
 - **`electricite_manutention_portuaire`** existe comme variable d'entrée et le
   tarif est au barème (0,5 €/MWh depuis 2023), mais la variable n'est branchée dans
