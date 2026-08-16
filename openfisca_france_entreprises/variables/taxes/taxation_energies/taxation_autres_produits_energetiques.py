@@ -15,6 +15,7 @@ from openfisca_france_entreprises.variables.taxes.formula_helpers import (
     _or,
     tarif_avec_repli,
     tarif_du_mois,
+    tarif_moyen_annuel,
 )
 
 
@@ -3590,6 +3591,39 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
         return sum(accise_du_mois(mois) for mois in period.get_subperiods(MONTH))
 
 
+def _regions_2016(departement):
+    """Les treize régions issues de la fusion du 1er janvier 2016, dans l'ordre des `values`.
+
+    Reprend à l'identique le découpage départemental des formules 2017, y compris sa façon
+    d'écrire la Corse `2A`/`2B` — les formules antérieures écrivent `02A`/`02B`, incohérence
+    connue et suivie hors de ce chantier.
+    """
+    return [
+        _dep_in(departement, ["75", "77", "78", "91", "92", "93", "94", "95"]),
+        _dep_in(departement, ["18", "28", "36", "37", "41", "45"]),
+        _dep_in(departement, ["21", "25", "39", "58", "70", "71", "89", "90"]),
+        _dep_in(departement, ["14", "27", "50", "61", "76"]),
+        _dep_in(departement, ["02", "59", "60", "62", "80"]),
+        _dep_in(departement, ["08", "10", "51", "52", "54", "55", "57", "67", "68", "88"]),
+        _dep_in(departement, ["44", "49", "53", "72", "85"]),
+        _dep_in(departement, ["22", "29", "35", "56"]),
+        _dep_in(
+            departement,
+            ["16", "17", "19", "23", "24", "33", "40", "47", "64", "79", "86", "87"],
+        ),
+        _dep_in(
+            departement,
+            ["09", "11", "12", "30", "31", "32", "34", "46", "48", "65", "66", "81", "82"],
+        ),
+        _dep_in(
+            departement,
+            ["01", "03", "07", "15", "26", "38", "42", "43", "63", "69", "73", "74"],
+        ),
+        _dep_in(departement, ["04", "05", "06", "13", "83", "84"]),
+        _dep_in(departement, ["2A", "2B", "02A", "02B"]),
+    ]
+
+
 class ticpe_majoration_regionale_gazole(Variable):
     value_type = float
     entity = Etablissement
@@ -3601,7 +3635,7 @@ class ticpe_majoration_regionale_gazole(Variable):
         departement = etablissement("departement", period)
         p = parameters(
             period,
-        ).energies.autres_produits_energetiques.major_regionale_ticpe_gazole
+        ).energies.autres_produits_energetiques.ticpe.majo_region.gazole
         conditions = [
             _dep_in(departement, ["67", "68"]),
             _dep_in(departement, ["24", "33", "40", "47", "64"]),
@@ -3611,7 +3645,7 @@ class ticpe_majoration_regionale_gazole(Variable):
             _dep_in(departement, ["22", "29", "35", "56"]),
             _dep_in(departement, ["18", "28", "36", "37", "41", "45"]),
             _dep_in(departement, ["8", "10", "51", "52"]),
-            _dep_in(departement, ["02A", "02B"]),
+            _dep_in(departement, ["2A", "2B", "02A", "02B"]),
             _dep_in(departement, ["25", "39", "70", "90"]),
             _dep_in(departement, ["27", "76"]),
             _dep_in(departement, ["75", "77", "78", "91", "92", "93", "94", "95"]),
@@ -3650,21 +3684,21 @@ class ticpe_majoration_regionale_gazole(Variable):
             tarif_du_mois(
                 period,
                 lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.major_regionale_ticpe_gazole.poitou_charentes
+                    parameters(mois).energies.autres_produits_energetiques.ticpe.majo_region.gazole.poitou_charentes
                 ),
             ),
             p.rhone_alpes,
         ]
-        # Les fichiers de région portent la valeur absolue du barème ; la contribution à la taxe
-        # est l'écart à la composante nationale déjà incluse dans le tarif national.
-        base = p.base_nationale
-        return select(conditions, [v - base for v in values], default=0)
+        # Le barème porte désormais la majoration nette — l'écart au tarif national publié en
+        # annexe 1.1 des circulaires douanières — et non plus le tarif régional absolu : il n'y
+        # a plus de composante nationale à retrancher.
+        return select(conditions, values, default=0)
 
     def formula_2017_01_01(etablissement, period, parameters):
         departement = etablissement("departement", period)
         p = parameters(
             period,
-        ).energies.autres_produits_energetiques.major_regionale_ticpe_gazole
+        ).energies.autres_produits_energetiques.ticpe.majo_region.gazole
         conditions = [
             _dep_in(departement, ["75", "77", "78", "91", "92", "93", "94", "95"]),
             _dep_in(departement, ["18", "28", "36", "37", "41", "45"]),
@@ -3730,10 +3764,10 @@ class ticpe_majoration_regionale_gazole(Variable):
                 ],
             ),
             _dep_in(departement, ["04", "05", "06", "13", "83", "84"]),
-            _dep_in(departement, ["2A", "2B"]),
+            _dep_in(departement, ["2A", "2B", "02A", "02B"]),
         ]
         values = [
-            p.ile_de_france,
+            p.ile_de_france + p.surmajoration_ile_de_france,
             p.centre,
             p.bourgogne_franche_comte,
             p.normandie,
@@ -3747,9 +3781,52 @@ class ticpe_majoration_regionale_gazole(Variable):
             p.paca,
             p.corse,
         ]
-        # Valeurs absolues ; on retranche la composante nationale déjà incluse dans le tarif.
-        base = p.base_nationale
-        return select(conditions, [v - base for v in values], default=0)
+        # Majorations nettes : plus de composante nationale à retrancher. L'Île-de-France cumule
+        # la majoration de droit commun et la surmajoration de l'article 265 A ter, que le barème
+        # porte dans un fichier distinct depuis la restructuration des majorations régionales.
+        return select(conditions, values, default=0)
+
+    def formula_2022_01_01(etablissement, period, parameters):
+        """Sous le CIBS, la majoration régionale est unique et s'exprime en euros par MWh.
+
+        L'article L. 312-39 remplace l'empilement « fraction régionale de TIPP + majoration
+        Grenelle » par une majoration unique qui s'ajoute au tarif normal : il n'y a plus de
+        composante nationale à retrancher, et le tarif auquel elle s'ajoute est lui-même en
+        euros par MWh depuis la recodification.
+
+        L'article 20 de la loi n° 2025-127 de finances pour 2025 abroge cette majoration au
+        1er août 2025 ; la surmajoration francilienne de l'article L. 312-40 court, elle,
+        jusqu'au 1er janvier 2026. `tarif_du_mois` substitue zéro aux mois postérieurs à
+        chacune de ces clôtures, d'où le prorata mensuel de l'année 2025.
+        """
+        departement = etablissement("departement", period)
+
+        def majoration(nom):
+            return tarif_moyen_annuel(
+                period,
+                lambda mois: getattr(
+                    parameters(mois).energies.autres_produits_energetiques.accise.majo_region.gazole,
+                    nom,
+                ),
+                defaut_si_absent=0,
+            )
+
+        values = [
+            majoration("ile_de_france") + majoration("surmajoration_ile_de_france"),
+            majoration("centre"),
+            majoration("bourgogne_franche_comte"),
+            majoration("normandie"),
+            majoration("hauts_france"),
+            majoration("grand_est"),
+            majoration("pays_loire"),
+            majoration("bretagne"),
+            majoration("nouvelle_aquitaine"),
+            majoration("occitanie"),
+            majoration("auvergne_rhone_alpes"),
+            majoration("paca"),
+            majoration("corse"),
+        ]
+        return select(_regions_2016(departement), values, default=0)
 
 
 class ticpe_majoration_regionale_supercarburant_e10(Variable):
@@ -3763,7 +3840,7 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
         departement = etablissement("departement", period)
         p = parameters(
             period,
-        ).energies.autres_produits_energetiques.major_regionale_ticpe_super
+        ).energies.autres_produits_energetiques.ticpe.majo_region.super
         conditions = [
             _dep_in(departement, ["67", "68"]),
             _dep_in(departement, ["24", "33", "40", "47", "64"]),
@@ -3773,7 +3850,7 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
             _dep_in(departement, ["22", "29", "35", "56"]),
             _dep_in(departement, ["18", "28", "36", "37", "41", "45"]),
             _dep_in(departement, ["8", "10", "51", "52"]),
-            _dep_in(departement, ["2A", "2B"]),
+            _dep_in(departement, ["2A", "2B", "02A", "02B"]),
             _dep_in(departement, ["25", "39", "70", "90"]),
             _dep_in(departement, ["27", "76"]),
             _dep_in(departement, ["75", "77", "78", "91", "92", "93", "94", "95"]),
@@ -3812,21 +3889,21 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
             tarif_du_mois(
                 period,
                 lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.major_regionale_ticpe_super.poitou_charentes
+                    parameters(mois).energies.autres_produits_energetiques.ticpe.majo_region.super.poitou_charentes
                 ),
             ),
             p.rhone_alpes,
         ]
-        # Les fichiers de région portent la valeur absolue du barème ; la contribution à la taxe
-        # est l'écart à la composante nationale déjà incluse dans le tarif national.
-        base = p.base_nationale
-        return select(conditions, [v - base for v in values], default=0)
+        # Le barème porte désormais la majoration nette — l'écart au tarif national publié en
+        # annexe 1.1 des circulaires douanières — et non plus le tarif régional absolu : il n'y
+        # a plus de composante nationale à retrancher.
+        return select(conditions, values, default=0)
 
     def formula_2017_01_01(etablissement, period, parameters):
         departement = etablissement("departement", period)
         p = parameters(
             period,
-        ).energies.autres_produits_energetiques.major_regionale_ticpe_super
+        ).energies.autres_produits_energetiques.ticpe.majo_region.super
         conditions = [
             _dep_in(departement, ["75", "77", "78", "91", "92", "93", "94", "95"]),
             _dep_in(departement, ["18", "28", "36", "37", "41", "45"]),
@@ -3892,10 +3969,10 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
                 ],
             ),
             _dep_in(departement, ["04", "05", "06", "13", "83", "84"]),
-            _dep_in(departement, ["2A", "2B"]),
+            _dep_in(departement, ["2A", "2B", "02A", "02B"]),
         ]
         values = [
-            p.ile_de_france,
+            p.ile_de_france + p.surmajoration_ile_de_france,
             p.centre,
             p.bourgogne_franche_comte,
             p.normandie,
@@ -3909,9 +3986,52 @@ class ticpe_majoration_regionale_supercarburant_e10(Variable):
             p.paca,
             p.corse,
         ]
-        # Valeurs absolues ; on retranche la composante nationale déjà incluse dans le tarif.
-        base = p.base_nationale
-        return select(conditions, [v - base for v in values], default=0)
+        # Majorations nettes : plus de composante nationale à retrancher. L'Île-de-France cumule
+        # la majoration de droit commun et la surmajoration de l'article 265 A ter, que le barème
+        # porte dans un fichier distinct depuis la restructuration des majorations régionales.
+        return select(conditions, values, default=0)
+
+    def formula_2022_01_01(etablissement, period, parameters):
+        """Sous le CIBS, la majoration régionale est unique et s'exprime en euros par MWh.
+
+        L'article L. 312-39 remplace l'empilement « fraction régionale de TIPP + majoration
+        Grenelle » par une majoration unique qui s'ajoute au tarif normal : il n'y a plus de
+        composante nationale à retrancher, et le tarif auquel elle s'ajoute est lui-même en
+        euros par MWh depuis la recodification.
+
+        L'article 20 de la loi n° 2025-127 de finances pour 2025 abroge cette majoration au
+        1er août 2025 ; la surmajoration francilienne de l'article L. 312-40 court, elle,
+        jusqu'au 1er janvier 2026. `tarif_du_mois` substitue zéro aux mois postérieurs à
+        chacune de ces clôtures, d'où le prorata mensuel de l'année 2025.
+        """
+        departement = etablissement("departement", period)
+
+        def majoration(nom):
+            return tarif_moyen_annuel(
+                period,
+                lambda mois: getattr(
+                    parameters(mois).energies.autres_produits_energetiques.accise.majo_region.essences,
+                    nom,
+                ),
+                defaut_si_absent=0,
+            )
+
+        values = [
+            majoration("ile_de_france") + majoration("surmajoration_ile_de_france"),
+            majoration("centre"),
+            majoration("bourgogne_franche_comte"),
+            majoration("normandie"),
+            majoration("hauts_france"),
+            majoration("grand_est"),
+            majoration("pays_loire"),
+            majoration("bretagne"),
+            majoration("nouvelle_aquitaine"),
+            majoration("occitanie"),
+            majoration("auvergne_rhone_alpes"),
+            majoration("paca"),
+            majoration("corse"),
+        ]
+        return select(_regions_2016(departement), values, default=0)
 
 
 class ticpe_majoration_regionale_supercarburant_95_98(Variable):
@@ -3925,7 +4045,7 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
         departement = etablissement("departement", period)
         p = parameters(
             period,
-        ).energies.autres_produits_energetiques.major_regionale_ticpe_super
+        ).energies.autres_produits_energetiques.ticpe.majo_region.super
         conditions = [
             _dep_in(departement, ["67", "68"]),
             _dep_in(departement, ["24", "33", "40", "47", "64"]),
@@ -3935,7 +4055,7 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
             _dep_in(departement, ["22", "29", "35", "56"]),
             _dep_in(departement, ["18", "28", "36", "37", "41", "45"]),
             _dep_in(departement, ["8", "10", "51", "52"]),
-            _dep_in(departement, ["2A", "2B"]),
+            _dep_in(departement, ["2A", "2B", "02A", "02B"]),
             _dep_in(departement, ["25", "39", "70", "90"]),
             _dep_in(departement, ["27", "76"]),
             _dep_in(departement, ["75", "77", "78", "91", "92", "93", "94", "95"]),
@@ -3974,21 +4094,21 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
             tarif_du_mois(
                 period,
                 lambda mois: (
-                    parameters(mois).energies.autres_produits_energetiques.major_regionale_ticpe_super.poitou_charentes
+                    parameters(mois).energies.autres_produits_energetiques.ticpe.majo_region.super.poitou_charentes
                 ),
             ),
             p.rhone_alpes,
         ]
-        # Les fichiers de région portent la valeur absolue du barème ; la contribution à la taxe
-        # est l'écart à la composante nationale déjà incluse dans le tarif national.
-        base = p.base_nationale
-        return select(conditions, [v - base for v in values], default=0)
+        # Le barème porte désormais la majoration nette — l'écart au tarif national publié en
+        # annexe 1.1 des circulaires douanières — et non plus le tarif régional absolu : il n'y
+        # a plus de composante nationale à retrancher.
+        return select(conditions, values, default=0)
 
     def formula_2017_01_01(etablissement, period, parameters):
         departement = etablissement("departement", period)
         p = parameters(
             period,
-        ).energies.autres_produits_energetiques.major_regionale_ticpe_super
+        ).energies.autres_produits_energetiques.ticpe.majo_region.super
         conditions = [
             _dep_in(departement, ["75", "77", "78", "91", "92", "93", "94", "95"]),
             _dep_in(departement, ["18", "28", "36", "37", "41", "45"]),
@@ -4054,10 +4174,10 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
                 ],
             ),
             _dep_in(departement, ["04", "05", "06", "13", "83", "84"]),
-            _dep_in(departement, ["2A", "2B"]),
+            _dep_in(departement, ["2A", "2B", "02A", "02B"]),
         ]
         values = [
-            p.ile_de_france,
+            p.ile_de_france + p.surmajoration_ile_de_france,
             p.centre,
             p.bourgogne_franche_comte,
             p.normandie,
@@ -4071,6 +4191,49 @@ class ticpe_majoration_regionale_supercarburant_95_98(Variable):
             p.paca,
             p.corse,
         ]
-        # Valeurs absolues ; on retranche la composante nationale déjà incluse dans le tarif.
-        base = p.base_nationale
-        return select(conditions, [v - base for v in values], default=0)
+        # Majorations nettes : plus de composante nationale à retrancher. L'Île-de-France cumule
+        # la majoration de droit commun et la surmajoration de l'article 265 A ter, que le barème
+        # porte dans un fichier distinct depuis la restructuration des majorations régionales.
+        return select(conditions, values, default=0)
+
+    def formula_2022_01_01(etablissement, period, parameters):
+        """Sous le CIBS, la majoration régionale est unique et s'exprime en euros par MWh.
+
+        L'article L. 312-39 remplace l'empilement « fraction régionale de TIPP + majoration
+        Grenelle » par une majoration unique qui s'ajoute au tarif normal : il n'y a plus de
+        composante nationale à retrancher, et le tarif auquel elle s'ajoute est lui-même en
+        euros par MWh depuis la recodification.
+
+        L'article 20 de la loi n° 2025-127 de finances pour 2025 abroge cette majoration au
+        1er août 2025 ; la surmajoration francilienne de l'article L. 312-40 court, elle,
+        jusqu'au 1er janvier 2026. `tarif_du_mois` substitue zéro aux mois postérieurs à
+        chacune de ces clôtures, d'où le prorata mensuel de l'année 2025.
+        """
+        departement = etablissement("departement", period)
+
+        def majoration(nom):
+            return tarif_moyen_annuel(
+                period,
+                lambda mois: getattr(
+                    parameters(mois).energies.autres_produits_energetiques.accise.majo_region.essences,
+                    nom,
+                ),
+                defaut_si_absent=0,
+            )
+
+        values = [
+            majoration("ile_de_france") + majoration("surmajoration_ile_de_france"),
+            majoration("centre"),
+            majoration("bourgogne_franche_comte"),
+            majoration("normandie"),
+            majoration("hauts_france"),
+            majoration("grand_est"),
+            majoration("pays_loire"),
+            majoration("bretagne"),
+            majoration("nouvelle_aquitaine"),
+            majoration("occitanie"),
+            majoration("auvergne_rhone_alpes"),
+            majoration("paca"),
+            majoration("corse"),
+        ]
+        return select(_regions_2016(departement), values, default=0)

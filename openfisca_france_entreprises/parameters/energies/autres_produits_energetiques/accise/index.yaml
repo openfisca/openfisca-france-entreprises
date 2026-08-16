@@ -4,6 +4,7 @@ metadata:
   order:
   - carburants
   - combustibles
+  - majo_region
   - tarifs_reduits
   - annee_gaz_petrole_liquefies_travaux_agricoles
   - minoration_corse

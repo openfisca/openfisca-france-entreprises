@@ -6,8 +6,6 @@ metadata:
   - tiruert
   - tgap_carburants
   - ticpe
-  - major_regionale_ticpe_gazole
-  - major_regionale_ticpe_super
 documentation: |-
   Sauf mention contraire, les tarifs de cette section sont ceux applicables en France métropolitaine.
   Les collectivités régies par l'article 73 de la Constitution (DROM) déterminent elles-mêmes les tarifs normaux des gazoles et des essences, dans la limite des montants maximaux repris sous accise.carburants.plafonds_drom.

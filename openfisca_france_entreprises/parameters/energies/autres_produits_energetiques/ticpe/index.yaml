@@ -15,6 +15,7 @@ metadata:
   - carburant_constitue_minimum_90_alcool_ethylique_agricole
   - carburant_constitue_100_esters_methyliques_acides_gras
   - super_e85
+  - majo_region
   - refaction_corse
 documentation: |-
   Références législatives générales :
