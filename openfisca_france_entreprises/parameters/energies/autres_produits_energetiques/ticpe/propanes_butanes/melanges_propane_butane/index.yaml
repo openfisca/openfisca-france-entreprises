@@ -2,5 +2,5 @@ description: TICPE - produits énergétiques, mélanges spéciaux de propane et 
 metadata:
   label_en: TICPE - Energy products, special blends of propane and butane
   order:
-  - autres_melanges_propane_butane
-  - melanges_propane_butane_sous_condition
+  - autres_melanges
+  - melanges_sous_condition

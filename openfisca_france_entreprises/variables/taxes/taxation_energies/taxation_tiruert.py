@@ -44,7 +44,7 @@ class proportion_energie_renouvelable_essences(Variable):
 
     def formula_2019_01_01(etablissement, period, parameters):
         """À défaut d'être renseignée, la cible nationale est réputée atteinte : la taxe est nulle."""
-        return parameters(period).energies.autres_produits_energetiques.taxes_incitatives_carburants.taux_essences
+        return parameters(period).energies.autres_produits_energetiques.tiruert.taux_essences
 
 
 class proportion_energie_renouvelable_gazoles(Variable):
@@ -57,7 +57,7 @@ class proportion_energie_renouvelable_gazoles(Variable):
 
     def formula_2019_01_01(etablissement, period, parameters):
         """À défaut d'être renseignée, la cible nationale est réputée atteinte : la taxe est nulle."""
-        return parameters(period).energies.autres_produits_energetiques.taxes_incitatives_carburants.taux_gazoles
+        return parameters(period).energies.autres_produits_energetiques.tiruert.taux_gazoles
 
 
 class proportion_energie_renouvelable_carbureacteurs(Variable):
@@ -72,7 +72,7 @@ class proportion_energie_renouvelable_carbureacteurs(Variable):
         """À défaut d'être renseignée, la cible nationale est réputée atteinte : la taxe est nulle."""
         return parameters(
             period,
-        ).energies.autres_produits_energetiques.taxes_incitatives_carburants.taux_carbureacteurs
+        ).energies.autres_produits_energetiques.tiruert.taux_carbureacteurs
 
 
 def _composante(etablissement, period, parameters, conso, tarif, taux, proportion):
@@ -86,7 +86,7 @@ def _composante(etablissement, period, parameters, conso, tarif, taux, proportio
     """
 
     def composante_du_mois(mois):
-        tic = parameters(mois).energies.autres_produits_energetiques.taxes_incitatives_carburants
+        tic = parameters(mois).energies.autres_produits_energetiques.tiruert
         ecart = getattr(tic, taux) - etablissement(proportion, mois.this_year)
         return etablissement(conso, mois) * getattr(tic, tarif) * where(ecart > 0, ecart, 0)
 

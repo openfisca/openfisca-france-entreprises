@@ -7,14 +7,15 @@ metadata:
   - huiles_legeres
   - huiles_moyennes
   - huiles_lourdes
-  - goudrons_utilises_comme_combustibles
-  - propanes_butanes_etc
+  - goudrons_combustibles
+  - propanes_butanes
   - emulsion_eau_gazole
-  - gaz_naturels_etat_gazeux_utilises_comme_carburants
-  - gaz_naturels_etat_gazeux_utilises_sous_conditions_aux_moteurs_stationnaires
+  - gaz_naturels_etat_gazeux_carburants
+  - gaz_naturels_etat_gazeux_moteurs_stationnaires
   - carburant_constitue_minimum_90_alcool_ethylique_agricole
   - carburant_constitue_100_esters_methyliques_acides_gras
   - super_e85
+  - refaction_corse
 documentation: |-
   Références législatives générales :
 

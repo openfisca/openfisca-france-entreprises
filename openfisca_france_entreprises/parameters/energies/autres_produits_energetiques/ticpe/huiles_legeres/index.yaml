@@ -7,6 +7,6 @@ metadata:
   - essence_aviation
   - super
   - essence_normale
-  - essences_speciales_utilisees_comme_carburants_combustibles
-  - white_spirit_utilise_comme_combustible
+  - essences_speciales
+  - white_spirit_combustible
   - autres_huiles_legeres
