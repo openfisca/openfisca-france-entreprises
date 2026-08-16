@@ -13,4 +13,4 @@ values:
 metadata:
   short_label: Paca
   ipp_csv_id: maj_ticpe_die_paca
-  unit: currency
+  unit: currency_per_hectoliter

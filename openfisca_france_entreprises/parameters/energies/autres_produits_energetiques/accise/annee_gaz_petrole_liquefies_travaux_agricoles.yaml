@@ -2,3 +2,5 @@ description: Année d'introduction du tarif gaz_de_petrole_liquefies_combustible
 values:
   2022-01-01:
     value: 2023
+metadata:
+  unit: year

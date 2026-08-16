@@ -7,4 +7,4 @@ values:
 metadata:
   short_label: Occitanie
   ipp_csv_id: maj_ticpe_die_occ
-  unit: currency
+  unit: currency_per_hectoliter

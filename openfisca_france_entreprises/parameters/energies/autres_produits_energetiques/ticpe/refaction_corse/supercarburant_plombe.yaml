@@ -9,7 +9,7 @@ metadata:
   label_en: Corsican abatement on leaded petrol
   last_value_still_valid_on: "2024-07-01"
   ipp_csv_id: refaction_corse_ticpe_super_plombe
-  unit: currency
+  unit: currency_per_hectoliter
   reference:
     2002-01-01:
       - title: Article 265 A bis du code des douanes

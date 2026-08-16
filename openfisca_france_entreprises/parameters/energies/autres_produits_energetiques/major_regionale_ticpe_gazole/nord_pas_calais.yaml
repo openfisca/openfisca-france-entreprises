@@ -7,4 +7,4 @@ values:
 metadata:
   short_label: Nord-Pas-de-Calais
   ipp_csv_id: maj_ticpe_die_n_cal
-  unit: currency
+  unit: currency_per_hectoliter

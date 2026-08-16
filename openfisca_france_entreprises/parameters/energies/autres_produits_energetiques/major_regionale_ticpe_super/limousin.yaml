@@ -9,4 +9,4 @@ values:
 metadata:
   short_label: Limousin
   ipp_csv_id: maj_ticpe_super_lim
-  unit: currency
+  unit: currency_per_hectoliter

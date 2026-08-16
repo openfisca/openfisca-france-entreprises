@@ -9,7 +9,7 @@ values:
 metadata:
   ipp_csv_id: ticpe_butanes_non_carburants
   short_label: Autres que comme carburant (100kg nets)
-  unit: currency
+  unit: currency_per_100kg
   reference:
     1993-01-01:
       title: Loi 92-1376 du 30/12/1992 (LF pour 1993)

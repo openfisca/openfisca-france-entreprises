@@ -9,4 +9,4 @@ values:
 metadata:
   short_label: Aquitaine
   ipp_csv_id: maj_ticpe_die_aqui
-  unit: currency
+  unit: currency_per_hectoliter

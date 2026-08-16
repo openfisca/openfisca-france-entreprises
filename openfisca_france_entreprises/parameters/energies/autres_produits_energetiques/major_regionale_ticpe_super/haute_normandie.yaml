@@ -7,4 +7,4 @@ values:
 metadata:
   short_label: Haute-Normandie
   ipp_csv_id: maj_ticpe_super_h_n
-  unit: currency
+  unit: currency_per_hectoliter

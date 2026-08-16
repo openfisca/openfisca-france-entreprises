@@ -15,7 +15,7 @@ metadata:
   last_value_still_valid_on: "2025-02-21"
   label_en: Minimal coefficient for communal tax on final electricity consumption (TCCFE)
   ipp_csv_id: tccfe_coef_min
-  unit: /1
+  unit: coefficient
   reference:
     2011-01-01:
       title: article 23 de la lOI n° 2010-1488 du 7 décembre 2010 portant nouvelle organisation du marché de l'électricité

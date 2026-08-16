@@ -13,4 +13,4 @@ values:
 metadata:
   short_label: Bretagne
   ipp_csv_id: maj_ticpe_super_bre
-  unit: currency
+  unit: currency_per_hectoliter

@@ -7,4 +7,4 @@ values:
 metadata:
   short_label: Lorraine
   ipp_csv_id: maj_ticpe_super_lor
-  unit: currency
+  unit: currency_per_hectoliter

@@ -11,7 +11,7 @@ values:
   2022-01-01:
     value: 1.15
 metadata:
-  unit: currency
+  unit: currency_per_hectoliter
   short_label: Base nationale majoration gazole
 documentation: |-
   Les fichiers de région portent la valeur ABSOLUE de la majoration régionale telle que publiée par

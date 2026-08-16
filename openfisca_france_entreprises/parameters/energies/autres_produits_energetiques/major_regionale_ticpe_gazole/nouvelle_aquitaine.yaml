@@ -7,4 +7,4 @@ values:
 metadata:
   short_label: Nouvelle-Aquitaine
   ipp_csv_id: maj_ticpe_die_naq
-  unit: currency
+  unit: currency_per_hectoliter

@@ -7,4 +7,4 @@ values:
 metadata:
   short_label: Poitou-Charentes
   ipp_csv_id: maj_ticpe_die_p_c
-  unit: currency
+  unit: currency_per_hectoliter

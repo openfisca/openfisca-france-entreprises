@@ -21,7 +21,7 @@ values:
 metadata:
   short_label: Autres (100kg nets)
   ipp_csv_id: ticpe_butane_autres
-  unit: currency
+  unit: currency_per_100kg
   reference:
     1993-01-01:
       title: Loi 92-1376 du 30/12/1992 (LF pour 1993)

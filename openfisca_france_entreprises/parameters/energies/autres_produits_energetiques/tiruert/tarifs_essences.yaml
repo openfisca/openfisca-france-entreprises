@@ -15,7 +15,7 @@ metadata:
   last_value_still_valid_on: "2025-02-25"
   label_en: Tariff for the incentive tax on the use of renewable energy in transport for gasoline (TIRUERT)
   ipp_csv_id: tiruert_tarif_essences
-  unit: currency_per_mwh
+  unit: currency_per_hectoliter
   reference:
     2019-01-01:
       title: LOI n° 2018-1317 du 28 décembre 2018 de finances pour 2019, article 192 I

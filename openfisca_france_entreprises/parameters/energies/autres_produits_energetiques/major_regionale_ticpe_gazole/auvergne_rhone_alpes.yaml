@@ -9,4 +9,4 @@ values:
 metadata:
   short_label: Auvergne-Rhône-Alpes
   ipp_csv_id: maj_ticpe_die_ara
-  unit: currency
+  unit: currency_per_hectoliter

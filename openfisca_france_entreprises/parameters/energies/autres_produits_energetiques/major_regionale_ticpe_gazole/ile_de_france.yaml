@@ -11,4 +11,4 @@ values:
 metadata:
   short_label: Ile-de-France
   ipp_csv_id: maj_ticpe_die_idf
-  unit: currency
+  unit: currency_per_hectoliter

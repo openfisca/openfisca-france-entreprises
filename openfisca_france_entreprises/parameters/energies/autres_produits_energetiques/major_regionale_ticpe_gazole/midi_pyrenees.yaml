@@ -9,4 +9,4 @@ values:
 metadata:
   short_label: Midi-Pyrénées
   ipp_csv_id: maj_ticpe_die_m_p
-  unit: currency
+  unit: currency_per_hectoliter

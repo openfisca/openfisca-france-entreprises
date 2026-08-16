@@ -38,7 +38,7 @@ values:
     value: null
 metadata:
   ipp_csv_id: ticpe_carbureacteurs_essence_avion
-  unit: currency
+  unit: currency_per_hectoliter
   reference:
     1993-01-01:
       title: Loi 92-1376 du 30/12/1992 (LF pour 1993)

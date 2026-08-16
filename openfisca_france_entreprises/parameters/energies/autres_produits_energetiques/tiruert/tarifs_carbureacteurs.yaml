@@ -11,7 +11,7 @@ metadata:
   last_value_still_valid_on: "2025-02-25"
   label_en: Tariff for the incentive tax on the use of renewable energy in transport for jet fuels (TIRUERT)
   ipp_csv_id: tiruert_tarif_carbureacteurs
-  unit: currency_per_mwh
+  unit: currency_per_hectoliter
   reference:
     2022-01-01:
       title: LOI n° 2020-1721 du 29 décembre 2020 de finances pour 2021, article 58 I 4°

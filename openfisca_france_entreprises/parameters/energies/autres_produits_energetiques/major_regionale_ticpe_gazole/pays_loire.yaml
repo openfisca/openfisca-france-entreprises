@@ -13,4 +13,4 @@ values:
 metadata:
   short_label: Pays de la Loire
   ipp_csv_id: maj_ticpe_die_p_loi
-  unit: currency
+  unit: currency_per_hectoliter

@@ -35,7 +35,7 @@ metadata:
   last_value_still_valid_on: "2025-03-01"
   label_en: Super leaded petrol
   ipp_csv_id: ticpe_super_plombe
-  unit: currency
+  unit: currency_per_hectoliter
   reference:
     1993-04-15:
       title: Loi 92-1376 du 30/12/1992 (LF pour 1993)

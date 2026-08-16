@@ -13,7 +13,7 @@ metadata:
   last_value_still_valid_on: "2025-02-14"
   label_en: Maximal coefficient for departmental tax on final electricity consumption (TDCFE)
   ipp_csv_id: tdcfe_coef_max
-  unit: /1
+  unit: coefficient
   reference:
     2011-01-01:
       title: article 23 de la lOI n° 2010-1488 du 7 décembre 2010 portant nouvelle organisation du marché de l'électricité

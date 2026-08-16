@@ -7,4 +7,4 @@ values:
 metadata:
   short_label: Hauts-de-France
   ipp_csv_id: maj_ticpe_die_hdf
-  unit: currency
+  unit: currency_per_hectoliter

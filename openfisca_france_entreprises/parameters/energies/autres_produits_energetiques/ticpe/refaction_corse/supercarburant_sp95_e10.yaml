@@ -9,7 +9,7 @@ metadata:
   label_en: Corsican abatement on SP95-E10 petrol
   last_value_still_valid_on: "2024-07-01"
   ipp_csv_id: refaction_corse_ticpe_sp95_e10
-  unit: currency
+  unit: currency_per_hectoliter
   reference:
     2019-01-01:
       - title: LOI n° 2018-1317 du 28 décembre 2018 de finances pour 2019, article 66 (V)

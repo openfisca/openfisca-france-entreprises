@@ -13,7 +13,7 @@ metadata:
   last_value_still_valid_on: "2025-02-21"
   label_en: Maximal coefficient for communal tax on final electricity consumption (TCCFE), for intercommunal unions outside metropolitan France
   ipp_csv_id: tccfe_coef_max_drom
-  unit: /1
+  unit: coefficient
   reference:
     2011-01-01:
       title: article 23, III de la lOI n° 2010-1488 du 7 décembre 2010 portant nouvelle organisation du marché de l'électricité

@@ -7,4 +7,4 @@ values:
 metadata:
   short_label: Grand Est
   ipp_csv_id: maj_ticpe_super_ges
-  unit: currency
+  unit: currency_per_hectoliter

@@ -24,7 +24,7 @@ values:
     value: null
 metadata:
   ipp_csv_id: ticpe_super_e85
-  unit: currency
+  unit: currency_per_hectoliter
   last_value_still_valid_on: '2023-08-22'
   reference:
     1993-01-01:
