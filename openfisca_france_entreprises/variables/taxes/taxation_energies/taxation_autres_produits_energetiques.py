@@ -62,11 +62,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 etablissement("consommation_goudrons_utilises_comme_combustibles", period)
                 * tarif_du_mois(
                     period,
-                    lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.goudrons_combustibles
-                    ),
+                    lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.goudrons_combustibles,
                 )
                 + etablissement(
                     "consommation_white_spirit_utilise_comme_combustible",
@@ -82,9 +78,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 * tarif_du_mois(
                     period,
                     lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales
                     ),
                 )
                 + etablissement(
@@ -308,9 +302,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 * tarif_du_mois(
                     period,
                     lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_carburants
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_carburants
                     ),
                 )
                 # + etablissement(
@@ -385,11 +377,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 etablissement("consommation_goudrons_utilises_comme_combustibles", period)
                 * tarif_du_mois(
                     period,
-                    lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.goudrons_combustibles
-                    ),
+                    lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.goudrons_combustibles,
                 )
                 + etablissement(
                     "consommation_white_spirit_utilise_comme_combustible",
@@ -405,9 +393,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 * tarif_du_mois(
                     period,
                     lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales
                     ),
                 )
                 + etablissement(
@@ -651,9 +637,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 * tarif_du_mois(
                     period,
                     lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_carburants
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_carburants
                     ),
                 )
                 # + etablissement(
@@ -703,11 +687,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 etablissement("consommation_goudrons_utilises_comme_combustibles", period)
                 * tarif_du_mois(
                     period,
-                    lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.goudrons_combustibles
-                    ),
+                    lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.goudrons_combustibles,
                 )
                 + etablissement(
                     "consommation_white_spirit_utilise_comme_combustible",
@@ -723,9 +703,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 * tarif_du_mois(
                     period,
                     lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales
                     ),
                 )
                 + etablissement(
@@ -965,9 +943,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 * tarif_du_mois(
                     period,
                     lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_carburants
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_carburants
                     ),
                 )
                 + etablissement(
@@ -1027,11 +1003,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 etablissement("consommation_goudrons_utilises_comme_combustibles", period)
                 * tarif_du_mois(
                     period,
-                    lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.goudrons_combustibles
-                    ),
+                    lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.goudrons_combustibles,
                 )
                 + etablissement(
                     "consommation_white_spirit_utilise_comme_combustible",
@@ -1047,9 +1019,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 * tarif_du_mois(
                     period,
                     lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales
                     ),
                 )
                 + etablissement(
@@ -1291,9 +1261,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 * tarif_du_mois(
                     period,
                     lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_carburants
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_carburants
                     ),
                 )
                 + etablissement(
@@ -1352,11 +1320,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 etablissement("consommation_goudrons_utilises_comme_combustibles", period)
                 * tarif_du_mois(
                     period,
-                    lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.goudrons_combustibles
-                    ),
+                    lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.goudrons_combustibles,
                 )
                 + etablissement(
                     "consommation_white_spirit_utilise_comme_combustible",
@@ -1372,9 +1336,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 * tarif_du_mois(
                     period,
                     lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales
                     ),
                 )
                 + etablissement(
@@ -1616,9 +1578,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 * tarif_du_mois(
                     period,
                     lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_carburants
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_carburants
                     ),
                 )
                 + etablissement(
@@ -1658,11 +1618,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 etablissement("consommation_goudrons_utilises_comme_combustibles", period)
                 * tarif_du_mois(
                     period,
-                    lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.goudrons_combustibles
-                    ),
+                    lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.goudrons_combustibles,
                 )
                 + etablissement(
                     "consommation_white_spirit_utilise_comme_combustible",
@@ -1678,9 +1634,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 * tarif_du_mois(
                     period,
                     lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales
                     ),
                 )
                 + etablissement(
@@ -1930,9 +1884,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 * tarif_du_mois(
                     period,
                     lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_carburants
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_carburants
                     ),
                 )
                 + etablissement(
@@ -1969,11 +1921,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 etablissement("consommation_goudrons_utilises_comme_combustibles", period)
                 * tarif_du_mois(
                     period,
-                    lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.goudrons_combustibles
-                    ),
+                    lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.goudrons_combustibles,
                 )
                 + etablissement(
                     "consommation_white_spirit_utilise_comme_combustible",
@@ -1989,9 +1937,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 * tarif_du_mois(
                     period,
                     lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales
                     ),
                 )
                 + etablissement(
@@ -2253,9 +2199,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 * tarif_du_mois(
                     period,
                     lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_carburants
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.gaz_naturels_etat_gazeux_carburants
                     ),
                 )
                 + etablissement(
@@ -2298,11 +2242,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 etablissement("consommation_goudrons_utilises_comme_combustibles", period)
                 * tarif_du_mois(
                     period,
-                    lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.goudrons_combustibles
-                    ),
+                    lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.goudrons_combustibles,
                 )
                 + etablissement(
                     "consommation_white_spirit_utilise_comme_combustible",
@@ -2318,9 +2258,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 * tarif_du_mois(
                     period,
                     lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales
                     ),
                 )
                 + etablissement(
@@ -2610,11 +2548,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 etablissement("consommation_goudrons_utilises_comme_combustibles", period)
                 * tarif_du_mois(
                     period,
-                    lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.goudrons_combustibles
-                    ),
+                    lambda mois: parameters(mois).energies.autres_produits_energetiques.ticpe.goudrons_combustibles,
                 )
                 + etablissement(
                     "consommation_white_spirit_utilise_comme_combustible",
@@ -2630,9 +2564,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 * tarif_du_mois(
                     period,
                     lambda mois: (
-                        parameters(
-                            mois
-                        ).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales
+                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.essences_speciales
                     ),
                 )
                 + etablissement(
