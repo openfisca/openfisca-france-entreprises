@@ -285,11 +285,16 @@ class taxe_accise_gaz_naturel_combustible(Variable):
             "gaz_dehydration_legumes_et_plantes_aromatiques",
             period,
         )
-        # « intensite_energetique » (sans suffixe) n'existe pas dans le modèle, et le seuil
-        # qui lui était comparé (seuil_facture_energie_par_va = 0.6744) n'a aucune source.
-        # On aligne donc la condition déshydratation sur celle des formules 2019 et 2020,
-        # qui applique le critère légal : consommation supérieure à 800 Wh par euro de valeur
-        # ajoutée (LF 2019, art. 67), soit 0.0008 MWh/€.
+        # « intensite_energetique » (sans suffixe) n'existe pas dans le modèle. Le seuil qui lui
+        # était comparé, seuil_facture_energie_par_va = 0.6744, a bien une source : l'article
+        # L. 312-62 du CIBS, qui retient les entreprises « dont le niveau d'intensité énergétique
+        # en valeur ajoutée [...] est au moins égal à 0,6744 % ».
+        # Ce seuil prolonge sans le modifier le critère légal antérieur : 800 Wh par euro de
+        # valeur ajoutée (LF 2019, art. 67), soit 0.0008 MWh/€, valorisés au tarif normal de la
+        # TICGN d'alors — 0.0008 x 8.43 = 0.006744.
+        # Le modèle ne portant aucune variable « facture d'énergie / valeur ajoutée », la
+        # condition déshydratation reste alignée sur celle des formules 2019 et 2020, qui
+        # applique le critère en quantité. Les deux expriment le même seuil.
         consommation_par_valeur_ajoutee = etablissement("consommation_par_valeur_ajoutee", period)
 
         def accise_combustible(choisir):
