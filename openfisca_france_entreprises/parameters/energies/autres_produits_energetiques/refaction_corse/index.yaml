@@ -11,18 +11,10 @@ documentation: |-
 
   Elle ne se distingue pas selon le carburant par son montant, identique, mais par sa **date d'entrée
   en vigueur** : 2002 pour les supercarburants SP95 et SP98 (indice d'identification 11), 2019 seulement
-  pour le SP95-E10 (indice 11 ter), créé par l'article 66 de la loi de finances pour 2019. C'est la seule
-  différence légale connue entre ces carburants pour la fiscalité — et elle ne relève pas de la
-  majoration régionale, qui, elle, ne les distingue pas.
+  pour le SP95-E10 (indice 11 ter), créé par l'article 66 de la loi de finances pour 2019 — seule
+  différence légale connue entre ces carburants, et qui ne relève pas de la majoration régionale.
 
-  Unités : euros par hectolitre avant 2022, euros par MWh à partir de 2022. Le passage de 1,0 à 1,125
-  au 2022-01-01 est la conversion d'unité propre aux supercarburants (~0,88 MWh/hL), et non une hausse.
+  Unités : euros par hectolitre avant 2022, euros par MWh à partir de 2022 ; le passage de 1,0 à 1,125
+  au 2022-01-01 est la conversion d'unité propre aux supercarburants (~0,88 MWh/hL), non une hausse.
 
-  ⚠️ **Aucune formule ne lit ces paramètres à ce jour** : ils sont importés en données seules, par
-  décision d'arbitrage (cf. ARBITRAGES_JURIDIQUES_ENERGIES.md §6), la modélisation du mécanisme restant
-  à faire. Les identifiants ipp_csv_id sont **proposés** : le barème ne porte pas encore la réfaction,
-  à laquelle ces paramètres sont destinés à être remontés.
-
-  Source reprise du dépôt openfisca-france-indirect-taxation
-  (`parameters/imposition_indirecte/produits_energetiques/refraction_corse_ticpe.yaml`), dont
-  l'orthographe « refraction » et l'identifiant « tipce » sont ici corrigés en « réfaction » et « ticpe ».
+  Identifiants (refaction_corse_ticpe_*) et valeurs alignés sur openfisca-france-entreprises.

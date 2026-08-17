@@ -1,72 +1,73 @@
 # Actions en attente — synchronisation énergies
 
-> État arrêté au **2026-07-24**, **table des branches remise à jour le 2026-07-31**. Ce fichier liste
-> ce qui **ne peut pas être fait depuis l'agent** : actions nécessitant un outil absent, un autre
-> dépôt, ou une décision humaine. Le suivi technique reste dans `SYNC_ENERGIES_REPORT.md` (bloc de
-> reprise) et `ARBITRAGES_JURIDIQUES_ENERGIES.md`.
+> État arrêté au **2026-08-12**. Ce fichier liste ce qui **ne peut pas être fait depuis l'agent** :
+> actions nécessitant un outil absent, un autre dépôt, ou une décision humaine. Le suivi technique
+> reste dans `SYNC_ENERGIES_REPORT.md` (bloc de reprise en tête) et
+> `ARBITRAGES_JURIDIQUES_ENERGIES.md`.
 
-## Branches (dépôt OpenFisca-France-Entreprises) — au 2026-07-31
+## Branches — au 2026-08-12
 
-`main` (`5be7c9c`, PR #26) est le tronc : il absorbe `sync/energies-no-regret`,
-`fix/regions-post-2016` et `convergence/energies` — **les trois ont été supprimées d'`origin`** — ainsi
-que le contenu d'`align/energies-tree`. 205 tests passent.
+`main` (`b3cfa50`) est le tronc. `feat/periodes-mensuelles` porte 9 commits au-dessus, **205 tests
+verts**, rebasée sur `main` et *fast-forwardable* : c'est le travail énergies à fusionner.
 
-| branche | état | action |
+| branche | état vs `main` | action |
 |---|---|---|
-| `align/energies-tree` | superseded (rien d'unique vs `main`) | **à supprimer** |
-| `fix/regions-post-2016` | ⊂ `main` | **à supprimer** |
-| `add_parameters` | ⊂ `main` | **à supprimer** |
-| `refactor/energies-periodes-mensuelles` | 9 commits uniques | rapatriement non mécanique — cf. §3 du rapport |
-| `Implementation-SEQE` | 8 commits uniques | chantier distinct |
-| `assets/agregats-tic` | 3 commits uniques | chantier distinct |
+| `feat/periodes-mensuelles` | 9 commits, verte | **ouvrir la PR** — cf. §1 |
+| `origin/add_parameters` | ⊂ `main` | **à supprimer** |
+| `origin/fix/regions-post-2016` | ⊂ `main` | **à supprimer** |
+| `origin/align/energies-tree` | superseded (rien d'unique) | **à supprimer** |
+| `origin/refactor/energies-periodes-mensuelles` | superseded — son intention a été **ré-appliquée** sur `main`, cf. §1 | **à supprimer** |
+| `origin/Implementation-SEQE` | commits uniques | chantier distinct |
+| `origin/assets/agregats-tic` | commits uniques | chantier distinct |
+| `origin/assets/elfe-cgdd` | commits uniques | chantier distinct |
 
-⚠️ Les branches locales périmées à nettoyer aussi : `sync/energies-no-regret`, `convergence/energies`,
-`stage_chieh` (supprimée d'`origin`).
+Branches locales périmées (⊂ `main`, fusionnées par les PR #28, #29 et #30) : `chore/hygiene-symlink`,
+`docs/arbitrages-energies`, `feat/tarif-moyen-annuel`.
 
----
+## État côté barème
 
-## ✅ Fait le 2026-07-27 — propositions barème sécurisées
+| MR IPP | objet | état |
+|---|---|---|
+| !659 | GNR : clôture au 2022-01-01 et non au 2021-07-01 | **fusionnée** |
+| !660 | TICC : création au 2007-07-01, référence à l'article 36 III | **ouverte** |
+| !661 | Hygiène de métadonnées : unités, ids, descriptions, références | **ouverte** |
 
-Les 32 fichiers de proposition sont désormais **commités** dans le dépôt barème, sur la branche
-`energies-propositions-openfisca` (commit `eae753da2`, basée sur `origin/energies` à jour), sous
-`_propositions_regions_post_2016/` (27) et `_propositions_refaction_corse/` (5). Plus aucun risque de
-perte : ils vivent dans l'object store git, indépendamment du worktree. Le dépôt principal reste sur
-`master`, intact.
-
-**Reste à faire** (côté humain) :
-- **Pousser** la branche : `git -C ../baremes-ipp-yaml push -u origin energies-propositions-openfisca`
-  (l'agent ne pousse pas de lui-même sur le dépôt barème ; `gh` est absent de toute façon).
-- **Intégrer** les propositions dans l'arbre (`parameters/taxation_indirecte/energies/…`) puis PR vers
-  `energies`. Décisions dans chaque README : nouvelles régions contre extension des fichiers existants
-  (`bretagne`, `corse`, `paca`, `ile_de_france`), nommage `ile_france` (OF) / `ile_de_france` (barème),
-  `ipp_csv_id` INSEE à valider.
+⚠️ Les paramètres d'OF-E reprennent déjà le contenu de !660 et !661. **La convergence annoncée
+(321 chemins communs identiques octet pour octet) suppose que ces deux MR soient fusionnées.** Si la
+revue les amende, OF-E demande un commit de suivi. Le point le plus exposé est le renommage de deux
+`ipp_csv_id` dans !661, qui change deux noms de séries à l'export CSV / DBnomics.
 
 ---
 
 ## 🔧 Impossibles depuis l'agent (outillage)
 
-1. **Ouvrir la PR** de `refactor/energies-periodes-mensuelles` vers `sync/energies-no-regret`.
-   `gh` n'est pas installé. Texte complet prêt (titre, base/head, corps) dans le scratchpad de session :
-   `PR_periodes_mensuelles.md`. Lien :
-   `https://github.com/openfisca/openfisca-france-entreprises/pull/new/refactor/energies-periodes-mensuelles`
+1. **Ouvrir la PR de `feat/periodes-mensuelles` vers `main`.** `gh` n'est pas installé ; l'URL est
+   imprimée par GitHub au push. **Ne pas écraser les commits** (*merge commit*, pas *squash*) : les
+   neuf messages portent le raisonnement juridique de chaque arbitrage, ses sources et les chiffres
+   déplacés. C'est la provenance de tout l'exercice.
+   À signaler dans le corps de la PR : le message du premier commit (`1eec057`) porte encore
+   « NE PAS FUSIONNER EN L'ÉTAT — la suite de tests est rouge » et « branche locale, non poussée ».
+   Les deux sont **périmés** depuis huit commits ; les réécrire imposerait un nouveau *force-push*.
 
-2. **Ouvrir l'issue OFF-E.** Elle doit couvrir **deux** ensembles distincts de changements de taxe :
+2. **Ouvrir l'issue OF-E** sur les chiffres publiés déplacés. Deux ensembles :
    - **Majorations régionales** (commit `8eb5cfb`) — divergences barème/OF adoptées :
      super `{rhone_alpes 2010, limousin 2010, poitou_charentes 2010/2014/2015}` ;
      gazole `{rhone_alpes 2010, limousin 2010, corse 2010/2014-16, poitou_charentes 2010/2014/2015}`.
      Plusieurs sont probablement des artefacts de grille de dates : à vérifier sur Légifrance.
-   - **Moyenne mensuelle des tarifs** (branche `refactor`) — 12 couples (tarif, année) sur 1993, 2010,
-     2014, 2020 ; plus TICC 2014 (1 190 → 2 015), TICGN 1993-2000, CSPE 2011-2012, gazole agricole
-     2025 (9 560 → 4 810), ED95 2022. Ce sont des corrections, mais elles déplacent des chiffres publiés.
+   - **Moyenne mensuelle des tarifs** — le tableau complet, avec décomposition de chaque écart, est
+     en §B du bloc de reprise de `SYNC_ENERGIES_REPORT.md` : CSPE 2012 (9 000 → 9 750),
+     `taxe_electricite` 2012 (18 090 → 18 840), TICPE 2020 (1 037 420 → 1 022 571,6875),
+     TICC 2007 (1 190 → 595), CSPE 2011 (8,125 → 8,25, non testée).
+
+3. **Régénérer les identifiants PISTE de `legisdata`.** Ils renvoient `invalid_client` : l'API
+   Légifrance est inutilisable en l'état. Le cache `sources/legifrance/265_*.md` qu'invoque le §5 des
+   arbitrages n'est pas non plus dans le dépôt. **Aucune décision énergies n'est donc reproductible
+   depuis les sources primaires via legisdata** ; les vérifications du 2026-08-12 ont été faites sur
+   les versions consolidées de Légifrance en direct.
 
 ---
 
 ## ⚖️ Décisions humaines
-
-3. **Arbitrage §5 — abrogations TICPE**, produit par produit : `gazole_b_10` (2019),
-   `emulsion_eau_gazole/*` et `*/sous_conditions*` (2020-07-01), `gazole/carburants_sous_conditions`
-   (2021-07-01), `fioul_lourd_bts`/`hts`/`point_eclair` (2003), `essence_normale` (2000).
-   **Plus de blocage technique** : la moyenne mensuelle gère les dates en cours d'année.
 
 4. **Arbitrage §7 — PCS/PCI (facteur 1,11)** : le gaz est taxé `conso × taux × 1,11` avant 2022 et
    sans conversion après, d'où une discontinuité. Préexistant, signalé par `***faut vérrifier`.
@@ -74,48 +75,60 @@ perte : ils vivent dans l'object store git, indépendamment du worktree. Le dép
 5. **Confirmer les choix de modélisation** listés en fin de doc d'arbitrages : rétablissements du
    chemin gaz (`gaz_matiere_premiere` OU `gaz_huiles_minerales` ; seuil 800 Wh/€ VA),
    `taxe_interieure_consommation_gaz_naturel_grande_consommatrice` pointant désormais
-   `taux_reduit_seqe`, et suppression éventuelle de `seuil_facture_energie_par_va` (0,6744), non
-   sourcé et plus lu par aucune formule.
+   `taux_reduit_seqe`, et suppression éventuelle de `seuil_facture_energie_par_va` (0,6744) — non
+   sourcé et **confirmé lu par aucune formule** (il ne subsiste que dans un commentaire).
 
----
+6. **Compléter les sept tarifs de `taux_selon_activite/`.** Ils étaient des ébauches sans description
+   ni `metadata` ; !661 leur donne description et unité, mais il leur manque un `ipp_csv_id` — un
+   choix de nommage — et une référence — un travail de sourçage.
 
-## 🔗 Dépendance d'enchaînement
-
-6. **Les arbitrages §2, §4 et §5 ne peuvent pas être implémentés sur `sync/energies-no-regret`** :
-   `tarif_moyen_annuel` n'existe que sur la branche `refactor`. Fusionner la PR d'abord, ou réaliser
-   ces implémentations sur la branche `refactor`.
+7. **Quatre descriptions vides restantes au barème**, hors périmètre de !661 :
+   `minoration_corse` et les trois `categorie_fiscale_*`. Ces derniers placent en outre `reference`
+   et `unit` **au niveau racine et non sous `metadata`**, si bien que leur unité n'est pas là où un
+   consommateur la cherche ; l'un porte un commentaire `#cette parametre est pas utilisée`.
 
 ---
 
 ## 🐛 Anomalies relevées, non corrigées
 
-7. **Codes département incohérents — bug latent.** Certaines formules utilisent `"2A"`/`"2B"`,
+8. **Codes département incohérents — bug latent.** Certaines formules utilisent `"2A"`/`"2B"`,
    d'autres `"02A"`/`"02B"`. La Corse peut tomber silencieusement sur `default=0` selon la façon dont
    `departement` est renseigné. Rencontré deux fois pendant les vérifications. Mérite une issue.
 
-8. **Défauts du barème à corriger en amont** (vérifiés sur `origin/energies`) :
-   - `electricite/accise/tarifs_reduits/production_navires.yaml` : la `documentation` décrit la
-     manutention portuaire, pas la production à bord ;
-   - `.../carburants/huiles_lourdes/tarifs_reduits/manutention_portuaire.yaml` : valeur datée
-     2023-01-01 mais référence datée 2022-01-01, et **pas d'`official_journal_date`** ;
-   - `.../carburants/huiles_lourdes/tarifs_reduits/transport_routier_marchandises.yaml` : **pas d'`unit`** ;
-   - (préexistants) les 6 tarifs GPL combustible reprennent les `ipp_csv_id` des carburants ;
-     `tccfe_coef_max` est partagé par trois fichiers.
-
-9. **Lacune de couverture du barème** : `gaz_de_petrole_liquefies_combustible_travaux_agricoles`
-   (0,712) existe côté OF mais **manque au barème**. À proposer.
+9. **`variables_economiques.py` non formaté** (échoue `ruff format --check`, vérifié le 2026-08-12).
+   **Préexistant**, hors périmètre de ces travaux, mais fera échouer la CI si ce contrôle est appliqué.
 
 ---
 
 ## 📋 Reporté volontairement
 
-10. **Item 6** — restructuration par grade / référence directe au barème. Sa propre branche + PR.
-    Suppose encore de trancher le mode de consommation du barème : sous-module git, dépendance
-    versionnée, ou paquet `.openfisca/openfisca_baremes_ipp`.
+10. **Item 6 — comment OF-E consomme le barème.** Sous-module git, dépendance versionnée, ou paquet
+    `.openfisca/openfisca_baremes_ipp`. **Note de décision complète en §C du bloc de reprise de
+    `SYNC_ENERGIES_REPORT.md`** : ce qui est démontré par l'expérience de bascule, les trois
+    contraintes (deux sources et non une, liens symboliques pénibles sous Windows, nécessité
+    d'épingler une version) et les trois mécanismes comparés. Sa propre branche + PR.
 
 11. **Bouclier tarifaire** — traitement mensuel propre à faire. Il proratise aujourd'hui à la main
     (`Instant((2022, 2, 1))`, `/12`, `*11/12`) et encode un **basculement de régime**, pas un
     changement de tarif : la moyenne de tarif y serait fausse.
 
-12. **`variables_economiques.py` non formaté** (échoue `ruff format --check`). **Préexistant**, hors
-    périmètre de ces travaux, mais fera échouer la CI si ce contrôle est appliqué.
+---
+
+## ✅ Clos depuis le 2026-07-31
+
+- **Rapatriement de `refactor/energies-periodes-mensuelles`** — fait par ré-application sur l'arbre
+  de `main` : helper `tarif_moyen_annuel` porté, 230 lectures enveloppées, arbitrages §2 et §5 posés.
+- **Arbitrage §2** (TICGN au 2014-04-01), **§3** (manutention portuaire) et **§5** (abrogations
+  TICPE) — implémentés, avec repli sur le tarif normal là où une ligne de tarif réduit disparaît
+  sans successeur.
+- **§1** (date de création de la TICC) — tranché au 2007-07-01, porté des deux côtés.
+- **Défauts de métadonnées du barème** (ancien point 8) — traités par !661. La lacune supposée des
+  six `ipp_csv_id` de GPL combustible **n'existait pas** : le sous-arbre n'en comptait qu'une, sur
+  `tccfe_coef_max`.
+- **Lacune de couverture supposée** (ancien point 9) :
+  `gaz_de_petrole_liquefies_combustible_travaux_agricoles` (0,712) **est présent** au barème.
+- **Propositions barème sécurisées** (`_propositions_regions_post_2016/`,
+  `_propositions_refaction_corse/`) — intégrées : réfaction corse et régions post-2016 sont sur
+  `master` du barème.
+- **Dépendance d'enchaînement sur `sync/energies-no-regret`** — sans objet, la branche n'existe plus
+  et `tarif_moyen_annuel` est sur `main`.

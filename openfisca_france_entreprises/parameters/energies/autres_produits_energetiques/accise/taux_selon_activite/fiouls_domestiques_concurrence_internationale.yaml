@@ -1,4 +1,6 @@
-description:
+description: Tarif réduit de l'accise applicable aux fiouls domestiques consommés par les installations exposées à la concurrence internationale
 values:
   2022-01-01:
     value: 5.66
+metadata:
+  unit: currency_per_mwh

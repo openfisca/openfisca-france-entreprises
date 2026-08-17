@@ -1,9 +1,12 @@
-description: Tarifs maximaux de l'accise sur les carburants dans les départements et régions d'outre-mer
+description: Accise sur les produits énergétiques autres que les gaz naturels et les charbons, montants maximum applicables aux carburants en outre-mer
 metadata:
-  label_en: Maximum excise duty on fuels in overseas departments and regions
+  label_en: Maximum excise duty rates on motor fuels in overseas departments and regions
   order:
-  - essences
   - gazoles
+  - essences
 documentation: |-
-  Plafonds prévus par le code des impositions sur les biens et services : dans les DROM, le tarif de
-  l'accise sur les carburants ne peut excéder ces montants. Importés du barème IPP (join par ipp_csv_id).
+  D'après l'article L312-38 du Code des impositions sur les biens et services, dans les collectivités régies par l'article 73 de la Constitution, la région détermine les tarifs normaux des catégories fiscales des gazoles et des essences, sans pouvoir excéder les montant prévus au même article L. 312-35
+  Elle détermine également les tarifs réduits et les tarifs particuliers pour les produits relevant de ces catégories fiscales.
+  Ces tarifs réduits et particuliers ne font cependant pas l'objet de montant maximal dans la législation.
+  En ce qui concerne les carburants autres que les gazoles et essences, ainsi que les combustibles autres que les charbons et gaz naturels, ces collectivités ne sont pas soumises à l'accise (article L312-10 du Code des impositions sur les biens et services).
+  Enfin, les collectivités régies par l'article 73 de la Constitution ne sont pas soumises à la TIRUERT (taxe incitative relative à l'utilisation d'énergie renouvelable dans le transport).

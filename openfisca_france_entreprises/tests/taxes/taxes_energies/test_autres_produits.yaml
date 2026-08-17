@@ -20,12 +20,16 @@
     consommation_grisou_et_gaz_assimiles_combustible_mwh : 1000
     consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh : 1000
 
+  absolute_error_margin: 0.01
   output:
-    taxe_interieure_consommation_sur_produits_energetiques : 436848
-#59400+76826+42131+16208+12555+15620+15686+5189+12157+12905+75701+74576+17894
+    taxe_interieure_consommation_sur_produits_energetiques : 436835.33
+#59400+76826+42131+16208+12555+15620+15686+5189+12144.33+12905+75701+74576+17894
 # 2026-07 : le tarif normal des carburéacteurs en 2022 valait 76.826 dans les paramètres
 # (valeur du tarif essences, recopiée par erreur). Le barème IPP donne 42.131.
 # L'attendu passe donc de 471543 à 436848 (1000 hL x 34.695).
+# 2026-07 (périodes) : le tarif de l'éthanol-diesel ED95 baisse de 12.157 à 12.119 au 18 août 2022.
+# Il est désormais appliqué en moyenne mensuelle (8 mois à 12.157, 4 à 12.119 = 12.14433) au lieu
+# de la seule valeur du 1er janvier : le terme ED95 passe de 12157 à 12144.33, d'où 436835.33.
 
 #
 - name: "test 2023"
@@ -167,11 +171,24 @@
     consommation_emulsion_eau_gazoles_autres_hectolitre : 1000 #36.94
 
   output:
-    taxe_interieure_consommation_sur_produits_energetiques: 1037420
+    taxe_interieure_consommation_sur_produits_energetiques: 1022571.6875
 #10.08 + 15.25 + 67.52 + 45.49 + 68.29 + 2.5 + 71.56 + 66.29 + 2.5 + 39.79 + 68.51 + 67.52 +
 #15.25 +  51.28 + 39.79 + 51.28 + 51.28 + 18.82 + 15.62 + 59.40 + 2.5 + 13.95 + 20.71 + 6.63 +  20.71 +  6.63 + 20.71+
 # 11.83 + 6.43 + 11.83
 #+ 15.9 + 15.9 + 15.9 + 10.33 + 36.94
+#
+# Attendu historique : 1 037 420, tous tarifs lus au 1er janvier. Quatre tarifs changent en
+# cours d'annee 2020 ; la moyenne mensuelle les reprend, d'ou -14 848,3125 sur 1 000 unites
+# de chaque produit :
+#   3 x GPL sous conditions   15,90 -> (6 x 15,90 + 6 x 20,71) / 12 = 18,305      +7,215
+#     lignes 30 bis / 31 bis / 33 bis supprimees du tableau B au 2020-07-01
+#     (art. 60 I 1 LF 2020) : repli sur le tarif normal 20,71, pas sur zero
+#   emulsion eau-gazole sous conditions  10,33 -> 5,165                           -5,165
+#   emulsion eau-gazole autres           36,94 -> 18,47                          -18,470
+#     retirees du tableau B au 2020-07-01, sans successeur : repli sur zero
+#   gazole carburants sous conditions  18,82 -> (11 x 18,82 + 37,68) / 12 = 20,3917  +1,5717
+#     37,68 au 2020-07-01 (LF 2020), ramene a 18,82 au 2020-08-01 (LFR 2020)
+#   total -14,8483125 x 1 000 = -14 848,3125
 
 
 - name : "test 2018"

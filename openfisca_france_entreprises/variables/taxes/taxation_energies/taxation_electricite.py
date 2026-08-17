@@ -6,6 +6,7 @@ from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.taxes.formula_helpers import (
     _and,
     _or,
+    tarif_moyen_annuel,
 )
 
 
@@ -153,7 +154,10 @@ class taxe_contribution_service_public_electricite(Variable):
     def formula_2002_01_01(etablissement, period, parameters):
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
 
-        return assiette_taxe_electricite * parameters(period).energies.electricite.cspe
+        return assiette_taxe_electricite * tarif_moyen_annuel(
+            period,
+            lambda mois: parameters(mois).energies.electricite.cspe,
+        )
 
     # condition d'application est pareil jusqu'à 2011
 
@@ -869,8 +873,29 @@ class taxe_electricite_manutention_portuaire(Variable):
     definition_period = YEAR
 
     def formula_2022_01_01(etablissement, period, parameters):
+        """2022 : pas de tarif réduit pour la manutention portuaire, donc tarif normal.
+
+        La formule lisait le tarif réduit **TICFE**, alors que la TICFE est close au 2022-01-01
+        par la bascule CIBS. Le tarif réduit d'accise correspondant n'entre en vigueur qu'au
+        2023-01-01 (c du 3° de l'article 37 de l'ordonnance 2021-1843, arbitrage §3) : sur 2022
+        la manutention portuaire relève donc du tarif normal de l'accise.
+
+        Cohérent avec le contexte : en 2022 le bouclier tarifaire ramène déjà le tarif normal au
+        minimum communautaire, ce qui rend un tarif réduit sectoriel sans objet. Il réapparaît en
+        2023, quand le tarif normal remonte.
+
+        Le tarif normal dépend de la catégorie fiscale (ampérage) depuis 2022 : on réutilise donc
+        la variable qui le calcule, plutôt que de replier sur un paramètre unique.
+        """
+        return etablissement("taxe_accise_electricite_taux_normal", period)
+
+    def formula_2023_01_01(etablissement, period, parameters):
+        """À partir de 2023, tarif réduit d'accise (L312-48 CIBS), 0,5 €/MWh."""
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-        taux = parameters(period).energies.electricite.ticfe.taux_reduits.manutention_portuaire
+        taux = tarif_moyen_annuel(
+            period,
+            lambda mois: parameters(mois).energies.electricite.accise.tarifs_reduits.manutention_portuaire,
+        )
         return assiette_taxe_electricite * taux
 
 
@@ -993,10 +1018,18 @@ class taxe_accise_electricite_taux_normal(Variable):
             & (amperage >= ticfe.categorie_fiscale_petite_et_moyenne_entreprise)
             & (amperage < ticfe.categorie_fiscale_haut_puissance)
         )
-        tn = parameters(period).energies.electricite.accise.tarifs_normaux
-        taxe_36 = assiette_taxe_electricite * tn.menages_et_assimiles
-        taxe_36_250 = assiette_taxe_electricite * tn.pme_activites_economiques
-        taxe_haut = assiette_taxe_electricite * tn.haute_puissance  # > 250 kVA
+        taxe_36 = assiette_taxe_electricite * tarif_moyen_annuel(
+            period,
+            lambda mois: parameters(mois).energies.electricite.accise.tarifs_normaux.menages_et_assimiles,
+        )
+        taxe_36_250 = assiette_taxe_electricite * tarif_moyen_annuel(
+            period,
+            lambda mois: parameters(mois).energies.electricite.accise.tarifs_normaux.pme_activites_economiques,
+        )
+        taxe_haut = assiette_taxe_electricite * tarif_moyen_annuel(
+            period,
+            lambda mois: parameters(mois).energies.electricite.accise.tarifs_normaux.haute_puissance,
+        )  # > 250 kVA
         return select([cond_36, cond_250], [taxe_36, taxe_36_250], default=taxe_haut)
 
 

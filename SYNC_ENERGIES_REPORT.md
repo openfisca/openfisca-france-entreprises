@@ -1,4 +1,112 @@
-# ⏸️ REPRISE AU 2026-07-31 — à lire en premier
+# ⏸️ REPRISE AU 2026-08-12 — à lire en premier
+
+**Les paramètres ont convergé.** Les 321 chemins communs aux deux arbres énergies sont identiques
+octet pour octet : zéro divergence de valeurs, zéro de forme, zéro d'index. Ce qui reste n'est plus
+un travail de convergence mais une décision d'architecture — l'item 6, traité en §C ci-dessous.
+
+## A. État des deux dépôts
+
+| dépôt | réf | contenu |
+|---|---|---|
+| barème | `master` `db0da2342` | MR IPP !659 fusionnée (GNR : clôture au 2022-01-01) |
+| barème | `fix_ticc_date_2007_07_01` `4fcf078f8` | **MR !660 ouverte, non fusionnée** (TICC au 2007-07-01, réf. art. 36 III) |
+| OF-E | `main` `b3cfa50` | inchangé |
+| OF-E | `feat/periodes-mensuelles` `8c071df` | rebasée sur `main`, **205 tests verts**, poussée |
+
+La mesure de convergence ci-dessus vaut contre `fix_ticc_date_2007_07_01` : **elle suppose que
+!660 soit fusionnée.** Contre `master` seul, `charbon/ticc.yaml` diverge encore.
+
+`feat/periodes-mensuelles`, du plus ancien au plus récent : `1eec057` (WIP, 230 lectures
+enveloppées) · `1b5f39e` (GNR + attendus CSPE 2012) · `6b01528` (GPL sous condition d'emploi) ·
+`357e4cc` (TICGN grandes consommatrices) · `940e9d1` (TICC + CSPE) · `28e7965` (hygiène 2/2 +
+réparation du script de distance) · `8c071df` (manutention portuaire).
+
+⚠️ Le message de `1eec057` porte encore « NE PAS FUSIONNER EN L'ÉTAT — la suite de tests est
+rouge » et « branche locale, non poussée ». Les deux sont **périmés** depuis quatre commits ; le
+réécrire imposerait un nouveau *force-push*. À signaler dans la description de la PR.
+
+## B. Chiffres publiés déplacés par la moyenne mensuelle
+
+À consigner dans l'issue OF-E. Tous vérifiés par décomposition, pas seulement constatés :
+
+| série | avant | après | cause |
+|---|---|---|---|
+| CSPE 2012 (assiette 1 000) | 9 000 | 9 750 | 9 €/MWh jusqu'au 30 juin, 10,5 ensuite → moyenne 9,75 |
+| `taxe_electricite` 2012 | 18 090 | 18 840 | idem, par report |
+| TICPE 2020 | 1 037 420 | 1 022 571,6875 | −14 848,3125 : GPL +7,215 ; émulsions −5,165 et −18,470 ; gazole sous conditions +1,5717 |
+| TICC 2007 | 1 190 | 595 | taxe créée au 1er juillet : six mois sans taxe |
+| CSPE 2011 (non testée) | 8,125 | 8,25 | date barème 2011-07-01 au lieu de 2011-07-31 |
+
+## C. Item 6 — comment OF-E consomme le barème : note de décision
+
+### C.1 Ce qui est démontré
+
+Expérience faite le 2026-08-12 dans un worktree, arbre restauré ensuite :
+
+- **Copie brute** de `parameters/taxation_indirecte/energies/` par-dessus `parameters/energies/`
+  (358 fichiers) : **12 échecs / 193 succès**. Tous sur `test_tccfe_coefficient.yaml`.
+- **Même copie + les deux fichiers de coefficients** repris de `donnees_locales_tcfe/` :
+  **205 succès**, identique à la branche.
+
+Donc le contenu est interchangeable **aujourd'hui**, à condition que la copie ait **deux sources**.
+Au passage : les 37 fichiers présents seulement au barème arrivent avec, et ne cassent rien — des
+nœuds de paramètres que personne ne lit sont inertes.
+
+### C.2 Les trois contraintes à respecter
+
+1. **Deux sources, pas une.** Le barème place délibérément les coefficients multiplicateurs
+   TCCFE/TDCFE hors de `parameters/`, dans `donnees_locales_tcfe/` (6,6 Mo et 16 Ko) : ce sont des
+   données administratives appliquées, pas des paramètres légaux, et les laisser sous `parameters/`
+   ralentirait la chaîne de production du site, qui ne balaie que ce dossier. Or les formules OF-E
+   les lisent **à l'intérieur** du nœud énergies (`tcfe.tccfe.coefficient[key]`,
+   `tcfe.tdcfe.coefficient[departement]`). `parameters/energies` ne peut donc pas être un lien
+   unique. Deux issues : lier finement, ou sortir ces deux fichiers de l'arbre de paramètres d'OF-E
+   et corriger les deux chemins de formule — plus propre, mais ce n'est plus une simple bascule.
+2. **Windows.** Un lien symbolique exige le mode développeur ou l'élévation. Un `symlink` littéral
+   serait donc pénible sur le poste de travail même s'il fonctionne en CI. C'est probablement
+   l'argument qui départage les options, davantage que des considérations de pureté.
+3. **Versionner.** Quel que soit le mécanisme, il fige une version du barème. L'égalité constatée
+   aujourd'hui vaut contre `fix_ticc_date_2007_07_01` ; dès que l'un des deux dépôts bouge, ils
+   divergent à nouveau si la dépendance n'est pas épinglée et relevée délibérément.
+
+### C.3 Les trois mécanismes
+
+| | sous-module git | dépendance versionnée | paquet `openfisca_baremes_ipp` |
+|---|---|---|---|
+| épinglage | SHA, explicite | version, explicite | version, explicite |
+| Windows | pas de lien symbolique requis | idem | idem |
+| deux sources | `donnees_locales_tcfe/` vient avec le sous-module, reste à le raccorder au nœud | à empaqueter explicitement | à empaqueter explicitement |
+| poids | clone du barème entier | selon l'empaquetage | selon l'empaquetage |
+| mise à jour | `git submodule update` + commit | bump de version | bump de version |
+| friction pour un contributeur | connue mais réputée pénible | faible | faible |
+
+Aucune n'est exclue par ce qui précède. Le sous-module est le plus direct et le seul qui ne demande
+aucun travail d'empaquetage côté barème ; les deux autres supposent que le barème publie quelque
+chose, ce qui est une décision qui ne relève pas de ce dépôt.
+
+### C.4 Ce qu'il reste à trancher
+
+- Le mécanisme, parmi les trois ci-dessus.
+- Le sort des coefficients TCFE : lien fin dans l'arbre, ou sortie de `parameters/` avec correction
+  des deux formules.
+- La cadence de relève de la version épinglée.
+
+## D. Défauts connus, non traités
+
+Côté barème : les trois points du §8 de `ACTIONS_EN_ATTENTE.md` — dont
+`autres_produits_energetiques/.../huiles_lourdes/tarifs_reduits/manutention_portuaire.yaml`, valeur
+au 2023-01-01 face à une référence au 2022-01-01 et sans `official_journal_date` (à ne pas confondre
+avec le fichier TICFE du même nom, lui traité par `8c071df`) — et les six `ipp_csv_id` de GPL
+combustible recopiés de ceux des carburants.
+
+Outillage : les identifiants PISTE de `legisdata` renvoient `invalid_client`, et le cache
+`sources/legifrance/265_*.md` qu'invoque le §5 des arbitrages n'est pas dans le dépôt. Aucune des
+décisions énergies n'est donc reproductible depuis les sources primaires *via* legisdata en l'état ;
+les vérifications du 2026-08-12 ont été faites sur les versions consolidées de Légifrance en direct.
+
+---
+
+# ⏸️ REPRISE AU 2026-07-31
 
 Deux consolidations ont eu lieu le même jour, une de chaque côté. **Tous les jalons ci-dessous leur
 sont antérieurs : leurs SHA et leurs noms de branche ne sont plus résolvables.**
