@@ -151,10 +151,13 @@
     seule foi de la declaration fiscale. Restent ouvertes les valeurs 2023 et 2024, elles aussi
     des montants de reference recalcules, que les agregats ne permettent pas de deduire, le
     bouclier tarifaire s'etant substitue aux tarifs normaux du 01/02/2022 au 31/01/2025.
-  - Bilan : **331 verts, aucun rouge**. Les neuf constats d'`AGREGATS_TIC.md` sont clos — cinq
-    mettaient en cause le bareme, cinq le modele. Les lacunes de couverture passent de 9
-    cellules a 1 : la manutention portuaire, dont la variable d'entree n'est branchee dans aucun
-    select de l'accise 2022+.
+  - **Derniere lacune de couverture fermee.** Le motif inscrit pour `_912995` (manutention
+    portuaire) etait perime : `electricite_manutention_portuaire` figure bien dans les `select`
+    de `taxe_accise_electricite` depuis 2023, et `taxe_electricite_manutention_portuaire` lit le
+    tarif reduit de 0,50 EUR/MWh. Lever le `variable=None` de la cartographie suffit, sans
+    toucher au modele : deux tests de plus, verts.
+  - Bilan : **333 verts, aucun rouge, aucune lacune de couverture**. Les neuf constats
+    d'`AGREGATS_TIC.md` sont clos — quatre mettaient en cause le bareme, cinq le modele.
 
 ## 1.1.7 - [#31](https://github.com/openfisca/openfisca-france-entreprises/pull/31)
 

@@ -66,8 +66,8 @@ PYTEST_ADDOPTS="--maxfail=300" .venv/bin/openfisca test \
 `addopts` du dépôt contient `--exitfirst` : sans `PYTEST_ADDOPTS`, le lancement
 s'arrête au premier échec.
 
-**126 tests générés, tous verts depuis le 2026-08-13** sous
-`openfisca_france_entreprises/tests/taxes/taxes_energies/agregats/` (96 cellules
+**128 tests générés, tous verts** sous
+`openfisca_france_entreprises/tests/taxes/taxes_energies/agregats/` (98 cellules
 tarifaires, 30 exonérations). Les fichiers sont générés : ne pas les éditer à la
 main.
 
@@ -124,9 +124,9 @@ Sur les neuf, **quatre mettaient en cause le barème** (n° 2, 3, 4 et, pour par
 **cinq le modèle**. Le principe du chantier — la déclaration fait foi, et le barème comme
 le calculateur peuvent avoir tort — s'est vérifié dans les deux sens.
 
-Seule reste écartée **une cellule pour laquelle le modèle n'a ni variable ni
-entrée** : il n'y a alors rien à confronter. C'est une lacune de couverture,
-recensée plus bas et remontée par `audit.py`.
+**Plus aucune cellule n'est écartée** : les 220 cases se répartissent entre celles que le
+modèle restitue — toutes émises en test — et celles qui restent à cartographier, recensées
+plus bas et remontées par `audit.py`.
 
 ---
 
@@ -485,18 +485,21 @@ l'origine.
 
 ## Lacunes de couverture
 
-**Une seule cellule non testée** — le modèle n'ayant ni variable ni entrée pour elle, il
-n'y a rien à confronter : `_912995` (manutention portuaire).
+**Plus aucune cellule cartographiée n'échappe au test.** `_912995` (manutention portuaire)
+est sortie des lacunes le 2026-08-18 : le motif invoqué — une variable d'entrée branchée
+dans aucun `select` de l'accise 2022+ — était périmé. `electricite_manutention_portuaire`
+figure dans les `select` de `formula_2023_01_01` et de `formula_2025_01_01`, et
+`taxe_electricite_manutention_portuaire` lit bien le tarif réduit de 0,5 €/MWh depuis 2023.
+La cartographie portait encore `variable=None` : la lever suffit, sans toucher au modèle.
+Les 48 980 MWh de 2024 et 48 636 MWh de 2025 sont désormais deux tests verts.
 
-Huit cellules en sont sorties le 2026-08-13 : les quatre ZNI (constat n° 4 — trois testées
-et vertes, la quatrième sans donnée), `_911264` et `_911272` une fois la série de l'accise
-gaz corrigée au barème (constat n° 2), puis `_911321` et `_911323` une fois l'indexation
-des tarifs normaux d'électricité portée (constat n° 1).
+Neuf cellules sont sorties des lacunes le 2026-08-13 : les quatre ZNI (constat n° 4 — trois
+testées et vertes, la quatrième sans donnée), `_911264` et `_911272` une fois la série de
+l'accise gaz corrigée au barème (constat n° 2), puis `_911321` et `_911323` une fois
+l'indexation des tarifs normaux d'électricité portée (constat n° 1).
 
-- **`electricite_manutention_portuaire`** existe comme variable d'entrée et le
-  tarif est au barème (0,5 €/MWh depuis 2023), mais la variable n'est branchée dans
-  aucun `select` de l'accise 2022+. La case `_912995` déclare 48 980 MWh en 2024 et
-  48 636 en 2025.
+Restent hors correspondance, faute de cartographie et non faute de modèle :
+
 - **Acomptes au titre de N+1** : la case `_911264` isole les quantités rattachées à
   l'exercice suivant (181 099 310 MWh en 2022). Le modèle n'a pas cette notion.
 - **Majorations TCCFE de janvier 2023** : huit cellules non encore cartographiées

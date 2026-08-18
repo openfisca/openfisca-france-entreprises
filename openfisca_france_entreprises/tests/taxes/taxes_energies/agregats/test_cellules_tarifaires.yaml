@@ -1090,6 +1090,32 @@
     # 28,810 MWh × 0.5000 €/MWh
     taxe_accise_electricite: 14405.08
 
+- name: "_912995 — Électricité — manutention portuaire (électro-intensité ≥ 0,5 %) (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2024-01": 48980.28
+    electricite_manutention_portuaire: true
+  output:
+    # 48,980 MWh × 0.5000 €/MWh
+    taxe_accise_electricite: 24490.14
+
+- name: "_912995 — Électricité — manutention portuaire (électro-intensité ≥ 0,5 %) (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2025-01": 48636.24
+    electricite_manutention_portuaire: true
+  output:
+    # 48,636 MWh × 0.5000 €/MWh
+    taxe_accise_electricite: 24318.12
+
 - name: "_913035 — Électricité — tarif à 21,00 €/MWh (bouclier, ménages et assimilés) (millésime 2024)"
   period: 2024
   absolute_error_margin: 2959.35

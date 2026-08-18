@@ -422,12 +422,11 @@ ELECTRICITE = [
         intitule="Électricité — manutention portuaire (électro-intensité ≥ 0,5 %)",
         millesimes=(2024, 2025),
         parametre="energies.electricite.accise.tarifs_reduits.manutention_portuaire",
-        variable=None,
+        variable="taxe_accise_electricite",
         entrees={
             "assiette_taxe_electricite": ASSIETTE,
             "electricite_manutention_portuaire": True,
         },
-        remarque="La variable d'entrée existe mais n'est pas branchée dans le select de l'accise 2022+.",
     ),
     Cellule(
         case_quantite="_913035",
