@@ -80,10 +80,38 @@ class taxe_electricite_bouclier_tarifaire(Variable):
         return where(taxe > taxe_accise_electricite, taxe_accise_electricite, taxe)
 
     def formula_2024_01_01(etablissement, period, parameters):
-        # L'assiette est mensuelle depuis la bascule. Le bouclier conserve pour l'instant son
-        # traitement annuel — tarif forcé au 1er février, proratisation à la main dans
-        # taxe_electricite — parce qu'il encode un basculement de régime et non un changement de
-        # tarif : le passer au mois est un changement de droit, à instruire à part.
+        """2024 est une année à deux niveaux de bouclier, et janvier relève du précédent.
+
+        Le bouclier bascule au 1er février : janvier 2024 est le douzième et dernier mois du
+        bouclier ouvert au 1er février 2023, et reste donc à 1,00 / 0,50 €/MWh, quand le
+        bouclier de 2024 porte 21,00 / 20,50 à partir de février (arrêté du 25 janvier 2024).
+        Lire le barème au seul 1er février faisait payer janvier au niveau de février.
+
+        La déclaration 2040-TIC chiffre la part concernée : le millésime 2024 sert à la fois
+        les cases du niveau ancien — `_911369` (47,8 TWh à 0,50 €/MWh) et `_911371`
+        (93,8 TWh à 1,00) — et celles du nouveau, `_913037` et `_913035`. Deux niveaux de
+        tarif dans une même déclaration annuelle : c'est la définition d'une année de
+        bascule, et le modèle doit la restituer.
+
+        Les années 2022 et 2023 n'ont pas ce besoin : janvier 2022 précède tout bouclier —
+        `taxe_electricite` le proratise déjà à la main —, et janvier 2023 relève du bouclier
+        de 2022, dont les niveaux sont identiques à ceux de 2023. 2025 garde son traitement
+        propre, cf. `formula_2025_01_01`.
+        """
+        assiette_annuelle = etablissement("assiette_taxe_electricite", period, options=[ADD])
+        assiette_janvier = etablissement("assiette_taxe_electricite", period.first_month)
+        taxe_accise_electricite = etablissement("taxe_accise_electricite", period)
+        # 1,00 / 0,50 en janvier, dernier mois du bouclier de 2023 ; 21,00 / 20,50 ensuite.
+        taux_janvier = _tarif_bouclier(etablissement, period, parameters, Instant((2024, 1, 1)))
+        taux = _tarif_bouclier(etablissement, period, parameters, Instant((2024, 2, 1)))
+        taxe = assiette_janvier * taux_janvier + (assiette_annuelle - assiette_janvier) * taux
+        return where(taxe > taxe_accise_electricite, taxe_accise_electricite, taxe)
+
+    def formula_2025_01_01(etablissement, period, parameters):
+        # Le bouclier s'éteint au 1er février 2025 : seul janvier en relève, au niveau de 2024.
+        # `taxe_electricite` proratise à la main — 11/12 d'accise et 1/12 de bouclier —, et
+        # cette formule lui rend donc le montant annualisé au tarif du bouclier, comme avant la
+        # scission de janvier 2024. Le traitement mensuel du dispositif reste un chantier à part.
         assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period, options=[ADD])
         taxe_accise_electricite = etablissement("taxe_accise_electricite", period)
         # 21,00 pour les ménages et assimilés, 20,50 pour les entreprises.

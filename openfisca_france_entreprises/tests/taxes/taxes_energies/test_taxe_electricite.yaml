@@ -83,7 +83,11 @@
   input:
     assiette_taxe_electricite: 1000
   output:
-    taxe_electricite_bouclier_tarifaire: 20500
+    # 2024 est une annee de bascule du bouclier : janvier releve encore du bouclier ouvert au
+    # 1er fevrier 2023, a 0,50 EUR/MWh pour les entreprises, et fevrier-decembre du bouclier de
+    # 2024, a 20,50. Une quantite fournie a l'annee etant repartie sur douze mois :
+    # 1000 * (0,50 / 12 + 20,50 * 11 / 12) = 18 833,33.
+    taxe_electricite_bouclier_tarifaire: 18833.333333
 
 - name: test 2024  taxe_electricite
 #
@@ -92,5 +96,6 @@
   input:
     assiette_taxe_electricite: 1000
   output:
-    taxe_electricite: 20500
+    # En 2024 la taxe se confond avec le bouclier : meme scission de janvier.
+    taxe_electricite: 18833.333333
 

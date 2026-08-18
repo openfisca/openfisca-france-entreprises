@@ -5,8 +5,11 @@
 # déposée par les fournisseurs d'énergie.
 #
 # Chaque cas reprend la quantité et le montant réellement déclarés pour une case
-# et un millésime. Le millésime est l'année de dépôt ; la période du test est
-# l'année du tarif porté par la case.
+# et un millésime. La période du test est le millésime — l'année sous laquelle la
+# case est servie, et dont le droit s'applique par défaut. Font exception les cases
+# de régularisation, dont le tarif n'est porté par aucun mois de cette année-là :
+# elles gardent le tarif de leur année d'ouverture, et le test se date sur cette
+# année. Chaque cas concerné le dit dans son commentaire d'entrée.
 #
 # Les variables de consommation étant mensuelles, la quantité n'est pas répartie
 # sur l'année mais posée sur un mois où s'applique le tarif que la case déclare.
@@ -79,8 +82,10 @@
   period: 2021
   absolute_error_margin: 493.597
   input:
-    # Quantité posée sur 2021-01, mois où le barème porte le tarif
-    # déclaré de 8.4300 €/MWh.
+    # Case de régularisation : le tarif déclaré de 8.4300 €/MWh n'est
+    # porté par aucun mois de 2022, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2021, et la quantité
+    # se pose sur 2021-01.
     consommation_gaz_combustible:
       "2021-01": 58552445
   output:
@@ -91,8 +96,10 @@
   period: 2021
   absolute_error_margin: 13.6225
   input:
-    # Quantité posée sur 2021-01, mois où le barème porte le tarif
-    # déclaré de 8.4300 €/MWh.
+    # Case de régularisation : le tarif déclaré de 8.4300 €/MWh n'est
+    # porté par aucun mois de 2023, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2021, et la quantité
+    # se pose sur 2021-01.
     consommation_gaz_combustible:
       "2021-01": 1615957
   output:
@@ -103,8 +110,10 @@
   period: 2021
   absolute_error_margin: 124.629
   input:
-    # Quantité posée sur 2021-01, mois où le barème porte le tarif
-    # déclaré de 8.4300 €/MWh.
+    # Case de régularisation : le tarif déclaré de 8.4300 €/MWh n'est
+    # porté par aucun mois de 2024, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2021, et la quantité
+    # se pose sur 2021-01.
     consommation_gaz_combustible:
       "2021-01": 14784040
   output:
@@ -115,8 +124,10 @@
   period: 2021
   absolute_error_margin: 4.46213
   input:
-    # Quantité posée sur 2021-01, mois où le barème porte le tarif
-    # déclaré de 8.4300 €/MWh.
+    # Case de régularisation : le tarif déclaré de 8.4300 €/MWh n'est
+    # porté par aucun mois de 2025, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2021, et la quantité
+    # se pose sur 2021-01.
     consommation_gaz_combustible:
       "2021-01": 529315
   output:
@@ -139,8 +150,10 @@
   period: 2022
   absolute_error_margin: 382.117
   input:
-    # Quantité posée sur 2022-01, mois où le barème porte le tarif
-    # déclaré de 8.4100 €/MWh.
+    # Case de régularisation : le tarif déclaré de 8.4100 €/MWh n'est
+    # porté par aucun mois de 2023, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-01.
     consommation_gaz_combustible:
       "2022-01": 45435987
   output:
@@ -151,8 +164,10 @@
   period: 2022
   absolute_error_margin: 2.10622
   input:
-    # Quantité posée sur 2022-01, mois où le barème porte le tarif
-    # déclaré de 8.4100 €/MWh.
+    # Case de régularisation : le tarif déclaré de 8.4100 €/MWh n'est
+    # porté par aucun mois de 2024, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-01.
     consommation_gaz_combustible:
       "2022-01": 250442
   output:
@@ -163,8 +178,10 @@
   period: 2022
   absolute_error_margin: 1
   input:
-    # Quantité posée sur 2022-01, mois où le barème porte le tarif
-    # déclaré de 8.4100 €/MWh.
+    # Case de régularisation : le tarif déclaré de 8.4100 €/MWh n'est
+    # porté par aucun mois de 2025, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-01.
     consommation_gaz_combustible:
       "2022-01": 30614
   output:
@@ -187,8 +204,10 @@
   period: 2023
   absolute_error_margin: 358.856
   input:
-    # Quantité posée sur 2023-01, mois où le barème porte le tarif
-    # déclaré de 8.3700 €/MWh.
+    # Case de régularisation : le tarif déclaré de 8.3700 €/MWh n'est
+    # porté par aucun mois de 2024, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2023, et la quantité
+    # se pose sur 2023-01.
     consommation_gaz_combustible:
       "2023-01": 42874067
   output:
@@ -199,8 +218,10 @@
   period: 2023
   absolute_error_margin: 1.18435
   input:
-    # Quantité posée sur 2023-01, mois où le barème porte le tarif
-    # déclaré de 8.3700 €/MWh.
+    # Case de régularisation : le tarif déclaré de 8.3700 €/MWh n'est
+    # porté par aucun mois de 2025, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2023, et la quantité
+    # se pose sur 2023-01.
     consommation_gaz_combustible:
       "2023-01": 141499
   output:
@@ -223,8 +244,10 @@
   period: 2024
   absolute_error_margin: 674.671
   input:
-    # Quantité posée sur 2024-01, mois où le barème porte le tarif
-    # déclaré de 16.3700 €/MWh.
+    # Case de régularisation : le tarif déclaré de 16.3700 €/MWh n'est
+    # porté par aucun mois de 2025, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2024, et la quantité
+    # se pose sur 2024-01.
     consommation_gaz_combustible:
       "2024-01": 41213842
   output:
@@ -490,13 +513,13 @@
     taxe_interieure_consommation_charbon: 2375168.60
 
 - name: "_911295 — Charbon combustible — grande consommatrice soumise au SEQE (millésime 2023)"
-  period: 2022
+  period: 2023
   absolute_error_margin: 1.35528
   input:
-    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
     # déclaré de 1.1900 €/MWh.
     assiette_ticc:
-      "2022-01": 1138891
+      "2023-01": 1138891
     installation_seqe: true
     intensite_energetique_valeur_production: 0.05
   output:
@@ -507,8 +530,10 @@
   period: 2022
   absolute_error_margin: 1
   input:
-    # Quantité posée sur 2022-01, mois où le barème porte le tarif
-    # déclaré de 1.1900 €/MWh.
+    # Case de régularisation : le tarif déclaré de 1.1900 €/MWh n'est
+    # porté par aucun mois de 2024, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-01.
     assiette_ticc:
       "2022-01": 513173
     installation_seqe: true
@@ -614,8 +639,10 @@
   period: 2022
   absolute_error_margin: 5.5634
   input:
-    # Quantité posée sur 2022-01, mois où le barème porte le tarif
-    # déclaré de 25.8291 €/MWh.
+    # Case de régularisation : le tarif déclaré de 25.8291 €/MWh n'est
+    # porté par aucun mois de 2023, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-01.
     assiette_taxe_electricite:
       "2022-01": 215392.773
     amperage: 20
@@ -627,8 +654,10 @@
   period: 2022
   absolute_error_margin: 1.13443
   input:
-    # Quantité posée sur 2022-01, mois où le barème porte le tarif
-    # déclaré de 25.8291 €/MWh.
+    # Case de régularisation : le tarif déclaré de 25.8291 €/MWh n'est
+    # porté par aucun mois de 2024, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-01.
     assiette_taxe_electricite:
       "2022-01": 43920.475
     amperage: 20
@@ -640,8 +669,10 @@
   period: 2022
   absolute_error_margin: 1
   input:
-    # Quantité posée sur 2022-01, mois où le barème porte le tarif
-    # déclaré de 25.8291 €/MWh.
+    # Case de régularisation : le tarif déclaré de 25.8291 €/MWh n'est
+    # porté par aucun mois de 2025, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-01.
     assiette_taxe_electricite:
       "2022-01": 852.21
     amperage: 20
@@ -666,8 +697,10 @@
   period: 2022
   absolute_error_margin: 1
   input:
-    # Quantité posée sur 2022-01, mois où le barème porte le tarif
-    # déclaré de 23.6097 €/MWh.
+    # Case de régularisation : le tarif déclaré de 23.6097 €/MWh n'est
+    # porté par aucun mois de 2023, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-01.
     assiette_taxe_electricite:
       "2022-01": 15489.364
     amperage: 100
@@ -679,8 +712,10 @@
   period: 2022
   absolute_error_margin: 1
   input:
-    # Quantité posée sur 2022-01, mois où le barème porte le tarif
-    # déclaré de 23.6097 €/MWh.
+    # Case de régularisation : le tarif déclaré de 23.6097 €/MWh n'est
+    # porté par aucun mois de 2024, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-01.
     assiette_taxe_electricite:
       "2022-01": 3839.468
     amperage: 100
@@ -692,8 +727,10 @@
   period: 2022
   absolute_error_margin: 1
   input:
-    # Quantité posée sur 2022-01, mois où le barème porte le tarif
-    # déclaré de 23.6097 €/MWh.
+    # Case de régularisation : le tarif déclaré de 23.6097 €/MWh n'est
+    # porté par aucun mois de 2025, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-01.
     assiette_taxe_electricite:
       "2022-01": 1524.376
     amperage: 100
@@ -1130,13 +1167,13 @@
     taxe_electricite_bouclier_tarifaire: 2959345466.81
 
 - name: "_913035 — Électricité — tarif à 21,00 €/MWh (bouclier, ménages et assimilés) (millésime 2025)"
-  period: 2024
+  period: 2025
   absolute_error_margin: 1471.71
   input:
-    # Quantité posée sur 2024-02, mois où le barème porte le tarif
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
     # déclaré de 21.0000 €/MWh.
     assiette_taxe_electricite:
-      "2024-02": 70081475.356
+      "2025-01": 70081475.356
     amperage: 20
   output:
     # 70,081,475 MWh × 21.0000 €/MWh
@@ -1156,13 +1193,13 @@
     taxe_electricite_bouclier_tarifaire: 1708553303.52
 
 - name: "_913037 — Électricité — tarif à 20,50 €/MWh (bouclier, entreprises) (millésime 2025)"
-  period: 2024
+  period: 2025
   absolute_error_margin: 383.175
   input:
-    # Quantité posée sur 2024-02, mois où le barème porte le tarif
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
     # déclaré de 20.5000 €/MWh.
     assiette_taxe_electricite:
-      "2024-02": 18691451.028
+      "2025-01": 18691451.028
     amperage: 100
   output:
     # 18,691,451 MWh × 20.5000 €/MWh
@@ -1208,26 +1245,26 @@
     taxe_electricite_bouclier_tarifaire: 36563971.62
 
 - name: "_911369 — Électricité — bouclier tarifaire, entreprises (tarif de référence 22,50) (millésime 2023)"
-  period: 2022
+  period: 2023
   absolute_error_margin: 68.7402
   input:
-    # Quantité posée sur 2022-02, mois où le barème porte le tarif
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
     # déclaré de 0.5000 €/MWh.
     assiette_taxe_electricite:
-      "2022-02": 137480362.811
+      "2023-01": 137480362.811
     amperage: 400
   output:
     # 137,480,363 MWh × 0.5000 €/MWh
     taxe_electricite_bouclier_tarifaire: 68740181.55
 
 - name: "_911369 — Électricité — bouclier tarifaire, entreprises (tarif de référence 22,50) (millésime 2024)"
-  period: 2022
+  period: 2024
   absolute_error_margin: 23.8892
   input:
-    # Quantité posée sur 2022-02, mois où le barème porte le tarif
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
     # déclaré de 0.5000 €/MWh.
     assiette_taxe_electricite:
-      "2022-02": 47778358.954
+      "2024-01": 47778358.954
     amperage: 400
   output:
     # 47,778,359 MWh × 0.5000 €/MWh
@@ -1237,8 +1274,10 @@
   period: 2022
   absolute_error_margin: 8.99171
   input:
-    # Quantité posée sur 2022-02, mois où le barème porte le tarif
-    # déclaré de 0.5000 €/MWh.
+    # Case de régularisation : le tarif déclaré de 0.5000 €/MWh n'est
+    # porté par aucun mois de 2025, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-02.
     assiette_taxe_electricite:
       "2022-02": 17983424.265
     amperage: 400
@@ -1260,26 +1299,26 @@
     taxe_electricite_bouclier_tarifaire: 136133609.92
 
 - name: "_911371 — Électricité — bouclier tarifaire, ménages (tarif de référence 25,8291) (millésime 2023)"
-  period: 2022
+  period: 2023
   absolute_error_margin: 187.6
   input:
-    # Quantité posée sur 2022-02, mois où le barème porte le tarif
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
     # déclaré de 1.0000 €/MWh.
     assiette_taxe_electricite:
-      "2022-02": 187599508.279
+      "2023-01": 187599508.279
     amperage: 20
   output:
     # 187,599,508 MWh × 1.0000 €/MWh
     taxe_electricite_bouclier_tarifaire: 187599508.45
 
 - name: "_911371 — Électricité — bouclier tarifaire, ménages (tarif de référence 25,8291) (millésime 2024)"
-  period: 2022
+  period: 2024
   absolute_error_margin: 93.8253
   input:
-    # Quantité posée sur 2022-02, mois où le barème porte le tarif
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
     # déclaré de 1.0000 €/MWh.
     assiette_taxe_electricite:
-      "2022-02": 93825347.215
+      "2024-01": 93825347.215
     amperage: 20
   output:
     # 93,825,347 MWh × 1.0000 €/MWh
@@ -1289,8 +1328,10 @@
   period: 2022
   absolute_error_margin: 1
   input:
-    # Quantité posée sur 2022-02, mois où le barème porte le tarif
-    # déclaré de 1.0000 €/MWh.
+    # Case de régularisation : le tarif déclaré de 1.0000 €/MWh n'est
+    # porté par aucun mois de 2025, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-02.
     assiette_taxe_electricite:
       "2022-02": 331825.697
     amperage: 20

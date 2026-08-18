@@ -156,8 +156,26 @@
     de `taxe_accise_electricite` depuis 2023, et `taxe_electricite_manutention_portuaire` lit le
     tarif reduit de 0,50 EUR/MWh. Lever le `variable=None` de la cartographie suffit, sans
     toucher au modele : deux tests de plus, verts.
-  - Bilan : **333 verts, aucun rouge, aucune lacune de couverture**. Les neuf constats
-    d'`AGREGATS_TIC.md` sont clos — quatre mettaient en cause le bareme, cinq le modele.
+  - **Datation des tests inversee.** Le generateur datait chaque cas sur `annee_tarif or
+    millesime`, sans condition : 26 cas sur 98 se trouvaient dates hors de leur millesime, et
+    rien n'empechait un `annee_tarif` de rendre vert un desaccord de l'annee de depot. Le test se
+    date desormais sur le millesime, et ne recule sur `annee_tarif` que si aucun mois du
+    millesime ne porte le tarif declare — cas des cases de regularisation. Un `annee_tarif`
+    posterieur au millesime leve une exception, et le generateur liste les 19 reculs restants.
+  - **Bouclier tarifaire : janvier 2024 scindé.** `formula_2024_01_01` lisait le bareme au seul
+    instant force `2024-02-01`, donc 20,50 / 21,00 EUR/MWh sur douze mois. Or le bouclier bascule
+    au 1er fevrier : janvier 2024 est le dernier mois du bouclier ouvert au 01/02/2023 et reste a
+    0,50 / 1,00. 2024 est la seule annee a porter deux niveaux, et la declaration le montre — le
+    millesime 2024 sert `_911369` et `_911371` a l'ancien niveau (23,9 et 93,8 MEUR) en meme temps
+    que `_913037` et `_913035` au nouveau. Janvier est desormais liquide a son propre tarif, le
+    reste de l'annee au tarif de fevrier. Le comportement de 2025 est preserve a l'identique par
+    une `formula_2025_01_01` reprenant l'ancienne redaction. Nouveau constat n° 10
+    d'`AGREGATS_TIC.md`.
+  - Deux attendus ecrits a la main passent de 20 500 a 18 833,33 EUR, soit
+    `1000 * (0,50 / 12 + 20,50 * 11 / 12)` : leur premisse a change, aucun montant declare n'est
+    touche.
+  - Bilan : **333 verts, aucun rouge, aucune lacune de couverture**. Les dix constats
+    d'`AGREGATS_TIC.md` sont clos — quatre mettaient en cause le bareme, six le modele.
 
 ## 1.1.7 - [#31](https://github.com/openfisca/openfisca-france-entreprises/pull/31)
 

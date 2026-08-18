@@ -5,8 +5,11 @@
 # déposée par les fournisseurs d'énergie.
 #
 # Chaque cas reprend la quantité et le montant réellement déclarés pour une case
-# et un millésime. Le millésime est l'année de dépôt ; la période du test est
-# l'année du tarif porté par la case.
+# et un millésime. La période du test est le millésime — l'année sous laquelle la
+# case est servie, et dont le droit s'applique par défaut. Font exception les cases
+# de régularisation, dont le tarif n'est porté par aucun mois de cette année-là :
+# elles gardent le tarif de leur année d'ouverture, et le test se date sur cette
+# année. Chaque cas concerné le dit dans son commentaire d'entrée.
 #
 # Les variables de consommation étant mensuelles, la quantité n'est pas répartie
 # sur l'année mais posée sur un mois où s'applique le tarif que la case déclare.

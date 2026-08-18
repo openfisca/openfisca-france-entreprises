@@ -59,8 +59,11 @@ def _entete(titre: str, avertissement: str = "") -> str:
         "# déposée par les fournisseurs d'énergie.\n"
         "#\n"
         "# Chaque cas reprend la quantité et le montant réellement déclarés pour une case\n"
-        "# et un millésime. Le millésime est l'année de dépôt ; la période du test est\n"
-        "# l'année du tarif porté par la case.\n"
+        "# et un millésime. La période du test est le millésime — l'année sous laquelle la\n"
+        "# case est servie, et dont le droit s'applique par défaut. Font exception les cases\n"
+        "# de régularisation, dont le tarif n'est porté par aucun mois de cette année-là :\n"
+        "# elles gardent le tarif de leur année d'ouverture, et le test se date sur cette\n"
+        "# année. Chaque cas concerné le dit dans son commentaire d'entrée.\n"
         "#\n"
         "# Les variables de consommation étant mensuelles, la quantité n'est pas répartie\n"
         "# sur l'année mais posée sur un mois où s'applique le tarif que la case déclare.\n"
@@ -196,7 +199,7 @@ def _desaccords(
     return trouves
 
 
-def generer_cellules(valeurs, libelles) -> tuple[str, int, list[str], list[str]]:
+def generer_cellules(valeurs, libelles) -> tuple[str, int, list[str], list[str], list[str]]:
     contenu = _entete(
         "Cellules tarifaires — quantité déclarée → montant déclaré",
         AVERTISSEMENT_DESACCORDS,
@@ -204,6 +207,7 @@ def generer_cellules(valeurs, libelles) -> tuple[str, int, list[str], list[str]]
     nombre = 0
     ecartees: list[str] = []
     desaccords: list[str] = []
+    regularisations: list[str] = []
 
     for cellule in correspondance.CELLULES:
         # Seule exclusion subsistante : le modèle n'a ni variable ni entrée pour
@@ -220,14 +224,44 @@ def generer_cellules(valeurs, libelles) -> tuple[str, int, list[str], list[str]]
                 valeurs[millesime].get(case, 0.0) for case in cellule.cases_montant
             )
             implicite = montant / quantite
-            periode = cellule.annee_tarif or millesime
+
+            # Le test se date d'abord sur le millésime de dépôt : c'est l'année dont la
+            # déclaration relève, et le droit de cette année-là est celui qu'on veut
+            # vérifier. On ne recule sur `annee_tarif` que si le barème du millésime ne
+            # porte le tarif déclaré aucun mois de l'année — cas des cases de
+            # régularisation, qui gardent le tarif de leur année d'ouverture. Un recul
+            # n'est donc jamais un moyen de rendre vert un désaccord de l'année de dépôt :
+            # tant que le millésime porte le tarif, c'est lui qui date le test.
+            periode = millesime
+            mois = _mois_du_tarif(cellule, periode, implicite)
+            if mois is None and cellule.annee_tarif is not None:
+                if cellule.annee_tarif > millesime:
+                    message = (
+                        f"{cellule.case_quantite} : annee_tarif={cellule.annee_tarif} est "
+                        f"postérieure au millésime {millesime}. Une case ne peut porter que "
+                        "le tarif de son année d'ouverture ou d'une année antérieure."
+                    )
+                    raise ValueError(message)
+                mois_recule = _mois_du_tarif(cellule, cellule.annee_tarif, implicite)
+                if mois_recule is not None:
+                    periode, mois = cellule.annee_tarif, mois_recule
+                    regularisations.append(
+                        f"{cellule.case_quantite} millésime {millesime} daté sur {periode} — "
+                        f"{cellule.intitule} : tarif {implicite:.4f} absent du barème {millesime}",
+                    )
 
             # La quantité se pose sur un mois où s'applique le tarif que la case déclare.
             # À défaut — aucun mois ne porte ce tarif —, elle se pose sur janvier, et le
             # désaccord avec le barème apparaît sans être mêlé d'annualisation.
-            mois = _mois_du_tarif(cellule, periode, implicite)
             sous_periode = f"{periode}-{(mois or 1):02d}"
-            if mois is not None:
+            if mois is not None and periode != millesime:
+                note_entree = (
+                    f"Case de régularisation : le tarif déclaré de {implicite:.4f} €/MWh n'est\n"
+                    f"porté par aucun mois de {millesime}, année de dépôt. La case garde le tarif\n"
+                    f"de son année d'ouverture ; le test se date donc sur {periode}, et la quantité\n"
+                    f"se pose sur {sous_periode}."
+                )
+            elif mois is not None:
                 note_entree = (
                     f"Quantité posée sur {sous_periode}, mois où le barème porte le tarif\n"
                     f"déclaré de {implicite:.4f} €/MWh."
@@ -258,7 +292,7 @@ def generer_cellules(valeurs, libelles) -> tuple[str, int, list[str], list[str]]
                 note_entree=note_entree,
             )
             nombre += 1
-    return contenu, nombre, ecartees, desaccords
+    return contenu, nombre, ecartees, desaccords, regularisations
 
 
 def generer_exonerations(valeurs, libelles) -> tuple[str, int]:
@@ -293,7 +327,10 @@ def principal() -> int:
     valeurs, libelles = donnees.indexer(observations)
     os.makedirs(DESTINATION, exist_ok=True)
 
-    contenu_cellules, nombre_cellules, ecartees, desaccords = generer_cellules(valeurs, libelles)
+    contenu_cellules, nombre_cellules, ecartees, desaccords, regularisations = generer_cellules(
+        valeurs,
+        libelles,
+    )
     chemin = os.path.join(DESTINATION, "test_cellules_tarifaires.yaml")
     with open(chemin, "w", encoding="utf-8") as fichier:
         fichier.write(contenu_cellules.rstrip("\n") + "\n")
@@ -311,6 +348,14 @@ def principal() -> int:
     )
     for motif in ecartees:
         print(f"  - {motif}")
+
+    if regularisations:
+        print(
+            f"\n{len(regularisations)} cas datés sur une année antérieure au millésime — cases de "
+            "régularisation, dont le tarif a disparu du barème de l'année de dépôt :",
+        )
+        for motif in regularisations:
+            print(f"  - {motif}")
 
     if desaccords:
         print(f"\n{len(desaccords)} désaccords émis en test (la suite est rouge, c'est voulu) :")

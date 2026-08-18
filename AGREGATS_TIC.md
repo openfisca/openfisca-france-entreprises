@@ -12,10 +12,14 @@ déclarants selon l'année.
 Colonnes : `millesime`, `case` (numéro de case Cerfa), `sum` (somme sur tous les
 redevables), `label` (libellé de la case), `ntot` (nombre de déclarants).
 
-> Le millésime est **l'année de dépôt**, pas l'année de consommation. Une case
-> ouverte pour un tarif donné continue de le porter les années suivantes, pour les
-> régularisations : c'est pourquoi la case `_911237` affiche 8,43 €/MWh sur les
-> quatre millésimes alors que le tarif du gaz, lui, passe de 8,45 à 17,16.
+> **Les deux acceptions du millésime coexistent.** Le gros des cases porte la
+> consommation de l'année elle-même — le millésime 2025 sert les tarifs de 2025,
+> 33,70 pour l'électricité et 17,16 pour le gaz. Mais une case ouverte pour un tarif
+> donné continue de le porter les années suivantes, pour les acomptes au titre de N+1
+> et les régularisations : c'est pourquoi `_911237` affiche 8,43 €/MWh sur les quatre
+> millésimes alors que le tarif du gaz, lui, passe de 8,45 à 17,16. Le millésime date
+> donc le test par défaut, et le recul sur l'année du tarif est l'exception qu'il faut
+> justifier — voir le constat n° 10.
 
 ## Pourquoi ces agrégats testent le modèle
 
@@ -105,7 +109,7 @@ main.
 > aligner sur le calcul ferait disparaître le désaccord au lieu de le résoudre, et
 > le test cesserait de tester quoi que ce soit de légal.
 
-**Aucun rouge.** Les neuf constats sont clos, et le générateur n'émet plus aucune
+**Aucun rouge.** Les dix constats sont clos, et le générateur n'émet plus aucune
 annotation `DÉSACCORD` : son décompte et celui de la suite valent tous deux zéro.
 
 | constat | objet | résolu par |
@@ -119,9 +123,10 @@ annotation `DÉSACCORD` : son décompte et celui de la suite valent tous deux z�
 | n° 7 | bornes des tranches d'électro-intensité | libellé périmé du Cerfa, et bandes décalées d'un cran dans le modèle |
 | n° 8 | hypothèse de consommation uniforme | bascule mensuelle |
 | n° 9 | facteur PCS/PCI de 1,11 | conversion retirée, l'assiette suivant l'unité du tarif |
+| n° 10 | bouclier 2024 faisant payer janvier au niveau de février | janvier scindé dans la formule 2024 |
 
-Sur les neuf, **quatre mettaient en cause le barème** (n° 2, 3, 4 et, pour partie, 7) et
-**cinq le modèle**. Le principe du chantier — la déclaration fait foi, et le barème comme
+Sur les dix, **quatre mettaient en cause le barème** (n° 2, 3, 4 et, pour partie, 7) et
+**six le modèle**. Le principe du chantier — la déclaration fait foi, et le barème comme
 le calculateur peuvent avoir tort — s'est vérifié dans les deux sens.
 
 **Plus aucune cellule n'est écartée** : les 220 cases se répartissent entre celles que le
@@ -481,6 +486,61 @@ Ferme du même coup la décision humaine n° 4 d'`ACTIONS_EN_ATTENTE.md` et l'ar
 d'`ARBITRAGES_JURIDIQUES_ENERGIES.md`, qui traînaient un `***faut vérrifier` depuis
 l'origine.
 
+### 10. Le bouclier de 2024 fait payer janvier au niveau de février — ✅ clos le 2026-08-18
+
+Trouvé non pas dans les montants, mais dans **la datation des tests**.
+
+Le générateur datait chaque cas sur `annee_tarif or millesime` : une cellule portant un
+`annee_tarif` posé à la main était testée sur cette année-là, quoi qu'en dise le millésime.
+26 cas sur 98 se trouvaient ainsi datés hors de leur millésime. Le mécanisme est légitime —
+une case ouverte pour un tarif donné continue de le porter les années suivantes, pour les
+régularisations —, mais il était **inconditionnel** : rien n'empêchait un `annee_tarif` de
+rendre vert un désaccord de l'année de dépôt, en allant chercher l'année où le barème porte
+le tarif déclaré.
+
+**La règle est inversée.** Le test se date sur le millésime ; on ne recule sur `annee_tarif`
+que si **aucun mois du millésime** ne porte le tarif déclaré. Un `annee_tarif` postérieur au
+millésime lève désormais une exception, et le générateur liste les reculs effectifs. Il en
+reste 19 — `_911237` (TICGN close depuis 2021), `_911264` (acomptes N+1), `_911272`,
+`_912998`, `_911295`, `_911321`, `_911323` et les deux cases de bouclier en 2025 —, chacun
+motivé par un tarif absent du barème de l'année de dépôt.
+
+**Deux rouges sont apparus**, et ils disaient quelque chose. `_911369` et `_911371`, datées
+d'office sur 2022, sont revenues sur leur millésime 2024, où le barème porte bien leur
+tarif — en janvier :
+
+| case | millésime 2024 | tarif déclaré | ce que rendait le modèle |
+|---|---|---|---|
+| `_911369` | 47 778 359 MWh, 23 889 180 € | 0,50 €/MWh | 20,50 €/MWh, soit 979,5 M€ |
+| `_911371` | 93 825 347 MWh, 93 825 344 € | 1,00 €/MWh | 21,00 €/MWh, soit 1 970,3 M€ |
+
+`taxe_electricite_bouclier_tarifaire.formula_2024_01_01` lisait le barème au seul instant
+forcé `2024-02-01`, donc 20,50 / 21,00 sur les douze mois. Or **le bouclier bascule au 1er
+février** : janvier 2024 est le dernier mois du bouclier ouvert au 1er février 2023, et
+reste à 0,50 / 1,00. Les formules de 2022 et de 2025 proratisent déjà leur mois de bascule ;
+celle de 2024 ne le faisait pas, alors que 2024 est la seule année à porter **deux niveaux
+de bouclier**.
+
+La déclaration le dit d'elle-même : le millésime 2024 sert simultanément les cases de
+l'ancien niveau (`_911369`, `_911371`) et celles du nouveau (`_913037` à 20,50, `_913035` à
+21,00). Quatre cases, deux niveaux, une même année — c'est la signature d'une bascule.
+
+**Correction** : janvier est scindé dans la formule 2024, au tarif lu au 1er janvier, le
+reste de l'année au tarif du 1er février. Le comportement de 2025 est préservé à
+l'identique par une `formula_2025_01_01` qui reprend l'ancienne rédaction — janvier 2025
+relève du bouclier de 2024, que `taxe_electricite` proratise déjà à la main.
+
+Les deux tests écrits à la main sur une assiette annuelle de 1 000 MWh passent de 20 500 €
+à **18 833,33 €** — `1 000 × (0,50 / 12 + 20,50 × 11 / 12)`. Ce sont des attendus
+synthétiques, pas des montants déclarés : leur prémisse a changé, pas la déclaration.
+
+**Ce que le constat ne tranche pas.** 0,50 €/MWh a été en vigueur sans interruption de
+février 2022 à janvier 2024. Une quantité déclarée à ce tarif dans le millésime 2024 peut
+donc être de la consommation de janvier 2024, ou une régularisation de 2022 ou de 2023 : les
+données ne le disent pas, et les trois lectures sont légalement à 0,50. La datation sur le
+millésime est le choix par défaut le plus honnête — c'est celui qui expose le désaccord au
+lieu de le contourner —, mais elle reste une convention pour ces cases-là.
+
 ---
 
 ## Lacunes de couverture
@@ -554,3 +614,12 @@ n'est verte que lorsque le calculateur et le barème rejoignent la déclaration.
    traitement mensuel est un chantier distinct.
 4. Cartographier les majorations TCCFE de janvier 2023.
 5. Élucider les deux écarts de ventilation avec le producteur du fichier micro.
+6. Cartographier les neuf cellules d'électricité au minimum communautaire encore hors
+   correspondance : `_911375` à `_911385` (installations industrielles en site IEI),
+   `_911387` (centres de stockage de données), `_911389` (exploitants d'aérodromes) et
+   `_911373` (bouclier 2022 au tarif de référence 23,6097). Toutes déclarent 0,50 €/MWh, et
+   le modèle porte déjà les variables correspondantes.
+7. Achever le traitement mensuel du bouclier tarifaire. Le constat n° 10 a scindé janvier
+   dans la seule année 2024, celle qui porte deux niveaux ; 2022, 2023 et 2025 gardent leur
+   instant forcé et leur proratisation à la main dans `taxe_electricite`. Aucun rouge n'en
+   dépend, la déclaration ne séparant pas ces mois-là.
