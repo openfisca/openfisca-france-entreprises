@@ -1,6 +1,6 @@
 """Variables and formulas for this module."""
 
-from openfisca_core.model_api import YEAR, Variable
+from openfisca_core.model_api import MONTH, YEAR, Variable, set_input_divide_by_period
 
 from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.naf import naf
@@ -11,7 +11,8 @@ class consommation_electricite(Variable):
     unit = "MWh"
     entity = Etablissement
     label = "Coal consumption of the etablissement"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = ""
 
 
@@ -291,7 +292,8 @@ class consommation_electricite_energie_ou_gaz_renouvelable(Variable):
     unit = "MWh"
     entity = Etablissement
     label = "partie une du L312-87"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051216635"
 
 
@@ -300,7 +302,8 @@ class consommation_electricite_puissance_moins_1_MW(Variable):
     unit = "MWh"
     entity = Etablissement
     label = "partie deux du L312-87"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051216635"
 
 
@@ -312,7 +315,8 @@ class consommation_electricite_auto_consommation(Variable):
     unit = "MWh"
     entity = Etablissement
     label = "partie trois du L312-87"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051216635"
 
 
@@ -341,7 +345,8 @@ class electricite_production_electricite(Variable):
 class consommation_electricite_petite_producteur_electricite(Variable):
     value_type = float
     entity = Etablissement
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     unit = "MWh"
     label = ""
     reference = (
@@ -404,7 +409,7 @@ class electricite_installations_industrielles_hyper_electro_intensives(Variable)
             "intensite_echanges_avec_pays_tiers",
             period,
         )
-        seuils = parameters(period).energies.electricite.ticfe.electro_intensive.seuils
+        seuils = parameters(period).energies.electricite.ticfe.electro_intensives.seuils
         return (consommation_par_valeur_ajoutee >= seuils.consommation_par_valeur_ajoutee_min_hyper) & (
             intensite_echanges_avec_pays_tiers >= seuils.intensite_echanges_pays_tiers_min
         )
@@ -422,7 +427,8 @@ class electricite_installations_industrielles_hyper_electro_intensives(Variable)
 class consommation_electricite_fournie_aux_navires(Variable):
     value_type = float
     entity = Etablissement
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     label = ""
     reference = (
         "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000043811132/2021-01-01/"

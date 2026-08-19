@@ -3,6 +3,7 @@ values:
   2023-01-01:
     value: 3.2
 metadata:
+  unit: gigajoule_per_hectoliter
   short_label: Coefficient de conversion, essences
   label_en: Conversion coefficient, gasoline
   reference:

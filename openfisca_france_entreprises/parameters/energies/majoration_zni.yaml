@@ -1,5 +1,7 @@
 description: Majoration des tarifs normaux de l'accise sur les catégories fiscales des combustibles et de l'électricité, au titre du financement des zones non interconnectées (ZNI)
 values:
+  2025-08-01:
+    value: 4.89
   2026-02-01:
     value: 5.66
 metadata:
@@ -9,12 +11,20 @@ metadata:
   ipp_csv_id: accise_majoration_zni
   unit: currency_per_mwh
   reference:
+    2025-08-01:
+    - title: Article 0-2 de l'arrêté du 13 décembre 2022 constatant divers tarifs et seuils de régime d'impositions relatifs à certaines impositions sur les biens et services
+      href: https://www.legifrance.gouv.fr/loda/id/LEGITEXT000046890209
+    - title: A du XII de l'article 20 de la loi n° 2025-127 du 14 février 2025 de finances pour 2025, dont l'article 0-2 constate le montant
+      href: https://www.legifrance.gouv.fr/eli/loi/2025/2/14/2025-127/jo/texte
     2026-02-01:
       title: Article 0-3 de l'arrêté du 13 décembre 2022, inséré par le d du 1° de l'article 2 de l'arrêté du 24 décembre 2025 constatant les tarifs de certaines impositions sur les biens et services
       href: https://www.legifrance.gouv.fr/eli/arrete/2025/12/24/CPPE2534454A/jo/texte
   official_journal_date:
+    2025-08-01: "2025-02-15"
     2026-02-01: "2025-12-31"
   notes:
+    2025-08-01:
+      - title: "Premiere periode d'application. L'article L. 312-37-1 du CIBS, cree par l'article 20 de la loi de finances pour 2025, entre en vigueur au 1er aout 2025 : la majoration court du 1er aout 2025 au 31 janvier 2026, et non sur une annee civile pleine. Son montant n'est pas calcule par le quotient de droit commun mais fixe directement par le A du XII de ce meme article 20, l'article 0-2 de l'arrete se bornant a le constater."
     2026-02-01:
       - title: "Date d'application fixee par l'article 3 de l'arrete du 24 decembre 2025, qui prevoit une entree en vigueur au 1er fevrier 2026 pour les dispositions des a a d du 1° de son article 2 (le reste de l'arrete entrant en vigueur au 1er janvier 2026, et ses 4° a 6° de l'article 1er au 1er avril 2026)."
 documentation: |-

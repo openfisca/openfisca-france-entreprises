@@ -43,6 +43,6 @@ class CountryTaxBenefitSystem(TaxBenefitSystem):
         # We define which variable, parameter and simulation example will be used in the OpenAPI specification
         self.open_api_config = {
             "variable_example": "apet",
-            "parameter_example": "energies.autres_produits_energetiques.major_regionale_ticpe_gazole.ile_france",
+            "parameter_example": "energies.autres_produits_energetiques.ticpe.majo_region.gazole.ile_de_france",
             "simulation_example": couple,
         }

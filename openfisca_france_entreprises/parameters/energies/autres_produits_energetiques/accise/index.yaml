@@ -1,0 +1,11 @@
+description: Fraction de l'accise sur les énergies perçue sur les produits énergétiques, autres que les gaz naturels et les charbons
+metadata:
+  label_en: Part of energy excise duty levied on energy products other than natural gas and coal
+  order:
+  - carburants
+  - combustibles
+  - majo_region
+  - tarifs_reduits
+  - annee_gaz_petrole_liquefies_travaux_agricoles
+  - minoration_corse
+  - taux_selon_activite

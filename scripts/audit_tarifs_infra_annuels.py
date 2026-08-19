@@ -6,7 +6,6 @@ liste de travail de l'enveloppement en `tarif_moyen_annuel`.
 """
 import ast
 import re
-import sys
 from pathlib import Path
 
 REPO = Path(r"c:\Users\p.dutronc\Documents\projets\openfisca-france-entreprises")
@@ -23,7 +22,7 @@ def infra_annuels():
         if p.name == "index.yaml":
             continue
         text = p.read_text(encoding="utf-8")
-        if not re.search(r"^values:", text, re.M):
+        if not re.search(r"^values:", text, re.MULTILINE):
             continue
         in_values, dates = False, []
         for line in text.splitlines():

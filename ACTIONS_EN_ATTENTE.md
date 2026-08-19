@@ -69,8 +69,15 @@ revue les amende, OF-E demande un commit de suivi. Le point le plus exposé est 
 
 ## ⚖️ Décisions humaines
 
-4. **Arbitrage §7 — PCS/PCI (facteur 1,11)** : le gaz est taxé `conso × taux × 1,11` avant 2022 et
-   sans conversion après, d'où une discontinuité. Préexistant, signalé par `***faut vérrifier`.
+4. ~~**Arbitrage §7 — PCS/PCI (facteur 1,11)**~~ — **tranché le 2026-08-13**. Les données
+   déclarées changent de nature en même temps que la loi : quand le texte exprime le tarif en
+   PCS, l'assiette est en PCS ; quand il l'exprime en PCI, elle est en PCI. Il n'y a donc jamais
+   deux unités à réconcilier, et la conversion n'a pas lieu d'être. Le facteur est retiré des
+   trois sites qui l'appliquaient ; le paramètre reste au barème, le coefficient physique
+   existant. Les agrégats confirment : la case `_911237` déclare 8,4300 tout rond, et le rapport
+   modèle/déclaration valait 1,11 exactement, sans résidu, sur les quatre millésimes. Voir le
+   constat n° 9 d'`AGREGATS_TIC.md`. La discontinuité qu'on croyait voir en 2022 disparaît par
+   la même occasion : il n'y en avait jamais eu, le facteur était simplement en trop avant.
 
 5. **Confirmer les choix de modélisation** listés en fin de doc d'arbitrages : rétablissements du
    chemin gaz (`gaz_matiere_premiere` OU `gaz_huiles_minerales` ; seuil 800 Wh/€ VA),

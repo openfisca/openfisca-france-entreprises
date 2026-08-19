@@ -10,6 +10,101 @@ from openfisca_core.model_api import MONTH, not_
 _ABSENT = object()
 
 
+def _tarif_du_mois(lire_tarif, mois, defaut_si_absent):
+    """Tarif applicable au mois, en substituant une valeur aux mois où il n'existe pas."""
+    if defaut_si_absent is _ABSENT:
+        return lire_tarif(mois)
+    try:
+        return lire_tarif(mois)
+    except ParameterNotFoundError:
+        return defaut_si_absent
+
+
+def majoration_zni(parameters, mois):
+    """Majoration du tarif normal au titre des zones non interconnectées, pour un mois donné.
+
+    L'article L312-37-1 du code des impositions sur les biens et services, en vigueur depuis
+    le 1er août 2025, majore les tarifs normaux d'accise des catégories fiscales des
+    combustibles et de l'électricité — ceux qui résultent des articles L312-36 et L312-37 —
+    d'un montant affecté au financement des zones non interconnectées.
+
+    Ce n'est pas un régime propre aux ZNI : la majoration est due par **tous** les redevables
+    du tarif normal, son dénominateur étant la consommation d'énergie totale du pays. C'est
+    pourquoi l'arrêté du 13 décembre 2022 publie le « tarif normal majoré » comme chiffre de
+    tête — 15,43 €/MWh pour le gaz du 1er août 2025 au 31 janvier 2026, puis 16,39 —, et c'est
+    ce montant que citent la plupart des sources.
+
+    Elle ne s'applique **qu'aux tarifs normaux** : un redevable relevant d'un tarif réduit
+    acquitte ce tarif réduit, sans majoration.
+
+    Le montant court du 1er février d'une année civile au 31 janvier de la suivante, sauf la
+    première période qui démarre au 1er août 2025 avec l'entrée en vigueur de l'article. Les
+    formules s'évaluant mois par mois depuis la bascule mensuelle, il suffit de lire le
+    paramètre au mois pour que le découpage soit exact.
+
+    Avant le 1er août 2025 le paramètre n'existe pas, et la majoration vaut zéro.
+
+    :param parameters: l'accesseur de paramètres de la formule appelante.
+    :param mois: la période mensuelle courante.
+    """
+    return _tarif_du_mois(lambda m: parameters(m).energies.majoration_zni, mois, 0)
+
+
+def tarif_du_mois(mois, lire_tarif, defaut_si_absent=_ABSENT):
+    """Tarif applicable au mois, avec substitution aux mois où le paramètre n'existe pas.
+
+    À utiliser dans une formule dont le corps s'évalue mois par mois. ``defaut_si_absent``
+    a le même rôle que dans ``accise_annuelle`` : il fait compter une valeur donnée — zéro,
+    typiquement — pour les mois où le tarif est absent ou clôturé, au lieu de lever
+    ``ParameterNotFoundError``.
+
+    :param mois: la période mensuelle courante.
+    :param lire_tarif: fonction ``mois -> tarif``, typiquement
+        ``lambda mois: parameters(mois).energies...``.
+    :param defaut_si_absent: valeur substituée aux mois où le paramètre est absent ou clôturé.
+    """
+    return _tarif_du_mois(lire_tarif, mois, defaut_si_absent)
+
+
+def accise_annuelle(period, lire_assiette, lire_tarif, defaut_si_absent=_ABSENT):
+    """Accise due au titre de l'année : somme des accises mensuelles.
+
+    ``somme sur les mois (assiette du mois * tarif du mois)``.
+
+    Remplace ``assiette annuelle * tarif_moyen_annuel(...)``, qui suppose la consommation
+    répartie uniformément sur l'année. Cette hypothèse est fausse, et les déclarations
+    2040-TIC le montrent : elles ne moyennent jamais, elles ségrègent les tarifs en cases
+    distinctes, chaque case portant la quantité taxée à *son* tarif. Une case s'intitule
+    littéralement « Usage combustible : tarif à 17,16 €/MWh » — elle nomme son propre tarif.
+    Voir le constat n° 8 d'``AGREGATS_TIC.md``.
+
+    Les variables de consommation étant désormais mensuelles (``definition_period = MONTH``)
+    et portant ``set_input = set_input_divide_by_period``, les deux usages coexistent sans
+    que le modèle ait à trancher :
+
+    - une quantité fournie à l'année est répartie sur les douze mois, et la somme redonne
+      ``quantité * moyenne des tarifs`` — exactement la valeur d'avant la bascule. C'est ce
+      dont les agrégats Elfe ont besoin, eux qui publient des tarifs déjà moyennés ;
+    - une quantité fournie au mois est taxée au tarif de ce mois. C'est ce que la 2040-TIC
+      permet, elle qui publie la répartition infra-annuelle réelle.
+
+    La convention d'annualisation cesse ainsi d'être gravée dans les formules.
+
+    :param period: la période annuelle de la formule appelante.
+    :param lire_assiette: fonction ``mois -> assiette``, typiquement
+        ``lambda mois: etablissement("assiette_ticc", mois)``.
+    :param lire_tarif: fonction ``mois -> tarif``, typiquement
+        ``lambda mois: parameters(mois).energies...``.
+    :param defaut_si_absent: valeur substituée aux mois où le paramètre est absent ou
+        clôturé ; par défaut l'absence propage ``ParameterNotFoundError``, ce qui reste
+        voulu pour détecter une lecture de tarif avant son existence.
+    """
+    return sum(
+        lire_assiette(mois) * _tarif_du_mois(lire_tarif, mois, defaut_si_absent)
+        for mois in period.get_subperiods(MONTH)
+    )
+
+
 def tarif_moyen_annuel(period, lire_tarif, defaut_si_absent=_ABSENT):
     """Moyenne mensuelle d'un tarif sur l'année.
 
@@ -39,16 +134,7 @@ def tarif_moyen_annuel(period, lire_tarif, defaut_si_absent=_ABSENT):
         par défaut l'absence propage l'erreur.
     """
     mois = list(period.get_subperiods(MONTH))
-
-    def _lire(m):
-        if defaut_si_absent is _ABSENT:
-            return lire_tarif(m)
-        try:
-            return lire_tarif(m)
-        except ParameterNotFoundError:
-            return defaut_si_absent
-
-    return sum(_lire(m) for m in mois) / len(mois)
+    return sum(_tarif_du_mois(lire_tarif, m, defaut_si_absent) for m in mois) / len(mois)
 
 
 def tarif_avec_repli(lire_principal, lire_repli):

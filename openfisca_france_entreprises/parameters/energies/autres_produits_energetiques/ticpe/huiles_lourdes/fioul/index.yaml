@@ -1,0 +1,8 @@
+description: TICPE - produits énergétiques, fioul
+metadata:
+  label_en: TICPE - Energy products, fuel oil
+  order:
+  - fioul_lourd
+  - fioul_lourd_bts
+  - fioul_lourd_hts
+  - point_eclair_inferieur_120deg_c

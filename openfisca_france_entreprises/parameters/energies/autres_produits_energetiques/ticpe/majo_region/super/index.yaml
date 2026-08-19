@@ -1,0 +1,64 @@
+description: Majoration régionale de TICPE sur le supercarburants
+metadata:
+  label_en: Regional surcharge on excise duty - gasoline (until 2022)
+  order:
+  - maximum
+  - surmajoration_ile_de_france
+  - base_nationale
+  - auvergne_rhone_alpes
+  - bourgogne_franche_comte
+  - bretagne
+  - centre
+  - corse
+  - grand_est
+  - hauts_france
+  - ile_de_france
+  - normandie
+  - nouvelle_aquitaine
+  - occitanie
+  - paca
+  - pays_loire
+  - alsace
+  - aquitaine
+  - auvergne
+  - basse_normandie
+  - bourgogne
+  - champagne_ardennes
+  - franche_comte
+  - haute_normandie
+  - languedoc_roussillon
+  - limousin
+  - lorraine
+  - midi_pyrenees
+  - nord_pas_calais
+  - picardie
+  - poitou_charentes
+  - rhone_alpes
+documentation: |-
+  La valeur portée ici est la **majoration régionale nette**, c'est-à-dire l'écart entre le
+  tarif effectivement applicable dans la région et le tarif national du même produit. C'est
+  la grandeur publiée par la douane : les tableaux « Droits et taxes applicables aux produits
+  énergétiques » (annexe 1.1 des circulaires, bulletin officiel des douanes) donnent le tarif
+  total par région, dont on déduit la part régionale en retranchant le tarif national.
+
+  Avant 2022 ce total se décomposait en deux étages superposés :
+
+  1. la **fraction de TIPP transférée aux régions**, plafonnée à 1,15 €/hL pour les gazoles et
+     1,77 €/hL pour les supercarburants, que chaque région pouvait moduler à la hausse ou à la
+     baisse sous forme de réfaction (loi n° 2004-809 du 13 août 2004 relative aux libertés et
+     responsabilités locales ; article 52 de la loi n° 2004-1484 de finances pour 2005 ;
+     article 40 de la loi n° 2005-1719 de finances pour 2006). Cette fraction est déjà comprise
+     dans le tarif national porté par le barème : le tarif gazole passe de 41,69 €/hL en 2004 à
+     42,84 €/hL en 2006, soit exactement +1,15, et le supercarburant de 58,92 à 60,69, soit +1,77 ;
+  2. la **majoration « Grenelle »** de l'article 265 A bis du code des douanes, créé par
+     l'article 94 de la loi de finances pour 2010, plafonnée à 1,35 €/hL (gazoles) et
+     0,73 €/hL (supercarburants), appliquée par les régions à partir de 2011.
+
+  Une valeur négative signifie donc que la région se situait sous le tarif national, en ayant
+  conservé tout ou partie de la réfaction : la Corse est à −1,15 €/hL sur le gazole en 2015,
+  ce que confirme l'annexe 1.1 (45,67 €/hL contre 46,82 pour le tarif national du barème).
+
+  À partir de 2022 le code des impositions sur les biens et services supprime cet empilement :
+  la fraction régionale disparaît et l'article L. 312-39 institue une majoration unique qui
+  s'ajoute au tarif normal. Il n'y a donc plus de composante nationale à retrancher, et la
+  série se poursuit dans `accise/majo_region`.

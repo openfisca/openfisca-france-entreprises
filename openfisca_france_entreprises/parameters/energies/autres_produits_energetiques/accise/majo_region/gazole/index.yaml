@@ -1,0 +1,36 @@
+description: Majoration régionale de l'accise sur les gazoles
+metadata:
+  label_en: Regional surcharge on excise duty - diesel
+  order:
+  - maximum
+  - surmajoration_ile_de_france
+  - ile_de_france
+  - centre
+  - bourgogne_franche_comte
+  - normandie
+  - hauts_france
+  - grand_est
+  - pays_loire
+  - bretagne
+  - nouvelle_aquitaine
+  - occitanie
+  - auvergne_rhone_alpes
+  - paca
+  - corse
+documentation: |-
+  Majoration que chaque région ajoute au tarif normal de l'accise, en application de
+  l'article L. 312-39 du code des impositions sur les biens et services. La valeur portée
+  est la majoration nette : c'est l'écart entre le tarif régional publié par la douane
+  (annexe 1.1 des circulaires « Droits et taxes applicables aux produits énergétiques »)
+  et le tarif normal national.
+
+  Contrairement à l'ère TICPE, il n'y a plus de composante nationale à retrancher : la
+  fraction de TIPP transférée aux régions a disparu avec le passage au CIBS, et la
+  majoration s'ajoute directement au tarif normal.
+
+  Toutes les régions retiennent le plafond sur toute la période, à deux exceptions près :
+  la Corse, qui n'applique aucune majoration, et Auvergne-Rhône-Alpes, qui reste sous le
+  plafond de 2022 à 2024 avant d'y revenir en 2025.
+
+  L'article 20 de la loi de finances pour 2025 abroge l'article L. 312-39 au 1er août 2025.
+  La surmajoration francilienne de l'article L. 312-40 lui survit jusqu'au 1er janvier 2026.

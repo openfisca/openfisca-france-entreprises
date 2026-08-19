@@ -2,4 +2,7 @@ description: Taux de conversion entre pouvoir calorifique supérieur et pouvoir 
 values:
   1986-01-01:
     value: 1.11
-#Comme ça, on a pci * 1.11 = pcs
+metadata:
+  unit: coefficient
+documentation: |-
+  Le coefficient s'applique dans le sens PCI vers PCS : pci * 1,11 = pcs.

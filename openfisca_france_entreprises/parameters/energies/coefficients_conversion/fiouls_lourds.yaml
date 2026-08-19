@@ -3,6 +3,7 @@ values:
   2023-01-01:
     value: 4.0
 metadata:
+  unit: gigajoule_per_100kg
   short_label: Coefficient de conversion, fiouls lourds
   label_en: Conversion coefficient, heavy fuel oil
   reference:

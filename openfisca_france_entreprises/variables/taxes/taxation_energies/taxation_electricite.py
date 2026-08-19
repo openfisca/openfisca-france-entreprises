@@ -1,13 +1,27 @@
 """Variables and formulas for this module."""
 
-from openfisca_core.model_api import YEAR, Variable, select, where
+from openfisca_core.model_api import ADD, MONTH, YEAR, Variable, select, set_input_divide_by_period, where
 
 from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.taxes.formula_helpers import (
     _and,
     _or,
-    tarif_moyen_annuel,
+    accise_annuelle,
+    majoration_zni,
 )
+
+
+def _accise(etablissement, period, lire_tarif):
+    """Accise de l'année sur l'assiette électricité, au tarif lu mois par mois.
+
+    L'assiette étant mensuelle depuis la bascule, la taxe de l'année est la somme des taxes
+    mensuelles : chaque mois porte sa quantité et son tarif. Voir ``accise_annuelle``.
+    """
+    return accise_annuelle(
+        period,
+        lambda mois: etablissement("assiette_taxe_electricite", mois),
+        lire_tarif,
+    )
 
 
 class taxe_electricite(Variable):
@@ -152,12 +166,7 @@ class taxe_contribution_service_public_electricite(Variable):
     reference = ""
 
     def formula_2002_01_01(etablissement, period, parameters):
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-
-        return assiette_taxe_electricite * tarif_moyen_annuel(
-            period,
-            lambda mois: parameters(mois).energies.electricite.cspe,
-        )
+        return _accise(etablissement, period, lambda mois: parameters(mois).energies.electricite.cspe)
 
     # condition d'application est pareil jusqu'à 2011
 
@@ -429,8 +438,13 @@ class taxe_accise_electricite(Variable):
             period,
         )
 
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-        tarifs_reduits = parameters(period).energies.electricite.accise.tarifs_reduits
+        def accise_tarif_reduit(choisir):
+            return _accise(
+                etablissement,
+                period,
+                lambda mois: choisir(parameters(mois).energies.electricite.accise.tarifs_reduits),
+            )
+
         condition_aerodrome = _and(
             electricite_exploitation_aerodrome,
             electro_intensite
@@ -454,10 +468,10 @@ class taxe_accise_electricite(Variable):
                 electricite_centres_de_stockage_donnees != 0,
             ],
             [
-                assiette_taxe_electricite * tarifs_reduits.production_navires,
-                assiette_taxe_electricite * tarifs_reduits.doubles_usages,
-                assiette_taxe_electricite * tarifs_reduits.fabrication_mineraux,
-                assiette_taxe_electricite * tarifs_reduits.production_biens_intensive,
+                accise_tarif_reduit(lambda t: t.production_navires),
+                accise_tarif_reduit(lambda t: t.doubles_usages),
+                accise_tarif_reduit(lambda t: t.fabrication_mineraux),
+                accise_tarif_reduit(lambda t: t.production_biens_intensive),
                 # électricité utilisée pour produire de l'électricité : hors champ (pas de tarif au barème)
                 0,
                 etablissement("taxe_electricite_transport_guide", period),
@@ -530,8 +544,13 @@ class taxe_accise_electricite(Variable):
             period,
         )
 
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-        tarifs_reduits = parameters(period).energies.electricite.accise.tarifs_reduits
+        def accise_tarif_reduit(choisir):
+            return _accise(
+                etablissement,
+                period,
+                lambda mois: choisir(parameters(mois).energies.electricite.accise.tarifs_reduits),
+            )
+
         return select(
             [
                 electricite_production_a_bord != 0,
@@ -549,10 +568,10 @@ class taxe_accise_electricite(Variable):
                 electricite_centres_de_stockage_donnees != 0,
             ],
             [
-                assiette_taxe_electricite * tarifs_reduits.production_navires,
-                assiette_taxe_electricite * tarifs_reduits.doubles_usages,
-                assiette_taxe_electricite * tarifs_reduits.fabrication_mineraux,
-                assiette_taxe_electricite * tarifs_reduits.production_biens_intensive,
+                accise_tarif_reduit(lambda t: t.production_navires),
+                accise_tarif_reduit(lambda t: t.doubles_usages),
+                accise_tarif_reduit(lambda t: t.fabrication_mineraux),
+                accise_tarif_reduit(lambda t: t.production_biens_intensive),
                 # électricité utilisée pour produire de l'électricité : hors champ (pas de tarif au barème)
                 0,
                 etablissement("taxe_electricite_transport_guide", period),
@@ -638,8 +657,13 @@ class taxe_accise_electricite(Variable):
             period,
         )
 
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-        tarifs_reduits = parameters(period).energies.electricite.accise.tarifs_reduits
+        def accise_tarif_reduit(choisir):
+            return _accise(
+                etablissement,
+                period,
+                lambda mois: choisir(parameters(mois).energies.electricite.accise.tarifs_reduits),
+            )
+
         return select(
             [
                 electricite_production_a_bord != 0,
@@ -659,10 +683,10 @@ class taxe_accise_electricite(Variable):
                 electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques != 0,
             ],
             [
-                assiette_taxe_electricite * tarifs_reduits.production_navires,
-                assiette_taxe_electricite * tarifs_reduits.doubles_usages,
-                assiette_taxe_electricite * tarifs_reduits.fabrication_mineraux,
-                assiette_taxe_electricite * tarifs_reduits.production_biens_intensive,
+                accise_tarif_reduit(lambda t: t.production_navires),
+                accise_tarif_reduit(lambda t: t.doubles_usages),
+                accise_tarif_reduit(lambda t: t.fabrication_mineraux),
+                accise_tarif_reduit(lambda t: t.production_biens_intensive),
                 # électricité utilisée pour produire de l'électricité : hors champ (pas de tarif au barème)
                 0,
                 etablissement("taxe_electricite_transport_guide", period),
@@ -711,13 +735,12 @@ class taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_
     definition_period = YEAR
 
     def formula_2025_01_01(etablissement, period, parameters):
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-
-        return (
-            assiette_taxe_electricite
-            * parameters(
-                period,
-            ).energies.electricite.accise.tarifs_reduits.alimentation_aeronefs_activites_economiques
+        return _accise(
+            etablissement,
+            period,
+            lambda mois: (
+                parameters(mois).energies.electricite.accise.tarifs_reduits.alimentation_aeronefs_activites_economiques
+            ),
         )
 
 
@@ -729,13 +752,14 @@ class taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_
     definition_period = YEAR
 
     def formula_2025_01_01(etablissement, period, parameters):
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-
-        return (
-            assiette_taxe_electricite
-            * parameters(
-                period,
-            ).energies.electricite.accise.tarifs_reduits.alimentation_aeronefs_activites_non_economiques
+        return _accise(
+            etablissement,
+            period,
+            lambda mois: (
+                parameters(
+                    mois,
+                ).energies.electricite.accise.tarifs_reduits.alimentation_aeronefs_activites_non_economiques
+            ),
         )
 
 
@@ -749,27 +773,20 @@ class taxe_electricite_risque_de_fuite_de_carbone(Variable):
             "consommation_par_valeur_ajoutee",
             period,
         )
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
+
+        def accise_risque_fuite(choisir):
+            return _accise(
+                etablissement,
+                period,
+                lambda mois: choisir(
+                    parameters(mois).energies.electricite.ticfe.taux_reduits.secteur_risque_fuite,
+                ),
+            )
 
         rfc = parameters(period).energies.electricite.ticfe.risque_de_fuite_de_carbone
-        taxe_plus_3 = (
-            assiette_taxe_electricite
-            * parameters(
-                period
-            ).energies.electricite.ticfe.taux_reduits.secteur_risque_fuite.risque_fuite_3kwh_euro_et_plus
-        )
-        taxe_1_5_3 = (
-            assiette_taxe_electricite
-            * parameters(
-                period
-            ).energies.electricite.ticfe.taux_reduits.secteur_risque_fuite.risque_fuite_1_5_a_3kwh_euro
-        )
-        taxe_moins_1_5 = (
-            assiette_taxe_electricite
-            * parameters(
-                period
-            ).energies.electricite.ticfe.taux_reduits.secteur_risque_fuite.risque_fuite_1_5_kwh_euro_et_moins
-        )
+        taxe_plus_3 = accise_risque_fuite(lambda t: t.risque_fuite_3kwh_euro_et_plus)
+        taxe_1_5_3 = accise_risque_fuite(lambda t: t.risque_fuite_1_5_a_3kwh_euro)
+        taxe_moins_1_5 = accise_risque_fuite(lambda t: t.risque_fuite_1_5_kwh_euro_et_moins)
         return select(
             [
                 consommation_par_valeur_ajoutee >= rfc.seuil_3_kwh_par_va,
@@ -786,13 +803,12 @@ class taxe_electricite_installations_industrielles_hyper_electro_intensives(Vari
     definition_period = YEAR
 
     def formula_2016_01_01(etablissement, period, parameters):
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-
-        return (
-            assiette_taxe_electricite
-            * parameters(
-                period,
-            ).energies.electricite.ticfe.taux_reduits.electrointensives.hyperelectrointensive
+        return _accise(
+            etablissement,
+            period,
+            lambda mois: (
+                parameters(mois).energies.electricite.ticfe.taux_reduits.electro_intensives.hyper_electro_intensive
+            ),
         )
 
 
@@ -806,26 +822,18 @@ class taxe_electricite_installations_industrielles_electro_intensives(Variable):
             "consommation_par_valeur_ajoutee",
             period,
         )
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-        ei = parameters(period).energies.electricite.ticfe.electro_intensive
-        taxe_plus_3 = (
-            assiette_taxe_electricite
-            * parameters(
-                period
-            ).energies.electricite.ticfe.taux_reduits.electrointensives.electrointensive_3kwh_euro_et_plus
-        )
-        taxe_1_5_3 = (
-            assiette_taxe_electricite
-            * parameters(
-                period
-            ).energies.electricite.ticfe.taux_reduits.electrointensives.electrointensive_1_5_a_3kwh_euro
-        )
-        taxe_moins_1_5 = (
-            assiette_taxe_electricite
-            * parameters(
-                period
-            ).energies.electricite.ticfe.taux_reduits.electrointensives.electrointensive_1_5_kwh_euro_et_moins
-        )
+
+        def accise_electrointensive(choisir):
+            return _accise(
+                etablissement,
+                period,
+                lambda mois: choisir(parameters(mois).energies.electricite.ticfe.taux_reduits.electro_intensives),
+            )
+
+        ei = parameters(period).energies.electricite.ticfe.electro_intensives
+        taxe_plus_3 = accise_electrointensive(lambda t: t.electro_intensive_3kwh_euro_et_plus)
+        taxe_1_5_3 = accise_electrointensive(lambda t: t.electro_intensive_1_5_a_3kwh_euro)
+        taxe_moins_1_5 = accise_electrointensive(lambda t: t.electro_intensive_1_5_kwh_euro_et_moins)
         return select(
             [
                 consommation_par_valeur_ajoutee >= ei.seuil_3_kwh_par_va,
@@ -843,9 +851,11 @@ class taxe_electricite_alimentation_a_quai(Variable):
     definition_period = YEAR
 
     def formula_2022_01_01(etablissement, period, parameters):
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-        taux = parameters(period).energies.electricite.accise.tarifs_reduits.alimentation_engins_flottants
-        return assiette_taxe_electricite * taux
+        return _accise(
+            etablissement,
+            period,
+            lambda mois: parameters(mois).energies.electricite.accise.tarifs_reduits.alimentation_engins_flottants,
+        )
 
 
 class taxe_electricite_exploitation_aerodrome(Variable):
@@ -855,15 +865,19 @@ class taxe_electricite_exploitation_aerodrome(Variable):
     definition_period = YEAR
 
     def formula_2019_01_01(etablissement, period, parameters):
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-        taux = parameters(period).energies.electricite.ticfe.taux_reduits.aerodromes
-        return assiette_taxe_electricite * taux
+        return _accise(
+            etablissement,
+            period,
+            lambda mois: parameters(mois).energies.electricite.ticfe.taux_reduits.aerodromes,
+        )
 
     def formula_2022_01_01(etablissement, period, parameters):
         """Le tarif réduit aérodromes passe sous l'accise (CIBS). Valeur inchangée (7.5)."""
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-        taux = parameters(period).energies.electricite.accise.tarifs_reduits.aerodromes
-        return assiette_taxe_electricite * taux
+        return _accise(
+            etablissement,
+            period,
+            lambda mois: parameters(mois).energies.electricite.accise.tarifs_reduits.aerodromes,
+        )
 
 
 class taxe_electricite_manutention_portuaire(Variable):
@@ -891,12 +905,11 @@ class taxe_electricite_manutention_portuaire(Variable):
 
     def formula_2023_01_01(etablissement, period, parameters):
         """À partir de 2023, tarif réduit d'accise (L312-48 CIBS), 0,5 €/MWh."""
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-        taux = tarif_moyen_annuel(
+        return _accise(
+            etablissement,
             period,
             lambda mois: parameters(mois).energies.electricite.accise.tarifs_reduits.manutention_portuaire,
         )
-        return assiette_taxe_electricite * taux
 
 
 class taxe_electricite_transport_collectif_personnes(Variable):
@@ -906,11 +919,13 @@ class taxe_electricite_transport_collectif_personnes(Variable):
     definition_period = YEAR
 
     def formula_2022_01_01(etablissement, period, parameters):
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-        taux = parameters(
+        return _accise(
+            etablissement,
             period,
-        ).energies.electricite.accise.tarifs_reduits.transport_collectif_routier_personnes
-        return assiette_taxe_electricite * taux
+            lambda mois: (
+                parameters(mois).energies.electricite.accise.tarifs_reduits.transport_collectif_routier_personnes
+            ),
+        )
 
 
 class taxe_electricite_transport_guide(Variable):
@@ -920,9 +935,11 @@ class taxe_electricite_transport_guide(Variable):
     definition_period = YEAR
 
     def formula_2016_01_01(etablissement, period, parameters):
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-        taux = parameters(period).energies.electricite.ticfe.taux_reduits.transport
-        return assiette_taxe_electricite * taux
+        return _accise(
+            etablissement,
+            period,
+            lambda mois: parameters(mois).energies.electricite.ticfe.taux_reduits.transport,
+        )
 
     def formula_2022_01_01(etablissement, period, parameters):
         """Le tarif réduit du transport ferré ou guidé passe sous l'accise (CIBS).
@@ -930,11 +947,11 @@ class taxe_electricite_transport_guide(Variable):
         Valeur inchangée (0.5). À distinguer du transport collectif routier de personnes,
         tarif distinct créé par le CIBS.
         """
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-        taux = parameters(
+        return _accise(
+            etablissement,
             period,
-        ).energies.electricite.accise.tarifs_reduits.transport_personnes_marchandises
-        return assiette_taxe_electricite * taux
+            lambda mois: parameters(mois).energies.electricite.accise.tarifs_reduits.transport_personnes_marchandises,
+        )
 
 
 class taxe_electricite_centres_de_stockage_donnees(Variable):
@@ -944,7 +961,15 @@ class taxe_electricite_centres_de_stockage_donnees(Variable):
     definition_period = YEAR
 
     def formula_2019_01_01(etablissement, period, parameters):
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
+        """Régime à plafond — délibérément laissé annuel.
+
+        Le tarif réduit ne s'applique qu'à la fraction d'assiette qui dépasse un plafond
+        (1 GWh). Ce plafond mord sur le cumul de l'année, pas sur chaque mois pris isolément :
+        le décomposer mois par mois le durcirait d'un facteur douze et changerait le droit
+        appliqué. L'assiette est donc sommée sur l'année avant comparaison. Même raisonnement
+        que le seuil d'exonération de la TICGN d'avant 2008.
+        """
+        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period, options=[ADD])
 
         ticfe = parameters(period).energies.electricite.ticfe
         plafond = ticfe.plafond_assiette_mwh
@@ -957,9 +982,11 @@ class taxe_electricite_centres_de_stockage_donnees(Variable):
         return where(assiette_taxe_electricite > plafond, taxe_above, taxe_below)
 
     def formula_2022_01_01(etablissement, period, parameters):
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-        taux = parameters(period).energies.electricite.accise.tarifs_reduits.data_center
-        return assiette_taxe_electricite * taux
+        return _accise(
+            etablissement,
+            period,
+            lambda mois: parameters(mois).energies.electricite.accise.tarifs_reduits.data_center,
+        )
 
 
 class taxe_accise_electricite_taux_normal(Variable):
@@ -984,32 +1011,21 @@ class taxe_accise_electricite_taux_normal(Variable):
         2022-01-01:
             value: 22.5.
         """
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-
-        return assiette_taxe_electricite * parameters(period).energies.electricite.ticfe.taux_normal
+        return _accise(etablissement, period, lambda mois: parameters(mois).energies.electricite.ticfe.taux_normal)
 
     def formula_2021_01_01(etablissement, period, parameters):
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
-        consommation_electricite_fournie_aux_navires = etablissement(
-            "consommation_electricite_fournie_aux_navires",
-            period,
-        )
+        def taxe_du_mois(mois):
+            ticfe = parameters(mois).energies.electricite.ticfe
+            taxe_navires = (
+                etablissement("consommation_electricite_fournie_aux_navires", mois)
+                * ticfe.electricite_fournie_aux_navires
+            )
+            reste = etablissement("assiette_taxe_electricite", mois) - taxe_navires
+            return reste * ticfe.taux_normal + taxe_navires
 
-        taxe_electricite_fournie_aux_navires = (
-            consommation_electricite_fournie_aux_navires
-            * parameters(
-                period,
-            ).energies.electricite.ticfe.electricite_fournie_aux_navires
-        )
-
-        reste = assiette_taxe_electricite - taxe_electricite_fournie_aux_navires
-
-        taxe = reste * parameters(period).energies.electricite.ticfe.taux_normal
-
-        return taxe + taxe_electricite_fournie_aux_navires
+        return sum(taxe_du_mois(mois) for mois in period.get_subperiods(MONTH))
 
     def formula_2022_01_01(etablissement, period, parameters):
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
         amperage = etablissement("amperage", period)
         ticfe = parameters(period).energies.electricite.ticfe
         cond_36 = (amperage != 0) & (amperage < ticfe.categorie_fiscale_petite_et_moyenne_entreprise)
@@ -1018,18 +1034,23 @@ class taxe_accise_electricite_taux_normal(Variable):
             & (amperage >= ticfe.categorie_fiscale_petite_et_moyenne_entreprise)
             & (amperage < ticfe.categorie_fiscale_haut_puissance)
         )
-        taxe_36 = assiette_taxe_electricite * tarif_moyen_annuel(
-            period,
-            lambda mois: parameters(mois).energies.electricite.accise.tarifs_normaux.menages_et_assimiles,
-        )
-        taxe_36_250 = assiette_taxe_electricite * tarif_moyen_annuel(
-            period,
-            lambda mois: parameters(mois).energies.electricite.accise.tarifs_normaux.pme_activites_economiques,
-        )
-        taxe_haut = assiette_taxe_electricite * tarif_moyen_annuel(
-            period,
-            lambda mois: parameters(mois).energies.electricite.accise.tarifs_normaux.haute_puissance,
-        )  # > 250 kVA
+
+        def accise_tarif_normal(choisir):
+            # Le tarif normal supporte la majoration au titre des zones non interconnectées
+            # (L312-37-1), depuis le 1er août 2025 et nulle avant. Les tarifs réduits, eux,
+            # ne sont pas majorés.
+            return _accise(
+                etablissement,
+                period,
+                lambda mois: (
+                    choisir(parameters(mois).energies.electricite.accise.tarifs_normaux)
+                    + majoration_zni(parameters, mois)
+                ),
+            )
+
+        taxe_36 = accise_tarif_normal(lambda t: t.menages_et_assimiles)
+        taxe_36_250 = accise_tarif_normal(lambda t: t.pme_activites_economiques)
+        taxe_haut = accise_tarif_normal(lambda t: t.haute_puissance)  # > 250 kVA
         return select([cond_36, cond_250], [taxe_36, taxe_36_250], default=taxe_haut)
 
 
@@ -1046,44 +1067,47 @@ class taxe_accise_electricite_electro_intensive_activite_industrielle(Variable):
             "electro_intensive_activite_industrielle",
             period,
         )
-        seuils = parameters(period).energies.electricite.ticfe.electro_intensive.seuils
+        seuils = parameters(period).energies.electricite.accise.tarifs_reduits.electro_intensives.seuils
 
-        assiette = etablissement("assiette_taxe_electricite", period)
-        condition_05 = _and(
+        def accise_electrointensive(choisir):
+            return _accise(
+                etablissement,
+                period,
+                lambda mois: choisir(parameters(mois).energies.electricite.accise.tarifs_reduits.electro_intensives),
+            )
+
+        # L312-65 pose des niveaux *minimaux* d'électro-intensité : plus le niveau est élevé,
+        # plus le tarif est bas. Le paramètre `industrie_X` porte le tarif dû à partir du
+        # niveau X — 7,5 €/MWh dès 0,5 %, 5 dès 3,375 %, 2 dès 6,75 %. Les conditions se lisent
+        # donc du haut vers le bas, `select` retenant la première vraie.
+        #
+        # L'électro-intensité est un rapport sans dimension : le montant d'accise au tarif
+        # normal haute puissance rapporté à la valeur ajoutée (L312-44 2° et L312-45, dernier
+        # alinéa). Les seuils du barème sont exprimés dans la même unité — 0,005 pour 0,5 %.
+        condition_675 = _and(
             electro_intensive_activite_industrielle,
-            electro_intensite != 0,
-            electro_intensite < seuils.electro_intensite_activite_industrielle_seuil_05,
+            electro_intensite >= seuils.niveau_6_75,
         )
         condition_3375 = _and(
             electro_intensive_activite_industrielle,
-            electro_intensite != 0,
-            electro_intensite >= seuils.electro_intensite_activite_industrielle_seuil_05,
-            electro_intensite < seuils.electro_intensite_tranche_1_max,
+            electro_intensite >= seuils.niveau_3_375,
+            electro_intensite < seuils.niveau_6_75,
         )
-        condition_675 = _and(
+        condition_05 = _and(
             electro_intensive_activite_industrielle,
-            _or(
-                electro_intensite == 0,
-                electro_intensite >= seuils.electro_intensite_tranche_1_max,
-            ),
+            electro_intensite >= seuils.niveau_0_5,
+            electro_intensite < seuils.niveau_3_375,
         )
         return select(
-            [condition_05, condition_3375, condition_675],
+            [condition_675, condition_3375, condition_05],
             [
-                assiette
-                * parameters(
-                    period,
-                ).energies.electricite.accise.tarifs_reduits.electrointensives.industrie_0_5,
-                assiette
-                * parameters(
-                    period,
-                ).energies.electricite.accise.tarifs_reduits.electrointensives.industrie_3_375,
-                assiette
-                * parameters(
-                    period,
-                ).energies.electricite.accise.tarifs_reduits.electrointensives.industrie_6_75,
+                accise_electrointensive(lambda t: t.industrie_6_75),
+                accise_electrointensive(lambda t: t.industrie_3_375),
+                accise_electrointensive(lambda t: t.industrie_0_5),
             ],
-            default=0,
+            # Sous 0,5 %, la condition du 1° de l'article L312-71 n'est pas remplie : aucun
+            # tarif réduit ne s'applique, et l'électricité relève du tarif normal.
+            default=etablissement("taxe_accise_electricite_taux_normal", period),
         )
 
 
@@ -1097,7 +1121,13 @@ class taxe_accise_electricite_electro_intensive_concurrence_internationale(Varia
     def formula_2022_01_01(etablissement, period, parameters):
         electro_intensite = etablissement("electro_intensite", period)
 
-        assiette = etablissement("assiette_taxe_electricite", period)
+        def accise_electrointensive(choisir):
+            return _accise(
+                etablissement,
+                period,
+                lambda mois: choisir(parameters(mois).energies.electricite.accise.tarifs_reduits.electro_intensives),
+            )
+
         risque_de_fuite_carbone_eta = etablissement(
             "risque_de_fuite_carbone_eta",
             period,
@@ -1110,56 +1140,52 @@ class taxe_accise_electricite_electro_intensive_concurrence_internationale(Varia
             "electro_intensive_concurrence_internationale",
             period,
         )
-        seuils = parameters(period).energies.electricite.ticfe.electro_intensive.seuils
+        # Les paliers d'électro-intensité relèvent de l'accise (CIBS) ; le seuil d'intensité
+        # des échanges avec les pays tiers est resté sous la TICFE, dont il est issu.
+        seuils = parameters(period).energies.electricite.accise.tarifs_reduits.electro_intensives.seuils
+        seuils_ticfe = parameters(period).energies.electricite.ticfe.electro_intensives.seuils
 
+        # Mêmes niveaux minimaux qu'à l'activité industrielle, avec un quatrième palier à
+        # 13,5 % réservé par l'article L312-73 aux installations exposées à un risque de fuite
+        # de carbone dont l'intensité des échanges avec les pays tiers atteint 25 %.
         condition_13_5 = _and(
             electro_intensive_concurrence_internationale,
-            electro_intensite > seuils.electro_intensite_tranche_3_max,
+            electro_intensite >= seuils.niveau_13_5,
             risque_de_fuite_carbone_eta,
-            intensite_echanges_avec_pays_tiers > seuils.intensite_echanges_pays_tiers_min,
+            intensite_echanges_avec_pays_tiers >= seuils_ticfe.intensite_echanges_pays_tiers_min,
         )
         condition_6_75 = _and(
             electro_intensive_concurrence_internationale,
-            electro_intensite > seuils.electro_intensite_tranche_2_max,
-            electro_intensite <= seuils.electro_intensite_tranche_3_max,
+            electro_intensite >= seuils.niveau_6_75,
         )
         condition_3_375 = _and(
             electro_intensive_concurrence_internationale,
-            electro_intensite > seuils.electro_intensite_tranche_1_max,
-            electro_intensite <= seuils.electro_intensite_tranche_2_max,
+            electro_intensite >= seuils.niveau_3_375,
+            electro_intensite < seuils.niveau_6_75,
         )
         condition_0_5 = _and(
             electro_intensive_concurrence_internationale,
-            electro_intensite <= seuils.electro_intensite_tranche_1_max,
+            electro_intensite >= seuils.niveau_0_5,
+            electro_intensite < seuils.niveau_3_375,
         )
         return select(
             [condition_13_5, condition_6_75, condition_3_375, condition_0_5],
             [
-                assiette
-                * parameters(
-                    period,
-                ).energies.electricite.accise.tarifs_reduits.electrointensives.industrie_concurrence_13_5,
-                assiette
-                * parameters(
-                    period,
-                ).energies.electricite.accise.tarifs_reduits.electrointensives.industrie_concurrence_6_75,
-                assiette
-                * parameters(
-                    period,
-                ).energies.electricite.accise.tarifs_reduits.electrointensives.industrie_concurrence_3_375,
-                assiette
-                * parameters(
-                    period,
-                ).energies.electricite.accise.tarifs_reduits.electrointensives.industrie_concurrence_0_5,
+                accise_electrointensive(lambda t: t.industrie_concurrence_13_5),
+                accise_electrointensive(lambda t: t.industrie_concurrence_6_75),
+                accise_electrointensive(lambda t: t.industrie_concurrence_3_375),
+                accise_electrointensive(lambda t: t.industrie_concurrence_0_5),
             ],
-            default=0,
+            # Sous 0,5 %, la condition du 1° des articles L312-72 et L312-73 n'est pas remplie.
+            default=etablissement("taxe_accise_electricite_taux_normal", period),
         )
 
 
 class assiette_taxe_electricite(Variable):
     value_type = float
     entity = Etablissement
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     label = "assiette de la Taxe Intérieure sur la Consommation Finale d'Électricité"
     reference = ""
 

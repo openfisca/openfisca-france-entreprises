@@ -2,11 +2,9 @@ description: Tarif réduit de l'accise applicable aux gaz naturels utilisés com
 values:
   2022-01-01:
     value: 1.6
-  2024-01-01:
-    value: null
 metadata:
   short_label: Accise gaz naturels combustibles industries concurrencées indirect SEQE
-  last_value_still_valid_on: "2025-03-04"
+  last_value_still_valid_on: "2026-08-13"
   label_en: Excise duty on natural gases used as heating fuels for competing industries indirectly under EU ETS
   ipp_csv_id: accise_gaz_naturel_comb_seqe_indirect
   unit: currency_per_mwh
@@ -14,9 +12,8 @@ metadata:
     2022-01-01:
       title: Ordonnance n° 2021-1843 du 22 décembre 2021 portant partie législative du code des impositions sur les biens et services et transposant diverses normes du droit de l'Union européenne
       href: https://www.legifrance.gouv.fr/eli/ordonnance/2021/12/22/ECOE2120672R/jo/texte
-    2024-01-01:
-      title: Article 94 II K 2° de la loi n° 2023-1322 du 29 décembre 2023 de finances pour 2024
-      href: https://www.legifrance.gouv.fr/eli/loi/2023/12/29/ECOX2322957L/jo/texte
   official_journal_date:
     2022-01-01: "2021-12-29"
-    2024-01-01: "2023-12-30"
+  notes:
+    2022-01-01:
+      - title: "Ce tarif n'est pas abroge. La cloture au 2024-01-01, rapportee a l'article 94 II K 2 de la loi de finances pour 2024, visait le charbon et non le gaz : la version de l'article L. 312-36 [L. 312-75] en vigueur a compter de 2024 retire les charbons, les fiouls, les petroles lampants et les gaz de petrole liquefies de la ligne « installations intensives en energie exposees a la concurrence internationale non soumises au SEQE-IF », mais y conserve « Gaz naturels combustible | L. 312-77 | 1,6 ». La version en vigueur a compter de 2025 le conserve egalement. Verifie le 2026-08-13 sur les versions consolidees LEGIARTI000048833593 et LEGIARTI000046902673, et corrobore par la declaration 2040-TIC : la case _911243 declare 1,60 EUR/MWh sur 6 881 031 MWh en 2024 et 5 761 764 MWh en 2025."

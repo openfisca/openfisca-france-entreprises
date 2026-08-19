@@ -1,0 +1,6 @@
+description: Accise sur les produits énergétiques autres que les gaz naturels et les charbons en outre-mer, tarifs particuliers pour certains combustibles
+metadata:
+  label_en: Special excise duty rates on certain heating fuels in overseas departments and regions
+  order:
+  - biogaz_non_injecte_reseau
+  - grisou_et_assimiles

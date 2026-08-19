@@ -1,0 +1,8 @@
+description: Propane, butanes et autres gaz de pétrole liquéfiés
+metadata:
+  label_en: TICPE - Energy products; propane, butanes and other liquefied petroleum gases
+  order:
+  - melanges_propane_butane
+  - propane_carburants
+  - butanes_liquefies
+  - autres_gpl_carburants

@@ -1,6 +1,11 @@
+# L'assiette de la TICC est mensuelle depuis la bascule en definition_period = MONTH.
+# Ces cas vérifient la composition de l'assiette — quelles consommations s'ajoutent, lesquelles
+# se retranchent —, qui est purement linéaire : les énoncer au mois plutôt qu'à l'année laisse
+# les quantités et les attendus inchangés. Seule la maille de la période change.
+
 - name: test 2007
 #formula_2007_01_01
-  period: 2007
+  period: 2007-01
   input:
     consommation_charbon: 100000
     consommation_charbon_combustible_interne: 1000
@@ -13,7 +18,7 @@
 
 - name: test 2011
 #formula_2011_01_01
-  period: 2011
+  period: 2011-01
   input:
     consommation_charbon: 100000
     consommation_charbon_combustible_interne: 1000
@@ -25,7 +30,7 @@
     assiette_ticc: 97000
 
 - name: test 2016
-  period: 2016
+  period: 2016-01
   input:
     consommation_charbon: 100000
     consommation_autres_produits_energetique_ticc: 1000
@@ -41,7 +46,7 @@
 
 - name: test 2020
 #formula_2020_01_01
-  period: 2020
+  period: 2020-01
   input:
     consommation_charbon_combustible: 100000
     consommation_charbon_carburant: 1000

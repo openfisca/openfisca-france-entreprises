@@ -10,6 +10,7 @@
 - name: test 2011 taxe finale taux normal
 #formula_2020
   period: 2011
+  relative_error_margin: 0.000001
   input:
     assiette_taxe_electricite: 1000
   output:
@@ -20,8 +21,12 @@
 - name: test 2022 concurrence internationale
 #
   period: 2022
+  relative_error_margin: 0.000001
   input:
-    electro_intensite: 0.3
+    # 1 %, dans la bande [0,5 % ; 3,375 %) qui ouvre le tarif de 5,5 €/MWh (L312-65).
+    # L'électro-intensité est un rapport sans dimension — accise au tarif normal haute
+    # puissance sur valeur ajoutée (L312-44 2°) —, non des kWh par euro.
+    electro_intensite: 0.01
     assiette_taxe_electricite: 1000
     intensite_echanges_avec_pays_tiers: 26
     electro_intensive_concurrence_internationale: True
@@ -31,9 +36,12 @@
 - name: test 2022 concurrence internationale forumle finale
 #
   period: 2022
+  relative_error_margin: 0.000001
   input:
     apet: _17_12Z
-    electro_intensite: 20
+    # 20 %, au-delà du niveau de 13,5 % que l'article L312-73 réserve aux installations
+    # exposées au risque de fuite de carbone dont l'intensité des échanges atteint 25 %.
+    electro_intensite: 0.20
     intensite_echanges_avec_pays_tiers: 26
     assiette_taxe_electricite: 1000
   output:
@@ -43,7 +51,8 @@
 #
   period: 2022
   input:
-    electro_intensite: 0.3
+    # 1 %, dans la bande [0,5 % ; 3,375 %) qui ouvre le tarif de 7,5 €/MWh (L312-65).
+    electro_intensite: 0.01
     electro_intensive_activite_industrielle: True
     assiette_taxe_electricite: 1000
   output:
@@ -54,7 +63,8 @@
   period: 2022
   input:
     electro_intensive_activite_industrielle: True
-    electro_intensite: 0.3
+    # 1 %, dans la bande [0,5 % ; 3,375 %) qui ouvre le tarif de 7,5 €/MWh (L312-65).
+    electro_intensite: 0.01
     consommation_electricite: 1000 #pas de problèmes avec assiette_taxe_electricite, donc sa formule est en faute
   output:
     taxe_accise_electricite: 7500
@@ -72,6 +82,7 @@
 - name: test 2022 classification electricite_transport_guide
 #
   period: 2022
+  relative_error_margin: 0.000001
   input:
     apet : _53_10Z
     assiette_taxe_electricite: 1000
@@ -99,6 +110,7 @@
 - name: test 2024 classification electricite_transport_collectif_personnes
 #
   period: 2024
+  relative_error_margin: 0.000001
   input:
     apet : _49_39A
     assiette_taxe_electricite: 1000
@@ -118,6 +130,7 @@
 - name: test 2024 classification electricite_alimentation_a_quai
 #
   period: 2024
+  relative_error_margin: 0.000001
   input:
     apet : _52_22Z
     assiette_taxe_electricite: 1000
@@ -128,6 +141,7 @@
 - name: test 2024 classification electricite_manutention_portuaire
 #
   period: 2024
+  relative_error_margin: 0.000001
   input:
     apet : _52_24A
     assiette_taxe_electricite: 1000
@@ -146,6 +160,7 @@
 - name: test 2011 taxe_interieure_sur_consommation_finale_electricite normal
 #
   period: 2011
+  relative_error_margin: 0.000001
   input:
     assiette_taxe_electricite : 1000
     amperage : 260
@@ -178,6 +193,7 @@
 - name: test 2016 taxe_interieure_sur_consommation_finale_electricite electricite_installations_industrielles_hyper_electro_intensives
 #
   period: 2016
+  relative_error_margin: 0.000001
   input:
     assiette_taxe_electricite: 1000
     consommation_par_valeur_ajoutee : 0.007
@@ -188,6 +204,7 @@
 - name: test 2016 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_installations_industrielles_electro_intensives
 #
   period: 2016
+  relative_error_margin: 0.000001
   input:
     assiette_taxe_electricite: 1000
     consommation_par_valeur_ajoutee : 0.004
@@ -220,6 +237,7 @@
 - name: test 2016 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_risque_de_fuite_de_carbone
 #
   period: 2016
+  relative_error_margin: 0.000001
   input:
     risque_de_fuite_carbone_eta: True
     assiette_taxe_electricite: 1000
@@ -242,6 +260,7 @@
 - name: test 2016 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_risque_de_fuite_de_carbone
 #
   period: 2016
+  relative_error_margin: 0.000001
   input:
     risque_de_fuite_carbone_eta: True
     assiette_taxe_electricite: 1000
@@ -252,6 +271,7 @@
 - name: test 2016 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_risque_de_fuite_de_carbone
 #
   period: 2016
+  relative_error_margin: 0.000001
   input:
     risque_de_fuite_carbone_eta: True
     assiette_taxe_electricite: 1000
@@ -272,6 +292,7 @@
 - name: test 2019 taxe_interieure_sur_consommation_finale_electricite taxe_electricite_centres_de_stockage_donnees 2
 #
   period: 2019
+  relative_error_margin: 0.000001
   input:
     apet: _63_11Z
     assiette_taxe_electricite: 800
@@ -281,6 +302,7 @@
 - name: test 2025  taxe_electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques
 #
   period: 2025
+  relative_error_margin: 0.000001
   input:
     assiette_taxe_electricite: 1000
     electricite_alimentation_aeronefs_stationnement_aerodromes_activites_non_economiques: True

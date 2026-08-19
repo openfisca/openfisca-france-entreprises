@@ -1,0 +1,7 @@
+description: Huiles moyennes
+metadata:
+  label_en: TICPE - Energy products, medium oils
+  order:
+  - carbureacteurs_petrole_lampant
+  - petrole_lampant
+  - autres_huiles_moyennes

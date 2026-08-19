@@ -5,14 +5,15 @@ A variable is a property of an Entity such as a Etablissement, a UniteLegale…
 See https://openfisca.org/doc/key-concepts/variables.html
 """
 
-from openfisca_core.model_api import YEAR, Variable, select
+from openfisca_core.model_api import MONTH, YEAR, Variable, select, set_input_divide_by_period
 
 from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.taxes.formula_helpers import (
     _and,
     _not,
     _or,
-    tarif_moyen_annuel,
+    accise_annuelle,
+    majoration_zni,
 )
 
 
@@ -27,12 +28,12 @@ class taxe_interieure_consommation_charbon(Variable):
         """Taxe sur la consommation de houilles, lignites, et cokes.
 
         La TICC est créée au 1er juillet 2007 par le III de l'article 36 de la LFR 2006
-        (arbitrage §1) : sur janvier-juin 2007 elle n'existe pas, d'où le repli à zéro. La
-        moyenne mensuelle donne donc la moitié du tarif sur 2007, puis le tarif plein.
+        (arbitrage §1) : sur janvier-juin 2007 elle n'existe pas, d'où le repli à zéro. Les
+        six premiers mois de 2007 ne portent donc aucune accise, les six suivants le tarif plein.
         """
-        assiette_ticc = etablissement("assiette_ticc", period)
-        return assiette_ticc * tarif_moyen_annuel(
+        return accise_annuelle(
             period,
+            lambda mois: etablissement("assiette_ticc", mois),
             lambda mois: parameters(mois).energies.charbon.ticc,
             defaut_si_absent=0,
         )
@@ -129,8 +130,14 @@ class taxe_interieure_consommation_charbon(Variable):
         # Code des impositions sur les biens et services, et non des exonérations : les faire
         # porter par la donnée permet qu'un changement de tarif reste un changement de donnée.
         seuils = parameters(period).energies.seuils_seqe
-        assiette_ticc = etablissement("assiette_ticc", period)
-        tarifs_reduits = parameters(period).energies.charbon.accise.combustibles.tarifs_reduits
+
+        def accise_tarif_reduit(choisir):
+            """Accise de l'année au tarif réduit désigné, mois par mois."""
+            return accise_annuelle(
+                period,
+                lambda mois: etablissement("assiette_ticc", mois),
+                lambda mois: choisir(parameters(mois).energies.charbon.accise.combustibles.tarifs_reduits),
+            )
 
         condition_biomasse = _and(
             installation_seqe,
@@ -175,13 +182,13 @@ class taxe_interieure_consommation_charbon(Variable):
                 condition_concurrence,
             ],
             [
-                assiette_ticc * tarifs_reduits.valorisation_biomasse,
-                assiette_ticc * tarifs_reduits.navigation_interieure,
-                assiette_ticc * tarifs_reduits.navigation_maritime,
-                assiette_ticc * tarifs_reduits.navigation_aerienne,
-                assiette_ticc * tarifs_reduits.fabrication_mineraux,
-                assiette_ticc * tarifs_reduits.aeronautique_naval,
-                assiette_ticc * tarifs_reduits.doubles_usages,
+                accise_tarif_reduit(lambda t: t.valorisation_biomasse),
+                accise_tarif_reduit(lambda t: t.navigation_interieure),
+                accise_tarif_reduit(lambda t: t.navigation_maritime),
+                accise_tarif_reduit(lambda t: t.navigation_aerienne),
+                accise_tarif_reduit(lambda t: t.fabrication_mineraux),
+                accise_tarif_reduit(lambda t: t.aeronautique_naval),
+                accise_tarif_reduit(lambda t: t.doubles_usages),
                 etablissement(
                     "taxe_interieure_taxation_consommation_charbon_seqe",
                     period,
@@ -235,8 +242,13 @@ class taxe_interieure_consommation_charbon(Variable):
         )
         charbon_double_usage = etablissement("charbon_double_usage", period)
 
-        assiette_ticc = etablissement("assiette_ticc", period)
-        tarifs_reduits = parameters(period).energies.charbon.accise.combustibles.tarifs_reduits
+        def accise_tarif_reduit(choisir):
+            """Accise de l'année au tarif réduit désigné, mois par mois."""
+            return accise_annuelle(
+                period,
+                lambda mois: etablissement("assiette_ticc", mois),
+                lambda mois: choisir(parameters(mois).energies.charbon.accise.combustibles.tarifs_reduits),
+            )
 
         condition_biomasse = _and(
             installation_seqe,
@@ -266,13 +278,13 @@ class taxe_interieure_consommation_charbon(Variable):
                 condition_seqe,
             ],
             [
-                assiette_ticc * tarifs_reduits.valorisation_biomasse,
-                assiette_ticc * tarifs_reduits.navigation_interieure,
-                assiette_ticc * tarifs_reduits.navigation_maritime,
-                assiette_ticc * tarifs_reduits.navigation_aerienne,
-                assiette_ticc * tarifs_reduits.fabrication_mineraux,
-                assiette_ticc * tarifs_reduits.aeronautique_naval,
-                assiette_ticc * tarifs_reduits.doubles_usages,
+                accise_tarif_reduit(lambda t: t.valorisation_biomasse),
+                accise_tarif_reduit(lambda t: t.navigation_interieure),
+                accise_tarif_reduit(lambda t: t.navigation_maritime),
+                accise_tarif_reduit(lambda t: t.navigation_aerienne),
+                accise_tarif_reduit(lambda t: t.fabrication_mineraux),
+                accise_tarif_reduit(lambda t: t.aeronautique_naval),
+                accise_tarif_reduit(lambda t: t.doubles_usages),
                 etablissement(
                     "taxe_interieure_taxation_consommation_charbon_seqe",
                     period,
@@ -296,10 +308,14 @@ class taxe_interieure_taxation_consommation_charbon_concurrence_internationale(
 
     def formula_2007_01_01(etablissement, period, parameters):
         # faut changer la date après
-        assiette_ticc = etablissement("assiette_ticc", period)
-        return (
-            assiette_ticc
-            * parameters(period).energies.charbon.accise.combustibles.tarifs_reduits.intensive_energie_indirect_SEQE
+        return accise_annuelle(
+            period,
+            lambda mois: etablissement("assiette_ticc", mois),
+            lambda mois: (
+                parameters(
+                    mois,
+                ).energies.charbon.accise.combustibles.tarifs_reduits.intensive_energie_indirect_SEQE
+            ),
         )
 
 
@@ -312,10 +328,10 @@ class taxe_interieure_taxation_consommation_charbon_seqe(Variable):
 
     def formula_2007_01_01(etablissement, period, parameters):
         # faut changer la date après
-        assiette_ticc = etablissement("assiette_ticc", period)
-        return (
-            assiette_ticc
-            * parameters(period).energies.charbon.accise.combustibles.tarifs_reduits.intensive_energie_SEQE
+        return accise_annuelle(
+            period,
+            lambda mois: etablissement("assiette_ticc", mois),
+            lambda mois: parameters(mois).energies.charbon.accise.combustibles.tarifs_reduits.intensive_energie_SEQE,
         )
 
 
@@ -327,9 +343,9 @@ class taxe_interieure_taxation_consommation_charbon_taux_normal(Variable):
     reference = ""
 
     def formula_2007_01_01(etablissement, period, parameters):
-        assiette_ticc = etablissement("assiette_ticc", period)
-        return assiette_ticc * tarif_moyen_annuel(
+        return accise_annuelle(
             period,
+            lambda mois: etablissement("assiette_ticc", mois),
             lambda mois: parameters(mois).energies.charbon.ticc,
         )
 
@@ -338,18 +354,25 @@ class taxe_interieure_taxation_consommation_charbon_taux_normal(Variable):
 
         La valeur du tarif est inchangée (14.62) ; seule la source du paramètre change,
         la série ticc étant clôturée au 1er janvier 2022.
+
+        Le tarif normal supporte la majoration au titre des zones non interconnectées
+        (L312-37-1), depuis le 1er août 2025 et nulle avant : le charbon relève de l'article
+        L312-36, que cette majoration vise expressément. Les tarifs réduits ne sont pas majorés.
         """
-        assiette_ticc = etablissement("assiette_ticc", period)
-        return assiette_ticc * tarif_moyen_annuel(
+        return accise_annuelle(
             period,
-            lambda mois: parameters(mois).energies.charbon.accise.combustibles.tarif_normal,
+            lambda mois: etablissement("assiette_ticc", mois),
+            lambda mois: (
+                parameters(mois).energies.charbon.accise.combustibles.tarif_normal + majoration_zni(parameters, mois)
+            ),
         )
 
 
 class assiette_ticc(Variable):
     value_type = float
     entity = Etablissement
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     label = "Coal consumption taxable according to TICC"
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615177/2007-07-01/"
 
