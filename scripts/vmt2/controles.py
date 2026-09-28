@@ -18,6 +18,8 @@ from __future__ import annotations
 import collections
 import re
 
+from .commun import arrondi
+
 
 #: Les tomes II de 2001 à 2005 annoncent leur propre décompte en introduction
 #: (« Le présent fascicule recense 452 dépenses fiscales »). C'est un contrôle
@@ -103,5 +105,5 @@ def revisions(fiches: list[dict]) -> list[dict]:
         # (plf, numero), et le dupliquer ici gonflerait un fichier dérivé
         out.append(dict(numero=num, annee=annee, impot=f['impot'],
                         prevu=f['montant'], realise=g['montant'],
-                        ecart=g['montant'] - f['montant']))
+                        ecart=arrondi(g['montant'] - f['montant'])))
     return sorted(out, key=lambda d: -abs(d['ecart']))

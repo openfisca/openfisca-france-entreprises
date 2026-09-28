@@ -145,7 +145,7 @@ numero;annee;impot;prevu;realise;ecart
 190204;2001;Impôt sur le revenu;1000;425;-575
 110222;2006;Impôt sur le revenu;420;990;570
 710103;2018;Taxe sur la valeur ajoutée;1500;2070;570
-520109;2001;Droits d'enregistrement et de timbre;600;37;-563
+520109;2001;Droits d'enregistrement et de timbre;600;37.5;-562.5
 730203;2009;Taxe sur la valeur ajoutée;390;950;560
 210204;2017;Impôt sur le revenu et impôt sur les sociétés;1020;460;-560
 800401;2024;TICPE / produits énergétiques hors gaz et charbons;2022;1466;-556
@@ -235,7 +235,6 @@ numero;annee;impot;prevu;realise;ecart
 800102;2001;TICPE / produits énergétiques hors gaz et charbons;415;60;-355
 730303;2012;Taxe sur la valeur ajoutée;1140;1495;355
 800401;2023;TICPE / produits énergétiques hors gaz et charbons;1511;1158;-353
-120113;2001;Impôt sur le revenu;360;9;-351
 730213;2006;Taxe sur la valeur ajoutée;4350;4700;350
 300102;2007;Impôt sur les sociétés;300;650;350
 800201;2007;TICPE / produits énergétiques hors gaz et charbons;1450;1100;-350
@@ -257,6 +256,7 @@ numero;annee;impot;prevu;realise;ecart
 120108;2012;Impôt sur le revenu;1150;1470;320
 070101;2015;Impôts locaux;1275;1595;320
 720107;2022;Taxe sur la valeur ajoutée;640;320;-320
+120113;2001;Impôt sur le revenu;360;41.9;-318.1
 110220;2001;Impôt sur le revenu;400;82;-318
 330103;2008;Impôt sur les sociétés;620;302;-318
 110216;2001;Impôt sur le revenu;380;64;-316
@@ -305,7 +305,6 @@ numero;annee;impot;prevu;realise;ecart
 210303;2001;Impôt sur le revenu et impôt sur les sociétés;310;42;-268
 210309;2012;Impôt sur le revenu et impôt sur les sociétés;400;667;267
 730204;2001;Taxe sur la valeur ajoutée;310;44;-266
-520301;2001;Droits d'enregistrement et de timbre;270;5;-265
 720206;2001;Taxe sur la valeur ajoutée;310;45;-265
 190101;2012;Impôt sur le revenu;800;1065;265
 340106;2001;Impôt sur les sociétés;300;37;-263
@@ -353,6 +352,7 @@ numero;annee;impot;prevu;realise;ecart
 120108;2022;Impôt sur le revenu;2350;2580;230
 730233;2023;Taxe sur la valeur ajoutée;390;160;-230
 070101;2016;Impôts locaux;1157;1385;228
+520301;2001;Droits d'enregistrement et de timbre;270;42.5;-227.5
 720106;2001;Taxe sur la valeur ajoutée;260;34;-226
 120501;2019;Impôt sur le revenu;250;475;225
 710103;2019;Taxe sur la valeur ajoutée;1900;2125;225
@@ -482,7 +482,6 @@ numero;annee;impot;prevu;realise;ecart
 730213;2016;Taxe sur la valeur ajoutée;3280;3450;170
 730213;2020;Taxe sur la valeur ajoutée;3500;3330;-170
 820203;2021;TICFE / électricité;1235;1068;-167
-120127;2001;Impôt sur le revenu;170;5;-165
 170306;2008;Impôt sur le revenu;180;15;-165
 170103;2009;Impôt sur le revenu;140;305;165
 110102;2014;Impôt sur le revenu;345;507;162
@@ -535,6 +534,7 @@ numero;annee;impot;prevu;realise;ecart
 070101;2020;Impôts locaux;1799;1944;145
 110224;2020;Impôt sur le revenu;313;457;144
 110224;2022;Impôt sur le revenu;440;584;144
+120127;2001;Impôt sur le revenu;170;26.5;-143.5
 320117;2002;Impôt sur les sociétés;1067;1210;143
 940202;2024;Autres droits;0;142;142
 130204;2002;Impôt sur le revenu;701;560;-141
@@ -615,7 +615,6 @@ numero;annee;impot;prevu;realise;ecart
 110222;2002;Impôt sur le revenu;102;220;118
 800216;2019;TICPE / produits énergétiques hors gaz et charbons;67;185;118
 220104;2022;Impôt sur le revenu et impôt sur les sociétés;209;326;117
-800105;2001;TICPE / produits énergétiques hors gaz et charbons;120;4;-116
 520305;2002;Droits d'enregistrement et de timbre;396;280;-116
 120124;2020;Impôt sur le revenu;139;255;116
 120114;2004;Impôt sur le revenu;350;465;115
@@ -631,7 +630,6 @@ numero;annee;impot;prevu;realise;ecart
 400202;2010;Autres impôts directs;670;783;113
 120401;2023;Impôt sur le revenu;4420;4533;113
 730207;2002;Taxe sur la valeur ajoutée;732;620;-112
-800401;2003;TICPE / produits énergétiques hors gaz et charbons;3;115;112
 800401;2015;TICPE / produits énergétiques hors gaz et charbons;828;940;112
 210324;2016;Impôt sur le revenu et impôt sur les sociétés;13010;12898;-112
 110210;2009;Impôt sur le revenu;250;361;111
@@ -658,6 +656,7 @@ numero;annee;impot;prevu;realise;ecart
 740105;2023;Taxe sur la valeur ajoutée;175;65;-110
 800403;2001;TICPE / produits énergétiques hors gaz et charbons;280;389;109
 140123;2002;Impôt sur le revenu;869;760;-109
+800105;2001;TICPE / produits énergétiques hors gaz et charbons;120;11.4;-108.6
 800101;2010;TICPE / produits énergétiques hors gaz et charbons;92;200;108
 130208;2017;Impôt sur le revenu;130;238;108
 110201;2018;Impôt sur le revenu;1410;1518;108
@@ -674,7 +673,6 @@ numero;annee;impot;prevu;realise;ecart
 730213;2014;Taxe sur la valeur ajoutée;3890;3785;-105
 110201;2016;Impôt sur le revenu;1260;1365;105
 730230;2021;Taxe sur la valeur ajoutée;285;180;-105
-520203;2001;Droits d'enregistrement et de timbre;110;6;-104
 210313;2024;Impôt sur le revenu et impôt sur les sociétés;756;652;-104
 200310;2016;Impôt sur le revenu et impôt sur les sociétés;70;173;103
 730305;2023;Taxe sur la valeur ajoutée;160;57;-103
@@ -876,7 +874,6 @@ numero;annee;impot;prevu;realise;ecart
 210313;2023;Impôt sur le revenu et impôt sur les sociétés;779;703;-76
 220104;2024;Impôt sur le revenu et impôt sur les sociétés;335;411;76
 320109;2001;Impôt sur les sociétés;90;15;-75
-530206;2001;Droits d'enregistrement et de timbre;80;5;-75
 730214;2001;Taxe sur la valeur ajoutée;100;25;-75
 110201;2004;Impôt sur le revenu;515;590;75
 230103;2005;Impôt sur le revenu et impôt sur les sociétés;335;410;75
@@ -958,6 +955,7 @@ numero;annee;impot;prevu;realise;ecart
 800201;2014;TICPE / produits énergétiques hors gaz et charbons;1665;1733;68
 140123;2018;Impôt sur le revenu;184;252;68
 800212;2021;TICPE / produits énergétiques hors gaz et charbons;53;121;68
+530206;2001;Droits d'enregistrement et de timbre;80;12.5;-67.5
 050109;2011;Impôts locaux;70;3;-67
 110224;2014;Impôt sur le revenu;380;313;-67
 210102;2015;Impôt sur le revenu et impôt sur les sociétés;80;13;-67
@@ -1066,7 +1064,6 @@ numero;annee;impot;prevu;realise;ecart
 110102;2023;Impôt sur le revenu;586;646;60
 710102;2024;Taxe sur la valeur ajoutée;110;50;-60
 070201;2024;Impôts locaux;93;33;-60
-940101;2001;Autres droits;60;1;-59
 110204;2004;Impôt sur le revenu;60;1;-59
 110252;2023;Impôt sur le revenu;180;239;59
 800403;2009;TICPE / produits énergétiques hors gaz et charbons;230;288;58
@@ -1127,6 +1124,7 @@ numero;annee;impot;prevu;realise;ecart
 150518;2019;Impôt sur le revenu;190;137;-53
 150518;2020;Impôt sur le revenu;120;173;53
 120146;2023;Impôt sur le revenu;1867;1814;-53
+800401;2003;TICPE / produits énergétiques hors gaz et charbons;62.3;115;52.7
 210324;2017;Impôt sur le revenu et impôt sur les sociétés;15770;15718;-52
 110247;2018;Impôt sur le revenu;100;48;-52
 210313;2018;Impôt sur le revenu et impôt sur les sociétés;951;899;-52
@@ -1140,6 +1138,7 @@ numero;annee;impot;prevu;realise;ecart
 800212;2022;TICPE / produits énergétiques hors gaz et charbons;95;146;51
 200401;2023;Impôt sur le revenu et impôt sur les sociétés;400;349;-51
 120109;2024;Impôt sur le revenu;373;424;51
+940101;2001;Autres droits;60;9.1;-50.9
 300302;2001;Impôt sur les sociétés;50;0;-50
 120117;2003;Impôt sur le revenu;540;590;50
 140201;2003;Impôt sur le revenu;290;340;50
@@ -1247,6 +1246,7 @@ numero;annee;impot;prevu;realise;ecart
 800210;2016;TICPE / produits énergétiques hors gaz et charbons;182;228;46
 050201;2016;Impôts locaux;70;116;46
 110102;2024;Impôt sur le revenu;628;674;46
+100202;2001;Impôt sur le revenu;50;4.6;-45.4
 140109;2002;Impôt sur le revenu;305;350;45
 320113;2003;Impôt sur les sociétés;130;85;-45
 170103;2004;Impôt sur le revenu;90;135;45
@@ -1278,7 +1278,8 @@ numero;annee;impot;prevu;realise;ecart
 800222;2022;TICPE / produits énergétiques hors gaz et charbons;220;175;-45
 050106;2022;Impôts locaux;66;111;45
 730213;2024;Taxe sur la valeur ajoutée;2240;2195;-45
-100202;2001;Impôt sur le revenu;50;6;-44
+800203;2001;TICPE / produits énergétiques hors gaz et charbons;50;5.7;-44.3
+410111;2001;Autres impôts directs;50;5.8;-44.2
 110306;2002;Impôt sur le revenu;1326;1370;44
 140119;2002;Impôt sur le revenu;3506;3550;44
 180303;2002;Impôt sur le revenu;76;120;44
@@ -1287,13 +1288,11 @@ numero;annee;impot;prevu;realise;ecart
 800101;2016;TICPE / produits énergétiques hors gaz et charbons;333;377;44
 140102;2024;Impôt sur le revenu;906;950;44
 120306;2001;Impôt sur le revenu;50;7;-43
-800203;2001;TICPE / produits énergétiques hors gaz et charbons;50;7;-43
 110214;2002;Impôt sur le revenu;1357;1400;43
 110216;2014;Impôt sur le revenu;130;87;-43
 110104;2018;Impôt sur le revenu;390;433;43
 110261;2020;Impôt sur le revenu;1009;966;-43
 100102;2001;Impôt sur le revenu;50;8;-42
-410111;2001;Autres impôts directs;50;8;-42
 730203;2003;Taxe sur la valeur ajoutée;258;300;42
 310203;2008;Impôt sur les sociétés;105;147;42
 190208;2010;Impôt sur le revenu;170;128;-42
@@ -1396,8 +1395,6 @@ numero;annee;impot;prevu;realise;ecart
 110259;2024;Impôt sur le revenu;1;41;40
 140119;2024;Impôt sur le revenu;542;582;40
 710105;2024;Taxe sur la valeur ajoutée;125;165;40
-520203;2003;Droits d'enregistrement et de timbre;1;40;39
-520301;2003;Droits d'enregistrement et de timbre;6;45;39
 800102;2003;TICPE / produits énergétiques hors gaz et charbons;61;100;39
 800101;2008;TICPE / produits énergétiques hors gaz et charbons;140;101;-39
 110201;2009;Impôt sur le revenu;950;989;39
@@ -1711,6 +1708,8 @@ numero;annee;impot;prevu;realise;ecart
 730212;2023;Taxe sur la valeur ajoutée;30;2;-28
 210329;2024;Impôt sur le revenu et impôt sur les sociétés;139;167;28
 730232;2024;Taxe sur la valeur ajoutée;80;108;28
+100105;2001;Impôt sur le revenu;30;2.6;-27.4
+520203;2003;Droits d'enregistrement et de timbre;67.1;40;-27.1
 110215;2002;Impôt sur le revenu;427;400;-27
 060201;2009;Impôts locaux;38;11;-27
 400203;2010;Autres impôts directs;50;77;27
@@ -1739,6 +1738,8 @@ numero;annee;impot;prevu;realise;ecart
 220102;2019;Impôt sur le revenu et impôt sur les sociétés;183;157;-26
 730305;2020;Taxe sur la valeur ajoutée;170;144;-26
 120109;2023;Impôt sur le revenu;327;353;26
+320107;2001;Impôt sur les sociétés;30;4.6;-25.4
+740102;2001;Taxe sur la valeur ajoutée;30;4.9;-25.1
 230303;2002;Impôt sur le revenu et impôt sur les sociétés;30;5;-25
 110210;2003;Impôt sur le revenu;90;115;25
 110213;2003;Impôt sur le revenu;65;40;-25
@@ -1822,10 +1823,8 @@ numero;annee;impot;prevu;realise;ecart
 300101;2024;Impôt sur les sociétés;167;192;25
 300211;2024;Impôt sur les sociétés;126;151;25
 580102;2024;Droits d'enregistrement et de timbre;95;120;25
-100105;2001;Impôt sur le revenu;30;6;-24
 140306;2001;Impôt sur le revenu;30;6;-24
 230403;2001;Impôt sur le revenu et impôt sur les sociétés;45;21;-24
-320107;2001;Impôt sur les sociétés;30;6;-24
 800201;2002;TICPE / produits énergétiques hors gaz et charbons;976;1000;24
 120203;2003;Impôt sur le revenu;181;205;24
 800403;2006;TICPE / produits énergétiques hors gaz et charbons;220;196;-24
@@ -1901,7 +1900,7 @@ numero;annee;impot;prevu;realise;ecart
 730208;2022;Taxe sur la valeur ajoutée;32;10;-22
 210305;2023;Impôt sur le revenu et impôt sur les sociétés;102;80;-22
 160207;2024;Impôt sur le revenu;50;72;22
-740102;2001;Taxe sur la valeur ajoutée;30;9;-21
+520203;2001;Droits d'enregistrement et de timbre;110;88.6;-21.4
 110110;2002;Impôt sur le revenu;259;280;21
 140201;2002;Impôt sur le revenu;259;280;21
 400302;2002;Autres impôts directs;99;120;21
@@ -2106,7 +2105,6 @@ numero;annee;impot;prevu;realise;ecart
 210315;2024;Impôt sur le revenu et impôt sur les sociétés;79;98;19
 230602;2024;Impôt sur le revenu et impôt sur les sociétés;67;48;-19
 140117;2002;Impôt sur le revenu;488;470;-18
-800105;2003;TICPE / produits énergétiques hors gaz et charbons;2;20;18
 400110;2005;Autres impôts directs;20;2;-18
 210312;2007;Impôt sur le revenu et impôt sur les sociétés;30;12;-18
 170201;2010;Impôt sur le revenu;60;42;-18
@@ -2351,7 +2349,6 @@ numero;annee;impot;prevu;realise;ecart
 800225;2024;TICPE / produits énergétiques hors gaz et charbons;60;45;-15
 340104;2001;Impôt sur les sociétés;20;6;-14
 110218;2002;Impôt sur le revenu;91;105;14
-120127;2002;Impôt sur le revenu;6;20;14
 800106;2002;TICPE / produits énergétiques hors gaz et charbons;44;30;-14
 170103;2003;Impôt sur le revenu;96;110;14
 170301;2003;Impôt sur le revenu;26;40;14
@@ -2395,7 +2392,8 @@ numero;annee;impot;prevu;realise;ecart
 210308;2024;Impôt sur le revenu et impôt sur les sociétés;195;209;14
 730207;2024;Taxe sur la valeur ajoutée;159;173;14
 050204;2024;Impôts locaux;134;148;14
-110304;2001;Impôt sur le revenu;20;7;-13
+940103;2001;Autres droits;16;2.4;-13.6
+170305;2002;Impôt sur le revenu;1.8;15;13.2
 120113;2002;Impôt sur le revenu;53;40;-13
 800404;2002;TICPE / produits énergétiques hors gaz et charbons;15;28;13
 800103;2008;TICPE / produits énergétiques hors gaz et charbons;30;17;-13
@@ -2427,8 +2425,8 @@ numero;annee;impot;prevu;realise;ecart
 110242;2022;Impôt sur le revenu;200;213;13
 320128;2023;Impôt sur les sociétés;13;26;13
 210331;2024;Impôt sur le revenu et impôt sur les sociétés;13;0;-13
-120116;2001;Impôt sur le revenu;15;3;-12
-940103;2001;Autres droits;16;4;-12
+120116;2001;Impôt sur le revenu;15;2.3;-12.7
+120127;2002;Impôt sur le revenu;7.6;20;12.4
 730205;2002;Taxe sur la valeur ajoutée;1372;1360;-12
 730212;2002;Taxe sur la valeur ajoutée;58;70;12
 130203;2003;Impôt sur le revenu;28;40;12
@@ -2555,9 +2553,7 @@ numero;annee;impot;prevu;realise;ecart
 110302;2003;Impôt sur le revenu;200;210;10
 120126;2003;Impôt sur le revenu;220;230;10
 130202;2003;Impôt sur le revenu;15;5;-10
-140202;2003;Impôt sur le revenu;5;15;10
 160301;2003;Impôt sur le revenu;30;20;-10
-530206;2003;Droits d'enregistrement et de timbre;5;15;10
 730306;2003;Taxe sur la valeur ajoutée;110;120;10
 800101;2003;TICPE / produits énergétiques hors gaz et charbons;225;215;-10
 110110;2004;Impôt sur le revenu;320;310;-10
@@ -2833,7 +2829,6 @@ numero;annee;impot;prevu;realise;ecart
 120126;2002;Impôt sur le revenu;229;220;-9
 200304;2002;Impôt sur le revenu et impôt sur les sociétés;34;25;-9
 220101;2002;Impôt sur le revenu et impôt sur les sociétés;81;90;9
-240101;2002;Impôt sur le revenu et impôt sur les sociétés;1;10;9
 410201;2002;Autres impôts directs;91;100;9
 410202;2002;Autres impôts directs;213;222;9
 730306;2002;Taxe sur la valeur ajoutée;101;110;9
@@ -2898,19 +2893,15 @@ numero;annee;impot;prevu;realise;ecart
 710109;2024;Taxe sur la valeur ajoutée;25;16;-9
 740102;2024;Taxe sur la valeur ajoutée;4;13;9
 800226;2024;TICPE / produits énergétiques hors gaz et charbons;9;0;-9
-230405;2001;Impôt sur le revenu et impôt sur les sociétés;10;2;-8
-800402;2001;TICPE / produits énergétiques hors gaz et charbons;0;8;8
+230405;2001;Impôt sur le revenu et impôt sur les sociétés;10;1.2;-8.8
+730215;2001;Taxe sur la valeur ajoutée;10;1.5;-8.5
+140202;2003;Impôt sur le revenu;6.5;15;8.5
 130203;2002;Impôt sur le revenu;38;30;-8
-200212;2002;Impôt sur le revenu et impôt sur les sociétés;8;0;-8
 730209;2002;Taxe sur la valeur ajoutée;38;30;-8
-940101;2002;Autres droits;1;9;8
 100106;2003;Impôt sur le revenu;23;15;-8
 110216;2003;Impôt sur le revenu;68;60;-8
 120112;2003;Impôt sur le revenu;12;20;8
-520109;2003;Droits d'enregistrement et de timbre;37;45;8
-740102;2003;Taxe sur la valeur ajoutée;2;10;8
 800106;2003;TICPE / produits énergétiques hors gaz et charbons;38;30;-8
-940101;2003;Autres droits;1;9;8
 800404;2005;TICPE / produits énergétiques hors gaz et charbons;25;17;-8
 120207;2007;Impôt sur le revenu;10;2;-8
 140122;2008;Impôt sur le revenu;10;2;-8
@@ -3003,16 +2994,17 @@ numero;annee;impot;prevu;realise;ecart
 800220;2024;TICPE / produits énergétiques hors gaz et charbons;67;59;-8
 800222;2024;TICPE / produits énergétiques hors gaz et charbons;175;183;8
 050102;2024;Impôts locaux;45;53;8
+800105;2003;TICPE / produits énergétiques hors gaz et charbons;12.2;20;7.8
+800302;2001;TICPE / produits énergétiques hors gaz et charbons;9;1.3;-7.7
+520109;2003;Droits d'enregistrement et de timbre;37.9;45;7.1
 190202;2001;Impôt sur le revenu;15;8;-7
 110109;2002;Impôt sur le revenu;82;75;-7
 110302;2002;Impôt sur le revenu;183;190;7
 120123;2002;Impôt sur le revenu;18;25;7
-170305;2002;Impôt sur le revenu;8;15;7
 190101;2002;Impôt sur le revenu;457;450;-7
 400202;2002;Autres impôts directs;302;295;-7
 570103;2002;Droits d'enregistrement et de timbre;23;30;7
 740104;2002;Taxe sur la valeur ajoutée;267;260;-7
-150512;2003;Impôt sur le revenu;8;1;-7
 210305;2003;Impôt sur le revenu et impôt sur les sociétés;32;25;-7
 310203;2003;Impôt sur les sociétés;247;240;-7
 320109;2003;Impôt sur les sociétés;12;5;-7
@@ -3097,8 +3089,9 @@ numero;annee;impot;prevu;realise;ecart
 320140;2024;Impôt sur les sociétés;205;212;7
 320141;2024;Impôt sur les sociétés;10;3;-7
 530203;2024;Droits d'enregistrement et de timbre;40;47;7
+110304;2001;Impôt sur le revenu;20;13.7;-6.3
+230403;2002;Impôt sur le revenu et impôt sur les sociétés;3.8;10;6.2
 110209;2001;Impôt sur le revenu;0;6;6
-800302;2001;TICPE / produits énergétiques hors gaz et charbons;9;3;-6
 110210;2002;Impôt sur le revenu;114;120;6
 120114;2002;Impôt sur le revenu;351;345;-6
 320102;2002;Impôt sur les sociétés;44;50;6
@@ -3197,21 +3190,16 @@ numero;annee;impot;prevu;realise;ecart
 320135;2024;Impôt sur les sociétés;60;66;6
 740105;2024;Taxe sur la valeur ajoutée;85;79;-6
 050201;2024;Impôts locaux;35;29;-6
-120121;2001;Impôt sur le revenu;5;0;-5
-730215;2001;Taxe sur la valeur ajoutée;10;5;-5
 110225;2002;Impôt sur le revenu;15;10;-5
 120110;2002;Impôt sur le revenu;15;20;5
 160301;2002;Impôt sur le revenu;30;25;-5
 170104;2002;Impôt sur le revenu;35;30;-5
 170201;2002;Impôt sur le revenu;20;15;-5
-230405;2002;Impôt sur le revenu et impôt sur les sociétés;5;0;-5
 300302;2002;Impôt sur les sociétés;0;5;5
 710102;2002;Taxe sur la valeur ajoutée;125;130;5
-800204;2002;TICPE / produits énergétiques hors gaz et charbons;5;0;-5
 110107;2003;Impôt sur le revenu;35;30;-5
 110109;2003;Impôt sur le revenu;85;80;-5
 120111;2003;Impôt sur le revenu;185;180;-5
-120121;2003;Impôt sur le revenu;5;0;-5
 130206;2003;Impôt sur le revenu;15;20;5
 140102;2003;Impôt sur le revenu;585;580;-5
 140104;2003;Impôt sur le revenu;225;220;-5
@@ -3584,31 +3572,24 @@ numero;annee;impot;prevu;realise;ecart
 830101;2024;TICGN / gaz naturels;11;6;-5
 970104;2024;Autres droits;16;21;5
 050106;2024;Impôts locaux;121;126;5
-150512;2001;Impôt sur le revenu;4;8;4
-100102;2002;Impôt sur le revenu;6;10;4
-100108;2002;Impôt sur le revenu;1;5;4
+740102;2003;Taxe sur la valeur ajoutée;5.2;10;4.8
+120121;2001;Impôt sur le revenu;5;0.5;-4.5
 110223;2002;Impôt sur le revenu;24;20;-4
 110304;2002;Impôt sur le revenu;11;15;4
 120112;2002;Impôt sur le revenu;11;15;4
 140103;2002;Impôt sur le revenu;64;60;-4
-310201;2002;Impôt sur les sociétés;5;1;-4
-340104;2002;Impôt sur les sociétés;6;2;-4
 720206;2002;Taxe sur la valeur ajoutée;49;45;-4
 730204;2002;Taxe sur la valeur ajoutée;46;50;4
 730208;2002;Taxe sur la valeur ajoutée;44;40;-4
 800102;2002;TICPE / produits énergétiques hors gaz et charbons;64;60;-4
 800401;2002;TICPE / produits énergétiques hors gaz et charbons;61;65;4
-940103;2002;Autres droits;7;3;-4
-100105;2003;Impôt sur le revenu;6;2;-4
 110202;2003;Impôt sur le revenu;76;80;4
 140109;2003;Impôt sur le revenu;366;370;4
 160401;2003;Impôt sur le revenu;16;20;4
 170201;2003;Impôt sur le revenu;16;20;4
-410111;2003;Autres impôts directs;6;10;4
 730204;2003;Taxe sur la valeur ajoutée;44;40;-4
 730305;2003;Taxe sur la valeur ajoutée;204;200;-4
 740103;2003;Taxe sur la valeur ajoutée;1;5;4
-940103;2003;Autres droits;7;3;-4
 740102;2004;Taxe sur la valeur ajoutée;6;10;4
 530204;2005;Droits d'enregistrement et de timbre;5;1;-4
 100111;2006;Impôt sur le revenu;5;1;-4
@@ -3774,9 +3755,12 @@ numero;annee;impot;prevu;realise;ecart
 320145;2024;Impôt sur les sociétés;0;4;4
 430101;2024;Autres impôts directs;1;5;4
 800227;2024;TICPE / produits énergétiques hors gaz et charbons;4;0;-4
+410111;2003;Autres impôts directs;6.1;10;3.9
+800110;2001;TICPE / produits énergétiques hors gaz et charbons;4;0.5;-3.5
+520301;2003;Droits d'enregistrement et de timbre;41.6;45;3.4
+150512;2001;Impôt sur le revenu;4;0.8;-3.2
 110221;2001;Impôt sur le revenu;5;2;-3
 800206;2001;TICPE / produits énergétiques hors gaz et charbons;3;0;-3
-100105;2002;Impôt sur le revenu;6;3;-3
 120201;2002;Impôt sur le revenu;457;460;3
 190202;2002;Impôt sur le revenu;3;0;-3
 200302;2002;Impôt sur le revenu et impôt sur les sociétés;473;470;-3
@@ -3785,15 +3769,9 @@ numero;annee;impot;prevu;realise;ecart
 410203;2002;Autres impôts directs;17;20;3
 410204;2002;Autres impôts directs;43;40;-3
 420101;2002;Autres impôts directs;47;50;3
-740102;2002;Taxe sur la valeur ajoutée;3;6;3
-800104;2002;TICPE / produits énergétiques hors gaz et charbons;8;5;-3
 800105;2002;TICPE / produits énergétiques hors gaz et charbons;15;12;-3
 800107;2002;TICPE / produits énergétiques hors gaz et charbons;183;180;-3
-800203;2002;TICPE / produits énergétiques hors gaz et charbons;9;6;-3
-100202;2003;Impôt sur le revenu;8;5;-3
 110221;2003;Impôt sur le revenu;7;10;3
-120115;2003;Impôt sur le revenu;12;15;3
-120116;2003;Impôt sur le revenu;8;5;-3
 190202;2003;Impôt sur le revenu;3;0;-3
 400201;2003;Autres impôts directs;12;15;3
 500102;2003;Droits d'enregistrement et de timbre;2;5;3
@@ -4033,20 +4011,25 @@ numero;annee;impot;prevu;realise;ecart
 740103;2024;Taxe sur la valeur ajoutée;3;6;3
 990301;2024;Autres droits;5;2;-3
 040110;2024;Impôts locaux;4;1;-3
-310201;2001;Impôt sur les sociétés;3;5;2
+110221;2002;Impôt sur le revenu;2.3;5;2.7
+340104;2002;Impôt sur les sociétés;4.6;2;-2.6
+410111;2002;Autres impôts directs;7.6;5;-2.6
+310201;2001;Impôt sur les sociétés;3;0.5;-2.5
+740103;2002;Taxe sur la valeur ajoutée;1.5;4;2.5
+120115;2003;Impôt sur le revenu;12.5;15;2.5
+530206;2003;Droits d'enregistrement et de timbre;12.5;15;2.5
+100102;2002;Impôt sur le revenu;7.6;10;2.4
+120116;2003;Impôt sur le revenu;2.8;5;2.2
 800204;2001;TICPE / produits énergétiques hors gaz et charbons;2;0;-2
 110103;2002;Impôt sur le revenu;198;200;2
 110211;2002;Impôt sur le revenu;37;35;-2
 110216;2002;Impôt sur le revenu;58;60;2
-110221;2002;Impôt sur le revenu;3;5;2
 120117;2002;Impôt sur le revenu;518;520;2
 120125;2002;Impôt sur le revenu;12;10;-2
-120306;2002;Impôt sur le revenu;6;4;-2
 140306;2002;Impôt sur le revenu;3;5;2
 160302;2002;Impôt sur le revenu;3;5;2
 160401;2002;Impôt sur le revenu;17;15;-2
 170301;2002;Impôt sur le revenu;27;25;-2
-230403;2002;Impôt sur le revenu et impôt sur les sociétés;8;10;2
 230602;2002;Impôt sur le revenu et impôt sur les sociétés;183;185;2
 410109;2002;Autres impôts directs;23;25;2
 500102;2002;Droits d'enregistrement et de timbre;3;5;2
@@ -4061,12 +4044,9 @@ numero;annee;impot;prevu;realise;ecart
 170104;2003;Impôt sur le revenu;33;35;2
 170105;2003;Impôt sur le revenu;27;25;-2
 200212;2003;Impôt sur le revenu et impôt sur les sociétés;2;0;-2
-230405;2003;Impôt sur le revenu et impôt sur les sociétés;2;0;-2
-300302;2003;Impôt sur les sociétés;5;3;-2
 410103;2003;Autres impôts directs;67;65;-2
 410110;2003;Autres impôts directs;3;5;2
 730208;2003;Taxe sur la valeur ajoutée;42;40;-2
-730215;2003;Taxe sur la valeur ajoutée;5;3;-2
 100105;2004;Impôt sur le revenu;3;1;-2
 120116;2004;Impôt sur le revenu;3;5;2
 210105;2004;Impôt sur le revenu et impôt sur les sociétés;5;7;2
@@ -4389,43 +4369,31 @@ numero;annee;impot;prevu;realise;ecart
 990202;2024;Autres droits;19;21;2
 050101;2024;Impôts locaux;29;31;2
 060102;2024;Impôts locaux;103;101;-2
-310202;2001;Impôt sur les sociétés;0;1;1
-800110;2001;TICPE / produits énergétiques hors gaz et charbons;4;5;1
-100110;2002;Impôt sur le revenu;6;5;-1
-100202;2002;Impôt sur le revenu;6;5;-1
+100105;2002;Impôt sur le revenu;4.6;3;-1.6
+230405;2002;Impôt sur le revenu et impôt sur les sociétés;1.5;0;-1.5
+730215;2003;Taxe sur la valeur ajoutée;1.5;3;1.5
+800104;2002;TICPE / produits énergétiques hors gaz et charbons;3.8;5;1.2
+800203;2003;TICPE / produits énergétiques hors gaz et charbons;7.2;6;-1.2
+310202;2001;Impôt sur les sociétés;0;1.1;1.1
+100108;2002;Impôt sur le revenu;6.1;5;-1.1
 110202;2002;Impôt sur le revenu;76;75;-1
 110213;2002;Impôt sur le revenu;41;40;-1
-120121;2002;Impôt sur le revenu;0;1;1
 120305;2002;Impôt sur le revenu;91;90;-1
 130101;2002;Impôt sur le revenu;69;70;1
-320107;2002;Impôt sur les sociétés;6;5;-1
 400201;2002;Autres impôts directs;11;12;1
 410103;2002;Autres impôts directs;64;65;1
-410111;2002;Autres impôts directs;6;5;-1
-530204;2002;Droits d'enregistrement et de timbre;6;5;-1
 530206;2002;Droits d'enregistrement et de timbre;12;13;1
-730215;2002;Taxe sur la valeur ajoutée;1;2;1
-740103;2002;Taxe sur la valeur ajoutée;5;4;-1
-800110;2002;TICPE / produits énergétiques hors gaz et charbons;2;1;-1
-800302;2002;TICPE / produits énergétiques hors gaz et charbons;1;2;1
-800402;2002;TICPE / produits énergétiques hors gaz et charbons;0;1;1
 100102;2003;Impôt sur le revenu;9;10;1
 100110;2003;Impôt sur le revenu;6;5;-1
-110304;2003;Impôt sur le revenu;14;15;1
 130101;2003;Impôt sur le revenu;46;45;-1
 140306;2003;Impôt sur le revenu;6;5;-1
-210105;2003;Impôt sur le revenu et impôt sur les sociétés;4;5;1
 310201;2003;Impôt sur les sociétés;0;1;1
-320107;2003;Impôt sur les sociétés;6;5;-1
 320111;2003;Impôt sur les sociétés;1;0;-1
 400108;2003;Autres impôts directs;34;35;1
 410104;2003;Autres impôts directs;146;145;-1
 530204;2003;Droits d'enregistrement et de timbre;4;5;1
 710104;2003;Taxe sur la valeur ajoutée;89;90;1
 730206;2003;Taxe sur la valeur ajoutée;31;30;-1
-800104;2003;TICPE / produits énergétiques hors gaz et charbons;4;5;1
-800203;2003;TICPE / produits énergétiques hors gaz et charbons;7;6;-1
-800302;2003;TICPE / produits énergétiques hors gaz et charbons;3;2;-1
 110226;2004;Impôt sur le revenu;2;1;-1
 120306;2004;Impôt sur le revenu;4;5;1
 150512;2004;Impôt sur le revenu;1;2;1
@@ -5093,6 +5061,43 @@ numero;annee;impot;prevu;realise;ecart
 060203;2024;Impôts locaux;7;8;1
 090104;2024;Impôts locaux;7;8;1
 090108;2024;Impôts locaux;20;21;1
+240101;2002;Impôt sur le revenu et impôt sur les sociétés;9.1;10;0.9
+800203;2002;TICPE / produits énergétiques hors gaz et charbons;6.9;6;-0.9
+210105;2003;Impôt sur le revenu et impôt sur les sociétés;4.1;5;0.9
+800402;2001;TICPE / produits énergétiques hors gaz et charbons;0;0.8;0.8
+200212;2002;Impôt sur le revenu et impôt sur les sociétés;0.8;0;-0.8
+800110;2002;TICPE / produits énergétiques hors gaz et charbons;0.2;1;0.8
+110304;2003;Impôt sur le revenu;14.2;15;0.8
+800402;2003;TICPE / produits énergétiques hors gaz et charbons;1.2;2;0.8
+120116;2002;Impôt sur le revenu;2.3;3;0.7
+740102;2002;Taxe sur la valeur ajoutée;5.3;6;0.7
+800402;2002;TICPE / produits énergétiques hors gaz et charbons;0.3;1;0.7
+800302;2003;TICPE / produits énergétiques hors gaz et charbons;1.3;2;0.7
+120306;2002;Impôt sur le revenu;4.6;4;-0.6
+800302;2002;TICPE / produits énergétiques hors gaz et charbons;1.4;2;0.6
+100105;2003;Impôt sur le revenu;2.6;2;-0.6
+200214;2003;Impôt sur le revenu et impôt sur les sociétés;5.6;5;-0.6
+800104;2003;TICPE / produits énergétiques hors gaz et charbons;4.4;5;0.6
+150512;2002;Impôt sur le revenu;1.5;1;-0.5
+310201;2002;Impôt sur les sociétés;0.5;1;0.5
+730215;2002;Taxe sur la valeur ajoutée;1.5;2;0.5
+800204;2002;TICPE / produits énergétiques hors gaz et charbons;0.5;0;-0.5
+120121;2003;Impôt sur le revenu;0.5;0;-0.5
+300302;2003;Impôt sur les sociétés;3.5;3;-0.5
+800110;2003;TICPE / produits énergétiques hors gaz et charbons;0.5;0;-0.5
+100110;2002;Impôt sur le revenu;4.6;5;0.4
+100202;2002;Impôt sur le revenu;4.6;5;0.4
+320107;2002;Impôt sur les sociétés;4.6;5;0.4
+530204;2002;Droits d'enregistrement et de timbre;4.6;5;0.4
+320107;2003;Impôt sur les sociétés;4.6;5;0.4
+940103;2002;Autres droits;2.7;3;0.3
+940103;2003;Autres droits;2.7;3;0.3
+120121;2002;Impôt sur le revenu;0.8;1;0.2
+100202;2003;Impôt sur le revenu;4.8;5;0.2
+150512;2003;Impôt sur le revenu;0.8;1;0.2
+230405;2003;Impôt sur le revenu et impôt sur les sociétés;0.2;0;-0.2
+940101;2002;Autres droits;9.1;9;-0.1
+940101;2003;Autres droits;9.1;9;-0.1
 110303;2001;Impôt sur le revenu;0;0;0
 120104;2001;Impôt sur le revenu;0;0;0
 140304;2001;Impôt sur le revenu;0;0;0
@@ -5115,12 +5120,10 @@ numero;annee;impot;prevu;realise;ecart
 110303;2002;Impôt sur le revenu;0;0;0
 120104;2002;Impôt sur le revenu;0;0;0
 120115;2002;Impôt sur le revenu;15;15;0
-120116;2002;Impôt sur le revenu;3;3;0
 130202;2002;Impôt sur le revenu;15;15;0
 140106;2002;Impôt sur le revenu;35;35;0
 140304;2002;Impôt sur le revenu;0;0;0
 150403;2002;Impôt sur le revenu;0;0;0
-150512;2002;Impôt sur le revenu;1;1;0
 230302;2002;Impôt sur le revenu et impôt sur les sociétés;0;0;0
 300108;2002;Impôt sur les sociétés;30;30;0
 400108;2002;Autres impôts directs;30;30;0
@@ -5144,7 +5147,6 @@ numero;annee;impot;prevu;realise;ecart
 140304;2003;Impôt sur le revenu;0;0;0
 150403;2003;Impôt sur le revenu;0;0;0
 180303;2003;Impôt sur le revenu;75;75;0
-200214;2003;Impôt sur le revenu et impôt sur les sociétés;5;5;0
 210101;2003;Impôt sur le revenu et impôt sur les sociétés;0;0;0
 230302;2003;Impôt sur le revenu et impôt sur les sociétés;0;0;0
 240101;2003;Impôt sur le revenu et impôt sur les sociétés;10;10;0
@@ -5168,10 +5170,8 @@ numero;annee;impot;prevu;realise;ecart
 700104;2003;Taxe sur la valeur ajoutée;0;0;0
 720103;2003;Taxe sur la valeur ajoutée;0;0;0
 720206;2003;Taxe sur la valeur ajoutée;45;45;0
-800110;2003;TICPE / produits énergétiques hors gaz et charbons;0;0;0
 800204;2003;TICPE / produits énergétiques hors gaz et charbons;0;0;0
 800206;2003;TICPE / produits énergétiques hors gaz et charbons;0;0;0
-800402;2003;TICPE / produits énergétiques hors gaz et charbons;2;2;0
 100102;2004;Impôt sur le revenu;10;10;0
 100106;2004;Impôt sur le revenu;20;20;0
 100108;2004;Impôt sur le revenu;5;5;0

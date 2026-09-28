@@ -91,7 +91,14 @@ _ESP = re.compile('[' + ESPACES + ']')
 #: surnuméraire que l'appariement par colonne servait à l'année voisine. La
 #: séparation d'avec « 24  34 » reste assurée par les espaces multiples, que le
 #: séparateur de milliers n'emploie jamais.
-_GROUPE = r'\d+(?:[' + ESPACES + r']\d{3})*'
+#:
+#: Le régime A imprime enfin les petits montants avec une décimale, à la
+#: française (« 7,6 », « 88,6 ») — aux PLF 2002 et 2003, et une fois au PLF 2004.
+#: Sans la partie décimale, le motif lisait « 7 » puis « 6 » : deux jetons là où
+#: il n'y en a qu'un, que l'appariement par colonne répartissait entre années
+#: voisines (« 7,6 · 7,6 · 7,6 » devenait « 6 · 7 · 6 »). La virgule n'apparaît
+#: jamais entre deux colonnes, qui sont séparées par des espaces.
+_GROUPE = r'\d+(?:[' + ESPACES + r']\d{3})*(?:,\d+)?'
 #: Le « sans objet » s'écrit « - » dans les régimes B et C, mais « _ » dans le
 #: régime A — un caractère que la couche texte du PDF restitue tel quel. Non
 #: reconnu, il ne produisait aucun jeton : la ligne rendait moins de valeurs que
@@ -109,6 +116,9 @@ def normalise_montant(brut: str | None):
       - `-`    : mesure sans objet cette année-là (créée ou éteinte)
       - `_`    : le même, tel que l'imprime le régime A (PLF 2001-2008)
       - vide   : cellule non renseignée
+
+    Le montant est un entier, sauf quand le document imprime une décimale
+    (« 7,6 », régime A) : il est alors rendu en flottant.
     """
     if brut is None:
         return None, 'absent'
@@ -121,10 +131,27 @@ def normalise_montant(brut: str | None):
         return 0, 'epsilon'
     if s in ('-', '_'):
         return None, 'sans_objet'
-    m = re.fullmatch(r'(-?)(\d+)', s)
+    m = re.fullmatch(r'-?\d+', s)
     if m:
-        return int(m.group(1) + m.group(2)), 'chiffre'
+        return int(s), 'chiffre'
+    m = re.fullmatch(r'-?\d+,\d+', s)
+    if m:
+        return float(s.replace(',', '.')), 'chiffre'
     return None, 'illisible:' + s[:20]
+
+
+def arrondi(x):
+    """Somme ou écart de montants, débarrassé du bruit de la virgule flottante.
+
+    Les montants sont entiers sauf au régime A, qui imprime une décimale : une
+    somme de décimaux doit se relire « 30215.6 » et non « 30215.600000000002 »,
+    et une somme entière rester un entier pour que les millésimes sans décimale
+    s'écrivent à l'identique.
+    """
+    if x is None or isinstance(x, int):
+        return x
+    x = round(x, 1)
+    return int(x) if x.is_integer() else x
 
 
 def colonnes(ligne: str, motif: re.Pattern) -> list[tuple[float, str]]:

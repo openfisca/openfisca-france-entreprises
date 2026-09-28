@@ -154,7 +154,7 @@ def main(argv=None):
             for c in sorted(gros, key=lambda c: -abs(c['ecart']))[:20]:
                 print(f"  ! PLF{c['plf']} impôt {c['impot']} {c['annee']} : "
                       f"extrait {c['extrait']} vs publié {c['publie']} "
-                      f"({c['ecart']:+d} M€, {c['n_nc']} nc / {c['n_mesures']} mesures)")
+                      f"({c['ecart']:+} M€, {c['n_nc']} nc / {c['n_mesures']} mesures)")
 
         rev = controles.revisions(fiches)
         print(f"\nRévisions prévision initiale -> réalisation : {len(rev)} couples chiffrés")

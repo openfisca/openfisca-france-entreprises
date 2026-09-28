@@ -30,8 +30,8 @@ from __future__ import annotations
 import re
 import unicodedata
 
-from .commun import (DEPENSE_FISCALE, RE_MONTANT, apparie_par_colonne, colonnes,
-                     normalise_montant)
+from .commun import (DEPENSE_FISCALE, RE_MONTANT, apparie_par_colonne, arrondi,
+                     colonnes, normalise_montant)
 
 ENTETE = re.compile(r'Co[ûu]t\s+(\d{4}).*?Co[ûu]t\s+(\d{4})', re.S)
 RE_ANNEE = re.compile(r'\b(19|20)\d{2}\b')
@@ -139,9 +139,9 @@ def recoupement(fiches: list[dict], publie: dict[tuple[str, int], int], plf: int
         # le poste 1 (IR) ne doit pas absorber le poste 2 (IR et IS) : les
         # préfixes sont exclusifs sur le premier chiffre, ce que garantit le
         # plan de numérotation du document.
-        somme = sum(f['montant'] for f in lot if f['chiffrage'] == 'chiffre')
+        somme = arrondi(sum(f['montant'] for f in lot if f['chiffrage'] == 'chiffre'))
         out.append(dict(plf=plf, impot=prefixe, annee=annee, publie=total, extrait=somme,
-                        ecart=somme - total, n_mesures=len(lot),
+                        ecart=arrondi(somme - total), n_mesures=len(lot),
                         n_nc=sum(1 for f in lot if f['chiffrage'] == 'nc'),
                         n_epsilon=sum(1 for f in lot if f['chiffrage'] == 'epsilon')))
     return out
