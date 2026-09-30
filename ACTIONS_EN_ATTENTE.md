@@ -1,134 +1,110 @@
-# Actions en attente — synchronisation énergies
+# Actions en attente
 
-> État arrêté au **2026-08-12**. Ce fichier liste ce qui **ne peut pas être fait depuis l'agent** :
-> actions nécessitant un outil absent, un autre dépôt, ou une décision humaine. Le suivi technique
-> reste dans `SYNC_ENERGIES_REPORT.md` (bloc de reprise en tête) et
-> `ARBITRAGES_JURIDIQUES_ENERGIES.md`.
+> État au **2026-09-30**. Ce fichier est la seule liste tenue à jour de ce qui reste à faire sur le
+> chantier énergies. Les confrontations aux données réelles ont chacune leur document :
+> `AGREGATS_TIC.md` (déclarations 2040-TIC), `ELFE.md` et `VMT2.md` sur leurs branches respectives.
+>
+> Les anciens `SYNC_ENERGIES_REPORT.md` (journal de synchronisation avec le barème, juillet-août
+> 2026) et `ARBITRAGES_JURIDIQUES_ENERGIES.md` (huit arbitrages, tous tranchés, un seul resté sans
+> application : anomalie n° 2) ont été retirés. Leur contenu est clos, et consultable dans
+> l'historique git (`git show 5297c30:<fichier>`).
 
-## Branches — au 2026-08-12
+## Branches
 
-`main` (`b3cfa50`) est le tronc. `feat/periodes-mensuelles` porte 9 commits au-dessus, **205 tests
-verts**, rebasée sur `main` et *fast-forwardable* : c'est le travail énergies à fusionner.
+`main` est en 1.1.7 (PR #31 fusionnée le 2026-08-17).
 
-| branche | état vs `main` | action |
-|---|---|---|
-| `feat/periodes-mensuelles` | 9 commits, verte | **ouvrir la PR** — cf. §1 |
-| `origin/add_parameters` | ⊂ `main` | **à supprimer** |
-| `origin/fix/regions-post-2016` | ⊂ `main` | **à supprimer** |
-| `origin/align/energies-tree` | superseded (rien d'unique) | **à supprimer** |
-| `origin/refactor/energies-periodes-mensuelles` | superseded — son intention a été **ré-appliquée** sur `main`, cf. §1 | **à supprimer** |
-| `origin/Implementation-SEQE` | commits uniques | chantier distinct |
-| `origin/assets/agregats-tic` | commits uniques | chantier distinct |
-| `origin/assets/elfe-cgdd` | commits uniques | chantier distinct |
+| branche | vs `main` | état | action |
+|---|---|---|---|
+| `assets/agregats-tic` | +26 | **PR #32**, 2.0.0, CI verte, sans revue depuis le 2026-08-17 | faire revoir et fusionner (*merge commit*, pas *squash* : les messages portent la provenance juridique) |
+| `assets/elfe-cgdd` | +8 / −13 | poussée, sans PR | rattraper `main` après #32 |
+| `assets/vmt2-depenses-fiscales` | +7 / −13 | poussée, sans PR | idem |
+| `origin/Implementation-SEQE` | +8 / −66 | chantier d'Arthur Bidel, arrêté le 2026-07-22 | à coordonner : il embarque un ancien commit d'agrégats (`b6203bb`) |
+| `origin/refactor/energies-periodes-mensuelles` | +9 / −44 | superseded, son intention a été ré-appliquée | **à supprimer** |
+| `feat/periodes-mensuelles` (locale) | amont supprimé | fusionnée | **à supprimer** |
 
-Branches locales périmées (⊂ `main`, fusionnées par les PR #28, #29 et #30) : `chore/hygiene-symlink`,
-`docs/arbitrages-energies`, `feat/tarif-moyen-annuel`.
+## Côté barème
 
-## État côté barème
+Contre `master` `fe2cdff89` : 397 chemins communs, **0 écart de valeur**, 45 fichiers qui ne
+diffèrent que par les métadonnées (nettoyage Unicode du 2026-09-21). Miroir trivial, en conservant
+les deux `electricite/tcfe/*/coefficient.yaml`, propres à OF-E. Les MR !659, !660 et !661 sont
+fusionnées.
 
-| MR IPP | objet | état |
-|---|---|---|
-| !659 | GNR : clôture au 2022-01-01 et non au 2021-07-01 | **fusionnée** |
-| !660 | TICC : création au 2007-07-01, référence à l'article 36 III | **ouverte** |
-| !661 | Hygiène de métadonnées : unités, ids, descriptions, références | **ouverte** |
+Branches du barème qui **déplaceront des chiffres** ici une fois fusionnées :
 
-⚠️ Les paramètres d'OF-E reprennent déjà le contenu de !660 et !661. **La convergence annoncée
-(321 chemins communs identiques octet pour octet) suppose que ces deux MR soient fusionnées.** Si la
-revue les amende, OF-E demande un commit de suivi. Le point le plus exposé est le renommage de deux
-`ipp_csv_id` dans !661, qui change deux noms de séries à l'export CSV / DBnomics.
+- `bouclier_tarifs_reduits` — le bouclier couvrait aussi les tarifs réduits (L. 312-48, L. 312-64,
+  L. 312-65). Aucune MR ouverte. Effet attendu sur les agrégats : voir la suite n° 1 d'`AGREGATS_TIC.md`.
+- La pile `energies_accise_*` — tarifs datés dans le futur (accise 2026-08, GNR 2027-2030,
+  électricité 2027-02).
 
----
+Corrections à faire remonter au barème, puis à reprendre ici :
 
-## 🔧 Impossibles depuis l'agent (outillage)
+- **Réfaction corse, SP95-E10** : l'indice 11 ter n'entre dans la réfaction qu'au **2019-07-01**
+  (LEGIARTI000037988891), les deux dépôts le datent du 2019-01-01.
+- **`coefficients_conversion/*`** datés du 2023-01-01, alors que la TIRUERT les lit depuis 2019 : OF-E
+  se replie explicitement sur la première valeur.
+- **Intervention des véhicules d'incendie et de secours** : voir l'anomalie n° 2 ci-dessous. Sa
+  `documentation`, identique dans les deux dépôts, renvoie encore à `SYNC_ENERGIES_REPORT.md`.
 
-1. **Ouvrir la PR de `feat/periodes-mensuelles` vers `main`.** `gh` n'est pas installé ; l'URL est
-   imprimée par GitHub au push. **Ne pas écraser les commits** (*merge commit*, pas *squash*) : les
-   neuf messages portent le raisonnement juridique de chaque arbitrage, ses sources et les chiffres
-   déplacés. C'est la provenance de tout l'exercice.
-   À signaler dans le corps de la PR : le message du premier commit (`1eec057`) porte encore
-   « NE PAS FUSIONNER EN L'ÉTAT — la suite de tests est rouge » et « branche locale, non poussée ».
-   Les deux sont **périmés** depuis huit commits ; les réécrire imposerait un nouveau *force-push*.
+## 🐛 Défauts du modèle, non corrigés
 
-2. **Ouvrir l'issue OF-E** sur les chiffres publiés déplacés. Deux ensembles :
-   - **Majorations régionales** (commit `8eb5cfb`) — divergences barème/OF adoptées :
-     super `{rhone_alpes 2010, limousin 2010, poitou_charentes 2010/2014/2015}` ;
-     gazole `{rhone_alpes 2010, limousin 2010, corse 2010/2014-16, poitou_charentes 2010/2014/2015}`.
-     Plusieurs sont probablement des artefacts de grille de dates : à vérifier sur Légifrance.
-   - **Moyenne mensuelle des tarifs** — le tableau complet, avec décomposition de chaque écart, est
-     en §B du bloc de reprise de `SYNC_ENERGIES_REPORT.md` : CSPE 2012 (9 000 → 9 750),
-     `taxe_electricite` 2012 (18 090 → 18 840), TICPE 2020 (1 037 420 → 1 022 571,6875),
-     TICC 2007 (1 190 → 595), CSPE 2011 (8,125 → 8,25, non testée).
-
-3. **Régénérer les identifiants PISTE de `legisdata`.** Ils renvoient `invalid_client` : l'API
-   Légifrance est inutilisable en l'état. Le cache `sources/legifrance/265_*.md` qu'invoque le §5 des
-   arbitrages n'est pas non plus dans le dépôt. **Aucune décision énergies n'est donc reproductible
-   depuis les sources primaires via legisdata** ; les vérifications du 2026-08-12 ont été faites sur
-   les versions consolidées de Légifrance en direct.
-
----
+1. **Le modèle ne tourne pas à plus d'un établissement.** `if` et `max` Python appliqués à des
+   tableaux dans `variables_economiques.py` (l. 29, 48, 70, 98) et dans `taxation_gaz_naturel.py`
+   (`assiette_ticgn`). Tous les tests étant mono-établissement, la suite ne le voit pas. Bloquant
+   pour toute simulation sur données d'entreprises. Ajouter un test à plusieurs établissements
+   hétérogènes avant de corriger.
+2. **Intervention des véhicules d'incendie et de secours : l'arbitrage n'est pas appliqué.** Il a
+   été tranché au **2023-07-12** (art. 50 de la loi 2023-580 ; décret 2024-241 art. 5), mais le
+   paramètre ouvre toujours à zéro au 2022-01-01, dans les deux dépôts. Le modèle exonère donc
+   2022 et le premier semestre 2023 au lieu d'appliquer le tarif normal.
+3. **`risque_de_fuite_carbone_eta`** n'applique que la liste 2019/708 (2021-2030) et vaut `False`
+   avant 2019 : la liste 2015-2020 manque.
+4. **Bouclier tarifaire, traitement mensuel inachevé.** 2022, 2023 et 2025 lisent un instant forcé
+   et proratisent à la main (`Instant((2022, 2, 1))`, `/12`, `*11/12`). Seul 2024 est scindé
+   (constat n° 10 d'`AGREGATS_TIC.md`).
+5. **Paramètres en dur dans les formules** : issue #17.
 
 ## ⚖️ Décisions humaines
 
-4. **Arbitrage §7 — PCS/PCI (facteur 1,11)** : le gaz est taxé `conso × taux × 1,11` avant 2022 et
-   sans conversion après, d'où une discontinuité. Préexistant, signalé par `***faut vérrifier`.
+6. **Comment OF-E consomme le barème.** Démontré le 2026-08-12 : remplacer l'arbre d'OF-E par celui
+   du barème fait passer toute la suite, **à condition** d'y ajouter les deux fichiers de
+   coefficients TCFE, que le barème range hors de `parameters/` (dans `donnees_locales_tcfe/`).
+   Contraintes : deux sources et non une ; pas de lien symbolique (Windows) ; une version épinglée
+   et relevée délibérément. Mécanismes en lice : sous-module git, dépendance versionnée, paquet
+   `openfisca_baremes_ipp`, ou **greffe dans le code** — `__init__.py` charge l'arbre du barème et le
+   rattache comme nœud `energies`, avec les deux fichiers TCFE. La greffe règle à la fois la question
+   des deux sources et celle des liens symboliques. L'écart actuel, réduit aux métadonnées, en fait
+   le bon moment.
+7. **Choix de modélisation du gaz à confirmer** : le double usage passe par `gaz_matiere_premiere`
+   OU `gaz_huiles_minerales`, avec un seuil de 800 Wh/€ de VA pour la grande consommatrice ; et
+   `taxe_interieure_consommation_gaz_naturel_grande_consommatrice` pointe `taux_reduit_seqe` depuis
+   2022.
+8. **Les sept tarifs de `autres_produits_energetiques/accise/taux_selon_activite/`** n'ont ni
+   `ipp_csv_id` ni référence : il faut un choix de nommage et un travail de sourçage.
+9. **`Implementation-SEQE`** : rebaser, reprendre ou abandonner, avec Arthur Bidel.
 
-5. **Confirmer les choix de modélisation** listés en fin de doc d'arbitrages : rétablissements du
-   chemin gaz (`gaz_matiere_premiere` OU `gaz_huiles_minerales` ; seuil 800 Wh/€ VA),
-   `taxe_interieure_consommation_gaz_naturel_grande_consommatrice` pointant désormais
-   `taux_reduit_seqe`, et suppression éventuelle de `seuil_facture_energie_par_va` (0,6744) — non
-   sourcé et **confirmé lu par aucune formule** (il ne subsiste que dans un commentaire).
+## 🔧 Hors de portée de l'agent
 
-6. **Compléter les sept tarifs de `taux_selon_activite/`.** Ils étaient des ébauches sans description
-   ni `metadata` ; !661 leur donne description et unité, mais il leur manque un `ipp_csv_id` — un
-   choix de nommage — et une référence — un travail de sourçage.
+10. **Ouvrir l'issue sur les chiffres publiés déplacés** par la moyenne mensuelle (mesurés le
+    2026-08-12, avant la bascule en périodes mensuelles de la 2.0.0, qui a pu les déplacer à nouveau) :
 
-7. **Quatre descriptions vides restantes au barème**, hors périmètre de !661 :
-   `minoration_corse` et les trois `categorie_fiscale_*`. Ces derniers placent en outre `reference`
-   et `unit` **au niveau racine et non sous `metadata`**, si bien que leur unité n'est pas là où un
-   consommateur la cherche ; l'un porte un commentaire `#cette parametre est pas utilisée`.
+    | série | avant | après | cause |
+    |---|---|---|---|
+    | CSPE 2012 (assiette 1 000) | 9 000 | 9 750 | 9 €/MWh jusqu'au 30 juin, 10,5 ensuite |
+    | `taxe_electricite` 2012 | 18 090 | 18 840 | idem, par report |
+    | TICPE 2020 | 1 037 420 | 1 022 571,6875 | GPL +7,215 ; émulsions −5,165 et −18,470 ; gazole sous conditions +1,5717 |
+    | TICC 2007 | 1 190 | 595 | taxe créée au 1er juillet |
+    | CSPE 2011 (non testée) | 8,125 | 8,25 | date au 2011-07-01 et non au 2011-07-31 |
 
----
+11. **Fermer l'issue #4** (PCS/PCI), tranchée le 2026-08-13 : constat n° 9 d'`AGREGATS_TIC.md`.
 
-## 🐛 Anomalies relevées, non corrigées
+## ✅ Clos depuis le 2026-08-12
 
-8. **Codes département incohérents — bug latent.** Certaines formules utilisent `"2A"`/`"2B"`,
-   d'autres `"02A"`/`"02B"`. La Corse peut tomber silencieusement sur `default=0` selon la façon dont
-   `departement` est renseigné. Rencontré deux fois pendant les vérifications. Mérite une issue.
-
-9. **`variables_economiques.py` non formaté** (échoue `ruff format --check`, vérifié le 2026-08-12).
-   **Préexistant**, hors périmètre de ces travaux, mais fera échouer la CI si ce contrôle est appliqué.
-
----
-
-## 📋 Reporté volontairement
-
-10. **Item 6 — comment OF-E consomme le barème.** Sous-module git, dépendance versionnée, ou paquet
-    `.openfisca/openfisca_baremes_ipp`. **Note de décision complète en §C du bloc de reprise de
-    `SYNC_ENERGIES_REPORT.md`** : ce qui est démontré par l'expérience de bascule, les trois
-    contraintes (deux sources et non une, liens symboliques pénibles sous Windows, nécessité
-    d'épingler une version) et les trois mécanismes comparés. Sa propre branche + PR.
-
-11. **Bouclier tarifaire** — traitement mensuel propre à faire. Il proratise aujourd'hui à la main
-    (`Instant((2022, 2, 1))`, `/12`, `*11/12`) et encode un **basculement de régime**, pas un
-    changement de tarif : la moyenne de tarif y serait fausse.
-
----
-
-## ✅ Clos depuis le 2026-07-31
-
-- **Rapatriement de `refactor/energies-periodes-mensuelles`** — fait par ré-application sur l'arbre
-  de `main` : helper `tarif_moyen_annuel` porté, 230 lectures enveloppées, arbitrages §2 et §5 posés.
-- **Arbitrage §2** (TICGN au 2014-04-01), **§3** (manutention portuaire) et **§5** (abrogations
-  TICPE) — implémentés, avec repli sur le tarif normal là où une ligne de tarif réduit disparaît
-  sans successeur.
-- **§1** (date de création de la TICC) — tranché au 2007-07-01, porté des deux côtés.
-- **Défauts de métadonnées du barème** (ancien point 8) — traités par !661. La lacune supposée des
-  six `ipp_csv_id` de GPL combustible **n'existait pas** : le sous-arbre n'en comptait qu'une, sur
-  `tccfe_coef_max`.
-- **Lacune de couverture supposée** (ancien point 9) :
-  `gaz_de_petrole_liquefies_combustible_travaux_agricoles` (0,712) **est présent** au barème.
-- **Propositions barème sécurisées** (`_propositions_regions_post_2016/`,
-  `_propositions_refaction_corse/`) — intégrées : réfaction corse et régions post-2016 sont sur
-  `master` du barème.
-- **Dépendance d'enchaînement sur `sync/energies-no-regret`** — sans objet, la branche n'existe plus
-  et `tarif_moyen_annuel` est sur `main`.
+- PR #31 (périodes mensuelles) fusionnée ; MR barème !660 et !661 fusionnées.
+- Identifiants PISTE de `legisdata` rétablis : les arbitrages se vérifient de nouveau au texte.
+- PCS/PCI : facteur 1,11 retiré (constat n° 9).
+- Codes département : les sept sites acceptent `2A`/`2B` et `02A`/`02B`.
+- `variables_economiques.py` formaté, la CI passe.
+- `seuil_facture_energie_par_va` (0,6744) est sourcé (article L. 312-62 du CIBS) et conservé.
+- Descriptions des trois `categorie_fiscale_*` remplies.
+- Majorations régionales, TIRUERT (tarif en €/hL, assiette en volume) et réfaction corse (close au
+  2022-01-01, article 265 quinquies) : convergés avec le barème le 2026-08-16.

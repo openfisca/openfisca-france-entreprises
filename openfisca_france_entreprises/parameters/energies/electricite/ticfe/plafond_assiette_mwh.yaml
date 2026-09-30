@@ -1,6 +1,10 @@
-description: Plafond d'assiette (MWh) au-delà duquel le taux « centre de stockage de données » s'applique (1 GWh)
-reference: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603711"
-unit: "MWh"
+description: Fraction annuelle de consommation (MWh) au-delà de laquelle un centre de stockage de données numériques bénéficie du tarif réduit de TICFE
 values:
   2019-01-01:
     value: 1000
+metadata:
+  unit: MWh
+  reference:
+    2019-01-01:
+      title: Article 266 quinquies C du code des douanes
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037988902

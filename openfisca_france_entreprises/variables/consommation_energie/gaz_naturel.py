@@ -1,6 +1,6 @@
 """Variables and formulas for this module."""
 
-from openfisca_core.model_api import YEAR, Variable
+from openfisca_core.model_api import MONTH, YEAR, Variable, set_input_divide_by_period
 
 from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.naf import naf
@@ -14,7 +14,8 @@ class consommation_gaz_naturel(Variable):
     unit = "MWh"
     entity = Etablissement
     label = "Natural gas consumption of the etablissement"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_1986_01_01(etablissement, period):
         return etablissement("consommation_gaz_combustible", period)
@@ -37,7 +38,8 @@ class consommation_gaz_combustible(Variable):
     unit = "MWh"
     entity = Etablissement
     label = "Usages du gaz naturel comme combustible"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_gaz_carburant(Variable):
@@ -49,7 +51,8 @@ class consommation_gaz_carburant(Variable):
     entity = Etablissement
     label = "consommation en consommation_gaz_carburant. Enlevé de taxation_produit petrolier (nom de"
     reference = " https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006071570/LEGISCTA000006122062/1993-01-01/?anchor=LEGIARTI000006615168#LEGIARTI000006615168"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class gaz_matiere_premiere(Variable):
@@ -133,7 +136,8 @@ class consommation_gaz_chauffage_habitation(Variable):
     entity = Etablissement
     label = "La consommation de gaz naturel en chauffage d'habitation de l'etablissement"
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_gaz_production_electricite(Variable):
@@ -145,7 +149,8 @@ class consommation_gaz_production_electricite(Variable):
     entity = Etablissement
     label = "La consommation de gaz naturel en production d'électricité de l'etablissement"
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615172/2006-12-31/"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 # # class consommation_gaz_beneficier_tarif_achat_2000_108(Variable):
@@ -167,7 +172,8 @@ class consommation_gaz_electricite_petits_producteurs(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023216090/2011-01-01/"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_gaz_fabrication_soi(Variable):
@@ -177,7 +183,8 @@ class consommation_gaz_fabrication_soi(Variable):
     entity = Etablissement
     label = "La consommation de gaz naturel dans l'enceinte des établissements de production de produits énergétiques"
     reference = "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006071570/LEGISCTA000006122062/2008-01-01/?anchor=LEGIARTI000018036100#LEGIARTI000018036100:~:text=III.%2DLa%20consommation,%C3%A0%20leur%20fabrication."
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 #
@@ -283,7 +290,8 @@ class consommation_gaz_particuliers(Variable):
     entity = Etablissement
     label = "La consommation de gaz naturel par des particuliers"
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018036078/2008-04-01/"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 # class consommation_gaz_autorites_regionales(Variable):
@@ -337,7 +345,8 @@ class consommation_gaz_cogeneration(Variable):
     unit = "MWh"
     entity = Etablissement
     label = "qualification à l'Article 266 quinquies A"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615174/1999-12-31"
 
 
@@ -347,7 +356,8 @@ class consommation_gaz_nc_4401_4402(Variable):
     unit = "MWh"
     entity = Etablissement
     label = "exonerées selon l'Article 265 C"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006071570/LEGISCTA000006122062/#LEGISCTA000006122062:~:text=%C2%B0%20Lorsqu%27il%20s%27agit%20de%20produits%20repris%20aux%20codes%20NC%204401%20et%204402%20de%20la%20nomenclature%20douani%C3%A8re%20%3B"
 
 
@@ -365,7 +375,8 @@ class consommation_gaz_nc_2705(Variable):
     unit = "MWh"
     entity = Etablissement
     label = "exonerées selon l'Article 266 qq"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/, https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615107/2006-12-27"
 
 
@@ -382,7 +393,8 @@ class consommation_gaz_nc_2711_29(Variable):
     unit = "MWh"
     entity = Etablissement
     label = "exonerées selon l'Article 266 qq"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615168/1992-12-31/, https://www.edouane.com/wp-content/uploads/2019/07/7312.pdf"
 
 

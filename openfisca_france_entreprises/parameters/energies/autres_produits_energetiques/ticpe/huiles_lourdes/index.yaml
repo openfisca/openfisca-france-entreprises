@@ -1,0 +1,7 @@
+description: Huiles lourdes
+metadata:
+  short_label: TICPE
+  label_en: TICPE - Energy products, heavy oils
+  order:
+  - gazole
+  - fioul

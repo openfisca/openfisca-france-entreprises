@@ -1,5 +1,6 @@
 description: Tarifs réduits de l'accise sur les énergies (exonérations sectorielles) définis « à plat »
 metadata:
+  label_en: Reduced energy excise duty rates set as flat amounts (sectoral exemptions)
   order:
   - navigation_interieure
   - navigation_maritime

@@ -1,0 +1,12 @@
+description: Huiles légères
+metadata:
+  short_label: TICPE
+  label_en: TICPE - Energy products, light oils
+  order:
+  - carbureacteurs_essence
+  - essence_aviation
+  - super
+  - essence_normale
+  - essences_speciales
+  - white_spirit_combustible
+  - autres_huiles_legeres

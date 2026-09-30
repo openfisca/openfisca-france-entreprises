@@ -1,5 +1,22 @@
-description: Sous L312-60/62
+description: Niveau minimal d'intensité énergétique en valeur ajoutée ouvrant droit au tarif réduit d'accise sur les gaz naturels consommés pour la déshydratation des légumes et plantes aromatiques
 values:
   2019-01-01:
     value: 0.6744
-#Facture_energie/valeur_ajoutee
+metadata:
+  unit: percent
+  reference:
+    2019-01-01:
+      title: Article L. 312-62 du code des impositions sur les biens et services
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051200591
+documentation: |-
+  L'article retient les entreprises « dont le niveau d'intensité énergétique en valeur ajoutée,
+  apprécié sur ces seules consommations, est au moins égal à 0,6744 % ». Ce niveau est le rapport
+  entre la facture d'énergie et la valeur ajoutée.
+
+  Ce seuil prolonge sans le modifier le critère que l'article 266 quinquies du code des douanes
+  appliquait avant 2022, porté par seuil_conso_par_va_legumes : 800 wattheures par euro de valeur
+  ajoutée valorisés au tarif normal de la TICGN alors en vigueur, soit 0,0008 MWh/€ x 8,43 €/MWh
+  = 0,006744.
+
+  La date d'effet 2019-01-01 est antérieure à l'article, qui n'existe que depuis 2022 ; elle n'est
+  pas corrigée ici, le paramètre relevant du même arbitrage de dates que ses voisins.

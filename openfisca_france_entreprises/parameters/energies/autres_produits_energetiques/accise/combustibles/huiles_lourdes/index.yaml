@@ -1,0 +1,7 @@
+description: Accise sur les produits énergétiques autres que les gaz naturels et les charbons, tarifs applicables aux huiles lourdes utilisées comme combustibles
+metadata:
+  label_en: Excise duty rates on heavy oils used as heating fuels
+  order:
+  - fiouls_domestiques
+  - fiouls_lourds
+  - tarifs_reduits

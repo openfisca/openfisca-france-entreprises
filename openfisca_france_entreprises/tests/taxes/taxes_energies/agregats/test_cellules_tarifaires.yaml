@@ -1,0 +1,1366 @@
+# Cellules tarifaires — quantité déclarée → montant déclaré
+#
+# Fichier généré par scripts/agregats_tic/generer_tests.py — ne pas éditer à la main.
+# Source : assets/agregats.csv, agrégats annuels de la déclaration 2040-TIC
+# déposée par les fournisseurs d'énergie.
+#
+# Chaque cas reprend la quantité et le montant réellement déclarés pour une case
+# et un millésime. La période du test est le millésime — l'année sous laquelle la
+# case est servie, et dont le droit s'applique par défaut. Font exception les cases
+# de régularisation, dont le tarif n'est porté par aucun mois de cette année-là :
+# elles gardent le tarif de leur année d'ouverture, et le test se date sur cette
+# année. Chaque cas concerné le dit dans son commentaire d'entrée.
+#
+# Les variables de consommation étant mensuelles, la quantité n'est pas répartie
+# sur l'année mais posée sur un mois où s'applique le tarif que la case déclare.
+# Une case de la 2040-TIC est en effet une cellule tarifaire homogène : elle porte
+# la quantité taxée à *son* tarif, qu'elle nomme souvent dans son propre libellé.
+# La répartir sur douze mois ferait calculer au modèle une moyenne annuelle que la
+# déclaration ne pratique jamais.
+#
+# CERTAINS CAS ÉCHOUENT, ET C'EST VOULU — c'est même la raison d'être du fichier.
+# Toute cellule que le modèle sait calculer est émise, y compris quand son résultat
+# contredit la déclaration. Ces cas portent une annotation « DÉSACCORD » qui en dit
+# la nature et renvoie au constat correspondant d'AGREGATS_TIC.md.
+#
+# Le principe : la déclaration fiscale a raison ; le calculateur — et le barème —
+# peuvent avoir tort. Un désaccord rangé hors du chemin est un désaccord tu.
+#
+# Ne pas « réparer » la suite en recalculant ces attendus sur ce que rend le modèle :
+# ce sont des montants réellement déclarés, ils vérifient le droit. Les aligner sur
+# le calcul ferait disparaître le désaccord au lieu de le résoudre.
+
+- name: "_911235 — Gaz naturel carburant — tarif plein (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 30.2774
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 5.2300 €/MWh.
+    consommation_gaz_carburant:
+      "2022-01": 5789178
+  output:
+    # 5,789,178 MWh × 5.2300 €/MWh
+    taxe_accise_gaz_naturel_carburant: 30277400.94
+
+- name: "_911235 — Gaz naturel carburant — tarif plein (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 31.264
+  input:
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
+    # déclaré de 5.2300 €/MWh.
+    consommation_gaz_carburant:
+      "2023-01": 5977829
+  output:
+    # 5,977,829 MWh × 5.2300 €/MWh
+    taxe_accise_gaz_naturel_carburant: 31264045.67
+
+- name: "_911235 — Gaz naturel carburant — tarif plein (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 32.5542
+  input:
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
+    # déclaré de 5.2300 €/MWh.
+    consommation_gaz_carburant:
+      "2024-01": 6224511
+  output:
+    # 6,224,511 MWh × 5.2300 €/MWh
+    taxe_accise_gaz_naturel_carburant: 32554192.53
+
+- name: "_911235 — Gaz naturel carburant — tarif plein (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 25.6299
+  input:
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
+    # déclaré de 5.2300 €/MWh.
+    consommation_gaz_carburant:
+      "2025-01": 4900549
+  output:
+    # 4,900,549 MWh × 5.2300 €/MWh
+    taxe_accise_gaz_naturel_carburant: 25629871.27
+
+- name: "_911237 — Gaz naturel combustible — TICGN, tarif plein au titre de l'année N (millésime 2022)"
+  period: 2021
+  absolute_error_margin: 493.597
+  input:
+    # Case de régularisation : le tarif déclaré de 8.4300 €/MWh n'est
+    # porté par aucun mois de 2022, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2021, et la quantité
+    # se pose sur 2021-01.
+    consommation_gaz_combustible:
+      "2021-01": 58552445
+  output:
+    # 58,552,445 MWh × 8.4300 €/MWh
+    taxe_interieure_consommation_gaz_naturel: 493597111.35
+
+- name: "_911237 — Gaz naturel combustible — TICGN, tarif plein au titre de l'année N (millésime 2023)"
+  period: 2021
+  absolute_error_margin: 13.6225
+  input:
+    # Case de régularisation : le tarif déclaré de 8.4300 €/MWh n'est
+    # porté par aucun mois de 2023, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2021, et la quantité
+    # se pose sur 2021-01.
+    consommation_gaz_combustible:
+      "2021-01": 1615957
+  output:
+    # 1,615,957 MWh × 8.4300 €/MWh
+    taxe_interieure_consommation_gaz_naturel: 13622517.51
+
+- name: "_911237 — Gaz naturel combustible — TICGN, tarif plein au titre de l'année N (millésime 2024)"
+  period: 2021
+  absolute_error_margin: 124.629
+  input:
+    # Case de régularisation : le tarif déclaré de 8.4300 €/MWh n'est
+    # porté par aucun mois de 2024, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2021, et la quantité
+    # se pose sur 2021-01.
+    consommation_gaz_combustible:
+      "2021-01": 14784040
+  output:
+    # 14,784,040 MWh × 8.4300 €/MWh
+    taxe_interieure_consommation_gaz_naturel: 124629457.20
+
+- name: "_911237 — Gaz naturel combustible — TICGN, tarif plein au titre de l'année N (millésime 2025)"
+  period: 2021
+  absolute_error_margin: 4.46213
+  input:
+    # Case de régularisation : le tarif déclaré de 8.4300 €/MWh n'est
+    # porté par aucun mois de 2025, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2021, et la quantité
+    # se pose sur 2021-01.
+    consommation_gaz_combustible:
+      "2021-01": 529315
+  output:
+    # 529,315 MWh × 8.4300 €/MWh
+    taxe_interieure_consommation_gaz_naturel: 4462125.45
+
+- name: "_911264 — Gaz naturel combustible — accise, tarif plein au titre de l'année N+1 (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 1523.05
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 8.4100 €/MWh.
+    consommation_gaz_combustible:
+      "2022-01": 181099310
+  output:
+    # 181,099,310 MWh × 8.4100 €/MWh
+    taxe_accise_gaz_naturel_combustible: 1523045197.10
+
+- name: "_911264 — Gaz naturel combustible — accise, tarif plein au titre de l'année N+1 (millésime 2023)"
+  period: 2022
+  absolute_error_margin: 382.117
+  input:
+    # Case de régularisation : le tarif déclaré de 8.4100 €/MWh n'est
+    # porté par aucun mois de 2023, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-01.
+    consommation_gaz_combustible:
+      "2022-01": 45435987
+  output:
+    # 45,435,987 MWh × 8.4100 €/MWh
+    taxe_accise_gaz_naturel_combustible: 382116650.67
+
+- name: "_911264 — Gaz naturel combustible — accise, tarif plein au titre de l'année N+1 (millésime 2024)"
+  period: 2022
+  absolute_error_margin: 2.10622
+  input:
+    # Case de régularisation : le tarif déclaré de 8.4100 €/MWh n'est
+    # porté par aucun mois de 2024, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-01.
+    consommation_gaz_combustible:
+      "2022-01": 250442
+  output:
+    # 250,442 MWh × 8.4100 €/MWh
+    taxe_accise_gaz_naturel_combustible: 2106217.22
+
+- name: "_911264 — Gaz naturel combustible — accise, tarif plein au titre de l'année N+1 (millésime 2025)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    # Case de régularisation : le tarif déclaré de 8.4100 €/MWh n'est
+    # porté par aucun mois de 2025, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-01.
+    consommation_gaz_combustible:
+      "2022-01": 30614
+  output:
+    # 30,614 MWh × 8.4100 €/MWh
+    taxe_accise_gaz_naturel_combustible: 257463.74
+
+- name: "_911272 — Gaz naturel combustible — tarif à 8,37 €/MWh (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 1380.49
+  input:
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
+    # déclaré de 8.3700 €/MWh.
+    consommation_gaz_combustible:
+      "2023-01": 164933333
+  output:
+    # 164,933,333 MWh × 8.3700 €/MWh
+    taxe_accise_gaz_naturel_combustible: 1380491997.21
+
+- name: "_911272 — Gaz naturel combustible — tarif à 8,37 €/MWh (millésime 2024)"
+  period: 2023
+  absolute_error_margin: 358.856
+  input:
+    # Case de régularisation : le tarif déclaré de 8.3700 €/MWh n'est
+    # porté par aucun mois de 2024, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2023, et la quantité
+    # se pose sur 2023-01.
+    consommation_gaz_combustible:
+      "2023-01": 42874067
+  output:
+    # 42,874,067 MWh × 8.3700 €/MWh
+    taxe_accise_gaz_naturel_combustible: 358855940.79
+
+- name: "_911272 — Gaz naturel combustible — tarif à 8,37 €/MWh (millésime 2025)"
+  period: 2023
+  absolute_error_margin: 1.18435
+  input:
+    # Case de régularisation : le tarif déclaré de 8.3700 €/MWh n'est
+    # porté par aucun mois de 2025, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2023, et la quantité
+    # se pose sur 2023-01.
+    consommation_gaz_combustible:
+      "2023-01": 141499
+  output:
+    # 141,499 MWh × 8.3700 €/MWh
+    taxe_accise_gaz_naturel_combustible: 1184346.63
+
+- name: "_912998 — Gaz naturel combustible — tarif à 16,37 €/MWh (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 2646.94
+  input:
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
+    # déclaré de 16.3700 €/MWh.
+    consommation_gaz_combustible:
+      "2024-01": 161694818
+  output:
+    # 161,694,818 MWh × 16.3700 €/MWh
+    taxe_accise_gaz_naturel_combustible: 2646944170.66
+
+- name: "_912998 — Gaz naturel combustible — tarif à 16,37 €/MWh (millésime 2025)"
+  period: 2024
+  absolute_error_margin: 674.671
+  input:
+    # Case de régularisation : le tarif déclaré de 16.3700 €/MWh n'est
+    # porté par aucun mois de 2025, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2024, et la quantité
+    # se pose sur 2024-01.
+    consommation_gaz_combustible:
+      "2024-01": 41213842
+  output:
+    # 41,213,842 MWh × 16.3700 €/MWh
+    taxe_accise_gaz_naturel_combustible: 674670593.54
+
+- name: "_914201 — Gaz naturel combustible — tarif à 17,16 €/MWh (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 1922.86
+  input:
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
+    # déclaré de 17.1600 €/MWh.
+    consommation_gaz_combustible:
+      "2025-01": 112055069
+  output:
+    # 112,055,069 MWh × 17.1600 €/MWh
+    taxe_accise_gaz_naturel_combustible: 1922864984.04
+
+- name: "_911241 — Gaz naturel combustible — grande consommatrice soumise au SEQE (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 85.9413
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 1.5200 €/MWh.
+    consommation_gaz_combustible:
+      "2022-01": 56540361
+    installation_seqe: true
+    installation_grande_consommatrice_energie: true
+  output:
+    # 56,540,361 MWh × 1.5200 €/MWh
+    taxe_accise_gaz_naturel_combustible: 85941348.72
+
+- name: "_911241 — Gaz naturel combustible — grande consommatrice soumise au SEQE (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 78.6274
+  input:
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
+    # déclaré de 1.5200 €/MWh.
+    consommation_gaz_combustible:
+      "2023-01": 51728556
+    installation_seqe: true
+    installation_grande_consommatrice_energie: true
+  output:
+    # 51,728,556 MWh × 1.5200 €/MWh
+    taxe_accise_gaz_naturel_combustible: 78627405.12
+
+- name: "_911241 — Gaz naturel combustible — grande consommatrice soumise au SEQE (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 80.7807
+  input:
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
+    # déclaré de 1.5200 €/MWh.
+    consommation_gaz_combustible:
+      "2024-01": 53145216
+    installation_seqe: true
+    installation_grande_consommatrice_energie: true
+  output:
+    # 53,145,216 MWh × 1.5200 €/MWh
+    taxe_accise_gaz_naturel_combustible: 80780728.32
+
+- name: "_911241 — Gaz naturel combustible — grande consommatrice soumise au SEQE (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 56.8678
+  input:
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
+    # déclaré de 1.5200 €/MWh.
+    consommation_gaz_combustible:
+      "2025-01": 37413048
+    installation_seqe: true
+    installation_grande_consommatrice_energie: true
+  output:
+    # 37,413,048 MWh × 1.5200 €/MWh
+    taxe_accise_gaz_naturel_combustible: 56867832.96
+
+- name: "_911243 — Gaz naturel combustible — risque de fuite de carbone (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 11.3284
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 1.6000 €/MWh.
+    consommation_gaz_combustible:
+      "2022-01": 7080229
+    installation_seqe: false
+    risque_de_fuite_carbone_eta: true
+    intensite_energetique_valeur_ajoutee: 0.01
+  output:
+    # 7,080,229 MWh × 1.6000 €/MWh
+    taxe_accise_gaz_naturel_combustible: 11328366.40
+
+- name: "_911243 — Gaz naturel combustible — risque de fuite de carbone (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 10.4782
+  input:
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
+    # déclaré de 1.6000 €/MWh.
+    consommation_gaz_combustible:
+      "2023-01": 6548906
+    installation_seqe: false
+    risque_de_fuite_carbone_eta: true
+    intensite_energetique_valeur_ajoutee: 0.01
+  output:
+    # 6,548,906 MWh × 1.6000 €/MWh
+    taxe_accise_gaz_naturel_combustible: 10478249.60
+
+- name: "_911243 — Gaz naturel combustible — risque de fuite de carbone (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 11.0096
+  input:
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
+    # déclaré de 1.6000 €/MWh.
+    consommation_gaz_combustible:
+      "2024-01": 6881031
+    installation_seqe: false
+    risque_de_fuite_carbone_eta: true
+    intensite_energetique_valeur_ajoutee: 0.01
+  output:
+    # 6,881,031 MWh × 1.6000 €/MWh
+    taxe_accise_gaz_naturel_combustible: 11009649.60
+
+- name: "_911243 — Gaz naturel combustible — risque de fuite de carbone (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 9.21882
+  input:
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
+    # déclaré de 1.6000 €/MWh.
+    consommation_gaz_combustible:
+      "2025-01": 5761764
+    installation_seqe: false
+    risque_de_fuite_carbone_eta: true
+    intensite_energetique_valeur_ajoutee: 0.01
+  output:
+    # 5,761,764 MWh × 1.6000 €/MWh
+    taxe_accise_gaz_naturel_combustible: 9218822.40
+
+- name: "_911245 — Gaz naturel combustible — déshydratation de légumes et plantes aromatiques (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 1.6000 €/MWh.
+    consommation_gaz_combustible:
+      "2022-01": 128704
+    gaz_dehydration_legumes_et_plantes_aromatiques: true
+    consommation_par_valeur_ajoutee: 0.001
+  output:
+    # 128,704 MWh × 1.6000 €/MWh
+    taxe_accise_gaz_naturel_combustible: 205926.40
+
+- name: "_911245 — Gaz naturel combustible — déshydratation de légumes et plantes aromatiques (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
+    # déclaré de 1.6000 €/MWh.
+    consommation_gaz_combustible:
+      "2023-01": 348987
+    gaz_dehydration_legumes_et_plantes_aromatiques: true
+    consommation_par_valeur_ajoutee: 0.001
+  output:
+    # 348,987 MWh × 1.6000 €/MWh
+    taxe_accise_gaz_naturel_combustible: 558379.20
+
+- name: "_911245 — Gaz naturel combustible — déshydratation de légumes et plantes aromatiques (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
+    # déclaré de 1.6000 €/MWh.
+    consommation_gaz_combustible:
+      "2024-01": 335324
+    gaz_dehydration_legumes_et_plantes_aromatiques: true
+    consommation_par_valeur_ajoutee: 0.001
+  output:
+    # 335,324 MWh × 1.6000 €/MWh
+    taxe_accise_gaz_naturel_combustible: 536518.40
+
+- name: "_911245 — Gaz naturel combustible — déshydratation de légumes et plantes aromatiques (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
+    # déclaré de 1.6000 €/MWh.
+    consommation_gaz_combustible:
+      "2025-01": 113058
+    gaz_dehydration_legumes_et_plantes_aromatiques: true
+    consommation_par_valeur_ajoutee: 0.001
+  output:
+    # 113,058 MWh × 1.6000 €/MWh
+    taxe_accise_gaz_naturel_combustible: 180892.80
+
+- name: "_914387 — Gaz naturel combustible — tarif ZNI 15,43 €/MWh (10,54 + majoration 4,89) (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 82.292
+  input:
+    # Quantité posée sur 2025-08, mois où le barème porte le tarif
+    # déclaré de 15.4300 €/MWh.
+    consommation_gaz_combustible:
+      "2025-08": 5333244
+  output:
+    # 5,333,244 MWh × 15.4300 €/MWh
+    taxe_accise_gaz_naturel_combustible: 82291954.92
+
+- name: "_911293 — Charbon combustible — tarif plein (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 3.06051
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 14.6200 €/MWh.
+    assiette_ticc:
+      "2022-01": 209337
+  output:
+    # 209,337 MWh × 14.6200 €/MWh
+    taxe_interieure_consommation_charbon: 3060506.94
+
+- name: "_911293 — Charbon combustible — tarif plein (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 2.14198
+  input:
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
+    # déclaré de 14.6200 €/MWh.
+    assiette_ticc:
+      "2023-01": 146510
+  output:
+    # 146,510 MWh × 14.6200 €/MWh
+    taxe_interieure_consommation_charbon: 2141976.20
+
+- name: "_911293 — Charbon combustible — tarif plein (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 1.69267
+  input:
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
+    # déclaré de 14.6200 €/MWh.
+    assiette_ticc:
+      "2024-01": 115778
+  output:
+    # 115,778 MWh × 14.6200 €/MWh
+    taxe_interieure_consommation_charbon: 1692674.36
+
+- name: "_911293 — Charbon combustible — tarif plein (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
+    # déclaré de 14.6200 €/MWh.
+    assiette_ticc:
+      "2025-01": 53834
+  output:
+    # 53,834 MWh × 14.6200 €/MWh
+    taxe_interieure_consommation_charbon: 787053.08
+
+- name: "_911295 — Charbon combustible — grande consommatrice soumise au SEQE (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 2.37517
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 1.1900 €/MWh.
+    assiette_ticc:
+      "2022-01": 1995940
+    installation_seqe: true
+    intensite_energetique_valeur_production: 0.05
+  output:
+    # 1,995,940 MWh × 1.1900 €/MWh
+    taxe_interieure_consommation_charbon: 2375168.60
+
+- name: "_911295 — Charbon combustible — grande consommatrice soumise au SEQE (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 1.35528
+  input:
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
+    # déclaré de 1.1900 €/MWh.
+    assiette_ticc:
+      "2023-01": 1138891
+    installation_seqe: true
+    intensite_energetique_valeur_production: 0.05
+  output:
+    # 1,138,891 MWh × 1.1900 €/MWh
+    taxe_interieure_consommation_charbon: 1355280.29
+
+- name: "_911295 — Charbon combustible — grande consommatrice soumise au SEQE (millésime 2024)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    # Case de régularisation : le tarif déclaré de 1.1900 €/MWh n'est
+    # porté par aucun mois de 2024, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-01.
+    assiette_ticc:
+      "2022-01": 513173
+    installation_seqe: true
+    intensite_energetique_valeur_production: 0.05
+  output:
+    # 513,173 MWh × 1.1900 €/MWh
+    taxe_interieure_consommation_charbon: 610675.87
+
+- name: "_911306 — Charbon — installations intensives soumises au SEQE UE (2,79 €/MWh) (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 1.47727
+  input:
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
+    # déclaré de 2.7900 €/MWh.
+    assiette_ticc:
+      "2024-01": 529488
+    installation_seqe: true
+    intensite_energetique_valeur_production: 0.05
+  output:
+    # 529,488 MWh × 2.7900 €/MWh
+    taxe_interieure_consommation_charbon: 1477271.52
+
+- name: "_914207 — Charbon — installations intensives soumises au SEQE-IF UE (4,39 €/MWh) (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 2.23444
+  input:
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
+    # déclaré de 4.3900 €/MWh.
+    assiette_ticc:
+      "2025-01": 508985
+    installation_seqe: true
+    intensite_energetique_valeur_production: 0.05
+  output:
+    # 508,985 MWh × 4.3900 €/MWh
+    taxe_interieure_consommation_charbon: 2234444.15
+
+- name: "_911319 — Électricité — puissance de raccordement > 250 kVA (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 1401.96
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 22.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2022-01": 62309300.376
+    amperage: 400
+  output:
+    # 62,309,300 MWh × 22.5000 €/MWh
+    taxe_accise_electricite: 1401959259.11
+
+- name: "_911319 — Électricité — puissance de raccordement > 250 kVA (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 22.7607
+  input:
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
+    # déclaré de 22.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2023-01": 1011585.219
+    amperage: 400
+  output:
+    # 1,011,585 MWh × 22.5000 €/MWh
+    taxe_accise_electricite: 22760667.64
+
+- name: "_911319 — Électricité — puissance de raccordement > 250 kVA (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 92.8496
+  input:
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
+    # déclaré de 22.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2024-01": 4126650.039
+    amperage: 400
+  output:
+    # 4,126,650 MWh × 22.5000 €/MWh
+    taxe_accise_electricite: 92849626.08
+
+- name: "_911319 — Électricité — puissance de raccordement > 250 kVA (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 652.677
+  input:
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
+    # déclaré de 22.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2025-01": 29007847.759
+    amperage: 400
+  output:
+    # 29,007,848 MWh × 22.5000 €/MWh
+    taxe_accise_electricite: 652676575.09
+
+- name: "_911321 — Électricité — puissance de raccordement < 250 kVA (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 719.168
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 25.8291 €/MWh.
+    assiette_taxe_electricite:
+      "2022-01": 27843313.909
+    amperage: 20
+  output:
+    # 27,843,314 MWh × 25.8291 €/MWh
+    taxe_accise_electricite: 719167739.37
+
+- name: "_911321 — Électricité — puissance de raccordement < 250 kVA (millésime 2023)"
+  period: 2022
+  absolute_error_margin: 5.5634
+  input:
+    # Case de régularisation : le tarif déclaré de 25.8291 €/MWh n'est
+    # porté par aucun mois de 2023, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-01.
+    assiette_taxe_electricite:
+      "2022-01": 215392.773
+    amperage: 20
+  output:
+    # 215,393 MWh × 25.8291 €/MWh
+    taxe_accise_electricite: 5563401.44
+
+- name: "_911321 — Électricité — puissance de raccordement < 250 kVA (millésime 2024)"
+  period: 2022
+  absolute_error_margin: 1.13443
+  input:
+    # Case de régularisation : le tarif déclaré de 25.8291 €/MWh n'est
+    # porté par aucun mois de 2024, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-01.
+    assiette_taxe_electricite:
+      "2022-01": 43920.475
+    amperage: 20
+  output:
+    # 43,920 MWh × 25.8291 €/MWh
+    taxe_accise_electricite: 1134426.34
+
+- name: "_911321 — Électricité — puissance de raccordement < 250 kVA (millésime 2025)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    # Case de régularisation : le tarif déclaré de 25.8291 €/MWh n'est
+    # porté par aucun mois de 2025, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-01.
+    assiette_taxe_electricite:
+      "2022-01": 852.21
+    amperage: 20
+  output:
+    # 852 MWh × 25.8291 €/MWh
+    taxe_accise_electricite: 22011.82
+
+- name: "_911323 — Électricité — activités économiques, puissance > 36 kVA (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 114.811
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 23.6097 €/MWh.
+    assiette_taxe_electricite:
+      "2022-01": 4862884.596
+    amperage: 100
+  output:
+    # 4,862,885 MWh × 23.6097 €/MWh
+    taxe_accise_electricite: 114811246.48
+
+- name: "_911323 — Électricité — activités économiques, puissance > 36 kVA (millésime 2023)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    # Case de régularisation : le tarif déclaré de 23.6097 €/MWh n'est
+    # porté par aucun mois de 2023, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-01.
+    assiette_taxe_electricite:
+      "2022-01": 15489.364
+    amperage: 100
+  output:
+    # 15,489 MWh × 23.6097 €/MWh
+    taxe_accise_electricite: 365699.24
+
+- name: "_911323 — Électricité — activités économiques, puissance > 36 kVA (millésime 2024)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    # Case de régularisation : le tarif déclaré de 23.6097 €/MWh n'est
+    # porté par aucun mois de 2024, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-01.
+    assiette_taxe_electricite:
+      "2022-01": 3839.468
+    amperage: 100
+  output:
+    # 3,839 MWh × 23.6097 €/MWh
+    taxe_accise_electricite: 90648.70
+
+- name: "_911323 — Électricité — activités économiques, puissance > 36 kVA (millésime 2025)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    # Case de régularisation : le tarif déclaré de 23.6097 €/MWh n'est
+    # porté par aucun mois de 2025, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-01.
+    assiette_taxe_electricite:
+      "2022-01": 1524.376
+    amperage: 100
+  output:
+    # 1,524 MWh × 23.6097 €/MWh
+    taxe_accise_electricite: 35990.07
+
+- name: "_911327 — Électricité — IEI, consommation > 3 kWh/€ de VA (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 3.78345
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 2.0000 €/MWh.
+    assiette_taxe_electricite:
+      "2022-01": 1891727.034
+    electro_intensive_activite_industrielle: true
+    electro_intensite: 0.1
+  output:
+    # 1,891,727 MWh × 2.0000 €/MWh
+    taxe_accise_electricite: 3783454.05
+
+- name: "_911327 — Électricité — IEI, consommation > 3 kWh/€ de VA (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
+    # déclaré de 2.0000 €/MWh.
+    assiette_taxe_electricite:
+      "2023-01": 64134.285
+    electro_intensive_activite_industrielle: true
+    electro_intensite: 0.1
+  output:
+    # 64,134 MWh × 2.0000 €/MWh
+    taxe_accise_electricite: 128268.57
+
+- name: "_911327 — Électricité — IEI, consommation > 3 kWh/€ de VA (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
+    # déclaré de 2.0000 €/MWh.
+    assiette_taxe_electricite:
+      "2024-01": 108324.497
+    electro_intensive_activite_industrielle: true
+    electro_intensite: 0.1
+  output:
+    # 108,324 MWh × 2.0000 €/MWh
+    taxe_accise_electricite: 216648.99
+
+- name: "_911327 — Électricité — IEI, consommation > 3 kWh/€ de VA (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
+    # déclaré de 2.0000 €/MWh.
+    assiette_taxe_electricite:
+      "2025-01": 80646.327
+    electro_intensive_activite_industrielle: true
+    electro_intensite: 0.1
+  output:
+    # 80,646 MWh × 2.0000 €/MWh
+    taxe_accise_electricite: 161292.64
+
+- name: "_911329 — Électricité — IEI, consommation comprise entre 1,5 et 3 kWh/€ de VA (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 8.87481
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 5.0000 €/MWh.
+    assiette_taxe_electricite:
+      "2022-01": 1774962.346
+    electro_intensive_activite_industrielle: true
+    electro_intensite: 0.05
+  output:
+    # 1,774,962 MWh × 5.0000 €/MWh
+    taxe_accise_electricite: 8874811.93
+
+- name: "_911329 — Électricité — IEI, consommation comprise entre 1,5 et 3 kWh/€ de VA (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
+    # déclaré de 5.0000 €/MWh.
+    assiette_taxe_electricite:
+      "2023-01": 19322.134
+    electro_intensive_activite_industrielle: true
+    electro_intensite: 0.05
+  output:
+    # 19,322 MWh × 5.0000 €/MWh
+    taxe_accise_electricite: 96610.69
+
+- name: "_911329 — Électricité — IEI, consommation comprise entre 1,5 et 3 kWh/€ de VA (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
+    # déclaré de 5.0000 €/MWh.
+    assiette_taxe_electricite:
+      "2024-01": 81726.703
+    electro_intensive_activite_industrielle: true
+    electro_intensite: 0.05
+  output:
+    # 81,727 MWh × 5.0000 €/MWh
+    taxe_accise_electricite: 408633.53
+
+- name: "_911329 — Électricité — IEI, consommation comprise entre 1,5 et 3 kWh/€ de VA (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
+    # déclaré de 5.0000 €/MWh.
+    assiette_taxe_electricite:
+      "2025-01": 13487.734
+    electro_intensive_activite_industrielle: true
+    electro_intensite: 0.05
+  output:
+    # 13,488 MWh × 5.0000 €/MWh
+    taxe_accise_electricite: 67438.70
+
+- name: "_911331 — Électricité — IEI, consommation < 1,5 kWh/€ de VA (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 38.1595
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 7.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2022-01": 5087935.853
+    electro_intensive_activite_industrielle: true
+    electro_intensite: 0.01
+  output:
+    # 5,087,936 MWh × 7.5000 €/MWh
+    taxe_accise_electricite: 38159519.05
+
+- name: "_911331 — Électricité — IEI, consommation < 1,5 kWh/€ de VA (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
+    # déclaré de 7.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2023-01": 57560.77
+    electro_intensive_activite_industrielle: true
+    electro_intensite: 0.01
+  output:
+    # 57,561 MWh × 7.5000 €/MWh
+    taxe_accise_electricite: 431705.82
+
+- name: "_911331 — Électricité — IEI, consommation < 1,5 kWh/€ de VA (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 1.17009
+  input:
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
+    # déclaré de 7.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2024-01": 156011.407
+    electro_intensive_activite_industrielle: true
+    electro_intensite: 0.01
+  output:
+    # 156,011 MWh × 7.5000 €/MWh
+    taxe_accise_electricite: 1170085.63
+
+- name: "_911331 — Électricité — IEI, consommation < 1,5 kWh/€ de VA (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
+    # déclaré de 7.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2025-01": 118613.804
+    electro_intensive_activite_industrielle: true
+    electro_intensite: 0.01
+  output:
+    # 118,614 MWh × 7.5000 €/MWh
+    taxe_accise_electricite: 889603.58
+
+- name: "_911339 — Électricité — installation hyper-électro-intensive (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 1.67013
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2022-01": 3340256.13
+    electro_intensive_concurrence_internationale: true
+    electro_intensite: 15
+    intensite_echanges_avec_pays_tiers: 30
+    risque_de_fuite_carbone_eta: true
+  output:
+    # 3,340,256 MWh × 0.5000 €/MWh
+    taxe_accise_electricite: 1670128.08
+
+- name: "_911339 — Électricité — installation hyper-électro-intensive (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 1.23596
+  input:
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2023-01": 2471926.971
+    electro_intensive_concurrence_internationale: true
+    electro_intensite: 15
+    intensite_echanges_avec_pays_tiers: 30
+    risque_de_fuite_carbone_eta: true
+  output:
+    # 2,471,927 MWh × 0.5000 €/MWh
+    taxe_accise_electricite: 1235963.51
+
+- name: "_911339 — Électricité — installation hyper-électro-intensive (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 2.33761
+  input:
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2024-01": 4675211.578
+    electro_intensive_concurrence_internationale: true
+    electro_intensite: 15
+    intensite_echanges_avec_pays_tiers: 30
+    risque_de_fuite_carbone_eta: true
+  output:
+    # 4,675,212 MWh × 0.5000 €/MWh
+    taxe_accise_electricite: 2337605.83
+
+- name: "_911339 — Électricité — installation hyper-électro-intensive (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 1.55177
+  input:
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2025-01": 3103541.772
+    electro_intensive_concurrence_internationale: true
+    electro_intensite: 15
+    intensite_echanges_avec_pays_tiers: 30
+    risque_de_fuite_carbone_eta: true
+  output:
+    # 3,103,542 MWh × 0.5000 €/MWh
+    taxe_accise_electricite: 1551770.93
+
+- name: "_911341 — Électricité — transport guidé de personnes et de marchandises (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 5.64737
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2022-01": 11294737.587
+    electricite_transport_guide: true
+  output:
+    # 11,294,738 MWh × 0.5000 €/MWh
+    taxe_accise_electricite: 5647368.83
+
+- name: "_911341 — Électricité — transport guidé de personnes et de marchandises (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 4.0273
+  input:
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2023-01": 8054598.332
+    electricite_transport_guide: true
+  output:
+    # 8,054,598 MWh × 0.5000 €/MWh
+    taxe_accise_electricite: 4027299.19
+
+- name: "_911341 — Électricité — transport guidé de personnes et de marchandises (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 4.57067
+  input:
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2024-01": 9141346.825
+    electricite_transport_guide: true
+  output:
+    # 9,141,347 MWh × 0.5000 €/MWh
+    taxe_accise_electricite: 4570673.42
+
+- name: "_911341 — Électricité — transport guidé de personnes et de marchandises (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 3.7618
+  input:
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2025-01": 7523608.933
+    electricite_transport_guide: true
+  output:
+    # 7,523,609 MWh × 0.5000 €/MWh
+    taxe_accise_electricite: 3761804.49
+
+- name: "_911343 — Électricité — centres de stockage de données numériques (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 3.62923
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 12.0000 €/MWh.
+    assiette_taxe_electricite:
+      "2022-01": 302435.795
+    electricite_centres_de_stockage_donnees: true
+  output:
+    # 302,436 MWh × 12.0000 €/MWh
+    taxe_accise_electricite: 3629229.54
+
+- name: "_911345 — Électricité — exploitants d'aérodromes électro-intensifs (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 1.76042
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 7.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2022-01": 234722.206
+    electricite_exploitation_aerodrome: true
+    electro_intensite: 1
+  output:
+    # 234,722 MWh × 7.5000 €/MWh
+    taxe_accise_electricite: 1760416.55
+
+- name: "_911445 — Électricité — alimentation à quai des navires (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2022-01, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2022-01": 1311.24
+    electricite_alimentation_a_quai: true
+  output:
+    # 1,311 MWh × 0.5000 €/MWh
+    taxe_accise_electricite: 655.62
+
+- name: "_911445 — Électricité — alimentation à quai des navires (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2023-01": 1512.72
+    electricite_alimentation_a_quai: true
+  output:
+    # 1,513 MWh × 0.5000 €/MWh
+    taxe_accise_electricite: 756.36
+
+- name: "_911445 — Électricité — alimentation à quai des navires (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2024-01": 7338.9
+    electricite_alimentation_a_quai: true
+  output:
+    # 7,339 MWh × 0.5000 €/MWh
+    taxe_accise_electricite: 3669.45
+
+- name: "_911445 — Électricité — alimentation à quai des navires (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2025-01": 7538.92
+    electricite_alimentation_a_quai: true
+  output:
+    # 7,539 MWh × 0.5000 €/MWh
+    taxe_accise_electricite: 3769.46
+
+- name: "_912993 — Électricité — transport collectif routier de personnes (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2024-01": 20964.845
+    electricite_transport_collectif_personnes: true
+  output:
+    # 20,965 MWh × 0.5000 €/MWh
+    taxe_accise_electricite: 10482.42
+
+- name: "_912993 — Électricité — transport collectif routier de personnes (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2025-01": 28810.166
+    electricite_transport_collectif_personnes: true
+  output:
+    # 28,810 MWh × 0.5000 €/MWh
+    taxe_accise_electricite: 14405.08
+
+- name: "_912995 — Électricité — manutention portuaire (électro-intensité ≥ 0,5 %) (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2024-01": 48980.28
+    electricite_manutention_portuaire: true
+  output:
+    # 48,980 MWh × 0.5000 €/MWh
+    taxe_accise_electricite: 24490.14
+
+- name: "_912995 — Électricité — manutention portuaire (électro-intensité ≥ 0,5 %) (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 1
+  input:
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2025-01": 48636.24
+    electricite_manutention_portuaire: true
+  output:
+    # 48,636 MWh × 0.5000 €/MWh
+    taxe_accise_electricite: 24318.12
+
+- name: "_913035 — Électricité — tarif à 21,00 €/MWh (bouclier, ménages et assimilés) (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 2959.35
+  input:
+    # Quantité posée sur 2024-02, mois où le barème porte le tarif
+    # déclaré de 21.0000 €/MWh.
+    assiette_taxe_electricite:
+      "2024-02": 140921212.693
+    amperage: 20
+  output:
+    # 140,921,213 MWh × 21.0000 €/MWh
+    taxe_electricite_bouclier_tarifaire: 2959345466.81
+
+- name: "_913035 — Électricité — tarif à 21,00 €/MWh (bouclier, ménages et assimilés) (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 1471.71
+  input:
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
+    # déclaré de 21.0000 €/MWh.
+    assiette_taxe_electricite:
+      "2025-01": 70081475.356
+    amperage: 20
+  output:
+    # 70,081,475 MWh × 21.0000 €/MWh
+    taxe_electricite_bouclier_tarifaire: 1471710982.65
+
+- name: "_913037 — Électricité — tarif à 20,50 €/MWh (bouclier, entreprises) (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 1708.55
+  input:
+    # Quantité posée sur 2024-02, mois où le barème porte le tarif
+    # déclaré de 20.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2024-02": 83344063.568
+    amperage: 100
+  output:
+    # 83,344,064 MWh × 20.5000 €/MWh
+    taxe_electricite_bouclier_tarifaire: 1708553303.52
+
+- name: "_913037 — Électricité — tarif à 20,50 €/MWh (bouclier, entreprises) (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 383.175
+  input:
+    # Quantité posée sur 2025-01, mois où le barème porte le tarif
+    # déclaré de 20.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2025-01": 18691451.028
+    amperage: 100
+  output:
+    # 18,691,451 MWh × 20.5000 €/MWh
+    taxe_electricite_bouclier_tarifaire: 383174746.32
+
+- name: "_914195 — Électricité — tarif à 33,70 €/MWh (ménages et assimilés) (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 2974.84
+  input:
+    # Quantité posée sur 2025-02, mois où le barème porte le tarif
+    # déclaré de 33.7000 €/MWh.
+    assiette_taxe_electricite:
+      "2025-02": 88274133.308
+    amperage: 20
+  output:
+    # 88,274,133 MWh × 33.7000 €/MWh
+    taxe_accise_electricite: 2974838292.50
+
+- name: "_914197 — Électricité — tarif à 26,23 €/MWh (PME et activités économiques) (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 581.561
+  input:
+    # Quantité posée sur 2025-02, mois où le barème porte le tarif
+    # déclaré de 26.2300 €/MWh.
+    assiette_taxe_electricite:
+      "2025-02": 22171603.884
+    amperage: 100
+  output:
+    # 22,171,604 MWh × 26.2300 €/MWh
+    taxe_accise_electricite: 581561169.95
+
+- name: "_911369 — Électricité — bouclier tarifaire, entreprises (tarif de référence 22,50) (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 36.564
+  input:
+    # Quantité posée sur 2022-02, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2022-02": 73127942.803
+    amperage: 400
+  output:
+    # 73,127,943 MWh × 0.5000 €/MWh
+    taxe_electricite_bouclier_tarifaire: 36563971.62
+
+- name: "_911369 — Électricité — bouclier tarifaire, entreprises (tarif de référence 22,50) (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 68.7402
+  input:
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2023-01": 137480362.811
+    amperage: 400
+  output:
+    # 137,480,363 MWh × 0.5000 €/MWh
+    taxe_electricite_bouclier_tarifaire: 68740181.55
+
+- name: "_911369 — Électricité — bouclier tarifaire, entreprises (tarif de référence 22,50) (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 23.8892
+  input:
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
+    # déclaré de 0.5000 €/MWh.
+    assiette_taxe_electricite:
+      "2024-01": 47778358.954
+    amperage: 400
+  output:
+    # 47,778,359 MWh × 0.5000 €/MWh
+    taxe_electricite_bouclier_tarifaire: 23889179.71
+
+- name: "_911369 — Électricité — bouclier tarifaire, entreprises (tarif de référence 22,50) (millésime 2025)"
+  period: 2022
+  absolute_error_margin: 8.99171
+  input:
+    # Case de régularisation : le tarif déclaré de 0.5000 €/MWh n'est
+    # porté par aucun mois de 2025, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-02.
+    assiette_taxe_electricite:
+      "2022-02": 17983424.265
+    amperage: 400
+  output:
+    # 17,983,424 MWh × 0.5000 €/MWh
+    taxe_electricite_bouclier_tarifaire: 8991712.28
+
+- name: "_911371 — Électricité — bouclier tarifaire, ménages (tarif de référence 25,8291) (millésime 2022)"
+  period: 2022
+  absolute_error_margin: 136.134
+  input:
+    # Quantité posée sur 2022-02, mois où le barème porte le tarif
+    # déclaré de 1.0000 €/MWh.
+    assiette_taxe_electricite:
+      "2022-02": 136133609.757
+    amperage: 20
+  output:
+    # 136,133,610 MWh × 1.0000 €/MWh
+    taxe_electricite_bouclier_tarifaire: 136133609.92
+
+- name: "_911371 — Électricité — bouclier tarifaire, ménages (tarif de référence 25,8291) (millésime 2023)"
+  period: 2023
+  absolute_error_margin: 187.6
+  input:
+    # Quantité posée sur 2023-01, mois où le barème porte le tarif
+    # déclaré de 1.0000 €/MWh.
+    assiette_taxe_electricite:
+      "2023-01": 187599508.279
+    amperage: 20
+  output:
+    # 187,599,508 MWh × 1.0000 €/MWh
+    taxe_electricite_bouclier_tarifaire: 187599508.45
+
+- name: "_911371 — Électricité — bouclier tarifaire, ménages (tarif de référence 25,8291) (millésime 2024)"
+  period: 2024
+  absolute_error_margin: 93.8253
+  input:
+    # Quantité posée sur 2024-01, mois où le barème porte le tarif
+    # déclaré de 1.0000 €/MWh.
+    assiette_taxe_electricite:
+      "2024-01": 93825347.215
+    amperage: 20
+  output:
+    # 93,825,347 MWh × 1.0000 €/MWh
+    taxe_electricite_bouclier_tarifaire: 93825347.38
+
+- name: "_911371 — Électricité — bouclier tarifaire, ménages (tarif de référence 25,8291) (millésime 2025)"
+  period: 2022
+  absolute_error_margin: 1
+  input:
+    # Case de régularisation : le tarif déclaré de 1.0000 €/MWh n'est
+    # porté par aucun mois de 2025, année de dépôt. La case garde le tarif
+    # de son année d'ouverture ; le test se date donc sur 2022, et la quantité
+    # se pose sur 2022-02.
+    assiette_taxe_electricite:
+      "2022-02": 331825.697
+    amperage: 20
+  output:
+    # 331,826 MWh × 1.0000 €/MWh
+    taxe_electricite_bouclier_tarifaire: 331825.76
+
+- name: "_914374 — Électricité — tarif ZNI 29,98 €/MWh (25,09 + majoration 4,89) (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 441.416
+  input:
+    # Quantité posée sur 2025-08, mois où le barème porte le tarif
+    # déclaré de 29.9800 €/MWh.
+    assiette_taxe_electricite:
+      "2025-08": 14723689.29
+    amperage: 20
+  output:
+    # 14,723,689 MWh × 29.9800 €/MWh
+    taxe_accise_electricite: 441416204.94
+
+- name: "_914377 — Électricité — tarif ZNI 25,79 €/MWh (20,90 + majoration 4,89) (millésime 2025)"
+  period: 2025
+  absolute_error_margin: 357.212
+  input:
+    # Quantité posée sur 2025-08, mois où le barème porte le tarif
+    # déclaré de 25.7900 €/MWh.
+    assiette_taxe_electricite:
+      "2025-08": 13850783.326
+    amperage: 400
+  output:
+    # 13,850,783 MWh × 25.7900 €/MWh
+    taxe_accise_electricite: 357211702.02

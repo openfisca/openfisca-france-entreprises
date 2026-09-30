@@ -1,6 +1,6 @@
 """Variables and formulas for this module."""
 
-from openfisca_core.model_api import YEAR, Variable, select
+from openfisca_core.model_api import ADD, YEAR, Variable, select
 
 from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.taxes.formula_helpers import (
@@ -16,7 +16,10 @@ class taxe_communale_consommation_finale_electricite(Variable):
 
     def formula(etablissement, period, parameters):
         taux_tccfe = etablissement("taux_tccfe", period)
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
+        # L'assiette est mensuelle depuis la bascule ; taux_tccfe reste annuel (coefficient
+        # communal), la TCCFE garde donc son traitement annuel. Passer le taux au mois est un
+        # chantier distinct — la TCCFE disparaît de toute façon dans l'accise au 2023-01-01.
+        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period, options=[ADD])
         # *** à vérifier que c'est la même assiette
 
         return assiette_taxe_electricite * taux_tccfe
@@ -46,4 +49,4 @@ class taux_tccfe(Variable):
         Elle cesse d'être prélevée séparément : son produit est repris dans les tarifs normaux
         de l'accise, différenciés par catégorie fiscale de puissance. Le taux propre est donc nul.
         """
-        return etablissement("assiette_taxe_electricite", period) * 0
+        return etablissement("assiette_taxe_electricite", period, options=[ADD]) * 0

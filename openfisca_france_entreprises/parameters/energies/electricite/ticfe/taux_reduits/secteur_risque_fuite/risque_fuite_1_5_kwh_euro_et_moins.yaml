@@ -5,9 +5,9 @@ values:
   2022-01-01:
     value: null
 metadata:
-  short_label: TICFE entreprises electrointensives risque fuite (<1.5€)
+  short_label: TICFE entreprises électro-intensives risque fuite (<1.5€)
   last_value_still_valid_on: "2025-02-15"
-  label_en: Domestic tax on final electricity consumption (TICFE) for electrointensive companies with carbon leakage risk (<1.5€)
+  label_en: Domestic tax on final electricity consumption (TICFE) for electro-intensive companies with carbon leakage risk (<1.5€)
   ipp_csv_id: ticfe_electrointensive_1_5kwh_moins_risquefuite
   unit: currency_per_mwh
   reference:

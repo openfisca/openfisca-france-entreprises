@@ -4,6 +4,15 @@ metadata:
   order:
   - taux_normal
   - taux_reduits
+  - aerodromes_electro_intensite
+  - categorie_fiscale_haut_puissance
+  - categorie_fiscale_menage
+  - categorie_fiscale_petite_et_moyenne_entreprise
+  - electricite_fournie_aux_navires
+  - electro_intensives
+  - plafond_assiette_mwh
+  - risque_de_fuite_de_carbone
+  - seuil_consommation_par_va_52_23z
 documentation: |-
   La TICFE est créée en 2011.
   En 2016, CSPE et TICFE fusionnent sous une appellation hybride.

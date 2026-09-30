@@ -1,5 +1,18 @@
-description: Part minimale taxe / valeur ajoutée pour grande consommatrice et électro-intensité (0,5 %)
-reference: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603823"
+description: Part minimale du montant total des taxes intérieures de consommation dans la valeur ajoutée caractérisant une entreprise grande consommatrice d'énergie
 values:
   2000-01-01:
     value: 0.005
+metadata:
+  unit: /1
+  reference:
+    2000-01-01:
+      title: Article 266 quinquies C du code des douanes
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023216102
+documentation: |-
+  Le 5° du C de l'article retient les entreprises « pour lesquelles le montant total de la
+  taxe applicable à l'électricité […] et des taxes intérieures de consommation […] est au
+  moins égal à 0,5 % de la valeur ajoutée ».
+  La date d'effet 2000-01-01 est un artefact : l'article cité date de 2011. Elle n'a pas été
+  corrigée parce que openfisca-france-entreprises lit ce paramètre depuis une formule sans
+  date (caracteristiques_etablissement.py), donc pour toute période. Redater le paramètre
+  changerait le calcul et doit être arbitré avec le modèle.

@@ -1,6 +1,13 @@
-description: Seuil minimal consommation / valeur ajoutée (Wh/€) pour les centres de stockage de données (NAF 52.23Z) - 222 Wh par euro de valeur ajoutée
-reference: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603711"
-unit: "MWh_per_euro_VA"
+description: Seuil de consommation totale d'électricité par euro de valeur ajoutée au-delà duquel les exploitants d'aérodromes ouverts à la circulation aérienne publique (NAF 52.23Z) bénéficient d'un tarif réduit de TICFE
 values:
   2019-01-01:
     value: 0.000222
+metadata:
+  unit: MWh_per_euro_VA
+  reference:
+    2019-01-01:
+      title: Article 266 quinquies C du code des douanes
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037988902
+documentation: |-
+  Le f du C de l'article fixe ce seuil à 222 wattheures par euro de valeur ajoutée,
+  soit 0,000222 MWh/€.

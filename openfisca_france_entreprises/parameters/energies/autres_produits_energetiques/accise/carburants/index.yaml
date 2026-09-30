@@ -1,0 +1,10 @@
+description: Accise sur les produits énergétiques autres que les gaz naturels et les charbons, tarifs sur les carburants
+metadata:
+  label_en: Excise duty rates on motor fuels
+  order:
+  - huiles_legeres
+  - huiles_moyennes
+  - huiles_lourdes
+  - hydrocarbures_gazeux_liquefies
+  - tarifs_particuliers
+  - plafonds_drom

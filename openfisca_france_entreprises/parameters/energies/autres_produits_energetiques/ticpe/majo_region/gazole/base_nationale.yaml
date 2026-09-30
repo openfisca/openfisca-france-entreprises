@@ -1,0 +1,43 @@
+description: Fraction régionale de TIPP comprise dans le tarif national des gazoles
+values:
+  2007-01-01:
+    value: 1.15
+  2022-01-01:
+    value: null
+metadata:
+  short_label: Base nationale gazoles
+  unit: currency_per_hectoliter
+  reference:
+    2007-01-01:
+    - title: Article 40 de la loi n° 2005-1719 du 30 décembre 2005 de finances pour 2006, pris pour l'application de la loi n° 2004-809 du 13 août 2004 relative aux libertés et responsabilités locales et de l'article 52 de la loi n° 2004-1484 de finances pour 2005
+      href: https://www.legifrance.gouv.fr/eli/loi/2005/12/30/2005-1719/jo/texte
+    - title: Circulaire du 29 mars 2013 relative à la régionalisation de la taxe intérieure de consommation sur les produits énergétiques, décision administrative n° F2 13-018, bulletin officiel des douanes
+      href: https://www.douane.gouv.fr/sites/default/files/dana/files/F2_13-018.pdf
+    2022-01-01:
+      title: Article 7 de l'ordonnance n° 2021-1843 du 22 décembre 2021 portant partie législative du code des impositions sur les biens et services et transposant diverses normes du droit de l'Union européenne (abrogation de l'article 265 A bis du code des douanes)
+      href: https://www.legifrance.gouv.fr/eli/ordonnance/2021/12/22/ECOE2120672R/jo/texte
+  official_journal_date:
+    2007-01-01: "2005-12-31"
+    2022-01-01: "2021-12-29"
+documentation: |-
+  Montant de la fraction de TIPP transférée aux régions, comprise dans le tarif national
+  porté par le barème : 1,15 €/hL pour les gazoles. Le tarif national passe de
+  41,69 €/hL en 2004 à 42,84 €/hL en 2006, soit exactement cet écart, au moment où la
+  fraction régionale y est intégrée.
+
+  Chaque région pouvait moduler cette fraction à la hausse ou à la baisse, sous forme d'une
+  réfaction appliquée au tarif national : la circulaire douanière du 29 mars 2013 relative à
+  la régionalisation de la TICPE, référencée ci-dessus, décrit le mécanisme et en donne des
+  exemples chiffrés. La majoration « Grenelle » de l'article 265 A bis, plafonnée à
+  1,35 €/hL sur le gazole et 0,73 €/hL sur les supercarburants, est venue s'ajouter
+  par-dessus à partir de 2011.
+
+  ATTENTION — ce paramètre ne doit plus être retranché des fichiers de région. Ceux-ci portent
+  désormais la majoration régionale **nette**, c'est-à-dire l'écart au tarif national, qui est
+  directement la grandeur publiée en annexe 1.1 des circulaires douanières. Cette base
+  n'est conservée que pour mémoire, et pour permettre de reconstituer la valeur absolue
+  d'origine (absolu = net + base) là où une série historique en dépendait.
+
+  La fraction disparaît avec le passage au code des impositions sur les biens et services au
+  1er janvier 2022 : la majoration de l'article L. 312-39 s'ajoute alors directement au tarif
+  normal, sans composante nationale à isoler.

@@ -1,6 +1,6 @@
 """Variables and formulas for this module."""
 
-from openfisca_core.model_api import YEAR, Variable
+from openfisca_core.model_api import MONTH, YEAR, Variable, set_input_divide_by_period
 
 from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.naf import naf
@@ -11,7 +11,8 @@ class consommation_charbon(Variable):
     unit = "MWh"
     entity = Etablissement
     label = "Coal consumption of the etablissement"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006615177/2007-07-01/"
 
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
@@ -39,7 +40,8 @@ class consommation_charbon_carburant(Variable):
     unit = "MWh"
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé comme carburant"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704
 
@@ -51,7 +53,8 @@ class consommation_charbon_combustible(Variable):
     unit = "MWh"
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé comme combustible"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704
 
@@ -108,7 +111,8 @@ class consommation_charbon_di26(Variable):
         "nomenclature statistique des activités économiques dans la Communauté "
         "rubrique DI 26"
     )
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
 
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
@@ -126,7 +130,8 @@ class consommation_charbon_combustible_interne(Variable):
         "de ces produits énergétiques ou pour la production de tout ou partie "
         "de l'énergie nécessaire à leur fabrication"
     )
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
 
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
@@ -138,7 +143,8 @@ class consommation_charbon_combustible_electricite(Variable):
     unit = "MWh"
     entity = Etablissement
     label = "à exclure. Consommation de charbon de l'établissement."
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
 
@@ -154,7 +160,8 @@ class consommation_charbon_combustible_electricite_petits_producteurs(Variable):
         "du 4° du V de l'article L. 3333-2 du code général des collectivités "
         "territoriales."
     )
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
 
@@ -168,7 +175,8 @@ class consommation_charbon_combustible_extraction(Variable):
         "Consommation de charbon de l'établissement, utilisé comme "
         "combustible dans le processus de sa fabrication et de son extraction."
     )
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041469051/2020-01-01/"
 
@@ -179,7 +187,8 @@ class consommation_charbon_combustible_particuliers(Variable):
     unit = "MWh"
     entity = Etablissement
     label = "Consommation de charbon de l'établissement, utilisé comme combustible pour les particuliers."
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     # houilles, lignites et cokes repris aux codes NC 2701, 2702 et 2704 et destinés à être utilisés comme combustible
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028447819/2014-01-01/"
 

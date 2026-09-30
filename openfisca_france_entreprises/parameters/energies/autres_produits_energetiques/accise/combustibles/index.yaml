@@ -1,0 +1,8 @@
+description: Accise sur les produits énergétiques autres que les gaz naturels et les charbons en métropole, tarifs sur les combustibles
+metadata:
+  label_en: Excise duty rates on heating fuels in metropolitan France
+  order:
+  - huiles_moyennes
+  - huiles_lourdes
+  - hydrocarbures_gazeux_liquefies
+  - tarifs_particuliers

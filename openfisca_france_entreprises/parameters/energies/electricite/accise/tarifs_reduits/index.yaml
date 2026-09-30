@@ -12,4 +12,6 @@ metadata:
   - production_navires
   - transport_collectif_routier_personnes
   - transport_personnes_marchandises
-  - electrointensives
+  - electro_intensives
+  - alimentation_aeronefs_activites_economiques
+  - alimentation_aeronefs_activites_non_economiques

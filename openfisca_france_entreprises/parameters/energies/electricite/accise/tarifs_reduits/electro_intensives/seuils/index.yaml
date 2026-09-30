@@ -1,0 +1,23 @@
+description: Niveaux minimaux d'électro-intensité conditionnant les tarifs réduits de l'accise sur l'électricité
+metadata:
+  label_en: Minimum electro-intensity levels for reduced electricity excise duty rates
+  order:
+  - niveau_0_5
+  - niveau_3_375
+  - niveau_6_75
+  - niveau_13_5
+documentation: |-
+  L'article L. 312-65 énonce, en regard de chaque tarif réduit du répertoire parent, un niveau
+  minimal d'électro-intensité exprimé en pourcentage de la valeur ajoutée. Ces seuils sont donc
+  rangés ici, aux côtés des tarifs qu'ils commandent.
+
+  Avant 2022, la TICFE retenait deux critères distincts : une condition d'éligibilité (accise
+  d'au moins 0,5 % de la valeur ajoutée) et des tranches exprimées en kilowattheures par euro
+  de valeur ajoutée. Ces dernières restent sous electricite/ticfe/, avec leur référence à
+  l'article 266 quinquies C. Le CIBS a fusionné les deux critères en un seul, sans changer les
+  seuils effectifs : au tarif normal de 22,5 €/MWh, 1,5 et 3 kWh par euro de valeur ajoutée
+  valent respectivement 3,375 % et 6,75 %.
+
+  La condition d'intensité des échanges avec les pays tiers du palier à 13,5 % (25 %) reste
+  portée par ticfe/electro_intensives/seuils/intensite_echanges_pays_tiers_min, dont la valeur
+  court sans discontinuité depuis 2016 ; son pendant dans le CIBS est l'article L. 312-73.

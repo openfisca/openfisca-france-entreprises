@@ -1,5 +1,6 @@
 description: Tarifs réduits de l'accise sur les gaz naturels utilisés comme carburants
 metadata:
+  label_en: Reduced excise duty rates on natural gas used as motor fuel
   order:
   - aeronautique_naval
   - doubles_usages

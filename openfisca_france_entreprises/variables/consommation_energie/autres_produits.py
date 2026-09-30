@@ -4,7 +4,7 @@ Establishment-level consumption of fuels and products such as gas oils, petrol,
 white spirit, LPG, heavy fuel oil, etc., as defined by the tax legislation.
 """
 
-from openfisca_core.model_api import YEAR, Variable
+from openfisca_core.model_api import MONTH, YEAR, Variable, set_input_divide_by_period
 
 from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.naf import naf
@@ -16,7 +16,8 @@ class consommation_goudrons_utilises_comme_combustibles(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_carburant_constitue_100_estars_methyliques_acides_gras(Variable):
@@ -25,7 +26,8 @@ class consommation_carburant_constitue_100_estars_methyliques_acides_gras(Variab
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole(Variable):
@@ -35,7 +37,8 @@ class consommation_carburant_constitue_minimum_90_alcool_ethylique_agricole(Vari
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_essence_normale(Variable):
@@ -45,7 +48,8 @@ class consommation_essence_normale(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_essences_speciales_utilisees_comme_carburants_combustibles(Variable):
@@ -54,7 +58,8 @@ class consommation_essences_speciales_utilisees_comme_carburants_combustibles(Va
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires(Variable):
@@ -63,7 +68,8 @@ class consommation_gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_s
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants(Variable):
@@ -72,7 +78,8 @@ class consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_white_spirit_utilise_comme_combustible(Variable):
@@ -81,7 +88,8 @@ class consommation_white_spirit_utilise_comme_combustible(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_supercarburant_e5(Variable):
@@ -95,7 +103,8 @@ class consommation_supercarburant_e5(Variable):
         "par molécule et d'une teneur en oxygène maximale de 2,7 % en masse d'oxygène ;"
     )
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_supercarburant_e10(Variable):
@@ -109,7 +118,8 @@ class consommation_supercarburant_e10(Variable):
         "plus, par molécule et d'une teneur en oxygène maximale de 3,7 % en masse/ masse d'oxygène ;"
     )
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_supercarburant_e85(Variable):
@@ -119,7 +129,8 @@ class consommation_supercarburant_e85(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_super_ars(Variable):
@@ -135,7 +146,8 @@ class consommation_super_ars(Variable):
         "économique européen."
     )
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_propane_carburants_autres_100kg_nets(Variable):
@@ -144,7 +156,8 @@ class consommation_propane_carburants_autres_100kg_nets(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_propane_carburants_sous_conditions_100kg_nets(Variable):
@@ -153,7 +166,8 @@ class consommation_propane_carburants_sous_conditions_100kg_nets(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_nets(Variable):
@@ -162,7 +176,8 @@ class consommation_propane_carburants_usages_autres_que_comme_carburant_100kg_ne
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_petrole_lampant_autre_hectolitre(Variable):
@@ -171,7 +186,8 @@ class consommation_petrole_lampant_autre_hectolitre(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_petrole_lampant_utilise_comme_combustible_hectolitre(Variable):
@@ -180,7 +196,8 @@ class consommation_petrole_lampant_utilise_comme_combustible_hectolitre(Variable
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_huiles_legeres_preparation_essence_aviation(Variable):
@@ -189,7 +206,8 @@ class consommation_huiles_legeres_preparation_essence_aviation(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_huiles_legeres_combustible_carburant_ou_autres(Variable):
@@ -198,7 +216,8 @@ class consommation_huiles_legeres_combustible_carburant_ou_autres(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_huiles_moyennes_autres(Variable):
@@ -207,7 +226,8 @@ class consommation_huiles_moyennes_autres(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_gazoles_carburants_sous_conditions_hectolitre(Variable):
@@ -216,7 +236,8 @@ class consommation_gazoles_carburants_sous_conditions_hectolitre(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_galzole_fioul_domestique_hectolitre(Variable):
@@ -226,7 +247,8 @@ class consommation_galzole_fioul_domestique_hectolitre(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_gazole_b_10_hectolitre(Variable):
@@ -235,7 +257,8 @@ class consommation_gazole_b_10_hectolitre(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_gazoles(Variable):
@@ -247,7 +270,8 @@ class consommation_gazoles(Variable):
         "indice 22; ----autres, à l'exception du gazole coloré et tracé en apllication du a du 1 del'article 265 B ;"
     )
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_fioul_lourd_100kg_net(Variable):
@@ -257,7 +281,8 @@ class consommation_fioul_lourd_100kg_net(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_fioul_lourd_bts_100kg(Variable):
@@ -266,7 +291,8 @@ class consommation_fioul_lourd_bts_100kg(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_fioul_lourd_hts_100kg(Variable):
@@ -275,7 +301,8 @@ class consommation_fioul_lourd_hts_100kg(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_point_eclair_inferieur_120deg_c_hectolitre(Variable):
@@ -284,7 +311,8 @@ class consommation_point_eclair_inferieur_120deg_c_hectolitre(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_emulsion_eau_gazoles_autres_hectolitre(Variable):
@@ -294,7 +322,8 @@ class consommation_emulsion_eau_gazoles_autres_hectolitre(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_emulsion_eau_gazoles_sous_conditions_hectolitre(Variable):
@@ -303,7 +332,8 @@ class consommation_emulsion_eau_gazoles_sous_conditions_hectolitre(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_carbureacteurs_essence_autres_hL(Variable):
@@ -312,7 +342,8 @@ class consommation_carbureacteurs_essence_autres_hL(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_carbureacteurs_essence_carburants_avion_hL(Variable):
@@ -321,7 +352,8 @@ class consommation_carbureacteurs_essence_carburants_avion_hL(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_carbureacteurs_essence_sous_conditions_hL(Variable):
@@ -330,7 +362,8 @@ class consommation_carbureacteurs_essence_sous_conditions_hL(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_carbureacteurs_petrole_lampant_autres_hL(Variable):
@@ -339,7 +372,8 @@ class consommation_carbureacteurs_petrole_lampant_autres_hL(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL(Variable):
@@ -348,7 +382,8 @@ class consommation_carbureacteurs_petrole_lampant_carburant_moteurs_avion_hL(Var
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_carbureacteurs_petrole_lampant_sous_conditions_hL(Variable):
@@ -357,7 +392,8 @@ class consommation_carbureacteurs_petrole_lampant_sous_conditions_hL(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_butanes_liquefies_autres_100kg_nets(Variable):
@@ -366,7 +402,8 @@ class consommation_butanes_liquefies_autres_100kg_nets(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_butanes_liquefies_sous_condition_100kg_nets(Variable):
@@ -375,7 +412,8 @@ class consommation_butanes_liquefies_sous_condition_100kg_nets(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets(Variable):
@@ -384,7 +422,8 @@ class consommation_butanes_liquefies_usages_autres_que_comme_carburant_100kg_net
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_autres_100kg(Variable):
@@ -394,7 +433,8 @@ class consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_aut
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sous_condition_100kg(Variable):
@@ -403,7 +443,8 @@ class consommation_autres_gaz_de_petrole_liquefies_utilises_comme_carburants_sou
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 # pour en cas où
@@ -422,7 +463,8 @@ class consommation_autres_produits_energetique_ticc(Variable):
     entity = Etablissement
     label = """Les produits energetique dans l'article 265 soumis à l'article 265 quinques B."""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2007_01_01(etablissement, period, parameters):
         return (
@@ -467,7 +509,8 @@ class consommation_autres_produits_energetique_ticgn(Variable):
     entity = Etablissement
     label = """Les produits energetique dans l'article 265 soumis à l'article 265 quinques."""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2007_01_01(etablissement, period, parameters):
         return etablissement("consommation_ethylene_propylene_butylene_butadiene", period)
@@ -484,7 +527,8 @@ class consommation_melanges_hydrocarbures_aromatiques(Variable):
         "utilisés comme carburants ou combustibles."
     )
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     # avant 2012 : Taxe intérieure applicable aux huiles légères ou moyennes
     # du 2710, suivant les caractéristiques du produit.
 
@@ -495,7 +539,8 @@ class consommation_huiles_lubrifiantes_et_autres(Variable):
     entity = Etablissement
     label = "2710---huiles lubrifiantes et autres."
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_ethylene_propylene_butylene_butadiene(Variable):
@@ -504,7 +549,8 @@ class consommation_ethylene_propylene_butylene_butadiene(Variable):
     entity = Etablissement
     label = "2711-14 Éthylène, propylène, butylène et butadiène."
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_vaseline(Variable):
@@ -513,7 +559,8 @@ class consommation_vaseline(Variable):
     entity = Etablissement
     label = "2712-10 Vaseline."
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_paraffine_moins_75_pourcent_huile(Variable):
@@ -522,7 +569,8 @@ class consommation_paraffine_moins_75_pourcent_huile(Variable):
     entity = Etablissement
     label = """2712-20  Paraffine contenant en poids moins de 0,75 % d'huile."""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_paraffine_cires_de_petrole_residus_paraffineux(Variable):
@@ -534,7 +582,8 @@ class consommation_paraffine_cires_de_petrole_residus_paraffineux(Variable):
         "cires de pétrole et résidus paraffineux, même colorés."
     )
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_bitumes_de_petrole(Variable):
@@ -543,7 +592,8 @@ class consommation_bitumes_de_petrole(Variable):
     entity = Etablissement
     label = "2713-20 Bitumes de pétrole."
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_autres_residus_huiles_petrole_ou_mineraux_bitumineux(Variable):
@@ -552,7 +602,8 @@ class consommation_autres_residus_huiles_petrole_ou_mineraux_bitumineux(Variable
     entity = Etablissement
     label = "2713-90 Autres résidus des huiles de pétrole ou de minéraux bitumineux."
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_melanges_bitumeux(Variable):
@@ -564,7 +615,8 @@ class consommation_melanges_bitumeux(Variable):
         "goudrons minéraux ou de brai de goudron minéral."
     )
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_preparations_traitement_matiere_textiles(Variable):
@@ -577,7 +629,8 @@ class consommation_preparations_traitement_matiere_textiles(Variable):
         "bitumeux."
     )
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_preparations_lubrifiantes(Variable):
@@ -589,7 +642,8 @@ class consommation_preparations_lubrifiantes(Variable):
         "de minéraux bitumeux."
     )
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_additifs_huiles_lubrifiantes(Variable):
@@ -598,7 +652,8 @@ class consommation_additifs_huiles_lubrifiantes(Variable):
     entity = Etablissement
     label = "3811-21 Additifs pour huiles lubrifiantes contenant des huiles de pétrole ou de minéraux bitumeux."
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041505082/2025-04-16"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 ##########################
@@ -620,7 +675,8 @@ class consommation_gazoles_mwh(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046196825"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_carbureactuers_mwh(Variable):
@@ -629,7 +685,8 @@ class consommation_carbureactuers_mwh(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046196825"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_essences_mwh(Variable):
@@ -638,7 +695,8 @@ class consommation_essences_mwh(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046196825"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_gaz_de_petrole_liquefies_carburant_mwh(Variable):
@@ -647,7 +705,8 @@ class consommation_gaz_de_petrole_liquefies_carburant_mwh(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046196825"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_fiouls_lourds_mwh(Variable):
@@ -656,7 +715,8 @@ class consommation_fiouls_lourds_mwh(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603825"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_fiouls_domestiques_mwh(Variable):
@@ -665,7 +725,8 @@ class consommation_fiouls_domestiques_mwh(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603825"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_petroles_lampants_mwh(Variable):
@@ -674,7 +735,8 @@ class consommation_petroles_lampants_mwh(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603825"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_gaz_de_petrole_liquefies_combustible_mwh(Variable):
@@ -683,7 +745,8 @@ class consommation_gaz_de_petrole_liquefies_combustible_mwh(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603825"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_ethanol_diesel_ed95_mwh(Variable):
@@ -692,7 +755,8 @@ class consommation_ethanol_diesel_ed95_mwh(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051242692"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_gazole_b100_mwh(Variable):
@@ -701,7 +765,8 @@ class consommation_gazole_b100_mwh(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051242692"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_essence_aviation_mwh(Variable):
@@ -710,7 +775,8 @@ class consommation_essence_aviation_mwh(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051242692"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_essence_sp95_e10_mwh(Variable):
@@ -719,7 +785,8 @@ class consommation_essence_sp95_e10_mwh(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051242692"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_superethanol_e85_mwh(Variable):
@@ -728,7 +795,8 @@ class consommation_superethanol_e85_mwh(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051242692"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_grisou_et_gaz_assimiles_combustible_mwh(Variable):
@@ -737,7 +805,8 @@ class consommation_grisou_et_gaz_assimiles_combustible_mwh(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051242692"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh(Variable):
@@ -746,7 +815,8 @@ class consommation_biogaz_combustible_non_injecte_dans_le_reseau_mwh(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051242692"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class gazoles_engins_travaux_statiques(Variable):
@@ -755,7 +825,8 @@ class gazoles_engins_travaux_statiques(Variable):
     entity = Etablissement
     label = ""
     reference = "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000044595989/LEGISCTA000044598327/#LEGISCTA000044603893:~:text=Toutefois%2C%20le%20tarif,la%20propulsion%20d%27engins."
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 # class consommation_gazoles_transport_guide(Variable):
@@ -1114,7 +1185,8 @@ class consommation_autres_produits_energetiques_totale_mwh(Variable):
     unit = "MWh"
     entity = Etablissement
     label = "Consommation totale de produits énergétiques (hors électricité, gaz naturel et charbon), en MWh"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2022_01_01(etablissement, period):
         """Somme des consommations de tous les produits pétroliers et assimilés.

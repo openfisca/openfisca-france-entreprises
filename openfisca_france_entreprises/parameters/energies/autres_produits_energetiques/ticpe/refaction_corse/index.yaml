@@ -1,0 +1,24 @@
+description: Réfaction corse de la taxe intérieure de consommation sur les produits énergétiques (TICPE) applicable aux supercarburants
+metadata:
+  label_en: Corsican abatement on petrol excise duty (TICPE)
+  order:
+  - supercarburants_sp95_sp98
+  - supercarburant_plombe
+  - supercarburant_sp95_e10
+documentation: |-
+  Minoration propre à la Corse, **distincte de la majoration régionale** : l'article 265 quinquies
+  du code des douanes réduit d'un euro par hectolitre le tarif du tableau B de l'article 265 pour
+  les supercarburants destinés à être utilisés en Corse ou livrés dans les ports de Corse à
+  l'avitaillement des bâtiments de plaisance et de sport.
+
+  Le montant est identique pour les trois carburants ; ils ne se distinguent que par leur date
+  d'entrée : 2002 pour les indices 11 et 11 bis, 2019 seulement pour l'indice 11 ter (SP95-E10),
+  créé par l'article 66 de la loi de finances pour 2019.
+
+  Les trois séries sont closes au 1er janvier 2022, l'article 7 de l'ordonnance n° 2021-1843
+  abrogeant l'article 265 quinquies en même temps que l'article 265. Le dispositif se poursuit
+  sous le régime de l'accise, en euros par mégawattheure et pour l'ensemble de la catégorie
+  fiscale des essences, à l'article L. 312-41 du code des impositions sur les biens et services :
+  voir autres_produits_energetiques/accise/minoration_corse.
+
+  Unité : euros par hectolitre sur toute la période couverte.

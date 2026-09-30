@@ -1,0 +1,37 @@
+description: Majorations régionales de TICPE
+metadata:
+  label_en: Regional surcharges on the TICPE
+  order:
+  - super
+  - gazole
+documentation: |-
+  Majorations régionales de la taxe intérieure de consommation, jusqu'à son
+  remplacement par l'accise sur les énergies au 1er janvier 2022. La suite de la série est
+  dans `accise/majo_region`.
+
+  Les valeurs sont des majorations nettes, exprimées en euros par hectolitre : c'est l'écart
+  entre le tarif régional publié en annexe 1.1 des circulaires douanières et le tarif national
+  du barème. Une valeur négative signale une région située sous le tarif national.
+
+  Deux dispositifs se superposent : la majoration de droit commun de l'article 265 A bis du
+  code des douanes, plafonnée à 1,35 €/hL sur le gazole et 0,73 €/hL sur les supercarburants,
+  et la surmajoration francilienne de l'article 265 A ter, portée par un fichier distinct.
+
+  Les seize régions supprimées par la fusion de 2016 sont fermées au 1er janvier 2017 : leurs
+  tarifs ont couru pendant toute l'année 2016 et ne disparaissent de l'annexe 1.1 qu'à
+  l'année 2017.
+
+  Les tarifs régionaux ne sont pas publiés au Journal officiel : ils figurent en annexe 1.1
+  des circulaires « Droits et taxes applicables aux produits énergétiques » du bulletin
+  officiel des douanes. Les millésimes utilisés pour établir et contrôler cette série sont :
+
+  - année 2009, DA F2 09-050 —
+    https://www.douane.gouv.fr/sites/default/files/dana/files/F2_09-050.doc
+  - année 2015, DA F2 15-052 —
+    https://www.douane.gouv.fr/sites/default/files/dana/files/F2_15-052.doc
+  - année 2016, DA F2 16-010 —
+    https://www.douane.gouv.fr/sites/default/files/dana/files/F2_16-010.pdf
+  - année 2016 après harmonisation du Poitou-Charentes, DA F2 16-040 —
+    https://www.douane.gouv.fr/sites/default/files/dana/files/F2_16-040.pdf
+  - année 2017, DA F2 17-024 —
+    https://www.douane.gouv.fr/sites/default/files/bod/src/dana/da/F2_17-024.pdf

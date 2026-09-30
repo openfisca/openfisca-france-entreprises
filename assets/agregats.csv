@@ -1,0 +1,851 @@
+millesime,case,sum,label,ntot
+2022,_911235,5789178,Tarif plein pour un usage en tant que carburant (hors cogénération) - TICGN Fournisseur - Taux plein - Quantité,3106
+2023,_911235,5977829,Tarif plein pour un usage en tant que carburant (hors cogénération) - TICGN Fournisseur - Taux plein - Quantité,3215
+2024,_911235,6224511,Tarif plein pour un usage en tant que carburant (hors cogénération) - TICGN Fournisseur - Taux plein - Quantité,3234
+2025,_911235,4900549,Tarif plein pour un usage en tant que carburant (hors cogénération) - TICGN Fournisseur - Taux plein - Quantité,2057
+2022,_911236,30277400.94,Tarif plein pour un usage en tant que carburant (hors cogénération) - TICGN Fournisseur - Taux plein - Montant,3106
+2023,_911236,31264045.67,Tarif plein pour un usage en tant que carburant (hors cogénération) - TICGN Fournisseur - Taux plein - Montant,3215
+2024,_911236,32554192.53,Tarif plein pour un usage en tant que carburant (hors cogénération) - TICGN Fournisseur - Taux plein - Montant,3234
+2025,_911236,25629871.27,Tarif plein pour un usage en tant que carburant (hors cogénération) - TICGN Fournisseur - Taux plein - Montant,2057
+2022,_911237,58552445,Tarif plein pour un usage combustible ou cogénération au titre de l'année N - TICGN - Taux plein - Quantité,3106
+2023,_911237,1615957,Tarif plein pour un usage combustible ou cogénération au titre de l'année N - TICGN - Taux plein - Quantité,3215
+2024,_911237,14784040,Tarif plein pour un usage combustible ou cogénération au titre de l'année N - TICGN - Taux plein - Quantité,3234
+2025,_911237,529315,Tarif plein pour un usage combustible ou cogénération au titre de l'année N - TICGN - Taux plein - Quantité,2057
+2022,_911238,493597111.35,Tarif plein pour un usage combustible ou cogénération au titre de l'année N - TICGN - Taux plein - Montant,3106
+2023,_911238,13622517.51,Tarif plein pour un usage combustible ou cogénération au titre de l'année N - TICGN - Taux plein - Montant,3215
+2024,_911238,124629457.2,Tarif plein pour un usage combustible ou cogénération au titre de l'année N - TICGN - Taux plein - Montant,3234
+2025,_911238,4462125.45,Tarif plein pour un usage combustible ou cogénération au titre de l'année N - TICGN - Taux plein - Montant,2057
+2022,_911239,245440933,TOTAL - TICGN Fournisseur - Taux plein - Quantité,3106
+2023,_911239,217963106,TOTAL - TICGN Fournisseur - Taux plein - Quantité,3215
+2024,_911239,225827878,TOTAL - TICGN Fournisseur - Taux plein - Quantité,3234
+2025,_911239,164204132,TOTAL - TICGN Fournisseur - Taux plein - Quantité,2057
+2022,_911240,2046919718,TOTAL - TICGN Fournisseur - Taux plein - Montant,3106
+2023,_911240,1807495212,TOTAL - TICGN Fournisseur - Taux plein - Montant,3215
+2024,_911240,3165089973,TOTAL - TICGN Fournisseur - Taux plein - Montant,3234
+2025,_911240,2711361336,TOTAL - TICGN Fournisseur - Taux plein - Montant,2057
+2022,_911241,56540361,Entreprises grandes consommatrices d'énergie soumise au SEQE Quantités taxables au titre du régime prévu aux alinéas 1 et 2 de l'article 265 nonies du code des douanes - TICGN Fournisseur - Taux réduits - Quantité,3106
+2023,_911241,51728556,Entreprises grandes consommatrices d'énergie soumise au SEQE Quantités taxables au titre du régime prévu aux alinéas 1 et 2 de l'article 265 nonies du code des douanes - TICGN Fournisseur - Taux réduits - Quantité,3215
+2024,_911241,53145216,Entreprises grandes consommatrices d'énergie soumise au SEQE Quantités taxables au titre du régime prévu aux alinéas 1 et 2 de l'article 265 nonies du code des douanes - TICGN Fournisseur - Taux réduits - Quantité,3234
+2025,_911241,37413048,Entreprises grandes consommatrices d'énergie soumise au SEQE Quantités taxables au titre du régime prévu aux alinéas 1 et 2 de l'article 265 nonies du code des douanes - TICGN Fournisseur - Taux réduits - Quantité,2057
+2022,_911242,85941348.72,Entreprises grandes consommatrices d'énergie soumise au SEQE Quantités taxables au titre du régime prévu aux alinéas 1 et 2 de l'article 265 nonies du code des douanes - TICGN Fournisseur - Taux réduits - Montant,3106
+2023,_911242,78627405.12,Entreprises grandes consommatrices d'énergie soumise au SEQE Quantités taxables au titre du régime prévu aux alinéas 1 et 2 de l'article 265 nonies du code des douanes - TICGN Fournisseur - Taux réduits - Montant,3215
+2024,_911242,80780728.32,Entreprises grandes consommatrices d'énergie soumise au SEQE Quantités taxables au titre du régime prévu aux alinéas 1 et 2 de l'article 265 nonies du code des douanes - TICGN Fournisseur - Taux réduits - Montant,3234
+2025,_911242,56867832.96,Entreprises grandes consommatrices d'énergie soumise au SEQE Quantités taxables au titre du régime prévu aux alinéas 1 et 2 de l'article 265 nonies du code des douanes - TICGN Fournisseur - Taux réduits - Montant,2057
+2022,_911243,7080229,"Entreprises grandes consommatrices d'énergie dont les activités sont exposées à un risque de fuite de carbone, régime prévu à l'alinéa 3 de l'article 265 nonies - TICGN Fournisseur - Taux réduits - Quantité",3106
+2023,_911243,6548906,"Entreprises grandes consommatrices d'énergie dont les activités sont exposées à un risque de fuite de carbone, régime prévu à l'alinéa 3 de l'article 265 nonies - TICGN Fournisseur - Taux réduits - Quantité",3215
+2024,_911243,6881031,"Entreprises grandes consommatrices d'énergie dont les activités sont exposées à un risque de fuite de carbone, régime prévu à l'alinéa 3 de l'article 265 nonies - TICGN Fournisseur - Taux réduits - Quantité",3234
+2025,_911243,5761764,"Entreprises grandes consommatrices d'énergie dont les activités sont exposées à un risque de fuite de carbone, régime prévu à l'alinéa 3 de l'article 265 nonies - TICGN Fournisseur - Taux réduits - Quantité",2057
+2022,_911244,11328366.4,"Entreprises grandes consommatrices d'énergie dont les activités sont exposées à un risque de fuite de carbone, régime prévu à l'alinéa 3 de l'article 265 nonies - TICGN Fournisseur - Taux réduits - Montant",3106
+2023,_911244,10478249.6,"Entreprises grandes consommatrices d'énergie dont les activités sont exposées à un risque de fuite de carbone, régime prévu à l'alinéa 3 de l'article 265 nonies - TICGN Fournisseur - Taux réduits - Montant",3215
+2024,_911244,11009649.6,"Entreprises grandes consommatrices d'énergie dont les activités sont exposées à un risque de fuite de carbone, régime prévu à l'alinéa 3 de l'article 265 nonies - TICGN Fournisseur - Taux réduits - Montant",3234
+2025,_911244,9218822.4,"Entreprises grandes consommatrices d'énergie dont les activités sont exposées à un risque de fuite de carbone, régime prévu à l'alinéa 3 de l'article 265 nonies - TICGN Fournisseur - Taux réduits - Montant",2057
+2022,_911245,128704,"Gaz utilisé pour la déshydratation de légumes, et plantes aromatiques, autres que les pommes de terre, les champignons et les truffes, par les entreprises pour lesquelles la consommation de gaz est supérieure à 800 wattheures par e",3106
+2023,_911245,348987,"Gaz utilisé pour la déshydratation de légumes, et plantes aromatiques, autres que les pommes de terre, les champignons et les truffes, par les entreprises pour lesquelles la consommation de gaz est supérieure à 800 wattheures par e",3215
+2024,_911245,335324,"Gaz utilisé pour la déshydratation de légumes, et plantes aromatiques, autres que les pommes de terre, les champignons et les truffes, par les entreprises pour lesquelles la consommation de gaz est supérieure à 800 wattheures par e",3234
+2025,_911245,113058,"Gaz utilisé pour la déshydratation de légumes, et plantes aromatiques, autres que les pommes de terre, les champignons et les truffes, par les entreprises pour lesquelles la consommation de gaz est supérieure à 800 wattheures par e",2057
+2022,_911246,205926.4,"Gaz utilisé pour la déshydratation de légumes, et plantes aromatiques, autres que les pommes de terre, les champignons et les truffes, par les entreprises pour lesquelles la consommation de gaz est supérieure à 800 wattheures par e",3106
+2023,_911246,558379.2,"Gaz utilisé pour la déshydratation de légumes, et plantes aromatiques, autres que les pommes de terre, les champignons et les truffes, par les entreprises pour lesquelles la consommation de gaz est supérieure à 800 wattheures par e",3215
+2024,_911246,536518.4,"Gaz utilisé pour la déshydratation de légumes, et plantes aromatiques, autres que les pommes de terre, les champignons et les truffes, par les entreprises pour lesquelles la consommation de gaz est supérieure à 800 wattheures par e",3234
+2025,_911246,180892.8,"Gaz utilisé pour la déshydratation de légumes, et plantes aromatiques, autres que les pommes de terre, les champignons et les truffes, par les entreprises pour lesquelles la consommation de gaz est supérieure à 800 wattheures par e",2057
+2022,_911247,63749294,TOTAL - TICGN Fournisseur - Taux réduits - Quantité,3106
+2023,_911247,58626449,TOTAL - TICGN Fournisseur - Taux réduits - Quantité,3215
+2024,_911247,60361571,TOTAL - TICGN Fournisseur - Taux réduits - Quantité,3234
+2025,_911247,43287870,TOTAL - TICGN Fournisseur - Taux réduits - Quantité,2057
+2022,_911248,97475647,TOTAL - TICGN Fournisseur - Taux réduits - Montant,3106
+2023,_911248,89664041,TOTAL - TICGN Fournisseur - Taux réduits - Montant,3215
+2024,_911248,92326896,TOTAL - TICGN Fournisseur - Taux réduits - Montant,3234
+2025,_911248,66267548,TOTAL - TICGN Fournisseur - Taux réduits - Montant,2057
+2022,_911249,524961,REGULARISATION fiscale augmentation -TICGN Fournisseur,3106
+2024,_911249,369745,REGULARISATION fiscale augmentation -TICGN Fournisseur,3234
+2025,_911249,77824,REGULARISATION fiscale augmentation -TICGN Fournisseur,2057
+2022,_911250,2116239928,TOTAL TICGN DUE - TICGN Fournisseur,3106
+2023,_911250,1842941080,TOTAL TICGN DUE - TICGN Fournisseur,3215
+2024,_911250,3223115536,TOTAL TICGN DUE - TICGN Fournisseur,3234
+2025,_911250,2759534784,TOTAL TICGN DUE - TICGN Fournisseur,2057
+2022,_911251,4517169,Usage autre que carburant ou combustible - TICGN Fournisseur - QUANTITES EXEMPTEES,3106
+2023,_911251,4880041,Usage autre que carburant ou combustible - TICGN Fournisseur - QUANTITES EXEMPTEES,3215
+2024,_911251,5218643,Usage autre que carburant ou combustible - TICGN Fournisseur - QUANTITES EXEMPTEES,3234
+2025,_911251,3115143,Usage autre que carburant ou combustible - TICGN Fournisseur - QUANTITES EXEMPTEES,2057
+2022,_911252,10529068,Double usage - TICGN Fournisseur - QUANTITES EXEMPTEES,3106
+2023,_911252,12704425,Double usage - TICGN Fournisseur - QUANTITES EXEMPTEES,3215
+2024,_911252,13091185,Double usage - TICGN Fournisseur - QUANTITES EXEMPTEES,3234
+2025,_911252,11741741,Double usage - TICGN Fournisseur - QUANTITES EXEMPTEES,2057
+2022,_911253,13836964,Fabrication de minéraux non métalliques - TICGN Fournisseur - QUANTITES EXEMPTEES,3106
+2023,_911253,14312955,Fabrication de minéraux non métalliques - TICGN Fournisseur - QUANTITES EXEMPTEES,3215
+2024,_911253,13833258,Fabrication de minéraux non métalliques - TICGN Fournisseur - QUANTITES EXEMPTEES,3234
+2025,_911253,11222124,Fabrication de minéraux non métalliques - TICGN Fournisseur - QUANTITES EXEMPTEES,2057
+2022,_911254,16881158,Production de produits énergétiques - TICGN Fournisseur - QUANTITES EXEMPTEES,3106
+2023,_911254,19399604,Production de produits énergétiques - TICGN Fournisseur - QUANTITES EXEMPTEES,3215
+2024,_911254,26420209,Production de produits énergétiques - TICGN Fournisseur - QUANTITES EXEMPTEES,3234
+2025,_911254,15790106,Production de produits énergétiques - TICGN Fournisseur - QUANTITES EXEMPTEES,2057
+2022,_911255,31511976,Production d'électricité - TICGN Fournisseur - QUANTITES EXEMPTEES,3106
+2023,_911255,25945306,Production d'électricité - TICGN Fournisseur - QUANTITES EXEMPTEES,3215
+2024,_911255,14160281,Production d'électricité - TICGN Fournisseur - QUANTITES EXEMPTEES,3234
+2025,_911255,10490570,Production d'électricité - TICGN Fournisseur - QUANTITES EXEMPTEES,2057
+2022,_911256,564400,Production ou extraction de gaz naturel - TICGN Fournisseur - QUANTITES EXEMPTEES,3106
+2023,_911256,1113546,Production ou extraction de gaz naturel - TICGN Fournisseur - QUANTITES EXEMPTEES,3215
+2024,_911256,0,Production ou extraction de gaz naturel - TICGN Fournisseur - QUANTITES EXEMPTEES,3234
+2025,_911256,0,Production ou extraction de gaz naturel - TICGN Fournisseur - QUANTITES EXEMPTEES,2057
+2022,_911257,150305,Biogaz - TICGN Fournisseur - QUANTITES EXEMPTEES,3106
+2023,_911257,661038,Biogaz - TICGN Fournisseur - QUANTITES EXEMPTEES,3215
+2024,_911257,467170,Biogaz - TICGN Fournisseur - QUANTITES EXEMPTEES,3234
+2025,_911257,203945,Biogaz - TICGN Fournisseur - QUANTITES EXEMPTEES,2057
+2022,_911258,1426701,Avitaillement des navires en GNL - TICGN Fournisseur - QUANTITES EXEMPTEES,3106
+2023,_911258,2559100,Avitaillement des navires en GNL - TICGN Fournisseur - QUANTITES EXEMPTEES,3215
+2024,_911258,2923185,Avitaillement des navires en GNL - TICGN Fournisseur - QUANTITES EXEMPTEES,3234
+2025,_911258,0,Avitaillement des navires en GNL - TICGN Fournisseur - QUANTITES EXEMPTEES,2057
+2022,_911259,79417741,TOTAL - TICGN Fournisseur - QUANTITES EXEMPTEES,3106
+2023,_911259,81576015,TOTAL - TICGN Fournisseur - QUANTITES EXEMPTEES,3215
+2024,_911259,76113931,TOTAL - TICGN Fournisseur - QUANTITES EXEMPTEES,3234
+2025,_911259,54874953,TOTAL - TICGN Fournisseur - QUANTITES EXEMPTEES,2057
+2022,_911260,388607968,TOTAL QUANTITES FACTUREES - TICGN Fournisseur,3106
+2023,_911260,358165570,TOTAL QUANTITES FACTUREES - TICGN Fournisseur,3215
+2024,_911260,362303380,TOTAL QUANTITES FACTUREES - TICGN Fournisseur,3234
+2025,_911260,262366955,TOTAL QUANTITES FACTUREES - TICGN Fournisseur,2057
+2022,_911264,181099310,Tarif plein pour un usage combustible ou cogénération au titre de l'année N+1 - TICGN - Taux plein - Quantité,3106
+2023,_911264,45435987,Tarif plein pour un usage combustible ou cogénération au titre de l'année N+1 - TICGN - Taux plein - Quantité,3215
+2024,_911264,250442,Tarif plein pour un usage combustible ou cogénération au titre de l'année N+1 - TICGN - Taux plein - Quantité,3234
+2025,_911264,30614,Tarif plein pour un usage combustible ou cogénération au titre de l'année N+1 - TICGN - Taux plein - Quantité,2057
+2022,_911265,1523045197.1,Tarif plein pour un usage combustible ou cogénération au titre de l'année N+1 - TICGN - Taux plein - Montant,3106
+2023,_911265,382116650.67,Tarif plein pour un usage combustible ou cogénération au titre de l'année N+1 - TICGN - Taux plein - Montant,3215
+2024,_911265,2106217.22,Tarif plein pour un usage combustible ou cogénération au titre de l'année N+1 - TICGN - Taux plein - Montant,3234
+2025,_911265,257463.74,Tarif plein pour un usage combustible ou cogénération au titre de l'année N+1 - TICGN - Taux plein - Montant,2057
+2022,_911266,1011570,Régularisations commerciales à la hausse - TICGN,3106
+2023,_911266,446895,Régularisations commerciales à la hausse - TICGN,3215
+2024,_911266,358775,Régularisations commerciales à la hausse - TICGN,3234
+2025,_911266,92480,Régularisations commerciales à la hausse - TICGN,2057
+2022,_911268,28212006,Régularisations commerciales à la baisse - TICGN,3106
+2023,_911268,50767597,Régularisations commerciales à la baisse - TICGN,3215
+2024,_911268,32535397,Régularisations commerciales à la baisse - TICGN,3234
+2022,_911270,0,"Usage combustible - Tarif à 1,08 €/MWh (bouclier tarifaire) - TICGN - Taux pleins - Quantité",3106
+2023,_911270,0,"Usage combustible - Tarif à 1,08 €/MWh (bouclier tarifaire) - TICGN - Taux pleins - Quantité",3215
+2024,_911270,0,"Usage combustible - Tarif à 1,08 €/MWh (bouclier tarifaire) - TICGN - Taux pleins - Quantité",3234
+2025,_911270,0,"Usage combustible - Tarif à 1,08 €/MWh (bouclier tarifaire) - TICGN - Taux pleins - Quantité",2057
+2022,_911271,0,"Usage combustible - Tarif à 1,08 €/MWh (bouclier tarifaire) - TICGN - Taux pleins - Montant",3106
+2023,_911271,0,"Usage combustible - Tarif à 1,08 €/MWh (bouclier tarifaire) - TICGN - Taux pleins - Montant",3215
+2024,_911271,0,"Usage combustible - Tarif à 1,08 €/MWh (bouclier tarifaire) - TICGN - Taux pleins - Montant",3234
+2025,_911271,0,"Usage combustible - Tarif à 1,08 €/MWh (bouclier tarifaire) - TICGN - Taux pleins - Montant",2057
+2022,_911272,0,"Usage combustible - Tarif à 8,37 €/MWh - TICGN - Taux pleins - Quantité",3106
+2023,_911272,164933333,"Usage combustible - Tarif à 8,37 €/MWh - TICGN - Taux pleins - Quantité",3215
+2024,_911272,42874067,"Usage combustible - Tarif à 8,37 €/MWh - TICGN - Taux pleins - Quantité",3234
+2025,_911272,141499,"Usage combustible - Tarif à 8,37 €/MWh - TICGN - Taux pleins - Quantité",2057
+2022,_911273,0,"Usage combustible - Tarif à 8,37 €/MWh - TICGN - Taux pleins - Montant",3106
+2023,_911273,1380491997.21,"Usage combustible - Tarif à 8,37 €/MWh - TICGN - Taux pleins - Montant",3215
+2024,_911273,358855940.79,"Usage combustible - Tarif à 8,37 €/MWh - TICGN - Taux pleins - Montant",3234
+2025,_911273,1184346.63,"Usage combustible - Tarif à 8,37 €/MWh - TICGN - Taux pleins - Montant",2057
+2022,_911293,209337,Tarif plein pour un usage en tant que combustible - TICC Fournisseur - Taux plein - Quantité,3106
+2023,_911293,146510,Tarif plein pour un usage en tant que combustible - TICC Fournisseur - Taux plein - Quantité,3215
+2024,_911293,115778,Tarif plein pour un usage en tant que combustible - TICC Fournisseur - Taux plein - Quantité,3234
+2025,_911293,53834,Tarif plein pour un usage en tant que combustible - TICC Fournisseur - Taux plein - Quantité,2057
+2022,_911294,3060506.94,Tarif plein pour un usage en tant que combustible- TICC Fournisseur - Taux plein - Montant,3106
+2023,_911294,2141976.2,Tarif plein pour un usage en tant que combustible- TICC Fournisseur - Taux plein - Montant,3215
+2024,_911294,1692674.36,Tarif plein pour un usage en tant que combustible- TICC Fournisseur - Taux plein - Montant,3234
+2025,_911294,787053.08,Tarif plein pour un usage en tant que combustible- TICC Fournisseur - Taux plein - Montant,2057
+2022,_911295,1995940,"Entreprises grandes consommatrices d'énergie soumise au SEQE, régime prévu aux alinéas 1 et 2 de l'article 265 nonies du code des douanes - TICC Fournisseur - Taux réduits - Quantité",3106
+2023,_911295,1138891,"Entreprises grandes consommatrices d'énergie soumise au SEQE, régime prévu aux alinéas 1 et 2 de l'article 265 nonies du code des douanes - TICC Fournisseur - Taux réduits - Quantité",3215
+2024,_911295,513173,"Entreprises grandes consommatrices d'énergie soumise au SEQE, régime prévu aux alinéas 1 et 2 de l'article 265 nonies du code des douanes - TICC Fournisseur - Taux réduits - Quantité",3234
+2025,_911295,0,"Entreprises grandes consommatrices d'énergie soumise au SEQE, régime prévu aux alinéas 1 et 2 de l'article 265 nonies du code des douanes - TICC Fournisseur - Taux réduits - Quantité",2057
+2022,_911296,2375168.6,"Entreprises grandes consommatrices d'énergie soumise au SEQE, régime prévu aux alinéas 1 et 2 de l'article 265 nonies du code des douanes - TICC Fournisseur - Taux réduits - Montant",3106
+2023,_911296,1355280.29,"Entreprises grandes consommatrices d'énergie soumise au SEQE, régime prévu aux alinéas 1 et 2 de l'article 265 nonies du code des douanes - TICC Fournisseur - Taux réduits - Montant",3215
+2024,_911296,610675.87,"Entreprises grandes consommatrices d'énergie soumise au SEQE, régime prévu aux alinéas 1 et 2 de l'article 265 nonies du code des douanes - TICC Fournisseur - Taux réduits - Montant",3234
+2025,_911296,0,"Entreprises grandes consommatrices d'énergie soumise au SEQE, régime prévu aux alinéas 1 et 2 de l'article 265 nonies du code des douanes - TICC Fournisseur - Taux réduits - Montant",2057
+2022,_911297,0,"Entreprises grandes consommatrices d'énergie dont les activités sont exposées à un risque de fuite de carbone, régime prévu à l'alinéa 3 de l'article 265 nonies - TICC Fournisseur - Taux réduits - Quantité",3106
+2023,_911297,0,"Entreprises grandes consommatrices d'énergie dont les activités sont exposées à un risque de fuite de carbone, régime prévu à l'alinéa 3 de l'article 265 nonies - TICC Fournisseur - Taux réduits - Quantité",3215
+2024,_911297,0,"Entreprises grandes consommatrices d'énergie dont les activités sont exposées à un risque de fuite de carbone, régime prévu à l'alinéa 3 de l'article 265 nonies - TICC Fournisseur - Taux réduits - Quantité",3234
+2025,_911297,0,"Entreprises grandes consommatrices d'énergie dont les activités sont exposées à un risque de fuite de carbone, régime prévu à l'alinéa 3 de l'article 265 nonies - TICC Fournisseur - Taux réduits - Quantité",2057
+2022,_911298,0,"Entreprises grandes consommatrices d'énergie dont les activités sont exposées à un risque de fuite de carbone, régime prévu à l'alinéa 3 de l'article 265 nonies - TICC Fournisseur - Taux réduits - Montant",3106
+2023,_911298,0,"Entreprises grandes consommatrices d'énergie dont les activités sont exposées à un risque de fuite de carbone, régime prévu à l'alinéa 3 de l'article 265 nonies - TICC Fournisseur - Taux réduits - Montant",3215
+2024,_911298,0,"Entreprises grandes consommatrices d'énergie dont les activités sont exposées à un risque de fuite de carbone, régime prévu à l'alinéa 3 de l'article 265 nonies - TICC Fournisseur - Taux réduits - Montant",3234
+2025,_911298,0,"Entreprises grandes consommatrices d'énergie dont les activités sont exposées à un risque de fuite de carbone, régime prévu à l'alinéa 3 de l'article 265 nonies - TICC Fournisseur - Taux réduits - Montant",2057
+2022,_911299,1995940,TOTAL - TICC Fournisseur - Taux réduits - Quantité,3106
+2023,_911299,1138891,TOTAL - TICC Fournisseur - Taux réduits - Quantité,3215
+2024,_911299,1042661,TOTAL - TICC Fournisseur - Taux réduits - Quantité,3234
+2025,_911299,599267,TOTAL - TICC Fournisseur - Taux réduits - Quantité,2057
+2022,_911300,2375170,TOTAL - TICC Fournisseur - Taux réduits - Montant,3106
+2023,_911300,1355280,TOTAL - TICC Fournisseur - Taux réduits - Montant,3215
+2024,_911300,2087947,TOTAL - TICC Fournisseur - Taux réduits - Montant,3234
+2025,_911300,2486332,TOTAL - TICC Fournisseur - Taux réduits - Montant,2057
+2023,_911301,0,REGULARISATION fiscale augmentation -TICC Fournisseur,3215
+2024,_911301,862804,REGULARISATION fiscale augmentation -TICC Fournisseur,3234
+2022,_911302,5435581,TOTAL TICC DUE - TICC Fournisseur,3106
+2023,_911302,3497269,TOTAL TICC DUE - TICC Fournisseur,3215
+2024,_911302,4643438,TOTAL TICC DUE - TICC Fournisseur,3234
+2025,_911302,3286700,TOTAL TICC DUE - TICC Fournisseur,2057
+2022,_911306,0,Installations intensives en énergie soumises au SEQE de l UE - TICC_Taux réduits_Quantité,3106
+2023,_911306,0,Installations intensives en énergie soumises au SEQE de l UE - TICC_Taux réduits_Quantité,3215
+2024,_911306,529488,Installations intensives en énergie soumises au SEQE de l UE - TICC_Taux réduits_Quantité,3234
+2022,_911307,0,Installations intensives en énergie soumises au SEQE de l UE - TICC_Taux réduits_Montant,3106
+2023,_911307,0,Installations intensives en énergie soumises au SEQE de l UE - TICC_Taux réduits_Montant,3215
+2024,_911307,1477271.52,Installations intensives en énergie soumises au SEQE de l UE - TICC_Taux réduits_Montant,3234
+2022,_911310,0,"Majoration 'taxe communale sur la consommation finale d'électricité janvier 2023' tarif à 2,08 €/MWh - TICFE - Taux pleins - Quantité",3106
+2023,_911310,99408.616,"Majoration 'taxe communale sur la consommation finale d'électricité janvier 2023' tarif à 2,08 €/MWh - TICFE - Taux pleins - Quantité",3215
+2024,_911310,1083.129,"Majoration 'taxe communale sur la consommation finale d'électricité janvier 2023' tarif à 2,08 €/MWh - TICFE - Taux pleins - Quantité",3234
+2022,_911311,0,"Majoration 'taxe communale sur la consommation finale d'électricité janvier 2023' tarif à 2,08 €/MWh - TICFE - Taux pleins - Montant",3106
+2023,_911311,206769.92,"Majoration 'taxe communale sur la consommation finale d'électricité janvier 2023' tarif à 2,08 €/MWh - TICFE - Taux pleins - Montant",3215
+2024,_911311,2252.91,"Majoration 'taxe communale sur la consommation finale d'électricité janvier 2023' tarif à 2,08 €/MWh - TICFE - Taux pleins - Montant",3234
+2022,_911312,0,"Majoration 'taxe communale sur la consommation finale d'électricité janvier 2023' tarif à 1,56 €/MWh - TICFE - Taux pleins - Quantité",3106
+2023,_911312,71113.547,"Majoration 'taxe communale sur la consommation finale d'électricité janvier 2023' tarif à 1,56 €/MWh - TICFE - Taux pleins - Quantité",3215
+2024,_911312,109.731,"Majoration 'taxe communale sur la consommation finale d'électricité janvier 2023' tarif à 1,56 €/MWh - TICFE - Taux pleins - Quantité",3234
+2022,_911313,0,"Majoration 'taxe communale sur la consommation finale d'électricité janvier 2023' tarif à 1,56 €/MWh - TICFE - Taux pleins - Montant",3106
+2023,_911313,110937.15,"Majoration 'taxe communale sur la consommation finale d'électricité janvier 2023' tarif à 1,56 €/MWh - TICFE - Taux pleins - Montant",3215
+2024,_911313,171.19,"Majoration 'taxe communale sur la consommation finale d'électricité janvier 2023' tarif à 1,56 €/MWh - TICFE - Taux pleins - Montant",3234
+2022,_911319,62309300.376,Si puissance raccordement > 250 kilovoltampères - TICFE Fournisseur - Taux plein - Quantité,3106
+2023,_911319,1011585.219,Si puissance raccordement > 250 kilovoltampères - TICFE Fournisseur - Taux plein - Quantité,3215
+2024,_911319,4126650.039,Si puissance raccordement > 250 kilovoltampères - TICFE Fournisseur - Taux plein - Quantité,3234
+2025,_911319,29007847.759,Si puissance raccordement > 250 kilovoltampères - TICFE Fournisseur - Taux plein - Quantité,2057
+2022,_911320,1401959259.11,Si puissance raccordement > 250 kilovoltampères - TICFE Fournisseur - Taux plein - Montant,3106
+2023,_911320,22760667.64,Si puissance raccordement > 250 kilovoltampères - TICFE Fournisseur - Taux plein - Montant,3215
+2024,_911320,92849626.08,Si puissance raccordement > 250 kilovoltampères - TICFE Fournisseur - Taux plein - Montant,3234
+2025,_911320,652676575.09,Si puissance raccordement > 250 kilovoltampères - TICFE Fournisseur - Taux plein - Montant,2057
+2022,_911321,27843313.909,Si puissance raccordement < 250kilovoltampères - TICFE Fournisseur - Taux plein - Quantité,3106
+2023,_911321,215392.773,Si puissance raccordement < 250kilovoltampères - TICFE Fournisseur - Taux plein - Quantité,3215
+2024,_911321,43920.475,Si puissance raccordement < 250kilovoltampères - TICFE Fournisseur - Taux plein - Quantité,3234
+2025,_911321,852.21,Si puissance raccordement < 250kilovoltampères - TICFE Fournisseur - Taux plein - Quantité,2057
+2022,_911322,719167739.37,Si puissance raccordement < 250kilovoltampères - TICFE Fournisseur - Taux plein - Montant,3106
+2023,_911322,5563401.44,Si puissance raccordement < 250kilovoltampères - TICFE Fournisseur - Taux plein - Montant,3215
+2024,_911322,1134426.34,Si puissance raccordement < 250kilovoltampères - TICFE Fournisseur - Taux plein - Montant,3234
+2025,_911322,22011.82,Si puissance raccordement < 250kilovoltampères - TICFE Fournisseur - Taux plein - Montant,2057
+2022,_911323,4862884.596,Si consommation réalisée pour les besoins des activités économiques et puissance de raccordement > 36 kilovoltampères - TICFE Fournisseur - Taux plein - Quantité,3106
+2023,_911323,15489.364,Si consommation réalisée pour les besoins des activités économiques et puissance de raccordement > 36 kilovoltampères - TICFE Fournisseur - Taux plein - Quantité,3215
+2024,_911323,3839.468,Si consommation réalisée pour les besoins des activités économiques et puissance de raccordement > 36 kilovoltampères - TICFE Fournisseur - Taux plein - Quantité,3234
+2025,_911323,1524.376,Si consommation réalisée pour les besoins des activités économiques et puissance de raccordement > 36 kilovoltampères - TICFE Fournisseur - Taux plein - Quantité,2057
+2022,_911324,114811246.48,Si consommation réalisée pour les besoins des activités économiques et puissance de raccordement > 36 kilovoltampères - TICFE Fournisseur - Taux plein - Montant,3106
+2023,_911324,365699.24,Si consommation réalisée pour les besoins des activités économiques et puissance de raccordement > 36 kilovoltampères - TICFE Fournisseur - Taux plein - Montant,3215
+2024,_911324,90648.7,Si consommation réalisée pour les besoins des activités économiques et puissance de raccordement > 36 kilovoltampères - TICFE Fournisseur - Taux plein - Montant,3234
+2025,_911324,35990.07,Si consommation réalisée pour les besoins des activités économiques et puissance de raccordement > 36 kilovoltampères - TICFE Fournisseur - Taux plein - Montant,2057
+2022,_911325,333398655,TOTAL - TICFE Fournisseur - Taux plein - Quantité,3106
+2023,_911325,356216543,TOTAL - TICFE Fournisseur - Taux plein - Quantité,3215
+2024,_911325,370281582,TOTAL - TICFE Fournisseur - Taux plein - Quantité,3234
+2025,_911325,275125163,TOTAL - TICFE Fournisseur - Taux plein - Quantité,2057
+2022,_911326,2108382913,TOTAL - TICFE Fournisseur - Taux plein - Montant,3106
+2023,_911326,399751849,TOTAL - TICFE Fournisseur - Taux plein - Montant,3215
+2024,_911326,4858088277,TOTAL - TICFE Fournisseur - Taux plein - Montant,3234
+2025,_911326,6811430978,TOTAL - TICFE Fournisseur - Taux plein - Montant,2057
+2022,_911327,1891727.034,Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est strictement supérieure à 3kWh par € de VA - TICFE Fournisseur - Taux réduits - Quantité,3106
+2023,_911327,64134.285,Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est strictement supérieure à 3kWh par € de VA - TICFE Fournisseur - Taux réduits - Quantité,3215
+2024,_911327,108324.497,Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est strictement supérieure à 3kWh par € de VA - TICFE Fournisseur - Taux réduits - Quantité,3234
+2025,_911327,80646.327,Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est strictement supérieure à 3kWh par € de VA - TICFE Fournisseur - Taux réduits - Quantité,2057
+2022,_911328,3783454.05,Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est strictement supérieure à 3kWh par € de VA - TICFE Fournisseur - Taux réduits - Montant,3106
+2023,_911328,128268.57,Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est strictement supérieure à 3kWh par € de VA - TICFE Fournisseur - Taux réduits - Montant,3215
+2024,_911328,216648.99,Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est strictement supérieure à 3kWh par € de VA - TICFE Fournisseur - Taux réduits - Montant,3234
+2025,_911328,161292.64,Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est strictement supérieure à 3kWh par € de VA - TICFE Fournisseur - Taux réduits - Montant,2057
+2022,_911329,1774962.346,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est comprise entre 1,5 et 3kWh par € de VA - TICFE Fournisseur - Taux réduits - Quantité",3106
+2023,_911329,19322.134,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est comprise entre 1,5 et 3kWh par € de VA - TICFE Fournisseur - Taux réduits - Quantité",3215
+2024,_911329,81726.703,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est comprise entre 1,5 et 3kWh par € de VA - TICFE Fournisseur - Taux réduits - Quantité",3234
+2025,_911329,13487.734,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est comprise entre 1,5 et 3kWh par € de VA - TICFE Fournisseur - Taux réduits - Quantité",2057
+2022,_911330,8874811.93,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est comprise entre 1,5 et 3kWh par € de VA - TICFE Fournisseur - Taux réduits - Montant",3106
+2023,_911330,96610.69,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est comprise entre 1,5 et 3kWh par € de VA - TICFE Fournisseur - Taux réduits - Montant",3215
+2024,_911330,408633.53,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est comprise entre 1,5 et 3kWh par € de VA - TICFE Fournisseur - Taux réduits - Montant",3234
+2025,_911330,67438.7,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est comprise entre 1,5 et 3kWh par € de VA - TICFE Fournisseur - Taux réduits - Montant",2057
+2022,_911331,5087935.853,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est strictement inférieure à 1,5kWh par € de VA - TICFE Fournisseur - Taux réduits - Quantité",3106
+2023,_911331,57560.77,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est strictement inférieure à 1,5kWh par € de VA - TICFE Fournisseur - Taux réduits - Quantité",3215
+2024,_911331,156011.407,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est strictement inférieure à 1,5kWh par € de VA - TICFE Fournisseur - Taux réduits - Quantité",3234
+2025,_911331,118613.804,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est strictement inférieure à 1,5kWh par € de VA - TICFE Fournisseur - Taux réduits - Quantité",2057
+2022,_911332,38159519.05,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est strictement inférieure à 1,5kWh par € de VA - TICFE Fournisseur - Taux réduits - Montant",3106
+2023,_911332,431705.82,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est strictement inférieure à 1,5kWh par € de VA - TICFE Fournisseur - Taux réduits - Montant",3215
+2024,_911332,1170085.63,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est strictement inférieure à 1,5kWh par € de VA - TICFE Fournisseur - Taux réduits - Montant",3234
+2025,_911332,889603.58,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) dont la consommation est strictement inférieure à 1,5kWh par € de VA - TICFE Fournisseur - Taux réduits - Montant",2057
+2022,_911333,1419597.092,Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est strictement supérieure à 3kWh par € de VA - TICFE Fournisseur - T,3106
+2023,_911333,103363.899,Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est strictement supérieure à 3kWh par € de VA - TICFE Fournisseur - T,3215
+2024,_911333,6926.896,Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est strictement supérieure à 3kWh par € de VA - TICFE Fournisseur - T,3234
+2025,_911333,62.955,Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est strictement supérieure à 3kWh par € de VA - TICFE Fournisseur - T,2057
+2022,_911334,1419597.12,Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est strictement supérieure à 3kWh par € de VA - TICFE Fournisseur - T,3106
+2023,_911334,103363.9,Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est strictement supérieure à 3kWh par € de VA - TICFE Fournisseur - T,3215
+2024,_911334,6926.89,Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est strictement supérieure à 3kWh par € de VA - TICFE Fournisseur - T,3234
+2025,_911334,62.96,Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est strictement supérieure à 3kWh par € de VA - TICFE Fournisseur - T,2057
+2022,_911335,567138.44,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est comprise entre 1,5 et 3kWh par € de VA - TICFE Fournisseur - Taux",3106
+2023,_911335,0,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est comprise entre 1,5 et 3kWh par € de VA - TICFE Fournisseur - Taux",3215
+2024,_911335,6649,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est comprise entre 1,5 et 3kWh par € de VA - TICFE Fournisseur - Taux",3234
+2025,_911335,7748.438,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est comprise entre 1,5 et 3kWh par € de VA - TICFE Fournisseur - Taux",2057
+2022,_911336,1417846.12,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est comprise entre 1,5 et 3kWh par € de VA - TICFE Fournisseur - Taux",3106
+2023,_911336,0,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est comprise entre 1,5 et 3kWh par € de VA - TICFE Fournisseur - Taux",3215
+2024,_911336,16622.5,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est comprise entre 1,5 et 3kWh par € de VA - TICFE Fournisseur - Taux",3234
+2025,_911336,19371.1,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est comprise entre 1,5 et 3kWh par € de VA - TICFE Fournisseur - Taux",2057
+2022,_911337,254405.84,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est strictement inférieure à 1,5kWh par € de VA - TICFE Fournisseur -",3106
+2023,_911337,1299.113,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est strictement inférieure à 1,5kWh par € de VA - TICFE Fournisseur -",3215
+2024,_911337,23985.216,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est strictement inférieure à 1,5kWh par € de VA - TICFE Fournisseur -",3234
+2025,_911337,3927.728,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est strictement inférieure à 1,5kWh par € de VA - TICFE Fournisseur -",2057
+2022,_911338,1399232.15,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est strictement inférieure à 1,5kWh par € de VA - TICFE Fournisseur -",3106
+2023,_911338,7145.12,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est strictement inférieure à 1,5kWh par € de VA - TICFE Fournisseur -",3215
+2024,_911338,131918.72,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est strictement inférieure à 1,5kWh par € de VA - TICFE Fournisseur -",3234
+2025,_911338,21602.52,"Installations industrielles au sein de sites IEI (ou d'entreprises industrielles électro-intensive) exposées à un risque de fuite de carbone dont la consommation est strictement inférieure à 1,5kWh par € de VA - TICFE Fournisseur -",2057
+2022,_911339,3340256.13,Installation hyperélectro-intensive - TICFE Fournisseur - Taux réduits - Quantité,3106
+2023,_911339,2471926.971,Installation hyperélectro-intensive - TICFE Fournisseur - Taux réduits - Quantité,3215
+2024,_911339,4675211.578,Installation hyperélectro-intensive - TICFE Fournisseur - Taux réduits - Quantité,3234
+2025,_911339,3103541.772,Installation hyperélectro-intensive - TICFE Fournisseur - Taux réduits - Quantité,2057
+2022,_911340,1670128.08,Installation hyperélectro-intensive - TICFE Fournisseur - Taux réduits - Montant,3106
+2023,_911340,1235963.51,Installation hyperélectro-intensive - TICFE Fournisseur - Taux réduits - Montant,3215
+2024,_911340,2337605.83,Installation hyperélectro-intensive - TICFE Fournisseur - Taux réduits - Montant,3234
+2025,_911340,1551770.93,Installation hyperélectro-intensive - TICFE Fournisseur - Taux réduits - Montant,2057
+2022,_911341,11294737.587,"Transport de personnes et de marchandises par train, métro, tramway, câble, autobus hybride rechargeable ou électrique et trolleybus - TICFE Fournisseur - Taux réduits - Quantité",3106
+2023,_911341,8054598.332,"Transport de personnes et de marchandises par train, métro, tramway, câble, autobus hybride rechargeable ou électrique et trolleybus - TICFE Fournisseur - Taux réduits - Quantité",3215
+2024,_911341,9141346.825,"Transport de personnes et de marchandises par train, métro, tramway, câble, autobus hybride rechargeable ou électrique et trolleybus - TICFE Fournisseur - Taux réduits - Quantité",3234
+2025,_911341,7523608.933,"Transport de personnes et de marchandises par train, métro, tramway, câble, autobus hybride rechargeable ou électrique et trolleybus - TICFE Fournisseur - Taux réduits - Quantité",2057
+2022,_911342,5647368.83,"Transport de personnes et de marchandises par train, métro, tramway, câble, autobus hybride rechargeable ou électrique et trolleybus - TICFE Fournisseur - Taux réduits - Montant",3106
+2023,_911342,4027299.19,"Transport de personnes et de marchandises par train, métro, tramway, câble, autobus hybride rechargeable ou électrique et trolleybus - TICFE Fournisseur - Taux réduits - Montant",3215
+2024,_911342,4570673.42,"Transport de personnes et de marchandises par train, métro, tramway, câble, autobus hybride rechargeable ou électrique et trolleybus - TICFE Fournisseur - Taux réduits - Montant",3234
+2025,_911342,3761804.49,"Transport de personnes et de marchandises par train, métro, tramway, câble, autobus hybride rechargeable ou électrique et trolleybus - TICFE Fournisseur - Taux réduits - Montant",2057
+2022,_911343,302435.795,"Centres de stockage de données numériques avec consommations annuelles >= 1kWh par € de la VA, pour les quantités excédant 1 Gwh par an - TICFE Fournisseur - Taux réduits - Quantité",3106
+2023,_911343,0,"Centres de stockage de données numériques avec consommations annuelles >= 1kWh par € de la VA, pour les quantités excédant 1 Gwh par an - TICFE Fournisseur - Taux réduits - Quantité",3215
+2024,_911343,0,"Centres de stockage de données numériques avec consommations annuelles >= 1kWh par € de la VA, pour les quantités excédant 1 Gwh par an - TICFE Fournisseur - Taux réduits - Quantité",3234
+2025,_911343,0,"Centres de stockage de données numériques avec consommations annuelles >= 1kWh par € de la VA, pour les quantités excédant 1 Gwh par an - TICFE Fournisseur - Taux réduits - Quantité",2057
+2022,_911344,3629229.54,"Centres de stockage de données numériques avec consommations annuelles >= 1kWh par € de la VA, pour les quantités excédant 1 Gwh par an - TICFE Fournisseur - Taux réduits - Montant",3106
+2023,_911344,0,"Centres de stockage de données numériques avec consommations annuelles >= 1kWh par € de la VA, pour les quantités excédant 1 Gwh par an - TICFE Fournisseur - Taux réduits - Montant",3215
+2024,_911344,0,"Centres de stockage de données numériques avec consommations annuelles >= 1kWh par € de la VA, pour les quantités excédant 1 Gwh par an - TICFE Fournisseur - Taux réduits - Montant",3234
+2025,_911344,0,"Centres de stockage de données numériques avec consommations annuelles >= 1kWh par € de la VA, pour les quantités excédant 1 Gwh par an - TICFE Fournisseur - Taux réduits - Montant",2057
+2022,_911345,234722.206,"Exploitants d'aérodromes ouverts à la circulation aérienne publique, dont la consommation d'électricité est > 222Wh par euros de VA - TICFE Fournisseur - Taux réduits - Quantité",3106
+2023,_911345,0,"Exploitants d'aérodromes ouverts à la circulation aérienne publique, dont la consommation d'électricité est > 222Wh par euros de VA - TICFE Fournisseur - Taux réduits - Quantité",3215
+2025,_911345,0,"Exploitants d'aérodromes ouverts à la circulation aérienne publique, dont la consommation d'électricité est > 222Wh par euros de VA - TICFE Fournisseur - Taux réduits - Quantité",2057
+2022,_911346,1760416.55,"Exploitants d'aérodromes ouverts à la circulation aérienne publique, dont la consommation d'électricité est > 222Wh par euros de VA - TICFE Fournisseur - Taux réduits - Montant",3106
+2023,_911346,0,"Exploitants d'aérodromes ouverts à la circulation aérienne publique, dont la consommation d'électricité est > 222Wh par euros de VA - TICFE Fournisseur - Taux réduits - Montant",3215
+2025,_911346,0,"Exploitants d'aérodromes ouverts à la circulation aérienne publique, dont la consommation d'électricité est > 222Wh par euros de VA - TICFE Fournisseur - Taux réduits - Montant",2057
+2022,_911347,64063190,TOTAL - TICFE Fournisseur - Taux réduits - Quantité,3106
+2023,_911347,39974830,TOTAL - TICFE Fournisseur - Taux réduits - Quantité,3215
+2024,_911347,48013846,TOTAL - TICFE Fournisseur - Taux réduits - Quantité,3234
+2025,_911347,41777180,TOTAL - TICFE Fournisseur - Taux réduits - Quantité,2057
+2022,_911348,86709267,TOTAL - TICFE Fournisseur - Taux réduits - Montant,3106
+2023,_911348,20631700,TOTAL - TICFE Fournisseur - Taux réduits - Montant,3215
+2024,_911348,25785640,TOTAL - TICFE Fournisseur - Taux réduits - Montant,3234
+2025,_911348,21935731,TOTAL - TICFE Fournisseur - Taux réduits - Montant,2057
+2022,_911349,861342,REGULARISATION fiscale augmentation -TICFE Fournisseur,3106
+2023,_911349,190812,REGULARISATION fiscale augmentation -TICFE Fournisseur,3215
+2024,_911349,798112,REGULARISATION fiscale augmentation -TICFE Fournisseur,3234
+2025,_911349,586715,REGULARISATION fiscale augmentation -TICFE Fournisseur,2057
+2022,_911350,2244513712,TOTAL TICFE DUE - TICFE Fournisseur,3106
+2023,_911350,459694055,TOTAL TICFE DUE - TICFE Fournisseur,3215
+2024,_911350,4852698584,TOTAL TICFE DUE - TICFE Fournisseur,3234
+2025,_911350,6736293142,TOTAL TICFE DUE - TICFE Fournisseur,2057
+2022,_911351,18212107.065,"Réduction chimique, électrolyse, procédés métallurgiques - TICFE Fournisseur - QUANTITES EXONEREES",3106
+2023,_911351,15793200.863,"Réduction chimique, électrolyse, procédés métallurgiques - TICFE Fournisseur - QUANTITES EXONEREES",3215
+2024,_911351,16623940.441,"Réduction chimique, électrolyse, procédés métallurgiques - TICFE Fournisseur - QUANTITES EXONEREES",3234
+2025,_911351,12881509.997,"Réduction chimique, électrolyse, procédés métallurgiques - TICFE Fournisseur - QUANTITES EXONEREES",2057
+2022,_911352,6406829.37,Fabrication de produits minéraux non métalliques - TICFE Fournisseur - QUANTITES EXONEREES,3106
+2023,_911352,5224242.049,Fabrication de produits minéraux non métalliques - TICFE Fournisseur - QUANTITES EXONEREES,3215
+2024,_911352,5719224.458,Fabrication de produits minéraux non métalliques - TICFE Fournisseur - QUANTITES EXONEREES,3234
+2025,_911352,4268935.94,Fabrication de produits minéraux non métalliques - TICFE Fournisseur - QUANTITES EXONEREES,2057
+2022,_911353,826565.719,Entreprise pour laquelle l'électricité représente plus de 50 % du coût d'un produit - TICFE Fournisseur - QUANTITES EXONEREES,3106
+2023,_911353,1078374.284,Entreprise pour laquelle l'électricité représente plus de 50 % du coût d'un produit - TICFE Fournisseur - QUANTITES EXONEREES,3215
+2025,_911353,686724.764,Entreprise pour laquelle l'électricité représente plus de 50 % du coût d'un produit - TICFE Fournisseur - QUANTITES EXONEREES,2057
+2022,_911354,23707972.407,électricité utilisée dans les établissements de production de produits énergétiques - TICFE Fournisseur - QUANTITES EXONEREES,3106
+2023,_911354,11450012.362,électricité utilisée dans les établissements de production de produits énergétiques - TICFE Fournisseur - QUANTITES EXONEREES,3215
+2024,_911354,5913986.849,électricité utilisée dans les établissements de production de produits énergétiques - TICFE Fournisseur - QUANTITES EXONEREES,3234
+2025,_911354,5811350.139,électricité utilisée dans les établissements de production de produits énergétiques - TICFE Fournisseur - QUANTITES EXONEREES,2057
+2022,_911355,10240308.011,Production d'électricité et maintien de la capacité de production d'électricité - TICFE - QUANTITES EXONEREES,3106
+2023,_911355,1364719.924,Production d'électricité et maintien de la capacité de production d'électricité - TICFE - QUANTITES EXONEREES,3215
+2024,_911355,1730138.155,Production d'électricité et maintien de la capacité de production d'électricité - TICFE - QUANTITES EXONEREES,3234
+2025,_911355,3407745.748,Production d'électricité et maintien de la capacité de production d'électricité - TICFE - QUANTITES EXONEREES,2057
+2022,_911356,2031654.673,Compensation des pertes réseaux - TICFE Fournisseur - QUANTITES EXONEREES,3106
+2023,_911356,1928605.347,Compensation des pertes réseaux - TICFE Fournisseur - QUANTITES EXONEREES,3215
+2024,_911356,2950298.987,Compensation des pertes réseaux - TICFE Fournisseur - QUANTITES EXONEREES,3234
+2025,_911356,22935.487,Compensation des pertes réseaux - TICFE Fournisseur - QUANTITES EXONEREES,2057
+2022,_911357,0,Production d'électricité à bord des bateaux - TICFE - QUANTITES EXONEREES,3106
+2023,_911357,0,Production d'électricité à bord des bateaux - TICFE - QUANTITES EXONEREES,3215
+2024,_911357,0,Production d'électricité à bord des bateaux - TICFE - QUANTITES EXONEREES,3234
+2022,_911358,61425429,TOTAL - TICFE Fournisseur - QUANTITES EXONEREES,3106
+2023,_911358,36839159,TOTAL - TICFE Fournisseur - QUANTITES EXONEREES,3215
+2024,_911358,46130976,TOTAL - TICFE Fournisseur - QUANTITES EXONEREES,3234
+2025,_911358,27236740,TOTAL - TICFE Fournisseur - QUANTITES EXONEREES,2057
+2022,_911359,458887274,TOTAL QUANTITES FACTUREES - TICFE Fournisseur,3106
+2023,_911359,433030532,TOTAL QUANTITES FACTUREES - TICFE Fournisseur,3215
+2024,_911359,464426404,TOTAL QUANTITES FACTUREES - TICFE Fournisseur,3234
+2025,_911359,344139083,TOTAL QUANTITES FACTUREES - TICFE Fournisseur,2057
+2022,_911363,2328749,Régularisations commerciales à la hausse - TICFE,3106
+2023,_911363,410044,Régularisations commerciales à la hausse - TICFE,3215
+2024,_911363,654809,Régularisations commerciales à la hausse - TICFE,3234
+2025,_911363,492268,Régularisations commerciales à la hausse - TICFE,2057
+2022,_911365,9846046,Régularisations commerciales à la baisse - TICFE,3106
+2023,_911365,2033879,Régularisations commerciales à la baisse - TICFE,3215
+2024,_911365,22372588,Régularisations commerciales à la baisse - TICFE,3234
+2025,_911365,100795113,Régularisations commerciales à la baisse - TICFE,2057
+2022,_911368,586371829.46,"Régularisations tarif à 22,50 €/MWh - TICFE - Taux pleins - Montant",3106
+2023,_911368,183184939.07,"Régularisations tarif à 22,50 €/MWh - TICFE - Taux pleins - Montant",3215
+2024,_911368,41906681.71,"Régularisations tarif à 22,50 €/MWh - TICFE - Taux pleins - Montant",3234
+2025,_911368,60817493.13,"Régularisations tarif à 22,50 €/MWh - TICFE - Taux pleins - Montant",2057
+2022,_911369,73127942.803,"Tarif à 22,50 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Quantité",3106
+2023,_911369,137480362.811,"Tarif à 22,50 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Quantité",3215
+2024,_911369,47778358.954,"Tarif à 22,50 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Quantité",3234
+2025,_911369,17983424.265,"Tarif à 22,50 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Quantité",2057
+2022,_911370,36563971.62,"Tarif à 22,50 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Montant",3106
+2023,_911370,68740181.55,"Tarif à 22,50 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Montant",3215
+2024,_911370,23889179.71,"Tarif à 22,50 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Montant",3234
+2025,_911370,8991712.28,"Tarif à 22,50 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Montant",2057
+2022,_911371,136133609.757,"Tarif majoré à 25,8291 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Quantité",3106
+2023,_911371,187599508.279,"Tarif majoré à 25,8291 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Quantité",3215
+2024,_911371,93825347.215,"Tarif majoré à 25,8291 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Quantité",3234
+2025,_911371,331825.697,"Tarif majoré à 25,8291 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Quantité",2057
+2022,_911372,136133609.92,"Tarif majoré à 25,8291 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Montant",3106
+2023,_911372,187599508.45,"Tarif majoré à 25,8291 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Montant",3215
+2024,_911372,93825347.38,"Tarif majoré à 25,8291 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Montant",3234
+2025,_911372,331825.76,"Tarif majoré à 25,8291 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Montant",2057
+2022,_911373,29121605.972,"Tarif majoré à 23,6097 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Quantité",3106
+2023,_911373,0,"Tarif majoré à 23,6097 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Quantité",3215
+2024,_911373,0,"Tarif majoré à 23,6097 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Quantité",3234
+2025,_911373,0,"Tarif majoré à 23,6097 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Quantité",2057
+2022,_911374,14560803.03,"Tarif majoré à 23,6097 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Montant",3106
+2023,_911374,0,"Tarif majoré à 23,6097 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Montant",3215
+2024,_911374,0,"Tarif majoré à 23,6097 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Montant",3234
+2025,_911374,0,"Tarif majoré à 23,6097 €/MWh (bouclier tarifaire) - TICFE - Taux pleins - Montant",2057
+2022,_911375,10660943.452,Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est strictement supérieure à 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quantité,3106
+2023,_911375,5945231.157,Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est strictement supérieure à 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quantité,3215
+2024,_911375,4788908.221,Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est strictement supérieure à 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quantité,3234
+2025,_911375,4359082.682,Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est strictement supérieure à 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quantité,2057
+2022,_911376,5330471.82,Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est strictement supérieure à 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Montant,3106
+2023,_911376,2972615.66,Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est strictement supérieure à 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Montant,3215
+2024,_911376,2394454.21,Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est strictement supérieure à 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Montant,3234
+2025,_911376,2179541.51,Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est strictement supérieure à 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Montant,2057
+2022,_911377,4278622.132,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est comprise entre 1,5 et 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quantité",3106
+2023,_911377,4052639.15,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est comprise entre 1,5 et 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quantité",3215
+2024,_911377,4529679.826,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est comprise entre 1,5 et 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quantité",3234
+2025,_911377,3782253.569,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est comprise entre 1,5 et 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quantité",2057
+2022,_911378,2139311.11,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est comprise entre 1,5 et 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Montant",3106
+2023,_911378,2026319.72,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est comprise entre 1,5 et 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Montant",3215
+2024,_911378,2264839.98,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est comprise entre 1,5 et 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Montant",3234
+2025,_911378,1891126.83,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est comprise entre 1,5 et 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Montant",2057
+2022,_911379,16326001.211,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est strictement inférieure à 1,5kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quantité",3106
+2023,_911379,13499770.57,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est strictement inférieure à 1,5kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quantité",3215
+2024,_911379,16552238.025,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est strictement inférieure à 1,5kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quantité",3234
+2025,_911379,16173404.123,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est strictement inférieure à 1,5kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quantité",2057
+2022,_911380,8163000.71,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est strictement inférieure à 1,5kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Montant",3106
+2023,_911380,6749885.35,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est strictement inférieure à 1,5kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Montant",3215
+2024,_911380,8276119.21,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est strictement inférieure à 1,5kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Montant",3234
+2025,_911380,8086702.24,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) dont la consommation est strictement inférieure à 1,5kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Montant",2057
+2022,_911381,2734092.32,Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est strictement supérieure à 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quant,3106
+2023,_911381,1802788.966,Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est strictement supérieure à 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quant,3215
+2024,_911381,2348085.777,Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est strictement supérieure à 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quant,3234
+2025,_911381,1808842.932,Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est strictement supérieure à 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quant,2057
+2022,_911382,1367046.17,Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est strictement supérieure à 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Monta,3106
+2023,_911382,901394.49,Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est strictement supérieure à 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Monta,3215
+2024,_911382,1174042.95,Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est strictement supérieure à 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Monta,3234
+2025,_911382,904421.49,Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est strictement supérieure à 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Monta,2057
+2022,_911383,1598433.345,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est comprise entre 1,5 et 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quantité",3106
+2023,_911383,1458549.523,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est comprise entre 1,5 et 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quantité",3215
+2024,_911383,1680664.599,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est comprise entre 1,5 et 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quantité",3234
+2025,_911383,1314468.723,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est comprise entre 1,5 et 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quantité",2057
+2022,_911384,799216.71,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est comprise entre 1,5 et 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Montant",3106
+2023,_911384,729274.77,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est comprise entre 1,5 et 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Montant",3215
+2024,_911384,840332.32,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est comprise entre 1,5 et 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Montant",3234
+2025,_911384,657234.43,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est comprise entre 1,5 et 3kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Montant",2057
+2022,_911385,1289233.787,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est strictement inférieure à 1,5kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Qua",3106
+2023,_911385,1156174.385,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est strictement inférieure à 1,5kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Qua",3215
+2024,_911385,1840365.347,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est strictement inférieure à 1,5kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Qua",3234
+2025,_911385,1777004.453,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est strictement inférieure à 1,5kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Qua",2057
+2022,_911386,644616.93,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est strictement inférieure à 1,5kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Mon",3106
+2023,_911386,578087.21,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est strictement inférieure à 1,5kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Mon",3215
+2024,_911386,920182.78,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est strictement inférieure à 1,5kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Mon",3234
+2025,_911386,888502.29,"Installations industrielles au sein de sites IEI (ou d'entreprises IEI) exposées à un risque de fuite de carbone dont la consommation est strictement inférieure à 1,5kWh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Mon",2057
+2022,_911387,913680.52,"Centres de stockage de données numériques avec consommations annuelles >= 1kWh par € de VA, pour les quantités excédant 1 GWh par an (bouclier tarifaire) - TICFE - Taux réduits - Quantité",3106
+2023,_911387,1220230.37,"Centres de stockage de données numériques avec consommations annuelles >= 1kWh par € de VA, pour les quantités excédant 1 GWh par an (bouclier tarifaire) - TICFE - Taux réduits - Quantité",3215
+2024,_911387,1887467.72,"Centres de stockage de données numériques avec consommations annuelles >= 1kWh par € de VA, pour les quantités excédant 1 GWh par an (bouclier tarifaire) - TICFE - Taux réduits - Quantité",3234
+2025,_911387,1514145.946,"Centres de stockage de données numériques avec consommations annuelles >= 1kWh par € de VA, pour les quantités excédant 1 GWh par an (bouclier tarifaire) - TICFE - Taux réduits - Quantité",2057
+2022,_911388,456840.26,"Centres de stockage de données numériques avec consommations annuelles >= 1kWh par € de VA, pour les quantités excédant 1 GWh par an (bouclier tarifaire) - TICFE - Taux réduits - Montant",3106
+2023,_911388,610115.19,"Centres de stockage de données numériques avec consommations annuelles >= 1kWh par € de VA, pour les quantités excédant 1 GWh par an (bouclier tarifaire) - TICFE - Taux réduits - Montant",3215
+2024,_911388,943733.87,"Centres de stockage de données numériques avec consommations annuelles >= 1kWh par € de VA, pour les quantités excédant 1 GWh par an (bouclier tarifaire) - TICFE - Taux réduits - Montant",3234
+2025,_911388,757073,"Centres de stockage de données numériques avec consommations annuelles >= 1kWh par € de VA, pour les quantités excédant 1 GWh par an (bouclier tarifaire) - TICFE - Taux réduits - Montant",2057
+2022,_911389,92949.447,"Exploitants d'aérodromes ouverts à la circulation aérienne publique, dont la consommation d'électricité est > 222 Wh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quantité",3106
+2023,_911389,65730.461,"Exploitants d'aérodromes ouverts à la circulation aérienne publique, dont la consommation d'électricité est > 222 Wh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quantité",3215
+2024,_911389,106163.622,"Exploitants d'aérodromes ouverts à la circulation aérienne publique, dont la consommation d'électricité est > 222 Wh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quantité",3234
+2025,_911389,108999.912,"Exploitants d'aérodromes ouverts à la circulation aérienne publique, dont la consommation d'électricité est > 222 Wh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Quantité",2057
+2022,_911390,46474.73,"Exploitants d'aérodromes ouverts à la circulation aérienne publique, dont la consommation d'électricité est > 222 Wh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Montant",3106
+2023,_911390,32865.24,"Exploitants d'aérodromes ouverts à la circulation aérienne publique, dont la consommation d'électricité est > 222 Wh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Montant",3215
+2024,_911390,53081.82,"Exploitants d'aérodromes ouverts à la circulation aérienne publique, dont la consommation d'électricité est > 222 Wh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Montant",3234
+2025,_911390,54499.96,"Exploitants d'aérodromes ouverts à la circulation aérienne publique, dont la consommation d'électricité est > 222 Wh par € de VA (bouclier tarifaire) - TICFE - Taux réduits - Montant",2057
+2022,_911391,0,Électricité directement fournie aux aéronefs lors de leur stationnement dans les aérodromes ouverts à la circulation aérienne publique - TICFE - Taux réduits - Quantité,3106
+2023,_911391,0,Électricité directement fournie aux aéronefs lors de leur stationnement dans les aérodromes ouverts à la circulation aérienne publique - TICFE - Taux réduits - Quantité,3215
+2024,_911391,0,Électricité directement fournie aux aéronefs lors de leur stationnement dans les aérodromes ouverts à la circulation aérienne publique - TICFE - Taux réduits - Quantité,3234
+2022,_911392,0,Électricité directement fournie aux aéronefs lors de leur stationnement dans les aérodromes ouverts à la circulation aérienne publique - TICFE - Taux réduits - Montant,3106
+2023,_911392,0,Électricité directement fournie aux aéronefs lors de leur stationnement dans les aérodromes ouverts à la circulation aérienne publique - TICFE - Taux réduits - Montant,3215
+2024,_911392,0,Électricité directement fournie aux aéronefs lors de leur stationnement dans les aérodromes ouverts à la circulation aérienne publique - TICFE - Taux réduits - Montant,3234
+2022,_911393,0,Excédent de TICFE constaté suite à régularisations fiscales,3106
+2024,_911393,2751336,Excédent de TICFE constaté suite à régularisations fiscales,3234
+2025,_911393,0,Excédent de TICFE constaté suite à régularisations fiscales,2057
+2022,_911394,0,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 6,63 €/MWh - TICFE - Taux pleins - Quantité",3106
+2023,_911394,25167325.746,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 6,63 €/MWh - TICFE - Taux pleins - Quantité",3215
+2024,_911394,173391.914,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 6,63 €/MWh - TICFE - Taux pleins - Quantité",3234
+2025,_911394,4274.366,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 6,63 €/MWh - TICFE - Taux pleins - Quantité",2057
+2022,_911395,0,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 6,63 €/MWh - TICFE - Taux pleins - Montant",3106
+2023,_911395,166859369.72,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 6,63 €/MWh - TICFE - Taux pleins - Montant",3215
+2024,_911395,1149588.42,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 6,63 €/MWh - TICFE - Taux pleins - Montant",3234
+2025,_911395,28339.04,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 6,63 €/MWh - TICFE - Taux pleins - Montant",2057
+2022,_911396,0,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 6,24 €/MWh - TICFE - Taux pleins - Quantité",3106
+2023,_911396,747825.264,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 6,24 €/MWh - TICFE - Taux pleins - Quantité",3215
+2024,_911396,21275.156,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 6,24 €/MWh - TICFE - Taux pleins - Quantité",3234
+2025,_911396,52.437,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 6,24 €/MWh - TICFE - Taux pleins - Quantité",2057
+2022,_911397,0,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 6,24 €/MWh - TICFE - Taux pleins - Montant",3106
+2023,_911397,4666429.7,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 6,24 €/MWh - TICFE - Taux pleins - Montant",3215
+2024,_911397,132756.98,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 6,24 €/MWh - TICFE - Taux pleins - Montant",3234
+2025,_911397,327.21,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 6,24 €/MWh - TICFE - Taux pleins - Montant",2057
+2022,_911398,0,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 4,68 €/MWh - TICFE - Taux pleins - Quantité",3106
+2023,_911398,529316.029,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 4,68 €/MWh - TICFE - Taux pleins - Quantité",3215
+2024,_911398,15260.131,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 4,68 €/MWh - TICFE - Taux pleins - Quantité",3234
+2025,_911398,45.041,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 4,68 €/MWh - TICFE - Taux pleins - Quantité",2057
+2022,_911399,0,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 4,68 €/MWh - TICFE - Taux pleins - Montant",3106
+2023,_911399,2477199,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 4,68 €/MWh - TICFE - Taux pleins - Montant",3215
+2024,_911399,71417.44,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 4,68 €/MWh - TICFE - Taux pleins - Montant",3234
+2025,_911399,210.8,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 4,68 €/MWh - TICFE - Taux pleins - Montant",2057
+2022,_911400,0,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 2,21 €/MWh - TICFE - Taux pleins - Quantité",3106
+2023,_911400,3209848.538,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 2,21 €/MWh - TICFE - Taux pleins - Quantité",3215
+2024,_911400,27082.171,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 2,21 €/MWh - TICFE - Taux pleins - Quantité",3234
+2025,_911400,2086.92,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 2,21 €/MWh - TICFE - Taux pleins - Quantité",2057
+2022,_911401,0,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 2,21 €/MWh - TICFE - Taux pleins - Montant",3106
+2023,_911401,7093765.3,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 2,21 €/MWh - TICFE - Taux pleins - Montant",3215
+2024,_911401,59851.6,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 2,21 €/MWh - TICFE - Taux pleins - Montant",3234
+2025,_911401,4612.08,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 2,21 €/MWh - TICFE - Taux pleins - Montant",2057
+2022,_911443,101774898,TDCFE collectée sur acomptes 2022 : augmentation,3106
+2023,_911443,186448345,TDCFE collectée sur acomptes 2022 : augmentation,3215
+2024,_911443,491649,TDCFE collectée sur acomptes 2022 : augmentation,3234
+2025,_911443,4308396,TDCFE collectée sur acomptes 2022 : augmentation,2057
+2022,_911444,49766757,TDCFE collectée sur acomptes 2022 : diminution,3106
+2023,_911444,171660861,TDCFE collectée sur acomptes 2022 : diminution,3215
+2024,_911444,10114879,TDCFE collectée sur acomptes 2022 : diminution,3234
+2025,_911444,97838,TDCFE collectée sur acomptes 2022 : diminution,2057
+2022,_911445,1311.24,"électricité directement fournie, lors de leur stationnement à quai dans les ports, aux navires mentionnés au c du 1 de l'article 265 bis du code des douanes et aux engins bénéficiant de l'exonération au e du même 1 - TICFE Fourniss",3106
+2023,_911445,1512.72,"électricité directement fournie, lors de leur stationnement à quai dans les ports, aux navires mentionnés au c du 1 de l'article 265 bis du code des douanes et aux engins bénéficiant de l'exonération au e du même 1 - TICFE Fourniss",3215
+2024,_911445,7338.9,"électricité directement fournie, lors de leur stationnement à quai dans les ports, aux navires mentionnés au c du 1 de l'article 265 bis du code des douanes et aux engins bénéficiant de l'exonération au e du même 1 - TICFE Fourniss",3234
+2025,_911445,7538.92,"électricité directement fournie, lors de leur stationnement à quai dans les ports, aux navires mentionnés au c du 1 de l'article 265 bis du code des douanes et aux engins bénéficiant de l'exonération au e du même 1 - TICFE Fourniss",2057
+2022,_911446,655.62,"électricité directement fournie, lors de leur stationnement à quai dans les ports, aux navires mentionnés au c du 1 de l'article 265 bis du code des douanes et aux engins bénéficiant de l'exonération au e du même 1 - TICFE Fourniss",3106
+2023,_911446,756.36,"électricité directement fournie, lors de leur stationnement à quai dans les ports, aux navires mentionnés au c du 1 de l'article 265 bis du code des douanes et aux engins bénéficiant de l'exonération au e du même 1 - TICFE Fourniss",3215
+2024,_911446,3669.45,"électricité directement fournie, lors de leur stationnement à quai dans les ports, aux navires mentionnés au c du 1 de l'article 265 bis du code des douanes et aux engins bénéficiant de l'exonération au e du même 1 - TICFE Fourniss",3234
+2025,_911446,3769.46,"électricité directement fournie, lors de leur stationnement à quai dans les ports, aux navires mentionnés au c du 1 de l'article 265 bis du code des douanes et aux engins bénéficiant de l'exonération au e du même 1 - TICFE Fourniss",2057
+2022,_911447,427862,REGULARISATION fiscale diminution -TICFE Fournisseur,3106
+2023,_911447,2315469,REGULARISATION fiscale diminution -TICFE Fournisseur,3215
+2024,_911447,4022166,REGULARISATION fiscale diminution -TICFE Fournisseur,3234
+2025,_911447,1646992,REGULARISATION fiscale diminution -TICFE Fournisseur,2057
+2022,_911448,271558105,Excédent de TICFE constaté suite à application du bouclier tarifaire - TICFE taux pleins,3106
+2023,_911448,115864933,Excédent de TICFE constaté suite à application du bouclier tarifaire - TICFE taux pleins,3215
+2025,_911448,0,Excédent de TICFE constaté suite à application du bouclier tarifaire - TICFE taux pleins,2057
+2022,_911449,271937750,Excédent de TICFE constaté suite à application du bouclier tarifaire - Récapitulatif,3106
+2023,_911449,144136447,Excédent de TICFE constaté suite à application du bouclier tarifaire - Récapitulatif,3215
+2024,_911449,22280618,Excédent de TICFE constaté suite à application du bouclier tarifaire - Récapitulatif,3234
+2025,_911449,0,Excédent de TICFE constaté suite à application du bouclier tarifaire - Récapitulatif,2057
+2022,_911450,123999099,Montant d'excédent de TICFE imputé sur le total TIC à payer - Récapitulatif,3106
+2023,_911450,54844380,Montant d'excédent de TICFE imputé sur le total TIC à payer - Récapitulatif,3215
+2024,_911450,853688,Montant d'excédent de TICFE imputé sur le total TIC à payer - Récapitulatif,3234
+2025,_911450,0,Montant d'excédent de TICFE imputé sur le total TIC à payer - Récapitulatif,2057
+2022,_911451,614521141,Total TIC restant à payer après imputation - Récapitulatif,3106
+2023,_911451,2065440443,Total TIC restant à payer après imputation - Récapitulatif,3215
+2024,_911451,7807424671,Total TIC restant à payer après imputation - Récapitulatif,3234
+2025,_911451,504051778,Total TIC restant à payer après imputation - Récapitulatif,2057
+2022,_911452,147938651,Montant de TICFE restant à rembourser après imputation - Récapitulatif,3106
+2023,_911452,89292067,Montant de TICFE restant à rembourser après imputation - Récapitulatif,3215
+2025,_911452,0,Montant de TICFE restant à rembourser après imputation - Récapitulatif,2057
+2022,_911453,1790807,REGULARISATION fiscale diminution -TICGN Fournisseur,3106
+2023,_911453,6978512,REGULARISATION fiscale diminution -TICGN Fournisseur,3215
+2024,_911453,4669453,REGULARISATION fiscale diminution -TICGN Fournisseur,3234
+2025,_911453,2152503,REGULARISATION fiscale diminution -TICGN Fournisseur,2057
+2022,_911455,209337,TOTAL - TICC Fournisseur - Taux plein - Quantité,3106
+2023,_911455,146510,TOTAL - TICC Fournisseur - Taux plein - Quantité,3215
+2024,_911455,115778,TOTAL - TICC Fournisseur - Taux plein - Quantité,3234
+2025,_911455,54055,TOTAL - TICC Fournisseur - Taux plein - Quantité,2057
+2022,_911456,3060506,TOTAL - TICC Fournisseur - Taux plein - Montant,3106
+2023,_911456,2141989,TOTAL - TICC Fournisseur - Taux plein - Montant,3215
+2024,_911456,1692687,TOTAL - TICC Fournisseur - Taux plein - Montant,3234
+2025,_911456,790473,TOTAL - TICC Fournisseur - Taux plein - Montant,2057
+2022,_911457,286,REGULARISATION fiscale diminution -TICC Fournisseur,3106
+2023,_911457,0,REGULARISATION fiscale diminution -TICC Fournisseur,3215
+2024,_911457,0,REGULARISATION fiscale diminution -TICC Fournisseur,3234
+2025,_911457,0,REGULARISATION fiscale diminution -TICC Fournisseur,2057
+2022,_911458,1918168,Usage autre que carburant ou combustible - TICC Fournisseur - QUANTITES EXEMPTEES,3106
+2023,_911458,1380423,Usage autre que carburant ou combustible - TICC Fournisseur - QUANTITES EXEMPTEES,3215
+2024,_911458,1009790,Usage autre que carburant ou combustible - TICC Fournisseur - QUANTITES EXEMPTEES,3234
+2025,_911458,750638,Usage autre que carburant ou combustible - TICC Fournisseur - QUANTITES EXEMPTEES,2057
+2022,_911459,1859797,Double usage - TICC Fournisseur - QUANTITES EXEMPTEES,3106
+2023,_911459,1333492,Double usage - TICC Fournisseur - QUANTITES EXEMPTEES,3215
+2024,_911459,1051075,Double usage - TICC Fournisseur - QUANTITES EXEMPTEES,3234
+2025,_911459,661440,Double usage - TICC Fournisseur - QUANTITES EXEMPTEES,2057
+2022,_911460,997616,Fabrication de produits minéraux non métalliques - TICC Fournisseur - QUANTITES EXEMPTEES,3106
+2023,_911460,766607,Fabrication de produits minéraux non métalliques - TICC Fournisseur - QUANTITES EXEMPTEES,3215
+2024,_911460,787717,Fabrication de produits minéraux non métalliques - TICC Fournisseur - QUANTITES EXEMPTEES,3234
+2025,_911460,606018,Fabrication de produits minéraux non métalliques - TICC Fournisseur - QUANTITES EXEMPTEES,2057
+2022,_911461,0,Production de produits énergétiques - TICC Fournisseur - QUANTITES EXEMPTEES,3106
+2023,_911461,0,Production de produits énergétiques - TICC Fournisseur - QUANTITES EXEMPTEES,3215
+2024,_911461,403,Production de produits énergétiques - TICC Fournisseur - QUANTITES EXEMPTEES,3234
+2025,_911461,398,Production de produits énergétiques - TICC Fournisseur - QUANTITES EXEMPTEES,2057
+2022,_911462,8641772,Production d'électricité - TICC Fournisseur - QUANTITES EXEMPTEES,3106
+2023,_911462,7709411,Production d'électricité - TICC Fournisseur - QUANTITES EXEMPTEES,3215
+2024,_911462,710112,Production d'électricité - TICC Fournisseur - QUANTITES EXEMPTEES,3234
+2025,_911462,575643,Production d'électricité - TICC Fournisseur - QUANTITES EXEMPTEES,2057
+2022,_911463,259,"Production ou extraction de houilles, lignites et cokes - TICC Fournisseur - QUANTITES EXEMPTEES",3106
+2023,_911463,722,"Production ou extraction de houilles, lignites et cokes - TICC Fournisseur - QUANTITES EXEMPTEES",3215
+2024,_911463,0,"Production ou extraction de houilles, lignites et cokes - TICC Fournisseur - QUANTITES EXEMPTEES",3234
+2025,_911463,0,"Production ou extraction de houilles, lignites et cokes - TICC Fournisseur - QUANTITES EXEMPTEES",2057
+2022,_911464,437497,Valorisation de la biomasse - TICC Fournisseur - QUANTITES EXEMPTEES,3106
+2023,_911464,92115,Valorisation de la biomasse - TICC Fournisseur - QUANTITES EXEMPTEES,3215
+2024,_911464,125909,Valorisation de la biomasse - TICC Fournisseur - QUANTITES EXEMPTEES,3234
+2025,_911464,63666,Valorisation de la biomasse - TICC Fournisseur - QUANTITES EXEMPTEES,2057
+2022,_911465,13855109,TOTAL - TICC Fournisseur - QUANTITES EXEMPTEES,3106
+2023,_911465,11282770,TOTAL - TICC Fournisseur - QUANTITES EXEMPTEES,3215
+2024,_911465,3685006,TOTAL - TICC Fournisseur - QUANTITES EXEMPTEES,3234
+2025,_911465,2657803,TOTAL - TICC Fournisseur - QUANTITES EXEMPTEES,2057
+2022,_911466,16060386,TOTAL QUANTITES FACTUREES - TICC Fournisseur,3106
+2023,_911466,12568171,TOTAL QUANTITES FACTUREES - TICC Fournisseur,3215
+2024,_911466,4843445,TOTAL QUANTITES FACTUREES - TICC Fournisseur,3234
+2025,_911466,3311125,TOTAL QUANTITES FACTUREES - TICC Fournisseur,2057
+2022,_911467,0,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 9,36 €/MWh - TICFE - Taux pleins - Quantité",3106
+2023,_911467,65940.548,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 9,36 €/MWh - TICFE - Taux pleins - Quantité",3215
+2024,_911467,0,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 9,36 €/MWh - TICFE - Taux pleins - Quantité",3234
+2025,_911467,0,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 9,36 €/MWh - TICFE - Taux pleins - Quantité",2057
+2022,_911468,0,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 9,36 €/MWh - TICFE - Taux pleins - Montant",3106
+2023,_911468,617203.53,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 9,36 €/MWh - TICFE - Taux pleins - Montant",3215
+2024,_911468,0,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 9,36 €/MWh - TICFE - Taux pleins - Montant",3234
+2025,_911468,0,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 9,36 €/MWh - TICFE - Taux pleins - Montant",2057
+2022,_911469,0,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 3,12 €/MWh - TICFE - Taux pleins - Quantité",3106
+2023,_911469,3435.47,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 3,12 €/MWh - TICFE - Taux pleins - Quantité",3215
+2024,_911469,3.382,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 3,12 €/MWh - TICFE - Taux pleins - Quantité",3234
+2022,_911470,0,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 3,12 €/MWh - TICFE - Taux pleins - Montant",3106
+2023,_911470,10718.65,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 3,12 €/MWh - TICFE - Taux pleins - Montant",3215
+2024,_911470,10.55,"Majoration taxe communale sur la consommation finale d'électricité janvier 2023 - tarif à 3,12 €/MWh - TICFE - Taux pleins - Montant",3234
+2022,_911522,2243924964,TOTAL TICFE avant régularisation - TICFE Fournisseur,3106
+2023,_911522,460435337,TOTAL TICFE avant régularisation - TICFE Fournisseur,3215
+2024,_911522,4853171302,TOTAL TICFE avant régularisation - TICFE Fournisseur,3234
+2025,_911522,504026724,TOTAL TICFE avant régularisation - TICFE Fournisseur,2057
+2022,_911523,0,Excédent de TICFE constaté suite à suppression des TLCFE et régularisations commerciales,3106
+2023,_911523,26888139,Excédent de TICFE constaté suite à suppression des TLCFE et régularisations commerciales,3215
+2024,_911523,638394,Excédent de TICFE constaté suite à suppression des TLCFE et régularisations commerciales,3234
+2025,_911523,0,Excédent de TICFE constaté suite à suppression des TLCFE et régularisations commerciales,2057
+2022,_911524,2117229675,TOTAL TICGN avant régularisation - TICGN Fournisseur,3106
+2023,_911524,1847163203,TOTAL TICGN avant régularisation - TICGN Fournisseur,3215
+2024,_911524,3226306121,TOTAL TICGN avant régularisation - TICGN Fournisseur,3234
+2022,_911526,5435676,TOTAL TICC avant régularisation - TICC Fournisseur,3106
+2023,_911526,3497269,TOTAL TICC avant régularisation - TICC Fournisseur,3215
+2024,_911526,3780634,TOTAL TICC avant régularisation - TICC Fournisseur,3234
+2025,_911526,0,TOTAL TICC avant régularisation - TICC Fournisseur,2057
+2022,_911528,458887274,TOTAL - TICFE Quantités - Récapitulatif,3106
+2023,_911528,433030532,TOTAL - TICFE Quantités - Récapitulatif,3215
+2024,_911528,464426404,TOTAL - TICFE Quantités - Récapitulatif,3234
+2025,_911528,344139083,TOTAL - TICFE Quantités - Récapitulatif,2057
+2022,_911529,2244854341,TOTAL - TICFE Montants - Récapitulatif,3106
+2023,_911529,459694162,TOTAL - TICFE Montants - Récapitulatif,3215
+2024,_911529,4853930164,TOTAL - TICFE Montants - Récapitulatif,3234
+2025,_911529,6596799496,TOTAL - TICFE Montants - Récapitulatif,2057
+2022,_911530,388607968,TOTAL - TICGN Quantités - Récapitulatif,3106
+2023,_911530,358165570,TOTAL - TICGN Quantités - Récapitulatif,3215
+2024,_911530,362303380,TOTAL - TICGN Quantités - Récapitulatif,3234
+2025,_911530,262366955,TOTAL - TICGN Quantités - Récapitulatif,2057
+2022,_911531,2117135196,TOTAL - TICGN Montants - Récapitulatif,3106
+2023,_911531,1842941080,TOTAL - TICGN Montants - Récapitulatif,3215
+2024,_911531,3228147581,TOTAL - TICGN Montants - Récapitulatif,3234
+2025,_911531,2733532146,TOTAL - TICGN Montants - Récapitulatif,2057
+2022,_911532,16060386,TOTAL - TICC Quantités - Récapitulatif,3106
+2023,_911532,12568171,TOTAL - TICC Quantités - Récapitulatif,3215
+2024,_911532,4843445,TOTAL - TICC Quantités - Récapitulatif,3234
+2025,_911532,3311125,TOTAL - TICC Quantités - Récapitulatif,2057
+2022,_911533,5479238,TOTAL - TICC Montants - Récapitulatif,3106
+2023,_911533,3506543,TOTAL - TICC Montants - Récapitulatif,3215
+2024,_911533,4647056,TOTAL - TICC Montants - Récapitulatif,3234
+2025,_911533,3286364,TOTAL - TICC Montants - Récapitulatif,2057
+2022,_911534,4367468775,TOTAL - TIC à payer - Récapitulatif,3106
+2023,_911534,2306141785,TOTAL - TIC à payer - Récapitulatif,3215
+2024,_911534,8086724801,TOTAL - TIC à payer - Récapitulatif,3234
+2025,_911534,9499426429,TOTAL - TIC à payer - Récapitulatif,2057
+2022,_912993,0,Transport collectif routier de personnes - TICFE_Taux réduits_Quantité,3106
+2023,_912993,0,Transport collectif routier de personnes - TICFE_Taux réduits_Quantité,3215
+2024,_912993,20964.845,Transport collectif routier de personnes - TICFE_Taux réduits_Quantité,3234
+2025,_912993,28810.166,Transport collectif routier de personnes - TICFE_Taux réduits_Quantité,2057
+2022,_912994,0,Transport collectif routier de personnes - TICFE_Taux réduits_Montant,3106
+2023,_912994,0,Transport collectif routier de personnes - TICFE_Taux réduits_Montant,3215
+2024,_912994,10482.42,Transport collectif routier de personnes - TICFE_Taux réduits_Montant,3234
+2025,_912994,14405.08,Transport collectif routier de personnes - TICFE_Taux réduits_Montant,2057
+2022,_912995,0,"Consommations pour la manutention portuaire dont le niveau minimal d électro-intensité est de 0,5 % - TICFE_Taux réduits_Quantité",3106
+2023,_912995,0,"Consommations pour la manutention portuaire dont le niveau minimal d électro-intensité est de 0,5 % - TICFE_Taux réduits_Quantité",3215
+2024,_912995,48980.28,"Consommations pour la manutention portuaire dont le niveau minimal d électro-intensité est de 0,5 % - TICFE_Taux réduits_Quantité",3234
+2025,_912995,48636.24,"Consommations pour la manutention portuaire dont le niveau minimal d électro-intensité est de 0,5 % - TICFE_Taux réduits_Quantité",2057
+2022,_912996,0,"Consommations pour la manutention portuaire dont le niveau minimal d électro-intensité est de 0,5 % - TICFE_Taux réduits_Montant",3106
+2023,_912996,0,"Consommations pour la manutention portuaire dont le niveau minimal d électro-intensité est de 0,5 % - TICFE_Taux réduits_Montant",3215
+2024,_912996,24490.14,"Consommations pour la manutention portuaire dont le niveau minimal d électro-intensité est de 0,5 % - TICFE_Taux réduits_Montant",3234
+2025,_912996,24318.12,"Consommations pour la manutention portuaire dont le niveau minimal d électro-intensité est de 0,5 % - TICFE_Taux réduits_Montant",2057
+2022,_912998,0,"Usage combustible - Tarif à 16,37 €/MWh - TICGN - Taux pleins_Quantité",3106
+2023,_912998,0,"Usage combustible - Tarif à 16,37 €/MWh - TICGN - Taux pleins_Quantité",3215
+2024,_912998,161694818,"Usage combustible - Tarif à 16,37 €/MWh - TICGN - Taux pleins_Quantité",3234
+2025,_912998,41213842,"Usage combustible - Tarif à 16,37 €/MWh - TICGN - Taux pleins_Quantité",2057
+2022,_912999,0,"Usage combustible - Tarif à 16,37 €/MWh - TICGN - Taux pleins_Montant",3106
+2023,_912999,0,"Usage combustible - Tarif à 16,37 €/MWh - TICGN - Taux pleins_Montant",3215
+2024,_912999,2646944170.66,"Usage combustible - Tarif à 16,37 €/MWh - TICGN - Taux pleins_Montant",3234
+2025,_912999,674670593.54,"Usage combustible - Tarif à 16,37 €/MWh - TICGN - Taux pleins_Montant",2057
+2022,_913035,0,"Tarif à 21,00 € / MWh_TICFE_Tarifs pleins _ Quantité",3106
+2023,_913035,0,"Tarif à 21,00 € / MWh_TICFE_Tarifs pleins _ Quantité",3215
+2024,_913035,140921212.693,"Tarif à 21,00 € / MWh_TICFE_Tarifs pleins _ Quantité",3234
+2025,_913035,70081475.356,"Tarif à 21,00 € / MWh_TICFE_Tarifs pleins _ Quantité",2057
+2022,_913036,0,"Tarif à 21,00 € / MWh_TICFE_Tarifs pleins _ Montant",3106
+2023,_913036,0,"Tarif à 21,00 € / MWh_TICFE_Tarifs pleins _ Montant",3215
+2024,_913036,2959345466.81,"Tarif à 21,00 € / MWh_TICFE_Tarifs pleins _ Montant",3234
+2025,_913036,1471710982.65,"Tarif à 21,00 € / MWh_TICFE_Tarifs pleins _ Montant",2057
+2022,_913037,0,"Tarif à 20,50 € / MWh_TICFE_Tarifs pleins _ Quantité",3106
+2023,_913037,0,"Tarif à 20,50 € / MWh_TICFE_Tarifs pleins _ Quantité",3215
+2024,_913037,83344063.568,"Tarif à 20,50 € / MWh_TICFE_Tarifs pleins _ Quantité",3234
+2025,_913037,18691451.028,"Tarif à 20,50 € / MWh_TICFE_Tarifs pleins _ Quantité",2057
+2022,_913038,0,"Tarif à 20,50 € / MWh_TICFE_Tarifs pleins _ Montant",3106
+2023,_913038,0,"Tarif à 20,50 € / MWh_TICFE_Tarifs pleins _ Montant",3215
+2024,_913038,1708553303.52,"Tarif à 20,50 € / MWh_TICFE_Tarifs pleins _ Montant",3234
+2025,_913038,383174746.32,"Tarif à 20,50 € / MWh_TICFE_Tarifs pleins _ Montant",2057
+2022,_914195,0,"Tarif à 33,70 €/MWh - Accise électricité - Tarifs pleins - Quantité",3106
+2023,_914195,0,"Tarif à 33,70 €/MWh - Accise électricité - Tarifs pleins - Quantité",3215
+2024,_914195,0,"Tarif à 33,70 €/MWh - Accise électricité - Tarifs pleins - Quantité",3234
+2025,_914195,88274133.308,"Tarif à 33,70 €/MWh - Accise électricité - Tarifs pleins - Quantité",2057
+2022,_914196,0,"Tarif à 33,70 €/MWh - Accise électricité - Tarifs pleins - Montant",3106
+2023,_914196,0,"Tarif à 33,70 €/MWh - Accise électricité - Tarifs pleins - Montant",3215
+2024,_914196,0,"Tarif à 33,70 €/MWh - Accise électricité - Tarifs pleins - Montant",3234
+2025,_914196,2974838292.5,"Tarif à 33,70 €/MWh - Accise électricité - Tarifs pleins - Montant",2057
+2022,_914197,0,"Tarif à 26,23 €/MWh - Accise électricité - Tarifs pleins - Quantité",3106
+2023,_914197,0,"Tarif à 26,23 €/MWh - Accise électricité - Tarifs pleins - Quantité",3215
+2024,_914197,0,"Tarif à 26,23 €/MWh - Accise électricité - Tarifs pleins - Quantité",3234
+2025,_914197,22171603.884,"Tarif à 26,23 €/MWh - Accise électricité - Tarifs pleins - Quantité",2057
+2022,_914198,0,"Tarif à 26,23 €/MWh - Accise électricité - Tarifs pleins - Montant",3106
+2023,_914198,0,"Tarif à 26,23 €/MWh - Accise électricité - Tarifs pleins - Montant",3215
+2024,_914198,0,"Tarif à 26,23 €/MWh - Accise électricité - Tarifs pleins - Montant",3234
+2025,_914198,581561169.95,"Tarif à 26,23 €/MWh - Accise électricité - Tarifs pleins - Montant",2057
+2022,_914199,0,Alimentation des aéronefs lors de leur stationnement sur les aérodromes ouverts à la circulation aérienne publique utilisés pour les besoins des activités non économiques - Accise électricité - Tarifs réduits - Quantité,3106
+2023,_914199,0,Alimentation des aéronefs lors de leur stationnement sur les aérodromes ouverts à la circulation aérienne publique utilisés pour les besoins des activités non économiques - Accise électricité - Tarifs réduits - Quantité,3215
+2024,_914199,0,Alimentation des aéronefs lors de leur stationnement sur les aérodromes ouverts à la circulation aérienne publique utilisés pour les besoins des activités non économiques - Accise électricité - Tarifs réduits - Quantité,3234
+2025,_914199,0,Alimentation des aéronefs lors de leur stationnement sur les aérodromes ouverts à la circulation aérienne publique utilisés pour les besoins des activités non économiques - Accise électricité - Tarifs réduits - Quantité,2057
+2022,_914200,0,Alimentation des aéronefs lors de leur stationnement sur les aérodromes ouverts à la circulation aérienne publique utilisés pour les besoins des activités non économiques - Accise électricité - Tarifs réduits - Montant,3106
+2023,_914200,0,Alimentation des aéronefs lors de leur stationnement sur les aérodromes ouverts à la circulation aérienne publique utilisés pour les besoins des activités non économiques - Accise électricité - Tarifs réduits - Montant,3215
+2024,_914200,0,Alimentation des aéronefs lors de leur stationnement sur les aérodromes ouverts à la circulation aérienne publique utilisés pour les besoins des activités non économiques - Accise électricité - Tarifs réduits - Montant,3234
+2025,_914200,0,Alimentation des aéronefs lors de leur stationnement sur les aérodromes ouverts à la circulation aérienne publique utilisés pour les besoins des activités non économiques - Accise électricité - Tarifs réduits - Montant,2057
+2022,_914201,0,"Usage combustible : tarif à 17,16 €/MWh - Accise gaz naturels - Tarifs pleins - Quantité",3106
+2023,_914201,0,"Usage combustible : tarif à 17,16 €/MWh - Accise gaz naturels - Tarifs pleins - Quantité",3215
+2024,_914201,0,"Usage combustible : tarif à 17,16 €/MWh - Accise gaz naturels - Tarifs pleins - Quantité",3234
+2025,_914201,112055069,"Usage combustible : tarif à 17,16 €/MWh - Accise gaz naturels - Tarifs pleins - Quantité",2057
+2022,_914202,0,"Usage combustible : tarif à 17,16 €/MWh - Accise gaz naturels - Tarifs pleins - Montant",3106
+2023,_914202,0,"Usage combustible : tarif à 17,16 €/MWh - Accise gaz naturels - Tarifs pleins - Montant",3215
+2024,_914202,0,"Usage combustible : tarif à 17,16 €/MWh - Accise gaz naturels - Tarifs pleins - Montant",3234
+2025,_914202,1922864984.04,"Usage combustible : tarif à 17,16 €/MWh - Accise gaz naturels - Tarifs pleins - Montant",2057
+2022,_914203,0,Secteurs aéronautique et naval - Accise gaz naturels - Quantités exonérées,3106
+2023,_914203,0,Secteurs aéronautique et naval - Accise gaz naturels - Quantités exonérées,3215
+2024,_914203,0,Secteurs aéronautique et naval - Accise gaz naturels - Quantités exonérées,3234
+2022,_914204,0,Navigation intérieure à des fins commerciales ou pour les besoins des autorités publiques - Accise gaz naturels - Quantités exonérées,3106
+2023,_914204,0,Navigation intérieure à des fins commerciales ou pour les besoins des autorités publiques - Accise gaz naturels - Quantités exonérées,3215
+2024,_914204,0,Navigation intérieure à des fins commerciales ou pour les besoins des autorités publiques - Accise gaz naturels - Quantités exonérées,3234
+2025,_914204,0,Navigation intérieure à des fins commerciales ou pour les besoins des autorités publiques - Accise gaz naturels - Quantités exonérées,2057
+2022,_914205,0,Navigation maritime à des fins commerciales ou pour les besoins des autorités publiques - Accise gaz naturels - Quantités exonérées,3106
+2023,_914205,0,Navigation maritime à des fins commerciales ou pour les besoins des autorités publiques - Accise gaz naturels - Quantités exonérées,3215
+2024,_914205,0,Navigation maritime à des fins commerciales ou pour les besoins des autorités publiques - Accise gaz naturels - Quantités exonérées,3234
+2025,_914205,2308375,Navigation maritime à des fins commerciales ou pour les besoins des autorités publiques - Accise gaz naturels - Quantités exonérées,2057
+2022,_914206,0,Navigation aérienne pour les besoins des prestations de services et ceux des autorités publiques - Accise gaz naturels - Quantités exonérées,3106
+2023,_914206,0,Navigation aérienne pour les besoins des prestations de services et ceux des autorités publiques - Accise gaz naturels - Quantités exonérées,3215
+2024,_914206,0,Navigation aérienne pour les besoins des prestations de services et ceux des autorités publiques - Accise gaz naturels - Quantités exonérées,3234
+2025,_914206,0,Navigation aérienne pour les besoins des prestations de services et ceux des autorités publiques - Accise gaz naturels - Quantités exonérées,2057
+2022,_914207,0,"Installations intensives en énergie soumises au SEQE-IF de l UE : tarif à 4,39 €/MWh - Accise charbons - Tarifs réduits - Quantité",3106
+2023,_914207,0,"Installations intensives en énergie soumises au SEQE-IF de l UE : tarif à 4,39 €/MWh - Accise charbons - Tarifs réduits - Quantité",3215
+2024,_914207,0,"Installations intensives en énergie soumises au SEQE-IF de l UE : tarif à 4,39 €/MWh - Accise charbons - Tarifs réduits - Quantité",3234
+2025,_914207,508985,"Installations intensives en énergie soumises au SEQE-IF de l UE : tarif à 4,39 €/MWh - Accise charbons - Tarifs réduits - Quantité",2057
+2022,_914208,0,"Installations intensives en énergie soumises au SEQE-IF de l UE : tarif à 4,39 €/MWh - Accise charbons - Tarifs réduits - Montant",3106
+2023,_914208,0,"Installations intensives en énergie soumises au SEQE-IF de l UE : tarif à 4,39 €/MWh - Accise charbons - Tarifs réduits - Montant",3215
+2024,_914208,0,"Installations intensives en énergie soumises au SEQE-IF de l UE : tarif à 4,39 €/MWh - Accise charbons - Tarifs réduits - Montant",3234
+2025,_914208,2234444.15,"Installations intensives en énergie soumises au SEQE-IF de l UE : tarif à 4,39 €/MWh - Accise charbons - Tarifs réduits - Montant",2057
+2022,_914374,0,"Tarif à 29,98 €/MWh - Accise électricité - Tarifs pleins - Quantité",3106
+2023,_914374,0,"Tarif à 29,98 €/MWh - Accise électricité - Tarifs pleins - Quantité",3215
+2024,_914374,0,"Tarif à 29,98 €/MWh - Accise électricité - Tarifs pleins - Quantité",3234
+2025,_914374,14723689.29,"Tarif à 29,98 €/MWh - Accise électricité - Tarifs pleins - Quantité",2057
+2022,_914375,0,"Tarif à 29,98 €/MWh : fraction à 25,09 €/MWh - Accise électricité - Tarifs pleins - Montant",3106
+2023,_914375,0,"Tarif à 29,98 €/MWh : fraction à 25,09 €/MWh - Accise électricité - Tarifs pleins - Montant",3215
+2024,_914375,0,"Tarif à 29,98 €/MWh : fraction à 25,09 €/MWh - Accise électricité - Tarifs pleins - Montant",3234
+2025,_914375,369417364.27,"Tarif à 29,98 €/MWh : fraction à 25,09 €/MWh - Accise électricité - Tarifs pleins - Montant",2057
+2022,_914376,0,"Tarif à 29,98 €/MWh : majoration à 4,89 €/MWh - Accise électricité - Tarifs pleins - Montant",3106
+2023,_914376,0,"Tarif à 29,98 €/MWh : majoration à 4,89 €/MWh - Accise électricité - Tarifs pleins - Montant",3215
+2024,_914376,0,"Tarif à 29,98 €/MWh : majoration à 4,89 €/MWh - Accise électricité - Tarifs pleins - Montant",3234
+2025,_914376,71998840.67,"Tarif à 29,98 €/MWh : majoration à 4,89 €/MWh - Accise électricité - Tarifs pleins - Montant",2057
+2022,_914377,0,"Tarif à 25,79 €/MWh - Accise électricité - Tarifs pleins - Quantité",3106
+2023,_914377,0,"Tarif à 25,79 €/MWh - Accise électricité - Tarifs pleins - Quantité",3215
+2024,_914377,0,"Tarif à 25,79 €/MWh - Accise électricité - Tarifs pleins - Quantité",3234
+2025,_914377,13850783.326,"Tarif à 25,79 €/MWh - Accise électricité - Tarifs pleins - Quantité",2057
+2022,_914378,0,"Tarif à 25,79 €/MWh : fraction à 20,90 €/MWh - Accise électricité - Tarifs pleins - Montant",3106
+2023,_914378,0,"Tarif à 25,79 €/MWh : fraction à 20,90 €/MWh - Accise électricité - Tarifs pleins - Montant",3215
+2024,_914378,0,"Tarif à 25,79 €/MWh : fraction à 20,90 €/MWh - Accise électricité - Tarifs pleins - Montant",3234
+2025,_914378,289481371.58,"Tarif à 25,79 €/MWh : fraction à 20,90 €/MWh - Accise électricité - Tarifs pleins - Montant",2057
+2022,_914379,0,"Tarif à 25,79 €/MWh : majoration à 4,89 €/MWh - Accise électricité - Tarifs pleins - Montant",3106
+2023,_914379,0,"Tarif à 25,79 €/MWh : majoration à 4,89 €/MWh - Accise électricité - Tarifs pleins - Montant",3215
+2024,_914379,0,"Tarif à 25,79 €/MWh : majoration à 4,89 €/MWh - Accise électricité - Tarifs pleins - Montant",3234
+2025,_914379,67730330.44,"Tarif à 25,79 €/MWh : majoration à 4,89 €/MWh - Accise électricité - Tarifs pleins - Montant",2057
+2022,_914380,0,Régularisation majoration accise ZNI - Accise électricité - Tarifs pleins - Montant,3106
+2023,_914380,0,Régularisation majoration accise ZNI - Accise électricité - Tarifs pleins - Montant,3215
+2024,_914380,0,Régularisation majoration accise ZNI - Accise électricité - Tarifs pleins - Montant,3234
+2025,_914380,1053.86,Régularisation majoration accise ZNI - Accise électricité - Tarifs pleins - Montant,2057
+2022,_914381,0,Total hors majoration accise ZNI - Accise électricité - Tarifs pleins,3106
+2023,_914381,0,Total hors majoration accise ZNI - Accise électricité - Tarifs pleins,3215
+2024,_914381,0,Total hors majoration accise ZNI - Accise électricité - Tarifs pleins,3234
+2025,_914381,2016590574,Total hors majoration accise ZNI - Accise électricité - Tarifs pleins,2057
+2022,_914382,0,Total majoration accise ZNI - Accise électricité - Tarifs pleins,3106
+2023,_914382,0,Total majoration accise ZNI - Accise électricité - Tarifs pleins,3215
+2024,_914382,0,Total majoration accise ZNI - Accise électricité - Tarifs pleins,3234
+2025,_914382,139728116,Total majoration accise ZNI - Accise électricité - Tarifs pleins,2057
+2022,_914383,0,Régularisations fiscales : augmentation majoration accise ZNI - Accise électricité,3106
+2023,_914383,0,Régularisations fiscales : augmentation majoration accise ZNI - Accise électricité,3215
+2024,_914383,0,Régularisations fiscales : augmentation majoration accise ZNI - Accise électricité,3234
+2025,_914383,0,Régularisations fiscales : augmentation majoration accise ZNI - Accise électricité,2057
+2022,_914384,0,Régularisations fiscales : diminution majoration accise ZNI - Accise électricité,3106
+2023,_914384,0,Régularisations fiscales : diminution majoration accise ZNI - Accise électricité,3215
+2024,_914384,0,Régularisations fiscales : diminution majoration accise ZNI - Accise électricité,3234
+2025,_914384,342,Régularisations fiscales : diminution majoration accise ZNI - Accise électricité,2057
+2022,_914385,0,Total accise hors majoration - Accise électricité,3106
+2023,_914385,0,Total accise hors majoration - Accise électricité,3215
+2024,_914385,0,Total accise hors majoration - Accise électricité,3234
+2025,_914385,1964108397,Total accise hors majoration - Accise électricité,2057
+2022,_914386,0,Total majoration accise ZNI - Accise électricité,3106
+2023,_914386,0,Total majoration accise ZNI - Accise électricité,3215
+2024,_914386,0,Total majoration accise ZNI - Accise électricité,3234
+2025,_914386,139727774,Total majoration accise ZNI - Accise électricité,2057
+2022,_914387,0,"Tarif à 15,43 €/MWh - Accise gaz naturels - Tarifs pleins - Quantité",3106
+2023,_914387,0,"Tarif à 15,43 €/MWh - Accise gaz naturels - Tarifs pleins - Quantité",3215
+2024,_914387,0,"Tarif à 15,43 €/MWh - Accise gaz naturels - Tarifs pleins - Quantité",3234
+2025,_914387,5333244,"Tarif à 15,43 €/MWh - Accise gaz naturels - Tarifs pleins - Quantité",2057
+2022,_914388,0,"Tarif à 15,43 €/MWh : fraction à 10,54 €/MWh - Accise gaz naturels - Tarifs pleins - Montant",3106
+2023,_914388,0,"Tarif à 15,43 €/MWh : fraction à 10,54 €/MWh - Accise gaz naturels - Tarifs pleins - Montant",3215
+2024,_914388,0,"Tarif à 15,43 €/MWh : fraction à 10,54 €/MWh - Accise gaz naturels - Tarifs pleins - Montant",3234
+2025,_914388,56212391.76,"Tarif à 15,43 €/MWh : fraction à 10,54 €/MWh - Accise gaz naturels - Tarifs pleins - Montant",2057
+2022,_914389,0,"Tarif à 15,43 €/MWh : majoration à 4,89 €/MWh - Accise gaz naturels - Tarifs pleins - Montant",3106
+2023,_914389,0,"Tarif à 15,43 €/MWh : majoration à 4,89 €/MWh - Accise gaz naturels - Tarifs pleins - Montant",3215
+2024,_914389,0,"Tarif à 15,43 €/MWh : majoration à 4,89 €/MWh - Accise gaz naturels - Tarifs pleins - Montant",3234
+2025,_914389,26079563.16,"Tarif à 15,43 €/MWh : majoration à 4,89 €/MWh - Accise gaz naturels - Tarifs pleins - Montant",2057
+2022,_914390,0,Total hors majoration accise ZNI - Accise gaz naturels - Tarifs pleins,3106
+2023,_914390,0,Total hors majoration accise ZNI - Accise gaz naturels - Tarifs pleins,3215
+2024,_914390,0,Total hors majoration accise ZNI - Accise gaz naturels - Tarifs pleins,3234
+2025,_914390,485952672,Total hors majoration accise ZNI - Accise gaz naturels - Tarifs pleins,2057
+2022,_914391,0,Total majoration accise ZNI - Accise gaz naturels - Tarifs pleins,3106
+2023,_914391,0,Total majoration accise ZNI - Accise gaz naturels - Tarifs pleins,3215
+2024,_914391,0,Total majoration accise ZNI - Accise gaz naturels - Tarifs pleins,3234
+2025,_914391,26079562,Total majoration accise ZNI - Accise gaz naturels - Tarifs pleins,2057
+2022,_914393,0,Régularisations fiscales : diminution majoration accise ZNI - Accise gaz naturels,3106
+2023,_914393,0,Régularisations fiscales : diminution majoration accise ZNI - Accise gaz naturels,3215
+2024,_914393,0,Régularisations fiscales : diminution majoration accise ZNI - Accise gaz naturels,3234
+2022,_914394,0,Total accise hors majoration - Accise gaz naturels,3106
+2023,_914394,0,Total accise hors majoration - Accise gaz naturels,3215
+2024,_914394,0,Total accise hors majoration - Accise gaz naturels,3234
+2025,_914394,484738838,Total accise hors majoration - Accise gaz naturels,2057
+2022,_914395,0,Total majoration accise ZNI - Accise gaz naturels,3106
+2023,_914395,0,Total majoration accise ZNI - Accise gaz naturels,3215
+2024,_914395,0,Total majoration accise ZNI - Accise gaz naturels,3234
+2025,_914395,26079513,Total majoration accise ZNI - Accise gaz naturels,2057
+2022,_914396,0,"Tarif à 15,43 €/MWh - Accise charbons - Tarifs pleins - Quantité",3106
+2023,_914396,0,"Tarif à 15,43 €/MWh - Accise charbons - Tarifs pleins - Quantité",3215
+2024,_914396,0,"Tarif à 15,43 €/MWh - Accise charbons - Tarifs pleins - Quantité",3234
+2022,_914397,0,"Tarif à 15,43 €/MWh : fraction à 10,54 €/MWh - Accise charbons - Tarifs pleins - Montant",3106
+2023,_914397,0,"Tarif à 15,43 €/MWh : fraction à 10,54 €/MWh - Accise charbons - Tarifs pleins - Montant",3215
+2024,_914397,0,"Tarif à 15,43 €/MWh : fraction à 10,54 €/MWh - Accise charbons - Tarifs pleins - Montant",3234
+2022,_914398,0,"Tarif à 15,43 €/MWh : majoration à 4,89 €/MWh - Accise charbons - Tarifs pleins - Montant",3106
+2023,_914398,0,"Tarif à 15,43 €/MWh : majoration à 4,89 €/MWh - Accise charbons - Tarifs pleins - Montant",3215
+2024,_914398,0,"Tarif à 15,43 €/MWh : majoration à 4,89 €/MWh - Accise charbons - Tarifs pleins - Montant",3234
+2022,_914399,0,Total hors majoration accise ZNI - Accise charbons - Tarifs pleins,3106
+2023,_914399,0,Total hors majoration accise ZNI - Accise charbons - Tarifs pleins,3215
+2024,_914399,0,Total hors majoration accise ZNI - Accise charbons - Tarifs pleins,3234
+2025,_914399,249670,Total hors majoration accise ZNI - Accise charbons - Tarifs pleins,2057
+2022,_914400,0,Total majoration accise ZNI - Accise charbons - Tarifs pleins,3106
+2023,_914400,0,Total majoration accise ZNI - Accise charbons - Tarifs pleins,3215
+2024,_914400,0,Total majoration accise ZNI - Accise charbons - Tarifs pleins,3234
+2022,_914403,0,Total accise hors majoration - Accise charbons,3106
+2023,_914403,0,Total accise hors majoration - Accise charbons,3215
+2024,_914403,0,Total accise hors majoration - Accise charbons,3234
+2025,_914403,996603,Total accise hors majoration - Accise charbons,2057
+2022,_914404,0,Total majoration accise ZNI - Accise charbons,3106
+2023,_914404,0,Total majoration accise ZNI - Accise charbons,3215
+2024,_914404,0,Total majoration accise ZNI - Accise charbons,3234
+2022,_914405,0,Total majoration accise ZNI - Accise électricité - Récapitulatif,3106
+2023,_914405,0,Total majoration accise ZNI - Accise électricité - Récapitulatif,3215
+2024,_914405,0,Total majoration accise ZNI - Accise électricité - Récapitulatif,3234
+2025,_914405,139727774,Total majoration accise ZNI - Accise électricité - Récapitulatif,2057
+2022,_914406,0,Total majoration accise ZNI - Accise gaz naturels - Récapitulatif,3106
+2023,_914406,0,Total majoration accise ZNI - Accise gaz naturels - Récapitulatif,3215
+2024,_914406,0,Total majoration accise ZNI - Accise gaz naturels - Récapitulatif,3234
+2025,_914406,26079513,Total majoration accise ZNI - Accise gaz naturels - Récapitulatif,2057
+2022,_914407,0,Total majoration accise ZNI - Accise charbons - Récapitulatif,3106
+2023,_914407,0,Total majoration accise ZNI - Accise charbons - Récapitulatif,3215
+2024,_914407,0,Total majoration accise ZNI - Accise charbons - Récapitulatif,3234

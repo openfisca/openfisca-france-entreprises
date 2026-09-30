@@ -1,6 +1,6 @@
 """Variables and formulas for this module."""
 
-from openfisca_core.model_api import YEAR, Variable, select
+from openfisca_core.model_api import ADD, YEAR, Variable, select
 
 from openfisca_france_entreprises.entities import Etablissement
 
@@ -13,7 +13,9 @@ class taxe_departementale_consommation_finale_electricite(Variable):
 
     def formula(etablissement, period, parameters):
         taux_tdcfe = etablissement("taux_tdcfe", period)
-        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period)
+        # Assiette mensuelle depuis la bascule ; taux_tdcfe reste annuel (coefficient
+        # départemental), la TDCFE garde donc son traitement annuel. Même raison qu'à la TCCFE.
+        assiette_taxe_electricite = etablissement("assiette_taxe_electricite", period, options=[ADD])
         return assiette_taxe_electricite * taux_tdcfe
 
 
@@ -41,4 +43,4 @@ class taux_tdcfe(Variable):
         Elle cesse d'être prélevée séparément : son produit est repris dans les tarifs normaux
         de l'accise, différenciés par catégorie fiscale de puissance. Le taux propre est donc nul.
         """
-        return etablissement("assiette_taxe_electricite", period) * 0
+        return etablissement("assiette_taxe_electricite", period, options=[ADD]) * 0

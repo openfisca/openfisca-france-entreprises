@@ -1,0 +1,7 @@
+description: TICPE - Super
+metadata:
+  label_en: TICPE - Energy products, Super petrol
+  order:
+  - super_e5
+  - super_e10
+  - super_plombe

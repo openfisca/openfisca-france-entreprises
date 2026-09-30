@@ -1,6 +1,14 @@
+# relative_error_margin : depuis la bascule mensuelle, l'accise de l'année est la somme des
+# douze accises mensuelles. Une assiette fournie à l'année est stockée en float32 au douzième
+# par set_input_divide_by_period, et la somme des douze mois ne restitue pas la quantité
+# annuelle au bit près : l'écart observé est d'au plus 1,1e-7 en relatif. La marge de 1e-6
+# couvre ce bruit d'arithmétique sans masquer le moindre écart de tarif — le plus petit pas
+# tarifaire du barème est de 0,01 €/MWh, soit six ordres de grandeur au-dessus.
+
 - name: test 2007
 #formula_
   period: 2007
+  relative_error_margin: 0.000001
   input:
     assiette_ticc: 1000
   output:
@@ -38,6 +46,7 @@
 - name: test 2022 taux normal
 #formula_
   period: 2022
+  relative_error_margin: 0.000001
   input:
     assiette_ticc: 1000
   output:
@@ -94,6 +103,7 @@
 - name: test 2022 taxe_interieure_taxation_consommation_charbon_seqe
 #formula_
   period: 2022
+  relative_error_margin: 0.000001
   input:
     assiette_ticc : 1000
     installation_seqe : True
@@ -105,6 +115,7 @@
 - name: test 2022 taxe_interieure_taxation_consommation_charbon_concurrence_internationale
 #formula_
   period: 2022
+  relative_error_margin: 0.000001
   input:
     assiette_ticc: 1000
     installation_seqe : False

@@ -1,0 +1,27 @@
+description: Majorations régionales de l'accise sur les énergies
+metadata:
+  label_en: Regional surcharges on the energy excise duty
+  order:
+  - essences
+  - gazole
+documentation: |-
+  Majorations régionales de l'accise sur les énergies, qui prennent la suite des
+  majorations de TICPE au 1er janvier 2022 (voir `ticpe/majo_region`).
+
+  Les montants sont exprimés en euros par mégawattheure, unité du code des impositions sur
+  les biens et services. La douane publie les mêmes tarifs en euros par hectolitre : la
+  conversion officielle vaut 1 MWh par hectolitre pour les gazoles et 0,8889 MWh par
+  hectolitre pour les essences.
+
+  Les tarifs régionaux figurent en annexe 1.1 des circulaires « Droits et taxes applicables
+  aux produits énergétiques » du bulletin officiel des douanes, qui les publie en euros par
+  hectolitre. Millésimes utilisés :
+
+  - année 2022, DA 21-058 (BOD 7447) —
+    https://www.douane.gouv.fr/sites/default/files/dana/files/Energie-environnement-loi%20de%20finances_21-058.pdf
+  - année 2023, DA 23-007 —
+    https://www.douane.gouv.fr/sites/default/files/dana/files/Energie-environnement-loi%20de%20finances_23-007.pdf
+  - année 2024, DA 23-031 —
+    https://www.douane.gouv.fr/sites/default/files/bod/src/dana/da/Energie-environnement-loi%20de%20finances_23-031.pdf
+  - année 2025, DA 24-078 (BOD 7549) —
+    https://www.douane.gouv.fr/sites/default/files/ba_files/da/2024-12/BOD%20DetT%20janvier%202025_0.pdf

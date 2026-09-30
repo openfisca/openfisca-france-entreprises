@@ -1,0 +1,9 @@
+description: TICPE - produits énergétiques, gazole
+metadata:
+  label_en: TICPE - Energy products, diesel
+  order:
+  - carburants_sous_conditions_fioul_domestique
+  - carburants_sous_conditions
+  - fioul_domestique
+  - gazole_autres
+  - gazole_b_10

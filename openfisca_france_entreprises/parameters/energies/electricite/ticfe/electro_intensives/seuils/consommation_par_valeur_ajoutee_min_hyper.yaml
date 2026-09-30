@@ -1,0 +1,10 @@
+description: Seuil minimal de consommation d'électricité par euro de valeur ajoutée (6 kWh/€) caractérisant une installation hyperélectro-intensive
+values:
+  2016-01-01:
+    value: 0.006
+metadata:
+  unit: MWh_per_euro_VA
+  reference:
+    2016-01-01:
+      title: Article 266 quinquies C du code des douanes
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031814811

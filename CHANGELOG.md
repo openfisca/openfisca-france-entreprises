@@ -1,3 +1,182 @@
+## 2.0.0 - [#32](https://github.com/openfisca/openfisca-france-entreprises/pull/32)
+
+* Breaking change.
+* Impacted periods: from 01/01/1986.
+* Impacted areas:
+  - `variables/consommation_energie/autres_produits`
+  - `variables/consommation_energie/charbon`
+  - `variables/consommation_energie/electricite`
+  - `variables/consommation_energie/energies`
+  - `variables/consommation_energie/gaz_naturel`
+  - `variables/taxes/formula_helpers`
+  - `variables/taxes/taxation_energies/taxation_autres_produits_energetiques`
+  - `variables/taxes/taxation_energies/taxation_charbon`
+  - `variables/taxes/taxation_energies/taxation_electricite`
+  - `variables/taxes/taxation_energies/taxation_gaz_naturel`
+  - `variables/taxes/taxation_energies/taxation_tiruert`
+  - `variables/taxes/taxation_energies/tccfe/tccfe`
+  - `variables/taxes/taxation_energies/tdcfe/tdcfe`
+  - `variables/boulier_tarifaire`
+  - `variables/variables_economiques`
+* Details:
+  - Les 106 variables de quantite d'energie -- consommations et assiettes -- passent de
+    `definition_period = YEAR` a `MONTH`, avec `set_input = set_input_divide_by_period`. La taxe
+    de l'annee devient la somme des taxes mensuelles : chaque mois porte sa quantite et son tarif.
+  - **Rupture d'API** : lire `assiette_ticc`, `assiette_ticgn`, `assiette_taxe_electricite` ou
+    l'une des consommations sur une periode annuelle leve desormais une exception. Utiliser
+    `options=[ADD]`, ou interroger un mois.
+  - Le comportement anterieur est preserve pour qui fournit des quantites annuelles :
+    `set_input_divide_by_period` les repartit sur les douze mois, et la somme redonne
+    `quantite * moyenne des tarifs`, soit exactement la valeur d'avant la bascule. C'est ce dont
+    les agregats Elfe ont besoin, eux qui publient des tarifs deja moyennes.
+  - Motif abandonne : l'hypothese de consommation uniforme sur l'annee, que portait
+    `tarif_moyen_annuel`. Les declarations 2040-TIC la contredisent -- elles ne moyennent jamais,
+    elles segregent les tarifs en cases distinctes, chaque case portant la quantite taxee a son
+    propre tarif. Voir le constat 8 d'`AGREGATS_TIC.md`.
+  - Trois regimes restent volontairement annuels, leurs bornes mordant sur le cumul de l'annee et
+    non sur chaque mois : le seuil d'exoneration et l'abattement de la TICGN d'avant 2008, le
+    plafond de 1 GWh du tarif reduit des centres de stockage de donnees, et le bouclier tarifaire,
+    qui encode un basculement de regime et non un changement de tarif.
+  - TCCFE et TDCFE restent annuelles : leur coefficient communal ou departemental n'est pas
+    mensualise. La TCCFE est de toute facon incorporee a l'accise au 01/01/2023.
+  - Correction de fond : neuf formules de la TICPE renvoyaient une liste d'un seul element, ce qui
+    faisait stocker a OpenFisca un tableau de forme (1, n) au lieu de (n,). Invisible avec un seul
+    etablissement, faux avec plusieurs.
+  - `tarif_moyen_annuel` cede la place a `accise_annuelle` et `tarif_du_mois`. Il ne subsiste que
+    pour le regime a seuil de la TICGN d'avant 2008, ou il calcule vraiment une moyenne annuelle.
+  - 29 cas de test recoivent une `relative_error_margin` de 1e-6. Une quantite annuelle est stockee
+    au douzieme en float32 par `set_input_divide_by_period`, et la somme des douze mois ne restitue
+    pas la quantite annuelle au bit pres : l'ecart observe est d'au plus 3,1e-7 en relatif, soit six
+    ordres de grandeur sous le plus petit pas tarifaire du bareme (0,01 EUR/MWh).
+  - 18 assertions portant sur une assiette passent en periode mensuelle, sans qu'aucun nombre ne
+    change : la composition d'une assiette est lineaire.
+  - Tests 2040-TIC regeneres : la quantite de chaque case est desormais posee sur un mois ou le
+    bareme porte le tarif que la case declare, au lieu d'etre repartie sur l'annee. Une case de la
+    2040-TIC est une cellule tarifaire homogene -- elle porte la quantite taxee a son propre tarif,
+    qu'elle nomme souvent dans son libelle. Cela eteint 5 rouges (`_914195`, `_914197`, `_911293`,
+    `_911319`, `_914201`) et clot les constats 6 et 8 d'`AGREGATS_TIC.md`.
+  - Quand aucun mois de l'annee ne porte le tarif declare, la quantite est posee sur janvier : le
+    desaccord avec le bareme apparait alors seul. `_911243` 2025 cumulait le constat 3 et
+    l'annualisation ; son rapport passe de 9,00 a 10,72, soit exactement 17,16 / 1,60.
+  - Bouclier tarifaire : les trois formules n'appliquaient que `bouclier_tarifaire.entreprises`,
+    sans jamais regarder la categorie fiscale, et rendaient donc la moitie du montant du aux
+    menages en 2022 (1,00 contre 0,50) et 21/20,5 en 2024. Elles passent par `_tarif_bouclier`,
+    qui choisit entre les deux parametres selon la puissance de raccordement : les menages et
+    assimiles sont les puissances inferieures a 36 kVA (L312-24 CIBS), seuil deja porte par
+    `ticfe.categorie_fiscale_petite_et_moyenne_entreprise`. A defaut d'amperage renseigne, le
+    tarif « entreprises » s'applique. Cela eteint 6 rouges (`_911371` x4, `_913035` x2) et clot
+    le constat 5 d'`AGREGATS_TIC.md`.
+  - Bilan intermediaire : 307 verts et 6 rouges, contre 296 et 17 avant la bascule. Aucun attendu
+    n'a ete recalcule : ce sont des montants reellement declares.
+  - Sous-arbre `parameters/energies` remis a l'identique du bareme IPP (359 fichiers communs,
+    identiques octet pour octet). Les tables de coefficients communaux et departementaux des TCFE
+    sont propres au modele et preservees.
+  - **Rupture d'API** : les paliers d'electro-intensite du CIBS passent de
+    `electricite/ticfe/electro_intensive/seuils/electro_intensite_*` a
+    `electricite/accise/tarifs_reduits/electro_intensives/seuils/niveau_*`, et les sous-arbres
+    `electrointensives` sont renommes `electro_intensives`. Les formules sont recablees.
+  - Les paliers sont desormais des **pourcentages** et non des kWh par euro de valeur ajoutee :
+    0,005 / 0,03375 / 0,0675 / 0,135 au lieu de 0,5 / 3,375 / 6,75 / 13,5. La variable
+    `electro_intensite` valant deja un rapport (0,225 dans les tests, soit 22,5 %), elle etait
+    comparee a des seuils cent fois trop grands et tous les etablissements tombaient dans la
+    tranche la plus favorable. Voir l'article L. 312-65 du CIBS.
+  - Constat 7 d'`AGREGATS_TIC.md` arbitre : les bornes « 1,5 et 3 kWh par euro de VA » du libelle
+    de la declaration sont celles de la TICFE d'avant 2022 (article 266 quinquies C du code des
+    douanes). Le Cerfa a garde ce vocabulaire alors que les tarifs qu'il porte sont ceux du CIBS.
+    Il n'y avait pas de divergence de droit, mais un libelle qui n'a pas suivi la recodification.
+  - **Correction de fond** : `taxe_accise_electricite_electro_intensive_activite_industrielle`
+    lisait `niveau_0_5` comme un plafond et non comme un minimum. Ses trois bandes etaient
+    decalees d'un cran, `niveau_6_75` n'etait jamais lu, et une electro-intensite nulle ouvrait
+    le tarif le plus favorable. Les bandes suivent desormais L312-65 : 7,5 EUR/MWh des 0,5 %,
+    5 des 3,375 %, 2 des 6,75 %.
+  - Sous 0,5 %, la condition du 1° des articles L312-71 a L312-73 n'est pas remplie : les deux
+    formules d'electro-intensite replient sur le tarif normal, la ou elles rendaient zero.
+  - Les entrees `electro_intensite` des tests etaient exprimees dans l'ancienne unite ; elles
+    sont ramenees a des proportions, a attendu inchange. Aucun montant declare n'est modifie.
+  - Majoration au titre des zones non interconnectees (L312-37-1, en vigueur depuis le
+    01/08/2025) appliquee au tarif normal de l'electricite, du charbon et des gaz naturels
+    combustibles, par le helper `majoration_zni` de `formula_helpers`. Elle ne s'applique ni aux
+    tarifs reduits, que l'article ne vise pas, ni aux gaz carburants, qui ne relevent pas des
+    categories fiscales des combustibles. Nulle avant le 01/08/2025.
+  - Ce n'est pas un regime propre aux ZNI : la majoration est due par tous les redevables du
+    tarif normal. Sans elle, toute accise calculee depuis le 01/08/2025 etait sous-estimee de
+    4,89 EUR/MWh, puis de 5,66 — soit 46 % sur le gaz.
+  - Trois des quatre cellules ZNI de la 2040-TIC quittent les lacunes de couverture et passent au
+    vert. `correspondance.py` recoit un champ `parametre_majoration` : la declaration separe la
+    fraction de droit commun et la majoration en deux cases de montant, mais le tarif de la
+    cellule est leur somme. La quatrieme, `_914396` (charbon), n'a aucune donnee au millesime 2025.
+  - Constat 2 elucide : les trois tarifs gaz reputes « absents du bareme » ne l'etaient pas.
+    8,41 et 8,37 sont les tarifs normaux de l'accise en 2022 et 2023, desormais au bareme ; 8,43
+    est le taux normal de la **TICGN** en 2021, que la case `_911237` porte en regularisation.
+    Cette case est repointee sur `ticgn.taux_normal` en 2021, `_911264` et `_911272` quittent les
+    lacunes de couverture et sont vertes sur tous leurs millesimes.
+  - Le remappage de `_911237` chiffre l'arbitrage PCS/PCI (decision humaine n° 4
+    d'`ACTIONS_EN_ATTENTE.md`) : le modele applique le facteur `conversion_pcs_pci` de 1,11 la ou
+    la declaration applique 8,43 tout rond. Le rapport modele/declaration vaut **exactement 1,11
+    sur les quatre millesimes**, sans residu — il n'y a pas d'autre ecart cache derriere celui-ci.
+    Nouveau constat n° 9 d'`AGREGATS_TIC.md`. Non tranche : conclure suppose de savoir si la
+    quantite declaree est en MWh PCS ou PCI, ce que le fichier ne dit pas.
+  - **Conversion PCS/PCI supprimee.** Le modele multipliait le taux de TICGN par
+    `conversion_pcs_pci` (1,11) en trois endroits : la formula_2014 du taux normal et les deux
+    formules d'intensite energetique en valeur ajoutee. La question « les donnees sont-elles en
+    PCS ou en PCI ? » etait mal posee : les donnees declarees changent de nature en meme temps
+    que la loi. Quand le texte exprime le tarif en PCS l'assiette est en PCS, quand il l'exprime
+    en PCI elle est en PCI. Il n'y a jamais deux unites a reconcilier, et chaque millesime se lit
+    dans l'unite de son propre droit. Le parametre reste au bareme : le coefficient physique
+    existe, il n'a pas a intervenir dans la liquidation.
+  - Clot la decision humaine n° 4 d'`ACTIONS_EN_ATTENTE.md` et l'arbitrage §7
+    d'`ARBITRAGES_JURIDIQUES_ENERGIES.md`, qui portaient un « faut verrifier » depuis l'origine.
+    La discontinuite supposee de 2022 disparait : il n'y en avait pas, le facteur etait en trop.
+  - Seul attendu recalcule de tout le chantier : `intensite_energetique_valeur_ajoutee` passe de
+    0,561676 a 0,5428, soit (22500 + 14620 + 17160) / 100000. C'est un cas ecrit a la main, pas
+    un montant declare.
+  - **Tarif reduit « concurrence internationale » du gaz : cloture infondee, retiree.** Le bareme
+    fermait `gaz_naturel/accise/combustibles/tarifs_reduits/intensive_energie_indirect_SEQE` au
+    01/01/2024, cloture rapportee a l'article 94 II K 2 de la loi de finances pour 2024. Cet
+    article vise le charbon, non le gaz : la version de l'article L. 312-75 du CIBS en vigueur a
+    compter de 2024 retire les charbons, fiouls, petroles lampants et GPL de cette ligne mais y
+    conserve « Gaz naturels combustible | L. 312-77 | 1,6 », et la version 2025 aussi.
+    `taxe_accise_gaz_naturel_combustible.formula_2024_01_01`, qui ne differait de celle de 2022
+    que par le retrait de cette branche, est supprimee.
+  - **Indexation des tarifs normaux d'electricite pour 2022.** L'article L. 312-37 du CIBS date
+    lui-meme son tableau : les tarifs y sont donnes « en 2015 », et « la fraction du tarif
+    superieure a 22,5 EUR par megawattheure est indexee sur l'inflation ». Le bareme portait donc
+    une valeur de 2015 comme tarif 2022. Les valeurs applicables sont 25,8291 pour les menages et
+    23,6097 pour les PME, deduites de la declaration : les cases `_911321` et `_911323` donnent
+    des fractions indexees dans le rapport 1,044424 avec celles de 2015, a six decimales et sur
+    deux regimes distincts. Le tarif haute puissance, egal a 22,50 soit exactement le plancher
+    d'indexation, est inchange — ce qui corrobore la lecture. Cela clot le constat 1.
+  - Reserve consignee en note au bareme : **l'arrete constatant ces montants pour 2022 n'a pas ete
+    localise**, ni par Paul ni par recherche sur l'API PISTE. Les valeurs sont validees sur la
+    seule foi de la declaration fiscale. Restent ouvertes les valeurs 2023 et 2024, elles aussi
+    des montants de reference recalcules, que les agregats ne permettent pas de deduire, le
+    bouclier tarifaire s'etant substitue aux tarifs normaux du 01/02/2022 au 31/01/2025.
+  - **Derniere lacune de couverture fermee.** Le motif inscrit pour `_912995` (manutention
+    portuaire) etait perime : `electricite_manutention_portuaire` figure bien dans les `select`
+    de `taxe_accise_electricite` depuis 2023, et `taxe_electricite_manutention_portuaire` lit le
+    tarif reduit de 0,50 EUR/MWh. Lever le `variable=None` de la cartographie suffit, sans
+    toucher au modele : deux tests de plus, verts.
+  - **Datation des tests inversee.** Le generateur datait chaque cas sur `annee_tarif or
+    millesime`, sans condition : 26 cas sur 98 se trouvaient dates hors de leur millesime, et
+    rien n'empechait un `annee_tarif` de rendre vert un desaccord de l'annee de depot. Le test se
+    date desormais sur le millesime, et ne recule sur `annee_tarif` que si aucun mois du
+    millesime ne porte le tarif declare — cas des cases de regularisation. Un `annee_tarif`
+    posterieur au millesime leve une exception, et le generateur liste les 19 reculs restants.
+  - **Bouclier tarifaire : janvier 2024 scindé.** `formula_2024_01_01` lisait le bareme au seul
+    instant force `2024-02-01`, donc 20,50 / 21,00 EUR/MWh sur douze mois. Or le bouclier bascule
+    au 1er fevrier : janvier 2024 est le dernier mois du bouclier ouvert au 01/02/2023 et reste a
+    0,50 / 1,00. 2024 est la seule annee a porter deux niveaux, et la declaration le montre — le
+    millesime 2024 sert `_911369` et `_911371` a l'ancien niveau (23,9 et 93,8 MEUR) en meme temps
+    que `_913037` et `_913035` au nouveau. Janvier est desormais liquide a son propre tarif, le
+    reste de l'annee au tarif de fevrier. Le comportement de 2025 est preserve a l'identique par
+    une `formula_2025_01_01` reprenant l'ancienne redaction. Nouveau constat n° 10
+    d'`AGREGATS_TIC.md`.
+  - Deux attendus ecrits a la main passent de 20 500 a 18 833,33 EUR, soit
+    `1000 * (0,50 / 12 + 20,50 * 11 / 12)` : leur premisse a change, aucun montant declare n'est
+    touche.
+  - Bilan : **333 verts, aucun rouge, aucune lacune de couverture**. Les dix constats
+    d'`AGREGATS_TIC.md` sont clos — quatre mettaient en cause le bareme, six le modele.
+
 ## 1.1.7 - [#31](https://github.com/openfisca/openfisca-france-entreprises/pull/31)
 
 * Tax and benefit system evolution.

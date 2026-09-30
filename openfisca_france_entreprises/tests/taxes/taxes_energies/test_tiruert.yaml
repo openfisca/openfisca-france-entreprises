@@ -5,6 +5,11 @@
 #
 # Le coefficient est l'écart entre la cible nationale et la proportion d'EnR du redevable. À défaut
 # d'être renseignée, cette proportion vaut la cible : la taxe est donc nulle par défaut.
+#
+# Les consommations sont en MWh, le tarif de l'article 266 quindecies en euros par hectolitre, et
+# l'assiette légale est un volume : les attendus portent donc le volume converti, soit
+# MWh x 3,6 / (GJ par hL) — 1000 MWh valent 1125 hL d'essences, 1000 hL de gazoles (la conversion
+# y est l'identité) et 1058,8235 hL de carburéacteurs.
 
 - name: defaut 2019 - la cible est reputee atteinte, taxe nulle
   period: 2019
@@ -33,8 +38,8 @@
     proportion_energie_renouvelable_essences: 0
     proportion_energie_renouvelable_gazoles: 0
   output:
-    # essences 1000 x 98 x 0.079 + gazoles 1000 x 98 x 0.079
-    taxe_incitative_energie_renouvelable_transports: 15484
+    # essences 1125 x 98 x 0.079 + gazoles 1000 x 98 x 0.079
+    taxe_incitative_energie_renouvelable_transports: 16451.75
 
 - name: aucune incorporation 2022 - trois composantes
   absolute_error_margin: 0.01
@@ -47,8 +52,8 @@
     proportion_energie_renouvelable_gazoles: 0
     proportion_energie_renouvelable_carbureacteurs: 0
   output:
-    # 1000 x 104 x 0.092 + 1000 x 104 x 0.084 + 1000 x 125 x 0.01
-    taxe_incitative_energie_renouvelable_transports: 19554
+    # 1125 x 104 x 0.092 + 1000 x 104 x 0.084 + 1058.8235 x 125 x 0.01
+    taxe_incitative_energie_renouvelable_transports: 20823.53
 
 # Au 1er janvier 2025 la composante carburéacteurs est clôturée : seules essences et gazoles restent.
 - name: aucune incorporation 2025 - carbureacteurs clotures
@@ -61,8 +66,8 @@
     proportion_energie_renouvelable_essences: 0
     proportion_energie_renouvelable_gazoles: 0
   output:
-    # 1000 x 140 x 0.105 + 1000 x 140 x 0.094, la consommation de carburéacteurs n'est plus taxée
-    taxe_incitative_energie_renouvelable_transports: 27860
+    # 1125 x 140 x 0.105 + 1000 x 140 x 0.094, la consommation de carburéacteurs n'est plus taxée
+    taxe_incitative_energie_renouvelable_transports: 29697.5
 
 # Dépasser la cible n'ouvre pas droit à restitution : l'écart est borné à zéro.
 - name: depassement de la cible - plancher a zero
@@ -85,5 +90,5 @@
     consommation_essences_mwh: 1000
     proportion_energie_renouvelable_essences: 0.045
   output:
-    # cible 0.095, declare 0.045 -> ecart 0.05 ; 1000 x 140 x 0.05
-    taxe_incitative_energie_renouvelable_transports: 7000
+    # cible 0.095, declare 0.045 -> ecart 0.05 ; 1125 x 140 x 0.05
+    taxe_incitative_energie_renouvelable_transports: 7875

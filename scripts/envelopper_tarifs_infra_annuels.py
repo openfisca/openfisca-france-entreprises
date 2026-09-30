@@ -22,7 +22,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from audit_tarifs_infra_annuels import (  # noqa: E402
+from audit_tarifs_infra_annuels import (
     FORMULES,
     Visiteur,
     infra_annuels,
@@ -30,7 +30,8 @@ from audit_tarifs_infra_annuels import (  # noqa: E402
 
 # Sites où la moyenne doit compter zéro (ou un tarif de repli) sur les mois où le paramètre
 # n'existe pas — abrogations et créations infra-annuelles tranchées dans
-# ARBITRAGES_JURIDIQUES_ENERGIES.md. Clé : nœud de paramètre ; valeur : expression de repli.
+# ARBITRAGES_JURIDIQUES_ENERGIES.md, retiré depuis (`git show 5297c30:ARBITRAGES_JURIDIQUES_ENERGIES.md`).
+# Clé : nœud de paramètre ; valeur : expression de repli.
 DEFAUTS = {
     # §5 — l'émulsion eau-gazole quitte le tableau B de l'article 265 du code des douanes au
     # 2020-07-01 : plus de tarif propre ensuite, les mois postérieurs comptent zéro.

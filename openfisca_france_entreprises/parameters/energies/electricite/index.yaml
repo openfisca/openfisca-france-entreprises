@@ -7,6 +7,7 @@ metadata:
   - ticfe
   - tcfe
   - cspe
+  - plafonds_tcfe_compteurs_36_kva_en_euros_par_mwh
 documentation: |-
   Aux différents dispositifs décrits dans cette section il faut, pour obtenir une image complète de la taxation de l'électricité, ajouter l'observation suivante :
   La TVA s'appliquant à la consommation d'électricité n'est pas homogène.

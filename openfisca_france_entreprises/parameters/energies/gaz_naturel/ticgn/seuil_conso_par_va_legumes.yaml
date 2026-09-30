@@ -1,6 +1,10 @@
-description: Le tarif de la taxe applicable au produit consommé pour déshydrater les légumes et plantes aromatiques, autres que les pommes de terres, les champignons et les truffes, par les entreprises pour lesquelles cette consommation est supérieure à 800 wattheures par euro de valeur ajoutée, est fixé à 1,6 € par mégawattheure.
-            calculer, creer une variable value_ajouté, et ensuit appelle la variable ici, si ça depasse,
+description: Seuil de consommation de gaz naturel par euro de valeur ajoutée ouvrant droit au tarif réduit pour la déshydratation des légumes et plantes aromatiques, autres que pommes de terre, champignons et truffes
 values:
   2019-01-01:
     value: 0.0008
-#MWh/Euro
+metadata:
+  unit: MWh_per_euro_VA
+documentation: |-
+  Soit 800 wattheures par euro de valeur ajoutée, seuil au-delà duquel le tarif de la taxe est
+  fixé à 1,6 € par mégawattheure. Depuis 2022, le critère est exprimé en pourcentage de la valeur
+  ajoutée par l'article L. 312-62 du CIBS : voir seuil_facture_energie_par_va.

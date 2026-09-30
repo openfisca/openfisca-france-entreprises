@@ -14,4 +14,4 @@ values:
     value: 9.9
 metadata:
   ipp_csv_id: plafond_tcfe
-  unit: currency
+  unit: currency_per_mwh

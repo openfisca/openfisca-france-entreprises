@@ -23,9 +23,13 @@
   output:
     risque_de_fuite_carbone_eta : True
 
+# relative_error_margin : le numérateur somme des consommations devenues mensuelles, stockées
+# au douzième en float32 par set_input_divide_by_period. Leur recomposition sur douze mois ne
+# restitue pas la quantité annuelle au bit près : l'écart observé est de 1,1e-7 en relatif.
 - name: test formule intensite_energetique_valeur_ajoutee
 #
   period: 2025
+  relative_error_margin: 0.000001
   input:
     valeur_ajoutee_eta: 100000 #(22500 + 14620 + 19047.6)/100000
     consommation_electricite : 1000
@@ -33,13 +37,17 @@
     consommation_charbon : 1000
     #*14.62
     consommation_gaz_naturel : 1000
-    #*17.16*1.11
+    #*17.16
   output:
     # 2026-07 : depuis la réforme CIBS, le numérateur s'apprécie au tarif normal de
     # l'accise (L312-44) et non plus à celui de la TICGN, clôturée au 2022-01-01.
     # En 2025 le tarif accise gaz combustible est indexé à 17.16, alors que la série
     # TICGN s'arrêtait à 16.37. L'attendu passe de 0.55290705 à 0.561676.
-    intensite_energetique_valeur_ajoutee: 0.561676
+    # 2026-08 : la conversion PCS/PCI de 1.11 est retirée — la quantité déclarée suit
+    # l'unité dans laquelle la loi exprime le tarif du millésime, il n'y a donc jamais
+    # deux unités à réconcilier. L'attendu passe de 0.561676 à 0.5428 :
+    # (22500 + 14620 + 17160) / 100000.
+    intensite_energetique_valeur_ajoutee: 0.5428
 
 
 - name: "Test pour intensite_energetique_valeur_production"

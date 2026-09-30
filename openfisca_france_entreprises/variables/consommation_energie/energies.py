@@ -1,6 +1,6 @@
 """Variables and formulas for this module."""
 
-from openfisca_core.model_api import YEAR, Variable
+from openfisca_core.model_api import ADD, YEAR, Variable
 
 from openfisca_france_entreprises.entities import (
     Etablissement,
@@ -16,9 +16,11 @@ class consommation_energie(Variable):
     definition_period = YEAR
 
     def formula(etablissement, period):
-        gaz = etablissement("consommation_gaz_naturel", period)
-        charbon = etablissement("consommation_charbon", period)
-        electricite = etablissement("consommation_electricite", period)
+        # Les consommations sont mensuelles depuis la bascule ; le total annuel en est la
+        # somme sur les douze mois.
+        gaz = etablissement("consommation_gaz_naturel", period, options=[ADD])
+        charbon = etablissement("consommation_charbon", period, options=[ADD])
+        electricite = etablissement("consommation_electricite", period, options=[ADD])
         autres_produits = etablissement("consommation_autres_produits", period)
 
         return gaz + charbon + electricite + autres_produits
