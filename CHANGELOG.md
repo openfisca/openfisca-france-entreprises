@@ -1,4 +1,4 @@
-### 2.0.1 - [#42](https://github.com/openfisca/openfisca-france-entreprises/pull/42)
+### 2.0.3 - [#42](https://github.com/openfisca/openfisca-france-entreprises/pull/42)
 
 * Tax and benefit system evolution.
 * Impacted periods: 1986-2007.
@@ -11,6 +11,41 @@
   - `where` remplace le produit par un booléen, qui donnait `-0.` sous le seuil.
   - Le test « Test 1986 » injectait une assiette pensée en kWh ; il est réécrit en MWh, pour le
     même cas économique.
+
+### 2.0.2 - [#41](https://github.com/openfisca/openfisca-france-entreprises/pull/41)
+
+* Crash fix.
+* Impacted periods: 2005-2008, 2019.
+* Impacted areas:
+  - `variables/taxes/taxation_energies/taxation_autres_produits_energetiques`
+* Details:
+  - TICPE 2005-2007 : le fioul domestique et le gazole sous condition d'emploi sont lus sur la
+    ligne unique d'avant 2008 (`carburants_sous_conditions_fioul_domestique`), et non sur les
+    deux lignes qui n'existent qu'à partir de 2008 (#35).
+  - TICPE 2008 : avant la création de la ligne SP95-E10 (2008-12-29), l'E10 est taxé au tarif
+    des supercarburants sans plomb (#37).
+  - TICPE 2019 : après la suppression de la ligne B10 (LF 2019), le B10 est taxé au tarif du
+    gazole (#38).
+  - 2007 plante encore sur le tarif E85, absent de l'historique (#36).
+
+### 2.0.1 - [#33](https://github.com/openfisca/openfisca-france-entreprises/pull/33)
+
+* Crash fix.
+* Impacted periods: from 01/01/1960.
+* Impacted areas:
+  - `variables/variables_economiques`
+  - `variables/taxes/taxation_energies/taxation_gaz_naturel`
+* Details:
+  - Vectorise les formules qui plantaient dès qu'une simulation comptait plus d'un
+    établissement (« The truth value of an array with more than one element is ambiguous ») :
+    `valeur_ajoutee_eta`, `chiffre_affaires_eta`, `consommation_par_valeur_ajoutee`,
+    `facture_energie_par_valeur_ajoutee_eta`, `intensite_energetique_valeur_production` et
+    `assiette_ticgn` (`max` Python remplacé par `max_`, condition de cogénération en `*`, suppression
+    de l'ajout d'une liste qui ajoutait une dimension parasite).
+  - Ces formules alimentent toutes les taxes gaz, charbon et produits pétroliers : aucune ne
+    tournait sur plusieurs établissements.
+  - Les résultats à un établissement sont inchangés. Ajoute des tests YAML à plusieurs
+    établissements (`tests/multi_etablissements/`).
 
 ## 2.0.0 - [#32](https://github.com/openfisca/openfisca-france-entreprises/pull/32)
 

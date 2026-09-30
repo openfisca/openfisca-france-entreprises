@@ -1,0 +1,62 @@
+# Tests à plusieurs établissements : les formules reçoivent des vecteurs, pas des scalaires.
+# Un `if` ou un ternaire Python sur un vecteur de plus d'un élément lève
+# « The truth value of an array with more than one element is ambiguous ».
+# Chaque test mélange un établissement « normal » et un établissement au dénominateur nul.
+
+- name: valeur_ajoutee_eta et chiffre_affaires_eta, répartition au prorata de l'effectif
+  period: 2019
+  input:
+    unite_legales:
+      ul_1:
+        siege_social: [eta_1]
+        secondaires: [eta_2]
+        valeur_ajoutee_ul: 200
+        chiffre_affaires_ul: 1000
+        effectif_3112_ul: 200
+      ul_2:
+        siege_social: [eta_3]
+        valeur_ajoutee_ul: 80
+        chiffre_affaires_ul: 400
+        effectif_3112_ul: 0
+    etablissements:
+      eta_1:
+        effectif_3112_eta: 150
+      eta_2:
+        effectif_3112_eta: 50
+      eta_3:
+        effectif_3112_eta: 0
+  output:
+    valeur_ajoutee_eta: [150, 50, 0]
+    chiffre_affaires_eta: [750, 250, 0]
+
+- name: ratios à la valeur ajoutée, dénominateur nul sur un établissement
+  period: 2019
+  # assiette_ticgn est mensuelle : stockée au douzième en float32, sa somme sur douze mois
+  # ne restitue pas l'annuel au bit près (cf. test_assiette_ticgn.yaml).
+  relative_error_margin: 0.000001
+  input:
+    etablissements:
+      eta_1:
+        valeur_ajoutee_eta: 200
+        facture_energie_eta: 50
+        assiette_ticgn: 1000
+      eta_2:
+        valeur_ajoutee_eta: 0
+        facture_energie_eta: 50
+        assiette_ticgn: 1000
+  output:
+    consommation_par_valeur_ajoutee: [5, 0]
+    facture_energie_par_valeur_ajoutee_eta: [0.25, 0]
+
+- name: intensite_energetique_valeur_production, chiffre d'affaires nul sur un établissement
+  period: 2022
+  input:
+    etablissements:
+      eta_1:
+        facture_energie_eta: 30
+        chiffre_affaires_eta: 1000
+      eta_2:
+        facture_energie_eta: 30
+        chiffre_affaires_eta: 0
+  output:
+    intensite_energetique_valeur_production: [0.03, 0]
