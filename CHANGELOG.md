@@ -1,3 +1,17 @@
+### 2.0.1 - [#42](https://github.com/openfisca/openfisca-france-entreprises/pull/42)
+
+* Tax and benefit system evolution.
+* Impacted periods: 1986-2007.
+* Impacted areas:
+  - `variables/taxes/taxation_energies/taxation_gaz_naturel`
+* Details:
+  - TICGN avant 2008 : le seuil d'exonération (5 000 000 kWh) et l'abattement (400 000 kWh par
+    mois) sont convertis en MWh avant d'être comparés à l'assiette, exprimée en MWh (#39). La
+    taxe était jusque-là nulle pour toute consommation inférieure à 5 TWh.
+  - `where` remplace le produit par un booléen, qui donnait `-0.` sous le seuil.
+  - Le test « Test 1986 » injectait une assiette pensée en kWh ; il est réécrit en MWh, pour le
+    même cas économique.
+
 ## 2.0.0 - [#32](https://github.com/openfisca/openfisca-france-entreprises/pull/32)
 
 * Breaking change.
