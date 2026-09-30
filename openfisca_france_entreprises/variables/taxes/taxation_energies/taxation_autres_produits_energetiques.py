@@ -179,10 +179,12 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 * parameters(
                     period,
                 ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
+                # Avant 2008, fioul domestique et gazole sous condition d'emploi partagent une seule ligne
+                # du tableau B (carburants_sous_conditions_fioul_domestique), scindée au 2008-01-01.
                 + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
                 * parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions_fioul_domestique
                 + etablissement("consommation_gazoles", period)
                 * tarif_du_mois(
                     period,
@@ -235,7 +237,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                     lambda mois: (
                         parameters(
                             mois
-                        ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
+                        ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions_fioul_domestique
                     ),
                 )
                 + etablissement(
@@ -506,10 +508,12 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 * parameters(
                     period,
                 ).energies.autres_produits_energetiques.ticpe.huiles_moyennes.autres_huiles_moyennes
+                # Avant 2008, fioul domestique et gazole sous condition d'emploi partagent une seule ligne
+                # du tableau B (carburants_sous_conditions_fioul_domestique), scindée au 2008-01-01.
                 + etablissement("consommation_galzole_fioul_domestique_hectolitre", period)
                 * parameters(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.fioul_domestique
+                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions_fioul_domestique
                 + etablissement("consommation_gazoles", period)
                 * (
                     tarif_du_mois(
@@ -570,7 +574,7 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                     lambda mois: (
                         parameters(
                             mois
-                        ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions
+                        ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.carburants_sous_conditions_fioul_domestique
                     ),
                 )
                 + etablissement(
@@ -740,8 +744,15 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                 + etablissement("consommation_supercarburant_e10", period)
                 * tarif_du_mois(
                     period,
-                    lambda mois: (
-                        parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
+                    # La ligne SP95-E10 n'existe qu'à partir du 2008-12-29 (LF 2009, art. 16 et 17) ;
+                    # avant, un supercarburant de ce type relève des supercarburants sans plomb.
+                    tarif_avec_repli(
+                        lambda mois: (
+                            parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e10
+                        ),
+                        lambda mois: (
+                            parameters(mois).energies.autres_produits_energetiques.ticpe.huiles_legeres.super.super_e5
+                        ),
                     ),
                 )
                 + etablissement("ticpe_majoration_regionale_supercarburant_e10", period.this_year)
@@ -2190,9 +2201,23 @@ class taxe_interieure_consommation_sur_produits_energetiques(Variable):
                     defaut_si_absent=0,
                 )
                 + etablissement("consommation_gazole_b_10_hectolitre", period)
-                * parameters(
+                * tarif_du_mois(
                     period,
-                ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_b_10
+                    # Ligne B10 supprimée au 2019-01-01 (LF 2019, art. 66) : le B10 reste un gazole,
+                    # taxé au tarif du gazole (qui était déjà le sien en 2017 et 2018).
+                    tarif_avec_repli(
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_b_10
+                        ),
+                        lambda mois: (
+                            parameters(
+                                mois
+                            ).energies.autres_produits_energetiques.ticpe.huiles_lourdes.gazole.gazole_autres
+                        ),
+                    ),
+                )
                 + etablissement(
                     "consommation_gaz_naturel_etat_gazeux_utilises_comme_carburants",
                     period,

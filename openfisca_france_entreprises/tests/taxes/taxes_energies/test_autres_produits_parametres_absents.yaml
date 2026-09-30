@@ -1,0 +1,30 @@
+# TICPE : années où une formule lisait un tarif absent à la date (ParameterNotFoundError).
+# Les consommations sont mensuelles (set_input_divide_by_period) : marge relative pour la
+# recomposition float32 des douze mois.
+
+- name: "2005 : fioul domestique lu sur la ligne unique d'avant 2008 (#35)"
+  period: 2005
+  relative_error_margin: 0.000001
+  input:
+    consommation_galzole_fioul_domestique_hectolitre: 1000
+  output:
+    # 1000 hl * 5,66 €/hl (carburants_sous_conditions_fioul_domestique, 2003-2007)
+    taxe_interieure_consommation_sur_produits_energetiques: 5660
+
+- name: "2008 : super E10 avant la création de sa ligne, au tarif des supercarburants sans plomb (#37)"
+  period: 2008
+  relative_error_margin: 0.000001
+  input:
+    consommation_supercarburant_e10: 1200
+  output:
+    # 1200 hl * 60,69 €/hl (super_e5 en 2008, repli jusqu'au 2008-12-29 ; super_e10 vaut aussi 60,69 ensuite)
+    taxe_interieure_consommation_sur_produits_energetiques: 72828
+
+- name: "2019 : gazole B10 après la suppression de sa ligne, au tarif du gazole (#38)"
+  period: 2019
+  relative_error_margin: 0.000001
+  input:
+    consommation_gazole_b_10_hectolitre: 100
+  output:
+    # 100 hl * 59,40 €/hl (gazole_autres en 2019)
+    taxe_interieure_consommation_sur_produits_energetiques: 5940
