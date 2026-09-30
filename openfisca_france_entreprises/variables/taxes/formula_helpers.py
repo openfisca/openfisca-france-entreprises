@@ -1,7 +1,5 @@
 """Shared vectorized logical helpers for taxation energy formulas."""
 
-from functools import reduce
-
 import numpy as np
 from numpy import logical_and, logical_or
 from openfisca_core.errors import ParameterNotFoundError
@@ -192,11 +190,25 @@ def _not(x):
     return not_(x)
 
 
+def normaliser_departement(departement):
+    """Code département à la convention des paramètres : sans zéro initial, Corse en 02A / 02B.
+
+    Les paramètres TCCFE / TDCFE sont indexés par "1", "13", "02A"…, tandis que les formules de
+    majoration régionale TICPE écrivent tantôt "01", tantôt "1", et la Corse "2A" ou "02A".
+    Normaliser l'entrée et les listes de codes rend toutes ces graphies équivalentes.
+    Les valeurs non numériques (ex. "manqu" dans les tests) sont laissées telles quelles.
+    """
+    dep = np.char.strip(np.asarray(departement).astype("U32"))
+    sans_zero = np.char.lstrip(dep, "0")
+    corse = np.char.upper(sans_zero)
+    est_corse = np.isin(corse, ["2A", "2B"])
+    numerique = np.char.isdigit(dep) & (sans_zero != "")
+    return np.where(est_corse, np.char.add("0", corse), np.where(numerique, sans_zero, dep))
+
+
 def _dep_in(departement, codes):
-    """Vectorized: True where departement is in codes."""
-    if len(codes) == 1:
-        return departement == codes[0]
-    return reduce(lambda a, b: a | b, (departement == c for c in codes))
+    """Vectorized: True where departement is in codes, quelle que soit la graphie (01 / 1, 2A / 02A)."""
+    return np.isin(normaliser_departement(departement), normaliser_departement(codes))
 
 
 def departement_commune(etablissement, period):
@@ -205,7 +217,7 @@ def departement_commune(etablissement, period):
     Retourne le vecteur au format "dep_commune" (ex. "1_1", "02A_123").
     Pour les tests : (dep="manqu", commune="ant") retourne "manquant".
     """
-    dep = etablissement("departement", period).astype("U32")
+    dep = normaliser_departement(etablissement("departement", period))
     comm = etablissement("commune", period).astype("U32")
     key = np.char.add(np.char.add(dep, "_"), comm)
     return np.where((dep == "manqu") & (comm == "ant"), "manquant", key)

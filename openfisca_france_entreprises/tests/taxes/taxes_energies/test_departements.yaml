@@ -1,0 +1,51 @@
+# Graphies d'un même département (#40) : avec ou sans zéro initial, Corse en 2A ou 02A.
+# Chaque test place plusieurs graphies dans une même simulation : elles doivent donner le même
+# résultat, là où l'une levait ParameterNotFoundError ou donnait 0 en silence.
+
+- name: "Majoration régionale TICPE 2012 : Allier écrit 3 ou 03 (liste en 3)"
+  period: 2012
+  input:
+    etablissements:
+      eta_1:
+        departement: "3"
+      eta_2:
+        departement: "03"
+  output:
+    ticpe_majoration_regionale_gazole: [1.35, 1.35]
+    ticpe_majoration_regionale_supercarburant_e10: [0.73, 0.73]
+
+- name: "Majoration régionale TICPE 2017 : Ain écrit 1 ou 01 (liste en 01)"
+  period: 2017
+  input:
+    etablissements:
+      eta_1:
+        departement: "1"
+      eta_2:
+        departement: "01"
+  output:
+    ticpe_majoration_regionale_gazole: [1.35, 1.35]
+    ticpe_majoration_regionale_supercarburant_e10: [0.73, 0.73]
+
+- name: "TCCFE et TDCFE 2015 : 1 ou 01, 02A ou 2A (paramètres indexés en 1 et 02A)"
+  period: 2015
+  input:
+    etablissements:
+      eta_1:
+        departement: "1"
+        commune: "1"
+        amperage: 100
+      eta_2:
+        departement: "01"
+        commune: "1"
+        amperage: 100
+      eta_3:
+        departement: "02A"
+        commune: "1"
+        amperage: 100
+      eta_4:
+        departement: "2A"
+        commune: "1"
+        amperage: 100
+  output:
+    taux_tccfe: [2.125, 2.125, 2.125, 2.125]
+    taux_tdcfe: [1.0625, 1.0625, 1.015, 1.015]

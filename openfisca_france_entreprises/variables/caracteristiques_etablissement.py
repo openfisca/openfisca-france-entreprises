@@ -217,8 +217,9 @@ class intensite_echanges_avec_pays_tiers(Variable):
 
 
 class departement(Variable):
-    # NB : les codes pour la corse est 02A et 02B, tandis que pour les autres
-    # codes départementales avec qu'une chiffre, le code commence PAS par un 0.
+    # Graphies acceptées : avec ou sans zéro initial ("01" ou "1"), Corse en "2A" ou "02A".
+    # Les formules normalisent le code (normaliser_departement) avant de lire les paramètres,
+    # indexés sans zéro initial et avec la Corse en 02A / 02B.
     value_type = str
     unit = ""
     entity = Etablissement

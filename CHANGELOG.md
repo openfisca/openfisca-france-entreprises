@@ -1,3 +1,23 @@
+### 2.0.4 - [#43](https://github.com/openfisca/openfisca-france-entreprises/pull/43)
+
+* Tax and benefit system evolution.
+* Impacted periods: from 01/01/2007.
+* Impacted areas:
+  - `variables/taxes/formula_helpers`
+  - `variables/taxes/taxation_energies/tdcfe/tdcfe`
+  - `variables/caracteristiques_etablissement`
+* Details:
+  - Nouveau helper `normaliser_departement` : codes sans zéro initial, Corse en `02A` / `02B`,
+    convention des paramètres TCCFE / TDCFE (#40).
+  - `_dep_in` normalise le département et les listes de codes : "1" et "01", "2A" et "02A" sont
+    équivalents dans toutes les majorations régionales TICPE.
+  - `departement_commune` (TCCFE) et `taux_tdcfe` normalisent avant de lire les paramètres :
+    "01" et "2A" ne lèvent plus `ParameterNotFoundError`.
+  - Effet sur les résultats : un département à un chiffre écrit sans zéro ("1") n'était pas
+    reconnu par les listes 2016+ écrites en "01", et sa majoration régionale valait 0. Quatre
+    attendus de `test_autres_produits.yaml` (Ain, 2017, 2018, 2020, 2021) sont corrigés en
+    conséquence.
+    
 ### 2.0.3 - [#42](https://github.com/openfisca/openfisca-france-entreprises/pull/42)
 
 * Tax and benefit system evolution.
