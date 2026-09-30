@@ -1,3 +1,19 @@
+### 2.0.2 - [#41](https://github.com/openfisca/openfisca-france-entreprises/pull/41)
+
+* Crash fix.
+* Impacted periods: 2005-2008, 2019.
+* Impacted areas:
+  - `variables/taxes/taxation_energies/taxation_autres_produits_energetiques`
+* Details:
+  - TICPE 2005-2007 : le fioul domestique et le gazole sous condition d'emploi sont lus sur la
+    ligne unique d'avant 2008 (`carburants_sous_conditions_fioul_domestique`), et non sur les
+    deux lignes qui n'existent qu'à partir de 2008 (#35).
+  - TICPE 2008 : avant la création de la ligne SP95-E10 (2008-12-29), l'E10 est taxé au tarif
+    des supercarburants sans plomb (#37).
+  - TICPE 2019 : après la suppression de la ligne B10 (LF 2019), le B10 est taxé au tarif du
+    gazole (#38).
+  - 2007 plante encore sur le tarif E85, absent de l'historique (#36).
+
 ### 2.0.1 - [#33](https://github.com/openfisca/openfisca-france-entreprises/pull/33)
 
 * Crash fix.
