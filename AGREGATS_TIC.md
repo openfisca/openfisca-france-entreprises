@@ -1,6 +1,7 @@
 # Agrégats 2040-TIC : confrontation au barème et au modèle
 
-État au 2026-07-30. Branche `assets/agregats-tic`, rebasée sur `convergence/energies` (PR #26).
+État au 2026-09-30. Branche `assets/agregats-tic`, PR #32 (non fusionnée) ; 128 tests d'agrégats
+verts, sur une suite de 333.
 
 ## Ce que sont les données
 
@@ -69,6 +70,11 @@ PYTEST_ADDOPTS="--maxfail=300" .venv/bin/openfisca test \
 
 `addopts` du dépôt contient `--exitfirst` : sans `PYTEST_ADDOPTS`, le lancement
 s'arrête au premier échec.
+
+Sous Windows, le `.venv/` du dépôt n'est pas utilisable : lancer les scripts avec le python
+système (`python -m scripts.agregats_tic.audit`) et la suite avec
+`PYTHONUTF8=1 uv run --offline openfisca test …`. Sans `PYTHONUTF8=1`, les YAML accentués
+échouent en `cp1252`.
 
 **128 tests générés, tous verts** sous
 `openfisca_france_entreprises/tests/taxes/taxes_energies/agregats/` (98 cellules
@@ -593,33 +599,32 @@ incomplète dans l'extraction, pas dans le modèle.
 
 ## Suites
 
-Chaque suite ci-dessous se mesure au nombre de rouges qu'elle éteint. La suite
-n'est verte que lorsque le calculateur et le barème rejoignent la déclaration.
+Chaque suite ci-dessous se mesure au nombre de rouges qu'elle éteint ou fait apparaître. La
+suite n'est verte que lorsque le calculateur et le barème rejoignent la déclaration. Les
+premières suites — arbitrer les constats n° 1 à 9 et basculer les énergies en périodes
+mensuelles — sont faites.
 
-1. Arbitrer les points 1 à 4 (barème) contre les textes, puis porter les
-   corrections sur une branche dédiée — cette branche ne modifie ni `variables/`
-   ni `parameters/`. Les points **2 et 3 valent 6 rouges** (`_911237` ×4,
-   `_911243` ×2) et se corrigent dans `baremes-ipp-yaml` avant d'être repris ici.
-2. ~~Arbitrer les points 5 à 7 (modèle), de même. Le point **5 vaut 6 rouges**~~
-   Point 5 **fait le 2026-08-13** : `boulier_tarifaire.py` lit `bouclier_tarifaire.menages`
-   sous 36 kVA, ce qui éteint `_911371` ×4 et `_913035` ×2. Restent les points 6 et 7,
-   qui ne valent aucun rouge — le 7 (bornes des tranches d'électro-intensité) demande un
-   arbitrage contre l'article L312-65, les agrégats ne le tranchant pas seuls.
-3. ~~**Basculer les variables énergies en `definition_period = MONTH`** (point 8).~~
-   **Fait le 2026-08-13** : 5 rouges éteints (`_914195`, `_914197`, `_911293`,
-   `_911319`, `_914201`), points 6 et 8 clos, et la source réconciliée avec les agrégats
-   Elfe — une quantité fournie à l'année reste répartie sur douze mois, ce qui redonne
-   la moyenne dont Elfe a besoin. Le contournement `Instant((AAAA, 2, 1))` subsiste
-   dans le seul bouclier tarifaire : il y encode un basculement de régime, dont le
-   traitement mensuel est un chantier distinct.
-4. Cartographier les majorations TCCFE de janvier 2023.
-5. Élucider les deux écarts de ventilation avec le producteur du fichier micro.
-6. Cartographier les neuf cellules d'électricité au minimum communautaire encore hors
+1. **Reprendre la correction du bouclier sur les tarifs réduits**, portée au barème par la
+   branche `bouclier_tarifs_reduits`. Les quatre dérogations visent L. 312-48, L. 312-64 et
+   L. 312-65 en plus de L. 312-37 : les tarifs réduits tombaient eux aussi au minimum pendant le
+   bouclier. Dix-huit cas de `test_cellules_tarifaires.yaml` portent sur les catégories
+   touchées, dont quatorze sur 2023-2025, **verts aujourd'hui contre un barème faux**. Ils
+   rougiront. Lecture proposée : les cellules IEI s'effondrent après 2022 (`_911331` :
+   5 088 000 MWh en 2022, puis 57 000 / 156 000 / 80 000) tout en gardant un rapport égal au
+   tarif légal. Ce sont donc des régularisations d'exercices antérieurs, et le générateur devra
+   reculer sur `annee_tarif` pour ces cases, une à une et en le justifiant (constat n° 10).
+2. Cartographier les majorations TCCFE de janvier 2023.
+3. Cartographier les neuf cellules d'électricité au minimum communautaire encore hors
    correspondance : `_911375` à `_911385` (installations industrielles en site IEI),
    `_911387` (centres de stockage de données), `_911389` (exploitants d'aérodromes) et
    `_911373` (bouclier 2022 au tarif de référence 23,6097). Toutes déclarent 0,50 €/MWh, et
    le modèle porte déjà les variables correspondantes.
-7. Achever le traitement mensuel du bouclier tarifaire. Le constat n° 10 a scindé janvier
+4. Élucider les deux écarts de ventilation avec le producteur du fichier micro.
+5. Achever le traitement mensuel du bouclier tarifaire. Le constat n° 10 a scindé janvier
    dans la seule année 2024, celle qui porte deux niveaux ; 2022, 2023 et 2025 gardent leur
    instant forcé et leur proratisation à la main dans `taxe_electricite`. Aucun rouge n'en
    dépend, la déclaration ne séparant pas ces mois-là.
+6. Étendre le jeu : le millésime 2026 quand il sera disponible, et les déclarations des autres
+   énergies. Les produits pétroliers se déclarent encore à la DGDDI jusqu'au 31 décembre 2026 :
+   la demande vise une autre administration, et elle est plus simple tant que la série y est
+   encore gérée.
