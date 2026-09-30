@@ -7,7 +7,7 @@ See https://openfisca.org/doc/key-concepts/variables.html
 Les commentaires avec *** indiquent qu'il y a des problèmes
 """
 
-from openfisca_core.model_api import ADD, MONTH, YEAR, Variable, select, set_input_divide_by_period
+from openfisca_core.model_api import ADD, MONTH, YEAR, Variable, max_, select, set_input_divide_by_period
 
 from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.taxes.formula_helpers import (
@@ -649,7 +649,7 @@ class assiette_ticgn(Variable):
         conso = etablissement("consommation_gaz_combustible", period)
 
         conso_exoneree = etablissement("consommation_gaz_chauffage_habitation", period)
-        return max(0, conso - conso_exoneree)
+        return max_(0, conso - conso_exoneree)
 
     def formula_2000_01_01(etablissement, period, parameters):
         """Taxe sur la consommation de gaz naturel.
@@ -666,18 +666,18 @@ class assiette_ticgn(Variable):
         # Caractéristique annuelle de l'établissement, lue à l'année depuis une formule mensuelle.
         date_installation_cogeneration = etablissement("date_installation_cogeneration", period.this_year)
         ticgn = parameters(period).energies.gaz_naturel.ticgn
-        cogeneration_exoneree = False
+        annee = period.start.year
+        cogeneration_exoneree = (
+            (date_installation_cogeneration <= annee)
+            * (annee <= date_installation_cogeneration + 5)
+            * (date_installation_cogeneration < ticgn.annee_limite_cogeneration_exoneree)
+        )
 
-        if (date_installation_cogeneration <= period.start.year <= date_installation_cogeneration + 5) and (
-            date_installation_cogeneration < ticgn.annee_limite_cogeneration_exoneree
-        ):
-            cogeneration_exoneree = True
-
-        conso_exoneree = etablissement(  # noqa: RUF005
+        conso_exoneree = etablissement(
             "consommation_gaz_chauffage_habitation",
             period,
-        ) + [cogeneration_exoneree * etablissement("consommation_gaz_cogeneration", period)]
-        return max(0, conso - conso_exoneree)
+        ) + cogeneration_exoneree * etablissement("consommation_gaz_cogeneration", period)
+        return max_(0, conso - conso_exoneree)
 
     def formula_2006_01_01(etablissement, period, parameters):
         """ajouté consommation_gaz_production_electricite."""
@@ -686,19 +686,19 @@ class assiette_ticgn(Variable):
         # Caractéristique annuelle de l'établissement, lue à l'année depuis une formule mensuelle.
         date_installation_cogeneration = etablissement("date_installation_cogeneration", period.this_year)
         ticgn = parameters(period).energies.gaz_naturel.ticgn
-        cogeneration_exoneree = False
-
-        if (date_installation_cogeneration <= period.start.year <= date_installation_cogeneration + 5) and (
-            date_installation_cogeneration < ticgn.annee_limite_cogeneration_exoneree
-        ):
-            cogeneration_exoneree = True
+        annee = period.start.year
+        cogeneration_exoneree = (
+            (date_installation_cogeneration <= annee)
+            * (annee <= date_installation_cogeneration + 5)
+            * (date_installation_cogeneration < ticgn.annee_limite_cogeneration_exoneree)
+        )
 
         conso_exoneree = (
             etablissement("consommation_gaz_chauffage_habitation", period)
             + etablissement("consommation_gaz_production_electricite", period)
-            + [cogeneration_exoneree * etablissement("consommation_gaz_cogeneration", period)]
+            + cogeneration_exoneree * etablissement("consommation_gaz_cogeneration", period)
         )
-        return max(0, conso - conso_exoneree)
+        return max_(0, conso - conso_exoneree)
 
     def formula_2007_01_01(etablissement, period, parameters):
         """ajouté consommation_autres_produits_energetique_ticgn."""
@@ -711,19 +711,19 @@ class assiette_ticgn(Variable):
         # Caractéristique annuelle de l'établissement, lue à l'année depuis une formule mensuelle.
         date_installation_cogeneration = etablissement("date_installation_cogeneration", period.this_year)
         ticgn = parameters(period).energies.gaz_naturel.ticgn
-        cogeneration_exoneree = False
-
-        if (date_installation_cogeneration <= period.start.year <= date_installation_cogeneration + 5) and (
-            date_installation_cogeneration < ticgn.annee_limite_cogeneration_exoneree
-        ):
-            cogeneration_exoneree = True
+        annee = period.start.year
+        cogeneration_exoneree = (
+            (date_installation_cogeneration <= annee)
+            * (annee <= date_installation_cogeneration + 5)
+            * (date_installation_cogeneration < ticgn.annee_limite_cogeneration_exoneree)
+        )
 
         conso_exoneree = (
             etablissement("consommation_gaz_chauffage_habitation", period)
             + etablissement("consommation_gaz_production_electricite", period)
-            + [cogeneration_exoneree * etablissement("consommation_gaz_cogeneration", period)]
+            + cogeneration_exoneree * etablissement("consommation_gaz_cogeneration", period)
         )
-        return max(0, conso + consommation_autres_produits_energetique_ticgn - conso_exoneree)
+        return max_(0, conso + consommation_autres_produits_energetique_ticgn - conso_exoneree)
 
     def formula_2008_01_01(etablissement, period, parameters):
         """[à noter : plus de seuil ni d'abattement].
@@ -751,12 +751,12 @@ class assiette_ticgn(Variable):
         # Caractéristique annuelle de l'établissement, lue à l'année depuis une formule mensuelle.
         date_installation_cogeneration = etablissement("date_installation_cogeneration", period.this_year)
         ticgn = parameters(period).energies.gaz_naturel.ticgn
-        cogeneration_exoneree = False
-
-        if (date_installation_cogeneration <= period.start.year <= date_installation_cogeneration + 5) and (
-            date_installation_cogeneration < ticgn.annee_limite_cogeneration_exoneree
-        ):
-            cogeneration_exoneree = True
+        annee = period.start.year
+        cogeneration_exoneree = (
+            (date_installation_cogeneration <= annee)
+            * (annee <= date_installation_cogeneration + 5)
+            * (date_installation_cogeneration < ticgn.annee_limite_cogeneration_exoneree)
+        )
 
         conso_exoneree = (
             etablissement("consommation_gaz_chauffage_habitation", period)
@@ -765,10 +765,10 @@ class assiette_ticgn(Variable):
             + etablissement("consommation_gaz_particuliers", period)
             + etablissement("consommation_gaz_nc_4401_4402", period)
             + etablissement("consommation_gaz_nc_2705", period)
-            + [cogeneration_exoneree * etablissement("consommation_gaz_cogeneration", period)]
+            + cogeneration_exoneree * etablissement("consommation_gaz_cogeneration", period)
         )
 
-        return max(0, conso + consommation_autres_produits_energetique_ticgn - conso_exoneree)
+        return max_(0, conso + consommation_autres_produits_energetique_ticgn - conso_exoneree)
 
     def formula_2011_01_01(etablissement, period, parameters):
         """Todo.
@@ -783,12 +783,12 @@ class assiette_ticgn(Variable):
         # Caractéristique annuelle de l'établissement, lue à l'année depuis une formule mensuelle.
         date_installation_cogeneration = etablissement("date_installation_cogeneration", period.this_year)
         ticgn = parameters(period).energies.gaz_naturel.ticgn
-        cogeneration_exoneree = False
-
-        if (date_installation_cogeneration <= period.start.year <= date_installation_cogeneration + 5) and (
-            date_installation_cogeneration < ticgn.annee_limite_cogeneration_exoneree
-        ):
-            cogeneration_exoneree = True
+        annee = period.start.year
+        cogeneration_exoneree = (
+            (date_installation_cogeneration <= annee)
+            * (annee <= date_installation_cogeneration + 5)
+            * (date_installation_cogeneration < ticgn.annee_limite_cogeneration_exoneree)
+        )
 
         conso = etablissement("consommation_gaz_combustible", period)
         consommation_autres_produits_energetique_ticgn = etablissement(
@@ -803,10 +803,10 @@ class assiette_ticgn(Variable):
             + etablissement("consommation_gaz_particuliers", period)
             + etablissement("consommation_gaz_nc_4401_4402", period)
             + etablissement("consommation_gaz_nc_2705", period)
-            + [cogeneration_exoneree * etablissement("consommation_gaz_cogeneration", period)]
+            + cogeneration_exoneree * etablissement("consommation_gaz_cogeneration", period)
         )
 
-        return max(0, conso + consommation_autres_produits_energetique_ticgn - conso_exoneree)
+        return max_(0, conso + consommation_autres_produits_energetique_ticgn - conso_exoneree)
 
     def formula_2014_01_01(etablissement, period, parameters):
         """Todo.
@@ -834,7 +834,7 @@ class assiette_ticgn(Variable):
             + etablissement("consommation_gaz_nc_2711_29", period)
         )
 
-        return max(0, conso + consommation_autres_produits_energetique_ticgn - conso_exoneree)
+        return max_(0, conso + consommation_autres_produits_energetique_ticgn - conso_exoneree)
 
     def formula_2020_01_01(etablissement, period, parameters):
         """Todo.
@@ -866,7 +866,7 @@ class assiette_ticgn(Variable):
             + etablissement("consommation_gaz_nc_2705", period)
             + etablissement("consommation_gaz_nc_2711_29", period)
         )
-        return max(0, conso + consommation_autres_produits_energetique_ticgn - conso_exoneree)
+        return max_(0, conso + consommation_autres_produits_energetique_ticgn - conso_exoneree)
 
     def formula_2021_01_01(etablissement, period, parameters):
         """suprimmé consommation_gaz_nc_2705."""
@@ -887,7 +887,7 @@ class assiette_ticgn(Variable):
             + etablissement("consommation_gaz_nc_2711_29", period)
         )
 
-        return max(0, conso + consommation_autres_produits_energetique_ticgn - conso_exoneree)
+        return max_(0, conso + consommation_autres_produits_energetique_ticgn - conso_exoneree)
 
         # pas de ticgn à partir de 2022
         # def formula_2022_01_01(etablissement, period, parameters):
