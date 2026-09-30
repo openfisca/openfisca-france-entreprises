@@ -1,0 +1,36 @@
+# Assiette TICGN à plusieurs établissements : exonération cogénération appréciée établissement
+# par établissement, plancher à zéro appliqué élément par élément.
+# annee_limite_cogeneration_exoneree = 2007 ; exonération pendant 5 ans après la mise en service.
+
+- name: assiette_ticgn 2010, cogénération exonérée ou non selon l'établissement
+  period: 2010-01
+  input:
+    etablissements:
+      eta_1:  # cogénération mise en service en 2006 (< 2007) : exonérée jusqu'en 2011
+        consommation_gaz_combustible: 1000
+        consommation_gaz_cogeneration: 300
+        date_installation_cogeneration:
+          2010: 2006
+      eta_2:  # mise en service en 2008 (>= 2007) : pas d'exonération
+        consommation_gaz_combustible: 1000
+        consommation_gaz_cogeneration: 300
+        date_installation_cogeneration:
+          2010: 2008
+      eta_3:  # exonérations supérieures à la consommation : assiette plancher à 0
+        consommation_gaz_combustible: 100
+        consommation_gaz_production_electricite: 300
+  output:
+    assiette_ticgn: [700, 1000, 0]
+
+- name: assiette_ticgn 2021, plancher à zéro sur un seul établissement
+  period: 2021-01
+  input:
+    etablissements:
+      eta_1:
+        consommation_gaz_combustible: 1000
+        consommation_gaz_production_electricite: 200
+      eta_2:
+        consommation_gaz_combustible: 100
+        consommation_gaz_production_electricite: 300
+  output:
+    assiette_ticgn: [800, 0]
