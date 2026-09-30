@@ -25,10 +25,9 @@ class valeur_ajoutee_eta(Variable):
         valeur_ajoutee_ul = etablissement.unite_legale("valeur_ajoutee_ul", period)
         effectif_3112_ul = etablissement.unite_legale("effectif_3112_ul", period)
         effectif_3112_eta = etablissement("effectif_3112_eta", period)
-        valeur_ajoutee_eta = 0
-        if effectif_3112_ul:
-            valeur_ajoutee_eta = valeur_ajoutee_ul * (effectif_3112_eta / effectif_3112_ul)
-        return valeur_ajoutee_eta
+        condition_non_zero = effectif_3112_ul != 0
+        denom_safe = where(condition_non_zero, effectif_3112_ul, 1)
+        return where(condition_non_zero, valeur_ajoutee_ul * (effectif_3112_eta / denom_safe), 0)
 
 
 class consommation_par_valeur_ajoutee(Variable):
@@ -44,10 +43,9 @@ class consommation_par_valeur_ajoutee(Variable):
         # euro de valeur ajoutée est un ratio annuel, on somme donc les douze mois.
         assiette_ticgn = etablissement("assiette_ticgn", period, options=[ADD])
 
-        consommation__divisee_par_valeur_ajoutee = 0
-        if valeur_ajoutee_eta:
-            consommation__divisee_par_valeur_ajoutee = assiette_ticgn / valeur_ajoutee_eta
-        return consommation__divisee_par_valeur_ajoutee
+        condition_non_zero = valeur_ajoutee_eta != 0
+        denom_safe = where(condition_non_zero, valeur_ajoutee_eta, 1)
+        return where(condition_non_zero, assiette_ticgn / denom_safe, 0)
 
 
 class chiffre_affaires_ul(Variable):
@@ -67,7 +65,9 @@ class chiffre_affaires_eta(Variable):
         chiffre_affaires_ul = etablissement.unite_legale("chiffre_affaires_ul", period)
         effectif_3112_ul = etablissement.unite_legale("effectif_3112_ul", period)
         effectif_3112_eta = etablissement("effectif_3112_eta", period)
-        return chiffre_affaires_ul * (effectif_3112_eta / effectif_3112_ul) if effectif_3112_ul else 0
+        condition_non_zero = effectif_3112_ul != 0
+        denom_safe = where(condition_non_zero, effectif_3112_ul, 1)
+        return where(condition_non_zero, chiffre_affaires_ul * (effectif_3112_eta / denom_safe), 0)
 
 
 class facture_energie_ul(Variable):
@@ -94,10 +94,9 @@ class facture_energie_par_valeur_ajoutee_eta(Variable):
     def formula_1960_01_01(etablissement, period, parameters):
         valeur_ajoutee_eta = etablissement("valeur_ajoutee_eta", period)
         facture_energie_eta = etablissement("facture_energie_eta", period)
-        facture_energie_par_valeur_ajoutee_eta = 0
-        if valeur_ajoutee_eta:
-            facture_energie_par_valeur_ajoutee_eta = facture_energie_eta / valeur_ajoutee_eta
-        return facture_energie_par_valeur_ajoutee_eta
+        condition_non_zero = valeur_ajoutee_eta != 0
+        denom_safe = where(condition_non_zero, valeur_ajoutee_eta, 1)
+        return where(condition_non_zero, facture_energie_eta / denom_safe, 0)
 
 
 class electro_intensite(Variable):
@@ -246,7 +245,9 @@ class intensite_energetique_valeur_production(Variable):
         facture_energie_eta = etablissement("facture_energie_eta", period)
         chiffre_affaires_eta = etablissement("chiffre_affaires_eta", period)
 
-        return facture_energie_eta / chiffre_affaires_eta if chiffre_affaires_eta != 0 else 0
+        condition_non_zero = chiffre_affaires_eta != 0
+        denom_safe = where(condition_non_zero, chiffre_affaires_eta, 1)
+        return where(condition_non_zero, facture_energie_eta / denom_safe, 0)
 
 
 # 1° Le niveau d'intensité énergétique en valeur de production s'entend du quotient entre :

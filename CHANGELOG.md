@@ -1,3 +1,22 @@
+### 2.0.1 - [#33](https://github.com/openfisca/openfisca-france-entreprises/pull/33)
+
+* Crash fix.
+* Impacted periods: from 01/01/1960.
+* Impacted areas:
+  - `variables/variables_economiques`
+  - `variables/taxes/taxation_energies/taxation_gaz_naturel`
+* Details:
+  - Vectorise les formules qui plantaient dès qu'une simulation comptait plus d'un
+    établissement (« The truth value of an array with more than one element is ambiguous ») :
+    `valeur_ajoutee_eta`, `chiffre_affaires_eta`, `consommation_par_valeur_ajoutee`,
+    `facture_energie_par_valeur_ajoutee_eta`, `intensite_energetique_valeur_production` et
+    `assiette_ticgn` (`max` Python remplacé par `max_`, condition de cogénération en `*`, suppression
+    de l'ajout d'une liste qui ajoutait une dimension parasite).
+  - Ces formules alimentent toutes les taxes gaz, charbon et produits pétroliers : aucune ne
+    tournait sur plusieurs établissements.
+  - Les résultats à un établissement sont inchangés. Ajoute des tests YAML à plusieurs
+    établissements (`tests/multi_etablissements/`).
+
 ## 2.0.0 - [#32](https://github.com/openfisca/openfisca-france-entreprises/pull/32)
 
 * Breaking change.
