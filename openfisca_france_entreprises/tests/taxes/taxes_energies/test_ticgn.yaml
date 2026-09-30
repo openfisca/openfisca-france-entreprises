@@ -9,15 +9,34 @@
   period: 1986
   relative_error_margin: 0.000001
   input:
-    assiette_ticgn : 6500000
+    # 6,5 GWh : assiette en MWh ; seuil (5 000 000 kWh) et abattement (400 000 kWh par mois)
+    # sont convertis en MWh par la formule (#39).
+    assiette_ticgn : 6500
   output:
     # 2026-07 : taux 1986 corrigé de 9.15 (typo) à 9.5 d'après le barème IPP.
-    # (6500000 - 400000*12) * 9.5 = 16150000
-    taxe_interieure_consommation_gaz_naturel : 16150000
+    # (6500 - 400*12) * 9.5 = 16150
+    taxe_interieure_consommation_gaz_naturel : 16150
     #(6500000 - 400000*12)*9.15
       # 1000000 - (200000 + 100000 + 50000)
 #en utilisant formula_1986_01_01
 #le seuil existe jusqu'à 2008
+
+- name: "Test 1986 sous le seuil d'exonération (5 000 MWh par an)"
+  period: 1986
+  relative_error_margin: 0.000001
+  input:
+    assiette_ticgn : 4000
+  output:
+    taxe_interieure_consommation_gaz_naturel : 0
+
+- name: "Test 2006 : un site industriel de 50 GWh est taxé (#39)"
+  period: 2006
+  relative_error_margin: 0.000001
+  input:
+    assiette_ticgn : 50000
+  output:
+    # (50000 - 400*12) * 1.19 = 53788
+    taxe_interieure_consommation_gaz_naturel : 53788
 
 - name: "Test 1994"
   period: 1994

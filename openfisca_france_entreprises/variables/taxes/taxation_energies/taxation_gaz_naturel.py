@@ -7,7 +7,7 @@ See https://openfisca.org/doc/key-concepts/variables.html
 Les commentaires avec *** indiquent qu'il y a des problèmes
 """
 
-from openfisca_core.model_api import ADD, MONTH, YEAR, Variable, max_, select, set_input_divide_by_period
+from openfisca_core.model_api import ADD, MONTH, YEAR, Variable, max_, select, set_input_divide_by_period, where
 
 from openfisca_france_entreprises.entities import Etablissement
 from openfisca_france_entreprises.variables.taxes.formula_helpers import (
@@ -527,25 +527,31 @@ class taxe_interieure_consommation_gaz_naturel_taux_normal(Variable):
         franchit le seuil n'a pas de profil infra-annuel connu — et le régime disparaît au
         1er janvier 2008, avant toute donnée 2040-TIC.
         """
-        seuil = tarif_moyen_annuel(
-            period,
-            lambda mois: parameters(mois).energies.gaz_naturel.ticgn.seuil_exoneration,
+        # Seuil et abattement sont exprimés en kWh dans les paramètres, l'assiette en MWh.
+        kwh_par_mwh = 1000
+        seuil = (
+            tarif_moyen_annuel(
+                period,
+                lambda mois: parameters(mois).energies.gaz_naturel.ticgn.seuil_exoneration,
+            )
+            / kwh_par_mwh
         )
-        # 5000000
+        # 5 000 000 kWh, soit 5 000 MWh par an
         abattement = (
             tarif_moyen_annuel(
                 period,
                 lambda mois: parameters(mois).energies.gaz_naturel.ticgn.abattement,
             )
             * 12
+            / kwh_par_mwh
         )
-        # 400000
+        # 400 000 kWh par mois, soit 4 800 MWh par an
         assiette = etablissement("assiette_ticgn", period, options=[ADD])
         taux = tarif_moyen_annuel(
             period,
             lambda mois: parameters(mois).energies.gaz_naturel.ticgn.taux_normal,
         )
-        return (assiette >= seuil) * (assiette - abattement) * taux
+        return where(assiette >= seuil, assiette - abattement, 0) * taux
 
     def formula_2008_01_01(etablissement, period, parameters):
         """[à noter : plus de seuil ni d'abattement]."""
