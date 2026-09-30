@@ -3,6 +3,7 @@
 from openfisca_core.model_api import ADD, YEAR, Variable, select
 
 from openfisca_france_entreprises.entities import Etablissement
+from openfisca_france_entreprises.variables.taxes.formula_helpers import normaliser_departement
 
 
 class taxe_departementale_consommation_finale_electricite(Variable):
@@ -29,7 +30,7 @@ class taux_tdcfe(Variable):
         amperage = etablissement("amperage", period)
         ticfe = parameters(period).energies.electricite.ticfe
         tcfe = parameters(period).energies.electricite.tcfe
-        departement = etablissement("departement", period).astype(str)
+        departement = normaliser_departement(etablissement("departement", period))
         coeff = tcfe.tdcfe.coefficient[departement]
         cond_36 = (amperage <= ticfe.categorie_fiscale_petite_et_moyenne_entreprise) & (amperage != 0)
         cond_250 = (amperage <= ticfe.categorie_fiscale_haut_puissance) & (amperage != 0)
